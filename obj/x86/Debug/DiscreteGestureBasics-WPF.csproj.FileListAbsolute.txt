@@ -1,0 +1,24 @@
+C:\Users\elrod_000\Documents\Develop\VS 2013\DiscreteGestureBasics-WPF\bin\x86\Debug\DiscreteGestureBasics-WPF.exe.config
+C:\Users\elrod_000\Documents\Develop\VS 2013\DiscreteGestureBasics-WPF\bin\x86\Debug\Database\Seated.gbd
+C:\Users\elrod_000\Documents\Develop\VS 2013\DiscreteGestureBasics-WPF\bin\x86\Debug\DiscreteGestureBasics-WPF.exe
+C:\Users\elrod_000\Documents\Develop\VS 2013\DiscreteGestureBasics-WPF\bin\x86\Debug\DiscreteGestureBasics-WPF.pdb
+C:\Users\elrod_000\Documents\Develop\VS 2013\DiscreteGestureBasics-WPF\bin\x86\Debug\Microsoft.Kinect.VisualGestureBuilder.dll
+C:\Users\elrod_000\Documents\Develop\VS 2013\DiscreteGestureBasics-WPF\bin\x86\Debug\Microsoft.Kinect.VisualGestureBuilder.xml
+C:\Users\elrod_000\Documents\Develop\VS 2013\DiscreteGestureBasics-WPF\obj\x86\Debug\MainWindow.g.cs
+C:\Users\elrod_000\Documents\Develop\VS 2013\DiscreteGestureBasics-WPF\obj\x86\Debug\App.g.cs
+C:\Users\elrod_000\Documents\Develop\VS 2013\DiscreteGestureBasics-WPF\obj\x86\Debug\DiscreteGestureBasics-WPF_Content.g.cs
+C:\Users\elrod_000\Documents\Develop\VS 2013\DiscreteGestureBasics-WPF\obj\x86\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\elrod_000\Documents\Develop\VS 2013\DiscreteGestureBasics-WPF\obj\x86\Debug\DiscreteGestureBasics-WPF_MarkupCompile.cache
+C:\Users\elrod_000\Documents\Develop\VS 2013\DiscreteGestureBasics-WPF\obj\x86\Debug\DiscreteGestureBasics-WPF_MarkupCompile.lref
+C:\Users\elrod_000\Documents\Develop\VS 2013\DiscreteGestureBasics-WPF\obj\x86\Debug\MainWindow.baml
+C:\Users\elrod_000\Documents\Develop\VS 2013\DiscreteGestureBasics-WPF\obj\x86\Debug\DiscreteGestureBasics-WPF.g.resources
+C:\Users\elrod_000\Documents\Develop\VS 2013\DiscreteGestureBasics-WPF\obj\x86\Debug\Microsoft.Samples.Kinect.DiscreteGestureBasics.Properties.Resources.resources
+C:\Users\elrod_000\Documents\Develop\VS 2013\DiscreteGestureBasics-WPF\obj\x86\Debug\DiscreteGestureBasics-WPF.csproj.GenerateResource.Cache
+C:\Users\elrod_000\Documents\Develop\VS 2013\DiscreteGestureBasics-WPF\obj\x86\Debug\DiscreteGestureBasics-WPF.exe
+C:\Users\elrod_000\Documents\Develop\VS 2013\DiscreteGestureBasics-WPF\obj\x86\Debug\DiscreteGestureBasics-WPF.pdb
+C:\Users\elrod_000\Documents\Develop\VS 2013\DiscreteGestureBasics-WPF\bin\x86\Debug\Microsoft.Kinect.dll
+C:\Users\elrod_000\Documents\Develop\VS 2013\DiscreteGestureBasics-WPF\bin\x86\Debug\Microsoft.Kinect.xml
+c:\users\elrod_000\documents\visual studio 2015\Projects\VisualizadorMultimodal\bin\x86\Debug\Database\Seated.gbd
+c:\users\elrod_000\documents\visual studio 2015\Projects\VisualizadorMultimodal\bin\x86\Debug\DiscreteGestureBasics-WPF.exe.config
+c:\users\elrod_000\documents\visual studio 2015\Projects\VisualizadorMultimodal\bin\x86\Debug\DiscreteGestureBasics-WPF.exe
+c:\users\elrod_000\documents\visual studio 2015\Projects\VisualizadorMultimodal\bin\x86\Debug\DiscreteGestureBasics-WPF.pdb

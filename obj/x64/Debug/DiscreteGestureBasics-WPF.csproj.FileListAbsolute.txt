@@ -1,0 +1,23 @@
+C:\Users\elrod_000\Documents\Develop\VS 2013\DiscreteGestureBasics-WPF\bin\x64\Debug\Database\Seated.gbd
+C:\Users\elrod_000\Documents\Develop\VS 2013\DiscreteGestureBasics-WPF\bin\x64\Debug\DiscreteGestureBasics-WPF.exe.config
+C:\Users\elrod_000\Documents\Develop\VS 2013\DiscreteGestureBasics-WPF\bin\x64\Debug\DiscreteGestureBasics-WPF.exe
+C:\Users\elrod_000\Documents\Develop\VS 2013\DiscreteGestureBasics-WPF\bin\x64\Debug\DiscreteGestureBasics-WPF.pdb
+C:\Users\elrod_000\Documents\Develop\VS 2013\DiscreteGestureBasics-WPF\bin\x64\Debug\Microsoft.Kinect.dll
+C:\Users\elrod_000\Documents\Develop\VS 2013\DiscreteGestureBasics-WPF\bin\x64\Debug\Microsoft.Kinect.VisualGestureBuilder.dll
+C:\Users\elrod_000\Documents\Develop\VS 2013\DiscreteGestureBasics-WPF\bin\x64\Debug\Microsoft.Kinect.xml
+C:\Users\elrod_000\Documents\Develop\VS 2013\DiscreteGestureBasics-WPF\bin\x64\Debug\Microsoft.Kinect.VisualGestureBuilder.xml
+C:\Users\elrod_000\Documents\Develop\VS 2013\DiscreteGestureBasics-WPF\obj\x64\Debug\MainWindow.g.cs
+C:\Users\elrod_000\Documents\Develop\VS 2013\DiscreteGestureBasics-WPF\obj\x64\Debug\App.g.cs
+C:\Users\elrod_000\Documents\Develop\VS 2013\DiscreteGestureBasics-WPF\obj\x64\Debug\DiscreteGestureBasics-WPF_Content.g.cs
+C:\Users\elrod_000\Documents\Develop\VS 2013\DiscreteGestureBasics-WPF\obj\x64\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\elrod_000\Documents\Develop\VS 2013\DiscreteGestureBasics-WPF\obj\x64\Debug\DiscreteGestureBasics-WPF_MarkupCompile.cache
+C:\Users\elrod_000\Documents\Develop\VS 2013\DiscreteGestureBasics-WPF\obj\x64\Debug\DiscreteGestureBasics-WPF_MarkupCompile.lref
+C:\Users\elrod_000\Documents\Develop\VS 2013\DiscreteGestureBasics-WPF\obj\x64\Debug\MainWindow.baml
+C:\Users\elrod_000\Documents\Develop\VS 2013\DiscreteGestureBasics-WPF\obj\x64\Debug\DiscreteGestureBasics-WPF.g.resources
+C:\Users\elrod_000\Documents\Develop\VS 2013\DiscreteGestureBasics-WPF\obj\x64\Debug\Microsoft.Samples.Kinect.DiscreteGestureBasics.Properties.Resources.resources
+C:\Users\elrod_000\Documents\Develop\VS 2013\DiscreteGestureBasics-WPF\obj\x64\Debug\DiscreteGestureBasics-WPF.csproj.GenerateResource.Cache
+C:\Users\elrod_000\Documents\Develop\VS 2013\DiscreteGestureBasics-WPF\obj\x64\Debug\DiscreteGestureBasics-WPF.exe
+C:\Users\elrod_000\Documents\Develop\VS 2013\DiscreteGestureBasics-WPF\obj\x64\Debug\DiscreteGestureBasics-WPF.pdb
+C:\Users\elrod_000\Documents\Develop\VS 2013\Visualizador Multimodal\bin\x64\Debug\DiscreteGestureBasics-WPF.exe.config
+C:\Users\elrod_000\Documents\Develop\VS 2013\Visualizador Multimodal\obj\x64\Debug\DiscreteGestureBasics-WPF.exe
+C:\Users\elrod_000\Documents\Develop\VS 2013\Visualizador Multimodal\obj\x64\Debug\DiscreteGestureBasics-WPF.pdb
