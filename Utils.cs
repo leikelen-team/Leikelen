@@ -14,7 +14,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
 {
     static class Utils
     {
-        public static ImageSource ToBitmap(this ColorFrame frame)
+        public static BitmapSource ToBitmap(this ColorFrame frame)
         {
             int width = frame.FrameDescription.Width;
             int height = frame.FrameDescription.Height;

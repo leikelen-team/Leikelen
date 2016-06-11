@@ -21,8 +21,8 @@
                 </Grid.RowDefinitions>
                 <!--<TextBlock HorizontalAlignment="Stretch" Text="{Binding BodyIndex, StringFormat='Body Index: {0}'}" FontSize="14" FontFamily="Segoe UI" FontWeight="SemiBold" Margin="5"/>-->
                 <!--<Image Source="{Binding ImageSource}" Stretch="Uniform" Grid.Row="1" Margin="5"/>-->
-                <TextBlock Text="{Binding Detected, StringFormat='Seated: {0}'}" FontSize="11" FontFamily="Segoe UI" Grid.Row="0" Margin="5 5 0 0"/>
-                <TextBlock Text="{Binding Confidence, StringFormat='Confidence: {0}'}" FontSize="11" FontFamily="Segoe UI" FontWeight="SemiBold" Grid.Row="1" Margin="5 0 0 0"/>
+                <TextBlock Text="{Binding Detected, StringFormat='Sentado: {0}'}" FontSize="11" FontFamily="Segoe UI" Grid.Row="0" Margin="5 5 0 0"/>
+                <TextBlock Text="{Binding Confidence, StringFormat='Confidencia: {0}'}" FontSize="11" FontFamily="Segoe UI" FontWeight="SemiBold" Grid.Row="1" Margin="5 0 0 0"/>
             </Grid>
         </DataTemplate>
 
@@ -41,20 +41,17 @@
         <Image Grid.Row="0" Source="Images\Status.png" Stretch="None" HorizontalAlignment="Center" Margin="0 0 0 5" />
 
         <Image x:Name="camera" Grid.ColumnSpan="3" Grid.Row="1"/>
-        <Viewbox x:Name="kinectBodyViewbox" Grid.ColumnSpan="3" Grid.Row="1">
-            <MediaElement x:Name="mediaElement" Source="{Binding ImageSource}" Height="100" Width="188"/>
-
-        </Viewbox>
-        <!--<Viewbox x:Name="kinectBodyViewbox" Grid.ColumnSpan="3" Grid.Row="1">
+        <Viewbox x:Name="kinectBodyViewbox" Grid.Row="1">
             <Image Source="{Binding ImageSource}" Stretch="UniformToFill" />
-        </Viewbox>-->
+        </Viewbox>
+
 
 
         <Grid x:Name="contentGrid" Grid.Row="2" >
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="60*"/>
-                <ColumnDefinition Width="173*"/>
-                <ColumnDefinition Width="128*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <!--<ColumnDefinition Width="128*"/>-->
                 <!--<ColumnDefinition Width="124*"/>-->
                 <!--<ColumnDefinition Width="2*"/>-->
             </Grid.ColumnDefinitions>
@@ -106,6 +103,7 @@
         <Button x:Name="button" Content="Ver gráficos" HorizontalAlignment="Left" Margin="557,16,0,19" Width="75"/>
         <Button x:Name="button2" Content="Exportar" HorizontalAlignment="Left" Margin="637,16,0,0" VerticalAlignment="Top" Width="75"/>
         <Button x:Name="button3" Content="Importar" HorizontalAlignment="Left" Margin="0,16,0,0" VerticalAlignment="Top" Width="75"/>
-        
+        <Button x:Name="grabarButton" Content="Grabar" HorizontalAlignment="Left" Margin="80,16,0,0" VerticalAlignment="Top" Width="76" Click="grabarButton_Click"/>   
+
     </Grid>
 </Window>

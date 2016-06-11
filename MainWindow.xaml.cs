@@ -21,10 +21,15 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
     using System.Windows.Controls;
     using Microsoft.Kinect;
     using Microsoft.Kinect.VisualGestureBuilder;
+    //using AForge.Video.FFMPEG;
+    using System.Drawing;
+    using System.Drawing.Imaging;
 
-    /// <summary>
-    /// Interaction logic for the MainWindow
-    /// </summary>
+    using Accord.Extensions.Imaging;
+    using System.Windows.Media.Imaging;
+    using System.IO;/// <summary>
+                    /// Interaction logic for the MainWindow
+                    /// </summary>
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
         /// <summary> Active Kinect sensor </summary>
@@ -39,6 +44,9 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
         //private ColorFrameReader colorFrameReader = null;
 
         private MultiSourceFrameReader _reader;
+        //private VideoFileWriter m_writer = null;
+        private bool m_isRecording = false;
+        private int m_width = 1280, m_height = 720;
 
         /// <summary> Current status text to display </summary>
         private string statusText = null;
@@ -48,6 +56,8 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
         
         /// <summary> List of gesture detectors, there will be one detector created for each potential body (max of 6) </summary>
         private List<GestureDetector> gestureDetectorList = null;
+
+        
 
         /// <summary>
         /// Initializes a new instance of the MainWindow class
@@ -62,6 +72,10 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
 
             // open the sensor
             this.kinectSensor.Open();
+            //if (this.kinectSensor.IsAvailable) {
+            //    m_width = this.kinectSensor.ColorFrameSource.FrameDescription.Width;
+            //    m_height = this.kinectSensor.ColorFrameSource.FrameDescription.Height;
+            //}
 
             // set the status text
             this.StatusText = this.kinectSensor.IsAvailable ? Properties.Resources.RunningStatusText
@@ -78,7 +92,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
             _reader = this.kinectSensor.OpenMultiSourceFrameReader(FrameSourceTypes.Color | FrameSourceTypes.Body);
             _reader.MultiSourceFrameArrived += Reader_MultiSourceFrameArrived;
             
-
+            
             // initialize the BodyViewer object for displaying tracked bodies in the UI
             this.kinectBodyView = new KinectBodyView(this.kinectSensor);
 
@@ -219,16 +233,71 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
                                                             : Properties.Resources.SensorNotAvailableStatusText;
         }
 
+
+        private void AddColorFrameToVideoRecording(ColorFrame colorFrame)
+        {
+            using (colorFrame)
+            {
+                if (colorFrame != null && m_isRecording)
+                {
+                    FrameDescription colorFrameDescription = colorFrame.FrameDescription;
+                    using (KinectBuffer colorBuffer = colorFrame.LockRawImageBuffer())
+                    {
+                        try
+                        {
+                            Bitmap bmap = new Bitmap(colorFrameDescription.Width, colorFrameDescription.Height, System.Drawing.Imaging.PixelFormat.Format32bppRgb);
+                            BitmapData bmapdata = bmap.LockBits(
+                                new Rectangle(0, 0, colorFrameDescription.Height, colorFrameDescription.Height),
+                                ImageLockMode.WriteOnly,
+                                bmap.PixelFormat);
+                            IntPtr ptr = bmapdata.Scan0;
+                            colorFrame.CopyConvertedFrameDataToIntPtr(ptr,
+                                (uint)(colorFrameDescription.Width * colorFrameDescription.Height * 4),
+                                ColorImageFormat.Bgra);
+                            bmap.UnlockBits(bmapdata);
+                            string time = System.DateTime.Now.ToString("HH-mm-ss-fff", System.Globalization.CultureInfo.CurrentUICulture.DateTimeFormat);
+                            //string timestamp = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss.fff",
+                            //            CultureInfo.InvariantCulture);
+                            bmap.Save(@"RecImages/" + time + ".png", ImageFormat.Png);
+                            //m_writer.WriteVideoFrame(bmap);
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.Error.WriteLine(ex.Message);
+                        }
+                    }
+                }
+            }
+        }
+
+
         private void Reader_MultiSourceFrameArrived(object sender, MultiSourceFrameArrivedEventArgs e)
         {
             var reference = e.FrameReference.AcquireFrame();
+            
 
             // Color
             using (var frame = reference.ColorFrameReference.AcquireFrame())
             {
                 if (frame != null)
                 {
-                    camera.Source = frame.ToBitmap();
+                    BitmapSource btmSource = frame.ToBitmap();
+                    camera.Source = btmSource;
+
+                    // if is recording mode, save frame as JPEG image into RecImages directory
+                    if (m_isRecording) { 
+                        JpegBitmapEncoder encoder = new JpegBitmapEncoder();
+                        encoder.Frames.Add(BitmapFrame.Create(btmSource));
+                        string time = System.DateTime.Now.ToString("HH-mm-ss-fff", 
+                            System.Globalization.CultureInfo.CurrentUICulture.DateTimeFormat);
+                        using (var fs = new FileStream(@"RecImages/" + time + ".jpeg", FileMode.Create, FileAccess.Write))
+                        {
+                            encoder.Save(fs);
+                        }
+                    }
+
+
+                    //mediaElement.
                 }
             }
 
@@ -356,5 +425,50 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
         {
             Console.WriteLine("test button clicked");
         }
+
+        private void makeAvi(string imageInputfolderName, string outVideoFileName, float fps = 30.0f, string imgSearchPattern = "*.png")
+        {   // reads all images in folder 
+            VideoWriter w = new VideoWriter(outVideoFileName,
+                new Accord.Extensions.Size(480, 640), fps, true);
+            Accord.Extensions.Imaging.ImageDirectoryReader ir =
+                new ImageDirectoryReader(imageInputfolderName, imgSearchPattern);
+            
+            while (ir.Position < ir.Length)
+            {
+                IImage i = ir.Read();
+                w.Write(i);
+            }
+            w.Close();
+        }
+        private void grabarButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (m_isRecording)
+            {
+                m_isRecording = false;
+                grabarButton.Content = "Grabar";
+                //makeAvi(@"RecImages/", @"videito.avi");
+            }else{
+                m_isRecording = true;
+                grabarButton.Content = "Detener";
+            }
+        }
+
+        //private void grabarButton_Click(object sender, RoutedEventArgs e)
+        //{
+        //    if (m_isRecording)
+        //    {
+        //        m_isRecording = false;
+        //        m_writer.Close();
+        //        grabarButton.Content = "Grabar";
+        //    }
+        //    else
+        //    {
+        //        m_writer = new VideoFileWriter();
+        //        //string time = System.DateTime.Now.ToString("hh'-'mm'-'ss", System.Globalization.CultureInfo.CurrentUICulture.DateTimeFormat);
+        //        m_writer.Open("video_testing_rolo.mpeg", m_width, m_height, 30, VideoCodec.MSMPEG4v3, 12800000);
+        //        m_isRecording = true;
+        //        grabarButton.Content = "Detener";
+        //    }
+        //}
     }
 }
