@@ -41,7 +41,7 @@
         <Image Grid.Row="0" Source="Images\Status.png" Stretch="None" HorizontalAlignment="Center" Margin="0 0 0 5" />
 
         <Image x:Name="camera" Grid.ColumnSpan="3" Grid.Row="1"/>
-        <Viewbox x:Name="kinectBodyViewbox" Grid.Row="1">
+        <Viewbox x:Name="kinectBodyViewbox" Grid.Row="1" Margin="0,0,10,0">
             <Image Source="{Binding ImageSource}" Stretch="UniformToFill" />
         </Viewbox>
 

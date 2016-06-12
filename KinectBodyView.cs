@@ -188,6 +188,14 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
             }
         }
 
+        public DrawingImage DrawingImage
+        {
+            get
+            {
+                return this.imageSource;
+            }
+        }
+
         /// <summary>
         /// Updates the body array with new information from the sensor
         /// Should be called whenever a new BodyFrameArrivedEvent occurs
