@@ -105,6 +105,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -122,9 +123,46 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="_Analytics.cs" />
+    <Compile Include="ChartForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChartForm.Designer.cs">
+      <DependentUpon>ChartForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditPersonForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditPersonForm.Designer.cs">
+      <DependentUpon>EditPersonForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="_Frame.cs" />
     <Compile Include="KinectStudioHandler.cs" />
-    <Compile Include="Video.cs" />
+    <Compile Include="_Escena.cs" />
+    <Compile Include="pojos\Emotion.cs" />
+    <Compile Include="pojos\_Interval.cs" />
+    <Compile Include="pojos\_Joint.cs" />
+    <Compile Include="pojos\_JointPosition.cs" />
+    <Compile Include="pojos\Person.cs" />
+    <Compile Include="pojos\Posture.cs" />
+    <Compile Include="Properties\Buttons.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Buttons.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Messages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Messages.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Paths.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Paths.resx</DependentUpon>
+    </Compile>
+    <Compile Include="pojos\Scene.cs" />
     <Compile Include="Utils.cs" />
+    <Compile Include="_VisualizerXamlView.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -155,10 +193,28 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="ChartForm.resx">
+      <DependentUpon>ChartForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditPersonForm.resx">
+      <DependentUpon>EditPersonForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Buttons.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Buttons.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Messages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Paths.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Paths.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -168,7 +224,9 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Kinect.ico" />
@@ -183,7 +241,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy "$(KINECTSDK20_DIR)Redist\VGB\$(Platform)\vgbtechs" "$(TargetDir)\vgbtechs" /S /R /Y /I</PostBuildEvent>

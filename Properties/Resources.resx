@@ -120,6 +120,12 @@
   <data name="Body_NotTracked" xml:space="preserve">
     <value>Not Tracked</value>
   </data>
+  <data name="EventFileDescription" xml:space="preserve">
+    <value>KStudio Event File</value>
+  </data>
+  <data name="EventFileFilter" xml:space="preserve">
+    <value>(*.xef, *.xrf)|*.xef;*.xrf</value>
+  </data>
   <data name="FailedScreenshotStatusTextFormat" xml:space="preserve">
     <value>Failed to write screenshot to {0}</value>
   </data>
@@ -131,5 +137,8 @@
   </data>
   <data name="SensorNotAvailableStatusText" xml:space="preserve">
     <value>Kinect not available!</value>
+  </data>
+  <data name="XefExtension" xml:space="preserve">
+    <value>.xef</value>
   </data>
 </root>

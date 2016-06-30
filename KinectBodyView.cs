@@ -186,6 +186,10 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
             {
                 return this.imageSource;
             }
+            //set
+            //{
+            //    imageSource = (DrawingImage)value;
+            //}
         }
 
         public DrawingImage DrawingImage
@@ -194,6 +198,10 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
             {
                 return this.imageSource;
             }
+            //set
+            //{
+            //    this.imageSource = value;
+            //}
         }
 
         /// <summary>
@@ -213,6 +221,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
                     int penIndex = 0;
                     foreach (Body body in bodies)
                     {
+                        
                         Pen drawPen = this.bodyColors[penIndex++];
 
                         if (body.IsTracked)
@@ -236,6 +245,10 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
 
                                 DepthSpacePoint depthSpacePoint = this.coordinateMapper.MapCameraPointToDepthSpace(position);
                                 jointPoints[jointType] = new Point(depthSpacePoint.X, depthSpacePoint.Y);
+                                //Joint joint = new Joint();
+                                //joint.Position.X = 1;
+                                
+                                
                             }
 
                             this.DrawBody(joints, jointPoints, dc, drawPen);
@@ -249,6 +262,10 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
                     this.drawingGroup.ClipGeometry = new RectangleGeometry(new Rect(0.0, 0.0, this.displayWidth, this.displayHeight));
                 }
             }
+        }
+        public void updateView()
+        {
+            this.drawingGroup.ClipGeometry = new RectangleGeometry(new Rect(0.0, 0.0, this.displayWidth, this.displayHeight));
         }
 
         /// <summary>

@@ -10,7 +10,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
     using System.Collections.Generic;
     using Microsoft.Kinect;
     using Microsoft.Kinect.VisualGestureBuilder;
-
+    using pojos;
     /// <summary>
     /// Gesture Detector class which listens for VisualGestureBuilderFrame events from the service
     /// and updates the associated GestureResultView object with the latest results for the 'Seated' gesture
@@ -21,21 +21,23 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
         private readonly string gestureDatabase = @"Database\Seated.gbd";
 
         /// <summary> Name of the discrete gesture in the database that we want to track </summary>
-        private readonly string seatedGestureName = "Seated";
+        //private readonly string seatedGestureName = "Seated";
 
         /// <summary> Gesture frame source which should be tied to a body tracking ID </summary>
         private VisualGestureBuilderFrameSource vgbFrameSource = null;
 
         /// <summary> Gesture frame reader which will handle gesture events coming from the sensor </summary>
         private VisualGestureBuilderFrameReader vgbFrameReader = null;
+        
 
         /// <summary>
         /// Initializes a new instance of the GestureDetector class along with the gesture frame source and reader
         /// </summary>
         /// <param name="kinectSensor">Active sensor to initialize the VisualGestureBuilderFrameSource object with</param>
         /// <param name="gestureResultView">GestureResultView object to store gesture results of a single body to</param>
-        public GestureDetector(KinectSensor kinectSensor, GestureResultView gestureResultView)
+        public GestureDetector(int bodyIndex, KinectSensor kinectSensor, GestureResultView gestureResultView)
         {
+            this.BodyIndex = bodyIndex;
             if (kinectSensor == null)
             {
                 throw new ArgumentNullException("kinectSensor");
@@ -63,20 +65,32 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
             // load the 'Seated' gesture from the gesture database
             using (VisualGestureBuilderDatabase database = new VisualGestureBuilderDatabase(this.gestureDatabase))
             {
+                // OPTION 1
                 // we could load all available gestures in the database with a call to vgbFrameSource.AddGestures(database.AvailableGestures), 
                 // but for this program, we only want to track one discrete gesture from the database, so we'll load it by name
-                foreach (Gesture gesture in database.AvailableGestures)
-                {
-                    if (gesture.Name.Equals(this.seatedGestureName))
-                    {
-                        this.vgbFrameSource.AddGesture(gesture);
-                    }
-                }
+                
+                //foreach (Gesture gesture in database.AvailableGestures)
+                //{
+                //    if (gesture.Name.Equals(this.seatedGestureName))
+                //    {
+                //        this.vgbFrameSource.AddGesture(gesture);
+                //    }
+                //}
+
+
+                
+                // OPTION 2
+
+                vgbFrameSource.AddGestures(database.AvailableGestures);
+
             }
         }
 
         /// <summary> Gets the GestureResultView object which stores the detector results for display in the UI </summary>
         public GestureResultView GestureResultView { get; private set; }
+
+        /// <summary> The body index (0-5) associated with the current gesture detector </summary>
+        public int BodyIndex { get; private set; }
 
         /// <summary>
         /// Gets or sets the body tracking ID associated with the current detector
@@ -169,19 +183,36 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
                     if (discreteResults != null)
                     {
                         // we only have one gesture in this source object, but you can get multiple gestures
+                        bool emotionDetected = false;
                         foreach (Gesture gesture in this.vgbFrameSource.Gestures)
                         {
-                            if (gesture.Name.Equals(this.seatedGestureName) && gesture.GestureType == GestureType.Discrete)
+                            Emotion[] emotions = (Emotion[])Enum.GetValues(typeof(Emotion));
+                            foreach (Emotion emotion in emotions)
                             {
-                                DiscreteGestureResult result = null;
-                                discreteResults.TryGetValue(gesture, out result);
-
-                                if (result != null)
+                                //if (gesture.Name.Equals(this.seatedGestureName) && gesture.GestureType == GestureType.Discrete)
+                                if (gesture.Name.Equals(emotion.ToString("g")) && gesture.GestureType == GestureType.Discrete)
                                 {
-                                    // update the GestureResultView object with new gesture result values
-                                    this.GestureResultView.UpdateGestureResult(true, result.Detected, result.Confidence);
+                                    DiscreteGestureResult result = null;
+                                    discreteResults.TryGetValue(gesture, out result);
+
+                                    if (result != null)
+                                    {
+                                        // update the GestureResultView object with new gesture result values
+                                        this.GestureResultView.UpdateGestureResult(true, result.Detected, result.Confidence);
+                                        if (result.Detected && Scene.Instance!=null)
+                                        {
+                                            Scene.Instance.persons[BodyIndex].postures.Add(new Posture(emotion, frame.RelativeTime));
+                                            emotionDetected = true;
+                                            //Scene.Instance.persons[BodyIndex].postures.
+                                        }
+                                    }
+                                    break;
                                 }
                             }
+                        }
+                        if (!emotionDetected && Scene.Instance != null)
+                        {
+                            Scene.Instance.persons[BodyIndex].postures.Add(new Posture(Emotion.Ninguno, frame.RelativeTime));
                         }
                     }
                 }

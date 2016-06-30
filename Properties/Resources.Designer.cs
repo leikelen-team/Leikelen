@@ -70,6 +70,24 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to KStudio Event File.
+        /// </summary>
+        public static string EventFileDescription {
+            get {
+                return ResourceManager.GetString("EventFileDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (*.xef, *.xrf)|*.xef;*.xrf.
+        /// </summary>
+        public static string EventFileFilter {
+            get {
+                return ResourceManager.GetString("EventFileFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Failed to write screenshot to {0}.
         /// </summary>
         public static string FailedScreenshotStatusTextFormat {
@@ -102,6 +120,15 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.Properties {
         public static string SensorNotAvailableStatusText {
             get {
                 return ResourceManager.GetString("SensorNotAvailableStatusText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .xef.
+        /// </summary>
+        public static string XefExtension {
+            get {
+                return ResourceManager.GetString("XefExtension", resourceCulture);
             }
         }
     }
