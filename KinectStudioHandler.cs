@@ -21,7 +21,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
         private BackgroundWorker recWorker;
         private string recordingFilePath;
         private string playingFilePath;
-        private KStudioEventStreamSelectorCollection streamCollection;
+        
         private KStudioRecording recorder;
 
         public bool isPlaying { get; private set; }
@@ -35,20 +35,16 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
             this.client = KStudio.CreateClient();
             this.client.ConnectToService();
             isPlaying = false;
-            playerWorker = new BackgroundWorker();
-            playerWorker.WorkerReportsProgress = false;
-            playerWorker.WorkerSupportsCancellation = true;
-            playerWorker.DoWork += new DoWorkEventHandler(this.bw_DoWork_StartPlaying);
+            //playerWorker = new BackgroundWorker();
+            //playerWorker.WorkerReportsProgress = false;
+            //playerWorker.WorkerSupportsCancellation = true;
+            //playerWorker.DoWork += new DoWorkEventHandler(this.bw_DoWork_StartPlaying);
 
             recWorker = new BackgroundWorker();
             recWorker.WorkerReportsProgress = false;
             recWorker.WorkerSupportsCancellation = true;
             recWorker.DoWork += new DoWorkEventHandler(this.bw_DoWork_StartRecording);
 
-            streamCollection = new KStudioEventStreamSelectorCollection();
-            streamCollection.Add(KStudioEventStreamDataTypeIds.CompressedColor);
-            streamCollection.Add(KStudioEventStreamDataTypeIds.Body);
-            streamCollection.Add(KStudioEventStreamDataTypeIds.BodyIndex);
             //streamCollection.Add(KStudioEventStreamDataTypeIds.Depth);
             
         }
@@ -133,13 +129,19 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
             isPlaying = true;
             if (playback != null && playback.State == KStudioPlaybackState.Paused)
                 playback.Resume();
-            else playerWorker.RunWorkerAsync();
+            else playback.Start(); //playerWorker.RunWorkerAsync();
             //else if (playback.State == KStudioPlaybackState.Stopped)
         }
         public void PausePlaying()
         {
-            isPlaying = false;
-            if(playback!=null && playback.State == KStudioPlaybackState.Playing) playback.Pause();
+            
+            if(playback!=null && playback.State == KStudioPlaybackState.Playing)
+            {
+                isPlaying = false;
+                playback.Pause();
+            }else if (playback.State == KStudioPlaybackState.Error)
+                throw new Exception("Error. Playback failed");
+            
             //playerWorker.CancelAsync();
         }
         public void StopPlaying()
@@ -169,17 +171,36 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
             {
                 recorder.Stop();
                 isRecording = false;
+                this.ImportScene(this.recordingFilePath);
+                
+                //this.client.DisconnectFromService();
+                //this.client.ConnectToService();
 
-                this.playingFilePath = this.recordingFilePath;
-                this.playback = this.client.CreatePlayback(this.playingFilePath);
-                KStudioFileInfo fileInfo = this.client.GetFileList(this.playingFilePath).First();
-                Console.WriteLine("Scene Imported:");
-                Console.WriteLine("File Name: " + fileInfo.FilePath);
-                Console.WriteLine("Size: " + fileInfo.Size);
-                Console.WriteLine("Creation Date: " + fileInfo.CreationUtcFileTime);
-                Console.WriteLine("Duration: " + playback.Duration);
-                Console.WriteLine("Path: " + playback.FilePath);
-                Scene.Create(fileInfo.FilePath, fileInfo.CreationUtcFileTime, playback.Duration);
+                //this.playingFilePath = this.recordingFilePath;
+                //this.isSceneImportedOrRecorded = true;
+                //this.playback = this.client.CreatePlayback(this.playingFilePath);
+                //KStudioFileInfo fileInfo = this.client.GetFileList(this.playingFilePath).First();
+
+                //Console.WriteLine("Scene Imported:");
+                //Console.WriteLine("File Name: " + fileInfo.FilePath);
+                //Console.WriteLine("Size: " + fileInfo.Size);
+                //Console.WriteLine("Creation Date: " + fileInfo.CreationUtcFileTime);
+                //Console.WriteLine("Duration: " + playback.Duration);
+                //Console.WriteLine("Path: " + playback.FilePath);
+
+                //Scene.Create(fileInfo.FilePath, fileInfo.CreationUtcFileTime, playback.Duration);
+
+                //Console.WriteLine("relative time millis timespan: " + playback.StartRelativeTime.ToString());
+                //Console.WriteLine("relative time millis double: " + playback.StartRelativeTime.TotalMilliseconds.ToString());
+
+                //int millisStart = (int)this.playback.StartRelativeTime.TotalMilliseconds;
+                //Console.WriteLine("relative time millis int: " + millisStart.ToString());
+
+                //this.playback.AddPausePointByRelativeTime(TimeSpan.FromMilliseconds(500));
+                //this.playback.Start();
+
+
+
             }
             
                 
@@ -191,9 +212,15 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
             this.client.ConnectToService();
 
             File.Delete(this.recordingFilePath);
+
+            KStudioEventStreamSelectorCollection streamCollection;
+            streamCollection = new KStudioEventStreamSelectorCollection();
+            streamCollection.Add(KStudioEventStreamDataTypeIds.CompressedColor);
+            streamCollection.Add(KStudioEventStreamDataTypeIds.Body);
+            streamCollection.Add(KStudioEventStreamDataTypeIds.BodyIndex);
             recorder = client.CreateRecording(this.recordingFilePath, streamCollection);
             this.isSceneImportedOrRecorded = true;
-            recorder.StartTimed(TimeSpan.FromSeconds(5));
+            recorder.Start();// (TimeSpan.FromSeconds(5));
             while (recorder.State == KStudioRecordingState.Recording)
             {
                 Thread.Sleep(500);
@@ -208,34 +235,34 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
         }
 
 
-        private void bw_DoWork_StartPlaying(object sender, DoWorkEventArgs e)
-        {
-            //using (this.client)
-            //{
-                //client.ConnectToService();
+        //private void bw_DoWork_StartPlaying(object sender, DoWorkEventArgs e)
+        //{
+        //    //using (this.client)
+        //    //{
+        //        //client.ConnectToService();
 
-                //string filePath = "C:/Users/elrod_000/Documents/Develop/Kinect/Kinect Studio/Repository/20160531_220653_00.xef";
+        //        //string filePath = "C:/Users/elrod_000/Documents/Develop/Kinect/Kinect Studio/Repository/20160531_220653_00.xef";
                 
                 
-                //using (playback = client.CreatePlayback(filePath))
-                //{
-                    //playback.LoopCount = loopCount;
-                playback.Start();
+        //        //using (playback = client.CreatePlayback(filePath))
+        //        //{
+        //            //playback.LoopCount = loopCount;
+        //        playback.Start();
 
 
-                while (playback.State == KStudioPlaybackState.Playing)
-                {
-                    Thread.Sleep(500);
-                }
+        //        while (playback.State == KStudioPlaybackState.Playing)
+        //        {
+        //            Thread.Sleep(500);
+        //        }
 
-                if (playback.State == KStudioPlaybackState.Error)
-                {
-                    throw new InvalidOperationException("Error: Playback failed!");
-                }
-                //}
+        //        if (playback.State == KStudioPlaybackState.Error)
+        //        {
+        //            throw new InvalidOperationException("Error: Playback failed!");
+        //        }
+        //        //}
 
-                //client.DisconnectFromService();
-            //}
-        }
+        //        //client.DisconnectFromService();
+        //    //}
+        //}
     }
 }

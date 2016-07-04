@@ -172,6 +172,19 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
             this.showGraphButtons.IsEnabled = false;
         }
 
+        public void disableButtons()
+        {
+            this.button_EditPerson1.IsEnabled = false;
+            this.button_EditPerson2.IsEnabled = false;
+            this.button_EditPerson3.IsEnabled = false;
+            this.button_EditPerson4.IsEnabled = false;
+            this.button_EditPerson5.IsEnabled = false;
+            this.button_EditPerson6.IsEnabled = false;
+            this.exportButtons.IsEnabled = false;
+            this.playButton.IsEnabled = false;
+            this.showGraphButtons.IsEnabled = false;
+        }
+
         public void enableButtons()
         {
             this.button_EditPerson1.IsEnabled = true;
@@ -286,8 +299,8 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
                 {
                     BitmapSource btmSource = colorFrame.ToBitmap();
                     this.colorImageControl.Source = btmSource;
-                    if (escena.IsRecording)
-                        escena.AddColorFrame(btmSource);
+                    //if (escena.IsRecording)
+                    //    escena.AddColorFrame(btmSource);
                     
                 }
             }
@@ -298,8 +311,8 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
                 {
                     this.PrintBodyFrame(bodyFrame);
                     this.bodyImageControl.Source = kinectBodyView.DrawingImage;
-                    if (escena.IsRecording)
-                        escena.AddBodyFrame(kinectBodyView.DrawingImage);
+                    //if (escena.IsRecording)
+                    //    escena.AddBodyFrame(kinectBodyView.DrawingImage);
                 }
             }
             
@@ -452,14 +465,16 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
 
             if (this.kstudio.isRecording)
             {
-                this.kstudio.StopRecording();
+               
+                this.kstudio.StopRecording(); 
                 grabarButton.Content = Properties.Buttons.StartRecording;
+                this.enableButtons();
             }
             else
             {
                 this.kstudio.StartRecording();
                 grabarButton.Content = Properties.Buttons.StopRecording;
-                enableButtons();
+                this.disableButtons();
             }
 
         }
