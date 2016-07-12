@@ -31,8 +31,8 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
     using System.IO;
     using Win32;    //using Win32;
     using pojos;    //using System.Windows.Forms;                    //using System.Windows.Forms;/// <summary>
-                    /// Interaction logic for the MainWindow
-                    /// </summary>
+    using System.Threading;                    /// Interaction logic for the MainWindow
+                                               /// </summary>
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
         /// <summary> Active Kinect sensor </summary>
@@ -549,14 +549,30 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
         private void sceneSlider_DragStarted(object sender, RoutedEventArgs e)
         {
             //sceneSliderUserDragging = true;
+            if (kstudio.playback != null)
+                if (kstudio.playback.State == Microsoft.Kinect.Tools.KStudioPlaybackState.Playing)
+                {
+                    kstudio.playback.UserState = "MUST_RESUME";
+                }
+                else
+                {
+                    kstudio.playback.UserState = "madafaka :D";
+                } 
             kstudio.PausePlaying();
         }
 
         private void sceneSlider_DragCompleted(object sender, RoutedEventArgs e)
         {
             //sceneSliderUserDragging = false;
-            kstudio.playback.SeekByRelativeTime(TimeSpan.FromMilliseconds(sceneSlider.Value));
-            kstudio.StartOrResumePlaying();
+            if (kstudio.playback != null)
+            {
+                kstudio.playback.SeekByRelativeTime(TimeSpan.FromMilliseconds(sceneSlider.Value));
+                kstudio.ResumePlaying();
+                Thread.Sleep(kstudio.PausedStartMillisTime);
+                if ( (string)kstudio.playback.UserState != "MUST_RESUME" )
+                    kstudio.PausePlaying();
+            }
+            
             
         }
     }

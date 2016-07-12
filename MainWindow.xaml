@@ -56,44 +56,35 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="10*"/>
-                <RowDefinition Height="1*"/>
+                <RowDefinition/>
+                <RowDefinition Height="25"/>
             </Grid.RowDefinitions>
-            
+
             <Image x:Name="colorImageControl" Grid.Row="0"/>
             <Image x:Name="bodyImageControl" Grid.Row="0"/>
-            
-            <StatusBar Grid.Row="1" HorizontalAlignment="Stretch" Height="24" VerticalAlignment="Top">
-                <StatusBar.Background>
-                    <SolidColorBrush Color="#FFF1EDED"/>
-                </StatusBar.Background>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="2*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <Slider  Grid.Row="0" Grid.Column="0"  x:Name="sceneSlider" Height="22" Value="0"
-                                 HorizontalAlignment="Right"  HorizontalContentAlignment="Left" Width="400" 
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <StatusBar Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Height="24" VerticalAlignment="Center">
+                    <StatusBar.Background>
+                        <SolidColorBrush Color="#FFF1EDED"/>
+                    </StatusBar.Background>
+                </StatusBar>
+                <Slider  Grid.Row="0" Grid.Column="0"  x:Name="sceneSlider" Height="22" Value="0"
+                                 HorizontalAlignment="Stretch"  HorizontalContentAlignment="Left"
+                                 VerticalAlignment="Center"
                                  ValueChanged="sceneSlider_ValueChanged"
                                  Thumb.DragStarted="sceneSlider_DragStarted"
                                  Thumb.DragCompleted="sceneSlider_DragCompleted"/>
-                    <CheckBox IsChecked="True" Grid.Row="0" Grid.Column="1" x:Name="fondoCheckBox" Content="Fondo" HorizontalAlignment="Stretch" VerticalAlignment="Center"  Unchecked="fondoCheckBox_Checked"/>
-                </Grid>
-            </StatusBar>    
+                <CheckBox IsChecked="True" Grid.Row="0" Grid.Column="1" x:Name="fondoCheckBox" Content="Fondo" HorizontalAlignment="Stretch" VerticalAlignment="Center"  Unchecked="fondoCheckBox_Checked"/>
+            </Grid>
         </Grid>
-        
-        
-        <!--<Viewbox x:Name="kinectBodyViewbox" Grid.Row="1" Margin="0,0,10,0">
-            <Image x:Name="bodyImageControl" Stretch="UniformToFill" />
-            -->
-        <!--Source="{Binding ImageSource}"-->
-        <!--
-        </Viewbox>-->
-        <!--<Image x:Name="camera2" Grid.ColumnSpan="3" Grid.Row="1"/>-->
-
 
 
         <Grid x:Name="contentGrid" Grid.Row="2" Grid.ColumnSpan="2" >
@@ -209,7 +200,7 @@
                     <Border Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="8,8,3,3"></Border>
                     <!--<Border Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="8,8,3,3"></Border>-->
 
-                    
+
 
                 </Grid>
             </ScrollViewer>
@@ -217,7 +208,7 @@
 
         </Grid>
 
-        
+
         <Button x:Name="showGraphButtons" Content="Ver gráficos" HorizontalAlignment="Left" Margin="446,30,0,5" Width="75" Click="showGraphButtons_Click"/>
         <Button x:Name="exportButtons" Content="Exportar" HorizontalAlignment="Left" Margin="80,30,0,0" VerticalAlignment="Top" Width="75" Click="exportButtons_Click"/>
         <Button x:Name="importButtons" Content="Importar" HorizontalAlignment="Left" Margin="0,30,0,0" VerticalAlignment="Top" Width="75" Click="importButtons_Click"/>
@@ -228,7 +219,7 @@
         <Label x:Name="sceneCurrentTimeLabel" Content="00:00:00" HorizontalAlignment="Left" Margin="291,4,0,0" VerticalAlignment="Top"/>
         <Label Content="/" HorizontalAlignment="Left" Margin="340,4,0,0" VerticalAlignment="Top"/>
         <Label x:Name="sceneDurationLabel" Content="00:00:00" HorizontalAlignment="Left" Margin="350,4,0,0" VerticalAlignment="Top"/>
-        
+
 
 
 

@@ -21,9 +21,10 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
         private BackgroundWorker recWorker;
         private string recordingFilePath;
         private string playingFilePath;
-        
+
         private KStudioRecording recorder;
-        private int PausedStartMillisTime = 150;
+        public int PausedStartMillisTime { get; private set; } = 150;
+
 
         //public bool isPlaying { get; private set; }
         //public bool isRecording { get; private set; }
@@ -153,6 +154,11 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
             else playback.Start(); //playerWorker.RunWorkerAsync();
             //else if (playback.State == KStudioPlaybackState.Stopped)
         }
+        public void ResumePlaying()
+        {
+            if (playback != null && playback.State == KStudioPlaybackState.Paused)
+                playback.Resume();
+        }
         public void PausePlaying()
         {
             
@@ -160,7 +166,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
             {
                 //isPlaying = false;
                 playback.Pause();
-            }else if (playback.State == KStudioPlaybackState.Error)
+            }else if (playback!= null && playback.State == KStudioPlaybackState.Error)
                 throw new Exception("Error. Playback failed");
             
             //playerWorker.CancelAsync();
