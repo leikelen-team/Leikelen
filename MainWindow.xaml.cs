@@ -64,6 +64,9 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
         private _Escena escena;
         private KinectStudioHandler kstudio;
         public static ChartForm chartForm { get; private set; }
+        public static TimeSpan lastCurrentTime = TimeSpan.FromSeconds(0);
+        private bool sceneSliderUserDragging = false;
+        //private Timer timer;
 
         //private KinectBodyView kinectBodyView;
 
@@ -120,12 +123,12 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
             // set our data context objects for display in UI
             this.DataContext = this;
             //this.kinectBodyViewbox.DataContext = kinectBodyView;
-            _VisualizerXamlView.Instance().InitColorFrame(ref this.colorImageControl);
-            _VisualizerXamlView.Instance().InitBodyFrame(ref this.bodyImageControl);
+            VisualizerXamlView.Instance().InitColorFrame(ref this.colorImageControl);
+            VisualizerXamlView.Instance().InitBodyFrame(ref this.bodyImageControl);
 
             // create a gesture detector for each body (6 bodies => 6 detectors) and create content controls to display results in the UI
             //int col0Row = 0;
-            int row = 0;
+            int row = 1;
             int maxBodies = this.kinectSensor.BodyFrameSource.BodyCount;
             for (int i = 0; i < maxBodies; ++i)
             {
@@ -137,7 +140,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
                 ContentControl contentControl = new ContentControl();
                 contentControl.Content = this.gestureDetectorList[i].GestureResultView;
 
-                Grid.SetColumn(contentControl, 1);
+                Grid.SetColumn(contentControl, 0);
                 Grid.SetRow(contentControl, row++);
                 //++row;
 
@@ -154,9 +157,10 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
                 //    Grid.SetColumn(contentControl, 1);
                 //    Grid.SetRow(contentControl, col1Row);
                 //    ++col1Row;
-                //} 
+                //}
+                this.timeLineGrid.Children.Add(contentControl);
 
-                this.contentGrid.Children.Add(contentControl);
+                //this.contentGrid.Children.Add(contentControl);
             }
             this.escena = new _Escena();
             this.kstudio = new KinectStudioHandler();
@@ -170,6 +174,13 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
             this.exportButtons.IsEnabled = false;
             this.playButton.IsEnabled = false;
             this.showGraphButtons.IsEnabled = false;
+            this.stopButton.IsEnabled = false;
+            
+        }
+
+        public static MainWindow Instance()
+        {
+            return (MainWindow)System.Windows.Application.Current.MainWindow;
         }
 
         public void disableButtons()
@@ -291,16 +302,29 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
 
         private void Reader_MultiSourceFrameArrived(object sender, MultiSourceFrameArrivedEventArgs e)
         {
+            
             var reference = e.FrameReference.AcquireFrame();
             
             using (ColorFrame colorFrame = reference.ColorFrameReference.AcquireFrame())
             {
+                
                 if (colorFrame != null)
                 {
-                    BitmapSource btmSource = colorFrame.ToBitmap();
-                    this.colorImageControl.Source = btmSource;
-                    //if (escena.IsRecording)
-                    //    escena.AddColorFrame(btmSource);
+                    TimeSpan currentTime = kstudio.playback.CurrentRelativeTime;
+                    if (currentTime > lastCurrentTime || currentTime < lastCurrentTime.Subtract(TimeSpan.FromSeconds(2)) )
+                    {
+                        sceneSlider.Value = currentTime.TotalMilliseconds;
+                        this.sceneCurrentTimeLabel.Content = currentTime.ToString(@"hh\:mm\:ss");
+                        lastCurrentTime = currentTime;
+                    }
+                    
+                    if(this.fondoCheckBox.IsChecked != false)
+                    {
+                        BitmapSource btmSource = colorFrame.ToBitmap();
+                        this.colorImageControl.Source = btmSource;
+                        //if (escena.IsRecording)
+                        //    escena.AddColorFrame(btmSource);
+                    }
                     
                 }
             }
@@ -315,7 +339,9 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
                     //    escena.AddBodyFrame(kinectBodyView.DrawingImage);
                 }
             }
+
             
+
         }
 
         private void PrintBodyFrame(BodyFrame bodyFrame)
@@ -368,112 +394,21 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
                 }
             }
         }
-        
-
-        /// <summary>
-        /// Handles the body frame data arriving from the sensor and updates the associated gesture detector object for each body
-        /// </summary>
-        /// <param name="sender">object sending the event</param>
-        /// <param name="e">event arguments</param>
-        //private void Reader_BodyFrameArrived(object sender, BodyFrameArrivedEventArgs e)
-        //{
-        //    bool dataReceived = false;
-
-        //    using (BodyFrame bodyFrame = e.FrameReference.AcquireFrame())
-        //    {
-        //        if (bodyFrame != null)
-        //        {
-        //            if (this.bodies == null)
-        //            {
-        //                // creates an array of 6 bodies, which is the max number of bodies that Kinect can track simultaneously
-        //                this.bodies = new Body[bodyFrame.BodyCount];
-        //            }
-
-        //            // The first time GetAndRefreshBodyData is called, Kinect will allocate each Body in the array.
-        //            // As long as those body objects are not disposed and not set to null in the array,
-        //            // those body objects will be re-used.
-        //            bodyFrame.GetAndRefreshBodyData(this.bodies);
-        //            dataReceived = true;
-        //        }
-        //    }
-
-        //    if (dataReceived)
-        //    {
-        //        // visualize the new body data
-        //        this.kinectBodyView.UpdateBodyFrame(this.bodies);
-
-        //        // we may have lost/acquired bodies, so update the corresponding gesture detectors
-        //        if (this.bodies != null)
-        //        {
-        //            // loop through all bodies to see if any of the gesture detectors need to be updated
-        //            int maxBodies = this.kinectSensor.BodyFrameSource.BodyCount;
-        //            for (int i = 0; i < maxBodies; ++i)
-        //            {
-        //                Body body = this.bodies[i];
-        //                ulong trackingId = body.TrackingId;
-
-        //                // if the current body TrackingId changed, update the corresponding gesture detector with the new value
-        //                if (trackingId != this.gestureDetectorList[i].TrackingId)
-        //                {
-        //                    this.gestureDetectorList[i].TrackingId = trackingId;
-
-        //                    // if the current body is tracked, unpause its detector to get VisualGestureBuilderFrameArrived events
-        //                    // if the current body is not tracked, pause its detector so we don't waste resources trying to get invalid gesture results
-        //                    this.gestureDetectorList[i].IsPaused = trackingId == 0;
-        //                }
-        //            }
-        //        }
-        //    }
-        //}
-        
-
-        //private void makeAvi(string imageInputfolderName, string outVideoFileName, float fps = 30.0f, string imgSearchPattern = "*.png")
-        //{   // reads all images in folder 
-        //    VideoWriter w = new VideoWriter(outVideoFileName,
-        //        new Accord.Extensions.Size(480, 640), fps, true);
-        //    Accord.Extensions.Imaging.ImageDirectoryReader ir =
-        //        new ImageDirectoryReader(imageInputfolderName, imgSearchPattern);
-            
-        //    while (ir.Position < ir.Length)
-        //    {
-        //        IImage i = ir.Read();
-        //        w.Write(i);
-        //    }
-        //    w.Close();
-        //}
 
 
         private void grabarButton_Click(object sender, RoutedEventArgs e)
         {
-            //if (escena.IsRecording)
-            //{
-            //    escena.StopRecording();
-            //    grabarButton.Content = Properties.Buttons.StartRecording;
-            //}else{
-            //    escena.StartRecording();
-            //    grabarButton.Content = Properties.Buttons.StopRecording;
-            //}
-
-            //if (this.kstudio.isSceneImportedOrRecorded)
-            //{
-            //    bool? result = System.Windows.MessageBox.Show("Ya existe una escena grabada/importada. Está seguro que desea grabar una nueva escena?", "Confirmation", MessageBoxButtons.OKCancel);
-            //    if (result == false)
-            //    {
-            //        return;
-            //    }
-            //}
 
             if (this.kstudio.isRecording)
             {
-               
                 this.kstudio.StopRecording(); 
-                grabarButton.Content = Properties.Buttons.StartRecording;
+                recordButton.Content = Properties.Buttons.StartRecording;
                 this.enableButtons();
             }
             else
             {
                 this.kstudio.StartRecording();
-                grabarButton.Content = Properties.Buttons.StopRecording;
+                recordButton.Content = Properties.Buttons.StopRecording;
                 this.disableButtons();
             }
 
@@ -481,22 +416,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
 
         private void playButton_Click(object sender, RoutedEventArgs e)
         {
-            //if (escena.IsPlaying)
-            //{
-            //    //Console.WriteLine("Going to stop playing...");
-            //    escena.StopPlaying();
-            //    playButton.Content = Properties.Buttons.StartPlaying;
-            //}
-            //else{
-            //    if (!escena.IsRecordedOrImported)
-            //    {
-            //        MessageBox.Show(Properties.Messages.NotRecordedOrImportedScene);
-            //        return;
-            //    }
-            //    //Console.WriteLine("Goingo to START playing");
-            //    escena.StartPlaying();
-            //    playButton.Content = Properties.Buttons.StopPlaying;
-            //}
+
             if (this.kstudio.isPlaying)
             {
                 this.kstudio.PausePlaying();
@@ -509,16 +429,27 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
                 //    MessageBox.Show(Properties.Messages.NotRecordedOrImportedScene);
                 //    return;
                 //}
-                //Console.WriteLine("Goingo to START playing");
                 this.kstudio.StartOrResumePlaying();
-                this.playButton.Content = Properties.Buttons.StopPlaying;
+                this.playButton.Content = Properties.Buttons.PausePlaying;
+                this.stopButton.IsEnabled = true;
+            }
+        }
+        private void stopButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.stopButton.IsEnabled = false;
+            if (this.kstudio.isRecording)
+            {
+                this.kstudio.StopRecording();
+                this.recordButton.Content = Properties.Buttons.StartRecording;
+            }else
+            {
+                this.kstudio.StopPlaying();
+                this.playButton.Content = Properties.Buttons.StartPlaying;
             }
         }
 
         private void importButtons_Click(object sender, RoutedEventArgs e)
         {
-            //string fileName = string.Empty;
-
             Win32.OpenFileDialog dlg = new Win32.OpenFileDialog();
             dlg.FileName = "";
             dlg.DefaultExt = Properties.Resources.XefExtension; // Default file extension
@@ -554,28 +485,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
                 Console.WriteLine("filePath: " + dlg.FileName);
                 this.kstudio.ExportScene(dlg.FileName);
             }
-
-            //if (result == true)
-            //{
-            //    this.filePath = dlg.FileName;
-            //}
-            //return this.filePath;
         }
-
-
-        //public static void updatePersonNameView(Person person)
-        //{
-        //    switch (person.bodyIndex)
-        //    {
-        //        case 0: label_sujeto1.Content = person.name; break;
-        //        case 1: label_sujeto2.Content = person.name; break;
-        //        case 2: label_sujeto3.Content = person.name; break;
-        //        case 3: label_sujeto4.Content = person.name; break;
-        //        case 4: label_sujeto5.Content = person.name; break;
-        //        case 5: label_sujeto6.Content = person.name; break;
-        //    }
-        //}
-
 
         private void button_EditPerson1_Click(object sender, RoutedEventArgs e)
         {
@@ -623,26 +533,31 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
             chartForm.updateCharts();
         }
 
+        private void fondoCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            if (this.fondoCheckBox.IsChecked == false)
+            {
+                this.colorImageControl.Source = null;
+            }
+        }
 
+        private void sceneSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            //Console.WriteLine("hoaaaaaa");
+        }
 
+        private void sceneSlider_DragStarted(object sender, RoutedEventArgs e)
+        {
+            //sceneSliderUserDragging = true;
+            kstudio.PausePlaying();
+        }
 
-
-        //private void grabarButton_Click(object sender, RoutedEventArgs e)
-        //{
-        //    if (m_isRecording)
-        //    {
-        //        m_isRecording = false;
-        //        m_writer.Close();
-        //        grabarButton.Content = "Grabar";
-        //    }
-        //    else
-        //    {
-        //        m_writer = new VideoFileWriter();
-        //        //string time = System.DateTime.Now.ToString("hh'-'mm'-'ss", System.Globalization.CultureInfo.CurrentUICulture.DateTimeFormat);
-        //        m_writer.Open("video_testing_rolo.mpeg", m_width, m_height, 30, VideoCodec.MSMPEG4v3, 12800000);
-        //        m_isRecording = true;
-        //        grabarButton.Content = "Detener";
-        //    }
-        //}
+        private void sceneSlider_DragCompleted(object sender, RoutedEventArgs e)
+        {
+            //sceneSliderUserDragging = false;
+            kstudio.playback.SeekByRelativeTime(TimeSpan.FromMilliseconds(sceneSlider.Value));
+            kstudio.StartOrResumePlaying();
+            
+        }
     }
 }

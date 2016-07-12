@@ -16,16 +16,17 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
     class KinectStudioHandler
     {
         private KStudioClient client = KStudio.CreateClient();
-        private KStudioPlayback playback;
-        private BackgroundWorker playerWorker;
+        public KStudioPlayback playback { get; private set; }
+        //private BackgroundWorker playerWorker;
         private BackgroundWorker recWorker;
         private string recordingFilePath;
         private string playingFilePath;
         
         private KStudioRecording recorder;
+        private int PausedStartMillisTime = 150;
 
-        public bool isPlaying { get; private set; }
-        public bool isRecording { get; private set; }
+        //public bool isPlaying { get; private set; }
+        //public bool isRecording { get; private set; }
         public bool isSceneImportedOrRecorded { get; private set; }
         public KinectStudioHandler()
         {
@@ -34,7 +35,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
             this.playingFilePath = Properties.Paths.tmpScene;
             this.client = KStudio.CreateClient();
             this.client.ConnectToService();
-            isPlaying = false;
+            //isPlaying = false;
             //playerWorker = new BackgroundWorker();
             //playerWorker.WorkerReportsProgress = false;
             //playerWorker.WorkerSupportsCancellation = true;
@@ -82,15 +83,21 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
             int millisStart = (int)this.playback.StartRelativeTime.TotalMilliseconds;
             Console.WriteLine("relative time millis int: " + millisStart.ToString());
 
-            this.playback.AddPausePointByRelativeTime(TimeSpan.FromMilliseconds(500));
+            MainWindow.lastCurrentTime = TimeSpan.FromSeconds(0);
+            MainWindow.Instance().sceneSlider.Maximum = playback.Duration.TotalMilliseconds;
+
+            //this.playback.AddPausePointByRelativeTime(TimeSpan.FromMilliseconds(PausedStartMillisTime));
             this.playback.Start();
-            //Thread.Sleep(millisStart*2);
-            //this.playback.Pause();
             
+            Thread.Sleep(PausedStartMillisTime);
+            this.playback.Pause();
+
+
+
 
         }
 
-        
+
         //private void importScene()
         //{
         //    //string fileName = string.Empty;
@@ -124,9 +131,23 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
         //    //return this.filePath;
         //}
 
+        public bool isPlaying
+        {
+            get
+            {
+                return playback!=null && playback.State == KStudioPlaybackState.Playing;
+            }
+        }
+        public bool isRecording
+        {
+            get
+            {
+                return recorder!=null && recorder.State == KStudioRecordingState.Recording;
+            }
+        }
         public void StartOrResumePlaying()
         {
-            isPlaying = true;
+            //isPlaying = true;
             if (playback != null && playback.State == KStudioPlaybackState.Paused)
                 playback.Resume();
             else playback.Start(); //playerWorker.RunWorkerAsync();
@@ -137,7 +158,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
             
             if(playback!=null && playback.State == KStudioPlaybackState.Playing)
             {
-                isPlaying = false;
+                //isPlaying = false;
                 playback.Pause();
             }else if (playback.State == KStudioPlaybackState.Error)
                 throw new Exception("Error. Playback failed");
@@ -150,14 +171,20 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
             if (playback != null && playback.State != KStudioPlaybackState.Stopped)
             {
                 playback.Stop();
-                isPlaying = false;
+                //isPlaying = false;
+
+                MainWindow.lastCurrentTime = TimeSpan.FromSeconds(0);
+                //this.playback.AddPausePointByRelativeTime(TimeSpan.FromMilliseconds(PausedStartMillisTime));
+                this.playback.Start();
+                Thread.Sleep(PausedStartMillisTime);
+                this.playback.Pause();
             }
 
             //playerWorker.CancelAsync();
         }
         public void StartRecording()
         {
-            isRecording = true;
+            //isRecording = true;
             //if( recorder!=null && recorder.State != KStudioRecordingState.Recording)
             //{
             Directory.CreateDirectory(Properties.Paths.tmpDirectory);
@@ -170,7 +197,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
             if(recorder!=null && recorder.State != KStudioRecordingState.Recording)
             {
                 recorder.Stop();
-                isRecording = false;
+                //isRecording = false;
                 this.ImportScene(this.recordingFilePath);
                 
                 //this.client.DisconnectFromService();
@@ -223,6 +250,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
             recorder.Start();// (TimeSpan.FromSeconds(5));
             while (recorder.State == KStudioRecordingState.Recording)
             {
+                
                 Thread.Sleep(500);
             }
             

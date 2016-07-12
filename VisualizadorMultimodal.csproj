@@ -123,6 +123,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="KinectBody.cs" />
     <Compile Include="_Analytics.cs" />
     <Compile Include="ChartForm.cs">
       <SubType>Form</SubType>
@@ -162,7 +163,7 @@
     </Compile>
     <Compile Include="pojos\Scene.cs" />
     <Compile Include="Utils.cs" />
-    <Compile Include="_VisualizerXamlView.cs" />
+    <Compile Include="VisualizerXamlView.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

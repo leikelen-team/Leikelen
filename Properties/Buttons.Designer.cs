@@ -61,6 +61,15 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Pausa.
+        /// </summary>
+        internal static string PausePlaying {
+            get {
+                return ResourceManager.GetString("PausePlaying", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reproducir.
         /// </summary>
         internal static string StartPlaying {
