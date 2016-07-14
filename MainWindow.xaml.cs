@@ -123,12 +123,12 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
             // set our data context objects for display in UI
             this.DataContext = this;
             //this.kinectBodyViewbox.DataContext = kinectBodyView;
-            VisualizerXamlView.Instance().InitColorFrame(ref this.colorImageControl);
-            VisualizerXamlView.Instance().InitBodyFrame(ref this.bodyImageControl);
+            _VisualizerXamlView.Instance().InitColorFrame(ref this.colorImageControl);
+            _VisualizerXamlView.Instance().InitBodyFrame(ref this.bodyImageControl);
 
             // create a gesture detector for each body (6 bodies => 6 detectors) and create content controls to display results in the UI
             //int col0Row = 0;
-            int row = 1;
+            int row = 2;
             int maxBodies = this.kinectSensor.BodyFrameSource.BodyCount;
             for (int i = 0; i < maxBodies; ++i)
             {
@@ -159,6 +159,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
                 //    ++col1Row;
                 //}
                 this.timeLineGrid.Children.Add(contentControl);
+                
 
                 //this.contentGrid.Children.Add(contentControl);
             }
@@ -175,7 +176,23 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
             this.playButton.IsEnabled = false;
             this.showGraphButtons.IsEnabled = false;
             this.stopButton.IsEnabled = false;
-            
+
+            //ColumnDefinition col;
+            //TextBlock text;
+            //for (int i = 0; i < 60; i++)
+            //{
+            //    col = new ColumnDefinition();
+            //    col.Width = new GridLength(20, GridUnitType.Pixel);
+            //    timeLineGrid.ColumnDefinitions.Add(col);
+
+            //    text = new TextBlock();
+            //    text.Text = "|";
+
+            //    Grid.SetRow(text, 0);
+            //    Grid.SetColumn(text, i);
+            //    timeLineGrid.Children.Add(text);
+            //}
+
         }
 
         public static MainWindow Instance()
@@ -467,6 +484,39 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
                 sceneDurationLabel.Content = Scene.Instance.duration.ToString(@"hh\:mm\:ss");
             }
 
+            
+
+            //ColumnDefinition c1 = new ColumnDefinition();
+            //c1.Width = new GridLength(5, GridUnitType.Pixel);
+            //timeLineGrid.ColumnDefinitions.Add(c1);
+
+            //ColumnDefinition c2 = new ColumnDefinition();
+            //c2.Width = new GridLength(5, GridUnitType.Pixel);
+            //timeLineGrid.ColumnDefinitions.Add(c2);
+
+            //ColumnDefinition c3 = new ColumnDefinition();
+            //c3.Width = new GridLength(5, GridUnitType.Pixel);
+            //timeLineGrid.ColumnDefinitions.Add(c3);
+
+            //TextBlock text1 = new TextBlock();
+            //text1.Text = "|";
+            //TextBlock text2 = new TextBlock();
+            //text2.Text = "|";
+            //TextBlock text3 = new TextBlock();
+            //text3.Text = "|";
+
+            //Grid.SetRow(text1, 0);
+            //Grid.SetColumn(text1, 0);
+            //timeLineGrid.Children.Add(text1);
+
+            //Grid.SetRow(text2, 0);
+            //Grid.SetColumn(text2, 1);
+            //timeLineGrid.Children.Add(text2);
+
+            //Grid.SetRow(text3, 0);
+            //Grid.SetColumn(text3, 3);
+            //timeLineGrid.Children.Add(text3);
+
         }
 
         private void exportButtons_Click(object sender, RoutedEventArgs e)
@@ -541,9 +591,22 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
             }
         }
 
+        private int lastCurrentSecondForTimeLineCursor = 0;
         private void sceneSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            //Console.WriteLine("hoaaaaaa");
+            //int col = 0;
+            //Grid.SetColumn(lineCurrentTimeCursor, col);
+            int currentSecond = (int)kstudio.playback.CurrentRelativeTime.TotalSeconds;
+
+            if(lastCurrentSecondForTimeLineCursor != currentSecond)
+            {
+                Console.WriteLine(currentSecond);
+                Grid.SetColumn(lineCurrentTimeCursor, currentSecond); // 1seg = 1col
+                lastCurrentSecondForTimeLineCursor = currentSecond;
+                //timeLineScroll.
+            }
+
+            
         }
 
         private void sceneSlider_DragStarted(object sender, RoutedEventArgs e)
@@ -552,7 +615,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
             if (kstudio.playback != null)
                 if (kstudio.playback.State == Microsoft.Kinect.Tools.KStudioPlaybackState.Playing)
                 {
-                    kstudio.playback.UserState = "MUST_RESUME";
+                    kstudio.playback.UserState = "SCENE_SLIDER_DRAG_MUST_RESUME";
                 }
                 else
                 {
@@ -569,11 +632,17 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
                 kstudio.playback.SeekByRelativeTime(TimeSpan.FromMilliseconds(sceneSlider.Value));
                 kstudio.ResumePlaying();
                 Thread.Sleep(kstudio.PausedStartMillisTime);
-                if ( (string)kstudio.playback.UserState != "MUST_RESUME" )
+                if ( (string)kstudio.playback.UserState != "SCENE_SLIDER_DRAG_MUST_RESUME")
                     kstudio.PausePlaying();
             }
             
             
+        }
+
+        private void RowDefinition_MouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e)
+        {
+            Console.WriteLine("Delta: " + e.Delta);
+            //Console.WriteLine("Delta: " + e.);
         }
     }
 }

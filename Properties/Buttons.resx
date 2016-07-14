@@ -118,18 +118,18 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="PausePlaying" xml:space="preserve">
-    <value>Pausa</value>
+    <value>❚❚</value>
   </data>
   <data name="StartPlaying" xml:space="preserve">
-    <value>Reproducir</value>
+    <value>&gt;</value>
   </data>
   <data name="StartRecording" xml:space="preserve">
-    <value>Grabar</value>
+    <value>O</value>
   </data>
   <data name="StopPlaying" xml:space="preserve">
-    <value>Detener</value>
+    <value>■</value>
   </data>
   <data name="StopRecording" xml:space="preserve">
-    <value>Detener</value>
+    <value>■</value>
   </data>
 </root>

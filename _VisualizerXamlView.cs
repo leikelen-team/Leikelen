@@ -7,15 +7,15 @@ using System.Windows.Media.Imaging;
 
 namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
 {
-    class VisualizerXamlView
+    class _VisualizerXamlView
     {
-        private VisualizerXamlView() {}
+        private _VisualizerXamlView() {}
 
-        private static VisualizerXamlView instance = new VisualizerXamlView();
+        private static _VisualizerXamlView instance = new _VisualizerXamlView();
         public System.Windows.Controls.Image colorFrame { get; private set; }
         public System.Windows.Controls.Image bodyFrame { get; private set; }
         
-        public static VisualizerXamlView Instance()
+        public static _VisualizerXamlView Instance()
         {
             //if( instance == null)
             //{

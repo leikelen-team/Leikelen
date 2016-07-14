@@ -196,8 +196,8 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
 
             _Frame bodyFrame = frames.First(x => x.Type == _Frame.FrameType.Body);
             _Frame colorFrame = frames.First(x => x.Type == _Frame.FrameType.Color);
-            VisualizerXamlView.Instance().SetBodyFrame(bodyFrame.Bitmap);
-            VisualizerXamlView.Instance().SetColorFrame(colorFrame.Bitmap);
+            _VisualizerXamlView.Instance().SetBodyFrame(bodyFrame.Bitmap);
+            _VisualizerXamlView.Instance().SetColorFrame(colorFrame.Bitmap);
 
             //VisualizerXamlView view = VisualizerXamlView.Instance();
             //foreach (Frame frame in frames)
@@ -234,7 +234,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
             //VisualizerXamlView.Instance().SetBodyFrame(bodyFrame.Bitmap);
             //VisualizerXamlView.Instance().SetColorFrame(colorFrame.Bitmap);
 
-            VisualizerXamlView view = VisualizerXamlView.Instance();
+            _VisualizerXamlView view = _VisualizerXamlView.Instance();
             foreach (_Frame frame in frames)
             {
                 if (frame.Type == _Frame.FrameType.Body)

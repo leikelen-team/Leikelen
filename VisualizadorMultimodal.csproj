@@ -163,7 +163,7 @@
     </Compile>
     <Compile Include="pojos\Scene.cs" />
     <Compile Include="Utils.cs" />
-    <Compile Include="VisualizerXamlView.cs" />
+    <Compile Include="_VisualizerXamlView.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

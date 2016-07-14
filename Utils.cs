@@ -16,6 +16,26 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
 {
     static class Utils
     {
+
+        public static string ToShortForm(this TimeSpan t)
+        {
+            string shortForm = "";
+            if (t.Hours > 0)
+            {
+                shortForm += t.Hours.ToString("00") + ":";
+            }
+            //if (t.Minutes > 0 || t.Hours > 0)
+            //{
+                shortForm += t.Minutes.ToString("00") + ":";
+            //}
+            //if (t.Seconds > 0)
+            //{
+            shortForm += t.Seconds.ToString("00");
+            //}
+            return shortForm;
+            //return t.ToString(@"hh\:mm\:ss");
+        }
+
         public static BitmapSource ToBitmap(this ColorFrame frame)
         {
             int width = frame.FrameDescription.Width;

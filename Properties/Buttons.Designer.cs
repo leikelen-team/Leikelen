@@ -61,7 +61,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Pausa.
+        ///   Looks up a localized string similar to ❚❚.
         /// </summary>
         internal static string PausePlaying {
             get {
@@ -70,7 +70,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reproducir.
+        ///   Looks up a localized string similar to &gt;.
         /// </summary>
         internal static string StartPlaying {
             get {
@@ -79,7 +79,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Grabar.
+        ///   Looks up a localized string similar to O.
         /// </summary>
         internal static string StartRecording {
             get {
@@ -88,7 +88,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Detener.
+        ///   Looks up a localized string similar to ■.
         /// </summary>
         internal static string StopPlaying {
             get {
@@ -97,7 +97,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Detener.
+        ///   Looks up a localized string similar to ■.
         /// </summary>
         internal static string StopRecording {
             get {

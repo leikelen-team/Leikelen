@@ -9,6 +9,9 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Web;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
 {
@@ -24,6 +27,8 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
 
         private KStudioRecording recorder;
         public int PausedStartMillisTime { get; private set; } = 150;
+
+        public List<TimeSpan> frameTimes { get; private set; }
 
 
         //public bool isPlaying { get; private set; }
@@ -46,6 +51,8 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
             recWorker.WorkerReportsProgress = false;
             recWorker.WorkerSupportsCancellation = true;
             recWorker.DoWork += new DoWorkEventHandler(this.bw_DoWork_StartRecording);
+
+            
 
             //streamCollection.Add(KStudioEventStreamDataTypeIds.Depth);
             
@@ -75,23 +82,114 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
             Console.WriteLine("Creation Date: " + fileInfo.CreationUtcFileTime);
             Console.WriteLine("Duration: " + playback.Duration);
             Console.WriteLine("Path: " + playback.FilePath);
+            
 
             Scene.Create(fileInfo.FilePath, fileInfo.CreationUtcFileTime, playback.Duration);
-
-            Console.WriteLine("relative time millis timespan: " + playback.StartRelativeTime.ToString());
-            Console.WriteLine("relative time millis double: " + playback.StartRelativeTime.TotalMilliseconds.ToString());
-
-            int millisStart = (int)this.playback.StartRelativeTime.TotalMilliseconds;
-            Console.WriteLine("relative time millis int: " + millisStart.ToString());
-
             MainWindow.lastCurrentTime = TimeSpan.FromSeconds(0);
             MainWindow.Instance().sceneSlider.Maximum = playback.Duration.TotalMilliseconds;
-
-            //this.playback.AddPausePointByRelativeTime(TimeSpan.FromMilliseconds(PausedStartMillisTime));
-            this.playback.Start();
             
+            this.playback.Start();
             Thread.Sleep(PausedStartMillisTime);
             this.playback.Pause();
+
+
+            ColumnDefinition col;
+            TextBlock text;
+            frameTimes = new List<TimeSpan>();
+            TimeSpan frameTime = TimeSpan.FromSeconds(0);
+            //int currentSeg = 0;
+            int colSpan = 10;
+            for (int colCount=0; true; colCount++)
+            {
+                if (frameTime < playback.Duration)
+                {
+                    frameTimes.Add(frameTime);
+                    
+                    col = new ColumnDefinition();
+                    col.Width = new GridLength(5, GridUnitType.Pixel);
+                    MainWindow.Instance().timeLineGrid.ColumnDefinitions.Add(col);
+
+
+                    if(colCount % colSpan == 0 && colCount!=0)
+                    {
+                        text = new TextBlock();
+                        text.Text = "|";
+                        text.HorizontalAlignment = HorizontalAlignment.Left;
+                        Grid.SetRow(text, 0);
+                        Grid.SetColumn(text, colCount);
+                        Grid.SetColumnSpan(text, colSpan);
+                        MainWindow.Instance().timeLineGrid.Children.Add(text);
+
+                        text = new TextBlock();
+                        //text.Text = frameTime.TotalSeconds.ToString("N0");
+                        text.Text = frameTime.ToShortForm();
+                        text.HorizontalAlignment = colCount == 0 ? HorizontalAlignment.Left : HorizontalAlignment.Center;
+                        Grid.SetRow(text, 1);
+                        int offset = colCount==0 ? 0 : (colSpan / 2);
+                        Grid.SetColumn(text, colCount- offset);
+                        Grid.SetColumnSpan(text, colSpan);
+                        MainWindow.Instance().timeLineGrid.Children.Add(text);
+
+
+                    }
+                    else
+                    //if (colCount % (colSpan / 2) == 0)
+                    {
+                        text = new TextBlock();
+                        text.Text = "·";
+                        text.HorizontalAlignment = HorizontalAlignment.Left;
+                        Grid.SetRow(text, 0);
+                        Grid.SetColumn(text, colCount);
+                        //Grid.SetColumnSpan(text, colSpan/2);
+                        MainWindow.Instance().timeLineGrid.Children.Add(text);
+                    }
+
+                    frameTime = frameTime.Add(TimeSpan.FromMilliseconds(1000.00));
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+
+
+
+
+
+
+
+
+            //Console.WriteLine("relative time millis timespan: " + playback.StartRelativeTime.ToString());
+            //Console.WriteLine("relative time millis double: " + playback.StartRelativeTime.TotalMilliseconds.ToString());
+            //int millisStart = (int)this.playback.StartRelativeTime.TotalMilliseconds;
+            //Console.WriteLine("relative time millis int: " + millisStart.ToString());
+            //Console.WriteLine("----MARKERS---");
+            //Console.WriteLine("Markers count: "+ this.playback.Markers.Count);
+            //foreach (KStudioMarker marker in this.playback.Markers)
+            //{
+            //    Console.WriteLine("Marker name: " + marker.Name);
+            //    Console.WriteLine("Marker ToString: " + marker.ToString());
+            //    Console.WriteLine("Marker RelativeTime: " + marker.RelativeTime.ToString());
+            //    Console.WriteLine("--------------");
+            //}
+
+            //Console.WriteLine("----PUBLIC METADATA---");
+            //KStudioMetadata publicMetadata = this.playback.GetMetadata(KStudioMetadataType.Public);
+            //foreach (KeyValuePair<string, object> entry in publicMetadata)
+            //{
+            //    // do something with entry.Value or entry.Key
+            //    Console.WriteLine(entry.Key+": "+entry.Value);
+            //}
+
+            //Console.WriteLine("----PRIVATE METADATA---");
+            //KStudioMetadata privateMetadata = this.playback.GetMetadata(KStudioMetadataType.PersonallyIdentifiableInformation);
+            //foreach (KeyValuePair<string, object> entry in privateMetadata)
+            //{
+            //    // do something with entry.Value or entry.Key
+            //    Console.WriteLine(entry.Key + ": " + entry.Value);
+            //}
+
 
 
 
