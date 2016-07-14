@@ -129,6 +129,9 @@
   <data name="FailedScreenshotStatusTextFormat" xml:space="preserve">
     <value>Failed to write screenshot to {0}</value>
   </data>
+  <data name="NonePostureName" xml:space="preserve">
+    <value>Ninguna</value>
+  </data>
   <data name="NoSensorStatusText" xml:space="preserve">
     <value>No ready Kinect found!</value>
   </data>

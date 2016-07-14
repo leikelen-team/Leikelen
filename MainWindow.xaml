@@ -2,6 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:Microsoft.Samples.Kinect.VisualizadorMultimodal"
+        xmlns:pojos="clr-namespace:Microsoft.Samples.Kinect.VisualizadorMultimodal.pojos"
         Title="Visualizador Multimodal"
         Height="650" Width="750"
         Closing="MainWindow_Closing">
@@ -9,6 +10,25 @@
         <SolidColorBrush x:Key="MediumGreyBrush" Color="#ff6e6e6e" />
         <SolidColorBrush x:Key="KinectPurpleBrush" Color="#ff52318f" />
         <SolidColorBrush x:Key="KinectBlueBrush" Color="#ff00BCF2" />
+
+        <DataTemplate DataType="{x:Type pojos:Person}">
+            <Grid Width="Auto" Margin="5" Background="{Binding BodyColor}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <TextBlock HorizontalAlignment="Stretch" 
+                           Text="{Binding BodyIndex, StringFormat='Body Index: {0}'}" 
+                           FontSize="14" FontFamily="Segoe UI" FontWeight="SemiBold" Margin="5"/>
+                <Image Source="{Binding ImageSource}" Stretch="Uniform" Grid.Row="1" Margin="5"/>
+                <TextBlock Text="{Binding Detected, StringFormat='Sentado: {0}'}" FontSize="11" FontFamily="Segoe UI" Grid.Row="0" Margin="5 5 0 0"/>
+                <TextBlock Text="{Binding Confidence, StringFormat='Confidencia: {0}'}" 
+                           FontSize="11" FontFamily="Segoe UI" FontWeight="SemiBold" Grid.Row="1" Margin="5 0 0 0"/>
+            </Grid>
+        </DataTemplate>
 
         <DataTemplate DataType="{x:Type local:GestureResultView}">
             <Grid Width="Auto" Margin="5" Background="{Binding BodyColor}">
@@ -166,6 +186,10 @@
             <!--<StatusBar Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" Name="statusBar" VerticalAlignment="Bottom" Background="White" Foreground="{StaticResource MediumGreyBrush}" >
                 <StatusBarItem Content="{Binding StatusText}" />
             </StatusBar>-->
+            <Border Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="8,8,3,3">
+                <Label Content="Sujetos" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" FontWeight="Bold" />
+                <!--<Button x:Name="title" Content="editar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="28" Height="16" RenderTransformOrigin="1.667,1.467" Margin="1,15,0,0" Click="button_EditPerson1_Click" FontSize="9"/>-->
+            </Border>
             <Border Grid.Row="2" Grid.Column="0" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="8,8,3,3">
                 <Button x:Name="button_EditPerson1" Content="editar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="28" Height="16" RenderTransformOrigin="1.667,1.467" Margin="1,15,0,0" Click="button_EditPerson1_Click" FontSize="9"/>
             </Border>
@@ -199,7 +223,7 @@
             <Border Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="8,8,3,3"></Border>
             <Border Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="8,8,3,3"></Border>
 
-            <ScrollViewer x:Name="timeLineScroll" Grid.Column="1" Grid.Row="0" Grid.RowSpan="8" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Grid.ColumnSpan="2">
+            <ScrollViewer x:Name="timeLineScroll" Grid.Column="1" Grid.Row="0" Grid.RowSpan="9" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Grid.ColumnSpan="2">
                 <Grid x:Name="timeLineGrid" Grid.Column="1" Grid.Row="0" Grid.RowSpan="7">
                     <!--<Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
@@ -216,7 +240,7 @@
                         <RowDefinition Height="38" />
                         <RowDefinition Height="20" />
                     </Grid.RowDefinitions>
-                    <Line x:Name="lineCurrentTimeCursor" Grid.Column="0" Grid.RowSpan="8" StrokeThickness="2" X1="0" X2="0" Y1="0" Y2="268" Stroke="Red"/>
+                    <Line x:Name="lineCurrentTimeCursor" Grid.Column="0" Grid.RowSpan="8" StrokeThickness="2" X1="0" X2="0" Y1="0" Y2="300" Stroke="Red"/>
 
                     <!--<Border Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="8,8,3,3"></Border>-->
 

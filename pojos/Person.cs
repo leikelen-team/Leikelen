@@ -1,12 +1,14 @@
-﻿using System;
+﻿using Microsoft.Samples.Kinect.VisualizadorMultimodal.analytics;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.pojos
 {
-    public class Person
+    public class Person : INotifyPropertyChanged
     {
         public enum Gender { Masculino, Femenino};
 
@@ -15,7 +17,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.pojos
         public Gender gender { get; set; }
         public int age { get; set; }
 
-        public List<Posture> postures { get; private set; }
+        public Dictionary<TimeSpan, Posture> postures { get; private set; }
         //public List<Interval> intervals { get; private set; }
 
         public Person(int bodyIndex, string name, Gender gender, int age)
@@ -24,54 +26,23 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.pojos
             this.name = name;
             this.gender = gender;
             this.age = age;
-            this.postures = new List<Posture>();
+            this.postures = new Dictionary<TimeSpan, Posture>();
         }
 
-        public IReadOnlyDictionary<Emotion, float> calculateEmotionsAverage()
-        {
-            int totalCount = postures.Count;
-            Dictionary<Emotion, float> dic = new Dictionary<Emotion, float>();
-            
-            Emotion[] emotions = (Emotion[])Enum.GetValues(typeof(Emotion));
-            foreach(Emotion emotion in emotions)
-            {
-                int emotionCount = postures.Count(p => p.emotion == emotion);
-                float avg = (float)emotionCount / (float)totalCount;
-                dic.Add(emotion, avg);
-            }
-
-            return dic;
-        }
-
-        public IReadOnlyDictionary<string, string> calculateEmotionsAverageString()
-        {
-            int totalCount = postures.Count;
-            if (totalCount == 0) return null;
-            Dictionary<string, string> dic = new Dictionary<string, string>();
-
-            Emotion[] emotions = (Emotion[])Enum.GetValues(typeof(Emotion));
-            foreach (Emotion emotion in emotions)
-            {
-                int emotionCount = postures.Count(p => p.emotion == emotion);
-                if (emotionCount == 0) continue;
-                int avg = (int) (((float)emotionCount / (float)totalCount) * 100.0f);
-                dic.Add(emotion.ToString("g")+" "+avg.ToString()+"%", avg.ToString());
-            }
-
-            return dic;
-        }
+        public event PropertyChangedEventHandler PropertyChanged;
+        
 
         public void showPersonInfo()
         {
-            IReadOnlyDictionary<Emotion, float> emotionsAvg = calculateEmotionsAverage();
+            IReadOnlyDictionary<Posture, float> posturesAvg = this.calculatePosturesAverage();
 
             Console.WriteLine("Nombre: "+name);
             Console.WriteLine("Genero: "+gender.ToString("g"));
             Console.WriteLine("Edad: "+age);
 
-            foreach (Emotion emotion in emotionsAvg.Keys)
+            foreach (Posture posture in posturesAvg.Keys)
             {
-                Console.WriteLine(emotion.ToString("g") + ": " + emotionsAvg[emotion].ToString("0.00"));
+                Console.WriteLine(posture.name + ": " + posturesAvg[posture].ToString("0.00"));
             }
 
             ChartForm chartForm = new ChartForm(this);

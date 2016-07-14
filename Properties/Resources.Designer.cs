@@ -97,6 +97,15 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ninguna.
+        /// </summary>
+        public static string NonePostureName {
+            get {
+                return ResourceManager.GetString("NonePostureName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No ready Kinect found!.
         /// </summary>
         public static string NoSensorStatusText {

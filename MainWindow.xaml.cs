@@ -65,7 +65,19 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
         private KinectStudioHandler kstudio;
         public static ChartForm chartForm { get; private set; }
         public static TimeSpan lastCurrentTime = TimeSpan.FromSeconds(0);
-        private bool sceneSliderUserDragging = false;
+
+        
+
+        //    Atento,
+        //    Distraido,
+        //    Seated,
+        //    Ninguno
+
+
+
+
+
+        //private bool sceneSliderUserDragging = false;
         //private Timer timer;
 
         //private KinectBodyView kinectBodyView;
@@ -176,6 +188,14 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
             this.playButton.IsEnabled = false;
             this.showGraphButtons.IsEnabled = false;
             this.stopButton.IsEnabled = false;
+
+
+            Posture.posturesAvailables.Add(Posture.none);
+            Posture.posturesAvailables.Add(new Posture("Seated"));
+            Posture.posturesAvailables.Add(new Posture("Atento"));
+            Posture.posturesAvailables.Add(new Posture("Distraido"));
+            
+
 
             //ColumnDefinition col;
             //TextBlock text;

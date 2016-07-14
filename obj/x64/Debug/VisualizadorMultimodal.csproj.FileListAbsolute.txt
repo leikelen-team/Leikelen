@@ -105,10 +105,8 @@ C:\Users\elrod_000\Documents\Rodo\Develop\Visual Studio Projects\Visualizador Mu
 C:\Users\elrod_000\Documents\Rodo\Develop\Visual Studio Projects\Visualizador Multimodal\obj\x64\Debug\Microsoft.Samples.Kinect.VisualizadorMultimodal.Properties.Messages.resources
 C:\Users\elrod_000\Documents\Rodo\Develop\Visual Studio Projects\Visualizador Multimodal\obj\x64\Debug\Microsoft.Samples.Kinect.VisualizadorMultimodal.Properties.Paths.resources
 C:\Users\elrod_000\Documents\Rodo\Develop\Visual Studio Projects\Visualizador Multimodal\obj\x64\Debug\VisualizadorMultimodal.csproj.GenerateResource.Cache
-C:\Users\elrod_000\Documents\Rodo\Develop\Projects\Visualizador Multimodal\SourceCode\bin\x64\Debug\VisualizadorMultimodal.exe.config
-C:\Users\elrod_000\Documents\Rodo\Develop\Projects\Visualizador Multimodal\SourceCode\obj\x64\Debug\VisualizadorMultimodal.exe
-C:\Users\elrod_000\Documents\Rodo\Develop\Projects\Visualizador Multimodal\SourceCode\obj\x64\Debug\VisualizadorMultimodal.pdb
 C:\Users\elrod_000\Documents\Rodo\Develop\Projects\Visualizador Multimodal\SourceCode\bin\x64\Debug\Database\Seated.gbd
+C:\Users\elrod_000\Documents\Rodo\Develop\Projects\Visualizador Multimodal\SourceCode\bin\x64\Debug\VisualizadorMultimodal.exe.config
 C:\Users\elrod_000\Documents\Rodo\Develop\Projects\Visualizador Multimodal\SourceCode\bin\x64\Debug\VisualizadorMultimodal.exe
 C:\Users\elrod_000\Documents\Rodo\Develop\Projects\Visualizador Multimodal\SourceCode\bin\x64\Debug\VisualizadorMultimodal.pdb
 C:\Users\elrod_000\Documents\Rodo\Develop\Projects\Visualizador Multimodal\SourceCode\bin\x64\Debug\Accord.dll
@@ -149,3 +147,5 @@ C:\Users\elrod_000\Documents\Rodo\Develop\Projects\Visualizador Multimodal\Sourc
 C:\Users\elrod_000\Documents\Rodo\Develop\Projects\Visualizador Multimodal\SourceCode\obj\x64\Debug\Microsoft.Samples.Kinect.VisualizadorMultimodal.Properties.Messages.resources
 C:\Users\elrod_000\Documents\Rodo\Develop\Projects\Visualizador Multimodal\SourceCode\obj\x64\Debug\Microsoft.Samples.Kinect.VisualizadorMultimodal.Properties.Paths.resources
 C:\Users\elrod_000\Documents\Rodo\Develop\Projects\Visualizador Multimodal\SourceCode\obj\x64\Debug\VisualizadorMultimodal.csproj.GenerateResource.Cache
+C:\Users\elrod_000\Documents\Rodo\Develop\Projects\Visualizador Multimodal\SourceCode\obj\x64\Debug\VisualizadorMultimodal.exe
+C:\Users\elrod_000\Documents\Rodo\Develop\Projects\Visualizador Multimodal\SourceCode\obj\x64\Debug\VisualizadorMultimodal.pdb

@@ -186,11 +186,11 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
                         bool emotionDetected = false;
                         foreach (Gesture gesture in this.vgbFrameSource.Gestures)
                         {
-                            Emotion[] emotions = (Emotion[])Enum.GetValues(typeof(Emotion));
-                            foreach (Emotion emotion in emotions)
+                            //Posture.Name[] postures = (Posture.Name[])Enum.GetValues(typeof(Posture.Name));
+                            foreach (Posture posture in Posture.posturesAvailables)
                             {
                                 //if (gesture.Name.Equals(this.seatedGestureName) && gesture.GestureType == GestureType.Discrete)
-                                if (gesture.Name.Equals(emotion.ToString("g")) && gesture.GestureType == GestureType.Discrete)
+                                if (gesture.Name.Equals(posture.name) && gesture.GestureType == GestureType.Discrete)
                                 {
                                     DiscreteGestureResult result = null;
                                     discreteResults.TryGetValue(gesture, out result);
@@ -201,7 +201,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
                                         this.GestureResultView.UpdateGestureResult(true, result.Detected, result.Confidence);
                                         if (result.Detected && Scene.Instance!=null)
                                         {
-                                            Scene.Instance.persons[BodyIndex].postures.Add(new Posture(emotion, frame.RelativeTime));
+                                            Scene.Instance.persons[BodyIndex].postures.Add(frame.RelativeTime, posture );
                                             emotionDetected = true;
                                             //Scene.Instance.persons[BodyIndex].postures.
                                         }
@@ -212,7 +212,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
                         }
                         if (!emotionDetected && Scene.Instance != null)
                         {
-                            Scene.Instance.persons[BodyIndex].postures.Add(new Posture(Emotion.Ninguno, frame.RelativeTime));
+                            Scene.Instance.persons[BodyIndex].postures.Add(frame.RelativeTime, Posture.none);
                         }
                     }
                 }

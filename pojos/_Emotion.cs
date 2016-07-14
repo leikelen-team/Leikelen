@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.pojos
 {
-    public enum Emotion
+    public enum _Emotion
     {
         Atento,
         Distraido,

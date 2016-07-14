@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Microsoft.Samples.Kinect.VisualizadorMultimodal.pojos;
 using System.Windows.Forms.DataVisualization.Charting;
 using System.Reflection;
+using Microsoft.Samples.Kinect.VisualizadorMultimodal.analytics;
 
 namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
 {
@@ -37,7 +38,6 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
             
         }
 
-        
 
         public void updatePersonalPersonData(Person person)
         {
@@ -66,14 +66,14 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
                 Person person = Scene.Instance.persons[i-1];
                 updatePersonalPersonData(person);
 
-                IReadOnlyDictionary<string, string> emotionsAvg = person.calculateEmotionsAverageString();
-                if (emotionsAvg == null) continue;
+                IReadOnlyDictionary<string, string> posturesAvg = person.calculateEmotionsAverageString();
+                if (posturesAvg == null) continue;
 
                 Chart chart = this.GetControl("chart" + i) as Chart;
                 Series serie = new Series("Serie 1");
                 serie.ChartType = SeriesChartType.Pie;
                 chart.Series.Add(serie);
-                chart.Series["Serie 1"].Points.DataBindXY(emotionsAvg.Keys, emotionsAvg.Values);
+                chart.Series["Serie 1"].Points.DataBindXY(posturesAvg.Keys, posturesAvg.Values);
             }
             
             

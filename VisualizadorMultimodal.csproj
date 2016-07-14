@@ -123,6 +123,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="analytics\PersonAnalytic.cs" />
     <Compile Include="KinectBody.cs" />
     <Compile Include="_Analytics.cs" />
     <Compile Include="ChartForm.cs">
@@ -140,7 +141,7 @@
     <Compile Include="_Frame.cs" />
     <Compile Include="KinectStudioHandler.cs" />
     <Compile Include="_Escena.cs" />
-    <Compile Include="pojos\Emotion.cs" />
+    <Compile Include="pojos\_Emotion.cs" />
     <Compile Include="pojos\_Interval.cs" />
     <Compile Include="pojos\_Joint.cs" />
     <Compile Include="pojos\_JointPosition.cs" />
@@ -241,9 +242,6 @@
     <Content Include="Database\Seated.gbd">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
