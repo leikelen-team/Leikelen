@@ -225,9 +225,15 @@
 
             <ScrollViewer x:Name="timeLineScroll" Grid.Column="1" Grid.Row="0" Grid.RowSpan="9" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Grid.ColumnSpan="2">
                 <Grid x:Name="timeLineGrid" Grid.Column="1" Grid.Row="0" Grid.RowSpan="7">
-                    <Grid.ColumnDefinitions>
+                    <!--<Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>-->
                     <Grid.RowDefinitions>
                         <RowDefinition Height="20" MouseWheel="RowDefinition_MouseWheel"/>
                         <!--<RowDefinition />-->
@@ -247,21 +253,37 @@
 
                     
                     
-                    <!--<Grid Grid.Row="2">
+                    <!--<Grid Grid.Row="2" Grid.ColumnSpan="7">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        <Line  Grid.Row="0" Grid.Column="0"
+
+                        <Path x:Name="pathvariable" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Stroke="Red" StrokeThickness="10" Stretch="Fill">
+                            <Path.Data>
+                                <LineGeometry StartPoint="0,0" EndPoint="1,0" />
+                            </Path.Data>
+                        </Path>
+
+                        --><!--<Line  Grid.Row="0" Grid.Column="0"
                           X1="0" X2="1" Y1="0" Y2="0"
                           StrokeThickness="11" Stroke="Red"
                           VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Stretch="Fill"/>
-                        --><!--<Label  Grid.Row="0" Grid.Column="0" 
+                        <Label  Grid.Row="0" Grid.Column="0" 
                             HorizontalAlignment="Left" VerticalAlignment="Stretch" VerticalContentAlignment="Top"
                             FontSize="7" FontFamily="Segoe UI"
                             Content="Seated"
                             />
-                        <Line  Grid.Row="1" Grid.Column="0"
+                        <Line  Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3"
                           X1="0" X2="1" Y1="0" Y2="0"
                           StrokeThickness="11" Stroke="Blue"
                           VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Stretch="UniformToFill"

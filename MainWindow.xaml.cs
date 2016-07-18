@@ -670,20 +670,20 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
             //Console.WriteLine("Delta: " + e.);
         }
 
-        private Line createPostureIntervalLine()
-        {
-            Line line = new Line();
-            line.StrokeThickness = 11;
-            line.VerticalAlignment = VerticalAlignment.Stretch;
-            line.HorizontalAlignment = HorizontalAlignment.Stretch;
-            line.X1 = 0;
-            line.X2 = 0;
-            line.Y1 = 0;
-            line.Y2 = 0;
-            line.Stretch = System.Windows.Media.Stretch.Fill;
-            //Grid.SetColumnSpan(line, Int32.MaxValue);
-            return line;
-        }
+        //private Line createPostureIntervalLine()
+        //{
+        //    Line line = new Line();
+        //    line.StrokeThickness = 11;
+        //    line.VerticalAlignment = VerticalAlignment.Stretch;
+        //    line.HorizontalAlignment = HorizontalAlignment.Stretch;
+        //    line.X1 = 0;
+        //    line.X2 = 0;
+        //    line.Y1 = 0;
+        //    line.Y2 = 0;
+        //    line.Stretch = System.Windows.Media.Stretch.UniformToFill;
+        //    //Grid.SetColumnSpan(line, Int32.MaxValue);
+        //    return line;
+        //}
 
         private void analizePostures_Click(object sender, RoutedEventArgs e)
         {
@@ -693,35 +693,82 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
 
             
             int intervalIniCol=0, intervalFinCol=0;
+            TextBlock text;
             foreach (Person person in Scene.Instance.persons)
             {
-                Grid personGrid = new Grid(); // esto esta mal.. hay q dibujar las lineas en la timeLineGrid, pero sin afectar los índices de las rows q representan los sujetos.. así de brígido xD...
-                Grid.SetRow(personGrid, person.bodyIndex+2);
-                
+                if (!person.HasBeenTracked) continue;
+
+                // INDIVIDUAL PERSON GRID CREATION
+                Grid personGrid = new Grid();
+                foreach(TimeSpan time in this.kstudio.frameTimes)
+                {
+                    ColumnDefinition colDef = new ColumnDefinition();
+                    colDef.Width = new GridLength(5, GridUnitType.Pixel);
+                    personGrid.ColumnDefinitions.Add(colDef);
+                }
+                Grid.SetRow(personGrid, person.bodyIndex + 2);
+                Grid.SetColumn(personGrid, 0);
+                Grid.SetColumnSpan(personGrid, kstudio.frameTimes.Count);
+
+                // POSTURE INTERVAL DRAW
                 int postureIntervalGroupIndex = 0;
                 foreach (PostureIntervalGroup postureIntervalGroup in person.PostureIntervalGroups)
                 {
                     Console.WriteLine("---- POSTURE: " + postureIntervalGroup.postureType.name + " ---");
+
+                    RowDefinition rowDef = new RowDefinition();
+                    rowDef.Height = new GridLength(1, GridUnitType.Star);
+                    personGrid.RowDefinitions.Add(rowDef);
+
                     foreach (var interval in postureIntervalGroup.Intervals)
                     {
-                        Console.WriteLine("\t[" + interval.Item1.sceneLocationTime.ToString(@"mm\:ss") + ", " + interval.Item2.sceneLocationTime.ToString(@"mm\:ss") + "]");
+                        Console.WriteLine("\t[" + interval.Item1.sceneLocationTime.ToString(@"mm\:ss") + ", " 
+                            + interval.Item2.sceneLocationTime.ToString(@"mm\:ss") + "]");
 
-                        ColumnDefinition colDef = new ColumnDefinition();
-                        colDef.Width = new GridLength(15, GridUnitType.Pixel);
-                        personGrid.ColumnDefinitions.Add(colDef);
-                        
-                        Line line = this.createPostureIntervalLine();
-                        line.Stroke = postureIntervalGroup.postureType.color;
-                        Grid.SetRow(line, postureIntervalGroupIndex++);
+                        intervalIniCol = Convert.ToInt32(interval.Item1.sceneLocationTime.TotalSeconds);
+                        intervalFinCol = Convert.ToInt32(interval.Item2.sceneLocationTime.TotalSeconds);
 
-                        intervalIniCol = Convert.ToInt32( interval.Item1.sceneLocationTime.TotalSeconds );
-                        intervalFinCol = Convert.ToInt32( interval.Item2.sceneLocationTime.TotalSeconds );
+                        //text = new TextBlock();
+                        //text.Text = "[";
+                        //text.HorizontalAlignment = HorizontalAlignment.Left;
+                        //Grid.SetRow(text, postureIntervalGroupIndex);
+                        //Grid.SetColumn(text, intervalIniCol);
+                        //personGrid.Children.Add(text);
 
-                        Grid.SetColumn(line, intervalIniCol);
-                        Grid.SetColumnSpan(line, intervalFinCol - intervalIniCol);
-                        personGrid.Children.Add(line);
+                        //text = new TextBlock();
+                        //text.Text = "]";
+                        //text.HorizontalAlignment = HorizontalAlignment.Left;
+                        //Grid.SetRow(text, postureIntervalGroupIndex);
+                        //Grid.SetColumn(text, intervalFinCol);
+                        //personGrid.Children.Add(text);
+
+                        //Line line = this.createPostureIntervalLine();
+                        //line.Stroke = System.Windows.Media.Brushes.Red; // postureIntervalGroup.postureType.color;
+                        //Grid.SetRow(line, postureIntervalGroupIndex);
+                        //Grid.SetColumn(line, intervalIniCol);
+                        //Grid.SetColumnSpan(line, intervalFinCol - intervalIniCol);
+                        //personGrid.Children.Add(line);
+
+
+                        System.Windows.Shapes.Path path = new System.Windows.Shapes.Path();
+                        path.Stroke = person.Color; // postureIntervalGroup.postureType.color; //System.Windows.Media.Brushes.Red;
+                        path.StrokeThickness = 10;
+                        path.Stretch = System.Windows.Media.Stretch.Fill;
+                        Grid.SetRow(path, postureIntervalGroupIndex);
+                        Grid.SetColumn(path, intervalIniCol-2);
+                        Grid.SetColumnSpan(path, intervalFinCol - intervalIniCol + 2);
+                        System.Windows.Media.LineGeometry line = new System.Windows.Media.LineGeometry();
+                        line.StartPoint = new System.Windows.Point(0d, 0d);
+                        line.EndPoint = new System.Windows.Point(1d, 0d);
+                        path.Data = line;
+
+                        personGrid.Children.Add(path);
+
                     }
+                    postureIntervalGroupIndex++;
                 }
+
+                
 
                 timeLineGrid.Children.Add(personGrid);
                 //timeLineGrid.ColumnDefinitions.Insert..

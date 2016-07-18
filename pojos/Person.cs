@@ -5,12 +5,14 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.pojos
 {
     public class Person : INotifyPropertyChanged
     {
-        public enum Gender { Masculino, Femenino};
+        public enum Gender { Masculino, Femenino };
+        private static Brush[] colors = {Brushes.Red, Brushes.Orange, Brushes.Green, Brushes.Blue, Brushes.Indigo, Brushes.Violet };
 
         public int bodyIndex { get; set; }
         public string name { get; set; }
@@ -31,7 +33,13 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.pojos
                 return postureIntervalGroups;
             }
         }
-        //public List<Interval> intervals { get; private set; }
+        
+        public Brush Color {
+            get
+            {
+                return colors[bodyIndex];
+            }
+        }
 
         public Person(int bodyIndex, string name, Gender gender, int age)
         {
