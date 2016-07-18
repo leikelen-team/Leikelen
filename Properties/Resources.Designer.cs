@@ -115,6 +115,15 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 1000.
+        /// </summary>
+        public static string PostureDurationDetectionThreshold {
+            get {
+                return ResourceManager.GetString("PostureDurationDetectionThreshold", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Running.
         /// </summary>
         public static string RunningStatusText {

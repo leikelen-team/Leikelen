@@ -17,7 +17,8 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.pojos
         public Gender gender { get; set; }
         public int age { get; set; }
 
-        public Dictionary<TimeSpan, Posture> postures { get; private set; }
+        public List<MicroPosture> microPostures { get; private set; }
+        public List<PostureIntervalGroup> postureIntervalGroups { get; private set; }
         //public List<Interval> intervals { get; private set; }
 
         public Person(int bodyIndex, string name, Gender gender, int age)
@@ -26,21 +27,28 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.pojos
             this.name = name;
             this.gender = gender;
             this.age = age;
-            this.postures = new Dictionary<TimeSpan, Posture>();
+            //this.postures = new Dictionary<TimeSpan, PostureType>();
+            this.microPostures = new List<MicroPosture>();
+            this.postureIntervalGroups = new List<PostureIntervalGroup>();
+
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
         
+        public bool HasBeenTracked
+        {
+            get { return microPostures.Count != 0; }
+        }
 
         public void showPersonInfo()
         {
-            IReadOnlyDictionary<Posture, float> posturesAvg = this.calculatePosturesAverage();
+            IReadOnlyDictionary<PostureType, float> posturesAvg = this.calculatePosturesAverage();
 
             Console.WriteLine("Nombre: "+name);
             Console.WriteLine("Genero: "+gender.ToString("g"));
             Console.WriteLine("Edad: "+age);
 
-            foreach (Posture posture in posturesAvg.Keys)
+            foreach (PostureType posture in posturesAvg.Keys)
             {
                 Console.WriteLine(posture.name + ": " + posturesAvg[posture].ToString("0.00"));
             }

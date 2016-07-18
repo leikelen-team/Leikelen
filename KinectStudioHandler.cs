@@ -16,7 +16,7 @@ using System.Windows.Controls;
 namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
 {
 
-    class KinectStudioHandler
+    public class KinectStudioHandler
     {
         private KStudioClient client = KStudio.CreateClient();
         public KStudioPlayback playback { get; private set; }
@@ -24,11 +24,12 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
         private BackgroundWorker recWorker;
         private string recordingFilePath;
         private string playingFilePath;
-
+        private DateTime? recordStartTime = null;
         private KStudioRecording recorder;
         public int PausedStartMillisTime { get; private set; } = 150;
 
         public List<TimeSpan> frameTimes { get; private set; }
+
 
 
         //public bool isPlaying { get; private set; }
@@ -56,6 +57,14 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
 
             //streamCollection.Add(KStudioEventStreamDataTypeIds.Depth);
             
+        }
+        public TimeSpan? getSceneLocationTime()
+        {
+            if (playback != null && playback.State == KStudioPlaybackState.Playing) return playback.CurrentRelativeTime;
+            else if (recorder != null
+                && recorder.State == KStudioRecordingState.Recording
+                && recordStartTime != null) return DateTime.Now.Subtract(recordStartTime.Value);
+            else return null;
         }
         public void ExportScene(string path)
         {
@@ -292,7 +301,9 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
             //if( recorder!=null && recorder.State != KStudioRecordingState.Recording)
             //{
             Directory.CreateDirectory(Properties.Paths.tmpDirectory);
+            recordStartTime = DateTime.Now;
             recWorker.RunWorkerAsync();
+            
             //}
         }
 
@@ -302,6 +313,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
             {
                 recorder.Stop();
                 //isRecording = false;
+                recordStartTime = null;
                 this.ImportScene(this.recordingFilePath);
                 
                 //this.client.DisconnectFromService();

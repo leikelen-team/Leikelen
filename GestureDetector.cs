@@ -172,11 +172,13 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
         /// <param name="e">event arguments</param>
         private void Reader_GestureFrameArrived(object sender, VisualGestureBuilderFrameArrivedEventArgs e)
         {
+            if (!MainWindow.Instance().kstudio.isPlaying && !MainWindow.Instance().kstudio.isRecording) return;
             VisualGestureBuilderFrameReference frameReference = e.FrameReference;
             using (VisualGestureBuilderFrame frame = frameReference.AcquireFrame())
             {
                 if (frame != null)
                 {
+                   
                     // get the discrete gesture results which arrived with the latest frame
                     IReadOnlyDictionary<Gesture, DiscreteGestureResult> discreteResults = frame.DiscreteGestureResults;
 
@@ -187,10 +189,10 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
                         foreach (Gesture gesture in this.vgbFrameSource.Gestures)
                         {
                             //Posture.Name[] postures = (Posture.Name[])Enum.GetValues(typeof(Posture.Name));
-                            foreach (Posture posture in Posture.posturesAvailables)
+                            foreach (PostureType postureType in PostureType.availablesPostureTypes)
                             {
                                 //if (gesture.Name.Equals(this.seatedGestureName) && gesture.GestureType == GestureType.Discrete)
-                                if (gesture.Name.Equals(posture.name) && gesture.GestureType == GestureType.Discrete)
+                                if (gesture.Name.Equals(postureType.name) && gesture.GestureType == GestureType.Discrete)
                                 {
                                     DiscreteGestureResult result = null;
                                     discreteResults.TryGetValue(gesture, out result);
@@ -201,7 +203,8 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
                                         this.GestureResultView.UpdateGestureResult(true, result.Detected, result.Confidence);
                                         if (result.Detected && Scene.Instance!=null)
                                         {
-                                            Scene.Instance.persons[BodyIndex].postures.Add(frame.RelativeTime, posture );
+                                            //Console.WriteLine("registered posture:"+postureType.name);
+                                            Scene.Instance.persons[BodyIndex].microPostures.Add(new MicroPosture(postureType, MainWindow.Instance().kstudio.getSceneLocationTime().Value));
                                             emotionDetected = true;
                                             //Scene.Instance.persons[BodyIndex].postures.
                                         }
@@ -212,7 +215,8 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
                         }
                         if (!emotionDetected && Scene.Instance != null)
                         {
-                            Scene.Instance.persons[BodyIndex].postures.Add(frame.RelativeTime, Posture.none);
+                            //Console.WriteLine("registered posture:" + PostureType.none.name);
+                            Scene.Instance.persons[BodyIndex].microPostures.Add(new MicroPosture(PostureType.none, MainWindow.Instance().kstudio.getSceneLocationTime().Value));
                         }
                     }
                 }

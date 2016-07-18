@@ -125,6 +125,8 @@
     </ApplicationDefinition>
     <Compile Include="analytics\PersonAnalytic.cs" />
     <Compile Include="KinectBody.cs" />
+    <Compile Include="pojos\PostureIntervalGroup.cs" />
+    <Compile Include="pojos\MicroPosture.cs" />
     <Compile Include="_Analytics.cs" />
     <Compile Include="ChartForm.cs">
       <SubType>Form</SubType>
@@ -146,7 +148,7 @@
     <Compile Include="pojos\_Joint.cs" />
     <Compile Include="pojos\_JointPosition.cs" />
     <Compile Include="pojos\Person.cs" />
-    <Compile Include="pojos\Posture.cs" />
+    <Compile Include="pojos\PostureType.cs" />
     <Compile Include="Properties\Buttons.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

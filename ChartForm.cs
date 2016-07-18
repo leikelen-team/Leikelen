@@ -64,16 +64,29 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
             for (int i = 1; i <= 6; i++)
             {
                 Person person = Scene.Instance.persons[i-1];
+                if ( !person.HasBeenTracked ) continue;
                 updatePersonalPersonData(person);
 
                 IReadOnlyDictionary<string, string> posturesAvg = person.calculateEmotionsAverageString();
-                if (posturesAvg == null) continue;
+                //if (posturesAvg == null) continue;
 
                 Chart chart = this.GetControl("chart" + i) as Chart;
                 Series serie = new Series("Serie 1");
                 serie.ChartType = SeriesChartType.Pie;
                 chart.Series.Add(serie);
                 chart.Series["Serie 1"].Points.DataBindXY(posturesAvg.Keys, posturesAvg.Values);
+
+                person.generatePostureIntervals();
+                foreach (PostureIntervalGroup postureIntervalGroup in person.postureIntervalGroups)
+                {
+                    Console.WriteLine("---- POSTURE: "+postureIntervalGroup.postureType.name+" ---");
+                    foreach (var interval in postureIntervalGroup.Intervals)
+                    {
+                        Console.WriteLine("\t["+interval.Item1.sceneLocationTime.ToString(@"mm\:ss") +", "+interval.Item2.sceneLocationTime.ToString(@"mm\:ss")+"]");
+                    }
+                }
+                //Console.WriteLine( 
+
             }
             
             

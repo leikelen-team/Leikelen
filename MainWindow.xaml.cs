@@ -62,7 +62,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
         private List<GestureDetector> gestureDetectorList = null;
 
         private _Escena escena;
-        private KinectStudioHandler kstudio;
+        public KinectStudioHandler kstudio { get; private set; }
         public static ChartForm chartForm { get; private set; }
         public static TimeSpan lastCurrentTime = TimeSpan.FromSeconds(0);
 
@@ -190,11 +190,15 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
             this.stopButton.IsEnabled = false;
 
 
-            Posture.posturesAvailables.Add(Posture.none);
-            Posture.posturesAvailables.Add(new Posture("Seated"));
-            Posture.posturesAvailables.Add(new Posture("Atento"));
-            Posture.posturesAvailables.Add(new Posture("Distraido"));
             
+            PostureType.availablesPostureTypes.Add(new PostureType("Seated"));
+            PostureType.availablesPostureTypes.Add(new PostureType("Atento"));
+            PostureType.availablesPostureTypes.Add(new PostureType("Distraido"));
+
+            foreach (PostureType postureType in PostureType.availablesPostureTypes)
+            {
+                Console.WriteLine(postureType.name + ": "+postureType.colorName);// + postureType.color.ToString());
+            }
 
 
             //ColumnDefinition col;
