@@ -78,7 +78,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.analytics
                 {
                     postureIntervalGroup.addInterval(initialMicroPosture, lastMicroPosture);
                 }
-                if (postureIntervalGroup.Intervals.Count>0) person.postureIntervalGroups.Add(postureIntervalGroup);
+                if (postureIntervalGroup.Intervals.Count>0) person.PostureIntervalGroups.Add(postureIntervalGroup);
             }
         }
     }

@@ -76,22 +76,9 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
                 chart.Series.Add(serie);
                 chart.Series["Serie 1"].Points.DataBindXY(posturesAvg.Keys, posturesAvg.Values);
 
-                person.generatePostureIntervals();
-                foreach (PostureIntervalGroup postureIntervalGroup in person.postureIntervalGroups)
-                {
-                    Console.WriteLine("---- POSTURE: "+postureIntervalGroup.postureType.name+" ---");
-                    foreach (var interval in postureIntervalGroup.Intervals)
-                    {
-                        Console.WriteLine("\t["+interval.Item1.sceneLocationTime.ToString(@"mm\:ss") +", "+interval.Item2.sceneLocationTime.ToString(@"mm\:ss")+"]");
-                    }
-                }
-                //Console.WriteLine( 
-
+                
+                
             }
-            
-            
-
-            
         }
         
     }

@@ -11,7 +11,7 @@
         <SolidColorBrush x:Key="KinectPurpleBrush" Color="#ff52318f" />
         <SolidColorBrush x:Key="KinectBlueBrush" Color="#ff00BCF2" />
 
-        <DataTemplate DataType="{x:Type pojos:Person}">
+        <!--<DataTemplate DataType="{x:Type pojos:Person}">
             <Grid Width="Auto" Margin="5" Background="{Binding BodyColor}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -28,9 +28,9 @@
                 <TextBlock Text="{Binding Confidence, StringFormat='Confidencia: {0}'}" 
                            FontSize="11" FontFamily="Segoe UI" FontWeight="SemiBold" Grid.Row="1" Margin="5 0 0 0"/>
             </Grid>
-        </DataTemplate>
+        </DataTemplate>-->
 
-        <DataTemplate DataType="{x:Type local:GestureResultView}">
+        <!--<DataTemplate DataType="{x:Type local:GestureResultView}">
             <Grid Width="Auto" Margin="5" Background="{Binding BodyColor}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -47,7 +47,7 @@
                 <TextBlock Text="{Binding Confidence, StringFormat='Confidencia: {0}'}" 
                            FontSize="11" FontFamily="Segoe UI" FontWeight="SemiBold" Grid.Row="1" Margin="5 0 0 0"/>
             </Grid>
-        </DataTemplate>
+        </DataTemplate>-->
 
     </Window.Resources>
 
@@ -130,7 +130,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="73*"/>
-                <ColumnDefinition Width="247*"/>
+                <!--<ColumnDefinition Width="247*"/>-->
                 <!--<ColumnDefinition Width="337*"/>
                 <ColumnDefinition Width="246*"/>-->
                 <!--<ColumnDefinition Width="128*"/>-->
@@ -216,18 +216,18 @@
             <Label x:Name="label_sujeto6" Content="Sujeto 6" HorizontalAlignment="Left" Margin="29,11,0,0" VerticalAlignment="Top" Grid.Row="7"/>
 
             <Border Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="8,8,3,3" Grid.ColumnSpan="2"></Border>
-            <Border Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="8,8,3,3"></Border>
-            <Border Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="8,8,3,3"></Border>
-            <Border Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="8,8,3,3"></Border>
-            <Border Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="8,8,3,3"></Border>
-            <Border Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="8,8,3,3"></Border>
-            <Border Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="8,8,3,3"></Border>
+            <Border Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="3,3,3,3"></Border>
+            <Border Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="3,3,3,3"></Border>
+            <Border Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="3,3,3,3"></Border>
+            <Border Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="3,3,3,3"></Border>
+            <Border Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="3,3,3,3"></Border>
+            <Border Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="3,3,3,3"></Border>
 
             <ScrollViewer x:Name="timeLineScroll" Grid.Column="1" Grid.Row="0" Grid.RowSpan="9" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Grid.ColumnSpan="2">
                 <Grid x:Name="timeLineGrid" Grid.Column="1" Grid.Row="0" Grid.RowSpan="7">
-                    <!--<Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>-->
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="20" MouseWheel="RowDefinition_MouseWheel"/>
                         <!--<RowDefinition />-->
@@ -240,11 +240,40 @@
                         <RowDefinition Height="38" />
                         <RowDefinition Height="20" />
                     </Grid.RowDefinitions>
-                    <Line x:Name="lineCurrentTimeCursor" Grid.Column="0" Grid.RowSpan="8" StrokeThickness="2" X1="0" X2="0" Y1="0" Y2="300" Stroke="Red"/>
+                    <Line x:Name="lineCurrentTimeCursor" Grid.Column="0" Grid.RowSpan="8"
+                          VerticalAlignment="Stretch" HorizontalAlignment="Left" Stretch="Fill" 
+                          StrokeThickness="2" Stroke="Red"
+                          X1="0" X2="0" Y1="0" Y2="1" />
 
-                    <!--<Border Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="8,8,3,3"></Border>-->
+                    
+                    
+                    <!--<Grid Grid.Row="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Line  Grid.Row="0" Grid.Column="0"
+                          X1="0" X2="1" Y1="0" Y2="0"
+                          StrokeThickness="11" Stroke="Red"
+                          VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Stretch="Fill"/>
+                        --><!--<Label  Grid.Row="0" Grid.Column="0" 
+                            HorizontalAlignment="Left" VerticalAlignment="Stretch" VerticalContentAlignment="Top"
+                            FontSize="7" FontFamily="Segoe UI"
+                            Content="Seated"
+                            />
+                        <Line  Grid.Row="1" Grid.Column="0"
+                          X1="0" X2="1" Y1="0" Y2="0"
+                          StrokeThickness="11" Stroke="Blue"
+                          VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Stretch="UniformToFill"
+                          />
+                        <Label  Grid.Row="1" Grid.Column="0" 
+                            HorizontalAlignment="Left" VerticalAlignment="Stretch" VerticalContentAlignment="Top"
+                            FontSize="7" FontFamily="Segoe UI"
+                            Content="Ninguno"
+                            />--><!--
+                    </Grid>-->
 
-
+                    
 
                 </Grid>
             </ScrollViewer>
@@ -258,7 +287,8 @@
         <Button x:Name="exportButtons" Content="Exportar" HorizontalAlignment="Left" Margin="80,30,0,0" VerticalAlignment="Top" Width="75" Click="exportButtons_Click"/>
         <Button x:Name="importButtons" Content="Importar" HorizontalAlignment="Left" Margin="0,30,0,0" VerticalAlignment="Top" Width="75" Click="importButtons_Click"/>
         <Label x:Name="sceneTitleLabel" Content="Importa o graba una escena." HorizontalAlignment="Left" Margin="0,-1,0,0" VerticalAlignment="Top" FontSize="16"/>
-        
+        <Button x:Name="analizePostures" Content="Analizar posturas" HorizontalAlignment="Left" Margin="259,30,0,0" VerticalAlignment="Top" Width="96" Click="analizePostures_Click"/>
+
 
 
 

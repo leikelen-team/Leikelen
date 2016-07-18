@@ -31,8 +31,9 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
     using System.IO;
     using Win32;    //using Win32;
     using pojos;    //using System.Windows.Forms;                    //using System.Windows.Forms;/// <summary>
-    using System.Threading;                    /// Interaction logic for the MainWindow
-                                               /// </summary>
+    using System.Threading;
+    using System.Windows.Shapes;/// Interaction logic for the MainWindow
+                                /// </summary>
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
         /// <summary> Active Kinect sensor </summary>
@@ -170,7 +171,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
                 //    Grid.SetRow(contentControl, col1Row);
                 //    ++col1Row;
                 //}
-                this.timeLineGrid.Children.Add(contentControl);
+                //this.timeLineGrid.Children.Add(contentControl);
                 
 
                 //this.contentGrid.Children.Add(contentControl);
@@ -667,6 +668,65 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
         {
             Console.WriteLine("Delta: " + e.Delta);
             //Console.WriteLine("Delta: " + e.);
+        }
+
+        private Line createPostureIntervalLine()
+        {
+            Line line = new Line();
+            line.StrokeThickness = 11;
+            line.VerticalAlignment = VerticalAlignment.Stretch;
+            line.HorizontalAlignment = HorizontalAlignment.Stretch;
+            line.X1 = 0;
+            line.X2 = 0;
+            line.Y1 = 0;
+            line.Y2 = 0;
+            line.Stretch = System.Windows.Media.Stretch.Fill;
+            //Grid.SetColumnSpan(line, Int32.MaxValue);
+            return line;
+        }
+
+        private void analizePostures_Click(object sender, RoutedEventArgs e)
+        {
+            //Line l = this.createPostureIntervalLine();
+            //Grid.SetRow(l, 0);
+            //Grid.SetColumn(l, 0);
+
+            
+            int intervalIniCol=0, intervalFinCol=0;
+            foreach (Person person in Scene.Instance.persons)
+            {
+                Grid personGrid = new Grid(); // esto esta mal.. hay q dibujar las lineas en la timeLineGrid, pero sin afectar los índices de las rows q representan los sujetos.. así de brígido xD...
+                Grid.SetRow(personGrid, person.bodyIndex+2);
+                
+                int postureIntervalGroupIndex = 0;
+                foreach (PostureIntervalGroup postureIntervalGroup in person.PostureIntervalGroups)
+                {
+                    Console.WriteLine("---- POSTURE: " + postureIntervalGroup.postureType.name + " ---");
+                    foreach (var interval in postureIntervalGroup.Intervals)
+                    {
+                        Console.WriteLine("\t[" + interval.Item1.sceneLocationTime.ToString(@"mm\:ss") + ", " + interval.Item2.sceneLocationTime.ToString(@"mm\:ss") + "]");
+
+                        ColumnDefinition colDef = new ColumnDefinition();
+                        colDef.Width = new GridLength(15, GridUnitType.Pixel);
+                        personGrid.ColumnDefinitions.Add(colDef);
+                        
+                        Line line = this.createPostureIntervalLine();
+                        line.Stroke = postureIntervalGroup.postureType.color;
+                        Grid.SetRow(line, postureIntervalGroupIndex++);
+
+                        intervalIniCol = Convert.ToInt32( interval.Item1.sceneLocationTime.TotalSeconds );
+                        intervalFinCol = Convert.ToInt32( interval.Item2.sceneLocationTime.TotalSeconds );
+
+                        Grid.SetColumn(line, intervalIniCol);
+                        Grid.SetColumnSpan(line, intervalFinCol - intervalIniCol);
+                        personGrid.Children.Add(line);
+                    }
+                }
+
+                timeLineGrid.Children.Add(personGrid);
+                //timeLineGrid.ColumnDefinitions.Insert..
+            }
+
         }
     }
 }

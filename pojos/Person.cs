@@ -18,7 +18,19 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.pojos
         public int age { get; set; }
 
         public List<MicroPosture> microPostures { get; private set; }
-        public List<PostureIntervalGroup> postureIntervalGroups { get; private set; }
+        private List<PostureIntervalGroup> postureIntervalGroups = null;
+
+        public List<PostureIntervalGroup> PostureIntervalGroups
+        {
+            get {
+                if (postureIntervalGroups == null)
+                {
+                    postureIntervalGroups = new List<PostureIntervalGroup>();
+                    this.generatePostureIntervals();
+                }
+                return postureIntervalGroups;
+            }
+        }
         //public List<Interval> intervals { get; private set; }
 
         public Person(int bodyIndex, string name, Gender gender, int age)
@@ -29,7 +41,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.pojos
             this.age = age;
             //this.postures = new Dictionary<TimeSpan, PostureType>();
             this.microPostures = new List<MicroPosture>();
-            this.postureIntervalGroups = new List<PostureIntervalGroup>();
+            this.postureIntervalGroups = null;
 
         }
 
