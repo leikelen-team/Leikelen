@@ -51,22 +51,19 @@
 
     </Window.Resources>
 
-    <Grid Margin="10 0 10 0">
+    <Grid x:Name="appLayoutGrid" Margin="10 0 10 0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="720*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition/>
-            <RowDefinition Height="288" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="55" />
+            <RowDefinition Height="100*"/>
+            <RowDefinition Height="75*" />
+            <!--<RowDefinition Height="Auto" />-->
             <!--<RowDefinition Height="Auto" />-->
         </Grid.RowDefinitions>
 
-        <Image Grid.Row="0" Source="Images\Logo.png" HorizontalAlignment="Left" Stretch="Fill" Height="32" Width="81" Margin="564,18,0,5" RenderTransformOrigin="-1.309,0.625" />
-        <Image Grid.Row="0" Source="Images\Status.png" Stretch="None" HorizontalAlignment="Center" Margin="662,5,10,0" />
-
-        <Grid Grid.Row="1">
+        <Grid x:Name="playerGrid" Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
@@ -125,134 +122,150 @@
             </Grid>
         </Grid>
 
+        <!--<ScrollViewer Grid.Row="2" Grid.ColumnSpan="2" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">-->
 
-        <Grid x:Name="contentGrid" Grid.Row="2" Grid.ColumnSpan="2" >
+        <Grid x:Name="timeLineLayoutGrid" Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="73*"/>
-                <!--<ColumnDefinition Width="247*"/>-->
-                <!--<ColumnDefinition Width="337*"/>
-                <ColumnDefinition Width="246*"/>-->
-                <!--<ColumnDefinition Width="128*"/>-->
-                <!--<ColumnDefinition Width="124*"/>-->
-                <!--<ColumnDefinition Width="2*"/>-->
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="20"/>
             </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="20"/>
-                <RowDefinition Height="20"/>
-                <RowDefinition Height="38"/>
-                <RowDefinition Height="38"/>
-                <RowDefinition Height="38" />
-                <RowDefinition Height="38" />
-                <RowDefinition Height="38" />
-                <RowDefinition Height="38" />
-                <RowDefinition Height="20" />
-            </Grid.RowDefinitions>
 
 
-            <!--<Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="8,8,3,3">
-                <Button x:Name="button_EditPerson1" Content="*" HorizontalAlignment="Left" VerticalAlignment="Top" Width="15" Click="button_Click" Height="15" RenderTransformOrigin="1.667,1.467" Margin="7,8,0,0"/>
-            </Border>
-            <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="8,8,3,3">
-                <Button x:Name="button_EditPerson2" Content="*" HorizontalAlignment="Left" VerticalAlignment="Top" Width="15" Click="button_Click" Height="15" RenderTransformOrigin="1.667,1.467" Margin="7,8,0,0"/>
-            </Border>
-            <Border Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="8,8,3,3">
-                <Button x:Name="button_EditPerson3" Content="*" HorizontalAlignment="Left" VerticalAlignment="Top" Width="15" Click="button_Click" Height="15" RenderTransformOrigin="1.667,1.467" Margin="7,8,0,0"/>
-            </Border>
-            <Border Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="8,8,3,3">
-                <Button x:Name="button_EditPerson4" Content="*" HorizontalAlignment="Left" VerticalAlignment="Top" Width="15" Click="button_Click" Height="15" RenderTransformOrigin="1.667,1.467" Margin="7,8,0,0"/>
-            </Border>
-            <Border Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="8,8,3,3">
-                <Button x:Name="button_EditPerson5" Content="*" HorizontalAlignment="Left" VerticalAlignment="Top" Width="15" Click="button_Click" Height="15" RenderTransformOrigin="1.667,1.467" Margin="7,8,0,0"/>
-            </Border>
-            <Border Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="8,8,3,3">
-                <Button x:Name="button_EditPerson6" Content="*" HorizontalAlignment="Left" VerticalAlignment="Top" Width="15" Click="button_Click" Height="15" RenderTransformOrigin="1.667,1.467" Margin="7,8,0,0"/>
-            </Border>-->
 
-            <!--<Border Grid.Row="0" Grid.Column="0" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="8,8,3,3"></Border>
-            <Border Grid.Row="1" Grid.Column="0" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="8,8,3,3"></Border>
-            <Border Grid.Row="2" Grid.Column="0" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="8,8,3,3"></Border>
-            <Border Grid.Row="3" Grid.Column="0" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="8,8,3,3"></Border>
-            <Border Grid.Row="4" Grid.Column="0" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="8,8,3,3"></Border>
-            <Border Grid.Row="5" Grid.Column="0" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="8,8,3,3"></Border>-->
+            <Grid x:Name="personLabelLayoutGrid">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Border Grid.Row="0" Grid.Column="0" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="8,8,3,3"></Border>
+                <Label Grid.Row="0" Grid.Column="0" Content="Sujetos" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" FontWeight="Bold" />
+                <ScrollViewer x:Name="personLabelsScroll" Grid.Column="0" Grid.Row="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Hidden"
+                          ScrollChanged="TimeLineVerticalScrollsChange">
+                    <Grid x:Name="personLabelsGrid">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="77"/>
+                            <RowDefinition Height="77"/>
+                            <RowDefinition Height="77" />
+                            <RowDefinition Height="77" />
+                            <RowDefinition Height="77" />
+                            <RowDefinition Height="77" />
+                            <RowDefinition Height="20" />
+                        </Grid.RowDefinitions>
 
-            <!--<Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="8,8,3,3"></Border>
-            <Border Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="8,8,3,3"></Border>
-            <Border Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="8,8,3,3"></Border>
-            <Border Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="8,8,3,3"></Border>
-            <Border Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="8,8,3,3"></Border>
-            <Border Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="8,8,3,3"></Border>-->
-            <!--<Border Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="8,8,3,3"></Border>-->
-            <!--<StatusBar Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" Name="statusBar" VerticalAlignment="Bottom" Background="White" Foreground="{StaticResource MediumGreyBrush}" >
-                <StatusBarItem Content="{Binding StatusText}" />
-            </StatusBar>-->
-            <Border Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="8,8,3,3">
-                <Label Content="Sujetos" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" FontWeight="Bold" />
-                <!--<Button x:Name="title" Content="editar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="28" Height="16" RenderTransformOrigin="1.667,1.467" Margin="1,15,0,0" Click="button_EditPerson1_Click" FontSize="9"/>-->
-            </Border>
-            <Border Grid.Row="2" Grid.Column="0" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="8,8,3,3">
-                <Button x:Name="button_EditPerson1" Content="editar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="28" Height="16" RenderTransformOrigin="1.667,1.467" Margin="1,15,0,0" Click="button_EditPerson1_Click" FontSize="9"/>
-            </Border>
-            <Border Grid.Row="3" Grid.Column="0" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="8,8,3,3">
-                <Button x:Name="button_EditPerson2" Content="editar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="28" Height="16" RenderTransformOrigin="1.667,1.467" Margin="1,15,0,0" Click="button_EditPerson2_Click" FontSize="9"/>
-            </Border>
-            <Border Grid.Row="4" Grid.Column="0" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="8,8,3,3">
-                <Button x:Name="button_EditPerson3" Content="editar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="28" Height="16" RenderTransformOrigin="1.667,1.467" Margin="1,15,0,0" Click="button_EditPerson3_Click" FontSize="9"/>
-            </Border>
-            <Border Grid.Row="5" Grid.Column="0" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="8,8,3,3">
-                <Button x:Name="button_EditPerson4" Content="editar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="28" Height="16" RenderTransformOrigin="1.667,1.467" Margin="1,15,0,0" Click="button_EditPerson4_Click" FontSize="9"/>
-            </Border>
-            <Border Grid.Row="6" Grid.Column="0" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="8,8,3,3">
-                <Button x:Name="button_EditPerson5" Content="editar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="28" Height="16" RenderTransformOrigin="1.667,1.467" Margin="1,15,0,0" Click="button_EditPerson5_Click" FontSize="9"/>
-            </Border>
-            <Border Grid.Row="7" Grid.Column="0" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="8,8,3,3">
-                <Button x:Name="button_EditPerson6" Content="editar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="28" Height="16" RenderTransformOrigin="1.667,1.467" Margin="1,15,0,0" Click="button_EditPerson6_Click" FontSize="9"/>
-            </Border>
-            <Label x:Name="label_sujeto1" Content="Sujeto 1" HorizontalAlignment="Left" Margin="29,12,0,0" VerticalAlignment="Top" Grid.Row="2"/>
-            <Label x:Name="label_sujeto2" Content="Sujeto 2" HorizontalAlignment="Left" Margin="29,10,0,0" VerticalAlignment="Top" Grid.Row="3"/>
-            <Label x:Name="label_sujeto3" Content="Sujeto 3" HorizontalAlignment="Left" Margin="29,12,0,0" VerticalAlignment="Top" Grid.Row="4"/>
-            <Label x:Name="label_sujeto4" Content="Sujeto 4" HorizontalAlignment="Left" Margin="29,10,0,0" VerticalAlignment="Top" Grid.Row="5"/>
-            <Label x:Name="label_sujeto5" Content="Sujeto 5" HorizontalAlignment="Left" Margin="29,12,0,0" VerticalAlignment="Top" Grid.Row="6"/>
-            <Label x:Name="label_sujeto6" Content="Sujeto 6" HorizontalAlignment="Left" Margin="29,11,0,0" VerticalAlignment="Top" Grid.Row="7"/>
+                        <Border Grid.Column="0" Grid.ColumnSpan="2" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="8,8,3,3"/>
+                        <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="8,8,3,3"></Border>
+                        <Border Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="8,8,3,3"></Border>
+                        <Border Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="8,8,3,3"></Border>
+                        <Border Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="8,8,3,3"></Border>
+                        <Border Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="8,8,3,3"></Border>
 
-            <Border Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="8,8,3,3" Grid.ColumnSpan="2"></Border>
-            <Border Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="3,3,3,3"></Border>
-            <Border Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="3,3,3,3"></Border>
-            <Border Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="3,3,3,3"></Border>
-            <Border Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="3,3,3,3"></Border>
-            <Border Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="3,3,3,3"></Border>
-            <Border Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="3,3,3,3"></Border>
+                        <Label Grid.Column="0" x:Name="label_sujeto1" Content="Sujeto 1" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <Label Grid.Row="1" Grid.Column="0" x:Name="label_sujeto2" Content="Sujeto 2" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <Label Grid.Row="2" Grid.Column="0" x:Name="label_sujeto3" Content="Sujeto 3" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <Label Grid.Row="3" Grid.Column="0" x:Name="label_sujeto4" Content="Sujeto 4" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <Label Grid.Row="4" Grid.Column="0" x:Name="label_sujeto5" Content="Sujeto 5" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <Label Grid.Row="5" Grid.Column="0" x:Name="label_sujeto6" Content="Sujeto 6" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
-            <ScrollViewer x:Name="timeLineScroll" Grid.Column="1" Grid.Row="0" Grid.RowSpan="9" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Grid.ColumnSpan="2">
-                <Grid x:Name="timeLineGrid" Grid.Column="1" Grid.Row="0" Grid.RowSpan="7">
-                    <!--<Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>-->
+
+                        <StackPanel x:Name="postureIntervalGroupNamesComboBox_person0" Grid.Row="0" Grid.Column="1" Orientation="Vertical" Margin="0,6,7,0">
+                            <ComboBox HorizontalAlignment="Right" VerticalAlignment="Top" SelectedIndex="0"></ComboBox>
+                            <ComboBox HorizontalAlignment="Right" VerticalAlignment="Top" SelectedIndex="0"></ComboBox>
+                            <ComboBox HorizontalAlignment="Right" VerticalAlignment="Top" SelectedIndex="0"></ComboBox>
+                        </StackPanel>
+                        <StackPanel x:Name="postureIntervalGroupNamesComboBox_person1" Grid.Row="1" Grid.Column="1" Orientation="Vertical" Margin="0,6,7,0">
+                            <ComboBox HorizontalAlignment="Right" VerticalAlignment="Top" SelectedIndex="0"></ComboBox>
+                            <ComboBox HorizontalAlignment="Right" VerticalAlignment="Top" SelectedIndex="0"></ComboBox>
+                            <ComboBox HorizontalAlignment="Right" VerticalAlignment="Top" SelectedIndex="0"></ComboBox>
+                        </StackPanel>
+                        <StackPanel x:Name="postureIntervalGroupNamesComboBox_person2" Grid.Row="2" Grid.Column="1" Orientation="Vertical" Margin="0,6,7,0">
+                            <ComboBox HorizontalAlignment="Right" VerticalAlignment="Top" SelectedIndex="0"></ComboBox>
+                            <ComboBox HorizontalAlignment="Right" VerticalAlignment="Top" SelectedIndex="0"></ComboBox>
+                            <ComboBox HorizontalAlignment="Right" VerticalAlignment="Top" SelectedIndex="0"></ComboBox>
+                        </StackPanel>
+                        <StackPanel x:Name="postureIntervalGroupNamesComboBox_person3" Grid.Row="3" Grid.Column="1" Orientation="Vertical" Margin="0,6,7,0">
+                            <ComboBox HorizontalAlignment="Right" VerticalAlignment="Top" SelectedIndex="0"></ComboBox>
+                            <ComboBox HorizontalAlignment="Right" VerticalAlignment="Top" SelectedIndex="0"></ComboBox>
+                            <ComboBox HorizontalAlignment="Right" VerticalAlignment="Top" SelectedIndex="0"></ComboBox>
+                        </StackPanel>
+                        <StackPanel x:Name="postureIntervalGroupNamesComboBox_person4" Grid.Row="4" Grid.Column="1" Orientation="Vertical" Margin="0,6,7,0">
+                            <ComboBox HorizontalAlignment="Right" VerticalAlignment="Top" SelectedIndex="0"></ComboBox>
+                            <ComboBox HorizontalAlignment="Right" VerticalAlignment="Top" SelectedIndex="0"></ComboBox>
+                            <ComboBox HorizontalAlignment="Right" VerticalAlignment="Top" SelectedIndex="0"></ComboBox>
+                        </StackPanel>
+                        <StackPanel x:Name="postureIntervalGroupNamesComboBox_person5" Grid.Row="5" Grid.Column="1" Orientation="Vertical" Margin="0,6,7,0">
+                            <ComboBox HorizontalAlignment="Right" VerticalAlignment="Top" SelectedIndex="0"></ComboBox>
+                            <ComboBox HorizontalAlignment="Right" VerticalAlignment="Top" SelectedIndex="0"></ComboBox>
+                            <ComboBox HorizontalAlignment="Right" VerticalAlignment="Top" SelectedIndex="0"></ComboBox>
+                        </StackPanel>
+                        
+                        
+                    </Grid>
+                </ScrollViewer>
+            </Grid>
+
+
+
+            <ScrollViewer x:Name="timeLineScroll" Grid.Row="0" Grid.Column="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                <Grid x:Name="timeLineGrid" Grid.Row="0" Grid.Column="1" >
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="20" MouseWheel="RowDefinition_MouseWheel"/>
-                        <!--<RowDefinition />-->
-                        <RowDefinition Height="20"/>
-                        <RowDefinition Height="38"/>
-                        <RowDefinition Height="38"/>
-                        <RowDefinition Height="38" />
-                        <RowDefinition Height="38" />
-                        <RowDefinition Height="38" />
-                        <RowDefinition Height="38" />
-                        <RowDefinition Height="20" />
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Line x:Name="lineCurrentTimeCursor" Grid.Column="0" Grid.RowSpan="8"
+
+                    <Grid x:Name="timeRulerGrid" Grid.Row="0" Grid.Column="0" Grid.RowSpan="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="20"/>
+                        </Grid.RowDefinitions>
+                        <Border Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2147483647" 
+                                Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="8,8,3,3" ></Border>
+                        <Line x:Name="lineCurrentTimeRulerCursor" Grid.Column="0" Grid.RowSpan="2"
                           VerticalAlignment="Stretch" HorizontalAlignment="Left" Stretch="Fill" 
                           StrokeThickness="2" Stroke="Red"
                           X1="0" X2="0" Y1="0" Y2="1" />
+                    </Grid>
 
-                    
-                    
+                    <ScrollViewer x:Name="timeLineContentScroll" Grid.Row="1" Grid.RowSpan="1" 
+                                  HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Hidden"
+                                  ScrollChanged="TimeLineVerticalScrollsChange">
+                        <Grid x:Name="timeLineContentGrid" Grid.Row="1" Grid.RowSpan="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="77"/>
+                                <RowDefinition Height="77"/>
+                                <RowDefinition Height="77" />
+                                <RowDefinition Height="77" />
+                                <RowDefinition Height="77" />
+                                <RowDefinition Height="77" />
+                                <!--<RowDefinition Height="20" />-->
+                            </Grid.RowDefinitions>
+                            
+                            <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2147483647" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="3,3,3,3"></Border>
+                            <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2147483647" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="3,3,3,3"></Border>
+                            <Border Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2147483647" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="3,3,3,3"></Border>
+                            <Border Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2147483647" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="3,3,3,3"></Border>
+                            <Border Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2147483647" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="3,3,3,3"></Border>
+                            <Border Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2147483647" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="3,3,3,3"></Border>
+
+                            <Line x:Name="lineCurrentTimeCursor" Grid.Column="0" Grid.RowSpan="6"
+                              VerticalAlignment="Stretch" HorizontalAlignment="Left" Stretch="Fill" 
+                              StrokeThickness="2" Stroke="Red"
+                              X1="0" X2="0" Y1="0" Y2="1" />
+                        </Grid>
+                    </ScrollViewer>
+
+
+
+
+
+
                     <!--<Grid Grid.Row="2" Grid.ColumnSpan="7">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -274,7 +287,8 @@
                             </Path.Data>
                         </Path>
 
-                        --><!--<Line  Grid.Row="0" Grid.Column="0"
+                        -->
+                    <!--<Line  Grid.Row="0" Grid.Column="0"
                           X1="0" X2="1" Y1="0" Y2="0"
                           StrokeThickness="11" Stroke="Red"
                           VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Stretch="Fill"/>
@@ -292,17 +306,44 @@
                             HorizontalAlignment="Left" VerticalAlignment="Stretch" VerticalContentAlignment="Top"
                             FontSize="7" FontFamily="Segoe UI"
                             Content="Ninguno"
-                            />--><!--
+                            />-->
+                    <!--
                     </Grid>-->
 
-                    
+
 
                 </Grid>
             </ScrollViewer>
 
+            <Grid x:Name="timeLineVerticalScrollViewGrid"  Grid.Row="0" Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <ScrollViewer x:Name="timeLineVerticalScrollView" Grid.Row="1" 
+                              VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
+                              ScrollChanged="TimeLineVerticalScrollsChange" >
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <!--<RowDefinition Height="20"/>
+                            <RowDefinition Height="20"/>-->
+                            <RowDefinition Height="77"/>
+                            <RowDefinition Height="77"/>
+                            <RowDefinition Height="77" />
+                            <RowDefinition Height="77" />
+                            <RowDefinition Height="77" />
+                            <RowDefinition Height="77" />
+                            <RowDefinition Height="20" />
+                        </Grid.RowDefinitions>
+                    </Grid>
+                </ScrollViewer>
+            </Grid>
 
-           
+
+
         </Grid>
+
+
 
 
         <Button x:Name="showGraphButtons" Content="Ver gráficos" HorizontalAlignment="Left" Margin="179,30,0,5" Width="75" Click="showGraphButtons_Click"/>
@@ -310,7 +351,8 @@
         <Button x:Name="importButtons" Content="Importar" HorizontalAlignment="Left" Margin="0,30,0,0" VerticalAlignment="Top" Width="75" Click="importButtons_Click"/>
         <Label x:Name="sceneTitleLabel" Content="Importa o graba una escena." HorizontalAlignment="Left" Margin="0,-1,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Button x:Name="analizePostures" Content="Analizar posturas" HorizontalAlignment="Left" Margin="259,30,0,0" VerticalAlignment="Top" Width="96" Click="analizePostures_Click"/>
-
+        <Image Grid.Row="0" Source="Images\Logo.png" HorizontalAlignment="Left" Stretch="Fill" Height="32" Width="81" Margin="564,18,0,5" RenderTransformOrigin="-1.309,0.625" />
+        <Image Grid.Row="0" Source="Images\Status.png" Stretch="None" HorizontalAlignment="Center" Margin="662,5,10,0" />
 
 
 

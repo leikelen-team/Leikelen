@@ -179,12 +179,12 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
             this.escena = new _Escena();
             this.kstudio = new KinectStudioHandler();
             //escena.SetColorImageControl(ref this.colorImageControl);
-            this.button_EditPerson1.IsEnabled = false;
-            this.button_EditPerson2.IsEnabled = false;
-            this.button_EditPerson3.IsEnabled = false;
-            this.button_EditPerson4.IsEnabled = false;
-            this.button_EditPerson5.IsEnabled = false;
-            this.button_EditPerson6.IsEnabled = false;
+            //this.button_EditPerson1.IsEnabled = false;
+            //this.button_EditPerson2.IsEnabled = false;
+            //this.button_EditPerson3.IsEnabled = false;
+            //this.button_EditPerson4.IsEnabled = false;
+            //this.button_EditPerson5.IsEnabled = false;
+            //this.button_EditPerson6.IsEnabled = false;
             this.exportButtons.IsEnabled = false;
             this.playButton.IsEnabled = false;
             this.showGraphButtons.IsEnabled = false;
@@ -227,12 +227,12 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
 
         public void disableButtons()
         {
-            this.button_EditPerson1.IsEnabled = false;
-            this.button_EditPerson2.IsEnabled = false;
-            this.button_EditPerson3.IsEnabled = false;
-            this.button_EditPerson4.IsEnabled = false;
-            this.button_EditPerson5.IsEnabled = false;
-            this.button_EditPerson6.IsEnabled = false;
+            //this.button_EditPerson1.IsEnabled = false;
+            //this.button_EditPerson2.IsEnabled = false;
+            //this.button_EditPerson3.IsEnabled = false;
+            //this.button_EditPerson4.IsEnabled = false;
+            //this.button_EditPerson5.IsEnabled = false;
+            //this.button_EditPerson6.IsEnabled = false;
             this.exportButtons.IsEnabled = false;
             this.playButton.IsEnabled = false;
             this.showGraphButtons.IsEnabled = false;
@@ -240,12 +240,12 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
 
         public void enableButtons()
         {
-            this.button_EditPerson1.IsEnabled = true;
-            this.button_EditPerson2.IsEnabled = true;
-            this.button_EditPerson3.IsEnabled = true;
-            this.button_EditPerson4.IsEnabled = true;
-            this.button_EditPerson5.IsEnabled = true;
-            this.button_EditPerson6.IsEnabled = true;
+            //this.button_EditPerson1.IsEnabled = true;
+            //this.button_EditPerson2.IsEnabled = true;
+            //this.button_EditPerson3.IsEnabled = true;
+            //this.button_EditPerson4.IsEnabled = true;
+            //this.button_EditPerson5.IsEnabled = true;
+            //this.button_EditPerson6.IsEnabled = true;
             this.exportButtons.IsEnabled = true;
             this.playButton.IsEnabled = true;
             this.showGraphButtons.IsEnabled = true;
@@ -627,6 +627,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
             {
                 Console.WriteLine(currentSecond);
                 Grid.SetColumn(lineCurrentTimeCursor, currentSecond); // 1seg = 1col
+                Grid.SetColumn(lineCurrentTimeRulerCursor, currentSecond); // 1seg = 1col
                 lastCurrentSecondForTimeLineCursor = currentSecond;
                 //timeLineScroll.
             }
@@ -685,6 +686,20 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
         //    return line;
         //}
 
+        public StackPanel getStackPanel(Person person)
+        {
+            switch (person.bodyIndex)
+            {
+                case 0: return postureIntervalGroupNamesComboBox_person0;
+                case 1: return postureIntervalGroupNamesComboBox_person1;
+                case 2: return postureIntervalGroupNamesComboBox_person2;
+                case 3: return postureIntervalGroupNamesComboBox_person3;
+                case 4: return postureIntervalGroupNamesComboBox_person4;
+                case 5: return postureIntervalGroupNamesComboBox_person5;
+                default: return null;
+            }
+        }
+
         private void analizePostures_Click(object sender, RoutedEventArgs e)
         {
             //Line l = this.createPostureIntervalLine();
@@ -693,7 +708,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
 
             
             int intervalIniCol=0, intervalFinCol=0;
-            TextBlock text;
+            //TextBlock text;
             foreach (Person person in Scene.Instance.persons)
             {
                 if (!person.HasBeenTracked) continue;
@@ -706,19 +721,45 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
                     colDef.Width = new GridLength(5, GridUnitType.Pixel);
                     personGrid.ColumnDefinitions.Add(colDef);
                 }
-                Grid.SetRow(personGrid, person.bodyIndex + 2);
+                Grid.SetRow(personGrid, person.bodyIndex);
                 Grid.SetColumn(personGrid, 0);
                 Grid.SetColumnSpan(personGrid, kstudio.frameTimes.Count);
 
+                //StackPanel stackPanel = getStackPanel(person);
+
+                int MaxPostureIntervalGroupViewPerUser = Convert.ToInt32(Properties.Resources.MaxPostureIntervalGroupViewPerUser);
+
+                StackPanel stackPanel = getStackPanel(person);
+                int selectedIndex = 0;
+                foreach (ComboBox combo in stackPanel.Children)
+                {
+                    int postureTypeIndex = 0;
+                    foreach (var postureType in PostureType.availablesPostureTypes)
+                    {
+                        combo.Items.Add(PostureType.availablesPostureTypes[postureTypeIndex++]);
+                        if (MaxPostureIntervalGroupViewPerUser == postureTypeIndex) break;
+                    }
+                    if (selectedIndex > PostureType.availablesPostureTypes.Count) selectedIndex = 0;
+                    combo.SelectedIndex = selectedIndex++;
+                }
+
+                
+
+
+
                 // POSTURE INTERVAL DRAW
                 int postureIntervalGroupIndex = 0;
+                
                 foreach (PostureIntervalGroup postureIntervalGroup in person.PostureIntervalGroups)
                 {
+                    
                     Console.WriteLine("---- POSTURE: " + postureIntervalGroup.postureType.name + " ---");
 
                     RowDefinition rowDef = new RowDefinition();
                     rowDef.Height = new GridLength(1, GridUnitType.Star);
                     personGrid.RowDefinitions.Add(rowDef);
+
+                    
 
                     foreach (var interval in postureIntervalGroup.Intervals)
                     {
@@ -766,14 +807,45 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
 
                     }
                     postureIntervalGroupIndex++;
+                    MaxPostureIntervalGroupViewPerUser--;
+                    if (MaxPostureIntervalGroupViewPerUser == 0) break;
                 }
 
-                
 
-                timeLineGrid.Children.Add(personGrid);
+
+
+                timeLineContentGrid.Children.Add(personGrid);
                 //timeLineGrid.ColumnDefinitions.Insert..
             }
 
+        }
+
+        public void TimeLineVerticalScrollsChange(object sender, ScrollChangedEventArgs e)
+        {
+            //personLabelsScroll
+            //timeLineContentScroll
+            //timeLineVerticalScrollView
+            if (sender == personLabelsScroll)
+            {
+                timeLineContentScroll.ScrollToVerticalOffset(e.VerticalOffset);
+                timeLineContentScroll.ScrollToHorizontalOffset(e.HorizontalOffset);
+                timeLineVerticalScrollView.ScrollToVerticalOffset(e.VerticalOffset);
+                timeLineVerticalScrollView.ScrollToHorizontalOffset(e.HorizontalOffset);
+            }
+            else if(sender == timeLineContentScroll)
+            {
+                personLabelsScroll.ScrollToVerticalOffset(e.VerticalOffset);
+                personLabelsScroll.ScrollToHorizontalOffset(e.HorizontalOffset);
+                timeLineVerticalScrollView.ScrollToVerticalOffset(e.VerticalOffset);
+                timeLineVerticalScrollView.ScrollToHorizontalOffset(e.HorizontalOffset);
+            }
+            else if(sender == timeLineVerticalScrollView)
+            {
+                personLabelsScroll.ScrollToVerticalOffset(e.VerticalOffset);
+                personLabelsScroll.ScrollToHorizontalOffset(e.HorizontalOffset);
+                timeLineContentScroll.ScrollToVerticalOffset(e.VerticalOffset);
+                timeLineContentScroll.ScrollToHorizontalOffset(e.HorizontalOffset);
+            }
         }
     }
 }

@@ -17,6 +17,8 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
     static class Utils
     {
 
+
+
         public static string ToShortForm(this TimeSpan t)
         {
             string shortForm = "";

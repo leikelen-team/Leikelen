@@ -102,7 +102,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
             this.playback.Pause();
 
 
-            ColumnDefinition col;
+            ColumnDefinition rulerCol, contentCol;
             TextBlock text;
             frameTimes = new List<TimeSpan>();
             TimeSpan frameTime = TimeSpan.FromSeconds(0);
@@ -114,12 +114,15 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
                 {
                     frameTimes.Add(frameTime);
                     
-                    col = new ColumnDefinition();
-                    col.Width = new GridLength(5, GridUnitType.Pixel);
-                    MainWindow.Instance().timeLineGrid.ColumnDefinitions.Add(col);
+                    rulerCol = new ColumnDefinition();
+                    rulerCol.Width = new GridLength(5, GridUnitType.Pixel);
+                    MainWindow.Instance().timeRulerGrid.ColumnDefinitions.Add(rulerCol);
 
+                    contentCol = new ColumnDefinition();
+                    contentCol.Width = new GridLength(5, GridUnitType.Pixel);
+                    MainWindow.Instance().timeLineContentGrid.ColumnDefinitions.Add(contentCol);
 
-                    if(colCount % colSpan == 0 && colCount!=0)
+                    if (colCount % colSpan == 0 && colCount!=0)
                     {
                         text = new TextBlock();
                         text.Text = "|";
@@ -127,7 +130,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
                         Grid.SetRow(text, 0);
                         Grid.SetColumn(text, colCount);
                         Grid.SetColumnSpan(text, colSpan);
-                        MainWindow.Instance().timeLineGrid.Children.Add(text);
+                        MainWindow.Instance().timeRulerGrid.Children.Add(text);
 
                         text = new TextBlock();
                         //text.Text = frameTime.TotalSeconds.ToString("N0");
@@ -137,7 +140,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
                         int offset = colCount==0 ? 0 : (colSpan / 2);
                         Grid.SetColumn(text, colCount- offset);
                         Grid.SetColumnSpan(text, colSpan);
-                        MainWindow.Instance().timeLineGrid.Children.Add(text);
+                        MainWindow.Instance().timeRulerGrid.Children.Add(text);
 
 
                     }
@@ -150,7 +153,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
                         Grid.SetRow(text, 0);
                         Grid.SetColumn(text, colCount);
                         //Grid.SetColumnSpan(text, colSpan/2);
-                        MainWindow.Instance().timeLineGrid.Children.Add(text);
+                        MainWindow.Instance().timeRulerGrid.Children.Add(text);
                     }
 
                     frameTime = frameTime.Add(TimeSpan.FromMilliseconds(1000.00));
