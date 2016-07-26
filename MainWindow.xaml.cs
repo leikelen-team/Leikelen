@@ -730,20 +730,37 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
                 int MaxPostureIntervalGroupViewPerUser = Convert.ToInt32(Properties.Resources.MaxPostureIntervalGroupViewPerUser);
 
                 StackPanel stackPanel = getStackPanel(person);
-                int selectedIndex = 0;
-                foreach (ComboBox combo in stackPanel.Children)
+                //int selectedIndex = 0;
+
+                //foreach (ComboBox combo in stackPanel.Children)
+                //{
+                //    int postureTypeIndex = 0;
+                //    foreach (var postureType in PostureType.availablesPostureTypes)
+                //    {
+                //        combo.Items.Add(PostureType.availablesPostureTypes[postureTypeIndex++]);
+                //        if (MaxPostureIntervalGroupViewPerUser == postureTypeIndex) break;
+                //    }
+                //    if (selectedIndex > PostureType.availablesPostureTypes.Count) selectedIndex = 0;
+                //    combo.SelectedIndex = selectedIndex++;
+                //}
+
+                // <ComboBox HorizontalAlignment="Right" VerticalAlignment="Top" SelectedIndex="0"></ComboBox>
+
+                foreach (var visiblePostureType in person.VisiblePostureTypes)
                 {
-                    int postureTypeIndex = 0;
+                    ComboBox combo = new ComboBox();
+                    combo.HorizontalAlignment = HorizontalAlignment.Right;
+                    combo.VerticalAlignment = VerticalAlignment.Top;
+                    combo.SelectedIndex = 0;
                     foreach (var postureType in PostureType.availablesPostureTypes)
                     {
-                        combo.Items.Add(PostureType.availablesPostureTypes[postureTypeIndex++]);
-                        if (MaxPostureIntervalGroupViewPerUser == postureTypeIndex) break;
+                        combo.Items.Add(postureType);
+                        //if (visiblePostureType.name == postureType.name) 
                     }
-                    if (selectedIndex > PostureType.availablesPostureTypes.Count) selectedIndex = 0;
-                    combo.SelectedIndex = selectedIndex++;
-                }
+                    combo.SelectedItem = visiblePostureType;
+                    stackPanel.Children.Add(combo);
 
-                
+                }
 
 
 
@@ -758,9 +775,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
                     RowDefinition rowDef = new RowDefinition();
                     rowDef.Height = new GridLength(1, GridUnitType.Star);
                     personGrid.RowDefinitions.Add(rowDef);
-
                     
-
                     foreach (var interval in postureIntervalGroup.Intervals)
                     {
                         Console.WriteLine("\t[" + interval.Item1.sceneLocationTime.ToString(@"mm\:ss") + ", " 

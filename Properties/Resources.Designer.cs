@@ -97,7 +97,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 2.
+        ///   Looks up a localized string similar to 3.
         /// </summary>
         public static string MaxPostureIntervalGroupViewPerUser {
             get {

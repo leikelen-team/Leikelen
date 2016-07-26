@@ -21,6 +21,39 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.pojos
 
         public List<MicroPosture> microPostures { get; private set; }
         private List<PostureIntervalGroup> postureIntervalGroups = null;
+        private PostureType[] visiblePostureTypes = null;
+
+        public PostureType[] VisiblePostureTypes
+        {
+            get
+            {
+                if (visiblePostureTypes == null)
+                {
+                    int maxVisiblePostureTypes = Convert.ToInt32(Properties.Resources.MaxPostureIntervalGroupViewPerUser);
+                    visiblePostureTypes = new PostureType[maxVisiblePostureTypes];
+                    for (int i = 0; i < maxVisiblePostureTypes; i++)
+                    {
+                        if (i+1 < PostureType.availablesPostureTypes.Count)
+                        {
+                            visiblePostureTypes[i] = PostureType.availablesPostureTypes[i+1];
+                        }
+                        else
+                        {
+                            visiblePostureTypes[i] = PostureType.none;
+                        }
+                        //visiblePostureTypes[i] = i < PostureType.availablesPostureTypes.Count ?
+                        //                            PostureType.availablesPostureTypes[i] :
+                        //                            PostureType.none;
+                    }
+                }
+                return visiblePostureTypes;
+            }
+            set
+            {
+                this.visiblePostureTypes = value;
+            }
+        }
+
 
         public List<PostureIntervalGroup> PostureIntervalGroups
         {

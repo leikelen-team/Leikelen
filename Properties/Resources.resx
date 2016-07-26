@@ -149,6 +149,6 @@
     <comment>Represent the duration (in milliseconds) where a specific posture is not detected. This is useful to know if a posture has done or not.</comment>
   </data>
   <data name="MaxPostureIntervalGroupViewPerUser" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
 </root>

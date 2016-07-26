@@ -176,37 +176,37 @@
 
 
                         <StackPanel x:Name="postureIntervalGroupNamesComboBox_person0" Grid.Row="0" Grid.Column="1" Orientation="Vertical" Margin="0,6,7,0">
-                            <ComboBox HorizontalAlignment="Right" VerticalAlignment="Top" SelectedIndex="0"></ComboBox>
-                            <ComboBox HorizontalAlignment="Right" VerticalAlignment="Top" SelectedIndex="0"></ComboBox>
-                            <ComboBox HorizontalAlignment="Right" VerticalAlignment="Top" SelectedIndex="0"></ComboBox>
+                            <!-- <ComboBox HorizontalAlignment="Right" VerticalAlignment="Top" SelectedIndex="0"></ComboBox> -->
+                            <!-- <ComboBox HorizontalAlignment="Right" VerticalAlignment="Top" SelectedIndex="0"></ComboBox> -->
+                            <!-- <ComboBox HorizontalAlignment="Right" VerticalAlignment="Top" SelectedIndex="0"></ComboBox> -->
                         </StackPanel>
                         <StackPanel x:Name="postureIntervalGroupNamesComboBox_person1" Grid.Row="1" Grid.Column="1" Orientation="Vertical" Margin="0,6,7,0">
-                            <ComboBox HorizontalAlignment="Right" VerticalAlignment="Top" SelectedIndex="0"></ComboBox>
-                            <ComboBox HorizontalAlignment="Right" VerticalAlignment="Top" SelectedIndex="0"></ComboBox>
-                            <ComboBox HorizontalAlignment="Right" VerticalAlignment="Top" SelectedIndex="0"></ComboBox>
+                            <!-- <ComboBox HorizontalAlignment="Right" VerticalAlignment="Top" SelectedIndex="0"></ComboBox> -->
+                            <!-- <ComboBox HorizontalAlignment="Right" VerticalAlignment="Top" SelectedIndex="0"></ComboBox> -->
+                            <!-- <ComboBox HorizontalAlignment="Right" VerticalAlignment="Top" SelectedIndex="0"></ComboBox> -->
                         </StackPanel>
                         <StackPanel x:Name="postureIntervalGroupNamesComboBox_person2" Grid.Row="2" Grid.Column="1" Orientation="Vertical" Margin="0,6,7,0">
-                            <ComboBox HorizontalAlignment="Right" VerticalAlignment="Top" SelectedIndex="0"></ComboBox>
-                            <ComboBox HorizontalAlignment="Right" VerticalAlignment="Top" SelectedIndex="0"></ComboBox>
-                            <ComboBox HorizontalAlignment="Right" VerticalAlignment="Top" SelectedIndex="0"></ComboBox>
+                            <!-- <ComboBox HorizontalAlignment="Right" VerticalAlignment="Top" SelectedIndex="0"></ComboBox> -->
+                            <!-- <ComboBox HorizontalAlignment="Right" VerticalAlignment="Top" SelectedIndex="0"></ComboBox> -->
+                            <!-- <ComboBox HorizontalAlignment="Right" VerticalAlignment="Top" SelectedIndex="0"></ComboBox> -->
                         </StackPanel>
                         <StackPanel x:Name="postureIntervalGroupNamesComboBox_person3" Grid.Row="3" Grid.Column="1" Orientation="Vertical" Margin="0,6,7,0">
-                            <ComboBox HorizontalAlignment="Right" VerticalAlignment="Top" SelectedIndex="0"></ComboBox>
-                            <ComboBox HorizontalAlignment="Right" VerticalAlignment="Top" SelectedIndex="0"></ComboBox>
-                            <ComboBox HorizontalAlignment="Right" VerticalAlignment="Top" SelectedIndex="0"></ComboBox>
+                            <!-- <ComboBox HorizontalAlignment="Right" VerticalAlignment="Top" SelectedIndex="0"></ComboBox> -->
+                            <!-- <ComboBox HorizontalAlignment="Right" VerticalAlignment="Top" SelectedIndex="0"></ComboBox> -->
+                            <!-- <ComboBox HorizontalAlignment="Right" VerticalAlignment="Top" SelectedIndex="0"></ComboBox> -->
                         </StackPanel>
                         <StackPanel x:Name="postureIntervalGroupNamesComboBox_person4" Grid.Row="4" Grid.Column="1" Orientation="Vertical" Margin="0,6,7,0">
-                            <ComboBox HorizontalAlignment="Right" VerticalAlignment="Top" SelectedIndex="0"></ComboBox>
-                            <ComboBox HorizontalAlignment="Right" VerticalAlignment="Top" SelectedIndex="0"></ComboBox>
-                            <ComboBox HorizontalAlignment="Right" VerticalAlignment="Top" SelectedIndex="0"></ComboBox>
+                            <!-- <ComboBox HorizontalAlignment="Right" VerticalAlignment="Top" SelectedIndex="0"></ComboBox> -->
+                            <!-- <ComboBox HorizontalAlignment="Right" VerticalAlignment="Top" SelectedIndex="0"></ComboBox> -->
+                            <!-- <ComboBox HorizontalAlignment="Right" VerticalAlignment="Top" SelectedIndex="0"></ComboBox> -->
                         </StackPanel>
                         <StackPanel x:Name="postureIntervalGroupNamesComboBox_person5" Grid.Row="5" Grid.Column="1" Orientation="Vertical" Margin="0,6,7,0">
-                            <ComboBox HorizontalAlignment="Right" VerticalAlignment="Top" SelectedIndex="0"></ComboBox>
-                            <ComboBox HorizontalAlignment="Right" VerticalAlignment="Top" SelectedIndex="0"></ComboBox>
-                            <ComboBox HorizontalAlignment="Right" VerticalAlignment="Top" SelectedIndex="0"></ComboBox>
+                            <!-- <ComboBox HorizontalAlignment="Right" VerticalAlignment="Top" SelectedIndex="0"></ComboBox> -->
+                            <!-- <ComboBox HorizontalAlignment="Right" VerticalAlignment="Top" SelectedIndex="0"></ComboBox> -->
+                            <!-- <ComboBox HorizontalAlignment="Right" VerticalAlignment="Top" SelectedIndex="0"></ComboBox> -->
                         </StackPanel>
-                        
-                        
+
+
                     </Grid>
                 </ScrollViewer>
             </Grid>
