@@ -127,6 +127,7 @@
     <Compile Include="KinectBody.cs" />
     <Compile Include="pojos\PostureIntervalGroup.cs" />
     <Compile Include="pojos\MicroPosture.cs" />
+    <Compile Include="views\PersonView.cs" />
     <Compile Include="_Analytics.cs" />
     <Compile Include="ChartForm.cs">
       <SubType>Form</SubType>

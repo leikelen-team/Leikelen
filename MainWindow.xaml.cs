@@ -33,8 +33,9 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
     using Win32;    //using Win32;
     using pojos;    //using System.Windows.Forms;                    //using System.Windows.Forms;/// <summary>
     using System.Threading;
-    using System.Windows.Shapes;/// Interaction logic for the MainWindow
-                                /// </summary>
+    using System.Windows.Shapes;
+    using views;/// Interaction logic for the MainWindow
+                /// </summary>
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
         /// <summary> Active Kinect sensor </summary>
@@ -672,22 +673,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
             //Console.WriteLine("Delta: " + e.);
         }
 
-        //private Line createPostureIntervalLine()
-        //{
-        //    Line line = new Line();
-        //    line.StrokeThickness = 11;
-        //    line.VerticalAlignment = VerticalAlignment.Stretch;
-        //    line.HorizontalAlignment = HorizontalAlignment.Stretch;
-        //    line.X1 = 0;
-        //    line.X2 = 0;
-        //    line.Y1 = 0;
-        //    line.Y2 = 0;
-        //    line.Stretch = System.Windows.Media.Stretch.UniformToFill;
-        //    //Grid.SetColumnSpan(line, Int32.MaxValue);
-        //    return line;
-        //}
-
-        public StackPanel getLabelStackPanelByPerson(Person person)
+        public StackPanel getCombosStackPanelByPerson(Person person)
         {
             switch (person.bodyIndex)
             {
@@ -701,90 +687,31 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
             }
         }
 
-        public Person getPersonByLabelStackPanel(StackPanel stackPanel)
-        {
-            switch (stackPanel.Name)
-            {
-                case "postureIntervalGroupNamesComboBox_person0": return Scene.Instance.persons[0];
-                case "postureIntervalGroupNamesComboBox_person1": return Scene.Instance.persons[1];
-                case "postureIntervalGroupNamesComboBox_person2": return Scene.Instance.persons[2];
-                case "postureIntervalGroupNamesComboBox_person3": return Scene.Instance.persons[3];
-                case "postureIntervalGroupNamesComboBox_person4": return Scene.Instance.persons[4];
-                case "postureIntervalGroupNamesComboBox_person5": return Scene.Instance.persons[5];
-                default: return null;
-            }
-        }
-
         private void analizePostures_Click(object sender, RoutedEventArgs e)
         {
-            //Line l = this.createPostureIntervalLine();
-            //Grid.SetRow(l, 0);
-            //Grid.SetColumn(l, 0);
-
-            
+   
             int intervalIniCol=0, intervalFinCol=0;
-            //TextBlock text;
+
             foreach (Person person in Scene.Instance.persons)
             {
                 if (!person.HasBeenTracked) continue;
 
-                // INDIVIDUAL PERSON GRID CREATION
-                Grid personGrid = new Grid();
-                foreach(TimeSpan time in this.kstudio.frameTimes)
-                {
-                    ColumnDefinition colDef = new ColumnDefinition();
-                    colDef.Width = new GridLength(5, GridUnitType.Pixel);
-                    personGrid.ColumnDefinitions.Add(colDef);
-                }
-                Grid.SetRow(personGrid, person.bodyIndex);
-                Grid.SetColumn(personGrid, 0);
-                Grid.SetColumnSpan(personGrid, kstudio.frameTimes.Count);
-
-                //StackPanel stackPanel = getStackPanel(person);
-
-                int MaxPostureIntervalGroupViewPerUser = Convert.ToInt32(Properties.Resources.MaxPostureIntervalGroupViewPerUser);
-
-                StackPanel labelStackPanel = getLabelStackPanelByPerson(person);
-                //int selectedIndex = 0;
-
-                //foreach (ComboBox combo in stackPanel.Children)
-                //{
-                //    int postureTypeIndex = 0;
-                //    foreach (var postureType in PostureType.availablesPostureTypes)
-                //    {
-                //        combo.Items.Add(PostureType.availablesPostureTypes[postureTypeIndex++]);
-                //        if (MaxPostureIntervalGroupViewPerUser == postureTypeIndex) break;
-                //    }
-                //    if (selectedIndex > PostureType.availablesPostureTypes.Count) selectedIndex = 0;
-                //    combo.SelectedIndex = selectedIndex++;
-                //}
-
-                // <ComboBox HorizontalAlignment="Right" VerticalAlignment="Top" SelectedIndex="0"></ComboBox>
+                StackPanel combosStackPanel = getCombosStackPanelByPerson(person);
+                PersonView view = new PersonView(
+                    person.bodyIndex, combosStackPanel, 
+                    person.PostureIntervalGroups, person.Color);
+                person.view = view;
+                
 
                 int postureIntervalGroupIndex = 0;
-                foreach (PostureType visiblePostureType in person.VisiblePostureTypes)
+                foreach (var visiblePostureType in view.visiblePostures)
                 {
-                    ComboBox combo = new ComboBox();
-                    //combo.N
-                    combo.HorizontalAlignment = HorizontalAlignment.Right;
-                    combo.VerticalAlignment = VerticalAlignment.Top;
-                    combo.SelectedIndex = 0;
-                    foreach (PostureType postureType in PostureType.availablesPostureTypes)
-                    {
-                        combo.Items.Add(postureType);
-                    }
-                    combo.SelectedItem = visiblePostureType;
-                    labelStackPanel.Children.Add(combo);
+                    ComboBox combo = visiblePostureType.Item2;
 
-                    RowDefinition rowDef = new RowDefinition();
-                    rowDef.Height = new GridLength(1, GridUnitType.Star);
-                    personGrid.RowDefinitions.Add(rowDef);
-
-                    
-
-                    //combo.SelectionChanged += Combo_SelectionChanged;
-
-                    PostureIntervalGroup postureIntervalGroup = person.PostureIntervalGroups.FirstOrDefault(g => g.postureType == visiblePostureType );
+                    PostureIntervalGroup postureIntervalGroup = 
+                                            person.PostureIntervalGroups
+                                            .FirstOrDefault
+                                            (g => g.postureType == visiblePostureType.Item1 );
                     if (postureIntervalGroup != null)
                     {
                         foreach (var interval in postureIntervalGroup.Intervals)
@@ -806,100 +733,23 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
                             line.StartPoint = new System.Windows.Point(0d, 0d);
                             line.EndPoint = new System.Windows.Point(1d, 0d);
                             path.Data = line;
-                            personGrid.Children.Add(path);
+                            person.view.postureGroupsGrid.Children.Add(path);
                         }
                     }
                     
                 }
 
+                timeLineContentGrid.Children.Add(person.view.postureGroupsGrid);
 
 
-                // POSTURE INTERVAL DRAW
-                
-                
-                //foreach (PostureIntervalGroup postureIntervalGroup in person.PostureIntervalGroups)
-                //{
-                    
-                //    Console.WriteLine("---- POSTURE: " + postureIntervalGroup.postureType.name + " ---");
-
-                //    RowDefinition rowDef = new RowDefinition();
-                //    rowDef.Height = new GridLength(1, GridUnitType.Star);
-                //    personGrid.RowDefinitions.Add(rowDef);
-                    
-                //    foreach (var interval in postureIntervalGroup.Intervals)
-                //    {
-                //        Console.WriteLine("\t[" + interval.Item1.sceneLocationTime.ToString(@"mm\:ss") + ", " 
-                //            + interval.Item2.sceneLocationTime.ToString(@"mm\:ss") + "]");
-
-                //        intervalIniCol = Convert.ToInt32(interval.Item1.sceneLocationTime.TotalSeconds);
-                //        intervalFinCol = Convert.ToInt32(interval.Item2.sceneLocationTime.TotalSeconds);
-
-                //        //text = new TextBlock();
-                //        //text.Text = "[";
-                //        //text.HorizontalAlignment = HorizontalAlignment.Left;
-                //        //Grid.SetRow(text, postureIntervalGroupIndex);
-                //        //Grid.SetColumn(text, intervalIniCol);
-                //        //personGrid.Children.Add(text);
-
-                //        //text = new TextBlock();
-                //        //text.Text = "]";
-                //        //text.HorizontalAlignment = HorizontalAlignment.Left;
-                //        //Grid.SetRow(text, postureIntervalGroupIndex);
-                //        //Grid.SetColumn(text, intervalFinCol);
-                //        //personGrid.Children.Add(text);
-
-                //        //Line line = this.createPostureIntervalLine();
-                //        //line.Stroke = System.Windows.Media.Brushes.Red; // postureIntervalGroup.postureType.color;
-                //        //Grid.SetRow(line, postureIntervalGroupIndex);
-                //        //Grid.SetColumn(line, intervalIniCol);
-                //        //Grid.SetColumnSpan(line, intervalFinCol - intervalIniCol);
-                //        //personGrid.Children.Add(line);
-
-
-                //        System.Windows.Shapes.Path path = new System.Windows.Shapes.Path();
-                //        path.Stroke = person.Color; // postureIntervalGroup.postureType.color; //System.Windows.Media.Brushes.Red;
-                //        path.StrokeThickness = 10;
-                //        path.Stretch = System.Windows.Media.Stretch.Fill;
-                //        Grid.SetRow(path, postureIntervalGroupIndex);
-                //        Grid.SetColumn(path, intervalIniCol-2);
-                //        Grid.SetColumnSpan(path, intervalFinCol - intervalIniCol + 2);
-                //        System.Windows.Media.LineGeometry line = new System.Windows.Media.LineGeometry();
-                //        line.StartPoint = new System.Windows.Point(0d, 0d);
-                //        line.EndPoint = new System.Windows.Point(1d, 0d);
-                //        path.Data = line;
-
-                //        personGrid.Children.Add(path);
-
-                //    }
-                //    postureIntervalGroupIndex++;
-                //    MaxPostureIntervalGroupViewPerUser--;
-                //    if (MaxPostureIntervalGroupViewPerUser == 0) break;
-                //}
-
-
-
-
-                timeLineContentGrid.Children.Add(personGrid);
-                //timeLineGrid.ColumnDefinitions.Insert..
             }
 
         }
 
-        //private void Combo_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        //{
-        //    ComboBox combo = (ComboBox) sender;
-        //    Person person = getPersonByLabelStackPanel( (StackPanel)combo.Parent );
-        //    //person.
-
-        //    //person.
-        //    //throw new NotImplementedException();
-        //}
 
         public void TimeLineVerticalScrollsChange(object sender, ScrollChangedEventArgs e)
         {
-            //personLabelsScroll
-            //timeLineContentScroll
-            //timeLineVerticalScrollView
+
             if (sender == personLabelsScroll)
             {
                 timeLineContentScroll.ScrollToVerticalOffset(e.VerticalOffset);
