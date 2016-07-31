@@ -734,6 +734,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
                             line.EndPoint = new System.Windows.Point(1d, 0d);
                             path.Data = line;
                             person.view.postureGroupsGrid.Children.Add(path);
+                            
                         }
                     }
                     

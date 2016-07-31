@@ -92,6 +92,22 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
             Console.WriteLine("Duration: " + playback.Duration);
             Console.WriteLine("Path: " + playback.FilePath);
             
+            if ( Scene.Instance != null)
+            {
+                UIElementCollection childs = MainWindow.Instance().timeRulerGrid.Children;
+                for (int i= childs.Count-1; i>=0; i--)
+                    if (childs[i] is TextBlock)
+                        MainWindow.Instance().timeRulerGrid.Children.RemoveAt(i);
+                MainWindow.Instance().timeRulerGrid.ColumnDefinitions.Clear();
+                MainWindow.Instance().timeLineContentGrid.ColumnDefinitions.Clear();
+                foreach (var person in Scene.Instance.persons)
+                    if (person.view != null) { 
+                        person.view.postureGroupsGrid.Children.Clear();
+                        person.view.postureGroupsGrid.ColumnDefinitions.Clear();
+                        person.view.postureGroupsGrid.RowDefinitions.Clear();
+                        person.view.combosStackPanel.Children.Clear();
+                    }
+            }
 
             Scene.Create(fileInfo.FilePath, fileInfo.CreationUtcFileTime, playback.Duration);
             MainWindow.lastCurrentTime = TimeSpan.FromSeconds(0);

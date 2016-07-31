@@ -54,6 +54,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.pojos
             //this.postures = new Dictionary<TimeSpan, PostureType>();
             this.microPostures = new List<MicroPosture>();
             this.postureIntervalGroups = null;
+            this.view = null;
 
         }
 
