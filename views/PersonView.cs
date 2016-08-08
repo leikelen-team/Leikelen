@@ -79,9 +79,21 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.views
             }
         }
 
-        private void Combo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        public void refreshAllIntervalGroups()
         {
-            ComboBox combo = (ComboBox)sender;
+            //foreach (var visiblePosture in visiblePostures)
+            //{
+            //    refreshIntervalGroup(visiblePosture.Item2);
+            //}
+            for (int i = 0; i < visiblePostures.Count; i++)
+            {
+                refreshIntervalGroup(visiblePostures[i].Item2);
+            }
+        }
+
+        private void refreshIntervalGroup(ComboBox combo)
+        {
+            
             PostureType newPostureType = (PostureType)combo.SelectedItem;
 
             var visiblePosture = visiblePostures.Find(v => v.Item2 == combo);
@@ -91,7 +103,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.views
             // CLEAR ROW OF INTERVAL GROUP
             int rowDefIndex = postureGroupsGrid.RowDefinitions.IndexOf(rowDef);
             //foreach (UIElement path in postureGroupsGrid.Children)
-            for (int i = postureGroupsGrid.Children.Count-1; i >= 0; i--)
+            for (int i = postureGroupsGrid.Children.Count - 1; i >= 0; i--)
             {
                 if (Grid.GetRow(postureGroupsGrid.Children[i]) == rowDefIndex)
                 {
@@ -134,7 +146,12 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.views
                     postureGroupsGrid.Children.Add(path);
                 }
             }
+        }
 
+        private void Combo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox combo = (ComboBox)sender;
+            refreshIntervalGroup(combo);
         }
 
 

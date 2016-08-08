@@ -153,7 +153,8 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
                         text = new TextBlock();
                         //text.Text = frameTime.TotalSeconds.ToString("N0");
                         text.Text = frameTime.ToShortForm();
-                        text.HorizontalAlignment = colCount == 0 ? HorizontalAlignment.Left : HorizontalAlignment.Center;
+                        text.HorizontalAlignment = colCount == 0 ? 
+                            HorizontalAlignment.Left : HorizontalAlignment.Center;
                         Grid.SetRow(text, 1);
                         int offset = colCount==0 ? 0 : (colSpan / 2);
                         Grid.SetColumn(text, colCount- offset);
