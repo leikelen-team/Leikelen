@@ -1,4 +1,5 @@
-﻿using Microsoft.Samples.Kinect.VisualizadorMultimodal.pojos;
+﻿using Microsoft.Samples.Kinect.VisualizadorMultimodal.models;
+using Microsoft.Samples.Kinect.VisualizadorMultimodal.pojos;
 using System;
 using System.Collections.Generic;
 using System.Linq;

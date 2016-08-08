@@ -151,4 +151,7 @@
   <data name="MaxPostureIntervalGroupViewPerUser" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="SQLiteAppDbPath" xml:space="preserve">
+    <value>app_sqlite.db</value>
+  </data>
 </root>

@@ -53,7 +53,8 @@
 
     <Grid x:Name="appLayoutGrid" Margin="10 0 10 0">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="720*"/>
+            <ColumnDefinition Width="265*"/>
+            <ColumnDefinition Width="457*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="55" />
@@ -63,7 +64,7 @@
             <!--<RowDefinition Height="Auto" />-->
         </Grid.RowDefinitions>
 
-        <Grid x:Name="playerGrid" Grid.Row="1">
+        <Grid x:Name="playerGrid" Grid.Row="1" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
@@ -124,7 +125,7 @@
 
         <!--<ScrollViewer Grid.Row="2" Grid.ColumnSpan="2" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">-->
 
-        <Grid x:Name="timeLineLayoutGrid" Grid.Row="2">
+        <Grid x:Name="timeLineLayoutGrid" Grid.Row="2" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
@@ -246,7 +247,7 @@
                                 <RowDefinition Height="77" />
                                 <!--<RowDefinition Height="20" />-->
                             </Grid.RowDefinitions>
-                            
+
                             <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2147483647" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="3,3,3,3"></Border>
                             <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2147483647" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="3,3,3,3"></Border>
                             <Border Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2147483647" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="3,3,3,3"></Border>
@@ -350,10 +351,10 @@
         <Button x:Name="exportButtons" Content="Exportar" HorizontalAlignment="Left" Margin="80,30,0,0" VerticalAlignment="Top" Width="75" Click="exportButtons_Click"/>
         <Button x:Name="importButtons" Content="Importar" HorizontalAlignment="Left" Margin="0,30,0,0" VerticalAlignment="Top" Width="75" Click="importButtons_Click"/>
         <Label x:Name="sceneTitleLabel" Content="Importa o graba una escena." HorizontalAlignment="Left" Margin="0,-1,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <Button x:Name="analizePostures" Content="Analizar posturas" HorizontalAlignment="Left" Margin="259,30,0,0" VerticalAlignment="Top" Width="96" Click="analizePostures_Click"/>
-        <Image Grid.Row="0" Source="Images\Logo.png" HorizontalAlignment="Left" Stretch="Fill" Height="32" Width="81" Margin="564,18,0,5" RenderTransformOrigin="-1.309,0.625" />
-        <Image Grid.Row="0" Source="Images\Status.png" Stretch="None" HorizontalAlignment="Center" Margin="662,5,10,0" />
-
+        <Button x:Name="analizePostures" Content="Analizar posturas" HorizontalAlignment="Left" Margin="259,30,0,0" VerticalAlignment="Top" Width="96" Click="analizePostures_Click" Grid.ColumnSpan="2"/>
+        <Image Grid.Row="0" Source="Images\Logo.png" HorizontalAlignment="Left" Stretch="Fill" Height="32" Width="81" Margin="299,18,0,5" RenderTransformOrigin="-1.309,0.625" Grid.Column="1" />
+        <Image Grid.Row="0" Source="Images\Status.png" Stretch="None" HorizontalAlignment="Center" Margin="397,5,10,0" Grid.Column="1" />
+        <Button x:Name="posturesAdmin" Content="Gestionar Posturas" HorizontalAlignment="Left" VerticalAlignment="Top" Width="74" Grid.Column="1" Margin="109,30,0,0" Click="posturesAdmin_Click"/>
 
 
 

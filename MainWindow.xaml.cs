@@ -28,14 +28,18 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
 
     using Accord.Extensions.Imaging;
     using System.Windows.Media.Imaging;
-    //using Microsoft.Kinect.Tools;
     using System.IO;
     using Win32;    //using Win32;
     using pojos;    //using System.Windows.Forms;                    //using System.Windows.Forms;/// <summary>
     using System.Threading;
     using System.Windows.Shapes;
-    using views;/// Interaction logic for the MainWindow
-                /// </summary>
+    using views;
+    using windows;
+    using core;
+    using models;
+    using utils;
+    using db;
+
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
         /// <summary> Active Kinect sensor </summary>
@@ -68,8 +72,8 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
         public KinectStudioHandler kstudio { get; private set; }
         public static ChartForm chartForm { get; private set; }
         public static TimeSpan lastCurrentTime = TimeSpan.FromSeconds(0);
+        public static PostureCRUD postureCrud;
 
-        
 
         //    Atento,
         //    Distraido,
@@ -97,6 +101,73 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
         /// </summary>
         public MainWindow()
         {
+
+            //var conn = new SQLiteConnection("Data Source=" + Properties.Resources.SQLiteAppDbPath);
+            //var posture = conn.PostureTypeModel.Where(p => p.id == 1).FirstOrDefault();
+            //Console.WriteLine("SQLITE POSTURE: " + posture.name);
+
+
+
+            //var context = new DataContext(connection);
+            //conn.PostureType;
+            //var postures = context.GetTable<PostureType>();
+            //foreach (var posture in postures)
+            //{
+            //    Console.WriteLine("Posture Loaded: {0}: {1}",
+            //        posture.name, posture.path);
+            //}
+
+
+
+
+            //var db = new SQLiteConnection(Properties.Resources.SQLiteAppDbPath);
+            //using (SQLiteConnection conn = new SQLiteConnection("Data Source=" + Properties.Resources.SQLiteAppDbPath))
+            //{
+            //    conn.Open();
+            //    string sql = "SELECT * FROM PostureType";
+
+            //    using (SQLiteCommand cmd = new SQLiteCommand(sql, conn))
+            //    {
+            //        using (SQLiteDataReader reader = cmd.ExecuteReader())
+            //        {
+            //            while (reader.Read())
+            //            {
+            //                //int id = Convert.ToInt32(reader["id"].ToString());
+            //                string name = reader["name"].ToString();
+            //                string path = reader["path"].ToString();
+            //                PostureType.availablesPostureTypes.Add(new PostureType(name, path));
+            //            }
+            //        }
+            //    }
+            //    conn.Close();
+            //}
+
+
+            var db = SqliteAppContext.db;
+            //PostureType newPosture = new PostureType("Ninguna", "");
+            //db.Entry(PostureType.none).State = ;
+            //db.Entry(newPosture).State = EntityFrameworkCore.EntityState.Unchanged;
+            //db.SaveChanges();
+            Console.WriteLine("TESTING IDS-----");
+            PostureType.none = PostureType.availablesPostureTypes.FirstOrDefault(p => p.id == 0);
+            foreach (var posture in PostureType.availablesPostureTypes)
+            {
+                Console.WriteLine("id "+posture.name+": "+posture.id);
+            }
+            Console.WriteLine("Posture none: {0}, {1}, {2} ", PostureType.none.id, PostureType.none.name, PostureType.none.path);
+
+
+            //PostureType.availablesPostureTypes.AddRange(db.PostureTypes.ToList());
+
+
+
+            //PostureType.availablesPostureTypes.Add(new PostureType("Seated", @"Database\Seated.gbd"));
+            //PostureType.availablesPostureTypes.Add(new PostureType("Atento", @"Database\Seated.gbd"));
+            //PostureType.availablesPostureTypes.Add(new PostureType("Distraido", @"Database\Seated.gbd"));
+
+
+
+
             // only one sensor is currently supported
             this.kinectSensor = KinectSensor.GetDefault();
             
@@ -194,13 +265,11 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
 
 
             
-            PostureType.availablesPostureTypes.Add(new PostureType("Seated"));
-            PostureType.availablesPostureTypes.Add(new PostureType("Atento"));
-            PostureType.availablesPostureTypes.Add(new PostureType("Distraido"));
+           
 
             foreach (PostureType postureType in PostureType.availablesPostureTypes)
             {
-                Console.WriteLine(postureType.name + ": "+postureType.colorName);// + postureType.color.ToString());
+                Console.WriteLine(postureType.name + ": "+postureType.path);// + postureType.color.ToString());
             }
 
 
@@ -772,6 +841,12 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
                 timeLineContentScroll.ScrollToVerticalOffset(e.VerticalOffset);
                 timeLineContentScroll.ScrollToHorizontalOffset(e.HorizontalOffset);
             }
+        }
+
+        private void posturesAdmin_Click(object sender, RoutedEventArgs e)
+        {
+            postureCrud = new PostureCRUD();
+            postureCrud.Show();
         }
     }
 }

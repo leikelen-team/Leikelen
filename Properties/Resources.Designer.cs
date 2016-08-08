@@ -151,6 +151,15 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to app_sqlite.db.
+        /// </summary>
+        public static string SQLiteAppDbPath {
+            get {
+                return ResourceManager.GetString("SQLiteAppDbPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to .xef.
         /// </summary>
         public static string XefExtension {
