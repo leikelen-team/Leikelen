@@ -24,11 +24,25 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.windows
     /// </summary>
     public partial class AddOrEditPostureType : Window
     {
+        //public enum Action { Add, Edit };
+        private PostureType editingPosture = null;
+        private string path = null;
+
         public AddOrEditPostureType()
         {
             InitializeComponent();
         }
-        private string path = null;
+
+        public AddOrEditPostureType(PostureType editingPosture)
+        {
+            InitializeComponent();
+            this.editingPosture = editingPosture;
+            this.fileNameTextBox.Text = System.IO.Path.GetFileName(editingPosture.path);
+            this.nameTextBox.Text = editingPosture.name;
+            this.path = editingPosture.path;
+        }
+
+        
         //private string name = null;
        
 
@@ -47,6 +61,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.windows
                 //Console.WriteLine("filePath: " + dlg.FileName);
                 this.fileNameTextBox.Text = dlg.SafeFileName;
                 this.path = dlg.FileName;
+                
                 //File.Copy(this.playingFilePath, @"Database\"+dlg.N);
 
                 //this.kstudio.ImportScene(dlg.FileName);
@@ -59,14 +74,55 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.windows
 
         private void saveButton_Click(object sender, RoutedEventArgs e)
         {
+            if (this.path == null)
+            {
+                MessageBox.Show("Debes ingresar un archivo");
+            }
             string name = nameTextBox.Text;
-            if (this.path != null && name != "")
+            if (SqliteAppContext.db.PostureType.Any(p => p.name == name))
+            {
+                if(editingPosture == null)
+                {
+                    MessageBox.Show("La postura '"+name+"' ya existe. Utilize otro nombre.");
+                }else if( editingPosture.name != name)
+                {
+                    MessageBox.Show("La postura '" + name + "' ya existe. Utilize otro nombre.");
+                }else if( editingPosture.name == name && editingPosture.path == path)
+                {
+                    this.Close();
+                }
+            }
+            else if (this.path != null && name != "")
             {
                 Console.WriteLine("Saving posture: name: {0} --- path: {1}", name, this.path);
+                
+
                 string internalFilePath = @"Database\" + fileNameTextBox.Text;
                 if ( !File.Exists(internalFilePath) )
                     File.Copy(path, internalFilePath);
-                SqliteAppContext.db.PostureType.Add(new PostureType(name, internalFilePath));
+                if (editingPosture != null)
+                {
+                    PostureType postureToUpdate = SqliteAppContext.db.PostureType
+                        .FirstOrDefault(p => p.id == editingPosture.id);
+                    string oldPath = postureToUpdate.path;
+                    postureToUpdate.name = name;
+                    postureToUpdate.path = internalFilePath;
+                    //SqliteAppContext.db.Entry(postureToUpdate).CurrentValues.SetValues(product);
+                    SqliteAppContext.db.SaveChanges();
+
+                    if ( !SqliteAppContext.db.PostureType.Any(p => p.path == oldPath)
+                        && oldPath != internalFilePath )
+                    {
+                        File.Delete(oldPath);
+                    }
+                    
+
+                }
+                else
+                {
+                    SqliteAppContext.db.PostureType.Add(new PostureType(name, internalFilePath));
+                }
+                
                 SqliteAppContext.db.SaveChanges();
                 MainWindow.postureCrud.refreshList();
                 this.Close();

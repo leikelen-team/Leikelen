@@ -25,11 +25,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.windows
         public PostureCRUD()
         {
             InitializeComponent();
-
-            //CollectionViewSource itemCollectionViewSource;
-            //itemCollectionViewSource = (CollectionViewSource)(FindResource("ItemCollectionViewSource"));
-            //itemCollectionViewSource.Source = PostureType.availablesPostureTypes;
-            postureCrudDataGrid.ItemsSource = PostureType.availablesPostureTypes;
+            refreshList();
         }
 
         private void addPostureButton_Click(object sender, RoutedEventArgs e)
@@ -44,7 +40,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.windows
 
         private void removePostureButton_Click(object sender, RoutedEventArgs e)
         {
-            int idx = postureCrudDataGrid.SelectedIndex;
+            //int idx = postureCrudDataGrid.SelectedIndex;
             PostureType selectedItem = (PostureType) postureCrudDataGrid.SelectedItem;
             if (selectedItem != PostureType.none)
             {
@@ -52,7 +48,14 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.windows
                 SqliteAppContext.db.SaveChanges();
                 this.refreshList();
             }
-            
+        }
+
+        private void editPostureButton_Click(object sender, RoutedEventArgs e)
+        {
+            PostureType selectedPosture = (PostureType)postureCrudDataGrid.SelectedItem;
+            selectedPosture = SqliteAppContext.db.PostureType.FirstOrDefault(p => p.id == selectedPosture.id);
+            AddOrEditPostureType addPostureView = new AddOrEditPostureType(selectedPosture);
+            addPostureView.Show();
         }
     }
 }

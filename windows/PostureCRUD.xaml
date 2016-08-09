@@ -14,9 +14,9 @@
             <RowDefinition Height="25"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Button Grid.Row="0" x:Name="addPostureButton" Content="Agregar Postura" HorizontalAlignment="Left" Click="addPostureButton_Click"/>
-        <!--<Button Grid.Row="0" x:Name="editPostureButton" Content="Editar Postura" HorizontalAlignment="Left" Margin="94,0,0,0"/>-->
-        <Button Grid.Row="0" x:Name="removePostureButton" Content="Borrar Postura" HorizontalAlignment="Left" Margin="176,0,0,0" Click="removePostureButton_Click"/>
+        <Button Grid.Row="0" x:Name="addPostureButton" Content="Agregar" HorizontalAlignment="Left" Click="addPostureButton_Click"/>
+        <Button Grid.Row="0" x:Name="editPostureButton" Content="Editar" HorizontalAlignment="Left" Margin="52,0,0,0" Click="editPostureButton_Click"/>
+        <Button Grid.Row="0" x:Name="removePostureButton" Content="Eliminar" HorizontalAlignment="Left" Margin="91,0,0,0" Click="removePostureButton_Click"/>
         <DataGrid Grid.Row="1" x:Name="postureCrudDataGrid" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding id}"/>

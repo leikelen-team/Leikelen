@@ -758,63 +758,18 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
 
         private void analizePostures_Click(object sender, RoutedEventArgs e)
         {
-   
-            int intervalIniCol=0, intervalFinCol=0;
-
+            if (Scene.Instance == null) return;
             foreach (Person person in Scene.Instance.persons)
             {
                 if (!person.HasBeenTracked) continue;
 
                 StackPanel combosStackPanel = getCombosStackPanelByPerson(person);
-                PersonView view = new PersonView(
+                person.view = new PersonView(
                     person.bodyIndex, combosStackPanel, 
                     person.PostureIntervalGroups, person.Color);
-                person.view = view;
-                
-
-                //int postureIntervalGroupIndex = 0;
-                //foreach (var visiblePostureType in view.visiblePostures)
-                //{
-                //    ComboBox combo = visiblePostureType.Item2;
-
-                //    PostureIntervalGroup postureIntervalGroup = 
-                //                            person.PostureIntervalGroups
-                //                            .FirstOrDefault
-                //                            (g => g.postureType == visiblePostureType.Item1 );
-                //    if (postureIntervalGroup != null)
-                //    {
-                //        foreach (var interval in postureIntervalGroup.Intervals)
-                //        {
-                //            Console.WriteLine("\t[" + interval.Item1.sceneLocationTime.ToString(@"mm\:ss") + ", "
-                //                + interval.Item2.sceneLocationTime.ToString(@"mm\:ss") + "]");
-
-                //            intervalIniCol = Convert.ToInt32(interval.Item1.sceneLocationTime.TotalSeconds);
-                //            intervalFinCol = Convert.ToInt32(interval.Item2.sceneLocationTime.TotalSeconds);
-
-                //            System.Windows.Shapes.Path path = new System.Windows.Shapes.Path();
-                //            path.Stroke = person.Color; // postureIntervalGroup.postureType.color; //System.Windows.Media.Brushes.Red;
-                //            path.StrokeThickness = 10;
-                //            path.Stretch = System.Windows.Media.Stretch.Fill;
-                //            Grid.SetRow(path, postureIntervalGroupIndex);
-                //            Grid.SetColumn(path, intervalIniCol - 2);
-                //            Grid.SetColumnSpan(path, intervalFinCol - intervalIniCol + 2);
-                //            System.Windows.Media.LineGeometry line = new System.Windows.Media.LineGeometry();
-                //            line.StartPoint = new System.Windows.Point(0d, 0d);
-                //            line.EndPoint = new System.Windows.Point(1d, 0d);
-                //            path.Data = line;
-                //            person.view.postureGroupsGrid.Children.Add(path);
-                            
-                //        }
-                //    }
-                    
-                //}
-
                 timeLineContentGrid.Children.Add(person.view.postureGroupsGrid);
                 person.view.refreshAllIntervalGroups();
-
-
             }
-
         }
 
 

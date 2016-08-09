@@ -60,7 +60,7 @@
             <RowDefinition Height="55" />
             <RowDefinition Height="100*"/>
             <RowDefinition Height="75*" />
-            <!--<RowDefinition Height="Auto" />-->
+            <RowDefinition Height="20" />
             <!--<RowDefinition Height="Auto" />-->
         </Grid.RowDefinitions>
 
@@ -69,14 +69,15 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition/>
+                <RowDefinition Height="106*"/>
+                <RowDefinition Height="167*"/>
                 <RowDefinition Height="50"/>
             </Grid.RowDefinitions>
 
-            <Image x:Name="colorImageControl" Grid.Row="0"/>
-            <Image x:Name="bodyImageControl" Grid.Row="0"/>
+            <Image x:Name="colorImageControl" Grid.Row="0" Grid.RowSpan="2"/>
+            <Image x:Name="bodyImageControl" Grid.Row="0" Grid.RowSpan="2"/>
 
-            <Grid Grid.Row="1">
+            <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
@@ -356,7 +357,12 @@
         <Image Grid.Row="0" Source="Images\Status.png" Stretch="None" HorizontalAlignment="Center" Margin="397,5,10,0" Grid.Column="1" />
         <Button x:Name="posturesAdmin" Content="Gestionar Posturas" HorizontalAlignment="Left" VerticalAlignment="Top" Width="74" Grid.Column="1" Margin="109,30,0,0" Click="posturesAdmin_Click"/>
 
-
+        <StatusBar Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Left">
+            <StatusBar.Background>
+                <SolidColorBrush Color="White"/>
+            </StatusBar.Background>
+            <TextBlock x:Name="statusBar" HorizontalAlignment="Left"/>
+        </StatusBar>
 
         <!--<Button x:Name="button" Content="*" HorizontalAlignment="Left" Margin="10,15,0,0" Grid.Row="2" VerticalAlignment="Top" Width="15" Click="button_Click" Height="15"/>-->
 
