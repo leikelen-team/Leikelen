@@ -54,76 +54,96 @@
     <Grid x:Name="appLayoutGrid" Margin="10 0 10 0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="265*"/>
-            <ColumnDefinition Width="457*"/>
+            <!--<ColumnDefinition Width="457*"/>-->
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="55" />
+            <RowDefinition Height="30" />
             <RowDefinition Height="100*"/>
             <RowDefinition Height="75*" />
             <RowDefinition Height="20" />
             <!--<RowDefinition Height="Auto" />-->
         </Grid.RowDefinitions>
 
-        <Grid x:Name="playerGrid" Grid.Row="1" Grid.ColumnSpan="2">
+        <Grid x:Name="Center" Grid.Row="1" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="106*"/>
-                <RowDefinition Height="167*"/>
-                <RowDefinition Height="50"/>
+                <!--<RowDefinition Height="106*"/>-->
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-
-            <Image x:Name="colorImageControl" Grid.Row="0" Grid.RowSpan="2"/>
-            <Image x:Name="bodyImageControl" Grid.Row="0" Grid.RowSpan="2"/>
-
-            <Grid Grid.Row="2">
+            <StackPanel Orientation="Vertical">
+                
+                <Button x:Name="importButtons" Content="Importar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="53" Click="importButtons_Click"/>
+                <Button x:Name="exportButtons" Content="Exportar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="53" Click="exportButtons_Click"/>
+                <Button x:Name="posturesAdmin" Content="Posturas" HorizontalAlignment="Left" VerticalAlignment="Top" Width="53" Click="posturesAdmin_Click" Height="20"/>
+                <Button x:Name="analizePostures" Content="Analizar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="53" Click="analizePostures_Click"/>
+                <Button x:Name="showGraphButtons" Content="Gráficos" HorizontalAlignment="Left" Width="53" Click="showGraphButtons_Click"/>
+                <CheckBox Grid.Column="0" x:Name="fondoCheckBox" 
+                              HorizontalAlignment="Left" VerticalAlignment="Center"  
+                              Content="Fondo" IsChecked="True" Unchecked="fondoCheckBox_Checked"/>
+            </StackPanel>
+            
+       
+            <Grid x:Name="playerGrid" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
+                    <!--<RowDefinition Height="106*"/>-->
+                    <RowDefinition Height="167*"/>
+                    <RowDefinition Height="50"/>
                 </Grid.RowDefinitions>
-                <StatusBar Grid.RowSpan="2" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                    <StatusBar.Background>
-                        <SolidColorBrush Color="#FFF1EDED"/>
-                    </StatusBar.Background>
-                </StatusBar>
-                <Slider  Grid.Row="0" Grid.ColumnSpan="2"  x:Name="sceneSlider" Height="22" Value="0"
-                                 HorizontalAlignment="Stretch"  HorizontalContentAlignment="Left"
-                                 VerticalAlignment="Center"
-                                 ValueChanged="sceneSlider_ValueChanged"
-                                 Thumb.DragStarted="sceneSlider_DragStarted"
-                                 Thumb.DragCompleted="sceneSlider_DragCompleted"/>
 
-                <Button Grid.Row="1" Grid.Column="0" x:Name="recordButton" 
-                        HorizontalAlignment="Left" VerticalAlignment="Center" Width="20"
-                        Content="O" Click="grabarButton_Click"/>
-                <Button Grid.Row="1" Grid.Column="0" x:Name="stopButton" 
-                        HorizontalAlignment="Left" VerticalAlignment="Center" Width="20" Margin="25,0,0,0"
-                        Content="■" Click="stopButton_Click"/>
-                <Button Grid.Row="1" Grid.Column="0" x:Name="playButton" 
-                        HorizontalAlignment="Left" VerticalAlignment="Center" Width="20" Margin="50,0,0,0"
-                        Content=">" Click="playButton_Click"/>
+                <Image x:Name="colorImageControl" Grid.Row="0" Grid.Column="1" />
+                <Image x:Name="bodyImageControl" Grid.Row="0" Grid.Column="1"/>
 
-                <Label Grid.Row="1" Grid.Column="0" x:Name="sceneCurrentTimeLabel" 
-                       Content="00:00:00" HorizontalAlignment="Left" Margin="75,0,0,0" VerticalAlignment="Center"/>
-                <Label Grid.Row="1" Grid.Column="0" Content="/" 
-                        HorizontalAlignment="Left" Margin="125,0,0,0" VerticalAlignment="Center"/>
-                <Label Grid.Row="1" Grid.Column="0" x:Name="sceneDurationLabel" 
-                       Content="00:00:00" HorizontalAlignment="Left" Margin="135,0,0,0" VerticalAlignment="Center"/>
+                <Grid Grid.Row="2" Grid.ColumnSpan="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <StatusBar Grid.RowSpan="2" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <StatusBar.Background>
+                            <SolidColorBrush Color="#FFF1EDED"/>
+                        </StatusBar.Background>
+                    </StatusBar>
+                    <Slider  Grid.Row="0" Grid.ColumnSpan="2"  x:Name="sceneSlider" Height="22" Value="0"
+                                     HorizontalAlignment="Stretch"  HorizontalContentAlignment="Left"
+                                     VerticalAlignment="Center"
+                                     ValueChanged="sceneSlider_ValueChanged"
+                                     Thumb.DragStarted="sceneSlider_DragStarted"
+                                     Thumb.DragCompleted="sceneSlider_DragCompleted"/>
+
+                    <Button Grid.Row="1" Grid.Column="0" x:Name="recordButton" 
+                            HorizontalAlignment="Left" VerticalAlignment="Center" Width="20"
+                            Content="O" Click="grabarButton_Click"/>
+                    <Button Grid.Row="1" Grid.Column="0" x:Name="stopButton" 
+                            HorizontalAlignment="Left" VerticalAlignment="Center" Width="20" Margin="25,0,0,0"
+                            Content="■" Click="stopButton_Click"/>
+                    <Button Grid.Row="1" Grid.Column="0" x:Name="playButton" 
+                            HorizontalAlignment="Left" VerticalAlignment="Center" Width="20" Margin="50,0,0,0"
+                            Content=">" Click="playButton_Click"/>
+
+                    <Label Grid.Row="1" Grid.Column="0" x:Name="sceneCurrentTimeLabel" 
+                           Content="00:00:00" HorizontalAlignment="Left" Margin="75,0,0,0" VerticalAlignment="Center"/>
+                    <Label Grid.Row="1" Grid.Column="0" Content="/" 
+                            HorizontalAlignment="Left" Margin="125,0,0,0" VerticalAlignment="Center"/>
+                    <Label Grid.Row="1" Grid.Column="0" x:Name="sceneDurationLabel" 
+                           Content="00:00:00" HorizontalAlignment="Left" Margin="135,0,0,0" VerticalAlignment="Center"/>
 
 
-                <!--<Button x:Name="playButton" Content="Reproducir" HorizontalAlignment="Left" Margin="350,30,0,0" VerticalAlignment="Top" Width="75" Click="playButton_Click"/>
-                <Button x:Name="stopButton" Content="Detener" HorizontalAlignment="Left" Margin="282,30,0,0" VerticalAlignment="Top" Width="63" Click="stopButton_Click"/>-->
-                <CheckBox Grid.Row="1" Grid.Column="1" x:Name="fondoCheckBox" 
-                          HorizontalAlignment="Right" VerticalAlignment="Center"  
-                          Content="Fondo" IsChecked="True" Unchecked="fondoCheckBox_Checked"/>
+                    <!--<Button x:Name="playButton" Content="Reproducir" HorizontalAlignment="Left" Margin="350,30,0,0" VerticalAlignment="Top" Width="75" Click="playButton_Click"/>
+                    <Button x:Name="stopButton" Content="Detener" HorizontalAlignment="Left" Margin="282,30,0,0" VerticalAlignment="Top" Width="63" Click="stopButton_Click"/>-->
+                    
+                </Grid>
             </Grid>
         </Grid>
-
         <!--<ScrollViewer Grid.Row="2" Grid.ColumnSpan="2" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">-->
 
         <Grid x:Name="timeLineLayoutGrid" Grid.Row="2" Grid.ColumnSpan="2">
@@ -348,14 +368,10 @@
 
 
 
-        <Button x:Name="showGraphButtons" Content="Ver gráficos" HorizontalAlignment="Left" Margin="179,30,0,5" Width="75" Click="showGraphButtons_Click"/>
-        <Button x:Name="exportButtons" Content="Exportar" HorizontalAlignment="Left" Margin="80,30,0,0" VerticalAlignment="Top" Width="75" Click="exportButtons_Click"/>
-        <Button x:Name="importButtons" Content="Importar" HorizontalAlignment="Left" Margin="0,30,0,0" VerticalAlignment="Top" Width="75" Click="importButtons_Click"/>
+        
         <Label x:Name="sceneTitleLabel" Content="Importa o graba una escena." HorizontalAlignment="Left" Margin="0,-1,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <Button x:Name="analizePostures" Content="Analizar posturas" HorizontalAlignment="Left" Margin="259,30,0,0" VerticalAlignment="Top" Width="96" Click="analizePostures_Click" Grid.ColumnSpan="2"/>
-        <Image Grid.Row="0" Source="Images\Logo.png" HorizontalAlignment="Left" Stretch="Fill" Height="32" Width="81" Margin="299,18,0,5" RenderTransformOrigin="-1.309,0.625" Grid.Column="1" />
-        <Image Grid.Row="0" Source="Images\Status.png" Stretch="None" HorizontalAlignment="Center" Margin="397,5,10,0" Grid.Column="1" />
-        <Button x:Name="posturesAdmin" Content="Gestionar Posturas" HorizontalAlignment="Left" VerticalAlignment="Top" Width="74" Grid.Column="1" Margin="109,30,0,0" Click="posturesAdmin_Click"/>
+        <Image Grid.Row="0" Source="Images\Status.png" Stretch="None" HorizontalAlignment="Center" Margin="672,0,0,4" />
+        
 
         <StatusBar Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Left">
             <StatusBar.Background>
