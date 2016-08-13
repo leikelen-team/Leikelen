@@ -32,7 +32,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.models
         {
             get
             {
-                return SqliteAppContext.db.PostureType.ToList();
+                return PostureTypeContext.db.PostureType.ToList();
             }
         }
         [NotMapped]

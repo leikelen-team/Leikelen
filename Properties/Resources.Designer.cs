@@ -133,6 +133,15 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to app_sqlite.db.
+        /// </summary>
+        public static string PostureTypeDbPath {
+            get {
+                return ResourceManager.GetString("PostureTypeDbPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Running.
         /// </summary>
         public static string RunningStatusText {
@@ -147,15 +156,6 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.Properties {
         public static string SensorNotAvailableStatusText {
             get {
                 return ResourceManager.GetString("SensorNotAvailableStatusText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to app_sqlite.db.
-        /// </summary>
-        public static string SQLiteAppDbPath {
-            get {
-                return ResourceManager.GetString("SQLiteAppDbPath", resourceCulture);
             }
         }
         

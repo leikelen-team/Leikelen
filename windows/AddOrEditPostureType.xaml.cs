@@ -79,7 +79,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.windows
                 MessageBox.Show("Debes ingresar un archivo");
             }
             string name = nameTextBox.Text;
-            if (SqliteAppContext.db.PostureType.Any(p => p.name == name))
+            if (PostureTypeContext.db.PostureType.Any(p => p.name == name))
             {
                 if(editingPosture == null)
                 {
@@ -102,15 +102,15 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.windows
                     File.Copy(path, internalFilePath);
                 if (editingPosture != null)
                 {
-                    PostureType postureToUpdate = SqliteAppContext.db.PostureType
+                    PostureType postureToUpdate = PostureTypeContext.db.PostureType
                         .FirstOrDefault(p => p.id == editingPosture.id);
                     string oldPath = postureToUpdate.path;
                     postureToUpdate.name = name;
                     postureToUpdate.path = internalFilePath;
                     //SqliteAppContext.db.Entry(postureToUpdate).CurrentValues.SetValues(product);
-                    SqliteAppContext.db.SaveChanges();
+                    PostureTypeContext.db.SaveChanges();
 
-                    if ( !SqliteAppContext.db.PostureType.Any(p => p.path == oldPath)
+                    if ( !PostureTypeContext.db.PostureType.Any(p => p.path == oldPath)
                         && oldPath != internalFilePath )
                     {
                         File.Delete(oldPath);
@@ -120,10 +120,10 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.windows
                 }
                 else
                 {
-                    SqliteAppContext.db.PostureType.Add(new PostureType(name, internalFilePath));
+                    PostureTypeContext.db.PostureType.Add(new PostureType(name, internalFilePath));
                 }
                 
-                SqliteAppContext.db.SaveChanges();
+                PostureTypeContext.db.SaveChanges();
                 MainWindow.postureCrud.refreshList();
                 this.Close();
             }

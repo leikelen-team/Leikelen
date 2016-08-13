@@ -56,7 +56,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.windows
         {
             for (int i = 1; i <= 6; i++)
             {
-                Person person = Scene.Instance.persons[i - 1];
+                Person person = Scene.Instance.Persons[i - 1];
                 updatePersonalPersonData(person);
             }
         }
@@ -65,7 +65,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.windows
         {
             for (int i = 1; i <= 6; i++)
             {
-                Person person = Scene.Instance.persons[i-1];
+                Person person = Scene.Instance.Persons[i-1];
                 if ( !person.HasBeenTracked ) continue;
                 updatePersonalPersonData(person);
 

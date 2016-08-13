@@ -203,7 +203,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
                                         if (result.Detected && Scene.Instance!=null)
                                         {
                                             //Console.WriteLine("registered posture:"+postureType.name);
-                                            Scene.Instance.persons[BodyIndex].microPostures.Add(new MicroPosture(postureType, MainWindow.Instance().kstudio.getSceneLocationTime().Value));
+                                            Scene.Instance.Persons[BodyIndex].MicroPostures.Add(new MicroPosture(postureType, MainWindow.Instance().kstudio.getSceneLocationTime().Value));
                                             emotionDetected = true;
                                             //Scene.Instance.persons[BodyIndex].postures.
                                         }
@@ -215,7 +215,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
                         if (!emotionDetected && Scene.Instance != null)
                         {
                             //Console.WriteLine("registered posture:" + PostureType.none.name);
-                            Scene.Instance.persons[BodyIndex].microPostures.Add(new MicroPosture(PostureType.none, MainWindow.Instance().kstudio.getSceneLocationTime().Value));
+                            Scene.Instance.Persons[BodyIndex].MicroPostures.Add(new MicroPosture(PostureType.none, MainWindow.Instance().kstudio.getSceneLocationTime().Value));
                         }
                     }
                 }

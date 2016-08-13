@@ -74,9 +74,9 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <StackPanel Orientation="Vertical">
-                
+
                 <Button x:Name="importButtons" Content="Importar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="53" Click="importButtons_Click"/>
-                <Button x:Name="exportButtons" Content="Exportar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="53" Click="exportButtons_Click"/>
+                <Button x:Name="exportButtons" Content="Exportar" VerticalAlignment="Top" Click="exportButtons_Click" Margin="0,0,1,0"/>
                 <Button x:Name="posturesAdmin" Content="Posturas" HorizontalAlignment="Left" VerticalAlignment="Top" Width="53" Click="posturesAdmin_Click" Height="20"/>
                 <Button x:Name="analizePostures" Content="Analizar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="53" Click="analizePostures_Click"/>
                 <Button x:Name="showGraphButtons" Content="Gráficos" HorizontalAlignment="Left" Width="53" Click="showGraphButtons_Click"/>
@@ -84,8 +84,8 @@
                               HorizontalAlignment="Left" VerticalAlignment="Center"  
                               Content="Fondo" IsChecked="True" Unchecked="fondoCheckBox_Checked"/>
             </StackPanel>
-            
-       
+
+
             <Grid x:Name="playerGrid" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -140,7 +140,7 @@
 
                     <!--<Button x:Name="playButton" Content="Reproducir" HorizontalAlignment="Left" Margin="350,30,0,0" VerticalAlignment="Top" Width="75" Click="playButton_Click"/>
                     <Button x:Name="stopButton" Content="Detener" HorizontalAlignment="Left" Margin="282,30,0,0" VerticalAlignment="Top" Width="63" Click="stopButton_Click"/>-->
-                    
+
                 </Grid>
             </Grid>
         </Grid>
@@ -368,10 +368,10 @@
 
 
 
-        
+
         <Label x:Name="sceneTitleLabel" Content="Importa o graba una escena." HorizontalAlignment="Left" Margin="0,-1,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Image Grid.Row="0" Source="Images\Status.png" Stretch="None" HorizontalAlignment="Center" Margin="672,0,0,4" />
-        
+
 
         <StatusBar Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Left">
             <StatusBar.Background>

@@ -75,102 +75,19 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
         public static PostureCRUD postureCrud;
 
 
-        //    Atento,
-        //    Distraido,
-        //    Seated,
-        //    Ninguno
-
-
-
-
-
-        //private bool sceneSliderUserDragging = false;
-        //private Timer timer;
-
-        //private KinectBodyView kinectBodyView;
-
-        //public static KinectBodyView KinectBodyView
-        //{
-        //    get { return kinectBodyView; }
-        //    set { kinectBodyView = value; }
-        //}
-
-
         /// <summary>
         /// Initializes a new instance of the MainWindow class
         /// </summary>
         public MainWindow()
         {
-
-            //var conn = new SQLiteConnection("Data Source=" + Properties.Resources.SQLiteAppDbPath);
-            //var posture = conn.PostureTypeModel.Where(p => p.id == 1).FirstOrDefault();
-            //Console.WriteLine("SQLITE POSTURE: " + posture.name);
+            
 
 
-
-            //var context = new DataContext(connection);
-            //conn.PostureType;
-            //var postures = context.GetTable<PostureType>();
-            //foreach (var posture in postures)
-            //{
-            //    Console.WriteLine("Posture Loaded: {0}: {1}",
-            //        posture.name, posture.path);
-            //}
-
-
-
-
-            //var db = new SQLiteConnection(Properties.Resources.SQLiteAppDbPath);
-            //using (SQLiteConnection conn = new SQLiteConnection("Data Source=" + Properties.Resources.SQLiteAppDbPath))
-            //{
-            //    conn.Open();
-            //    string sql = "SELECT * FROM PostureType";
-
-            //    using (SQLiteCommand cmd = new SQLiteCommand(sql, conn))
-            //    {
-            //        using (SQLiteDataReader reader = cmd.ExecuteReader())
-            //        {
-            //            while (reader.Read())
-            //            {
-            //                //int id = Convert.ToInt32(reader["id"].ToString());
-            //                string name = reader["name"].ToString();
-            //                string path = reader["path"].ToString();
-            //                PostureType.availablesPostureTypes.Add(new PostureType(name, path));
-            //            }
-            //        }
-            //    }
-            //    conn.Close();
-            //}
-
-
-            var db = SqliteAppContext.db;
-            //PostureType newPosture = new PostureType("Ninguna", "");
-            //db.Entry(PostureType.none).State = ;
-            //db.Entry(newPosture).State = EntityFrameworkCore.EntityState.Unchanged;
-            //db.SaveChanges();
-            Console.WriteLine("TESTING IDS-----");
+            // no borres esta linea de nuevo rolo!! estupida, mi código, idiota!! xD
             PostureType.none = PostureType.availablesPostureTypes.FirstOrDefault(p => p.id == 0);
-            foreach (var posture in PostureType.availablesPostureTypes)
-            {
-                Console.WriteLine("id "+posture.name+": "+posture.id);
-            }
-            Console.WriteLine("Posture none: {0}, {1}, {2} ", PostureType.none.id, PostureType.none.name, PostureType.none.path);
-
-
-            //PostureType.availablesPostureTypes.AddRange(db.PostureTypes.ToList());
-
-
-
-            //PostureType.availablesPostureTypes.Add(new PostureType("Seated", @"Database\Seated.gbd"));
-            //PostureType.availablesPostureTypes.Add(new PostureType("Atento", @"Database\Seated.gbd"));
-            //PostureType.availablesPostureTypes.Add(new PostureType("Distraido", @"Database\Seated.gbd"));
-
-
-
-
             // only one sensor is currently supported
             this.kinectSensor = KinectSensor.GetDefault();
-            
+
             // set IsAvailableChanged event notifier
             this.kinectSensor.IsAvailableChanged += this.Sensor_IsAvailableChanged;
 
@@ -423,21 +340,24 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
                 
                 if (colorFrame != null)
                 {
-                    TimeSpan currentTime = kstudio.playback.CurrentRelativeTime;
-                    if (currentTime > lastCurrentTime || currentTime < lastCurrentTime.Subtract(TimeSpan.FromSeconds(2)) )
+                    if (kstudio.playback != null)
                     {
-                        sceneSlider.Value = currentTime.TotalMilliseconds;
-                        this.sceneCurrentTimeLabel.Content = currentTime.ToString(@"hh\:mm\:ss");
-                        lastCurrentTime = currentTime;
+                        TimeSpan currentTime = kstudio.playback.CurrentRelativeTime;
+                        if (currentTime > lastCurrentTime || currentTime < lastCurrentTime.Subtract(TimeSpan.FromSeconds(2)))
+                        {
+                            sceneSlider.Value = currentTime.TotalMilliseconds;
+                            this.sceneCurrentTimeLabel.Content = currentTime.ToString(@"hh\:mm\:ss");
+                            lastCurrentTime = currentTime;
+                        }
                     }
-                    
-                    if(this.fondoCheckBox.IsChecked != false)
+                    if (this.fondoCheckBox.IsChecked != false)
                     {
                         BitmapSource btmSource = colorFrame.ToBitmap();
                         this.colorImageControl.Source = btmSource;
                         //if (escena.IsRecording)
                         //    escena.AddColorFrame(btmSource);
                     }
+                    
                     
                 }
             }
@@ -580,57 +500,35 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
                 sceneDurationLabel.Content = Scene.Instance.duration.ToString(@"hh\:mm\:ss");
             }
 
-            
-
-            //ColumnDefinition c1 = new ColumnDefinition();
-            //c1.Width = new GridLength(5, GridUnitType.Pixel);
-            //timeLineGrid.ColumnDefinitions.Add(c1);
-
-            //ColumnDefinition c2 = new ColumnDefinition();
-            //c2.Width = new GridLength(5, GridUnitType.Pixel);
-            //timeLineGrid.ColumnDefinitions.Add(c2);
-
-            //ColumnDefinition c3 = new ColumnDefinition();
-            //c3.Width = new GridLength(5, GridUnitType.Pixel);
-            //timeLineGrid.ColumnDefinitions.Add(c3);
-
-            //TextBlock text1 = new TextBlock();
-            //text1.Text = "|";
-            //TextBlock text2 = new TextBlock();
-            //text2.Text = "|";
-            //TextBlock text3 = new TextBlock();
-            //text3.Text = "|";
-
-            //Grid.SetRow(text1, 0);
-            //Grid.SetColumn(text1, 0);
-            //timeLineGrid.Children.Add(text1);
-
-            //Grid.SetRow(text2, 0);
-            //Grid.SetColumn(text2, 1);
-            //timeLineGrid.Children.Add(text2);
-
-            //Grid.SetRow(text3, 0);
-            //Grid.SetColumn(text3, 3);
-            //timeLineGrid.Children.Add(text3);
-
         }
 
         private void exportButtons_Click(object sender, RoutedEventArgs e)
         {
-            string fileName = string.Empty;
+            //string fileName = string.Empty;
 
-            SaveFileDialog dlg = new SaveFileDialog();
-            dlg.FileName = "";
-            dlg.DefaultExt = Properties.Resources.XefExtension; // Default file extension
-            dlg.Filter = Properties.Resources.EventFileDescription + " " + Properties.Resources.EventFileFilter; // Filter files by extension
-            dlg.Title = "Exportar escena";
-            bool? result = dlg.ShowDialog();
+            //SaveFileDialog dlg = new SaveFileDialog();
+            //dlg.FileName = "";
+            //dlg.DefaultExt = Properties.Resources.XefExtension; // Default file extension
+            //dlg.Filter = Properties.Resources.EventFileDescription + " " + Properties.Resources.EventFileFilter; // Filter files by extension
+            //dlg.Title = "Exportar escena";
+            //bool? result = dlg.ShowDialog();
 
-            if (result == true)
-            {
-                Console.WriteLine("filePath: " + dlg.FileName);
-                this.kstudio.ExportScene(dlg.FileName);
-            }
+            //if (result == true)
+            //{
+            //    Console.WriteLine("filePath: " + dlg.FileName);
+            //    this.kstudio.ExportScene(dlg.FileName);
+            //    var db = DataAnalysisContext.CreateConnection(dlg.FileName);
+            //    db.Database.EnsureCreated();
+            //    db.Scene.Add(Scene.Instance);
+            //    db.SaveChanges();
+            //}
+
+            var db = DataAnalysisContext.CreateConnection(@"tmp\scene_data.db");
+            db.Database.EnsureCreated();
+            db.Scene.Add(Scene.Instance);
+            db.SaveChanges();
+
+
         }
 
         private void button_EditPerson1_Click(object sender, RoutedEventArgs e)
@@ -759,10 +657,10 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
         private void analizePostures_Click(object sender, RoutedEventArgs e)
         {
             if (Scene.Instance == null) return;
-            foreach (Person person in Scene.Instance.persons)
+            foreach (Person person in Scene.Instance.Persons)
             {
                 if (!person.HasBeenTracked) continue;
-
+                person.generatePostureIntervals();
                 StackPanel combosStackPanel = getCombosStackPanelByPerson(person);
                 person.view = new PersonView(
                     person.bodyIndex, combosStackPanel, 

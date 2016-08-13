@@ -37,7 +37,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.windows
             InitializeComponent();
             this.label_sujeto = label_sujeto;
 
-            this.person = Scene.Instance.persons[personIndex];
+            this.person = Scene.Instance.Persons[personIndex];
             this.nameTextBox.Text = person.name;
             this.maleRadio.Checked = person.gender == Person.Gender.Masculino ? true : false;
             this.femaleRadio.Checked = person.gender == Person.Gender.Femenino ? true : false;
@@ -52,7 +52,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.windows
             if(MainWindow.chartForm!=null && !MainWindow.chartForm.IsDisposed)
                 MainWindow.chartForm.updatePersonalPersonData(this.person);
 
-            Console.WriteLine("new name in Instance: " + Scene.Instance.persons[this.person.bodyIndex].name);
+            Console.WriteLine("new name in Instance: " + Scene.Instance.Persons[this.person.bodyIndex].name);
 
             this.Hide();
             this.Dispose();

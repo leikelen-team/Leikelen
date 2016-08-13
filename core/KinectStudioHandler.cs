@@ -23,7 +23,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
         private KStudioClient client = KStudio.CreateClient();
         public KStudioPlayback playback { get; private set; }
         //private BackgroundWorker playerWorker;
-        private BackgroundWorker recWorker;
+        //private BackgroundWorker recWorker;
         private string recordingFilePath;
         private string playingFilePath;
         private DateTime? recordStartTime = null;
@@ -50,10 +50,10 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
             //playerWorker.WorkerSupportsCancellation = true;
             //playerWorker.DoWork += new DoWorkEventHandler(this.bw_DoWork_StartPlaying);
 
-            recWorker = new BackgroundWorker();
-            recWorker.WorkerReportsProgress = false;
-            recWorker.WorkerSupportsCancellation = true;
-            recWorker.DoWork += new DoWorkEventHandler(this.bw_DoWork_StartRecording);
+            //recWorker = new BackgroundWorker();
+            //recWorker.WorkerReportsProgress = false;
+            //recWorker.WorkerSupportsCancellation = true;
+            //recWorker.DoWork += new DoWorkEventHandler(this.bw_DoWork_StartRecording);
 
             
 
@@ -102,7 +102,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
                         MainWindow.Instance().timeRulerGrid.Children.RemoveAt(i);
                 MainWindow.Instance().timeRulerGrid.ColumnDefinitions.Clear();
                 MainWindow.Instance().timeLineContentGrid.ColumnDefinitions.Clear();
-                foreach (var person in Scene.Instance.persons)
+                foreach (var person in Scene.Instance.Persons)
                     if (person.view != null) { 
                         person.view.postureGroupsGrid.Children.Clear();
                         person.view.postureGroupsGrid.ColumnDefinitions.Clear();
@@ -319,14 +319,26 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
         }
         public void StartRecording()
         {
-            //isRecording = true;
-            //if( recorder!=null && recorder.State != KStudioRecordingState.Recording)
-            //{
+            
             Directory.CreateDirectory(Properties.Paths.tmpDirectory);
             recordStartTime = DateTime.Now;
-            recWorker.RunWorkerAsync();
+
+            this.client.DisconnectFromService();
+            this.client.ConnectToService();
+            recorder = null;
+
+            File.Delete(this.recordingFilePath);
             
-            //}
+            KStudioEventStreamSelectorCollection streamCollection;
+            streamCollection = new KStudioEventStreamSelectorCollection();
+            streamCollection.Add(KStudioEventStreamDataTypeIds.Ir);
+            streamCollection.Add(KStudioEventStreamDataTypeIds.Body);
+            streamCollection.Add(KStudioEventStreamDataTypeIds.Depth);
+            streamCollection.Add(KStudioEventStreamDataTypeIds.UncompressedColor);
+            string fullPath = Path.GetFullPath(this.recordingFilePath);
+            recorder = client.CreateRecording(fullPath, streamCollection);
+            this.isSceneImportedOrRecorded = true;
+            recorder.Start();
         }
 
         public void StopRecording()
@@ -380,12 +392,13 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
 
             KStudioEventStreamSelectorCollection streamCollection;
             streamCollection = new KStudioEventStreamSelectorCollection();
-            streamCollection.Add(KStudioEventStreamDataTypeIds.CompressedColor);
             streamCollection.Add(KStudioEventStreamDataTypeIds.Body);
             streamCollection.Add(KStudioEventStreamDataTypeIds.BodyIndex);
+            streamCollection.Add(KStudioEventStreamDataTypeIds.UncompressedColor);
             recorder = client.CreateRecording(this.recordingFilePath, streamCollection);
             this.isSceneImportedOrRecorded = true;
-            recorder.Start();// (TimeSpan.FromSeconds(5));
+            recorder.Start();
+
             while (recorder.State == KStudioRecordingState.Recording)
             {
                 

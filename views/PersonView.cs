@@ -119,17 +119,17 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.views
                 );
             PostureIntervalGroup postureIntervalGroup = postureIntervalGroups
                                     .FirstOrDefault
-                                    (g => g.postureType == newPostureType);
+                                    (g => g.PostureType == newPostureType);
             if (postureIntervalGroup != null)
             {
                 //StackPanel pathStackPanel = new StackPanel();
                 foreach (var interval in postureIntervalGroup.Intervals)
                 {
-                    Console.WriteLine("\t[" + interval.Item1.sceneLocationTime.ToString(@"mm\:ss") + ", "
-                        + interval.Item2.sceneLocationTime.ToString(@"mm\:ss") + "]");
+                    Console.WriteLine("\t[" + interval.StartTime.ToString(@"mm\:ss") + ", "
+                        + interval.EndTime.ToString(@"mm\:ss") + "]");
 
-                    int intervalIniCol = Convert.ToInt32(interval.Item1.sceneLocationTime.TotalSeconds);
-                    int intervalFinCol = Convert.ToInt32(interval.Item2.sceneLocationTime.TotalSeconds);
+                    int intervalIniCol = Convert.ToInt32(interval.StartTime.TotalSeconds);
+                    int intervalFinCol = Convert.ToInt32(interval.EndTime.TotalSeconds);
 
                     System.Windows.Shapes.Path path = new System.Windows.Shapes.Path();
                     path.Stroke = this.color;//System.Windows.Media.Brushes.Red; //person.Color; // postureIntervalGroup.postureType.color; //

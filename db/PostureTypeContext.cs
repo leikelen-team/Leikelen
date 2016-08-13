@@ -8,15 +8,15 @@ using Microsoft.Samples.Kinect.VisualizadorMultimodal.models;
 
 namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.db
 {
-    public class SqliteAppContext : DbContext
+    public class PostureTypeContext : DbContext
     {
-        public static SqliteAppContext db = new SqliteAppContext();
+        public static PostureTypeContext db = new PostureTypeContext();
         public DbSet<PostureType> PostureType { get; set; }
         //public DbSet<Post> Posts { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Filename="+Properties.Resources.SQLiteAppDbPath);
+            optionsBuilder.UseSqlite("Filename="+Properties.Resources.PostureTypeDbPath); //PostureTypeDbPath
         }
     }
 }

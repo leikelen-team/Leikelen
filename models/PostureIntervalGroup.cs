@@ -8,42 +8,46 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.models
 {
     public class PostureIntervalGroup
     {
-        public PostureType postureType { get; private set; }
-        private List<Tuple<MicroPosture, MicroPosture>> intervals; //{ get; private set; }
+        public int PostureIntervalGroupId { get; set; }
+        public PostureType PostureType { get; private set; }
+        public List<Interval> Intervals { get; set; }
+
+        public int PersonId { get; set; }
+        public Person Person { get; set; }
 
         public PostureIntervalGroup(PostureType postureType)
         {
-            this.postureType = postureType;
-            this.intervals = new List<Tuple<MicroPosture, MicroPosture>>();
+            this.PostureType = postureType;
+            this.Intervals = new List<Interval>();
         }
         
         public void addInterval(MicroPosture initialMicroPosture, MicroPosture finalMicroPosture)
         {
-            if(initialMicroPosture.postureType != this.postureType || finalMicroPosture.postureType != this.postureType)
+            if(initialMicroPosture.PostureType != this.PostureType || finalMicroPosture.PostureType != this.PostureType)
             {
                 throw new Exception("You are adding an interval with diferent postureType to this IntervalPosture object");
             }
-            if(initialMicroPosture.sceneLocationTime >= finalMicroPosture.sceneLocationTime)
+            if(initialMicroPosture.SceneLocationTime >= finalMicroPosture.SceneLocationTime)
             {
                 throw new Exception("initialMicroPosture must be lower than finalMicroPosture");
             }
-            bool exists = this.intervals.Exists(
-                tuple =>
+            bool exists = this.Intervals.Exists(
+                interval =>
                     //tuple.Item1.sceneLocationTime >= initialMicroPosture.sceneLocationTime ||
-                    tuple.Item2.sceneLocationTime >= initialMicroPosture.sceneLocationTime
+                    interval.EndTime >= initialMicroPosture.SceneLocationTime
                 );
             if (exists)
             {
                 throw new Exception("The initialMicroPosture must be greater than an existent finalMicroPosture interval");
             }
-            intervals.Add(new Tuple<MicroPosture, MicroPosture>(initialMicroPosture, finalMicroPosture));
+            Intervals.Add(new Interval(initialMicroPosture, finalMicroPosture));
         }
 
-        public IReadOnlyList<Tuple<MicroPosture, MicroPosture>> Intervals {
-            get
-            {
-                return this.intervals;
-            }
-        }
+        //public IReadOnlyList<Tuple<MicroPosture, MicroPosture>> Intervals {
+        //    get
+        //    {
+        //        return this.intervals;
+        //    }
+        //}
     }
 }
