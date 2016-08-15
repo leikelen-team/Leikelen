@@ -40,7 +40,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
         /// </summary>
         /// <param name="kinectSensor">Active sensor to initialize the VisualGestureBuilderFrameSource object with</param>
         /// <param name="gestureResultView">GestureResultView object to store gesture results of a single body to</param>
-        public GestureDetector(int bodyIndex, KinectSensor kinectSensor, GestureResultView gestureResultView)
+        public GestureDetector(int bodyIndex, KinectSensor kinectSensor/*, GestureResultView gestureResultView*/)
         {
             this.BodyIndex = bodyIndex;
             if (kinectSensor == null)
@@ -48,16 +48,16 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
                 throw new ArgumentNullException("kinectSensor");
             }
 
-            if (gestureResultView == null)
-            {
-                throw new ArgumentNullException("gestureResultView");
-            }
+            //if (gestureResultView == null)
+            //{
+            //    throw new ArgumentNullException("gestureResultView");
+            //}
             
-            this.GestureResultView = gestureResultView;
+            //this.GestureResultView = gestureResultView;
             
             // create the vgb source. The associated body tracking ID will be set when a valid body frame arrives from the sensor.
             this.vgbFrameSource = new VisualGestureBuilderFrameSource(kinectSensor, 0);
-            this.vgbFrameSource.TrackingIdLost += this.Source_TrackingIdLost;
+            //this.vgbFrameSource.TrackingIdLost += this.Source_TrackingIdLost;
 
             // open the reader for the vgb frames
             this.vgbFrameReader = this.vgbFrameSource.OpenReader();
@@ -86,7 +86,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
         }
 
         /// <summary> Gets the GestureResultView object which stores the detector results for display in the UI </summary>
-        public GestureResultView GestureResultView { get; private set; }
+        //public GestureResultView GestureResultView { get; private set; }
 
         /// <summary> The body index (0-5) associated with the current gesture detector </summary>
         public int BodyIndex { get; private set; }
@@ -157,7 +157,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
 
                 if (this.vgbFrameSource != null)
                 {
-                    this.vgbFrameSource.TrackingIdLost -= this.Source_TrackingIdLost;
+                    //this.vgbFrameSource.TrackingIdLost -= this.Source_TrackingIdLost;
                     this.vgbFrameSource.Dispose();
                     this.vgbFrameSource = null;
                 }
@@ -183,8 +183,10 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
 
                     if (discreteResults != null)
                     {
+                        Person person = Scene.Instance.Persons
+                                                .FirstOrDefault(p => p.TrackingId == this.TrackingId);
                         // we only have one gesture in this source object, but you can get multiple gestures
-                        bool emotionDetected = false;
+                        bool postureDetected = false;
                         foreach (Gesture gesture in this.vgbFrameSource.Gestures)
                         {
                             //Posture.Name[] postures = (Posture.Name[])Enum.GetValues(typeof(Posture.Name));
@@ -199,12 +201,18 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
                                     if (result != null)
                                     {
                                         // update the GestureResultView object with new gesture result values
-                                        this.GestureResultView.UpdateGestureResult(true, result.Detected, result.Confidence);
+                                        //this.GestureResultView.UpdateGestureResult(true, result.Detected, result.Confidence);
                                         if (result.Detected && Scene.Instance!=null)
                                         {
                                             //Console.WriteLine("registered posture:"+postureType.name);
-                                            Scene.Instance.Persons[BodyIndex].MicroPostures.Add(new MicroPosture(postureType, MainWindow.Instance().kstudio.getSceneLocationTime().Value));
-                                            emotionDetected = true;
+                                            MicroPosture mc = new MicroPosture(
+                                                        postureType,
+                                                        MainWindow.Instance()
+                                                            .kstudio.getSceneLocationTime().Value
+                                                    );
+                                            
+                                            person.MicroPostures.Add(mc);
+                                            postureDetected = true;
                                             //Scene.Instance.persons[BodyIndex].postures.
                                         }
                                     }
@@ -212,10 +220,10 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
                                 }
                             }
                         }
-                        if (!emotionDetected && Scene.Instance != null)
+                        if (!postureDetected && Scene.Instance != null)
                         {
                             //Console.WriteLine("registered posture:" + PostureType.none.name);
-                            Scene.Instance.Persons[BodyIndex].MicroPostures.Add(new MicroPosture(PostureType.none, MainWindow.Instance().kstudio.getSceneLocationTime().Value));
+                            person.MicroPostures.Add(new MicroPosture(PostureType.none, MainWindow.Instance().kstudio.getSceneLocationTime().Value));
                         }
                     }
                 }
@@ -227,10 +235,10 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
         /// </summary>
         /// <param name="sender">object sending the event</param>
         /// <param name="e">event arguments</param>
-        private void Source_TrackingIdLost(object sender, TrackingIdLostEventArgs e)
-        {
-            // update the GestureResultView object to show the 'Not Tracked' image in the UI
-            this.GestureResultView.UpdateGestureResult(false, false, 0.0f);
-        }
+        //private void Source_TrackingIdLost(object sender, TrackingIdLostEventArgs e)
+        //{
+        //    // update the GestureResultView object to show the 'Not Tracked' image in the UI
+        //    this.GestureResultView.UpdateGestureResult(false, false, 0.0f);
+        //}
     }
 }

@@ -23,9 +23,9 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.windows
         public ChartForm(Person person)
         {
             InitializeComponent();
-            personName_label1.Text = person.name;
-            personGender_label1.Text = "Genero " + person.gender.ToString("g");
-            personAge_label1.Text = person.age.ToString() + " años";
+            personName_label1.Text = person.Name;
+            personGender_label1.Text = "Genero " + person.Gender.ToString("g");
+            personAge_label1.Text = person.Age.ToString() + " años";
             IReadOnlyDictionary<string, string> dict = person.calculateEmotionsAverageString();
 
             Series ser1 = new Series("Serie 1");
@@ -43,13 +43,13 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.windows
 
         public void updatePersonalPersonData(Person person)
         {
-            int i = person.bodyIndex + 1;
-            Label nameLabel = this.GetControl("personName_label" + i ) as Label;
-            Label genderLabel = this.GetControl("personGender_label" + i) as Label;
-            Label ageLabel = this.GetControl("personAge_label" + i) as Label;
-            nameLabel.Text = person.name;
-            genderLabel.Text = "Genero " + person.gender.ToString("g");
-            ageLabel.Text = person.age.ToString() + " años";
+            //int i = person.BodyIndex + 1;
+            //Label nameLabel = this.GetControl("personName_label" + i ) as Label;
+            //Label genderLabel = this.GetControl("personGender_label" + i) as Label;
+            //Label ageLabel = this.GetControl("personAge_label" + i) as Label;
+            //nameLabel.Text = person.Name;
+            //genderLabel.Text = "Genero " + person.Gender.ToString("g");
+            //ageLabel.Text = person.Age.ToString() + " años";
         }
 
         public void updateAllPersonalPersonData()

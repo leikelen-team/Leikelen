@@ -1,4 +1,6 @@
-﻿using Microsoft.Samples.Kinect.VisualizadorMultimodal.analytics;
+﻿using Microsoft.Kinect;
+using Microsoft.Samples.Kinect.VisualizadorMultimodal.analytics;
+using Microsoft.Samples.Kinect.VisualizadorMultimodal.core;
 using Microsoft.Samples.Kinect.VisualizadorMultimodal.views;
 using Microsoft.Samples.Kinect.VisualizadorMultimodal.windows;
 using System;
@@ -14,34 +16,22 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.models
 {
     public class Person
     {
-        
-        
-        public int PersonId { get; set; }
-        public int bodyIndex { get; set; }
-        public string name { get; set; }
-        public Gender gender { get; set; }
-        public int age { get; set; }
-        public List<PostureIntervalGroup> PostureIntervalGroups { get; set; }
+        [NotMapped]
+        public int ListIndex { get; private set; }
 
+        public int PersonId { get; set; }
+        //public int BodyIndex { get; set; }
+        public ulong TrackingId { get; set; }
+        public string Name { get; set; }
+        public GenderEnum Gender { get; set; }
+        public int Age { get; set; }
+        public List<PostureIntervalGroup> PostureIntervalGroups { get; set; }
+        public List<MicroPosture> MicroPostures { get; private set; }
         public int SceneId { get; set; }
         public Scene Scene { get; set; }
-
-        //[NotMapped]
-        public List<MicroPosture> MicroPostures { get; private set; }
-
+        
         [NotMapped]
-        public PersonView view { get; set; }
-
-        [NotMapped]
-        private static Brush[] colors = { Brushes.Red, Brushes.Orange, Brushes.Green, Brushes.Blue, Brushes.Indigo, Brushes.Violet };
-
-        [NotMapped]
-        public Brush Color {
-            get
-            {
-                return colors[bodyIndex];
-            }
-        }
+        public Brush Color { get; private set; }
 
         [NotMapped]
         public bool HasBeenTracked
@@ -49,17 +39,50 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.models
             get { return MicroPostures.Count != 0; }
         }
 
-        public enum Gender { Masculino, Femenino };
-        public Person(int bodyIndex, string name, Gender gender, int age)
+        //[NotMapped]
+        //private GestureDetector GestureDetector = null;
+
+        //[NotMapped]
+        //private Body body = null;
+
+        //[NotMapped]
+        //public PosturesPersonView PosturesView { get; set; }
+
+        [NotMapped]
+        public PosturesPersonView View { get; private set; }
+
+        [NotMapped]
+        private static Brush[] colors = {
+            Brushes.Red,
+            Brushes.Orange,
+            Brushes.Green,
+            Brushes.Blue,
+            Brushes.Indigo,
+            Brushes.Violet };
+
+        [NotMapped]
+        private static int currentColorIndex = 0;
+       
+
+        public enum GenderEnum { Masculino, Femenino };
+        public Person(ulong trackingId, int listIndex/*int bodyIndex, string name, GenderEnum gender, int age*/)
         //public Person(int bodyIndex, string name)
         {
-            this.bodyIndex = bodyIndex;
-            this.name = name;
-            this.gender = gender;
-            this.age = age;
+            //this.BodyIndex = bodyIndex;
+            this.TrackingId = trackingId;
+            this.ListIndex = listIndex;
+            this.Name = "Person "+ listIndex;
+            //this.Gender = null;
+            //this.Age = null;
             this.MicroPostures = new List<MicroPosture>();
             this.PostureIntervalGroups = new List<PostureIntervalGroup>();
-            this.view = null;
+            //this.PosturesView = null;
+            this.Color = colors[currentColorIndex++];
+            this.View = new PosturesPersonView(this);
+            if (currentColorIndex == colors.Count()) currentColorIndex = 0;
+            //this.GestureDetector = 
+            //    new GestureDetector(bodyIndex, KinectBody.kinectSensor);
+
 
         }
 
@@ -69,9 +92,9 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.models
         {
             IReadOnlyDictionary<PostureType, float> posturesAvg = this.calculatePosturesAverage();
 
-            Console.WriteLine("Nombre: "+name);
-            Console.WriteLine("Genero: "+gender.ToString("g"));
-            Console.WriteLine("Edad: "+age);
+            Console.WriteLine("Nombre: "+Name);
+            Console.WriteLine("Genero: "+Gender.ToString("g"));
+            Console.WriteLine("Edad: "+Age);
 
             foreach (PostureType posture in posturesAvg.Keys)
             {

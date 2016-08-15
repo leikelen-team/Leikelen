@@ -11,6 +11,8 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.views
     using System.Windows;
     using System.Windows.Media;
     using Microsoft.Kinect;
+    using models;
+    using System.Linq;
 
     /// <summary>
     /// Visualizes the Kinect Body stream for display in the UI
@@ -100,7 +102,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.views
         /// <summary>
         /// List of colors for each body tracked
         /// </summary>
-        private List<Pen> bodyColors;
+        //private List<Pen> bodyColors;
 
         /// <summary>
         /// Initializes a new instance of the KinectBodyView class
@@ -161,14 +163,14 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.views
             this.bones.Add(new Tuple<JointType, JointType>(JointType.AnkleLeft, JointType.FootLeft));
 
             // populate body colors, one for each BodyIndex
-            this.bodyColors = new List<Pen>();
+            //this.bodyColors = new List<Pen>();
 
-            this.bodyColors.Add(new Pen(Brushes.Red, 6));
-            this.bodyColors.Add(new Pen(Brushes.Orange, 6));
-            this.bodyColors.Add(new Pen(Brushes.Green, 6));
-            this.bodyColors.Add(new Pen(Brushes.Blue, 6));
-            this.bodyColors.Add(new Pen(Brushes.Indigo, 6));
-            this.bodyColors.Add(new Pen(Brushes.Violet, 6));
+            //this.bodyColors.Add(new Pen(Brushes.Red, 6));
+            //this.bodyColors.Add(new Pen(Brushes.Orange, 6));
+            //this.bodyColors.Add(new Pen(Brushes.Green, 6));
+            //this.bodyColors.Add(new Pen(Brushes.Blue, 6));
+            //this.bodyColors.Add(new Pen(Brushes.Indigo, 6));
+            //this.bodyColors.Add(new Pen(Brushes.Violet, 6));
 
             // Create the drawing group we'll use for drawing
             this.drawingGroup = new DrawingGroup();
@@ -218,11 +220,14 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.views
                     // Draw a transparent background to set the render size
                     dc.DrawRectangle(Brushes.Transparent, null, new Rect(0.0, 0.0, this.displayWidth, this.displayHeight));
 
-                    int penIndex = 0;
+                    //int penIndex = 0;
                     foreach (Body body in bodies)
                     {
                         
-                        Pen drawPen = this.bodyColors[penIndex++];
+                        //Pen drawPen = this.bodyColors[penIndex++];
+                        Person person = Scene.Instance.Persons.FirstOrDefault(p => p.TrackingId==body.TrackingId);
+                        if (person == null) continue;
+                        Pen drawPen = new Pen(person.Color, 6);
 
                         if (body.IsTracked)
                         {

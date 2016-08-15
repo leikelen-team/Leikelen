@@ -17,7 +17,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.views
     /// Stores discrete gesture results for the GestureDetector.
     /// Properties are stored/updated for display in the UI.
     /// </summary>
-    public sealed class GestureResultView : INotifyPropertyChanged
+    public sealed class GestureResultViewOld : INotifyPropertyChanged
     {
         /// <summary> Image to show when the 'detected' property is true for a tracked body </summary>
         private readonly ImageSource seatedImage = new BitmapImage(new Uri(@"Images\Seated.png", UriKind.Relative));
@@ -58,7 +58,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.views
         /// <param name="isTracked">True, if the body is currently tracked</param>
         /// <param name="detected">True, if the gesture is currently detected for the associated body</param>
         /// <param name="confidence">Confidence value for detection of the 'Seated' gesture</param>
-        public GestureResultView(int bodyIndex, bool isTracked, bool detected, float confidence)
+        private GestureResultViewOld(int bodyIndex, bool isTracked, bool detected, float confidence)
         {
             this.BodyIndex = bodyIndex;
             this.IsTracked = isTracked;

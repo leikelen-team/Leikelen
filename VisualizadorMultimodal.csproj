@@ -241,6 +241,7 @@
     </ApplicationDefinition>
     <Compile Include="db\DataAnalysisContext.cs" />
     <Compile Include="models\Interval.cs" />
+    <Compile Include="views\_PersonView.cs" />
     <Compile Include="windows\AddOrEditPostureType.xaml.cs">
       <DependentUpon>AddOrEditPostureType.xaml</DependentUpon>
     </Compile>
@@ -252,7 +253,7 @@
       <DependentUpon>PostureCRUD.xaml</DependentUpon>
     </Compile>
     <Compile Include="db\PostureTypeContext.cs" />
-    <Compile Include="views\PersonView.cs" />
+    <Compile Include="views\PosturesPersonView.cs" />
     <Compile Include="_deprecated\_Analytics.cs" />
     <Compile Include="windows\ChartForm.cs">
       <SubType>Form</SubType>

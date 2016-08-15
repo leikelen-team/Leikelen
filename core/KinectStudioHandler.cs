@@ -100,15 +100,24 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
                 for (int i= childs.Count-1; i>=0; i--)
                     if (childs[i] is TextBlock)
                         MainWindow.Instance().timeRulerGrid.Children.RemoveAt(i);
+
+                MainWindow.Instance().timeLineContentGrid.Children.Clear();
+                MainWindow.Instance().personLabelsGrid.Children.Clear();
+
                 MainWindow.Instance().timeRulerGrid.ColumnDefinitions.Clear();
                 MainWindow.Instance().timeLineContentGrid.ColumnDefinitions.Clear();
+                MainWindow.Instance().timeLineContentGrid.RowDefinitions.Clear();
+                MainWindow.Instance().personLabelsGrid.RowDefinitions.Clear();
+                MainWindow.Instance().timeLineVerticalScrollViewSubGrid.RowDefinitions.Clear();
                 foreach (var person in Scene.Instance.Persons)
-                    if (person.view != null) { 
-                        person.view.postureGroupsGrid.Children.Clear();
-                        person.view.postureGroupsGrid.ColumnDefinitions.Clear();
-                        person.view.postureGroupsGrid.RowDefinitions.Clear();
-                        person.view.combosStackPanel.Children.Clear();
+                    if (person.View != null && person.View.postureGroupsGrid!=null && person.View.ComboStackPanel!=null)
+                    {
+                        person.View.postureGroupsGrid.Children.Clear();
+                        person.View.postureGroupsGrid.ColumnDefinitions.Clear();
+                        person.View.postureGroupsGrid.RowDefinitions.Clear();
+                        person.View.ComboStackPanel.Children.Clear();
                     }
+                Scene.Instance.Persons.Clear();
             }
 
             Scene.Create(fileInfo.FilePath, fileInfo.CreationUtcFileTime, playback.Duration);
@@ -118,7 +127,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
             this.playback.Start();
             Thread.Sleep(PausedStartMillisTime);
             this.playback.Pause();
-
+            
 
             ColumnDefinition rulerCol, contentCol;
             TextBlock text;

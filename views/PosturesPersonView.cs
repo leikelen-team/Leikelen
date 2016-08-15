@@ -7,31 +7,31 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.views
 {
-    public class PersonView
+    public class PosturesPersonView
     {
-        public int bodyIndex { get; private set; }
+        private Person Person;
+
+        public List<Tuple<PostureType, ComboBox, RowDefinition>>
+                   visiblePostures
+            { get; private set; } = null;
+        
         public Grid postureGroupsGrid { get; private set; } = null;
-        public StackPanel combosStackPanel { get; private set; }
-        public List<Tuple<PostureType, ComboBox, RowDefinition>> 
-                    visiblePostures { get; private set; } = null;
-        private List<PostureIntervalGroup> postureIntervalGroups;
-        private System.Windows.Media.Brush color;
+        public StackPanel ComboStackPanel { get; private set; }
+        public Label Label { get; private set; }
 
-        //private PostureType[] visiblePostureTypes = null;
+        public PosturesPersonView(Person person)
+        {
+            this.Person = person;
+            this.initControlsAndBorders();
+            
+        }
 
-        public PersonView(
-            int bodyIndex, 
-            StackPanel combosStackPanel, 
-            List<PostureIntervalGroup> postureIntervalGroups,
-            System.Windows.Media.Brush color
-        ){
-            this.bodyIndex = bodyIndex;
-            this.combosStackPanel = combosStackPanel;
-            this.postureIntervalGroups = postureIntervalGroups;
-            this.color = color;
+        public void generateCombos()
+        {
             int maxVisiblePostureTypes = Convert.ToInt32(Properties.Resources.MaxPostureIntervalGroupViewPerUser);
 
             visiblePostures = new List<Tuple<PostureType, ComboBox, RowDefinition>>();
@@ -43,10 +43,10 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.views
                 colDef.Width = new GridLength(5, GridUnitType.Pixel);
                 postureGroupsGrid.ColumnDefinitions.Add(colDef);
             }
-            Grid.SetRow(postureGroupsGrid, this.bodyIndex);
+            Grid.SetRow(postureGroupsGrid, Person.ListIndex);
             Grid.SetColumn(postureGroupsGrid, 0);
             Grid.SetColumnSpan(postureGroupsGrid, MainWindow.Instance().kstudio.frameTimes.Count);
-            
+
 
             //visiblePostureTypes = new PostureType[maxVisiblePostureTypes];
             PostureType postureType;
@@ -64,7 +64,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.views
                 {
                     combo.Items.Add(pt);
                 }
-                this.combosStackPanel.Children.Add(combo);
+                this.ComboStackPanel.Children.Add(combo);
 
                 RowDefinition rowDef = new RowDefinition();
                 rowDef.Height = new GridLength(1, GridUnitType.Star);
@@ -79,7 +79,67 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.views
             }
         }
 
-        public void refreshAllIntervalGroups()
+        private void initControlsAndBorders()
+        {
+            Border border = new Border();
+            border.Background = Brushes.GhostWhite;
+            border.BorderBrush = Brushes.Silver;
+            border.BorderThickness = new Thickness(3);
+            border.CornerRadius = new CornerRadius(8, 8, 3, 3);
+            Grid.SetColumn(border, 0);
+            Grid.SetColumnSpan(border, 2);
+            Grid.SetRow(border, Person.ListIndex);
+
+            Label = new Label();
+            Label.Content = Person.Name;
+            Label.HorizontalAlignment = HorizontalAlignment.Left;
+            Label.VerticalAlignment = VerticalAlignment.Top;
+            Label.Foreground = Person.Color;
+            Grid.SetColumn(Label, 0);
+            Grid.SetRow(Label, Person.ListIndex);
+
+            ComboStackPanel = new StackPanel();
+            ComboStackPanel.Orientation = Orientation.Vertical;
+            ComboStackPanel.Margin = new Thickness(0, 6, 7, 0);
+            Grid.SetColumn(ComboStackPanel, 1);
+            Grid.SetRow(ComboStackPanel, Person.ListIndex);
+
+            RowDefinition personCtrlRowDef = new RowDefinition();
+            personCtrlRowDef.Height = new GridLength(77, GridUnitType.Pixel);
+            Grid personLabelsGrid = MainWindow.Instance().personLabelsGrid;
+            personLabelsGrid.RowDefinitions.Add(personCtrlRowDef);
+
+            personLabelsGrid.Children.Add(border);
+            personLabelsGrid.Children.Add(Label);
+            personLabelsGrid.Children.Add(ComboStackPanel);
+
+            //---
+
+            Border posturesViewBorder = new Border();
+            posturesViewBorder.Background = Brushes.GhostWhite;
+            posturesViewBorder.BorderBrush = Brushes.Silver;
+            posturesViewBorder.BorderThickness = new Thickness(3);
+            posturesViewBorder.CornerRadius = new CornerRadius(8, 8, 3, 3);
+            Grid.SetColumn(posturesViewBorder, 0);
+            Grid.SetColumnSpan(posturesViewBorder, Int32.MaxValue);
+            Grid.SetRow(posturesViewBorder, Person.ListIndex);
+
+            RowDefinition postureViewRowDef = new RowDefinition();
+            postureViewRowDef.Height = new GridLength(77, GridUnitType.Pixel);
+            Grid timeLineContentGrid = MainWindow.Instance().timeLineContentGrid;
+            timeLineContentGrid.RowDefinitions.Add(postureViewRowDef);
+
+            timeLineContentGrid.Children.Add(posturesViewBorder);
+
+            //---
+
+            RowDefinition verticalScrollSyncRowDef = new RowDefinition();
+            verticalScrollSyncRowDef.Height = new GridLength(77, GridUnitType.Pixel);
+            Grid verticalScrollSyncGrid = MainWindow.Instance().timeLineVerticalScrollViewSubGrid;
+            verticalScrollSyncGrid.RowDefinitions.Add(verticalScrollSyncRowDef);
+        }
+
+        public void repaintIntervalGroups()
         {
             //foreach (var visiblePosture in visiblePostures)
             //{
@@ -87,11 +147,11 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.views
             //}
             for (int i = 0; i < visiblePostures.Count; i++)
             {
-                refreshIntervalGroup(visiblePostures[i].Item2);
+                repaintIntervalGroup(visiblePostures[i].Item2);
             }
         }
 
-        private void refreshIntervalGroup(ComboBox combo)
+        private void repaintIntervalGroup(ComboBox combo)
         {
             
             PostureType newPostureType = (PostureType)combo.SelectedItem;
@@ -117,7 +177,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.views
                 new Tuple<PostureType, ComboBox, RowDefinition>
                     (newPostureType, combo, rowDef)
                 );
-            PostureIntervalGroup postureIntervalGroup = postureIntervalGroups
+            PostureIntervalGroup postureIntervalGroup = Person.PostureIntervalGroups
                                     .FirstOrDefault
                                     (g => g.PostureType == newPostureType);
             if (postureIntervalGroup != null)
@@ -132,7 +192,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.views
                     int intervalFinCol = Convert.ToInt32(interval.EndTime.TotalSeconds);
 
                     System.Windows.Shapes.Path path = new System.Windows.Shapes.Path();
-                    path.Stroke = this.color;//System.Windows.Media.Brushes.Red; //person.Color; // postureIntervalGroup.postureType.color; //
+                    path.Stroke = Person.Color;//System.Windows.Media.Brushes.Red; //person.Color; // postureIntervalGroup.postureType.color; //
                     path.StrokeThickness = 10;
                     path.Stretch = System.Windows.Media.Stretch.Fill;
                     Grid.SetRow(path, rowDefIndex);
@@ -151,7 +211,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.views
         private void Combo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ComboBox combo = (ComboBox)sender;
-            refreshIntervalGroup(combo);
+            repaintIntervalGroup(combo);
         }
 
 

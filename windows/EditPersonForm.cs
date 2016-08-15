@@ -38,21 +38,21 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.windows
             this.label_sujeto = label_sujeto;
 
             this.person = Scene.Instance.Persons[personIndex];
-            this.nameTextBox.Text = person.name;
-            this.maleRadio.Checked = person.gender == Person.Gender.Masculino ? true : false;
-            this.femaleRadio.Checked = person.gender == Person.Gender.Femenino ? true : false;
-            this.ageTextBox.Text = person.age.ToString();
+            this.nameTextBox.Text = person.Name;
+            this.maleRadio.Checked = person.Gender == Person.GenderEnum.Masculino ? true : false;
+            this.femaleRadio.Checked = person.Gender == Person.GenderEnum.Femenino ? true : false;
+            this.ageTextBox.Text = person.Age.ToString();
         }
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            label_sujeto.Content = this.person.name = this.nameTextBox.Text;
-            this.person.gender = this.maleRadio.Checked ? Person.Gender.Masculino : Person.Gender.Femenino;
-            this.person.age = Int32.Parse(this.ageTextBox.Text);
+            label_sujeto.Content = this.person.Name = this.nameTextBox.Text;
+            this.person.Gender = this.maleRadio.Checked ? Person.GenderEnum.Masculino : Person.GenderEnum.Femenino;
+            this.person.Age = Int32.Parse(this.ageTextBox.Text);
             if(MainWindow.chartForm!=null && !MainWindow.chartForm.IsDisposed)
                 MainWindow.chartForm.updatePersonalPersonData(this.person);
 
-            Console.WriteLine("new name in Instance: " + Scene.Instance.Persons[this.person.bodyIndex].name);
+            Console.WriteLine("new name in Instance: " + Scene.Instance.Persons.FirstOrDefault(p => p.TrackingId == person.TrackingId).Name);
 
             this.Hide();
             this.Dispose();

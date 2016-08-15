@@ -39,11 +39,11 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.models
         public static Scene Create(string name, DateTime startDate, TimeSpan duration)
         {
             instance = new Scene(name, startDate, duration);
-            instance.Persons = new List<Person>(6);
-            for (int i = 1; i <= 6; i++)
-            {
-                instance.Persons.Add(new Person(i-1, "Sujeto "+i, Person.Gender.Masculino, 0));
-            }
+            instance.Persons = new List<Person>();
+            //for (int i = 1; i <= 6; i++)
+            //{
+            //    instance.Persons.Add(new Person(i-1, "Sujeto "+i, Person.GenderEnum.Masculino, 0));
+            //}
             return instance;
         }
         
