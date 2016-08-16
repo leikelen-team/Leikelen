@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Samples.Kinect.VisualizadorMultimodal.db;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -15,10 +16,10 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.models
         public int SceneId { get; set; }
         public string name { get; set; }
         public string description { get; set; }
-        public DateTime startDate { get; private set; } // start date when begin to record
-        public TimeSpan duration { get; private set; }
+        public DateTime startDate { get; set; } // start date when begin to record
+        public TimeSpan duration { get; set; }
 
-        public List<Person> Persons { get; private set; }
+        public List<Person> Persons { get; set; }
 
         [NotMapped]
         public static Scene Instance
@@ -27,7 +28,12 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.models
             {
                 return instance;
             }
+            set
+            {
+                instance = value;
+            }
         }
+        public Scene() { }
 
         private Scene(string name, DateTime startDate, TimeSpan duration)
         {
@@ -46,6 +52,18 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.models
             //}
             return instance;
         }
+
+        //public static void CreateFromDbContext()
+        //{
+        //    instance = DataAnalysisContext.db.Scene.First();
+        //    instance.Persons.AddRange(
+        //        DataAnalysisContext.db.Person.ToList()
+        //        );
+            
+
+
+
+        //}
         
     }
 }

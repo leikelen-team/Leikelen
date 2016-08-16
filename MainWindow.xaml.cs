@@ -507,6 +507,28 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
             }
 
         }
+        private void realImportButtons_Click(object sender, RoutedEventArgs e)
+        {
+            var db = DataAnalysisContext.CreateConnection(@"tmp\scene_data.db");
+            //db.Database.EnsureCreated();
+            //db.Scene.Add(Scene.Instance);
+            //db.SaveChanges();
+            Scene.CreateFromDbContext();
+
+            if (Scene.Instance == null) return;
+            foreach (Person person in Scene.Instance.Persons)
+            {
+                if (!person.HasBeenTracked) continue;
+                //person.generatePostureIntervals();
+                //StackPanel combosStackPanel = person.View.ComboStackPanel;
+                //person.PosturesView = new PosturesPersonView(person);
+                person.generateView();
+                person.View.generateCombos();
+                timeLineContentGrid.Children.Add(person.View.postureGroupsGrid);
+                person.View.repaintIntervalGroups();
+            }
+
+        }
 
         private void exportButtons_Click(object sender, RoutedEventArgs e)
         {
@@ -529,6 +551,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
             //    db.SaveChanges();
             //}
 
+            //this.kstudio.ExportScene(@"tmp\scene_data.xef");
             var db = DataAnalysisContext.CreateConnection(@"tmp\scene_data.db");
             db.Database.EnsureCreated();
             db.Scene.Add(Scene.Instance);
@@ -707,5 +730,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
             postureCrud = new PostureCRUD();
             postureCrud.Show();
         }
+
+        
     }
 }

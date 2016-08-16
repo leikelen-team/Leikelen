@@ -63,6 +63,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.models
         [NotMapped]
         private static int currentColorIndex = 0;
        
+        public Person() { }
 
         public enum GenderEnum { Masculino, Femenino };
         public Person(ulong trackingId, int listIndex/*int bodyIndex, string name, GenderEnum gender, int age*/)
@@ -84,6 +85,11 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.models
             //    new GestureDetector(bodyIndex, KinectBody.kinectSensor);
 
 
+        }
+
+        public void generateView()
+        {
+            this.View = new PosturesPersonView(this);
         }
 
         

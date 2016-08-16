@@ -15,7 +15,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.models
         public PostureType PostureType { get; private set; }
         public TimeSpan SceneLocationTime { get; private set; }
         //public Body body { get; set; }
-
+        public MicroPosture() { }
         public MicroPosture(PostureType postureType, TimeSpan sceneLocationTime)
         {
             this.PostureType = postureType;

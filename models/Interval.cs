@@ -15,7 +15,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.models
         public TimeSpan StartTime { get; set; }
         public TimeSpan EndTime { get; set; }
         public PostureType PostureType { get; set; }
-
+        public Interval() { }
         public Interval(MicroPosture startMicroPosture, MicroPosture endMicroPosture)
         {
             //this.Item1 = Item1;

@@ -15,6 +15,8 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.models
         public int PersonId { get; set; }
         public Person Person { get; set; }
 
+        public PostureIntervalGroup() { }
+
         public PostureIntervalGroup(PostureType postureType)
         {
             this.PostureType = postureType;

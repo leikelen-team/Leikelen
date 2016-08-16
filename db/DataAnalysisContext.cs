@@ -25,10 +25,21 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.db
         public static DataAnalysisContext CreateConnection(string filePath)
         {
             var optionsBuilder = new DbContextOptionsBuilder();
-            optionsBuilder.UseSqlite("Filename=" + filePath);
+            optionsBuilder.UseSqlite("Filename=" + filePath); // Datasource
             db = new DataAnalysisContext(optionsBuilder.Options);
+
+            
             return db;
+
         }
+        //public static void LoadData()
+        //{
+        //    models.Scene.Instance = db.Scene
+        //        .Include(s => s.Persons)
+        //        .ThenInclude(p => p)
+
+            
+        //}
 
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         //{
