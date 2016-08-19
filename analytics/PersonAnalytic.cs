@@ -18,7 +18,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.analytics
             //Posture[] postures = (Posture[])Enum.GetValues(typeof(Posture));
             foreach (PostureType postureType in PostureType.availablesPostureTypes)
             {
-                int postureCount = person.MicroPostures.Count(p => p.PostureType.name == postureType.name);
+                int postureCount = person.MicroPostures.Count(p => p.PostureType.Name == postureType.Name);
                 float avg = (float)postureCount / (float)totalCount;
                 dic.Add(postureType, avg);
             }
@@ -33,10 +33,10 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.analytics
             
             foreach (PostureType postureType in PostureType.availablesPostureTypes)
             {
-                int postureCount = person.MicroPostures.Count(p => p.PostureType.name == postureType.name);
+                int postureCount = person.MicroPostures.Count(p => p.PostureType.Name == postureType.Name);
                 if (postureCount == 0) continue;
                 int avg = (int)(((float)postureCount / (float)totalCount) * 100.0f);
-                dic.Add(postureType.name + " " + avg.ToString() + "%", avg.ToString());
+                dic.Add(postureType.Name + " " + avg.ToString() + "%", avg.ToString());
             }
 
             return dic;

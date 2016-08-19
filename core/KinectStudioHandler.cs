@@ -22,15 +22,13 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
     {
         private KStudioClient client = KStudio.CreateClient();
         public KStudioPlayback playback { get; private set; }
-        //private BackgroundWorker playerWorker;
-        //private BackgroundWorker recWorker;
         private string recordingFilePath;
         private string playingFilePath;
         private DateTime? recordStartTime = null;
         private KStudioRecording recorder;
         public int PausedStartMillisTime { get; private set; } = 150;
 
-        public List<TimeSpan> frameTimes { get; private set; }
+        
 
 
 
@@ -74,10 +72,10 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
 
             string old_playingFilePath = this.playingFilePath;
             File.Copy(this.playingFilePath, path);
-            ImportScene(path);
+            RecSimulate(path);
 
         }
-        public void ImportScene(string path)
+        public void RecSimulate(string path)
         {
             this.client.DisconnectFromService();
             this.client.ConnectToService();
@@ -93,147 +91,46 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
             Console.WriteLine("Creation Date: " + fileInfo.CreationUtcFileTime);
             Console.WriteLine("Duration: " + playback.Duration);
             Console.WriteLine("Path: " + playback.FilePath);
-            
-            if ( Scene.Instance != null)
-            {
-                UIElementCollection childs = MainWindow.Instance().timeRulerGrid.Children;
-                for (int i= childs.Count-1; i>=0; i--)
-                    if (childs[i] is TextBlock)
-                        MainWindow.Instance().timeRulerGrid.Children.RemoveAt(i);
 
-                MainWindow.Instance().timeLineContentGrid.Children.Clear();
-                MainWindow.Instance().personLabelsGrid.Children.Clear();
+            if (Scene.Instance != null) Scene.Instance.Clear();
 
-                MainWindow.Instance().timeRulerGrid.ColumnDefinitions.Clear();
-                MainWindow.Instance().timeLineContentGrid.ColumnDefinitions.Clear();
-                MainWindow.Instance().timeLineContentGrid.RowDefinitions.Clear();
-                MainWindow.Instance().personLabelsGrid.RowDefinitions.Clear();
-                MainWindow.Instance().timeLineVerticalScrollViewSubGrid.RowDefinitions.Clear();
-                foreach (var person in Scene.Instance.Persons)
-                    if (person.View != null && person.View.postureGroupsGrid!=null && person.View.ComboStackPanel!=null)
-                    {
-                        person.View.postureGroupsGrid.Children.Clear();
-                        person.View.postureGroupsGrid.ColumnDefinitions.Clear();
-                        person.View.postureGroupsGrid.RowDefinitions.Clear();
-                        person.View.ComboStackPanel.Children.Clear();
-                    }
-                Scene.Instance.Persons.Clear();
-            }
-
-            Scene.Create(fileInfo.FilePath, fileInfo.CreationUtcFileTime, playback.Duration);
             MainWindow.lastCurrentTime = TimeSpan.FromSeconds(0);
             MainWindow.Instance().sceneSlider.Maximum = playback.Duration.TotalMilliseconds;
-            
+
             this.playback.Start();
             Thread.Sleep(PausedStartMillisTime);
             this.playback.Pause();
+
+            Scene.Create(fileInfo.FilePath, fileInfo.CreationUtcFileTime, playback.Duration);
+
+        }
+
+        public void Import(string path)
+        {
+            this.client.DisconnectFromService();
+            this.client.ConnectToService();
+
+            this.playingFilePath = Path.GetFullPath(path);
+            this.isSceneImportedOrRecorded = true;
+            //string fullPath = Path.GetFullPath(this.playingFilePath);
+            this.playback = this.client.CreatePlayback(playingFilePath);
+            KStudioFileInfo fileInfo = this.client.GetFileList(playingFilePath).First();
+
+            Console.WriteLine("Scene Imported:");
+            Console.WriteLine("File Name: " + fileInfo.FilePath);
+            Console.WriteLine("Size: " + fileInfo.Size);
+            Console.WriteLine("Creation Date: " + fileInfo.CreationUtcFileTime);
+            Console.WriteLine("Duration: " + playback.Duration);
+            Console.WriteLine("Path: " + playback.FilePath);
+
             
 
-            ColumnDefinition rulerCol, contentCol;
-            TextBlock text;
-            frameTimes = new List<TimeSpan>();
-            TimeSpan frameTime = TimeSpan.FromSeconds(0);
-            //int currentSeg = 0;
-            int colSpan = 10;
-            for (int colCount=0; true; colCount++)
-            {
-                if (frameTime < playback.Duration)
-                {
-                    frameTimes.Add(frameTime);
-                    
-                    rulerCol = new ColumnDefinition();
-                    rulerCol.Width = new GridLength(5, GridUnitType.Pixel);
-                    MainWindow.Instance().timeRulerGrid.ColumnDefinitions.Add(rulerCol);
+            MainWindow.lastCurrentTime = TimeSpan.FromSeconds(0);
+            MainWindow.Instance().sceneSlider.Maximum = playback.Duration.TotalMilliseconds;
 
-                    contentCol = new ColumnDefinition();
-                    contentCol.Width = new GridLength(5, GridUnitType.Pixel);
-                    MainWindow.Instance().timeLineContentGrid.ColumnDefinitions.Add(contentCol);
-
-                    if (colCount % colSpan == 0 && colCount!=0)
-                    {
-                        text = new TextBlock();
-                        text.Text = "|";
-                        text.HorizontalAlignment = HorizontalAlignment.Left;
-                        Grid.SetRow(text, 0);
-                        Grid.SetColumn(text, colCount);
-                        Grid.SetColumnSpan(text, colSpan);
-                        MainWindow.Instance().timeRulerGrid.Children.Add(text);
-
-                        text = new TextBlock();
-                        //text.Text = frameTime.TotalSeconds.ToString("N0");
-                        text.Text = frameTime.ToShortForm();
-                        text.HorizontalAlignment = colCount == 0 ? 
-                            HorizontalAlignment.Left : HorizontalAlignment.Center;
-                        Grid.SetRow(text, 1);
-                        int offset = colCount==0 ? 0 : (colSpan / 2);
-                        Grid.SetColumn(text, colCount- offset);
-                        Grid.SetColumnSpan(text, colSpan);
-                        MainWindow.Instance().timeRulerGrid.Children.Add(text);
-
-
-                    }
-                    else
-                    //if (colCount % (colSpan / 2) == 0)
-                    {
-                        text = new TextBlock();
-                        text.Text = "·";
-                        text.HorizontalAlignment = HorizontalAlignment.Left;
-                        Grid.SetRow(text, 0);
-                        Grid.SetColumn(text, colCount);
-                        //Grid.SetColumnSpan(text, colSpan/2);
-                        MainWindow.Instance().timeRulerGrid.Children.Add(text);
-                    }
-
-                    frameTime = frameTime.Add(TimeSpan.FromMilliseconds(1000.00));
-                }
-                else
-                {
-                    break;
-                }
-            }
-
-
-
-
-
-
-
-
-
-            //Console.WriteLine("relative time millis timespan: " + playback.StartRelativeTime.ToString());
-            //Console.WriteLine("relative time millis double: " + playback.StartRelativeTime.TotalMilliseconds.ToString());
-            //int millisStart = (int)this.playback.StartRelativeTime.TotalMilliseconds;
-            //Console.WriteLine("relative time millis int: " + millisStart.ToString());
-            //Console.WriteLine("----MARKERS---");
-            //Console.WriteLine("Markers count: "+ this.playback.Markers.Count);
-            //foreach (KStudioMarker marker in this.playback.Markers)
-            //{
-            //    Console.WriteLine("Marker name: " + marker.Name);
-            //    Console.WriteLine("Marker ToString: " + marker.ToString());
-            //    Console.WriteLine("Marker RelativeTime: " + marker.RelativeTime.ToString());
-            //    Console.WriteLine("--------------");
-            //}
-
-            //Console.WriteLine("----PUBLIC METADATA---");
-            //KStudioMetadata publicMetadata = this.playback.GetMetadata(KStudioMetadataType.Public);
-            //foreach (KeyValuePair<string, object> entry in publicMetadata)
-            //{
-            //    // do something with entry.Value or entry.Key
-            //    Console.WriteLine(entry.Key+": "+entry.Value);
-            //}
-
-            //Console.WriteLine("----PRIVATE METADATA---");
-            //KStudioMetadata privateMetadata = this.playback.GetMetadata(KStudioMetadataType.PersonallyIdentifiableInformation);
-            //foreach (KeyValuePair<string, object> entry in privateMetadata)
-            //{
-            //    // do something with entry.Value or entry.Key
-            //    Console.WriteLine(entry.Key + ": " + entry.Value);
-            //}
-
-
-
-
-
+            this.playback.Start();
+            Thread.Sleep(PausedStartMillisTime);
+            this.playback.Pause();
         }
 
 
@@ -317,11 +214,14 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
                 playback.Stop();
                 //isPlaying = false;
 
-                MainWindow.lastCurrentTime = TimeSpan.FromSeconds(0);
-                //this.playback.AddPausePointByRelativeTime(TimeSpan.FromMilliseconds(PausedStartMillisTime));
-                this.playback.Start();
-                Thread.Sleep(PausedStartMillisTime);
-                this.playback.Pause();
+                //MainWindow.lastCurrentTime = TimeSpan.FromSeconds(0);
+                ////this.playback.AddPausePointByRelativeTime(TimeSpan.FromMilliseconds(PausedStartMillisTime));
+                //this.playback.Start();
+                //Thread.Sleep(PausedStartMillisTime);
+                //this.playback.Pause();
+                string fullPath = Path.GetFullPath(this.recordingFilePath);
+                File.Copy(fullPath, fullPath + "_copy");
+                this.RecSimulate(fullPath + "_copy");
             }
 
             //playerWorker.CancelAsync();
@@ -355,36 +255,35 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
             if(recorder!=null && recorder.State != KStudioRecordingState.Recording)
             {
                 recorder.Stop();
-                //isRecording = false;
                 recordStartTime = null;
-                this.ImportScene(this.recordingFilePath);
-                
-                //this.client.DisconnectFromService();
-                //this.client.ConnectToService();
+                this.RecSimulate(this.recordingFilePath);
 
-                //this.playingFilePath = this.recordingFilePath;
-                //this.isSceneImportedOrRecorded = true;
-                //this.playback = this.client.CreatePlayback(this.playingFilePath);
-                //KStudioFileInfo fileInfo = this.client.GetFileList(this.playingFilePath).First();
 
-                //Console.WriteLine("Scene Imported:");
-                //Console.WriteLine("File Name: " + fileInfo.FilePath);
-                //Console.WriteLine("Size: " + fileInfo.Size);
-                //Console.WriteLine("Creation Date: " + fileInfo.CreationUtcFileTime);
-                //Console.WriteLine("Duration: " + playback.Duration);
-                //Console.WriteLine("Path: " + playback.FilePath);
+                this.client.DisconnectFromService();
+                this.client.ConnectToService();
 
-                //Scene.Create(fileInfo.FilePath, fileInfo.CreationUtcFileTime, playback.Duration);
+                this.playingFilePath = this.recordingFilePath;
+                this.isSceneImportedOrRecorded = true;
+                this.playback = this.client.CreatePlayback(this.playingFilePath);
+                KStudioFileInfo fileInfo = this.client.GetFileList(this.playingFilePath).First();
 
-                //Console.WriteLine("relative time millis timespan: " + playback.StartRelativeTime.ToString());
-                //Console.WriteLine("relative time millis double: " + playback.StartRelativeTime.TotalMilliseconds.ToString());
+                Console.WriteLine("Scene Imported:");
+                Console.WriteLine("File Name: " + fileInfo.FilePath);
+                Console.WriteLine("Size: " + fileInfo.Size);
+                Console.WriteLine("Creation Date: " + fileInfo.CreationUtcFileTime);
+                Console.WriteLine("Duration: " + playback.Duration);
+                Console.WriteLine("Path: " + playback.FilePath);
 
-                //int millisStart = (int)this.playback.StartRelativeTime.TotalMilliseconds;
-                //Console.WriteLine("relative time millis int: " + millisStart.ToString());
+                if (Scene.Instance != null) Scene.Instance.Clear();
 
-                //this.playback.AddPausePointByRelativeTime(TimeSpan.FromMilliseconds(500));
-                //this.playback.Start();
+                MainWindow.lastCurrentTime = TimeSpan.FromSeconds(0);
+                MainWindow.Instance().sceneSlider.Maximum = playback.Duration.TotalMilliseconds;
 
+                this.playback.Start();
+                Thread.Sleep(PausedStartMillisTime);
+                this.playback.Pause();
+
+                Scene.Create(fileInfo.FilePath, fileInfo.CreationUtcFileTime, playback.Duration);
 
 
             }
@@ -392,35 +291,35 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
                 
         }
 
-        private void bw_DoWork_StartRecording(object sender, DoWorkEventArgs e)
-        {
-            this.client.DisconnectFromService();
-            this.client.ConnectToService();
+        //private void bw_DoWork_StartRecording(object sender, DoWorkEventArgs e)
+        //{
+        //    this.client.DisconnectFromService();
+        //    this.client.ConnectToService();
 
-            File.Delete(this.recordingFilePath);
+        //    File.Delete(this.recordingFilePath);
 
-            KStudioEventStreamSelectorCollection streamCollection;
-            streamCollection = new KStudioEventStreamSelectorCollection();
-            streamCollection.Add(KStudioEventStreamDataTypeIds.Body);
-            streamCollection.Add(KStudioEventStreamDataTypeIds.BodyIndex);
-            streamCollection.Add(KStudioEventStreamDataTypeIds.UncompressedColor);
-            recorder = client.CreateRecording(this.recordingFilePath, streamCollection);
-            this.isSceneImportedOrRecorded = true;
-            recorder.Start();
+        //    KStudioEventStreamSelectorCollection streamCollection;
+        //    streamCollection = new KStudioEventStreamSelectorCollection();
+        //    streamCollection.Add(KStudioEventStreamDataTypeIds.Body);
+        //    streamCollection.Add(KStudioEventStreamDataTypeIds.BodyIndex);
+        //    streamCollection.Add(KStudioEventStreamDataTypeIds.UncompressedColor);
+        //    recorder = client.CreateRecording(this.recordingFilePath, streamCollection);
+        //    this.isSceneImportedOrRecorded = true;
+        //    recorder.Start();
 
-            while (recorder.State == KStudioRecordingState.Recording)
-            {
+        //    while (recorder.State == KStudioRecordingState.Recording)
+        //    {
                 
-                Thread.Sleep(500);
-            }
+        //        Thread.Sleep(500);
+        //    }
             
 
-            if (recorder.State == KStudioRecordingState.Error)
-            {
-                throw new InvalidOperationException("Error: Recording failed!");
-            }
+        //    if (recorder.State == KStudioRecordingState.Error)
+        //    {
+        //        throw new InvalidOperationException("Error: Recording failed!");
+        //    }
             
-        }
+        //}
 
 
         //private void bw_DoWork_StartPlaying(object sender, DoWorkEventArgs e)

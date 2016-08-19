@@ -75,7 +75,7 @@
             </Grid.RowDefinitions>
             <StackPanel Orientation="Vertical">
                 <Button x:Name="realImportButtons" Content="Importar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="53" Click="realImportButtons_Click"/>
-                <Button x:Name="importButtons" Content="Simular" HorizontalAlignment="Left" VerticalAlignment="Top" Width="53" Click="importButtons_Click"/>
+                <Button x:Name="importButtons" Content="Simular" HorizontalAlignment="Left" VerticalAlignment="Top" Width="53" Click="simulateButtons_Click"/>
                 <Button x:Name="exportButtons" Content="Exportar" VerticalAlignment="Top" Click="exportButtons_Click" Margin="0,0,1,0"/>
                 <Button x:Name="posturesAdmin" Content="Posturas" HorizontalAlignment="Left" VerticalAlignment="Top" Width="53" Click="posturesAdmin_Click" Height="20"/>
                 <Button x:Name="analizePostures" Content="Analizar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="53" Click="analizePostures_Click"/>

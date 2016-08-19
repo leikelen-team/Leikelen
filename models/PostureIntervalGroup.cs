@@ -9,11 +9,12 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.models
     public class PostureIntervalGroup
     {
         public int PostureIntervalGroupId { get; set; }
-        public PostureType PostureType { get; private set; }
         public List<Interval> Intervals { get; set; }
 
         public int PersonId { get; set; }
         public Person Person { get; set; }
+        public int PostureTypeId { get; private set; }
+        public PostureType PostureType { get; private set; }
 
         public PostureIntervalGroup() { }
 

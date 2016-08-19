@@ -16,7 +16,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.models
 {
     public class Person
     {
-        [NotMapped]
+        //[NotMapped]
         public int ListIndex { get; private set; }
 
         public int PersonId { get; set; }
@@ -26,17 +26,23 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.models
         public GenderEnum Gender { get; set; }
         public int Age { get; set; }
         public List<PostureIntervalGroup> PostureIntervalGroups { get; set; }
-        public List<MicroPosture> MicroPostures { get; private set; }
+        [NotMapped]
+        public List<MicroPosture> MicroPostures { get; set; }
+
         public int SceneId { get; set; }
         public Scene Scene { get; set; }
-        
+
         [NotMapped]
         public Brush Color { get; private set; }
 
         [NotMapped]
         public bool HasBeenTracked
         {
-            get { return MicroPostures.Count != 0; }
+            get {
+                return 
+                    (PostureIntervalGroups!=null && PostureIntervalGroups.Count!=0) ||
+                    (MicroPostures!=null && MicroPostures.Count != 0);
+            }
         }
 
         //[NotMapped]
@@ -49,7 +55,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.models
         //public PosturesPersonView PosturesView { get; set; }
 
         [NotMapped]
-        public PosturesPersonView View { get; private set; }
+        public PersonView View { get; private set; }
 
         [NotMapped]
         private static Brush[] colors = {
@@ -63,7 +69,10 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.models
         [NotMapped]
         private static int currentColorIndex = 0;
        
-        public Person() { }
+        public Person() {
+            this.Color = colors[currentColorIndex++];
+            if (currentColorIndex == colors.Count()) currentColorIndex = 0;
+        }
 
         public enum GenderEnum { Masculino, Femenino };
         public Person(ulong trackingId, int listIndex/*int bodyIndex, string name, GenderEnum gender, int age*/)
@@ -79,8 +88,9 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.models
             this.PostureIntervalGroups = new List<PostureIntervalGroup>();
             //this.PosturesView = null;
             this.Color = colors[currentColorIndex++];
-            this.View = new PosturesPersonView(this);
             if (currentColorIndex == colors.Count()) currentColorIndex = 0;
+
+            this.View = new PersonView(this);
             //this.GestureDetector = 
             //    new GestureDetector(bodyIndex, KinectBody.kinectSensor);
 
@@ -89,7 +99,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.models
 
         public void generateView()
         {
-            this.View = new PosturesPersonView(this);
+            this.View = new PersonView(this);
         }
 
         
@@ -104,7 +114,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.models
 
             foreach (PostureType posture in posturesAvg.Keys)
             {
-                Console.WriteLine(posture.name + ": " + posturesAvg[posture].ToString("0.00"));
+                Console.WriteLine(posture.Name + ": " + posturesAvg[posture].ToString("0.00"));
             }
 
             ChartForm chartForm = new ChartForm(this);
@@ -129,7 +139,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.models
 
                 foreach (MicroPosture microPosture in this.MicroPostures)
                 {
-                    if (microPosture.PostureType.name != currentPostureType.name) continue;
+                    if (microPosture.PostureType.Name != currentPostureType.Name) continue;
 
                     if (lastMicroPosture == null)
                     {

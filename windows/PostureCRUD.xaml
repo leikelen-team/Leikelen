@@ -19,9 +19,9 @@
         <Button Grid.Row="0" x:Name="removePostureButton" Content="Eliminar" HorizontalAlignment="Left" Margin="91,0,0,0" Click="removePostureButton_Click"/>
         <DataGrid Grid.Row="1" x:Name="postureCrudDataGrid" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding id}"/>
-                <DataGridTextColumn Header="Postura" Binding="{Binding name}" />
-                <DataGridTextColumn Header="Ruta archivo" Binding="{Binding path}" />
+                <DataGridTextColumn Header="Id" Binding="{Binding PostureTypeId}"/>
+                <DataGridTextColumn Header="Postura" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="Ruta archivo" Binding="{Binding Path}" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

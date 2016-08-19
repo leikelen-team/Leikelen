@@ -35,7 +35,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.windows
         }
         public void refreshList()
         {
-            postureCrudDataGrid.ItemsSource = PostureType.availablesPostureTypes;
+            postureCrudDataGrid.ItemsSource = PostureTypeContext.db.PostureType.ToList();
         }
 
         private void removePostureButton_Click(object sender, RoutedEventArgs e)
@@ -44,7 +44,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.windows
             PostureType selectedItem = (PostureType) postureCrudDataGrid.SelectedItem;
             if (selectedItem != PostureType.none)
             {
-                PostureTypeContext.db.PostureType.Remove(PostureTypeContext.db.PostureType.FirstOrDefault(p => p.id == selectedItem.id));
+                PostureTypeContext.db.PostureType.Remove(PostureTypeContext.db.PostureType.FirstOrDefault(p => p.PostureTypeId == selectedItem.PostureTypeId));
                 PostureTypeContext.db.SaveChanges();
                 this.refreshList();
             }
@@ -53,7 +53,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.windows
         private void editPostureButton_Click(object sender, RoutedEventArgs e)
         {
             PostureType selectedPosture = (PostureType)postureCrudDataGrid.SelectedItem;
-            selectedPosture = PostureTypeContext.db.PostureType.FirstOrDefault(p => p.id == selectedPosture.id);
+            selectedPosture = PostureTypeContext.db.PostureType.FirstOrDefault(p => p.PostureTypeId == selectedPosture.PostureTypeId);
             AddOrEditPostureType addPostureView = new AddOrEditPostureType(selectedPosture);
             addPostureView.Show();
         }

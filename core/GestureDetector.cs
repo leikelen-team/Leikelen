@@ -73,7 +73,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
             // agrupa todos las posturas que tienen el mismo path
             var posturePaths = PostureType.availablesPostureTypes
                 .FindAll(posture => posture != PostureType.none)
-                .GroupBy(posture => posture.path);
+                .GroupBy(posture => posture.Path);
             foreach (var posturePath in posturePaths)
             {
                 Console.WriteLine("Loading VGB Database: '{0}'", posturePath.Key);
@@ -193,7 +193,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
                             foreach (PostureType postureType in PostureType.availablesPostureTypes)
                             {
                                 //if (gesture.Name.Equals(this.seatedGestureName) && gesture.GestureType == GestureType.Discrete)
-                                if (gesture.Name.Equals(postureType.name) && gesture.GestureType == GestureType.Discrete)
+                                if (gesture.Name.Equals(postureType.Name) && gesture.GestureType == GestureType.Discrete)
                                 {
                                     DiscreteGestureResult result = null;
                                     discreteResults.TryGetValue(gesture, out result);

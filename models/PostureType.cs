@@ -32,7 +32,12 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.models
         {
             get
             {
-                return PostureTypeContext.db.PostureType.ToList();
+                if (BackupDataContext.db != null && BackupDataContext.db.PostureType.Count() > 0 && Scene.Instance.Status == Scene.Statuses.Imported)
+                    return BackupDataContext.db.PostureType.ToList();
+                else if (Scene.Instance == null || Scene.Instance.Status == Scene.Statuses.Recorded)
+                    return PostureTypeContext.db.PostureType.ToList();
+                else
+                    throw new Exception("Unknow scene status (or null): " + Scene.Instance.Status.ToString("g"));
             }
         }
         [NotMapped]
@@ -48,9 +53,9 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.models
         //}
 
         [Key]
-        public int id { get; set; }
-        public string name { get; set; }
-        public string path { get; set; }
+        public int PostureTypeId { get; set; }
+        public string Name { get; set; }
+        public string Path { get; set; }
 
         [NotMapped]
         public string colorName { get; private set; }
@@ -75,13 +80,14 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.models
                     Brush brush = converter.ConvertFromString(pColor.Name) as Brush;
                     brushes.Add(new Tuple<string, Brush>(pColor.Name, brush));
                 }
+                //MainWindow.Instance().pers
             }
 
             this.colorName = brushes[brushIndex].Item1;
             this.color = brushes[brushIndex].Item2; // brushes[indexBrush]; 
             //this.id = id;
-            this.name = name;
-            this.path = path;
+            this.Name = name;
+            this.Path = path;
 
 
             if (++brushIndex >= brushes.Count) brushIndex = 0;
@@ -89,7 +95,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.models
         
         public override string ToString()
         {
-            return name;
+            return Name;
         }
 
     }

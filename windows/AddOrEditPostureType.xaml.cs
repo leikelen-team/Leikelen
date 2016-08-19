@@ -37,9 +37,9 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.windows
         {
             InitializeComponent();
             this.editingPosture = editingPosture;
-            this.fileNameTextBox.Text = System.IO.Path.GetFileName(editingPosture.path);
-            this.nameTextBox.Text = editingPosture.name;
-            this.path = editingPosture.path;
+            this.fileNameTextBox.Text = System.IO.Path.GetFileName(editingPosture.Path);
+            this.nameTextBox.Text = editingPosture.Name;
+            this.path = editingPosture.Path;
         }
 
         
@@ -79,15 +79,15 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.windows
                 MessageBox.Show("Debes ingresar un archivo");
             }
             string name = nameTextBox.Text;
-            if (PostureTypeContext.db.PostureType.Any(p => p.name == name))
+            if (PostureTypeContext.db.PostureType.Any(p => p.Name == name))
             {
                 if(editingPosture == null)
                 {
                     MessageBox.Show("La postura '"+name+"' ya existe. Utilize otro nombre.");
-                }else if( editingPosture.name != name)
+                }else if( editingPosture.Name != name)
                 {
                     MessageBox.Show("La postura '" + name + "' ya existe. Utilize otro nombre.");
-                }else if( editingPosture.name == name && editingPosture.path == path)
+                }else if( editingPosture.Name == name && editingPosture.Path == path)
                 {
                     this.Close();
                 }
@@ -103,14 +103,14 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.windows
                 if (editingPosture != null)
                 {
                     PostureType postureToUpdate = PostureTypeContext.db.PostureType
-                        .FirstOrDefault(p => p.id == editingPosture.id);
-                    string oldPath = postureToUpdate.path;
-                    postureToUpdate.name = name;
-                    postureToUpdate.path = internalFilePath;
+                        .FirstOrDefault(p => p.PostureTypeId == editingPosture.PostureTypeId);
+                    string oldPath = postureToUpdate.Path;
+                    postureToUpdate.Name = name;
+                    postureToUpdate.Path = internalFilePath;
                     //SqliteAppContext.db.Entry(postureToUpdate).CurrentValues.SetValues(product);
                     PostureTypeContext.db.SaveChanges();
 
-                    if ( !PostureTypeContext.db.PostureType.Any(p => p.path == oldPath)
+                    if ( !PostureTypeContext.db.PostureType.Any(p => p.Path == oldPath)
                         && oldPath != internalFilePath )
                     {
                         File.Delete(oldPath);
