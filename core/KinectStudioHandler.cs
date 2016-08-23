@@ -219,9 +219,9 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
                 //this.playback.Start();
                 //Thread.Sleep(PausedStartMillisTime);
                 //this.playback.Pause();
-                string fullPath = Path.GetFullPath(this.recordingFilePath);
-                File.Copy(fullPath, fullPath + "_copy");
-                this.RecSimulate(fullPath + "_copy");
+                //string fullPath = Path.GetFullPath(this.recordingFilePath);
+                //File.Copy(fullPath, fullPath + "_copy");
+                //this.RecSimulate(fullPath + "_copy");
             }
 
             //playerWorker.CancelAsync();

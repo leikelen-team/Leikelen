@@ -22,7 +22,8 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.models
         public string description { get; set; }
         public DateTime startDate { get; set; } // start date when begin to record
         public TimeSpan duration { get; set; }
-        public List<SceneFrame> Frames { get; set; }
+        //public List<SceneFrame> Frames { get; set; }
+        public int TickCount { get; set; }
         [NotMapped]
         public Statuses Status { get; private set; }
 
@@ -51,7 +52,8 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.models
             this.startDate = startDate;
             this.duration = duration;
             this.Persons = new List<Person>();
-            this.Frames = new List<SceneFrame>();
+            //this.Frames = new List<SceneFrame>();
+            TickCount = 0;
         }
 
         public static Scene Create(string name, DateTime startDate, TimeSpan duration)
@@ -87,8 +89,8 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.models
             {
                 if (frameTime < duration)
                 {
-                    Scene.Instance.Frames.Add(new SceneFrame(frameTime));
-
+                    //Scene.Instance.Frames.Add(new SceneFrame(frameTime));
+                    Instance.TickCount++;
                     rulerCol = new ColumnDefinition();
                     rulerCol.Width = new GridLength(5, GridUnitType.Pixel);
                     MainWindow.Instance().timeRulerGrid.ColumnDefinitions.Add(rulerCol);
