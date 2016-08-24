@@ -150,16 +150,19 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
                     {
                         Body body = this.bodies[i];
                         ulong trackingId = body.TrackingId;
-                        
-                        bool personExists = Scene.Instance.Persons.Exists(p => p.TrackingId == trackingId);
-                        if (!personExists && trackingId!=0)
+                        if (Scene.Instance != null)
                         {
-                            Person person = new Person(
-                                    trackingId,
-                                    Scene.Instance.Persons.Count
-                                );
-                            Scene.Instance.Persons.Add(person);
+                            bool personExists = Scene.Instance.Persons.Exists(p => p.TrackingId == trackingId);
+                            if (!personExists && trackingId != 0)
+                            {
+                                Person person = new Person(
+                                        trackingId,
+                                        Scene.Instance.Persons.Count
+                                    );
+                                Scene.Instance.Persons.Add(person);
+                            }
                         }
+                        
                         // if the current body TrackingId changed, update the corresponding gesture detector with the new value
                         if (trackingId != this.gestureDetectorList[i].TrackingId)
                         {

@@ -223,11 +223,19 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.views
                     //int penIndex = 0;
                     foreach (Body body in bodies)
                     {
-                        
+
                         //Pen drawPen = this.bodyColors[penIndex++];
-                        Person person = Scene.Instance.Persons.FirstOrDefault(p => p.TrackingId==body.TrackingId);
-                        if (person == null) continue;
-                        Pen drawPen = new Pen(person.Color, 6);
+                        Pen drawPen;
+                        if (Scene.Instance != null)
+                        {
+                            Person person = Scene.Instance.Persons.FirstOrDefault(p => p.TrackingId == body.TrackingId);
+                            if (person == null) continue;
+                            drawPen = new Pen(person.Color, 6);
+                        }else
+                        {
+                            drawPen = new Pen(Brushes.Red, 6);
+                        }
+                        
 
                         if (body.IsTracked)
                         {
