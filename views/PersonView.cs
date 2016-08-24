@@ -14,6 +14,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.views
     public class PersonView
     {
         private Person Person;
+        private bool combosGenerated = false;
 
         public List<Tuple<PostureType, ComboBox, RowDefinition>>
                    visiblePostures
@@ -27,7 +28,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.views
         {
             this.Person = person;
             this.initControlsAndBorders();
-            this.generateCombos();
+            
         }
 
         private void generateCombos()
@@ -47,28 +48,39 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.views
             Grid.SetRow(postureGroupsGrid, Person.ListIndex);
             Grid.SetColumn(postureGroupsGrid, 0);
             Grid.SetColumnSpan(postureGroupsGrid, Scene.Instance.TickCount);
+            postureGroupsGrid.Margin = new Thickness(0, 6, 0, 0);
 
+            List<PostureType> posturesDetectedInPerson = new List<PostureType>();
+            foreach (var group in Person.PostureIntervalGroups)
+            {
+                if (!posturesDetectedInPerson.Contains(group.PostureType))
+                    posturesDetectedInPerson.Add(group.PostureType);
+            }
+            
 
             //visiblePostureTypes = new PostureType[maxVisiblePostureTypes];
             PostureType postureType;
-            for (int i = 0; i < maxVisiblePostureTypes; i++)
+            for (int i = 0; i < maxVisiblePostureTypes && i < posturesDetectedInPerson.Count; i++)
             {
-                postureType = i + 1 < PostureType.availablesPostureTypes.Count ?
-                                PostureType.availablesPostureTypes[i + 1] :
-                                PostureType.none;
-                
+                //postureType = i + 1 < PostureType.availablesPostureTypes.Count ?
+                //                PostureType.availablesPostureTypes[i + 1] :
+                //                PostureType.none;
+
+                postureType = posturesDetectedInPerson[i];
+
+
                 ComboBox combo = new ComboBox();
                 combo.HorizontalAlignment = HorizontalAlignment.Right;
                 combo.VerticalAlignment = VerticalAlignment.Top;
                 combo.SelectedIndex = 0;
-                foreach (PostureType pt in PostureType.availablesPostureTypes)
+                foreach (PostureType pt in posturesDetectedInPerson)
                 {
                     combo.Items.Add(pt);
                 }
                 this.ComboStackPanel.Children.Add(combo);
 
                 RowDefinition rowDef = new RowDefinition();
-                rowDef.Height = new GridLength(1, GridUnitType.Star);
+                rowDef.Height = new GridLength(20, GridUnitType.Pixel);
                 postureGroupsGrid.RowDefinitions.Add(rowDef);
 
                 combo.SelectedItem = postureType;
@@ -78,6 +90,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.views
                         (postureType, combo, rowDef)
                         );
             }
+            combosGenerated = true;
         }
 
         private void initControlsAndBorders()
@@ -101,7 +114,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.views
 
             ComboStackPanel = new StackPanel();
             ComboStackPanel.Orientation = Orientation.Vertical;
-            ComboStackPanel.Margin = new Thickness(0, 6, 7, 0);
+            ComboStackPanel.Margin = new Thickness(0, 6, 6, 0);
             Grid.SetColumn(ComboStackPanel, 1);
             Grid.SetRow(ComboStackPanel, Person.ListIndex);
 
@@ -142,7 +155,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.views
 
         public void repaintIntervalGroups()
         {
-            
+            if(!combosGenerated) this.generateCombos();
             for (int i = 0; i < visiblePostures.Count; i++)
             {
                 repaintIntervalGroup(visiblePostures[i].Item2);

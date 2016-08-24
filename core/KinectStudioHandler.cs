@@ -113,6 +113,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
             this.playingFilePath = Path.GetFullPath(path);
             this.isSceneImportedOrRecorded = true;
             //string fullPath = Path.GetFullPath(this.playingFilePath);
+
             this.playback = this.client.CreatePlayback(playingFilePath);
             KStudioFileInfo fileInfo = this.client.GetFileList(playingFilePath).First();
 
@@ -122,8 +123,6 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
             Console.WriteLine("Creation Date: " + fileInfo.CreationUtcFileTime);
             Console.WriteLine("Duration: " + playback.Duration);
             Console.WriteLine("Path: " + playback.FilePath);
-
-            
 
             MainWindow.lastCurrentTime = TimeSpan.FromSeconds(0);
             MainWindow.Instance().sceneSlider.Maximum = playback.Duration.TotalMilliseconds;

@@ -216,9 +216,9 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
                 Console.WriteLine("filePath: "+dlg.FileName);
                 this.kstudio.RecSimulate(dlg.FileName);
                 enableButtons();
-                this.Title = "Visualizador Multimodal - "+Scene.Instance.name;
-                sceneTitleLabel.Content = Scene.Instance.name;
-                sceneDurationLabel.Content = Scene.Instance.duration.ToString(@"hh\:mm\:ss");
+                this.Title = "Visualizador Multimodal - "+Scene.Instance.Name;
+                sceneTitleLabel.Content = Scene.Instance.Name;
+                sceneDurationLabel.Content = Scene.Instance.Duration.ToString(@"hh\:mm\:ss");
             }
 
         }
@@ -244,7 +244,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
                 //person.View.repaintIntervalGroups();
             }
 
-            kstudio.Import(@"tmp\Escena_corta.xef");
+            //kstudio.Import(@"tmp\Escena_corta.xef");
             enableButtons();
 
         }

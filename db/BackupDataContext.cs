@@ -33,7 +33,11 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.db
 
         public Scene LoadScene()
         {
-            return null;
+            var groups = PostureIntervalGroup
+                .Include(pig => pig.Intervals)
+                .Include(pig => pig.PostureType)
+                .Include(pig => pig.Person.Scene);
+            return groups.ToList()[0].Person.Scene;
         }
 
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

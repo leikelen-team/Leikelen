@@ -18,10 +18,10 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.models
         private static Scene instance;
 
         public int SceneId { get; set; }
-        public string name { get; set; }
-        public string description { get; set; }
-        public DateTime startDate { get; set; } // start date when begin to record
-        public TimeSpan duration { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public DateTime StartDate { get; set; } // start date when begin to record
+        public TimeSpan Duration { get; set; }
         //public List<SceneFrame> Frames { get; set; }
         public int TickCount { get; set; }
         [NotMapped]
@@ -48,9 +48,9 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.models
 
         private Scene(string name, DateTime startDate, TimeSpan duration)
         {
-            this.name = name;
-            this.startDate = startDate;
-            this.duration = duration;
+            this.Name = name;
+            this.StartDate = startDate;
+            this.Duration = duration;
             this.Persons = new List<Person>();
             //this.Frames = new List<SceneFrame>();
             TickCount = 0;
@@ -87,7 +87,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.models
             int colSpan = 10;
             for (int colCount = 0; true; colCount++)
             {
-                if (frameTime < duration)
+                if (frameTime < Duration)
                 {
                     //Scene.Instance.Frames.Add(new SceneFrame(frameTime));
                     Instance.TickCount++;
