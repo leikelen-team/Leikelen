@@ -69,28 +69,8 @@
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Accord, Version=2.14.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
-      <HintPath>packages\Accord.2.14.0\lib\net40\Accord.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Accord.Extensions.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Accord.Extensions.Core.2.0.2\lib\net45\Accord.Extensions.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Accord.Extensions.Imaging.GenericImage, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Accord.Extensions.Imaging.GenericImage.2.0.2\lib\net45\Accord.Extensions.Imaging.GenericImage.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Accord.Extensions.Imaging.IO, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Accord.Extensions.Imaging.IO.2.0.2\lib\net45\Accord.Extensions.Imaging.IO.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Accord.Extensions.Math, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Accord.Extensions.Math.2.0.2\lib\net45\Accord.Extensions.Math.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Accord.Math, Version=2.14.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
-      <HintPath>packages\Accord.Math.2.14.0\lib\net40\Accord.Math.dll</HintPath>
+    <Reference Include="FirstFloor.ModernUI, Version=1.0.9.0, Culture=neutral, PublicKeyToken=bc9b0c37bf06c6a9, processorArchitecture=MSIL">
+      <HintPath>packages\ModernUI.WPF.1.0.9\lib\net45\FirstFloor.ModernUI.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Data.Sqlite, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
@@ -206,6 +186,9 @@
     <Compile Include="core\KinectBody.cs" />
     <Compile Include="models\PostureIntervalGroup.cs" />
     <Compile Include="models\MicroPosture.cs" />
+    <Compile Include="windows\ModernWindow1.xaml.cs">
+      <DependentUpon>ModernWindow1.xaml</DependentUpon>
+    </Compile>
     <Compile Include="windows\PostureCRUD.xaml.cs">
       <DependentUpon>PostureCRUD.xaml</DependentUpon>
     </Compile>
@@ -269,6 +252,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="windows\ModernWindow1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="windows\PostureCRUD.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -342,12 +329,10 @@
   <PropertyGroup>
     <PostBuildEvent>xcopy "$(KINECTSDK20_DIR)Redist\VGB\$(Platform)\vgbtechs" "$(TargetDir)\vgbtechs" /S /R /Y /I</PostBuildEvent>
   </PropertyGroup>
-  <Import Project="packages\Accord.Extensions.Imaging.IO.2.0.2\build\Accord.Extensions.Imaging.IO.targets" Condition="Exists('packages\Accord.Extensions.Imaging.IO.2.0.2\build\Accord.Extensions.Imaging.IO.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('packages\Accord.Extensions.Imaging.IO.2.0.2\build\Accord.Extensions.Imaging.IO.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Accord.Extensions.Imaging.IO.2.0.2\build\Accord.Extensions.Imaging.IO.targets'))" />
     <Error Condition="!Exists('packages\SQLite.Native.3.12.3\build\net45\SQLite.Native.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\SQLite.Native.3.12.3\build\net45\SQLite.Native.props'))" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

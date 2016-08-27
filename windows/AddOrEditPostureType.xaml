@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Microsoft.Samples.Kinect.VisualizadorMultimodal"
         mc:Ignorable="d"
-        Title="Postura" Height="150" Width="350">
+        Title="Postura" Height="150" Width="350" WindowStartupLocation="CenterScreen">
     <Grid>
         <Label x:Name="label" Content="Nombre: " HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
         <Label x:Name="label_Copy" Content="Archivo: " HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>

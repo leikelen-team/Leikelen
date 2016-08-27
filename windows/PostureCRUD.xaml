@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Microsoft.Samples.Kinect.VisualizadorMultimodal"
         mc:Ignorable="d"
         Title="PostureCRUD" 
-        Height="600" Width="800">
+        Height="600" Width="800" WindowStartupLocation="CenterScreen">
 
     <Grid Margin="10">
 
@@ -14,9 +14,12 @@
             <RowDefinition Height="25"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Button Grid.Row="0" x:Name="addPostureButton" Content="Agregar" HorizontalAlignment="Left" Click="addPostureButton_Click"/>
-        <Button Grid.Row="0" x:Name="editPostureButton" Content="Editar" HorizontalAlignment="Left" Margin="52,0,0,0" Click="editPostureButton_Click"/>
-        <Button Grid.Row="0" x:Name="removePostureButton" Content="Eliminar" HorizontalAlignment="Left" Margin="91,0,0,0" Click="removePostureButton_Click"/>
+        <StackPanel Orientation="Horizontal">
+            <Button Grid.Row="0" x:Name="addPostureButton" Content="Agregar" HorizontalAlignment="Left" Click="addPostureButton_Click" Width="Auto" Margin="3,0,0,0" />
+            <Button Grid.Row="0" x:Name="editPostureButton" Content="Editar" HorizontalAlignment="Left"  Click="editPostureButton_Click" Width="Auto" Margin="3,0,0,0" />
+            <Button Grid.Row="0" x:Name="removePostureButton" Content="Eliminar" HorizontalAlignment="Left" Click="removePostureButton_Click" Width="Auto" Margin="3,0,0,0" />
+        </StackPanel>
+        
         <DataGrid Grid.Row="1" x:Name="postureCrudDataGrid" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding PostureTypeId}"/>

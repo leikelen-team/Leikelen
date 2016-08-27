@@ -26,7 +26,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
     using System.Drawing.Imaging;
     using System.Linq;
 
-    using Accord.Extensions.Imaging;
+    //using Accord.Extensions.Imaging;
     using System.Windows.Media.Imaging;
     using System.IO;
     using Win32;    //using Win32;
@@ -39,6 +39,8 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
     using models;
     using utils;
     using db;
+
+    using FirstFloor.ModernUI.Windows.Controls;
 
     public partial class MainWindow : Window//, INotifyPropertyChanged
     {
@@ -76,6 +78,8 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
         public static TimeSpan lastCurrentTime = TimeSpan.FromSeconds(0);
         public static PostureCRUD postureCrud;
 
+        private static MainWindow _instance;
+
 
         /// <summary>
         /// Initializes a new instance of the MainWindow class
@@ -95,17 +99,24 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
             this.showGraphButtons.IsEnabled = false;
             this.stopButton.IsEnabled = false;
             
+            
             foreach (PostureType postureType in PostureType.availablesPostureTypes)
             {
                 Console.WriteLine(postureType.Name + ": "+postureType.Path);// + postureType.color.ToString());
             }
-
+            _instance = this;
+            //ModernWindow1 ui = ModernWindow1();
+            //ui.Show();
 
         }
 
         public static MainWindow Instance()
         {
-            return (MainWindow)System.Windows.Application.Current.MainWindow;
+            //FirstFloor.ModernUI.Windows.Navigation
+
+            //return ((ModernWindow)Application.Current.MainWindow);
+            return _instance;
+
         }
 
         public void disableButtons()
@@ -216,7 +227,8 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
                 Console.WriteLine("filePath: "+dlg.FileName);
                 this.kstudio.RecSimulate(dlg.FileName);
                 enableButtons();
-                this.Title = "Visualizador Multimodal - "+Scene.Instance.Name;
+                //this.Title = "Visualizador Multimodal - "+Scene.Instance.Name;
+                
                 sceneTitleLabel.Content = Scene.Instance.Name;
                 sceneDurationLabel.Content = Scene.Instance.Duration.ToString(@"hh\:mm\:ss");
             }
