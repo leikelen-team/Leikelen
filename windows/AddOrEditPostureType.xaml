@@ -5,17 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Microsoft.Samples.Kinect.VisualizadorMultimodal"
         mc:Ignorable="d"
-        Title="Postura" Height="150" Width="350" WindowStartupLocation="CenterScreen">
+        Title="Postura" Height="174.194" Width="350" WindowStartupLocation="CenterScreen">
     <Grid>
         <Label x:Name="label" Content="Nombre: " HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
         <Label x:Name="label_Copy" Content="Archivo: " HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
         
         <TextBox x:Name="nameTextBox" HorizontalAlignment="Left" Height="23" Margin="71,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="141"/>
         <TextBox x:Name="fileNameTextBox" HorizontalAlignment="Left" Height="23" Margin="71,44,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="141" IsEnabled="False"/>
-        
-        <Button x:Name="browseButton" Content="Examinar" HorizontalAlignment="Left" Margin="217,44,0,0" VerticalAlignment="Top" Width="75" Click="browseButton_Click"/>
-        <Button x:Name="saveButton" Content="Guardar" HorizontalAlignment="Left" Margin="10,86,0,0" VerticalAlignment="Top" Width="75" Click="saveButton_Click"/>
-        <Button x:Name="cancelButton" Content="Cancelar" HorizontalAlignment="Left" Margin="257,86,0,0" VerticalAlignment="Top" Width="75" Click="cancelButton_Click"/>
+
+        <Button x:Name="browseButton" Content="Examinar" HorizontalAlignment="Left" Margin="217,44,0,0" VerticalAlignment="Top" Width="90" Height="Auto" Click="browseButton_Click"/>
+        <Button x:Name="saveButton" Content="Guardar" HorizontalAlignment="Left" Margin="10,86,0,0" VerticalAlignment="Top" Width="90" Height="Auto" Click="saveButton_Click"/>
+        <Button x:Name="cancelButton" Content="Cancelar" HorizontalAlignment="Left" Margin="242,86,0,0" VerticalAlignment="Top" Width="90" Height="Auto" Click="cancelButton_Click"/>
 
 
     </Grid>
