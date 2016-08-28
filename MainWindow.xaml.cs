@@ -72,7 +72,10 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
 
         private _Escena escena;
 
-        public KinectBody kinectBody { get; private set; }
+        //public Player player { get; private set; }
+
+        //public KinectBody kinectBody { get; private set; }
+        //public BodyDetector bodyDetector { get; private set; }
         public KinectStudioHandler kstudio { get; private set; }
         public static ChartForm chartForm { get; private set; }
         public static TimeSpan lastCurrentTime = TimeSpan.FromSeconds(0);
@@ -89,8 +92,14 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
             // no borres esta linea de nuevo rolo!! estupida, mi código, idiota!! xD
             PostureType.none = PostureType.availablesPostureTypes.FirstOrDefault(p => p.PostureTypeId == 0);
             this.InitializeComponent();
-            kinectBody = KinectBody.Instance;
-            
+            _instance = this;
+            //kinectBody = KinectBody.Instance;
+            //bodyDetector = new BodyDetector();
+            //player = new Player();
+
+            Kinect.Init();
+            recordButton2.Click += Kinect.Instance.Recorder.RecordButton_Click;
+
             this.escena = new _Escena();
 
             this.kstudio = new KinectStudioHandler();
@@ -104,7 +113,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
             {
                 Console.WriteLine(postureType.Name + ": "+postureType.Path);// + postureType.color.ToString());
             }
-            _instance = this;
+            
             //ModernWindow1 ui = ModernWindow1();
             //ui.Show();
 
@@ -154,7 +163,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
         /// <param name="e">event arguments</param>
         private void MainWindow_Closing(object sender, CancelEventArgs e)
         {
-            KinectBody.Instance.Close();
+            //KinectBody.Instance.Close();
             
         }
 

@@ -25,7 +25,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
 
         
         private static KinectBody instance = null;
-        public static KinectBody Instance
+        private static KinectBody Instance
         {
             get
             {

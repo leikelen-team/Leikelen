@@ -73,6 +73,9 @@
       <HintPath>packages\ModernUI.WPF.1.0.9\lib\net45\FirstFloor.ModernUI.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="KinectEx">
+      <HintPath>bin_files\KinectEx.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Data.Sqlite, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Data.Sqlite.1.0.0\lib\net451\Microsoft.Data.Sqlite.dll</HintPath>
       <Private>True</Private>
@@ -131,8 +134,16 @@
     <Reference Include="Microsoft.Kinect.VisualGestureBuilder">
       <HintPath>$(KINECTSDK20_DIR)Redist\VGB\$(Platform)\Microsoft.Kinect.VisualGestureBuilder.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Remotion.Linq, Version=2.1.0.0, Culture=neutral, PublicKeyToken=fee00910d6e5f53b, processorArchitecture=MSIL">
       <HintPath>packages\Remotion.Linq.2.1.1\lib\net45\Remotion.Linq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SharpDX, Version=3.0.2.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>packages\SharpDX.3.0.2\lib\net45\SharpDX.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -169,12 +180,20 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WriteableBitmapEx.Wpf, Version=1.5.0.0, Culture=neutral, PublicKeyToken=50375ca6144f1c69, processorArchitecture=MSIL">
+      <HintPath>packages\WriteableBitmapEx.1.5.0.0\lib\net40\WriteableBitmapEx.Wpf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="core\BodyDetector.cs" />
+    <Compile Include="core\Player.cs" />
+    <Compile Include="core\Recorder.cs" />
+    <Compile Include="core\Kinect.cs" />
     <Compile Include="db\BackupDataContext.cs" />
     <Compile Include="models\Interval.cs" />
     <Compile Include="models\_SceneFrame.cs" />
@@ -186,9 +205,6 @@
     <Compile Include="core\KinectBody.cs" />
     <Compile Include="models\PostureIntervalGroup.cs" />
     <Compile Include="models\MicroPosture.cs" />
-    <Compile Include="windows\ModernWindow1.xaml.cs">
-      <DependentUpon>ModernWindow1.xaml</DependentUpon>
-    </Compile>
     <Compile Include="windows\PostureCRUD.xaml.cs">
       <DependentUpon>PostureCRUD.xaml</DependentUpon>
     </Compile>
@@ -252,10 +268,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="windows\ModernWindow1.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="windows\PostureCRUD.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

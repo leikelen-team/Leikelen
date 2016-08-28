@@ -138,6 +138,14 @@
                         <Button x:Name="playButton" 
                             HorizontalAlignment="Left" VerticalAlignment="Center" Width="Auto" Margin="3,0,0,0"
                             Content=">" Click="playButton_Click"/>
+                        
+                        <Button x:Name="recordButton2" 
+                            HorizontalAlignment="Left" VerticalAlignment="Center" Width="Auto" Margin="10,0,0,0"
+                            Content="O2"/>
+                        <!--<Button x:Name="stopButton2" 
+                            HorizontalAlignment="Left" VerticalAlignment="Center" Width="Auto" Margin="3,0,0,0"
+                            Content="■2" Click="stopButton_Click"/>-->
+                        
                         <Label x:Name="sceneCurrentTimeLabel" 
                            Content="00:00:00" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center"/>
                         <Label Content="/" 
