@@ -56,7 +56,8 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
                 await _recorder.StopAsync();
                 _recorder = null;
 
-                Kinect.Instance.Player.OpenFile(Properties.Paths.RecordedKdvrFilePath);
+                //File.Copy(Properties.Paths.CurrentKdvrFile, Properties.Paths.CurrentReplayKdvrFile);
+                Kinect.Instance.Player.OpenFile(Properties.Paths.CurrentKdvrFile);
 
                 Scene.Instance.Duration = Kinect.Instance.Player.Duration;
                 Scene.Instance.InitTimeLine();
@@ -69,7 +70,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
                     MainWindow.Instance().timeLineContentGrid.Children.Add(person.View.postureGroupsGrid);
                 }
                 
-                var db = BackupDataContext.CreateConnection(Properties.Paths.RecordedSceneDataFile);
+                var db = BackupDataContext.CreateConnection(Properties.Paths.CurrentDataFile);
                 db.Database.EnsureCreated();
                 db.Scene.Add(Scene.Instance);
                 db.SaveChanges();
@@ -81,21 +82,14 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
         {
             if (_recorder == null)
             {
-                //var dlg = new SaveFileDialog()
-                //{
-                //    FileName = DateTime.Now.ToString("yyyy-MM-dd _ hh-mm-ss"),
-                //    DefaultExt = ".kdvr",
-                //    Filter = "KinectEx.DVR Files (*.kdvr)|*.kdvr"
-                //};
 
-                //if (dlg.ShowDialog().GetValueOrDefault())
-                //{
-                //Path = dlg.FileName;
+                //if (File.Exists(Properties.Paths.asd)) File.Delete(Properties.Paths.asd);
+                if (Kinect.Instance.Player.IsOpened) Kinect.Instance.Player.Close();
+                if (File.Exists(Properties.Paths.CurrentKdvrFile)) File.Delete(Properties.Paths.CurrentKdvrFile);
+                if (File.Exists(Properties.Paths.CurrentDataFile)) File.Delete(Properties.Paths.CurrentDataFile);
+                
 
-                if (File.Exists(Properties.Paths.RecordedKdvrFilePath)) File.Delete(Properties.Paths.RecordedKdvrFilePath);
-                if (File.Exists(Properties.Paths.RecordedSceneDataFile)) File.Delete(Properties.Paths.RecordedSceneDataFile);
-
-                _recorder = new KinectRecorder(File.Open(Properties.Paths.RecordedKdvrFilePath, FileMode.Create), _sensor);
+                _recorder = new KinectRecorder(File.Open(Properties.Paths.CurrentKdvrFile, FileMode.Create), _sensor);
                 _recorder.EnableBodyRecorder = true;
                 _recorder.EnableColorRecorder = true;
                 _recorder.EnableDepthRecorder = false;
@@ -109,7 +103,6 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
                     
                 _recorder.Start();
                     
-                //}
             }
             
         }

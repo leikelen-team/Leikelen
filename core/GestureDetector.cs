@@ -185,7 +185,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
                     if (discreteResults != null)
                     {
                         Person person = Scene.Instance.Persons
-                                                .FirstOrDefault(p => p.TrackingId == this.TrackingId);
+                                                .FirstOrDefault(p => p.TrackingId == (long)this.TrackingId);
                         // we only have one gesture in this source object, but you can get multiple gestures
                         bool postureDetected = false;
                         foreach (Gesture gesture in this.vgbFrameSource.Gestures)

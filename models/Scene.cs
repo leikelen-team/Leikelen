@@ -46,24 +46,24 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.models
         }
         public Scene() { }
 
-        private Scene(string name, DateTime startDate, TimeSpan duration)
-        {
-            this.Name = name;
-            this.StartDate = startDate;
-            this.Duration = duration;
-            this.Persons = new List<Person>();
-            //this.Frames = new List<SceneFrame>();
-            TickCount = 0;
-        }
+        //private Scene(string name, DateTime startDate, TimeSpan duration)
+        //{
+        //    this.Name = name;
+        //    this.StartDate = startDate;
+        //    this.Duration = duration;
+        //    this.Persons = new List<Person>();
+        //    //this.Frames = new List<SceneFrame>();
+        //    TickCount = 0;
+        //}
 
-        public static Scene Create(string name, DateTime startDate, TimeSpan duration)
-        {
-            instance = new Scene(name, startDate, duration);
-            instance.Status = Statuses.Recorded;
-            instance.InitTimeLine();
+        //public static Scene Create(string name, DateTime startDate, TimeSpan duration)
+        //{
+        //    instance = new Scene(name, startDate, duration);
+        //    instance.Status = Statuses.Recorded;
+        //    instance.InitTimeLine();
 
-            return instance;
-        }
+        //    return instance;
+        //}
 
         public static Scene CreateFromRecord()
         {
@@ -75,6 +75,11 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.models
                 Persons = new List<Person>(),
                 Status = Statuses.Recorded
             };
+            if (PgsqlContext.IsConnected)
+            {
+                var db = PgsqlContext.db;
+                instance.SceneId = db.Scene.Last().SceneId + 1;
+            }
             return instance;
         }
 
@@ -85,6 +90,16 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.models
             instance = db.LoadScene();
             instance.Status = Statuses.Imported;
             instance.InitTimeLine();
+
+            foreach (Person person in Scene.Instance.Persons)
+            {
+                if (!person.HasBeenTracked) continue;
+                person.generateView();
+                person.View.repaintIntervalGroups();
+                MainWindow.Instance().timeLineContentGrid.Children.Add(person.View.postureGroupsGrid);
+            }
+            MainWindow.Instance().enableButtons();
+
             //Console.WriteLine("oa");
             //instance = db.Scene.First();
         }

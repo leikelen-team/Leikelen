@@ -138,6 +138,14 @@
       <HintPath>packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="npgsql, Version=3.1.5.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
+      <HintPath>packages\npgsql.3.1.5\lib\net451\npgsql.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Npgsql.EntityFrameworkCore.PostgreSQL, Version=1.0.1.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
+      <HintPath>packages\Npgsql.EntityFrameworkCore.PostgreSQL.1.0.1\lib\net451\Npgsql.EntityFrameworkCore.PostgreSQL.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Remotion.Linq, Version=2.1.0.0, Culture=neutral, PublicKeyToken=fee00910d6e5f53b, processorArchitecture=MSIL">
       <HintPath>packages\Remotion.Linq.2.1.1\lib\net45\Remotion.Linq.dll</HintPath>
       <Private>True</Private>
@@ -191,11 +199,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="core\BodyDetector.cs" />
+    <Compile Include="core\IO.cs" />
+    <Compile Include="core\Monitor.cs" />
     <Compile Include="core\Player.cs" />
     <Compile Include="core\Recorder.cs" />
     <Compile Include="core\Kinect.cs" />
     <Compile Include="db\BackupDataContext.cs" />
+    <Compile Include="db\PgsqlContext.cs" />
     <Compile Include="models\Interval.cs" />
     <Compile Include="models\_SceneFrame.cs" />
     <Compile Include="utils\Files.cs" />
@@ -204,7 +214,7 @@
       <DependentUpon>AddOrEditPostureType.xaml</DependentUpon>
     </Compile>
     <Compile Include="analytics\PersonAnalytic.cs" />
-    <Compile Include="core\_KinectBody.cs" />
+    <Compile Include="_deprecated\_KinectBody.cs" />
     <Compile Include="models\PostureIntervalGroup.cs" />
     <Compile Include="models\MicroPosture.cs" />
     <Compile Include="windows\PostureCRUD.xaml.cs">
@@ -225,7 +235,7 @@
       <DependentUpon>EditPersonForm.cs</DependentUpon>
     </Compile>
     <Compile Include="_deprecated\_Frame.cs" />
-    <Compile Include="core\KinectStudioHandler.cs" />
+    <Compile Include="_deprecated\_KinectStudioHandler.cs" />
     <Compile Include="_deprecated\_Escena.cs" />
     <Compile Include="_deprecated\_models\_Emotion.cs" />
     <Compile Include="_deprecated\_models\_Interval.cs" />

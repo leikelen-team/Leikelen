@@ -19,7 +19,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
 {
     public class Player
     {
-        KinectReplay _replay;
+        private KinectReplay _replay;
         bool _locationSetByHand = false;
         private int StartFromMillis = 200;
 
@@ -40,12 +40,20 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
             {
                 return _replay.Duration;
             }
-        } 
+        }
+
+        public bool IsOpened
+        {
+            get
+            {
+                return _replay!=null;
+            }
+        }
 
         public void OpenFile(string fullPath)
         {
             
-            this.Clear();
+            this.Close();
             _replay = new KinectReplay(File.Open(fullPath, FileMode.Open, FileAccess.Read));
             _replay.PropertyChanged += _replay_PropertyChanged;
             if (_replay.HasBodyFrames)
@@ -67,7 +75,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
         {
             _replay.ScrubTo(TimeSpan.FromMilliseconds(StartFromMillis));
         }
-        private void Clear()
+        public void Close()
         {
             if (_replay != null)
             {
@@ -88,47 +96,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
 
             _colorBitmap = null; // reset to force recreation for new file
         }
-        public void OpenButton_Click(object sender, RoutedEventArgs e)
-        {
-            var dlg = new OpenFileDialog()
-            {
-                DefaultExt = ".mvs",
-                Filter = "Multimodal Visualizer Scene (*.mvs)|*.mvs"
-            };
-
-            
-            if (dlg.ShowDialog().GetValueOrDefault())
-            {
-                this.Clear();
-                if (File.Exists(Properties.Paths.ImportedKdvrFile)) File.Delete(Properties.Paths.ImportedKdvrFile);
-                if (File.Exists(Properties.Paths.ImportedSceneDataFile)) File.Delete(Properties.Paths.ImportedSceneDataFile);
-
-                ZipFile.ExtractToDirectory(dlg.FileName, Properties.Paths.ImportedSceneDirectory);
-                
-                OpenFile(Properties.Paths.ImportedKdvrFile);
-                var db = BackupDataContext.CreateConnection(Properties.Paths.ImportedSceneDataFile);
-                Scene.CreateFromDbContext();
-
-                //if (Scene.Instance == null) return;
-                foreach (Person person in Scene.Instance.Persons)
-                {
-                    if (!person.HasBeenTracked) continue;
-                    //person.generatePostureIntervals();
-                    //StackPanel combosStackPanel = person.View.ComboStackPanel;
-                    //person.PosturesView = new PosturesPersonView(person);
-                    person.generateView();
-
-                    person.View.repaintIntervalGroups();
-                    MainWindow.Instance().timeLineContentGrid.Children.Add(person.View.postureGroupsGrid);
-                    //person.View.repaintIntervalGroups();
-                }
-                
-
-                //kstudio.Import(@"tmp\Escena_corta.xef");
-                MainWindow.Instance().enableButtons();
-            }
-            
-        }
+        
 
         public void StopButton_Click(object sender, RoutedEventArgs e)
         {

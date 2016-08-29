@@ -228,7 +228,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.views
                         Pen drawPen;
                         if (Scene.Instance != null)
                         {
-                            Person person = Scene.Instance.Persons.FirstOrDefault(p => p.TrackingId == body.TrackingId);
+                            Person person = Scene.Instance.Persons.FirstOrDefault(p => p.TrackingId == (long)body.TrackingId);
                             if (person == null) continue;
                             drawPen = new Pen(person.Color, 6);
                         }else

@@ -144,4 +144,13 @@
   <data name="tmpScene" xml:space="preserve">
     <value>tmp/rec_scene.xef</value>
   </data>
+  <data name="CurrentDataFile" xml:space="preserve">
+    <value>tmp/current_scene/scene_data.db</value>
+  </data>
+  <data name="CurrentKdvrFile" xml:space="preserve">
+    <value>tmp/current_scene/frames.kdvr</value>
+  </data>
+  <data name="CurrentSceneDirectory" xml:space="preserve">
+    <value>tmp/current_scene</value>
+  </data>
 </root>

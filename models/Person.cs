@@ -21,7 +21,8 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.models
 
         public int PersonId { get; set; }
         //public int BodyIndex { get; set; }
-        public ulong TrackingId { get; set; }
+        //[Column(TypeName = "bigint")]
+        public long TrackingId { get; set; }
         public string Name { get; set; }
         public GenderEnum Gender { get; set; }
         public int Age { get; set; }
@@ -79,7 +80,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.models
         //public Person(int bodyIndex, string name)
         {
             //this.BodyIndex = bodyIndex;
-            this.TrackingId = trackingId;
+            this.TrackingId = (long)trackingId;
             this.ListIndex = listIndex;
             this.Name = "Person "+ listIndex;
             //this.Gender = null;
@@ -104,23 +105,23 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.models
 
         
 
-        public void showPersonInfo()
-        {
-            IReadOnlyDictionary<PostureType, float> posturesAvg = this.calculatePosturesAverage();
+        //public void showPersonInfo()
+        //{
+        //    IReadOnlyDictionary<PostureType, float> posturesAvg = this.calculatePosturesAverage();
 
-            Console.WriteLine("Nombre: "+Name);
-            Console.WriteLine("Genero: "+Gender.ToString("g"));
-            Console.WriteLine("Edad: "+Age);
+        //    Console.WriteLine("Nombre: "+Name);
+        //    Console.WriteLine("Genero: "+Gender.ToString("g"));
+        //    Console.WriteLine("Edad: "+Age);
 
-            foreach (PostureType posture in posturesAvg.Keys)
-            {
-                Console.WriteLine(posture.Name + ": " + posturesAvg[posture].ToString("0.00"));
-            }
+        //    foreach (PostureType posture in posturesAvg.Keys)
+        //    {
+        //        Console.WriteLine(posture.Name + ": " + posturesAvg[posture].ToString("0.00"));
+        //    }
 
-            ChartForm chartForm = new ChartForm(this);
-            chartForm.Show();
+        //    ChartForm chartForm = new ChartForm(this);
+        //    chartForm.Show();
 
-        }
+        //}
 
         public void generatePostureIntervals()
         {

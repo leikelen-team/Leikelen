@@ -13,14 +13,14 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
         private static KinectSensor _sensor;
 
         public List<GestureDetector> gestureDetectorList { get; private set; }
-        private BodyDetector bodyDetector;
+        private Monitor Monitor;
 
         public Recorder Recorder { get; private set; }
         public Player Player { get; private set; }
 
         private Kinect()
         {
-            bodyDetector = new BodyDetector();
+            Monitor = new Monitor();
             Recorder = new Recorder();
             Player = new Player();
             gestureDetectorList = new List<GestureDetector>();

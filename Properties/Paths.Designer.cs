@@ -61,6 +61,33 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to tmp/current_scene/scene_data.db.
+        /// </summary>
+        internal static string CurrentDataFile {
+            get {
+                return ResourceManager.GetString("CurrentDataFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to tmp/current_scene/frames.kdvr.
+        /// </summary>
+        internal static string CurrentKdvrFile {
+            get {
+                return ResourceManager.GetString("CurrentKdvrFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to tmp/current_scene.
+        /// </summary>
+        internal static string CurrentSceneDirectory {
+            get {
+                return ResourceManager.GetString("CurrentSceneDirectory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to tmp/imported_scene/kdvr_recorded.kdvr.
         /// </summary>
         internal static string ImportedKdvrFile {

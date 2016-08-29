@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,8 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.models
         //public MicroPosture Item2 { get; set; }
         public TimeSpan StartTime { get; set; }
         public TimeSpan EndTime { get; set; }
+        [NotMapped]
+        public TimeSpan Duration { get; set; }
 
         //public int PostureTypeId { get; set; }
         //public PostureType PostureType { get; set; }
@@ -27,6 +30,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.models
             //this.Item2 = Item2;
             StartTime = startMicroPosture.SceneLocationTime;
             EndTime = endMicroPosture.SceneLocationTime;
+            Duration = EndTime.Subtract(StartTime);
             //PostureType = startMicroPosture.PostureType;
         }
     }

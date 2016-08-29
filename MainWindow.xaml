@@ -83,18 +83,23 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <StackPanel Orientation="Vertical">
-                <Button x:Name="exportFullButton" Content="ExportarFull" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto" Height="Auto" Margin="0,3,0,0" Click="exportFullButton_Click"/>
-                <Button x:Name="zip" Content="zip" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto" Height="Auto" Margin="0,3,0,0" Click="zip_Click"/>
-                <Button x:Name="playerImportButton" Content="ImportarFull" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto" Height="Auto" Margin="0,3,0,0"/>
-                <Button x:Name="realImportButtons" Content="ImportarDatos" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto" Height="Auto" Click="realImportButtons_Click" Margin="0,3,0,0"/>
-                <Button x:Name="importButtons" Content="Simular" HorizontalAlignment="Left" VerticalAlignment="Top" Width="95" Height="Auto" Click="simulateButtons_Click" Margin="0,3,0,0"/>
-                <Button x:Name="exportButtons" Content="ExportarDatos" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto" Height="Auto" Click="exportButtons_Click" Margin="0,3,0,0"/>
-                <Button x:Name="posturesAdmin" Content="Posturas" HorizontalAlignment="Left" VerticalAlignment="Top" Width="95" Height="Auto" Click="posturesAdmin_Click" Margin="0,3,0,0"/>
-                <Button x:Name="analizePostures" Content="Analizar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="95" Height="Auto" Click="analizePostures_Click" Margin="0,3,0,0"/>
-                <Button x:Name="showGraphButtons" Content="Gráficos" HorizontalAlignment="Left" VerticalAlignment="Top" Width="95" Height="Auto" Click="showGraphButtons_Click" Margin="0,3,0,0"/>
+
+                <Button x:Name="ImportButton" Content="Import" HorizontalAlignment="Left" VerticalAlignment="Top" Width="110" Height="Auto" Margin="0,3,0,0"/>
+                <Button x:Name="ExportButton" Content="Export" HorizontalAlignment="Left" VerticalAlignment="Top" Width="110" Height="Auto" Margin="0,3,0,0"/>
+                <Button x:Name="pgsqlExport" Content="Pgsql Export" HorizontalAlignment="Left" VerticalAlignment="Top" Width="110" Height="Auto" Margin="0,3,0,0" Click="pgsqlExport_Click" />
+                <Button x:Name="posturesAdmin" Content="Postures" HorizontalAlignment="Left" VerticalAlignment="Top" Width="110" Height="Auto" Margin="0,10,0,0" Click="posturesAdmin_Click" />
+                <Button x:Name="showGraphButtons" Content="Charts" HorizontalAlignment="Left" VerticalAlignment="Top" Width="110" Height="Auto" Margin="0,3,0,0" Click="showGraphButtons_Click"/>
+
                 <CheckBox Grid.Column="0" x:Name="fondoCheckBox2" 
                               HorizontalAlignment="Left" VerticalAlignment="Center"  
-                              Content="Fondo" IsChecked="True" Click="fondoCheckBox_Unchecked"/>
+                              Content="Fondo" IsChecked="True" Click="fondoCheckBox_Unchecked"
+                          Margin="0,10,0,0"
+                          />
+                <Button x:Name="analizePostures" Content="Analizar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto" Height="Auto" Click="analizePostures_Click" Margin="0,20,0,0"/>
+                <Button x:Name="zip" Content="zip" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto" Height="Auto" Margin="0,3,0,0" Click="zip_Click"/>
+                <!--<Button x:Name="realImportButtons" Content="ImportarDatos" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto" Height="Auto" Click="realImportButtons_Click" Margin="0,3,0,0"/>
+                --><!--<Button x:Name="importButtons" Content="Simular" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto" Height="Auto" Click="simulateButtons_Click" Margin="0,3,0,0"/>--><!--
+                <Button x:Name="exportButtons" Content="ExportarDatos" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto" Height="Auto" Click="exportButtons_Click" Margin="0,3,0,0"/>-->
             </StackPanel>
 
 
@@ -128,12 +133,16 @@
                     <Slider  Grid.Row="0" Grid.ColumnSpan="2"  x:Name="sceneSlider" Height="22" Value="0"
                                      HorizontalAlignment="Stretch"  HorizontalContentAlignment="Left"
                                      VerticalAlignment="Center"
+                                     Maximum="100"/>
+                    <!--<Slider  Grid.Row="0" Grid.ColumnSpan="2"  x:Name="sceneSlider" Height="22" Value="0"
+                                     HorizontalAlignment="Stretch"  HorizontalContentAlignment="Left"
+                                     VerticalAlignment="Center"
                                      ValueChanged="sceneSlider_ValueChanged"
                                      Thumb.DragStarted="sceneSlider_DragStarted"
                                      Thumb.DragCompleted="sceneSlider_DragCompleted"
-                                     Maximum="100"/>
+                                     Maximum="100"/>-->
                     <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal">
-                        <Button x:Name="recordButton" 
+                        <!--<Button x:Name="recordButton" 
                             HorizontalAlignment="Left" VerticalAlignment="Center" Width="Auto"
                             Content="O" Click="grabarButton_Click"/>
                         <Button x:Name="stopButton" 
@@ -141,10 +150,10 @@
                             Content="■" Click="stopButton_Click"/>
                         <Button x:Name="playButton" 
                             HorizontalAlignment="Left" VerticalAlignment="Center" Width="Auto" Margin="3,0,0,0"
-                            Content=">" Click="playButton_Click"/>
+                            Content=">" Click="playButton_Click"/>-->
                         
                         <Button x:Name="recordButton2" 
-                            HorizontalAlignment="Left" VerticalAlignment="Center" Width="Auto" Margin="20,0,0,0"
+                            HorizontalAlignment="Left" VerticalAlignment="Center" Width="Auto" Margin="3,0,0,0"
                             Content="O"/>
                         <Button x:Name="stopButton2" 
                             HorizontalAlignment="Left" VerticalAlignment="Center" Width="Auto" Margin="3,0,0,0"

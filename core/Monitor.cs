@@ -12,7 +12,7 @@ using System.Windows.Media;
 
 namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
 {
-    public class BodyDetector
+    public class Monitor
     {
         KinectSensor _sensor = null;
         BodyFrameReader _bodyReader = null;
@@ -38,7 +38,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
 
         // -----------------------
 
-        public BodyDetector()
+        public Monitor()
         {
             this._sensor = Kinect.Sensor;
 
@@ -50,11 +50,11 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
             _colorReader = _sensor.ColorFrameSource.OpenReader();
             _colorReader.FrameArrived += _colorReader_FrameArrived;
 
-
-
             MainWindow.Instance().colorImageControl.Source = _colorBitmap.Bitmap;
 
         }
+
+        
 
         private void _bodyReader_FrameArrived(object sender, BodyFrameArrivedEventArgs e)
         {
@@ -77,9 +77,9 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
                 foreach (IBody body in bodies)
                 {
                     ulong trackingId = body.TrackingId;
-                    if (Scene.Instance != null)
+                    if (Scene.Instance != null && Kinect.Instance.Recorder.IsRecording)
                     {
-                        bool personExists = Scene.Instance.Persons.Exists(p => p.TrackingId == trackingId);
+                        bool personExists = Scene.Instance.Persons.Exists(p => p.TrackingId == (long)trackingId);
                         if (!personExists && trackingId != 0)
                         {
                             Person person = new Person(

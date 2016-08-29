@@ -43,43 +43,11 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
     using FirstFloor.ModernUI.Windows.Controls;
     using System.IO.Compression;
 
+
     public partial class MainWindow : Window//, INotifyPropertyChanged
     {
-        ///// <summary> Active Kinect sensor </summary>
-        //private KinectSensor kinectSensor = null;
-        
-        ///// <summary> Array for the bodies (Kinect will track up to 6 people simultaneously) </summary>
-        //private Body[] bodies = null;
 
-        ///// <summary> Reader for body frames </summary>
-        ////private BodyFrameReader bodyFrameReader = null;
-
-        ////private ColorFrameReader colorFrameReader = null;
-
-        //private MultiSourceFrameReader _reader;
-        ////private VideoFileWriter m_writer = null;
-        ////private bool isRecording = false;
-        
-        ////private int m_width = 1280, m_height = 720;
-
-        ///// <summary> Current status text to display </summary>
-        //private string statusText = null;
-
-        ///// <summary> KinectBodyView object which handles drawing the Kinect bodies to a View box in the UI </summary>
-        //public static  KinectBodyView kinectBodyView = null;
-        
-        ///// <summary> List of gesture detectors, there will be one detector created for each potential body (max of 6) </summary>
-        //private List<GestureDetector> gestureDetectorList = null;
-
-        private _Escena escena;
-
-        //public Player player { get; private set; }
-
-        //public KinectBody kinectBody { get; private set; }
-        //public BodyDetector bodyDetector { get; private set; }
-        public KinectStudioHandler kstudio { get; private set; }
         public static ChartForm chartForm { get; private set; }
-        public static TimeSpan lastCurrentTime = TimeSpan.FromSeconds(0);
         public static PostureCRUD postureCrud;
 
         private static MainWindow _instance;
@@ -94,37 +62,18 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
             PostureType.none = PostureType.availablesPostureTypes.FirstOrDefault(p => p.PostureTypeId == 0);
             this.InitializeComponent();
             _instance = this;
-            //kinectBody = KinectBody.Instance;
-            //bodyDetector = new BodyDetector();
-            //player = new Player();
 
-            //Kinect.Init();
-
+            ImportButton.Click += IO.ImportButton_Click;
+            ExportButton.Click += IO.ExportButton_Click;
 
             recordButton2.Click += Kinect.Instance.Recorder.RecordButton_Click;
             stopButton2.Click += Kinect.Instance.Recorder.StopRecordButton_Click;
-
             stopButton2.Click += Kinect.Instance.Player.StopButton_Click;
-            playerImportButton.Click += Kinect.Instance.Player.OpenButton_Click;
             playButton2.Click += Kinect.Instance.Player.PlayButton_Click;
+
             sceneSlider.ValueChanged += Kinect.Instance.Player.LocationSlider_ValueChanged;
 
-            this.escena = new _Escena();
-
-            this.kstudio = new KinectStudioHandler();
-            this.exportButtons.IsEnabled = false;
-            this.playButton.IsEnabled = false;
-            this.showGraphButtons.IsEnabled = false;
-            this.stopButton.IsEnabled = false;
             
-            
-            //foreach (PostureType postureType in PostureType.availablesPostureTypes)
-            //{
-            //    Console.WriteLine(postureType.Name + ": "+postureType.Path);// + postureType.color.ToString());
-            //}
-            
-            //ModernWindow1 ui = ModernWindow1();
-            //ui.Show();
 
         }
 
@@ -135,178 +84,123 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
 
         public void disableButtons()
         {
-            //this.button_EditPerson1.IsEnabled = false;
-            //this.button_EditPerson2.IsEnabled = false;
-            //this.button_EditPerson3.IsEnabled = false;
-            //this.button_EditPerson4.IsEnabled = false;
-            //this.button_EditPerson5.IsEnabled = false;
-            //this.button_EditPerson6.IsEnabled = false;
-            this.exportButtons.IsEnabled = false;
-            this.playButton.IsEnabled = false;
-            this.showGraphButtons.IsEnabled = false;
+
+            //this.exportButtons.IsEnabled = false;
+            //this.playButton2.IsEnabled = false;
+            //this.showGraphButtons.IsEnabled = false;
         }
 
         public void enableButtons()
         {
-            //this.button_EditPerson1.IsEnabled = true;
-            //this.button_EditPerson2.IsEnabled = true;
-            //this.button_EditPerson3.IsEnabled = true;
-            //this.button_EditPerson4.IsEnabled = true;
-            //this.button_EditPerson5.IsEnabled = true;
-            //this.button_EditPerson6.IsEnabled = true;
-            this.exportButtons.IsEnabled = true;
-            this.playButton.IsEnabled = true;
-            this.showGraphButtons.IsEnabled = true;
+
+            //this.exportButtons.IsEnabled = true;
+            //this.playButton2.IsEnabled = true;
+            //this.showGraphButtons.IsEnabled = true;
         }
 
         
-
-        /// <summary>
-        /// Execute shutdown tasks
-        /// </summary>
-        /// <param name="sender">object sending the event</param>
-        /// <param name="e">event arguments</param>
         private void MainWindow_Closing(object sender, CancelEventArgs e)
         {
-            //KinectBody.Instance.Close();
-            
         }
+
+        #region Button Events
 
         
 
-
-        private void grabarButton_Click(object sender, RoutedEventArgs e)
+        private void pgsqlExport_Click(object sender, RoutedEventArgs e)
         {
-
-            if (this.kstudio.isRecording)
-            {
-                this.kstudio.StopRecording(); 
-                recordButton.Content = Properties.Buttons.StartRecording;
-                this.enableButtons();
-            }
-            else
-            {
-                this.kstudio.StartRecording();
-                recordButton.Content = Properties.Buttons.StopRecording;
-                this.disableButtons();
-            }
-
-        }
-
-        private void playButton_Click(object sender, RoutedEventArgs e)
-        {
-
-            if (this.kstudio.isPlaying)
-            {
-                this.kstudio.PausePlaying();
-                this.playButton.Content = Properties.Buttons.StartPlaying;
-            }
-            else
-            {
-                //if (!this.kstudio.IsRecordedOrImported)
-                //{
-                //    MessageBox.Show(Properties.Messages.NotRecordedOrImportedScene);
-                //    return;
-                //}
-                this.kstudio.StartOrResumePlaying();
-                this.playButton.Content = Properties.Buttons.PausePlaying;
-                this.stopButton.IsEnabled = true;
-            }
-        }
-        private void stopButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.stopButton.IsEnabled = false;
-            if (this.kstudio.isRecording)
-            {
-                this.kstudio.StopRecording();
-                this.recordButton.Content = Properties.Buttons.StartRecording;
-            }else
-            {
-                this.kstudio.StopPlaying();
-                this.playButton.Content = Properties.Buttons.StartPlaying;
-            }
-        }
-
-        private void simulateButtons_Click(object sender, RoutedEventArgs e)
-        {
-            Win32.OpenFileDialog dlg = new Win32.OpenFileDialog();
-            dlg.FileName = "";
-            dlg.DefaultExt = Properties.Resources.XefExtension; // Default file extension
-            dlg.Filter = Properties.Resources.EventFileDescription + " " + Properties.Resources.EventFileFilter; // Filter files by extension
-            dlg.Title = "Importar escena";
-            bool? result = dlg.ShowDialog();
-
-            if (result == true)
-            {
-                Console.WriteLine("filePath: "+dlg.FileName);
-                this.kstudio.RecSimulate(dlg.FileName);
-                enableButtons();
-                //this.Title = "Visualizador Multimodal - "+Scene.Instance.Name;
-                
-                sceneTitleLabel.Content = Scene.Instance.Name;
-                sceneDurationLabel.Content = Scene.Instance.Duration.ToString(@"hh\:mm\:ss");
-            }
-
-        }
-        private void realImportButtons_Click(object sender, RoutedEventArgs e)
-        {
-            var db = BackupDataContext.CreateConnection(Properties.Paths.ImportedSceneDataFile);
-            //db.Database.EnsureCreated();
-            //db.Scene.Add(Scene.Instance);
-            //db.SaveChanges();
-            Scene.CreateFromDbContext();
-
-            if (Scene.Instance == null) return;
-            foreach (Person person in Scene.Instance.Persons)
-            {
-                if (!person.HasBeenTracked) continue;
-                //person.generatePostureIntervals();
-                //StackPanel combosStackPanel = person.View.ComboStackPanel;
-                //person.PosturesView = new PosturesPersonView(person);
-                person.generateView();
-                
-                person.View.repaintIntervalGroups();
-                timeLineContentGrid.Children.Add(person.View.postureGroupsGrid);
-                //person.View.repaintIntervalGroups();
-            }
-
-            //kstudio.Import(@"tmp\Escena_corta.xef");
-            enableButtons();
-
-        }
-
-        private void exportButtons_Click(object sender, RoutedEventArgs e)
-        {
-            //string fileName = string.Empty;
-
-            //SaveFileDialog dlg = new SaveFileDialog();
-            //dlg.FileName = "";
-            //dlg.DefaultExt = Properties.Resources.XefExtension; // Default file extension
-            //dlg.Filter = Properties.Resources.EventFileDescription + " " + Properties.Resources.EventFileFilter; // Filter files by extension
-            //dlg.Title = "Exportar escena";
-            //bool? result = dlg.ShowDialog();
-
-            //if (result == true)
-            //{
-            //    Console.WriteLine("filePath: " + dlg.FileName);
-            //    this.kstudio.ExportScene(dlg.FileName);
-            //    var db = DataAnalysisContext.CreateConnection(dlg.FileName);
-            //    db.Database.EnsureCreated();
-            //    db.Scene.Add(Scene.Instance);
-            //    db.SaveChanges();
-            //}
-
-            //this.kstudio.ExportScene(@"tmp\scene_data.xef");
-            var db = BackupDataContext.CreateConnection(@"tmp\scene_data.db");
+            var db = PgsqlContext.CreateConnection();
             db.Database.EnsureCreated();
+
+            Scene psqlScene = db.Scene.FirstOrDefault(s => s.SceneId == Scene.Instance.SceneId);
+            if (psqlScene!=null)
+            {
+                System.Windows.Forms.DialogResult dialogResult =
+                    System.Windows.Forms.MessageBox.Show(
+                        "May be this scene already exists in PostgreSQL database."
+                        +" Psql scene name: " + psqlScene.Name
+                        +" This scene name: " + Scene.Instance.Name
+                        +" Are you sure you want insert it?",
+                        "Think about it!",
+                        System.Windows.Forms.MessageBoxButtons.YesNo);
+                if (dialogResult == System.Windows.Forms.DialogResult.Yes)
+                {
+                    Console.WriteLine("testing1");
+                    Scene.Instance.SceneId = db.Scene.Last().SceneId + 1;
+                    Console.WriteLine("testing2");
+                }
+                else if (dialogResult == System.Windows.Forms.DialogResult.No)
+                {
+                    return;
+                }
+                    
+            }
             
+            List<Scene> list = db.Scene.ToList();
+            Console.WriteLine("algo");
+
             db.Scene.Add(Scene.Instance);
+
+            list = db.Scene.ToList();
+            Console.WriteLine("algo");
+
             db.SaveChanges();
-
-            
-
         }
 
+        private void posturesAdmin_Click(object sender, RoutedEventArgs e)
+        {
+            postureCrud = new PostureCRUD();
+            postureCrud.Show();
+        }
+
+        private void showGraphButtons_Click(object sender, RoutedEventArgs e)
+        {
+            chartForm = new ChartForm();
+            chartForm.Show();
+            chartForm.updateCharts();
+        }
+        #endregion
+
+        #region Other Events
+        private void fondoCheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Kinect.Instance.Player.ToggleColorFrameEnable();
+        }
+        
+        public void TimeLineVerticalScrollsChange(object sender, ScrollChangedEventArgs e)
+        {
+
+            if (sender == personLabelsScroll)
+            {
+                timeLineContentScroll.ScrollToVerticalOffset(e.VerticalOffset);
+                timeLineContentScroll.ScrollToHorizontalOffset(e.HorizontalOffset);
+                timeLineVerticalScrollView.ScrollToVerticalOffset(e.VerticalOffset);
+                timeLineVerticalScrollView.ScrollToHorizontalOffset(e.HorizontalOffset);
+            }
+            else if (sender == timeLineContentScroll)
+            {
+                personLabelsScroll.ScrollToVerticalOffset(e.VerticalOffset);
+                personLabelsScroll.ScrollToHorizontalOffset(e.HorizontalOffset);
+                timeLineVerticalScrollView.ScrollToVerticalOffset(e.VerticalOffset);
+                timeLineVerticalScrollView.ScrollToHorizontalOffset(e.HorizontalOffset);
+            }
+            else if (sender == timeLineVerticalScrollView)
+            {
+                personLabelsScroll.ScrollToVerticalOffset(e.VerticalOffset);
+                personLabelsScroll.ScrollToHorizontalOffset(e.HorizontalOffset);
+                timeLineContentScroll.ScrollToVerticalOffset(e.VerticalOffset);
+                timeLineContentScroll.ScrollToHorizontalOffset(e.HorizontalOffset);
+            }
+        }
+        
+        private void RowDefinition_MouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e)
+        {
+            Console.WriteLine("Delta: " + e.Delta);
+            //Console.WriteLine("Delta: " + e.);
+        }
+        #endregion
+
+        #region Pending Events
         //private void button_EditPerson1_Click(object sender, RoutedEventArgs e)
         //{
         //    EditPersonForm editPersonForm = new EditPersonForm(0, ref label_sujeto1);
@@ -342,92 +236,13 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
         //    EditPersonForm editPersonForm = new EditPersonForm(5, ref label_sujeto6);
         //    editPersonForm.Show();
         //}
+        #endregion
 
-
-
-
-        private void showGraphButtons_Click(object sender, RoutedEventArgs e)
+        #region Testing Events    
+        private void zip_Click(object sender, RoutedEventArgs e)
         {
-            chartForm = new ChartForm();
-            chartForm.Show();
-            chartForm.updateCharts();
+            ZipFile.CreateFromDirectory(Properties.Paths.RecordedSceneDirectory, Properties.Paths.RecordedZipFile);
         }
-
-
-        private void fondoCheckBox_Unchecked(object sender, RoutedEventArgs e)
-        {
-            Kinect.Instance.Player.ToggleColorFrameEnable();
-        }
-
-
-        private int lastCurrentSecondForTimeLineCursor = 0;
-        private void sceneSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            ////int col = 0;
-            ////Grid.SetColumn(lineCurrentTimeCursor, col);
-            //int currentSecond = (int)kstudio.playback.CurrentRelativeTime.TotalSeconds;
-
-            //if(lastCurrentSecondForTimeLineCursor != currentSecond)
-            //{
-            //    Console.WriteLine(currentSecond);
-            //    Grid.SetColumn(lineCurrentTimeCursor, currentSecond); // 1seg = 1col
-            //    Grid.SetColumn(lineCurrentTimeRulerCursor, currentSecond); // 1seg = 1col
-            //    lastCurrentSecondForTimeLineCursor = currentSecond;
-            //    //timeLineScroll.
-            //}
-
-            
-        }
-
-        private void sceneSlider_DragStarted(object sender, RoutedEventArgs e)
-        {
-            ////sceneSliderUserDragging = true;
-            //if (kstudio.playback != null)
-            //    if (kstudio.playback.State == Microsoft.Kinect.Tools.KStudioPlaybackState.Playing)
-            //    {
-            //        kstudio.playback.UserState = "SCENE_SLIDER_DRAG_MUST_RESUME";
-            //    }
-            //    else
-            //    {
-            //        kstudio.playback.UserState = "madafaka :D";
-            //    } 
-            //kstudio.PausePlaying();
-        }
-
-        private void sceneSlider_DragCompleted(object sender, RoutedEventArgs e)
-        {
-            ////sceneSliderUserDragging = false;
-            //if (kstudio.playback != null)
-            //{
-            //    kstudio.playback.SeekByRelativeTime(TimeSpan.FromMilliseconds(sceneSlider.Value));
-            //    kstudio.ResumePlaying();
-            //    Thread.Sleep(kstudio.PausedStartMillisTime);
-            //    if ( (string)kstudio.playback.UserState != "SCENE_SLIDER_DRAG_MUST_RESUME")
-            //        kstudio.PausePlaying();
-            //}
-            
-            
-        }
-
-        private void RowDefinition_MouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e)
-        {
-            Console.WriteLine("Delta: " + e.Delta);
-            //Console.WriteLine("Delta: " + e.);
-        }
-
-        //public StackPanel getCombosStackPanelByPerson(Person person)
-        //{
-        //    switch (person.BodyIndex)
-        //    {
-        //        case 0: return postureIntervalGroupNamesComboBox_person0;
-        //        case 1: return postureIntervalGroupNamesComboBox_person1;
-        //        case 2: return postureIntervalGroupNamesComboBox_person2;
-        //        case 3: return postureIntervalGroupNamesComboBox_person3;
-        //        case 4: return postureIntervalGroupNamesComboBox_person4;
-        //        case 5: return postureIntervalGroupNamesComboBox_person5;
-        //        default: return null;
-        //    }
-        //}
 
         private void analizePostures_Click(object sender, RoutedEventArgs e)
         {
@@ -438,69 +253,70 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
                 person.generatePostureIntervals();
                 //StackPanel combosStackPanel = person.View.ComboStackPanel;
                 //person.PosturesView = new PosturesPersonView(person);
-                
+
                 person.View.repaintIntervalGroups();
                 timeLineContentGrid.Children.Add(person.View.postureGroupsGrid);
-                
+
             }
         }
+        #endregion
 
+        #region Shit Events
+        //private void realImportButtons_Click(object sender, RoutedEventArgs e)
+        //{
+        //    var db = BackupDataContext.CreateConnection(Properties.Paths.ImportedSceneDataFile);
+        //    //db.Database.EnsureCreated();
+        //    //db.Scene.Add(Scene.Instance);
+        //    //db.SaveChanges();
+        //    Scene.CreateFromDbContext();
 
-        public void TimeLineVerticalScrollsChange(object sender, ScrollChangedEventArgs e)
-        {
+        //    if (Scene.Instance == null) return;
+        //    foreach (Person person in Scene.Instance.Persons)
+        //    {
+        //        if (!person.HasBeenTracked) continue;
+        //        //person.generatePostureIntervals();
+        //        //StackPanel combosStackPanel = person.View.ComboStackPanel;
+        //        //person.PosturesView = new PosturesPersonView(person);
+        //        person.generateView();
 
-            if (sender == personLabelsScroll)
-            {
-                timeLineContentScroll.ScrollToVerticalOffset(e.VerticalOffset);
-                timeLineContentScroll.ScrollToHorizontalOffset(e.HorizontalOffset);
-                timeLineVerticalScrollView.ScrollToVerticalOffset(e.VerticalOffset);
-                timeLineVerticalScrollView.ScrollToHorizontalOffset(e.HorizontalOffset);
-            }
-            else if(sender == timeLineContentScroll)
-            {
-                personLabelsScroll.ScrollToVerticalOffset(e.VerticalOffset);
-                personLabelsScroll.ScrollToHorizontalOffset(e.HorizontalOffset);
-                timeLineVerticalScrollView.ScrollToVerticalOffset(e.VerticalOffset);
-                timeLineVerticalScrollView.ScrollToHorizontalOffset(e.HorizontalOffset);
-            }
-            else if(sender == timeLineVerticalScrollView)
-            {
-                personLabelsScroll.ScrollToVerticalOffset(e.VerticalOffset);
-                personLabelsScroll.ScrollToHorizontalOffset(e.HorizontalOffset);
-                timeLineContentScroll.ScrollToVerticalOffset(e.VerticalOffset);
-                timeLineContentScroll.ScrollToHorizontalOffset(e.HorizontalOffset);
-            }
-        }
+        //        person.View.repaintIntervalGroups();
+        //        timeLineContentGrid.Children.Add(person.View.postureGroupsGrid);
+        //        //person.View.repaintIntervalGroups();
+        //    }
 
-        private void posturesAdmin_Click(object sender, RoutedEventArgs e)
-        {
-            postureCrud = new PostureCRUD();
-            postureCrud.Show();
-        }
+        //    //kstudio.Import(@"tmp\Escena_corta.xef");
+        //    enableButtons();
+        //}
+        //private void exportButtons_Click(object sender, RoutedEventArgs e)
+        //{
+        //    //string fileName = string.Empty;
 
-        private void zip_Click(object sender, RoutedEventArgs e)
-        {
-            ZipFile.CreateFromDirectory(Properties.Paths.RecordedSceneDirectory, Properties.Paths.RecordedZipFile);
+        //    //SaveFileDialog dlg = new SaveFileDialog();
+        //    //dlg.FileName = "";
+        //    //dlg.DefaultExt = Properties.Resources.XefExtension; // Default file extension
+        //    //dlg.Filter = Properties.Resources.EventFileDescription + " " + Properties.Resources.EventFileFilter; // Filter files by extension
+        //    //dlg.Title = "Exportar escena";
+        //    //bool? result = dlg.ShowDialog();
 
-        }
+        //    //if (result == true)
+        //    //{
+        //    //    Console.WriteLine("filePath: " + dlg.FileName);
+        //    //    this.kstudio.ExportScene(dlg.FileName);
+        //    //    var db = DataAnalysisContext.CreateConnection(dlg.FileName);
+        //    //    db.Database.EnsureCreated();
+        //    //    db.Scene.Add(Scene.Instance);
+        //    //    db.SaveChanges();
+        //    //}
 
-        private void exportFullButton_Click(object sender, RoutedEventArgs e)
-        {
-            var dlg = new SaveFileDialog()
-            {
-                FileName = DateTime.Now.ToString("yyyy-MM-dd _ hh-mm-ss"),
-                DefaultExt = ".mvs",
-                Filter = "Multimodal Visualizer Scene (*.mvs)|*.mvs"
-            };
+        //    //this.kstudio.ExportScene(@"tmp\scene_data.xef");
+        //    var db = BackupDataContext.CreateConnection(@"tmp\scene_data.db");
+        //    db.Database.EnsureCreated();
 
-            if (dlg.ShowDialog().GetValueOrDefault())
-            {
-                string tmpScenePath = Properties.Paths.tmpDirectory + @"\exporting_scene";
-                Utils.DirectoryCopy(Properties.Paths.RecordedSceneDirectory, tmpScenePath);
-                if (File.Exists(dlg.FileName)) File.Delete(dlg.FileName);
-                ZipFile.CreateFromDirectory(tmpScenePath, dlg.FileName);
-                Directory.Delete(tmpScenePath, true);
-            }
-        }
+        //    db.Scene.Add(Scene.Instance);
+        //    db.SaveChanges();
+        //}
+        #endregion
+
+        
     }
 }

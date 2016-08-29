@@ -207,8 +207,10 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.views
                     path.StrokeThickness = 10;
                     path.Stretch = System.Windows.Media.Stretch.Fill;
                     Grid.SetRow(path, rowDefIndex);
-                    Grid.SetColumn(path, intervalIniCol);
-                    Grid.SetColumnSpan(path, intervalFinCol - intervalIniCol);
+
+                    int iniCol = (intervalIniCol - 1) >= 0 ? (intervalIniCol - 1) : 0;
+                    Grid.SetColumn(path, iniCol);
+                    Grid.SetColumnSpan(path, intervalFinCol - intervalIniCol + 2);
                     System.Windows.Media.LineGeometry line = new System.Windows.Media.LineGeometry();
                     line.StartPoint = new System.Windows.Point(0d, 0d);
                     line.EndPoint = new System.Windows.Point(1d, 0d);
