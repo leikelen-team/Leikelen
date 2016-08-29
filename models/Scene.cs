@@ -60,8 +60,21 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.models
         {
             instance = new Scene(name, startDate, duration);
             instance.Status = Statuses.Recorded;
-            instance.initTimeLine();
+            instance.InitTimeLine();
 
+            return instance;
+        }
+
+        public static Scene CreateFromRecord()
+        {
+            if (instance != null) instance.Clear();
+            instance = new Scene()
+            {
+                Name = DateTime.Now.ToString("yyyy-MM-dd _ hh-mm-ss"),
+                StartDate = DateTime.Now,
+                Persons = new List<Person>(),
+                Status = Statuses.Recorded
+            };
             return instance;
         }
 
@@ -71,12 +84,12 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.models
             if(instance!=null) instance.Clear();
             instance = db.LoadScene();
             instance.Status = Statuses.Imported;
-            instance.initTimeLine();
-            Console.WriteLine("oa");
+            instance.InitTimeLine();
+            //Console.WriteLine("oa");
             //instance = db.Scene.First();
         }
 
-        private void initTimeLine()
+        public void InitTimeLine()
         {
             
             ColumnDefinition rulerCol, contentCol;

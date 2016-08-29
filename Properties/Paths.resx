@@ -117,8 +117,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="recordScenes" xml:space="preserve">
-    <value>RecordScenes/</value>
+  <data name="RecordedZipFile" xml:space="preserve">
+    <value>tmp/recorded_scene.mvs</value>
+  </data>
+  <data name="ImportedKdvrFile" xml:space="preserve">
+    <value>tmp/imported_scene/kdvr_recorded.kdvr</value>
+  </data>
+  <data name="ImportedSceneDataFile" xml:space="preserve">
+    <value>tmp/imported_scene/scene_data.db</value>
+  </data>
+  <data name="ImportedSceneDirectory" xml:space="preserve">
+    <value>tmp/imported_scene</value>
+  </data>
+  <data name="RecordedKdvrFilePath" xml:space="preserve">
+    <value>tmp/rec_scene/kdvr_recorded.kdvr</value>
+  </data>
+  <data name="RecordedSceneDirectory" xml:space="preserve">
+    <value>tmp/rec_scene</value>
+  </data>
+  <data name="RecordedSceneDataFile" xml:space="preserve">
+    <value>tmp/rec_scene/scene_data.db</value>
   </data>
   <data name="tmpDirectory" xml:space="preserve">
     <value>tmp</value>

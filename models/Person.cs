@@ -39,8 +39,8 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.models
         public bool HasBeenTracked
         {
             get {
-                return 
-                    (PostureIntervalGroups!=null && PostureIntervalGroups.Count!=0) ||
+                return
+                    (PostureIntervalGroups != null && PostureIntervalGroups.Count != 0) ||
                     (MicroPostures!=null && MicroPostures.Count != 0);
             }
         }

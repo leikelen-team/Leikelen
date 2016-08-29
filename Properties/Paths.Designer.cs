@@ -61,11 +61,65 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to RecordScenes/.
+        ///   Looks up a localized string similar to tmp/imported_scene/kdvr_recorded.kdvr.
         /// </summary>
-        internal static string recordScenes {
+        internal static string ImportedKdvrFile {
             get {
-                return ResourceManager.GetString("recordScenes", resourceCulture);
+                return ResourceManager.GetString("ImportedKdvrFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to tmp/imported_scene/scene_data.db.
+        /// </summary>
+        internal static string ImportedSceneDataFile {
+            get {
+                return ResourceManager.GetString("ImportedSceneDataFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to tmp/imported_scene.
+        /// </summary>
+        internal static string ImportedSceneDirectory {
+            get {
+                return ResourceManager.GetString("ImportedSceneDirectory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to tmp/rec_scene/kdvr_recorded.kdvr.
+        /// </summary>
+        internal static string RecordedKdvrFilePath {
+            get {
+                return ResourceManager.GetString("RecordedKdvrFilePath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to tmp/rec_scene/scene_data.db.
+        /// </summary>
+        internal static string RecordedSceneDataFile {
+            get {
+                return ResourceManager.GetString("RecordedSceneDataFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to tmp/rec_scene.
+        /// </summary>
+        internal static string RecordedSceneDirectory {
+            get {
+                return ResourceManager.GetString("RecordedSceneDirectory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to tmp/recorded_scene.mvs.
+        /// </summary>
+        internal static string RecordedZipFile {
+            get {
+                return ResourceManager.GetString("RecordedZipFile", resourceCulture);
             }
         }
         

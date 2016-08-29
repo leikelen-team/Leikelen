@@ -136,12 +136,14 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
         
         private string GetColorFramePath()
         {
-            return Properties.Paths.recordScenes + this.id + "/frames/color/";
+            //return Properties.Paths.recordScenes + this.id + "/frames/color/";
+            return null;
         }
 
         private string GetBodyFramePath()
         {
-            return Properties.Paths.recordScenes + this.id + "/frames/body/";
+            //return Properties.Paths.recordScenes + this.id + "/frames/body/";
+            return null;
         }
 
         public void StartRecording()

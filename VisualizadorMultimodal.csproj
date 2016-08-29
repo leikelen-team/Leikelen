@@ -164,6 +164,7 @@
       <HintPath>packages\System.Interactive.Async.3.0.0\lib\net45\System.Interactive.Async.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Transactions" />
@@ -197,12 +198,13 @@
     <Compile Include="db\BackupDataContext.cs" />
     <Compile Include="models\Interval.cs" />
     <Compile Include="models\_SceneFrame.cs" />
+    <Compile Include="utils\Files.cs" />
     <Compile Include="views\PersonView.cs" />
     <Compile Include="windows\AddOrEditPostureType.xaml.cs">
       <DependentUpon>AddOrEditPostureType.xaml</DependentUpon>
     </Compile>
     <Compile Include="analytics\PersonAnalytic.cs" />
-    <Compile Include="core\KinectBody.cs" />
+    <Compile Include="core\_KinectBody.cs" />
     <Compile Include="models\PostureIntervalGroup.cs" />
     <Compile Include="models\MicroPosture.cs" />
     <Compile Include="windows\PostureCRUD.xaml.cs">

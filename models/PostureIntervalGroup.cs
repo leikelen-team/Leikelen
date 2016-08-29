@@ -28,11 +28,16 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.models
         {
             if(initialMicroPosture.PostureType != this.PostureType || finalMicroPosture.PostureType != this.PostureType)
             {
-                throw new Exception("You are adding an interval with diferent postureType to this IntervalPosture object");
+                //throw new Exception("You are adding an interval with diferent postureType to this IntervalPosture object");
+                Console.WriteLine("ERROR!! : You are adding an interval with diferent postureType to this IntervalPosture object");
+                return;
             }
             if(initialMicroPosture.SceneLocationTime >= finalMicroPosture.SceneLocationTime)
             {
-                throw new Exception("initialMicroPosture must be lower than finalMicroPosture");
+                //throw new Exception("initialMicroPosture must be lower than finalMicroPosture");
+                Console.WriteLine("ERROR!! : initialMicroPosture must be lower than finalMicroPosture");
+                return;
+
             }
             bool exists = this.Intervals.Exists(
                 interval =>
@@ -41,9 +46,16 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.models
                 );
             if (exists)
             {
-                throw new Exception("The initialMicroPosture must be greater than an existent finalMicroPosture interval");
+                //throw new Exception("The initialMicroPosture must be greater than an existent finalMicroPosture interval");
+                Console.WriteLine("ERROR!! : The initialMicroPosture must be greater than an existent finalMicroPosture interval");
             }
-            Intervals.Add(new Interval(initialMicroPosture, finalMicroPosture));
+            int threshold = Convert.ToInt32(Properties.Resources.MinPostureIntervalDuration);
+            if (finalMicroPosture.SceneLocationTime.Subtract(initialMicroPosture.SceneLocationTime).TotalMilliseconds >= threshold)
+                Intervals.Add(new Interval(initialMicroPosture, finalMicroPosture));
+            else
+            {
+                Console.WriteLine("### !! Interval SKIPPED!!: {0} - {1}", initialMicroPosture.SceneLocationTime, finalMicroPosture.SceneLocationTime);
+            }
         }
 
         //public IReadOnlyList<Tuple<MicroPosture, MicroPosture>> Intervals {

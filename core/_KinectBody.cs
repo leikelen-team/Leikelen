@@ -11,7 +11,7 @@ using System.Windows.Media.Imaging;
 
 namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
 {
-    public class KinectBody
+    public class _KinectBody
     {
 
         /// <summary> Active Kinect sensor </summary>
@@ -24,17 +24,17 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
         public List<GestureDetector> gestureDetectorList { get; private set; } = null;
 
         
-        private static KinectBody instance = null;
-        private static KinectBody Instance
+        private static _KinectBody instance = null;
+        private static _KinectBody Instance
         {
             get
             {
-                if (instance == null) instance = new KinectBody();
+                if (instance == null) instance = new _KinectBody();
                 return instance;
             }
         }
 
-        private KinectBody()
+        private _KinectBody()
         {
             // only one sensor is currently supported
             this.kinectSensor = KinectSensor.GetDefault();
@@ -89,7 +89,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
                             MainWindow.lastCurrentTime = currentTime;
                         }
                     }
-                    if (MainWindow.Instance().fondoCheckBox.IsChecked != false)
+                    if (MainWindow.Instance().fondoCheckBox2.IsChecked != false)
                     {
                         BitmapSource btmSource = colorFrame.ToBitmap();
                         MainWindow.Instance().colorImageControl.Source = btmSource;

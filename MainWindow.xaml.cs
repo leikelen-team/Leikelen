@@ -41,6 +41,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
     using db;
 
     using FirstFloor.ModernUI.Windows.Controls;
+    using System.IO.Compression;
 
     public partial class MainWindow : Window//, INotifyPropertyChanged
     {
@@ -97,8 +98,16 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
             //bodyDetector = new BodyDetector();
             //player = new Player();
 
-            Kinect.Init();
+            //Kinect.Init();
+
+
             recordButton2.Click += Kinect.Instance.Recorder.RecordButton_Click;
+            stopButton2.Click += Kinect.Instance.Recorder.StopRecordButton_Click;
+
+            stopButton2.Click += Kinect.Instance.Player.StopButton_Click;
+            playerImportButton.Click += Kinect.Instance.Player.OpenButton_Click;
+            playButton2.Click += Kinect.Instance.Player.PlayButton_Click;
+            sceneSlider.ValueChanged += Kinect.Instance.Player.LocationSlider_ValueChanged;
 
             this.escena = new _Escena();
 
@@ -109,10 +118,10 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
             this.stopButton.IsEnabled = false;
             
             
-            foreach (PostureType postureType in PostureType.availablesPostureTypes)
-            {
-                Console.WriteLine(postureType.Name + ": "+postureType.Path);// + postureType.color.ToString());
-            }
+            //foreach (PostureType postureType in PostureType.availablesPostureTypes)
+            //{
+            //    Console.WriteLine(postureType.Name + ": "+postureType.Path);// + postureType.color.ToString());
+            //}
             
             //ModernWindow1 ui = ModernWindow1();
             //ui.Show();
@@ -121,11 +130,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
 
         public static MainWindow Instance()
         {
-            //FirstFloor.ModernUI.Windows.Navigation
-
-            //return ((ModernWindow)Application.Current.MainWindow);
             return _instance;
-
         }
 
         public void disableButtons()
@@ -245,7 +250,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
         }
         private void realImportButtons_Click(object sender, RoutedEventArgs e)
         {
-            var db = BackupDataContext.CreateConnection(@"tmp\scene_data.db");
+            var db = BackupDataContext.CreateConnection(Properties.Paths.ImportedSceneDataFile);
             //db.Database.EnsureCreated();
             //db.Scene.Add(Scene.Instance);
             //db.SaveChanges();
@@ -298,6 +303,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
             db.Scene.Add(Scene.Instance);
             db.SaveChanges();
 
+            
 
         }
 
@@ -347,59 +353,58 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
             chartForm.updateCharts();
         }
 
-        private void fondoCheckBox_Checked(object sender, RoutedEventArgs e)
+
+        private void fondoCheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
-            if (this.fondoCheckBox.IsChecked == false)
-            {
-                this.colorImageControl.Source = null;
-            }
+            Kinect.Instance.Player.ToggleColorFrameEnable();
         }
+
 
         private int lastCurrentSecondForTimeLineCursor = 0;
         private void sceneSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            //int col = 0;
-            //Grid.SetColumn(lineCurrentTimeCursor, col);
-            int currentSecond = (int)kstudio.playback.CurrentRelativeTime.TotalSeconds;
+            ////int col = 0;
+            ////Grid.SetColumn(lineCurrentTimeCursor, col);
+            //int currentSecond = (int)kstudio.playback.CurrentRelativeTime.TotalSeconds;
 
-            if(lastCurrentSecondForTimeLineCursor != currentSecond)
-            {
-                Console.WriteLine(currentSecond);
-                Grid.SetColumn(lineCurrentTimeCursor, currentSecond); // 1seg = 1col
-                Grid.SetColumn(lineCurrentTimeRulerCursor, currentSecond); // 1seg = 1col
-                lastCurrentSecondForTimeLineCursor = currentSecond;
-                //timeLineScroll.
-            }
+            //if(lastCurrentSecondForTimeLineCursor != currentSecond)
+            //{
+            //    Console.WriteLine(currentSecond);
+            //    Grid.SetColumn(lineCurrentTimeCursor, currentSecond); // 1seg = 1col
+            //    Grid.SetColumn(lineCurrentTimeRulerCursor, currentSecond); // 1seg = 1col
+            //    lastCurrentSecondForTimeLineCursor = currentSecond;
+            //    //timeLineScroll.
+            //}
 
             
         }
 
         private void sceneSlider_DragStarted(object sender, RoutedEventArgs e)
         {
-            //sceneSliderUserDragging = true;
-            if (kstudio.playback != null)
-                if (kstudio.playback.State == Microsoft.Kinect.Tools.KStudioPlaybackState.Playing)
-                {
-                    kstudio.playback.UserState = "SCENE_SLIDER_DRAG_MUST_RESUME";
-                }
-                else
-                {
-                    kstudio.playback.UserState = "madafaka :D";
-                } 
-            kstudio.PausePlaying();
+            ////sceneSliderUserDragging = true;
+            //if (kstudio.playback != null)
+            //    if (kstudio.playback.State == Microsoft.Kinect.Tools.KStudioPlaybackState.Playing)
+            //    {
+            //        kstudio.playback.UserState = "SCENE_SLIDER_DRAG_MUST_RESUME";
+            //    }
+            //    else
+            //    {
+            //        kstudio.playback.UserState = "madafaka :D";
+            //    } 
+            //kstudio.PausePlaying();
         }
 
         private void sceneSlider_DragCompleted(object sender, RoutedEventArgs e)
         {
-            //sceneSliderUserDragging = false;
-            if (kstudio.playback != null)
-            {
-                kstudio.playback.SeekByRelativeTime(TimeSpan.FromMilliseconds(sceneSlider.Value));
-                kstudio.ResumePlaying();
-                Thread.Sleep(kstudio.PausedStartMillisTime);
-                if ( (string)kstudio.playback.UserState != "SCENE_SLIDER_DRAG_MUST_RESUME")
-                    kstudio.PausePlaying();
-            }
+            ////sceneSliderUserDragging = false;
+            //if (kstudio.playback != null)
+            //{
+            //    kstudio.playback.SeekByRelativeTime(TimeSpan.FromMilliseconds(sceneSlider.Value));
+            //    kstudio.ResumePlaying();
+            //    Thread.Sleep(kstudio.PausedStartMillisTime);
+            //    if ( (string)kstudio.playback.UserState != "SCENE_SLIDER_DRAG_MUST_RESUME")
+            //        kstudio.PausePlaying();
+            //}
             
             
         }
@@ -473,6 +478,29 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
             postureCrud.Show();
         }
 
-        
+        private void zip_Click(object sender, RoutedEventArgs e)
+        {
+            ZipFile.CreateFromDirectory(Properties.Paths.RecordedSceneDirectory, Properties.Paths.RecordedZipFile);
+
+        }
+
+        private void exportFullButton_Click(object sender, RoutedEventArgs e)
+        {
+            var dlg = new SaveFileDialog()
+            {
+                FileName = DateTime.Now.ToString("yyyy-MM-dd _ hh-mm-ss"),
+                DefaultExt = ".mvs",
+                Filter = "Multimodal Visualizer Scene (*.mvs)|*.mvs"
+            };
+
+            if (dlg.ShowDialog().GetValueOrDefault())
+            {
+                string tmpScenePath = Properties.Paths.tmpDirectory + @"\exporting_scene";
+                Utils.DirectoryCopy(Properties.Paths.RecordedSceneDirectory, tmpScenePath);
+                if (File.Exists(dlg.FileName)) File.Delete(dlg.FileName);
+                ZipFile.CreateFromDirectory(tmpScenePath, dlg.FileName);
+                Directory.Delete(tmpScenePath, true);
+            }
+        }
     }
 }

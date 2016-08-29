@@ -50,15 +50,10 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
             _colorReader = _sensor.ColorFrameSource.OpenReader();
             _colorReader.FrameArrived += _colorReader_FrameArrived;
 
-            //_depthReader = _sensor.DepthFrameSource.OpenReader();
-            //_depthReader.FrameArrived += _depthReader_FrameArrived;
 
-            //_infraredReader = _sensor.InfraredFrameSource.OpenReader();
-            //_infraredReader.FrameArrived += _infraredReader_FrameArrived;
 
-            
             MainWindow.Instance().colorImageControl.Source = _colorBitmap.Bitmap;
-            //OutputImage = _colorBitmap.Bitmap;
+
         }
 
         private void _bodyReader_FrameArrived(object sender, BodyFrameArrivedEventArgs e)
@@ -114,7 +109,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
             }
             else
             {
-                MainWindow.Instance().colorImageControl.Source = null;
+                MainWindow.Instance().bodyImageControl.Source = null;
                 //OutputImage = null;
             }
         }

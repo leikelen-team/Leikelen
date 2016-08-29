@@ -106,6 +106,15 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 2000.
+        /// </summary>
+        public static string MinPostureIntervalDuration {
+            get {
+                return ResourceManager.GetString("MinPostureIntervalDuration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ninguna.
         /// </summary>
         public static string NonePostureName {

@@ -171,7 +171,8 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
         /// <param name="e">event arguments</param>
         private void Reader_GestureFrameArrived(object sender, VisualGestureBuilderFrameArrivedEventArgs e)
         {
-            if (!MainWindow.Instance().kstudio.isPlaying && !MainWindow.Instance().kstudio.isRecording) return;
+            
+            if (!Kinect.Instance.Recorder.IsRecording) return;
             VisualGestureBuilderFrameReference frameReference = e.FrameReference;
             using (VisualGestureBuilderFrame frame = frameReference.AcquireFrame())
             {
@@ -207,8 +208,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
                                             //Console.WriteLine("registered posture:"+postureType.name);
                                             MicroPosture mc = new MicroPosture(
                                                         postureType,
-                                                        MainWindow.Instance()
-                                                            .kstudio.getSceneLocationTime().Value
+                                                        Kinect.Instance.Recorder.getCurrentLocation()
                                                     );
                                             
                                             person.MicroPostures.Add(mc);
@@ -223,7 +223,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
                         if (!postureDetected && Scene.Instance != null)
                         {
                             //Console.WriteLine("registered posture:" + PostureType.none.name);
-                            person.MicroPostures.Add(new MicroPosture(PostureType.none, MainWindow.Instance().kstudio.getSceneLocationTime().Value));
+                            person.MicroPostures.Add(new MicroPosture(PostureType.none, Kinect.Instance.Recorder.getCurrentLocation()));
                         }
                     }
                 }
