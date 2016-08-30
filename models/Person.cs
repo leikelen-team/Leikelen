@@ -1,6 +1,7 @@
 ﻿using Microsoft.Kinect;
 using Microsoft.Samples.Kinect.VisualizadorMultimodal.analytics;
 using Microsoft.Samples.Kinect.VisualizadorMultimodal.core;
+using Microsoft.Samples.Kinect.VisualizadorMultimodal.db;
 using Microsoft.Samples.Kinect.VisualizadorMultimodal.views;
 using Microsoft.Samples.Kinect.VisualizadorMultimodal.windows;
 using System;
@@ -128,7 +129,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.models
             if (this.MicroPostures.Count == 0) return;
             //Dictionary<string, string> dic = new Dictionary<string, string>();
 
-            foreach (PostureType currentPostureType in PostureType.availablesPostureTypes)
+            foreach (PostureType currentPostureType in PostureTypeContext.db.PostureType.ToList())
             {
                 //System.Collections.IEnumerable microPostures = person.microPostures.Where(microPosture => microPosture.postureType.name == postureType.name);
 

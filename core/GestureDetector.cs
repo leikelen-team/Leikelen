@@ -14,6 +14,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
     using System.Linq;
     using views;
     using models;
+    using db;
 
     //using System.Data.SQLite;
     /// <summary>
@@ -67,11 +68,11 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
                 this.vgbFrameReader.FrameArrived += this.Reader_GestureFrameArrived;
             }
 
-            
+
             //Console.WriteLine("-----------");
 
             // agrupa todos las posturas que tienen el mismo path
-            var posturePaths = PostureType.availablesPostureTypes
+            var posturePaths = PostureTypeContext.db.PostureType.ToList()
                 .FindAll(posture => posture != PostureType.none)
                 .GroupBy(posture => posture.Path);
             foreach (var posturePath in posturePaths)
@@ -191,7 +192,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
                         foreach (Gesture gesture in this.vgbFrameSource.Gestures)
                         {
                             //Posture.Name[] postures = (Posture.Name[])Enum.GetValues(typeof(Posture.Name));
-                            foreach (PostureType postureType in PostureType.availablesPostureTypes)
+                            foreach (PostureType postureType in PostureTypeContext.db.PostureType.ToList())
                             {
                                 //if (gesture.Name.Equals(this.seatedGestureName) && gesture.GestureType == GestureType.Discrete)
                                 if (gesture.Name.Equals(postureType.Name) && gesture.GestureType == GestureType.Discrete)

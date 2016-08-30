@@ -84,19 +84,46 @@
             </Grid.RowDefinitions>
             <StackPanel Orientation="Vertical">
 
+                <!--<Button x:Name="NewSceneButton" Content="New" HorizontalAlignment="Left" VerticalAlignment="Top" Width="110" Height="Auto" Margin="0,3,0,0"/>-->
                 <Button x:Name="ImportButton" Content="Import" HorizontalAlignment="Left" VerticalAlignment="Top" Width="110" Height="Auto" Margin="0,3,0,0"/>
                 <Button x:Name="ExportButton" Content="Export" HorizontalAlignment="Left" VerticalAlignment="Top" Width="110" Height="Auto" Margin="0,3,0,0"/>
                 <Button x:Name="pgsqlExport" Content="Pgsql Export" HorizontalAlignment="Left" VerticalAlignment="Top" Width="110" Height="Auto" Margin="0,3,0,0" Click="pgsqlExport_Click" />
                 <Button x:Name="posturesAdmin" Content="Postures" HorizontalAlignment="Left" VerticalAlignment="Top" Width="110" Height="Auto" Margin="0,10,0,0" Click="posturesAdmin_Click" />
-                <Button x:Name="showGraphButtons" Content="Charts" HorizontalAlignment="Left" VerticalAlignment="Top" Width="110" Height="Auto" Margin="0,3,0,0" Click="showGraphButtons_Click"/>
+                <Button x:Name="showGraphButtons" Content="*Chart" HorizontalAlignment="Left" VerticalAlignment="Top" Width="110" Height="Auto" Margin="0,3,0,0" Click="showGraphButtons_Click"/>
 
-                <CheckBox Grid.Column="0" x:Name="fondoCheckBox2" 
+                <Border Background="GhostWhite" BorderBrush="Silver" BorderThickness="1" CornerRadius="8,8,3,3" Margin="0,10,0,0">
+                    <StackPanel Orientation="Vertical" Margin="7,5,0,10">
+                        <Label Content="View"/>
+                        <CheckBox Grid.Column="0" x:Name="BackgroundEnableCheckBox" 
+                                      HorizontalAlignment="Left" VerticalAlignment="Center"  
+                                      Content="Background" IsChecked="True" Click="BackgroundEnableCheckBox_Click"
+                                  Margin="0,0,0,0"
+                                  />
+                        <CheckBox Grid.Column="0" x:Name="SkeletonsEnableCheckBox" 
+                                      HorizontalAlignment="Left" VerticalAlignment="Center"  
+                                      Content="Skeletons" IsChecked="True" Click="SkeletonsEnableCheckBox_Click"
+                                  Margin="0,0,0,0"
+                                  />
+                    </StackPanel>
+                </Border>
+                
+                <Border Background="GhostWhite" BorderBrush="Silver" BorderThickness="1" CornerRadius="8,8,3,3" Margin="0,10,0,0">
+                    <StackPanel Orientation="Vertical" Margin="7,5,0,10">
+                        <Label Content="Image source"/>
+                        <RadioButton x:Name="FromSensorRadioButton" Content="From Sensor" IsChecked="True"/>
+                        <RadioButton x:Name="FromSceneRadioButton" Content="From Scene"/>
+                    </StackPanel>
+                </Border>
+                
+                
+                <!--<CheckBox Grid.Column="0" x:Name="enableMonitorCheckBox" 
                               HorizontalAlignment="Left" VerticalAlignment="Center"  
-                              Content="Fondo" IsChecked="True" Click="fondoCheckBox_Unchecked"
+                              Content="From sensor" IsChecked="True" Click="fondoCheckBox_Unchecked"
                           Margin="0,10,0,0"
-                          />
-                <Button x:Name="analizePostures" Content="Analizar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto" Height="Auto" Click="analizePostures_Click" Margin="0,20,0,0"/>
-                <Button x:Name="zip" Content="zip" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto" Height="Auto" Margin="0,3,0,0" Click="zip_Click"/>
+                          />-->
+                
+                <!--<Button x:Name="analizePostures" Content="Analizar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto" Height="Auto" Click="analizePostures_Click" Margin="0,20,0,0"/>-->
+                <Button x:Name="Test" Content="Test" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto" Height="Auto" Margin="0,20,0,0" Click="Test_Click"/>
                 <!--<Button x:Name="realImportButtons" Content="ImportarDatos" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto" Height="Auto" Click="realImportButtons_Click" Margin="0,3,0,0"/>
                 --><!--<Button x:Name="importButtons" Content="Simular" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto" Height="Auto" Click="simulateButtons_Click" Margin="0,3,0,0"/>--><!--
                 <Button x:Name="exportButtons" Content="ExportarDatos" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto" Height="Auto" Click="exportButtons_Click" Margin="0,3,0,0"/>-->

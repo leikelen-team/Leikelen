@@ -4,6 +4,7 @@ using KinectEx.Smoothing;
 using Microsoft.Kinect;
 using Microsoft.Samples.Kinect.VisualizadorMultimodal.db;
 using Microsoft.Samples.Kinect.VisualizadorMultimodal.models;
+using Microsoft.Samples.Kinect.VisualizadorMultimodal.views;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -13,8 +14,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-
-
+using System.Windows.Forms;
 
 namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
 {
@@ -74,7 +74,8 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
                 db.Database.EnsureCreated();
                 db.Scene.Add(Scene.Instance);
                 db.SaveChanges();
-                
+
+                MainWindow.Instance().FromSceneRadioButton.IsChecked = true;
             }
         }
 
@@ -82,9 +83,24 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
         {
             if (_recorder == null)
             {
+                
+                if (Scene.Instance != null)
+                {
+                    System.Windows.Forms.DialogResult dialogResult =
+                    System.Windows.Forms.MessageBox.Show(
+                        "Are you sure to record scene?",
+                        "Did you save the current scene data?",
+                        System.Windows.Forms.MessageBoxButtons.YesNo);
+                    if (dialogResult == System.Windows.Forms.DialogResult.No)
+                    {
+                        return;
+                    }
+                }
+
+                MainWindow.Instance().FromSensorRadioButton.IsChecked = true;
 
                 //if (File.Exists(Properties.Paths.asd)) File.Delete(Properties.Paths.asd);
-                if (Kinect.Instance.Player.IsOpened) Kinect.Instance.Player.Close();
+                if (Kinect.Instance.Player.IsOpen) Kinect.Instance.Player.Close();
                 if (File.Exists(Properties.Paths.CurrentKdvrFile)) File.Delete(Properties.Paths.CurrentKdvrFile);
                 if (File.Exists(Properties.Paths.CurrentDataFile)) File.Delete(Properties.Paths.CurrentDataFile);
                 
@@ -99,12 +115,27 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
                 _recorder.ColorRecorderCodec.OutputWidth = 1280;
                 _recorder.ColorRecorderCodec.OutputHeight = 720;
 
-                Scene.CreateFromRecord();
+
+                string sceneName = DateTime.Now.ToString("yyyy-MM-dd _ hh-mm-ss");
+
+                //Form testDialog = new Form();
+                
+                //if (testDialog.ShowDialog() == DialogResult.OK)
+                //{
+                //    // Read the contents of testDialog's TextBox.
+                //    sceneName = testDialog.Text;
+                //}
+                //else
+                //{
+                //    sceneName = "Cancelled";
+                //}
+                //testDialog.Dispose();
+
+                Scene.CreateFromRecord(sceneName);
                     
                 _recorder.Start();
                     
             }
-            
         }
     }
 }

@@ -19,20 +19,19 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
 {
     public class Player
     {
-        private KinectReplay _replay;
-        bool _locationSetByHand = false;
-        private int StartFromMillis = 200;
+        private KinectReplay            _replay;
+        private bool                    _locationSetByHand  = false;
+        private int                     StartFromMillis     = 200;
 
-        //FrameTypes _displayType = FrameTypes.Body;
+        private bool colorFrameEnable = true;
+        private bool bodyFrameEnable = true;
+        private bool viewEnable = true;
 
-        ColorFrameBitmap _colorBitmap = null;
-        //DepthFrameBitmap _depthBitmap = null;
-        //InfraredFrameBitmap _infraredBitmap = null;
-
-        public Player()
-        {
-
-        }
+        private bool                    wasPlayingAtDisable = false;
+        private ColorFrameBitmap        _colorBitmap        = null;
+        private int                     lastCurrentSecondForTimeLineCursor = 0;
+        private ImageSource             lastBodyFrame       = null;
+        public Player(){}
 
         public TimeSpan Duration
         {
@@ -42,13 +41,15 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
             }
         }
 
-        public bool IsOpened
+        public bool IsOpen
         {
             get
             {
                 return _replay!=null;
             }
         }
+
+        #region Open - Close
 
         public void OpenFile(string fullPath)
         {
@@ -71,10 +72,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
             //_replay.Stop();
 
         }
-        private void sendToStartLocation()
-        {
-            _replay.ScrubTo(TimeSpan.FromMilliseconds(StartFromMillis));
-        }
+
         public void Close()
         {
             if (_replay != null)
@@ -91,12 +89,78 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
                 _replay.Dispose();
 
                 _replay = null;
-                
+
             }
 
             _colorBitmap = null; // reset to force recreation for new file
         }
+
+        #endregion
+
         
+        #region Enable Disable Toggle
+
+        public void Enable()
+        {
+            if (wasPlayingAtDisable)
+            {
+                _replay.Start();
+                wasPlayingAtDisable = false;
+            }
+            //bodyFrameEnable = true;
+            //colorFrameEnable = true;
+            viewEnable = true;
+            if(colorFrameEnable && _colorBitmap!=null) MainWindow.Instance().colorImageControl.Source = _colorBitmap.Bitmap;
+            if(bodyFrameEnable) MainWindow.Instance().bodyImageControl.Source = this.lastBodyFrame;
+        }
+
+        public void Disable()
+        {
+            if (_replay.IsStarted)
+            {
+                wasPlayingAtDisable = true;
+                _replay.Stop();
+            }
+
+            //bodyFrameEnable = false;
+            //colorFrameEnable = false;
+            viewEnable = false;
+            if (bodyFrameEnable) this.lastBodyFrame = MainWindow.Instance().bodyImageControl.Source;
+
+            MainWindow.Instance().colorImageControl.Source = null;
+            MainWindow.Instance().bodyImageControl.Source = null;
+        }
+        
+        public void ToggleColorFrameEnable()
+        {
+            colorFrameEnable = !colorFrameEnable;
+
+            if (colorFrameEnable && _colorBitmap != null)
+            {
+                MainWindow.Instance().colorImageControl.Source = _colorBitmap.Bitmap;
+            }
+            else
+            {
+                MainWindow.Instance().colorImageControl.Source = null;
+            }
+        }
+
+        public void ToggleBodyFrameEnable()
+        {
+            bodyFrameEnable = !bodyFrameEnable;
+
+            if (bodyFrameEnable)
+            {
+                MainWindow.Instance().bodyImageControl.Source = this.lastBodyFrame;
+            }
+            else
+            {
+                this.lastBodyFrame = MainWindow.Instance().bodyImageControl.Source;
+                MainWindow.Instance().bodyImageControl.Source = null;
+            }
+        }
+
+        #endregion
 
         public void StopButton_Click(object sender, RoutedEventArgs e)
         {
@@ -130,7 +194,12 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
             }
         }
 
-        private int lastCurrentSecondForTimeLineCursor = 0;
+        
+
+        private void sendToStartLocation()
+        {
+            _replay.ScrubTo(TimeSpan.FromMilliseconds(StartFromMillis));
+        }
 
         public void LocationSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
@@ -171,62 +240,20 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
 
         private void _replay_BodyFrameArrived(object sender, ReplayFrameArrivedEventArgs<ReplayBodyFrame> e)
         {
+            if (!bodyFrameEnable || !viewEnable) return;
             MainWindow.Instance().bodyImageControl.Source = e.Frame.Bodies.GetBitmap(Colors.LightGreen, Colors.Yellow);
         }
-
         
-        private bool _colorFrameEnable = true;
-        private bool _justColorFrameEnabled = true;
-
-        public void ToggleColorFrameEnable()
-        {
-            _colorFrameEnable = !_colorFrameEnable;
-
-            if (_colorFrameEnable)
-            {
-                
-                _justColorFrameEnabled = true;
-                MainWindow.Instance().colorImageControl.Source = _colorBitmap.Bitmap;
-            }
-            else
-            {
-                MainWindow.Instance().colorImageControl.Source = null;
-            }
-
-
-        }
-
-        //public bool ColorFrameEnable {
-        //    get
-        //    {
-        //        return _colorFrameEnable;
-        //    }
-        //    set
-        //    {
-        //        _colorFrameEnable = value;
-        //        if (_colorFrameEnable)
-        //        {
-        //            _replay.ColorFrameArrived += _replay_ColorFrameArrived;
-        //            if(_colorBitmap!= null)
-        //            {
-        //                MainWindow.Instance().colorImageControl.Source = _colorBitmap.Bitmap;
-        //            }
-        //        }
-        //        else
-        //            _replay.ColorFrameArrived -= _replay_ColorFrameArrived;
-        //    }
-        //}
-
-
         private void _replay_ColorFrameArrived(object sender, ReplayFrameArrivedEventArgs<ReplayColorFrame> e)
         {
-            if (_colorBitmap == null || _justColorFrameEnabled)
+            if (!colorFrameEnable || !viewEnable) return;
+            if (_colorBitmap == null)
             {
                 _colorBitmap = new ColorFrameBitmap(e.Frame);
                 MainWindow.Instance().colorImageControl.Source = _colorBitmap.Bitmap;
-                _justColorFrameEnabled = false;
+                //_justColorFrameEnabled = false;
             }
-            if(_colorFrameEnable) _colorBitmap.Update(e.Frame);
+            _colorBitmap.Update(e.Frame);
             
         }
 

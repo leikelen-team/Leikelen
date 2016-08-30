@@ -27,19 +27,20 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.models
     public class PostureType
     {
 
-        [NotMapped]
-        public static List<PostureType> availablesPostureTypes
-        {
-            get
-            {
-                if (BackupDataContext.db != null && BackupDataContext.db.PostureType.Count() > 0 && Scene.Instance.Status == Scene.Statuses.Imported)
-                    return BackupDataContext.db.PostureType.ToList();
-                else if (Scene.Instance == null || Scene.Instance.Status == Scene.Statuses.Recorded)
-                    return PostureTypeContext.db.PostureType.ToList();
-                else
-                    throw new Exception("Unknow scene status (or null): " + Scene.Instance.Status.ToString("g"));
-            }
-        }
+        //[NotMapped]
+        //public static List<PostureType> availablesPostureTypes
+        //{
+        //    get
+        //    {
+        //        if (BackupDataContext.db != null && BackupDataContext.db.PostureType.Count() > 0 && Scene.Instance.Status == Scene.Statuses.Imported)
+        //            return BackupDataContext.db.PostureType.ToList();
+        //        else if (Scene.Instance == null || Scene.Instance.Status == Scene.Statuses.Recorded)
+        //            return PostureTypeContext.db.PostureType.ToList();
+        //        else
+        //            throw new Exception("Unknow scene status (or null): " + Scene.Instance.Status.ToString("g"));
+        //    }
+        //}
+
         [NotMapped]
         public static PostureType none;// = new PostureType(Properties.Resources.NonePostureName, "");
         [NotMapped]

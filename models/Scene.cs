@@ -65,12 +65,12 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.models
         //    return instance;
         //}
 
-        public static Scene CreateFromRecord()
+        public static Scene CreateFromRecord(string name)
         {
             if (instance != null) instance.Clear();
             instance = new Scene()
             {
-                Name = DateTime.Now.ToString("yyyy-MM-dd _ hh-mm-ss"),
+                Name = name,
                 StartDate = DateTime.Now,
                 Persons = new List<Person>(),
                 Status = Statuses.Recorded

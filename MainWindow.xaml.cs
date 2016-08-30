@@ -42,7 +42,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
 
     using FirstFloor.ModernUI.Windows.Controls;
     using System.IO.Compression;
-
+    //using System.Windows.Forms;
 
     public partial class MainWindow : Window//, INotifyPropertyChanged
     {
@@ -59,10 +59,11 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
         public MainWindow()
         {
             // no borres esta linea de nuevo rolo!! estupida, mi código, idiota!! xD
-            PostureType.none = PostureType.availablesPostureTypes.FirstOrDefault(p => p.PostureTypeId == 0);
+            PostureType.none = PostureTypeContext.db.PostureType.ToList().FirstOrDefault(p => p.PostureTypeId == 0);
             this.InitializeComponent();
             _instance = this;
 
+            
             ImportButton.Click += IO.ImportButton_Click;
             ExportButton.Click += IO.ExportButton_Click;
 
@@ -73,9 +74,17 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
 
             sceneSlider.ValueChanged += Kinect.Instance.Player.LocationSlider_ValueChanged;
 
-            
+            FromSensorRadioButton.Checked += FromSensorRadioButton_Checked;
+            FromSceneRadioButton.Checked += FromSceneRadioButton_Checked;
 
+
+            BackgroundEnableCheckBox.IsEnabled = false;
+            SkeletonsEnableCheckBox.IsEnabled = false;
+
+            
         }
+
+        
 
         public static MainWindow Instance()
         {
@@ -104,8 +113,6 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
         }
 
         #region Button Events
-
-        
 
         private void pgsqlExport_Click(object sender, RoutedEventArgs e)
         {
@@ -159,14 +166,29 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
             chartForm.Show();
             chartForm.updateCharts();
         }
+
+        private void FromSensorRadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            MediaView.SetFromSensor();
+        }
+
+        private void FromSceneRadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            MediaView.SetFromScene();
+        }
+
         #endregion
 
         #region Other Events
-        private void fondoCheckBox_Unchecked(object sender, RoutedEventArgs e)
+        private void BackgroundEnableCheckBox_Click(object sender, RoutedEventArgs e)
         {
             Kinect.Instance.Player.ToggleColorFrameEnable();
         }
-        
+        private void SkeletonsEnableCheckBox_Click(object sender, RoutedEventArgs e)
+        {
+            Kinect.Instance.Player.ToggleBodyFrameEnable();
+        }
+
         public void TimeLineVerticalScrollsChange(object sender, ScrollChangedEventArgs e)
         {
 
@@ -239,26 +261,28 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
         #endregion
 
         #region Testing Events    
-        private void zip_Click(object sender, RoutedEventArgs e)
+        private void Test_Click(object sender, RoutedEventArgs e)
         {
-            ZipFile.CreateFromDirectory(Properties.Paths.RecordedSceneDirectory, Properties.Paths.RecordedZipFile);
+            //ZipFile.CreateFromDirectory(Properties.Paths.RecordedSceneDirectory, Properties.Paths.RecordedZipFile);
+            
         }
 
-        private void analizePostures_Click(object sender, RoutedEventArgs e)
-        {
-            if (Scene.Instance == null) return;
-            foreach (Person person in Scene.Instance.Persons)
-            {
-                if (!person.HasBeenTracked) continue;
-                person.generatePostureIntervals();
-                //StackPanel combosStackPanel = person.View.ComboStackPanel;
-                //person.PosturesView = new PosturesPersonView(person);
 
-                person.View.repaintIntervalGroups();
-                timeLineContentGrid.Children.Add(person.View.postureGroupsGrid);
+        //private void analizePostures_Click(object sender, RoutedEventArgs e)
+        //{
+        //    if (Scene.Instance == null) return;
+        //    foreach (Person person in Scene.Instance.Persons)
+        //    {
+        //        if (!person.HasBeenTracked) continue;
+        //        person.generatePostureIntervals();
+        //        //StackPanel combosStackPanel = person.View.ComboStackPanel;
+        //        //person.PosturesView = new PosturesPersonView(person);
 
-            }
-        }
+        //        person.View.repaintIntervalGroups();
+        //        timeLineContentGrid.Children.Add(person.View.postureGroupsGrid);
+
+        //    }
+        //}
         #endregion
 
         #region Shit Events

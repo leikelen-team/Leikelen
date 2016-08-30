@@ -13,7 +13,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
         private static KinectSensor _sensor;
 
         public List<GestureDetector> gestureDetectorList { get; private set; }
-        private Monitor Monitor;
+        public Monitor Monitor;
 
         public Recorder Recorder { get; private set; }
         public Player Player { get; private set; }
@@ -30,11 +30,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
                 this.gestureDetectorList.Add(detector);
             }
         }
-        public static void Init()
-        {
-            _instance = new Kinect();
-        }
-
+        
         public static Kinect Instance
         {
             get
@@ -50,7 +46,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
         {
             get
             {
-                if (_sensor == null)
+                if (_sensor == null || !_sensor.IsOpen)
                 {
                     _sensor = KinectSensor.GetDefault();
                     _sensor.Open();

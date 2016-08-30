@@ -1,5 +1,6 @@
 ﻿using Microsoft.Samples.Kinect.VisualizadorMultimodal.db;
 using Microsoft.Samples.Kinect.VisualizadorMultimodal.models;
+using Microsoft.Samples.Kinect.VisualizadorMultimodal.views;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -36,6 +37,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
                 var db = BackupDataContext.CreateConnection(Properties.Paths.CurrentDataFile);
                 Scene.CreateFromDbContext();
 
+                MainWindow.Instance().FromSceneRadioButton.IsChecked = true;
             }
         }
 
@@ -68,7 +70,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
                 }
 
                 bool wasOpened = false;
-                if (Kinect.Instance.Player.IsOpened)
+                if (Kinect.Instance.Player.IsOpen)
                 {
                     Kinect.Instance.Player.Close();
                     wasOpened = true;
@@ -82,5 +84,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
                 }
             }
         }
+
+        
     }
 }

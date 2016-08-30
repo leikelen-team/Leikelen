@@ -17,7 +17,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.views
     /// <summary>
     /// Visualizes the Kinect Body stream for display in the UI
     /// </summary>
-    public sealed class KinectBodyView
+    public sealed class _KinectBodyView
     {
         /// <summary>
         /// Radius of drawn hand circles
@@ -108,7 +108,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.views
         /// Initializes a new instance of the KinectBodyView class
         /// </summary>
         /// <param name="kinectSensor">Active instance of the KinectSensor</param>
-        public KinectBodyView(KinectSensor kinectSensor)
+        public _KinectBodyView(KinectSensor kinectSensor)
         {
             if (kinectSensor == null)
             {

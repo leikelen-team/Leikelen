@@ -209,6 +209,7 @@
     <Compile Include="models\Interval.cs" />
     <Compile Include="models\_SceneFrame.cs" />
     <Compile Include="utils\Files.cs" />
+    <Compile Include="views\MediaView.cs" />
     <Compile Include="views\PersonView.cs" />
     <Compile Include="windows\AddOrEditPostureType.xaml.cs">
       <DependentUpon>AddOrEditPostureType.xaml</DependentUpon>
@@ -274,8 +275,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="core\GestureDetector.cs" />
-    <Compile Include="views\GestureResultView.cs" />
-    <Compile Include="views\KinectBodyView.cs" />
+    <Compile Include="_deprecated\_GestureResultView.cs" />
+    <Compile Include="_deprecated\_KinectBodyView.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
