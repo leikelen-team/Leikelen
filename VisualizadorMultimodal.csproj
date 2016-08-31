@@ -73,7 +73,8 @@
       <HintPath>packages\ModernUI.WPF.1.0.9\lib\net45\FirstFloor.ModernUI.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="KinectEx">
+    <Reference Include="KinectEx, Version=0.4.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>bin_files\KinectEx.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Data.Sqlite, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
@@ -209,12 +210,16 @@
     <Compile Include="models\Interval.cs" />
     <Compile Include="models\_SceneFrame.cs" />
     <Compile Include="utils\Files.cs" />
+    <Compile Include="views\ChartView.cs" />
     <Compile Include="views\MediaView.cs" />
     <Compile Include="views\PersonView.cs" />
     <Compile Include="windows\AddOrEditPostureType.xaml.cs">
       <DependentUpon>AddOrEditPostureType.xaml</DependentUpon>
     </Compile>
     <Compile Include="analytics\PersonAnalytic.cs" />
+    <Compile Include="windows\Charts.xaml.cs">
+      <DependentUpon>Charts.xaml</DependentUpon>
+    </Compile>
     <Compile Include="_deprecated\_KinectBody.cs" />
     <Compile Include="models\PostureIntervalGroup.cs" />
     <Compile Include="models\MicroPosture.cs" />
@@ -281,6 +286,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="windows\Charts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="windows\PostureCRUD.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -349,6 +358,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\DataSources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="WPFPieChart\WPFPieChart.csproj">
+      <Project>{59210896-68d1-4a34-91cc-8d015eca7061}</Project>
+      <Name>WPFPieChart</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

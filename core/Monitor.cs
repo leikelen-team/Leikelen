@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
 {
@@ -139,8 +140,17 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
 
                 bodies.MapDepthPositions();
                 //bodies.MapColorPositions();
+
+
+
+                
+
+                //AddBodyToContext(body, context, boneColors[body.TrackingId], jointColor);
+
+                //MainWindow.Instance().bodyImageControl.Source = bitmap;
                 MainWindow.Instance().bodyImageControl.Source = bodies.GetBitmap(Colors.LightGreen, Colors.Yellow);
-                //OutputImage = bodies.GetBitmap(Colors.LightGreen, Colors.Yellow);
+                
+                
             }
             else
             {

@@ -1,0 +1,62 @@
+C:\Users\elrod_000\Desktop\wpfChart\WPFPieChart\bin\Debug\WPFPieChart.exe
+C:\Users\elrod_000\Desktop\wpfChart\WPFPieChart\bin\Debug\WPFPieChart.pdb
+C:\Users\elrod_000\Desktop\wpfChart\WPFPieChart\obj\Debug\WPFPieChart.csprojResolveAssemblyReference.cache
+C:\Users\elrod_000\Desktop\wpfChart\WPFPieChart\obj\Debug\ScottLogic\PieChart\Legend.g.cs
+C:\Users\elrod_000\Desktop\wpfChart\WPFPieChart\obj\Debug\ScottLogic\PieChart\PieChartLayout.g.cs
+C:\Users\elrod_000\Desktop\wpfChart\WPFPieChart\obj\Debug\ScottLogic\PieChart\PiePlotter.g.cs
+C:\Users\elrod_000\Desktop\wpfChart\WPFPieChart\obj\Debug\Window1.g.cs
+C:\Users\elrod_000\Desktop\wpfChart\WPFPieChart\obj\Debug\App.g.cs
+C:\Users\elrod_000\Desktop\wpfChart\WPFPieChart\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\elrod_000\Desktop\wpfChart\WPFPieChart\obj\Debug\WPFPieChart_MarkupCompile.cache
+C:\Users\elrod_000\Desktop\wpfChart\WPFPieChart\obj\Debug\WPFPieChart_MarkupCompile.lref
+C:\Users\elrod_000\Desktop\wpfChart\WPFPieChart\obj\Debug\ScottLogic\PieChart\Legend.baml
+C:\Users\elrod_000\Desktop\wpfChart\WPFPieChart\obj\Debug\ScottLogic\PieChart\PieChartLayout.baml
+C:\Users\elrod_000\Desktop\wpfChart\WPFPieChart\obj\Debug\ScottLogic\PieChart\PiePlotter.baml
+C:\Users\elrod_000\Desktop\wpfChart\WPFPieChart\obj\Debug\Window1.baml
+C:\Users\elrod_000\Desktop\wpfChart\WPFPieChart\obj\Debug\WPFPieChart.g.resources
+C:\Users\elrod_000\Desktop\wpfChart\WPFPieChart\obj\Debug\WPFPieChart.Properties.Resources.resources
+C:\Users\elrod_000\Desktop\wpfChart\WPFPieChart\obj\Debug\WPFPieChart.csproj.GenerateResource.Cache
+C:\Users\elrod_000\Desktop\wpfChart\WPFPieChart\obj\Debug\WPFPieChart.exe
+C:\Users\elrod_000\Desktop\wpfChart\WPFPieChart\obj\Debug\WPFPieChart.pdb
+C:\Users\elrod_000\Documents\Rodo\Develop\Projects\Visualizador Multimodal\_Ejemplos\WpfPieChart\WPFPieChart\obj\Debug\WPFPieChart.exe
+C:\Users\elrod_000\Documents\Rodo\Develop\Projects\Visualizador Multimodal\_Ejemplos\WpfPieChart\WPFPieChart\obj\Debug\WPFPieChart.pdb
+C:\Users\elrod_000\Documents\Rodo\Develop\Projects\Visualizador Multimodal\_Ejemplos\WPFPieChart\WPFPieChart\bin\Debug\WPFPieChart.exe
+C:\Users\elrod_000\Documents\Rodo\Develop\Projects\Visualizador Multimodal\_Ejemplos\WPFPieChart\WPFPieChart\bin\Debug\WPFPieChart.pdb
+C:\Users\elrod_000\Documents\Rodo\Develop\Projects\Visualizador Multimodal\_Ejemplos\WPFPieChart\WPFPieChart\obj\Debug\WPFPieChart.csprojResolveAssemblyReference.cache
+C:\Users\elrod_000\Documents\Rodo\Develop\Projects\Visualizador Multimodal\_Ejemplos\WPFPieChart\WPFPieChart\obj\Debug\ScottLogic\PieChart\Legend.g.cs
+C:\Users\elrod_000\Documents\Rodo\Develop\Projects\Visualizador Multimodal\_Ejemplos\WPFPieChart\WPFPieChart\obj\Debug\ScottLogic\PieChart\PieChartLayout.g.cs
+C:\Users\elrod_000\Documents\Rodo\Develop\Projects\Visualizador Multimodal\_Ejemplos\WPFPieChart\WPFPieChart\obj\Debug\ScottLogic\PieChart\PiePlotter.g.cs
+C:\Users\elrod_000\Documents\Rodo\Develop\Projects\Visualizador Multimodal\_Ejemplos\WPFPieChart\WPFPieChart\obj\Debug\Window1.g.cs
+C:\Users\elrod_000\Documents\Rodo\Develop\Projects\Visualizador Multimodal\_Ejemplos\WPFPieChart\WPFPieChart\obj\Debug\App.g.cs
+C:\Users\elrod_000\Documents\Rodo\Develop\Projects\Visualizador Multimodal\_Ejemplos\WPFPieChart\WPFPieChart\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\elrod_000\Documents\Rodo\Develop\Projects\Visualizador Multimodal\_Ejemplos\WPFPieChart\WPFPieChart\obj\Debug\WPFPieChart_MarkupCompile.cache
+C:\Users\elrod_000\Documents\Rodo\Develop\Projects\Visualizador Multimodal\_Ejemplos\WPFPieChart\WPFPieChart\obj\Debug\WPFPieChart_MarkupCompile.lref
+C:\Users\elrod_000\Documents\Rodo\Develop\Projects\Visualizador Multimodal\_Ejemplos\WPFPieChart\WPFPieChart\obj\Debug\ScottLogic\PieChart\Legend.baml
+C:\Users\elrod_000\Documents\Rodo\Develop\Projects\Visualizador Multimodal\_Ejemplos\WPFPieChart\WPFPieChart\obj\Debug\ScottLogic\PieChart\PieChartLayout.baml
+C:\Users\elrod_000\Documents\Rodo\Develop\Projects\Visualizador Multimodal\_Ejemplos\WPFPieChart\WPFPieChart\obj\Debug\ScottLogic\PieChart\PiePlotter.baml
+C:\Users\elrod_000\Documents\Rodo\Develop\Projects\Visualizador Multimodal\_Ejemplos\WPFPieChart\WPFPieChart\obj\Debug\Window1.baml
+C:\Users\elrod_000\Documents\Rodo\Develop\Projects\Visualizador Multimodal\_Ejemplos\WPFPieChart\WPFPieChart\obj\Debug\WPFPieChart.g.resources
+C:\Users\elrod_000\Documents\Rodo\Develop\Projects\Visualizador Multimodal\_Ejemplos\WPFPieChart\WPFPieChart\obj\Debug\WPFPieChart.Properties.Resources.resources
+C:\Users\elrod_000\Documents\Rodo\Develop\Projects\Visualizador Multimodal\_Ejemplos\WPFPieChart\WPFPieChart\obj\Debug\WPFPieChart.csproj.GenerateResource.Cache
+C:\Users\elrod_000\Documents\Rodo\Develop\Projects\Visualizador Multimodal\_Ejemplos\WPFPieChart\WPFPieChart\bin\Debug\WPFPieChart.exe.config
+C:\Users\elrod_000\Documents\Rodo\Develop\Projects\Visualizador Multimodal\visualizadormultimodal-src\WPFPieChart\bin\Debug\WPFPieChart.exe.config
+C:\Users\elrod_000\Documents\Rodo\Develop\Projects\Visualizador Multimodal\visualizadormultimodal-src\WPFPieChart\bin\Debug\WPFPieChart.exe
+C:\Users\elrod_000\Documents\Rodo\Develop\Projects\Visualizador Multimodal\visualizadormultimodal-src\WPFPieChart\bin\Debug\WPFPieChart.pdb
+C:\Users\elrod_000\Documents\Rodo\Develop\Projects\Visualizador Multimodal\visualizadormultimodal-src\WPFPieChart\obj\Debug\WPFPieChart.csprojResolveAssemblyReference.cache
+C:\Users\elrod_000\Documents\Rodo\Develop\Projects\Visualizador Multimodal\visualizadormultimodal-src\WPFPieChart\obj\Debug\ScottLogic\PieChart\Legend.g.cs
+C:\Users\elrod_000\Documents\Rodo\Develop\Projects\Visualizador Multimodal\visualizadormultimodal-src\WPFPieChart\obj\Debug\ScottLogic\PieChart\PieChartLayout.g.cs
+C:\Users\elrod_000\Documents\Rodo\Develop\Projects\Visualizador Multimodal\visualizadormultimodal-src\WPFPieChart\obj\Debug\ScottLogic\PieChart\PiePlotter.g.cs
+C:\Users\elrod_000\Documents\Rodo\Develop\Projects\Visualizador Multimodal\visualizadormultimodal-src\WPFPieChart\obj\Debug\Window1.g.cs
+C:\Users\elrod_000\Documents\Rodo\Develop\Projects\Visualizador Multimodal\visualizadormultimodal-src\WPFPieChart\obj\Debug\App.g.cs
+C:\Users\elrod_000\Documents\Rodo\Develop\Projects\Visualizador Multimodal\visualizadormultimodal-src\WPFPieChart\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\elrod_000\Documents\Rodo\Develop\Projects\Visualizador Multimodal\visualizadormultimodal-src\WPFPieChart\obj\Debug\WPFPieChart_MarkupCompile.cache
+C:\Users\elrod_000\Documents\Rodo\Develop\Projects\Visualizador Multimodal\visualizadormultimodal-src\WPFPieChart\obj\Debug\WPFPieChart_MarkupCompile.lref
+C:\Users\elrod_000\Documents\Rodo\Develop\Projects\Visualizador Multimodal\visualizadormultimodal-src\WPFPieChart\obj\Debug\ScottLogic\PieChart\Legend.baml
+C:\Users\elrod_000\Documents\Rodo\Develop\Projects\Visualizador Multimodal\visualizadormultimodal-src\WPFPieChart\obj\Debug\ScottLogic\PieChart\PieChartLayout.baml
+C:\Users\elrod_000\Documents\Rodo\Develop\Projects\Visualizador Multimodal\visualizadormultimodal-src\WPFPieChart\obj\Debug\ScottLogic\PieChart\PiePlotter.baml
+C:\Users\elrod_000\Documents\Rodo\Develop\Projects\Visualizador Multimodal\visualizadormultimodal-src\WPFPieChart\obj\Debug\Window1.baml
+C:\Users\elrod_000\Documents\Rodo\Develop\Projects\Visualizador Multimodal\visualizadormultimodal-src\WPFPieChart\obj\Debug\WPFPieChart.g.resources
+C:\Users\elrod_000\Documents\Rodo\Develop\Projects\Visualizador Multimodal\visualizadormultimodal-src\WPFPieChart\obj\Debug\WPFPieChart.Properties.Resources.resources
+C:\Users\elrod_000\Documents\Rodo\Develop\Projects\Visualizador Multimodal\visualizadormultimodal-src\WPFPieChart\obj\Debug\WPFPieChart.csproj.GenerateResource.Cache
+C:\Users\elrod_000\Documents\Rodo\Develop\Projects\Visualizador Multimodal\visualizadormultimodal-src\WPFPieChart\obj\Debug\WPFPieChart.exe
+C:\Users\elrod_000\Documents\Rodo\Develop\Projects\Visualizador Multimodal\visualizadormultimodal-src\WPFPieChart\obj\Debug\WPFPieChart.pdb

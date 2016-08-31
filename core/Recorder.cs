@@ -66,6 +66,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
                 {
                     if (!person.HasBeenTracked) continue;
                     person.generatePostureIntervals();
+                    person.generateView();
                     person.View.repaintIntervalGroups();
                     MainWindow.Instance().timeLineContentGrid.Children.Add(person.View.postureGroupsGrid);
                 }

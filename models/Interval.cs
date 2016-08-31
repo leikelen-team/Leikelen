@@ -14,7 +14,6 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.models
         //public MicroPosture Item2 { get; set; }
         public TimeSpan StartTime { get; set; }
         public TimeSpan EndTime { get; set; }
-        [NotMapped]
         public TimeSpan Duration { get; set; }
 
         //public int PostureTypeId { get; set; }

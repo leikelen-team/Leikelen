@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
 {
@@ -240,8 +241,25 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
 
         private void _replay_BodyFrameArrived(object sender, ReplayFrameArrivedEventArgs<ReplayBodyFrame> e)
         {
-            if (!bodyFrameEnable || !viewEnable) return;
-            MainWindow.Instance().bodyImageControl.Source = e.Frame.Bodies.GetBitmap(Colors.LightGreen, Colors.Yellow);
+            if (!bodyFrameEnable || !viewEnable || Scene.Instance==null) return;
+
+            float _width = 512;
+            float _height = 424;
+
+            Color color;
+            var bitmap = BitmapFactory.New((int)_width, (int)_height);
+            //using (var context = bitmap.GetBitmapContext())
+            //{
+            foreach (var body in e.Frame.Bodies)
+            {
+                if (body.IsTracked)
+                {
+                    Person person = Scene.Instance.Persons.FirstOrDefault(p => p.TrackingId == (long)body.TrackingId);
+                    color = (person.Color as SolidColorBrush).Color;
+                    body.AddToBitmap(bitmap, color, color);
+                }
+            }
+            MainWindow.Instance().bodyImageControl.Source = bitmap; // e.Frame.Bodies.GetBitmap(Colors.LightGreen, Colors.Yellow);
         }
         
         private void _replay_ColorFrameArrived(object sender, ReplayFrameArrivedEventArgs<ReplayColorFrame> e)

@@ -92,7 +92,8 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.models
             this.Color = colors[currentColorIndex++];
             if (currentColorIndex == colors.Count()) currentColorIndex = 0;
 
-            this.View = new PersonView(this);
+            //this.View = new PersonView(this);
+
             //this.GestureDetector = 
             //    new GestureDetector(bodyIndex, KinectBody.kinectSensor);
 
@@ -165,6 +166,11 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.models
             }
         }
 
+        override
+        public string ToString()
+        {
+            return Name;
+        }
 
     }
 }

@@ -162,9 +162,11 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
 
         private void showGraphButtons_Click(object sender, RoutedEventArgs e)
         {
-            chartForm = new ChartForm();
-            chartForm.Show();
-            chartForm.updateCharts();
+            //chartForm = new ChartForm();
+            //chartForm.Show();
+            //chartForm.updateCharts();
+            Charts c = new windows.Charts();
+            c.Show();
         }
 
         private void FromSensorRadioButton_Checked(object sender, RoutedEventArgs e)
@@ -263,7 +265,6 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
         #region Testing Events    
         private void Test_Click(object sender, RoutedEventArgs e)
         {
-            //ZipFile.CreateFromDirectory(Properties.Paths.RecordedSceneDirectory, Properties.Paths.RecordedZipFile);
             
         }
 

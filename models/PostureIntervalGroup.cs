@@ -23,6 +23,18 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.models
             this.PostureType = postureType;
             this.Intervals = new List<Interval>();
         }
+
+        public TimeSpan CalculateTotalDuration()
+        {
+            TimeSpan? durationSum = null;
+            foreach (var interval in Intervals)
+            {
+                if (durationSum != null) durationSum = interval.Duration.Add(durationSum.Value);
+                else durationSum = interval.Duration;
+            }
+            if (!durationSum.HasValue) return TimeSpan.FromSeconds(0);
+            return durationSum.Value;
+        }
         
         public void addInterval(MicroPosture initialMicroPosture, MicroPosture finalMicroPosture)
         {

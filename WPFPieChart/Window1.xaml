@@ -1,0 +1,78 @@
+﻿<Window x:Class="WPFPieChart.Window1"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:c="clr-namespace:ScottLogic.Controls.PieChart"
+    xmlns:b="clr-namespace:ScottLogic.Shapes"
+    Title="Pie Chart with Data Binding" Height="480" Width="540">
+    <Window.Resources>
+        <x:ArrayExtension Type="{x:Type Brush}" x:Key="brushes">
+            <SolidColorBrush Color="#9F15C3"/>
+            <SolidColorBrush Color="#FF8E01"/>
+            <SolidColorBrush Color="#339933"/>
+            <SolidColorBrush Color="#00AAFF"/>
+            <SolidColorBrush Color="#818183"/>
+            <SolidColorBrush Color="#000033"/>
+        </x:ArrayExtension>        
+    </Window.Resources>    
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <c:PieChartLayout HorizontalAlignment="Center" Grid.Row="0" Grid.Column="0"
+                              x:Name="piePlotter" PlottedProperty="Fund" Margin="10">
+                <c:PieChartLayout.ColorSelector>
+                    <c:IndexedColourSelector Brushes="{StaticResource brushes}"/>
+                </c:PieChartLayout.ColorSelector>
+            </c:PieChartLayout>
+
+            <GroupBox Header="Bound Data" Width="Auto" Margin="10">
+                <StackPanel Orientation="Horizontal">
+                    <ListView IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding}" Margin="10"
+                               Height="150" Name="listBox1" GridViewColumnHeader.Click="OnColumnHeaderClick">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Class" DisplayMemberBinding="{Binding Path=Class}"/>
+                                <GridViewColumn Header="Fund" DisplayMemberBinding="{Binding Path=Fund}"/>
+                                <GridViewColumn Header="Benchmark" DisplayMemberBinding="{Binding Path=Benchmark}"/>
+                                <GridViewColumn Header="Total" DisplayMemberBinding="{Binding Path=Total}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <GroupBox Header="Item Details" Width="Auto" Margin="10">
+                        <Grid Margin="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30*" />
+                                <RowDefinition Height="30*" />
+                                <RowDefinition Height="30*" />
+                                <RowDefinition Height="30*" />
+                                <RowDefinition Height="30*" />
+                                <RowDefinition Height="30*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="78*" />
+                                <ColumnDefinition Width="112*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label Height="23" Grid.Column="0"  Grid.Row="0">Class:</Label>
+                            <TextBox Text="{Binding Path=Class}"  Height="23" Width="110" Grid.Column="1"  Grid.Row="0" />
+
+                            <Label Height="23" Grid.Column="0"  Grid.Row="1">Fund:</Label>
+                            <TextBox Text="{Binding Path=Fund}"  Height="23" Width="110" Grid.Column="1"  Grid.Row="1" />
+
+                            <Label Height="23" Grid.Column="0"  Grid.Row="2">Benchmark:</Label>
+                            <TextBox Text="{Binding Path=Benchmark}"  Height="23" Width="110" Grid.Column="1"  Grid.Row="2" />
+
+                            <Label Height="23" Grid.Column="0"  Grid.Row="3">Total:</Label>
+                            <TextBox Text="{Binding Path=Total}"  Height="23" Width="110" Grid.Column="1"  Grid.Row="3" />
+
+                            <Label Height="23" Grid.Column="0"  Grid.Row="3">Total:</Label>
+                            <TextBox Text="{Binding Path=Total}"  Height="23" Width="110" Grid.Column="1"  Grid.Row="3" />
+
+                            <Button Grid.ColumnSpan="2" Grid.Column="0"  Grid.Row="4" Click="AddNewItem"
+                                Width="80" HorizontalAlignment="Left" Margin="3"  Content="Add New Item"/>
+
+                        </Grid>
+                    </GroupBox>
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>        
+    </Grid>
+</Window>
