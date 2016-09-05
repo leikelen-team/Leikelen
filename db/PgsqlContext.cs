@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Samples.Kinect.VisualizadorMultimodal.models;
+using cl.uv.multimodalvisualizer.models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.db
+namespace cl.uv.multimodalvisualizer.db
 {
     public class PgsqlContext : DbContext
     {

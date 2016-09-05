@@ -1,5 +1,7 @@
-﻿using Microsoft.Samples.Kinect.VisualizadorMultimodal.models;
-using Microsoft.Samples.Kinect.VisualizadorMultimodal.pojos;
+﻿using cl.uv.multimodalvisualizer.models;
+//using cl.uv.multimodalvisualizer.pojos;
+
+using cl.uv.multimodalvisualizer.windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +11,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.views
+namespace cl.uv.multimodalvisualizer.views
 {
     public class PersonView
     {
@@ -93,6 +95,17 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.views
             combosGenerated = true;
         }
 
+        //private void EditButton_Click()
+        //{
+        //    
+        //}
+
+        private void EditButton_Click(object sender, RoutedEventArgs e)
+        {
+            EditPersonForm editForm = new EditPersonForm(Person);
+            editForm.Show();
+        }
+
         private void initControlsAndBorders()
         {
             Border border = new Border();
@@ -104,13 +117,33 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.views
             Grid.SetColumnSpan(border, 2);
             Grid.SetRow(border, Person.ListIndex);
 
+            StackPanel LabelAndButtonStackPanel = new StackPanel();
+            LabelAndButtonStackPanel.Orientation = Orientation.Vertical;
+            LabelAndButtonStackPanel.Margin = new Thickness(5, 5, 0, 0);
+            Grid.SetColumn(LabelAndButtonStackPanel, 0);
+            Grid.SetRow(LabelAndButtonStackPanel, Person.ListIndex);
+
+
             Label = new Label();
             Label.Content = Person.Name;
             Label.HorizontalAlignment = HorizontalAlignment.Left;
             Label.VerticalAlignment = VerticalAlignment.Top;
             Label.Foreground = Person.Color;
-            Grid.SetColumn(Label, 0);
-            Grid.SetRow(Label, Person.ListIndex);
+            LabelAndButtonStackPanel.Children.Add(Label);
+
+            
+
+            Button editButton = new Button();
+            editButton.Content = "Edit";
+            editButton.Click += EditButton_Click;
+            editButton.HorizontalAlignment = HorizontalAlignment.Left;
+            editButton.VerticalAlignment = VerticalAlignment.Top;
+            editButton.Margin = new Thickness(0, 10, 0, 0);
+            LabelAndButtonStackPanel.Children.Add(editButton);
+
+            //Label.Margin = new Thickness(5, 5, 0, 0);
+            //Grid.SetColumn(Label, 0);
+            //Grid.SetRow(Label, Person.ListIndex);
 
             ComboStackPanel = new StackPanel();
             ComboStackPanel.Orientation = Orientation.Vertical;
@@ -124,7 +157,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.views
             personLabelsGrid.RowDefinitions.Add(personCtrlRowDef);
 
             personLabelsGrid.Children.Add(border);
-            personLabelsGrid.Children.Add(Label);
+            personLabelsGrid.Children.Add(LabelAndButtonStackPanel);
             personLabelsGrid.Children.Add(ComboStackPanel);
 
             //---
@@ -152,6 +185,8 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.views
             Grid verticalScrollSyncGrid = MainWindow.Instance().timeLineVerticalScrollViewSubGrid;
             verticalScrollSyncGrid.RowDefinitions.Add(verticalScrollSyncRowDef);
         }
+
+        
 
         public void repaintIntervalGroups()
         {

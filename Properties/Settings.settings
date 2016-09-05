@@ -1,5 +1,5 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Microsoft.Samples.Kinect.VisualizadorMultimodal.Properties" GeneratedClassName="Settings">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="cl.uv.multimodalvisualizer.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
     <Setting Name="app_sqliteConnectionString" Type="(Connection string)" Scope="Application">

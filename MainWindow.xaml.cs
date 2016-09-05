@@ -11,7 +11,7 @@
 // </Description>
 //----------------------------------------------------------------------------------------------------
 
-namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
+namespace cl.uv.multimodalvisualizer
 {
     using System;
     using System.Collections.Generic;
@@ -29,8 +29,8 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
     //using Accord.Extensions.Imaging;
     using System.Windows.Media.Imaging;
     using System.IO;
-    using Win32;    //using Win32;
-    using pojos;    //using System.Windows.Forms;                    //using System.Windows.Forms;/// <summary>
+    using Microsoft.Win32;    //using Win32;
+    //using pojos;    //using System.Windows.Forms;                    //using System.Windows.Forms;/// <summary>
     using System.Threading;
     using System.Windows.Shapes;
     using views;
@@ -47,7 +47,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
     public partial class MainWindow : Window//, INotifyPropertyChanged
     {
 
-        public static ChartForm chartForm { get; private set; }
+        
         public static PostureCRUD postureCrud;
 
         private static MainWindow _instance;
@@ -119,37 +119,37 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
             var db = PgsqlContext.CreateConnection();
             db.Database.EnsureCreated();
 
-            Scene psqlScene = db.Scene.FirstOrDefault(s => s.SceneId == Scene.Instance.SceneId);
-            if (psqlScene!=null)
-            {
-                System.Windows.Forms.DialogResult dialogResult =
-                    System.Windows.Forms.MessageBox.Show(
-                        "May be this scene already exists in PostgreSQL database."
-                        +" Psql scene name: " + psqlScene.Name
-                        +" This scene name: " + Scene.Instance.Name
-                        +" Are you sure you want insert it?",
-                        "Think about it!",
-                        System.Windows.Forms.MessageBoxButtons.YesNo);
-                if (dialogResult == System.Windows.Forms.DialogResult.Yes)
-                {
-                    Console.WriteLine("testing1");
-                    Scene.Instance.SceneId = db.Scene.Last().SceneId + 1;
-                    Console.WriteLine("testing2");
-                }
-                else if (dialogResult == System.Windows.Forms.DialogResult.No)
-                {
-                    return;
-                }
+            //Scene psqlScene = db.Scene.FirstOrDefault(s => s.SceneId == Scene.Instance.SceneId);
+            //if (psqlScene!=null)
+            //{
+            //    System.Windows.Forms.DialogResult dialogResult =
+            //        System.Windows.Forms.MessageBox.Show(
+            //            "May be this scene already exists in PostgreSQL database."
+            //            +" Psql scene name: " + psqlScene.Name
+            //            +" This scene name: " + Scene.Instance.Name
+            //            +" Are you sure you want insert it?",
+            //            "Think about it!",
+            //            System.Windows.Forms.MessageBoxButtons.YesNo);
+            //    if (dialogResult == System.Windows.Forms.DialogResult.Yes)
+            //    {
+            //        Console.WriteLine("testing1");
+            //        Scene.Instance.SceneId = db.Scene.Last().SceneId + 1;
+            //        Console.WriteLine("testing2");
+            //    }
+            //    else if (dialogResult == System.Windows.Forms.DialogResult.No)
+            //    {
+            //        return;
+            //    }
                     
-            }
+            //}
             
-            List<Scene> list = db.Scene.ToList();
-            Console.WriteLine("algo");
+            //List<Scene> list = db.Scene.ToList();
+            //Console.WriteLine("algo");
 
             db.Scene.Add(Scene.Instance);
 
-            list = db.Scene.ToList();
-            Console.WriteLine("algo");
+            //list = db.Scene.ToList();
+            //Console.WriteLine("algo");
 
             db.SaveChanges();
         }

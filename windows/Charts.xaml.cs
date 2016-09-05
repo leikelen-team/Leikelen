@@ -1,5 +1,5 @@
-﻿using Microsoft.Samples.Kinect.VisualizadorMultimodal.models;
-using Microsoft.Samples.Kinect.VisualizadorMultimodal.views;
+﻿using cl.uv.multimodalvisualizer.models;
+using cl.uv.multimodalvisualizer.views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,7 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WPFPieChart;
 
-namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.windows
+namespace cl.uv.multimodalvisualizer.windows
 {
     /// <summary>
     /// Interaction logic for Charts.xaml

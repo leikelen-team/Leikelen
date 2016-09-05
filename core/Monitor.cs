@@ -2,7 +2,7 @@
 using KinectEx.DVR;
 using KinectEx.Smoothing;
 using Microsoft.Kinect;
-using Microsoft.Samples.Kinect.VisualizadorMultimodal.models;
+using cl.uv.multimodalvisualizer.models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
+namespace cl.uv.multimodalvisualizer.core
 {
     public class Monitor
     {

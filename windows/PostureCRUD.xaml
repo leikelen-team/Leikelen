@@ -1,11 +1,11 @@
-﻿<Window x:Class="Microsoft.Samples.Kinect.VisualizadorMultimodal.windows.PostureCRUD"
+﻿<Window x:Class="cl.uv.multimodalvisualizer.windows.PostureCRUD"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Microsoft.Samples.Kinect.VisualizadorMultimodal"
+        xmlns:local="clr-namespace:cl.uv.multimodalvisualizer"
         mc:Ignorable="d"
-        Title="PostureCRUD" 
+        Title="Postures" 
         Height="600" Width="800" WindowStartupLocation="CenterScreen">
 
     <Grid Margin="10">
@@ -15,16 +15,16 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal">
-            <Button Grid.Row="0" x:Name="addPostureButton" Content="Agregar" HorizontalAlignment="Left" Click="addPostureButton_Click" Width="Auto" Height="Auto" Margin="3,0,0,0" />
-            <Button Grid.Row="0" x:Name="editPostureButton" Content="Editar" HorizontalAlignment="Left"  Click="editPostureButton_Click" Width="Auto" Height="Auto" Margin="3,0,0,0" />
-            <Button Grid.Row="0" x:Name="removePostureButton" Content="Eliminar" HorizontalAlignment="Left" Click="removePostureButton_Click" Width="Auto" Height="Auto" Margin="3,0,0,0" />
+            <Button Grid.Row="0" x:Name="addPostureButton" Content="Add" HorizontalAlignment="Left" Click="addPostureButton_Click" Width="Auto" Height="Auto" Margin="3,0,0,0" />
+            <Button Grid.Row="0" x:Name="editPostureButton" Content="Edit" HorizontalAlignment="Left"  Click="editPostureButton_Click" Width="Auto" Height="Auto" Margin="3,0,0,0" />
+            <Button Grid.Row="0" x:Name="removePostureButton" Content="Delete" HorizontalAlignment="Left" Click="removePostureButton_Click" Width="Auto" Height="Auto" Margin="3,0,0,0" />
         </StackPanel>
         
         <DataGrid Grid.Row="1" x:Name="postureCrudDataGrid" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding PostureTypeId}"/>
-                <DataGridTextColumn Header="Postura" Binding="{Binding Name}" />
-                <DataGridTextColumn Header="Ruta archivo" Binding="{Binding Path}" />
+                <DataGridTextColumn Header="Posture" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="Path" Binding="{Binding Path}" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

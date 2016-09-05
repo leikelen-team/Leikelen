@@ -1,4 +1,4 @@
-﻿namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.windows
+﻿namespace cl.uv.multimodalvisualizer.windows
 {
     partial class EditPersonForm
     {
@@ -142,6 +142,7 @@
             this.Controls.Add(this.nameTextBox);
             this.Controls.Add(this.label1);
             this.Name = "EditPersonForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Editar Sujeto";
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.IO;
 using System.IO.Compression;
 
-namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.utils
+namespace cl.uv.multimodalvisualizer.utils
 {
     public class Files
     {

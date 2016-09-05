@@ -2,9 +2,9 @@
 using KinectEx.DVR;
 using KinectEx.Smoothing;
 using Microsoft.Kinect;
-using Microsoft.Samples.Kinect.VisualizadorMultimodal.db;
-using Microsoft.Samples.Kinect.VisualizadorMultimodal.models;
-using Microsoft.Samples.Kinect.VisualizadorMultimodal.views;
+using cl.uv.multimodalvisualizer.db;
+using cl.uv.multimodalvisualizer.models;
+using cl.uv.multimodalvisualizer.views;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
 
-namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
+namespace cl.uv.multimodalvisualizer.core
 {
     public class Recorder
     {
@@ -71,10 +71,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
                     MainWindow.Instance().timeLineContentGrid.Children.Add(person.View.postureGroupsGrid);
                 }
                 
-                var db = BackupDataContext.CreateConnection(Properties.Paths.CurrentDataFile);
-                db.Database.EnsureCreated();
-                db.Scene.Add(Scene.Instance);
-                db.SaveChanges();
+
 
                 MainWindow.Instance().FromSceneRadioButton.IsChecked = true;
             }

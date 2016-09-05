@@ -4,7 +4,7 @@
 // </copyright>
 //------------------------------------------------------------------------------
 
-namespace Microsoft.Samples.Kinect.VisualizadorMultimodal
+namespace cl.uv.multimodalvisualizer
 {
     using System;
     using System.Windows;

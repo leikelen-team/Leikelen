@@ -4,13 +4,13 @@
 // </copyright>
 //------------------------------------------------------------------------------
 
-namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
+namespace cl.uv.multimodalvisualizer.core
 {
     using System;
     using System.Collections.Generic;
     using Microsoft.Kinect;
     using Microsoft.Kinect.VisualGestureBuilder;
-    using pojos;
+    //using pojos;
     using System.Linq;
     using views;
     using models;

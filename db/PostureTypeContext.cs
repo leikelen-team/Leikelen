@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Samples.Kinect.VisualizadorMultimodal.models;
+using cl.uv.multimodalvisualizer.models;
 
-namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.db
+namespace cl.uv.multimodalvisualizer.db
 {
     public class PostureTypeContext : DbContext
     {

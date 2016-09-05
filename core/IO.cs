@@ -1,6 +1,7 @@
-﻿using Microsoft.Samples.Kinect.VisualizadorMultimodal.db;
-using Microsoft.Samples.Kinect.VisualizadorMultimodal.models;
-using Microsoft.Samples.Kinect.VisualizadorMultimodal.views;
+﻿//cl.uv.multimodalvisualizer
+using cl.uv.multimodalvisualizer.db;
+using cl.uv.multimodalvisualizer.models;
+using cl.uv.multimodalvisualizer.views;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -11,16 +12,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
+namespace cl.uv.multimodalvisualizer.core
 {
     public class IO
     {
+
+        private static string MvsExtension = ".mvs";
+        private static string MvsFilter = "Multimodal Visualizer Scene (*.mvs)|*.mvs";
+
         public static void ImportButton_Click(object sender, RoutedEventArgs e)
         {
             var dlg = new OpenFileDialog()
             {
-                DefaultExt = ".mvs",
-                Filter = "Multimodal Visualizer Scene (*.mvs)|*.mvs"
+                DefaultExt = MvsExtension,
+                Filter = MvsFilter
             };
 
 
@@ -31,12 +36,8 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
                 if (File.Exists(Properties.Paths.CurrentDataFile)) File.Delete(Properties.Paths.CurrentDataFile);
 
                 ZipFile.ExtractToDirectory(dlg.FileName, Properties.Paths.CurrentSceneDirectory);
-
                 Kinect.Instance.Player.OpenFile(Properties.Paths.CurrentKdvrFile);
-
-                var db = BackupDataContext.CreateConnection(Properties.Paths.CurrentDataFile);
-                Scene.CreateFromDbContext();
-
+                Scene.CreateFromDbContext(Properties.Paths.CurrentDataFile);
                 MainWindow.Instance().FromSceneRadioButton.IsChecked = true;
             }
         }
@@ -46,8 +47,8 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
             var dlg = new SaveFileDialog()
             {
                 FileName = DateTime.Now.ToString("yyyy-MM-dd _ hh-mm-ss"),
-                DefaultExt = ".mvs",
-                Filter = "Multimodal Visualizer Scene (*.mvs)|*.mvs"
+                DefaultExt = MvsExtension,
+                Filter = MvsFilter
             };
 
             if (dlg.ShowDialog().GetValueOrDefault())
@@ -76,12 +77,14 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
                     wasOpened = true;
                 }
 
+                BackupDataContext.SaveScene(Properties.Paths.CurrentDataFile);
                 ZipFile.CreateFromDirectory(Properties.Paths.CurrentSceneDirectory, dlg.FileName);
 
                 if (wasOpened)
                 {
                     Kinect.Instance.Player.OpenFile(Properties.Paths.CurrentKdvrFile);
                 }
+                MessageBox.Show("Scene exported succefully");
             }
         }
 

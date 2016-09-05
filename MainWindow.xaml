@@ -1,14 +1,14 @@
-﻿<!--<mui:ModernWindow x:Class="Microsoft.Samples.Kinect.VisualizadorMultimodal.MainWindow"-->
+﻿<!--<mui:ModernWindow x:Class="cl.uv.multimodalvisualizer.MainWindow"-->
 <!--xmlns:mui="http://firstfloorsoftware.com/ModernUI"-->
 
-<Window x:Class="Microsoft.Samples.Kinect.VisualizadorMultimodal.MainWindow"
+<Window x:Class="cl.uv.multimodalvisualizer.MainWindow"
         
 
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:local="clr-namespace:Microsoft.Samples.Kinect.VisualizadorMultimodal"
-        xmlns:models="clr-namespace:Microsoft.Samples.Kinect.VisualizadorMultimodal.models"
-        Title="Visualizador Multimodal"
+        xmlns:local="clr-namespace:cl.uv.multimodalvisualizer"
+        xmlns:models="clr-namespace:cl.uv.multimodalvisualizer.models"
+        Title="Multimodal Visualizer"
         Height="650" Width="750"
         Closing="MainWindow_Closing" WindowStartupLocation="CenterScreen">
     <Window.Resources>
@@ -64,7 +64,7 @@
             <!--<ColumnDefinition Width="457*"/>-->
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="30" />
+            <RowDefinition Height="0" />
             <RowDefinition Height="100*"/>
             <RowDefinition Height="75*" />
             <RowDefinition Height="20" />
@@ -84,12 +84,11 @@
             </Grid.RowDefinitions>
             <StackPanel Orientation="Vertical">
 
-                <!--<Button x:Name="NewSceneButton" Content="New" HorizontalAlignment="Left" VerticalAlignment="Top" Width="110" Height="Auto" Margin="0,3,0,0"/>-->
                 <Button x:Name="ImportButton" Content="Import" HorizontalAlignment="Left" VerticalAlignment="Top" Width="110" Height="Auto" Margin="0,3,0,0"/>
                 <Button x:Name="ExportButton" Content="Export" HorizontalAlignment="Left" VerticalAlignment="Top" Width="110" Height="Auto" Margin="0,3,0,0"/>
-                <Button x:Name="pgsqlExport" Content="Pgsql Export" HorizontalAlignment="Left" VerticalAlignment="Top" Width="110" Height="Auto" Margin="0,3,0,0" Click="pgsqlExport_Click" />
+                <!--<Button x:Name="pgsqlExport" Content="Pgsql Export" HorizontalAlignment="Left" VerticalAlignment="Top" Width="110" Height="Auto" Margin="0,3,0,0" Click="pgsqlExport_Click" />-->
                 <Button x:Name="posturesAdmin" Content="Postures" HorizontalAlignment="Left" VerticalAlignment="Top" Width="110" Height="Auto" Margin="0,10,0,0" Click="posturesAdmin_Click" />
-                <Button x:Name="showGraphButtons" Content="Chart" HorizontalAlignment="Left" VerticalAlignment="Top" Width="110" Height="Auto" Margin="0,3,0,0" Click="showGraphButtons_Click"/>
+                <Button x:Name="showGraphButtons" Content="Charts" HorizontalAlignment="Left" VerticalAlignment="Top" Width="110" Height="Auto" Margin="0,3,0,0" Click="showGraphButtons_Click"/>
 
                 <Border Background="GhostWhite" BorderBrush="Silver" BorderThickness="1" CornerRadius="8,8,3,3" Margin="0,10,0,0">
                     <StackPanel Orientation="Vertical" Margin="7,5,0,10">
@@ -115,18 +114,8 @@
                     </StackPanel>
                 </Border>
                 
+                <!--<Button x:Name="Test" Content="Test" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto" Height="Auto" Margin="0,20,0,0" Click="Test_Click"/>-->
                 
-                <!--<CheckBox Grid.Column="0" x:Name="enableMonitorCheckBox" 
-                              HorizontalAlignment="Left" VerticalAlignment="Center"  
-                              Content="From sensor" IsChecked="True" Click="fondoCheckBox_Unchecked"
-                          Margin="0,10,0,0"
-                          />-->
-                
-                <!--<Button x:Name="analizePostures" Content="Analizar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto" Height="Auto" Click="analizePostures_Click" Margin="0,20,0,0"/>-->
-                <Button x:Name="Test" Content="Test" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto" Height="Auto" Margin="0,20,0,0" Click="Test_Click"/>
-                <!--<Button x:Name="realImportButtons" Content="ImportarDatos" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto" Height="Auto" Click="realImportButtons_Click" Margin="0,3,0,0"/>
-                --><!--<Button x:Name="importButtons" Content="Simular" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto" Height="Auto" Click="simulateButtons_Click" Margin="0,3,0,0"/>--><!--
-                <Button x:Name="exportButtons" Content="ExportarDatos" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto" Height="Auto" Click="exportButtons_Click" Margin="0,3,0,0"/>-->
             </StackPanel>
 
 
@@ -227,7 +216,7 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Border Grid.Row="0" Grid.Column="0" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="8,8,3,3"></Border>
-                <Label Grid.Row="0" Grid.Column="0" Content="Sujetos" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" FontWeight="Bold" />
+                <Label Grid.Row="0" Grid.Column="0" Content="Persons" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" FontWeight="Bold" />
                 <ScrollViewer x:Name="personLabelsScroll" Grid.Column="0" Grid.Row="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Hidden"
                           ScrollChanged="TimeLineVerticalScrollsChange">
                     <Grid x:Name="personLabelsGrid">
@@ -413,7 +402,7 @@
 
 
 
-        <Label x:Name="sceneTitleLabel" Content="Importa o graba una escena." HorizontalAlignment="Left" Margin="0,-1,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <!--<Label x:Name="sceneTitleLabel" Content="Importa o graba una escena." HorizontalAlignment="Left" Margin="0,-1,0,0" VerticalAlignment="Top" FontSize="16"/>-->
         <Image Grid.Row="0" Source="Images\Status.png" Stretch="None" HorizontalAlignment="Center" Margin="672,0,0,4" />
 
 

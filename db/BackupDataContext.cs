@@ -4,14 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Samples.Kinect.VisualizadorMultimodal.models;
+using cl.uv.multimodalvisualizer.models;
+using System.IO;
 //using Microsoft.Data.Sqlite;
 
-namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.db
+namespace cl.uv.multimodalvisualizer.db
 {
     public class BackupDataContext : DbContext
     {
-        public static BackupDataContext db = null;
+        private static BackupDataContext db = null;
         public DbSet<Scene> Scene { get; set; }
         public DbSet<Person> Person { get; set; }
         public DbSet<PostureIntervalGroup> PostureIntervalGroup { get; set; }
@@ -23,21 +24,37 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.db
             : base(options)
         { }
 
-        public static BackupDataContext CreateConnection(string filePath)
+        private static BackupDataContext CreateConnection(string filePath)
         {
             var optionsBuilder = new DbContextOptionsBuilder();
             optionsBuilder.UseSqlite("Filename=" + filePath);
             db = new BackupDataContext(optionsBuilder.Options);
             return db;
         }
+        //public static void CloseConnection()
+        //{
+        //    db.Database.CloseConnection();
+        //    db.Dispose();
+        //    db = null;
+        //}
 
-        public Scene LoadScene()
+        public static Scene LoadScene(string filePath)
         {
-            var groups = PostureIntervalGroup
+            CreateConnection(filePath);
+            var groups = db.PostureIntervalGroup
                 .Include(pig => pig.Intervals)
                 .Include(pig => pig.PostureType)
                 .Include(pig => pig.Person.Scene);
             return groups.ToList()[0].Person.Scene;
+        }
+
+        public static void SaveScene(string filePath)
+        {
+            if (File.Exists(filePath)) File.Delete(filePath);
+            CreateConnection(filePath);
+            db.Database.EnsureCreated();
+            db.Scene.Add(models.Scene.Instance);
+            db.SaveChanges();
         }
 
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

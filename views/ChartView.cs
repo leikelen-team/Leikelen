@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ComponentModel;
-using Microsoft.Samples.Kinect.VisualizadorMultimodal.models;
+using cl.uv.multimodalvisualizer.models;
 
-namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.views
+namespace cl.uv.multimodalvisualizer.views
 {
     public class ChartView : INotifyPropertyChanged
     {
@@ -30,38 +30,6 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.views
             }
         }
 
-        //private double fund;
-
-        //public double Fund
-        //{
-        //    get { return fund; }
-        //    set {
-        //        fund = value;
-        //        RaisePropertyChangeEvent("Fund");
-        //    }
-        //}
-
-        //private double total;
-
-        //public double Total
-        //{
-        //    get { return total; }
-        //    set {
-        //        total = value;
-        //        RaisePropertyChangeEvent("Total");
-        //    }
-        //}
-
-        //private double benchmark;
-
-        //public double Benchmark
-        //{
-        //    get { return benchmark; }
-        //    set {
-        //        benchmark = value;
-        //        RaisePropertyChangeEvent("Benchmark");
-        //    }
-        //}
 
         public static List<ChartView> GenerateFromPerson(Person person)
         {
@@ -75,15 +43,6 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.views
             return chartClasses;
         }
 
-        //public static List<ChartView> ConstructTestData()
-        //{
-        //    List<ChartView> assetClasses = new List<ChartView>();
-
-        //    assetClasses.Add(new ChartView() { Class = "PostureTypeName1", TotalDuration = TimeSpan.FromMinutes(13) });
-        //    assetClasses.Add(new ChartView() { Class = "PostureTypeName2", TotalDuration = TimeSpan.FromMinutes(13) });
-
-        //    return assetClasses;
-        //}
 
         #region INotifyPropertyChanged Members
 

@@ -19,10 +19,10 @@ using System.Windows.Media;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using Microsoft.Samples.Kinect.VisualizadorMultimodal.utils;
-using Microsoft.Samples.Kinect.VisualizadorMultimodal.db;
+using cl.uv.multimodalvisualizer.utils;
+using cl.uv.multimodalvisualizer.db;
 
-namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.models
+namespace cl.uv.multimodalvisualizer.models
 {
     public class PostureType
     {

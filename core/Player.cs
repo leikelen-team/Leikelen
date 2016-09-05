@@ -1,7 +1,7 @@
 ﻿using KinectEx;
 using KinectEx.DVR;
-using Microsoft.Samples.Kinect.VisualizadorMultimodal.db;
-using Microsoft.Samples.Kinect.VisualizadorMultimodal.models;
+using cl.uv.multimodalvisualizer.db;
+using cl.uv.multimodalvisualizer.models;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -16,22 +16,22 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.core
+namespace cl.uv.multimodalvisualizer.core
 {
     public class Player
     {
-        private KinectReplay            _replay;
-        private bool                    _locationSetByHand  = false;
-        private int                     StartFromMillis     = 200;
+        private KinectReplay _replay;
+        private bool _locationSetByHand = false;
+        private int StartFromMillis = 200;
 
         private bool colorFrameEnable = true;
         private bool bodyFrameEnable = true;
         private bool viewEnable = true;
 
-        private bool                    wasPlayingAtDisable = false;
-        private ColorFrameBitmap        _colorBitmap        = null;
-        private int                     lastCurrentSecondForTimeLineCursor = 0;
-        private ImageSource             lastBodyFrame       = null;
+        private bool wasPlayingAtDisable = false;
+        private ColorFrameBitmap _colorBitmap = null;
+        private int lastCurrentSecondForTimeLineCursor = 0;
+        private ImageSource lastBodyFrame = null;
         public Player(){}
 
         public TimeSpan Duration

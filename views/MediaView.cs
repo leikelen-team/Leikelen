@@ -4,8 +4,8 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Samples.Kinect.VisualizadorMultimodal.core;
-namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.views
+using cl.uv.multimodalvisualizer.core;
+namespace cl.uv.multimodalvisualizer.views
 {
     public static class MediaView
     {

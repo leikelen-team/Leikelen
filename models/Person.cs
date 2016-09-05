@@ -1,9 +1,9 @@
 ﻿using Microsoft.Kinect;
-using Microsoft.Samples.Kinect.VisualizadorMultimodal.analytics;
-using Microsoft.Samples.Kinect.VisualizadorMultimodal.core;
-using Microsoft.Samples.Kinect.VisualizadorMultimodal.db;
-using Microsoft.Samples.Kinect.VisualizadorMultimodal.views;
-using Microsoft.Samples.Kinect.VisualizadorMultimodal.windows;
+//using cl.uv.multimodalvisualizer.analytics;
+using cl.uv.multimodalvisualizer.core;
+using cl.uv.multimodalvisualizer.db;
+using cl.uv.multimodalvisualizer.views;
+using cl.uv.multimodalvisualizer.windows;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,7 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
 
-namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.models
+namespace cl.uv.multimodalvisualizer.models
 {
     public class Person
     {
@@ -24,7 +24,19 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.models
         //public int BodyIndex { get; set; }
         //[Column(TypeName = "bigint")]
         public long TrackingId { get; set; }
-        public string Name { get; set; }
+        [NotMapped]
+        private string name;
+        public string Name {
+            get
+            {
+                return name;
+            }
+            set
+            {
+                name = value;
+                if (this.View != null) this.View.Label.Content = name;
+            }
+        }
         public GenderEnum Gender { get; set; }
         public int Age { get; set; }
         public List<PostureIntervalGroup> PostureIntervalGroups { get; set; }
@@ -76,7 +88,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.models
             if (currentColorIndex == colors.Count()) currentColorIndex = 0;
         }
 
-        public enum GenderEnum { Masculino, Femenino };
+        public enum GenderEnum { Male, Female };
         public Person(ulong trackingId, int listIndex/*int bodyIndex, string name, GenderEnum gender, int age*/)
         //public Person(int bodyIndex, string name)
         {

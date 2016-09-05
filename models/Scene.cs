@@ -1,8 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Samples.Kinect.VisualizadorMultimodal.db;
-using Microsoft.Samples.Kinect.VisualizadorMultimodal.utils;
+using cl.uv.multimodalvisualizer.db;
+using cl.uv.multimodalvisualizer.utils;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -10,17 +11,20 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.models
+namespace cl.uv.multimodalvisualizer.models
 {
     public class Scene
     {
         [NotMapped]
         private static Scene instance;
 
-        public int SceneId { get; set; }
+        // poner fecha como key
+
+        //public int SceneId { get; set; }
+        [Key]
+        public DateTime StartDate { get; set; } // start date when begin to record
         public string Name { get; set; }
         public string Description { get; set; }
-        public DateTime StartDate { get; set; } // start date when begin to record
         public TimeSpan Duration { get; set; }
         //public List<SceneFrame> Frames { get; set; }
         public int TickCount { get; set; }
@@ -75,19 +79,19 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.models
                 Persons = new List<Person>(),
                 Status = Statuses.Recorded
             };
-            if (PgsqlContext.IsConnected)
-            {
-                var db = PgsqlContext.db;
-                instance.SceneId = db.Scene.Last().SceneId + 1;
-            }
+            //if (PgsqlContext.IsConnected)
+            //{
+            //    var db = PgsqlContext.db;
+            //    instance.SceneId = db.Scene.Last().SceneId + 1;
+            //}
             return instance;
         }
 
-        public static void CreateFromDbContext()
+        public static void CreateFromDbContext(string path)
         {
-            var db = BackupDataContext.db;
+            
             if(instance!=null) instance.Clear();
-            instance = db.LoadScene();
+            instance = BackupDataContext.LoadScene(path);
             instance.Status = Statuses.Imported;
             instance.InitTimeLine();
 

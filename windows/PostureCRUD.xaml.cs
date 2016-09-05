@@ -1,6 +1,6 @@
-﻿using Microsoft.Samples.Kinect.VisualizadorMultimodal.db;
-using Microsoft.Samples.Kinect.VisualizadorMultimodal.models;
-using Microsoft.Samples.Kinect.VisualizadorMultimodal.utils;
+﻿using cl.uv.multimodalvisualizer.db;
+using cl.uv.multimodalvisualizer.models;
+using cl.uv.multimodalvisualizer.utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.windows
+namespace cl.uv.multimodalvisualizer.windows
 {
     /// <summary>
     /// Interaction logic for PostureCRUD.xaml

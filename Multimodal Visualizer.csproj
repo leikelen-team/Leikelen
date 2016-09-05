@@ -10,8 +10,8 @@
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Microsoft.Samples.Kinect.VisualizadorMultimodal</RootNamespace>
-    <AssemblyName>VisualizadorMultimodal</AssemblyName>
+    <RootNamespace>cl.uv.multimodalvisualizer</RootNamespace>
+    <AssemblyName>multimodalvisualizer</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -60,7 +60,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>Microsoft.Samples.Kinect.VisualizadorMultimodal.App</StartupObject>
+    <StartupObject>cl.uv.multimodalvisualizer.App</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Images\Kinect.ico</ApplicationIcon>
@@ -208,7 +208,6 @@
     <Compile Include="db\BackupDataContext.cs" />
     <Compile Include="db\PgsqlContext.cs" />
     <Compile Include="models\Interval.cs" />
-    <Compile Include="models\_SceneFrame.cs" />
     <Compile Include="utils\Files.cs" />
     <Compile Include="views\ChartView.cs" />
     <Compile Include="views\MediaView.cs" />
@@ -216,37 +215,21 @@
     <Compile Include="windows\AddOrEditPostureType.xaml.cs">
       <DependentUpon>AddOrEditPostureType.xaml</DependentUpon>
     </Compile>
-    <Compile Include="analytics\PersonAnalytic.cs" />
     <Compile Include="windows\Charts.xaml.cs">
       <DependentUpon>Charts.xaml</DependentUpon>
     </Compile>
-    <Compile Include="_deprecated\_KinectBody.cs" />
     <Compile Include="models\PostureIntervalGroup.cs" />
     <Compile Include="models\MicroPosture.cs" />
     <Compile Include="windows\PostureCRUD.xaml.cs">
       <DependentUpon>PostureCRUD.xaml</DependentUpon>
     </Compile>
     <Compile Include="db\PostureTypeContext.cs" />
-    <Compile Include="_deprecated\_Analytics.cs" />
-    <Compile Include="windows\ChartForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="windows\ChartForm.Designer.cs">
-      <DependentUpon>ChartForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="windows\EditPersonForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="windows\EditPersonForm.Designer.cs">
       <DependentUpon>EditPersonForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="_deprecated\_Frame.cs" />
-    <Compile Include="_deprecated\_KinectStudioHandler.cs" />
-    <Compile Include="_deprecated\_Escena.cs" />
-    <Compile Include="_deprecated\_models\_Emotion.cs" />
-    <Compile Include="_deprecated\_models\_Interval.cs" />
-    <Compile Include="_deprecated\_models\_Joint.cs" />
-    <Compile Include="_deprecated\_models\_JointPosition.cs" />
     <Compile Include="models\Person.cs" />
     <Compile Include="models\PostureType.cs" />
     <Compile Include="Properties\Buttons.Designer.cs">
@@ -266,7 +249,6 @@
     </Compile>
     <Compile Include="models\Scene.cs" />
     <Compile Include="utils\Utils.cs" />
-    <Compile Include="_deprecated\_VisualizerXamlView.cs" />
     <Page Include="windows\AddOrEditPostureType.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -280,8 +262,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="core\GestureDetector.cs" />
-    <Compile Include="_deprecated\_GestureResultView.cs" />
-    <Compile Include="_deprecated\_KinectBodyView.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -309,9 +289,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="windows\ChartForm.resx">
-      <DependentUpon>ChartForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="windows\EditPersonForm.resx">
       <DependentUpon>EditPersonForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -332,6 +309,8 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Paths.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

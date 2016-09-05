@@ -1,7 +1,7 @@
-﻿using Microsoft.Samples.Kinect.VisualizadorMultimodal.db;
-using Microsoft.Samples.Kinect.VisualizadorMultimodal.models;
-using Microsoft.Samples.Kinect.VisualizadorMultimodal.pojos;
-using Microsoft.Samples.Kinect.VisualizadorMultimodal.utils;
+﻿using cl.uv.multimodalvisualizer.db;
+using cl.uv.multimodalvisualizer.models;
+
+using cl.uv.multimodalvisualizer.utils;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -17,7 +17,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.windows
+namespace cl.uv.multimodalvisualizer.windows
 {
     /// <summary>
     /// Interaction logic for AddOrEditPostureType.xaml
@@ -49,7 +49,7 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.windows
 
         private void browseButton_Click(object sender, RoutedEventArgs e)
         {
-            Win32.OpenFileDialog dlg = new Win32.OpenFileDialog();
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
             dlg.FileName = "";
             dlg.DefaultExt = ".gbd"; // Default file extension
             dlg.Filter = "Gesture build data" + " " + "(*.gbd)|*.gbd"; // Filter files by extension
@@ -120,7 +120,8 @@ namespace Microsoft.Samples.Kinect.VisualizadorMultimodal.windows
                 }
                 else
                 {
-                    PostureTypeContext.db.PostureType.Add(new PostureType(name, internalFilePath));
+                    int id = PostureTypeContext.db.PostureType.Last().PostureTypeId+1;
+                    PostureTypeContext.db.PostureType.Add(new PostureType(name, internalFilePath) { PostureTypeId = id});
                 }
                 
                 PostureTypeContext.db.SaveChanges();
