@@ -167,6 +167,9 @@ namespace cl.uv.multimodalvisualizer
             //chartForm.updateCharts();
             Charts c = new windows.Charts();
             c.Show();
+
+            ContinuousChart cc = new windows.ContinuousChart();
+            cc.Show();
         }
 
         private void FromSensorRadioButton_Checked(object sender, RoutedEventArgs e)

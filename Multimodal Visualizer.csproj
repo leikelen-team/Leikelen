@@ -75,7 +75,7 @@
     </Reference>
     <Reference Include="KinectEx, Version=0.4.0.0, Culture=neutral, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin_files\KinectEx.dll</HintPath>
+      <HintPath>bin\x86\Debug\KinectEx.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Data.Sqlite, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Data.Sqlite.1.0.0\lib\net451\Microsoft.Data.Sqlite.dll</HintPath>
@@ -220,6 +220,12 @@
     </Compile>
     <Compile Include="models\PostureIntervalGroup.cs" />
     <Compile Include="models\MicroPosture.cs" />
+    <Compile Include="windows\ContinuousChart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="windows\ContinuousChart.Designer.cs">
+      <DependentUpon>ContinuousChart.cs</DependentUpon>
+    </Compile>
     <Compile Include="windows\PostureCRUD.xaml.cs">
       <DependentUpon>PostureCRUD.xaml</DependentUpon>
     </Compile>
@@ -289,6 +295,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="windows\ContinuousChart.resx">
+      <DependentUpon>ContinuousChart.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="windows\EditPersonForm.resx">
       <DependentUpon>EditPersonForm.cs</DependentUpon>
     </EmbeddedResource>

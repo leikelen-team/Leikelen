@@ -183,7 +183,11 @@ namespace cl.uv.multimodalvisualizer.core
                     // get the discrete gesture results which arrived with the latest frame
                     IReadOnlyDictionary<Gesture, DiscreteGestureResult> discreteResults = frame.DiscreteGestureResults;
 
-                    if (discreteResults != null)
+                    IReadOnlyDictionary<Gesture, ContinuousGestureResult> continuousResults = frame.ContinuousGestureResults;
+                    IReadOnlyDictionary<TimeSpan, float> tiempo;
+
+
+                    if (discreteResults != null || continuousResults != null)
                     {
                         Person person = Scene.Instance.Persons
                                                 .FirstOrDefault(p => p.TrackingId == (long)this.TrackingId);
@@ -209,7 +213,8 @@ namespace cl.uv.multimodalvisualizer.core
                                             //Console.WriteLine("registered posture:"+postureType.name);
                                             MicroPosture mc = new MicroPosture(
                                                         postureType,
-                                                        Kinect.Instance.Recorder.getCurrentLocation()
+                                                        Kinect.Instance.Recorder.getCurrentLocation(),
+                                                        GestureType.Discrete
                                                     );
                                             
                                             person.MicroPostures.Add(mc);
@@ -219,14 +224,43 @@ namespace cl.uv.multimodalvisualizer.core
                                     }
                                     break;
                                 }
+                                if (gesture.Name.Equals(postureType.Name) && gesture.GestureType == GestureType.Continuous)
+                                {
+                                    ContinuousGestureResult result = null;
+                                    continuousResults.TryGetValue(gesture, out result);
+
+                                    if (result != null)
+                                    {
+                                        // update the GestureResultView object with new gesture result values
+                                        //this.GestureResultView.UpdateGestureResult(true, result.Detected, result.Confidence);
+                                        if (Scene.Instance != null)
+                                        {
+                                            //Console.WriteLine("registered posture:"+postureType.name);
+                                            MicroPosture mc = new MicroPosture(
+                                                        postureType,
+                                                        Kinect.Instance.Recorder.getCurrentLocation(),
+                                                        result.Progress,
+                                                        GestureType.Continuous
+                                                    );
+
+                                            person.MicroPostures.Add(mc);
+                                            postureDetected = true;
+                                            //Scene.Instance.persons[BodyIndex].postures.
+                                        }
+                                    }
+                                    break;
+                                
+                            }
                             }
                         }
                         if (!postureDetected && Scene.Instance != null)
                         {
                             //Console.WriteLine("registered posture:" + PostureType.none.name);
-                            person.MicroPostures.Add(new MicroPosture(PostureType.none, Kinect.Instance.Recorder.getCurrentLocation()));
+                            person.MicroPostures.Add(new MicroPosture(PostureType.none, Kinect.Instance.Recorder.getCurrentLocation(), GestureType.None));
                         }
                     }
+
+                    
                 }
             }
         }
