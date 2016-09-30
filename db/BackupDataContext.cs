@@ -54,7 +54,8 @@ namespace cl.uv.multimodalvisualizer.db
         {
             CreateConnection(filePath);
             var query = db.MicroPosture
-                .Include(m => m.PostureType);
+                .Include(m => m.PostureType)
+                .OrderBy(m => m.SceneLocationTime);
             return query.ToList();
         }
 
