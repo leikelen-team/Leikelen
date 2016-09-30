@@ -28,27 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.ProgressChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.comboPersons = new System.Windows.Forms.ComboBox();
-            this.PostureCombo = new System.Windows.Forms.ComboBox();
+            this.comboPosture = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.ProgressChart)).BeginInit();
             this.SuspendLayout();
             // 
             // ProgressChart
             // 
-            chartArea2.Name = "ChartArea1";
-            this.ProgressChart.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.ProgressChart.Legends.Add(legend2);
+            chartArea1.Name = "ChartArea1";
+            this.ProgressChart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.ProgressChart.Legends.Add(legend1);
             this.ProgressChart.Location = new System.Drawing.Point(12, 70);
             this.ProgressChart.Name = "ProgressChart";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.ProgressChart.Series.Add(series2);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.ProgressChart.Series.Add(series1);
             this.ProgressChart.Size = new System.Drawing.Size(719, 330);
             this.ProgressChart.TabIndex = 0;
             this.ProgressChart.Text = "chart1";
@@ -58,25 +58,25 @@
             this.comboPersons.FormattingEnabled = true;
             this.comboPersons.Location = new System.Drawing.Point(13, 13);
             this.comboPersons.Name = "comboPersons";
-            this.comboPersons.Size = new System.Drawing.Size(181, 21);
+            this.comboPersons.Size = new System.Drawing.Size(198, 21);
             this.comboPersons.TabIndex = 1;
             this.comboPersons.SelectedIndexChanged += new System.EventHandler(this.comboPersons_SelectedIndexChanged);
             // 
-            // PostureCombo
+            // comboPosture
             // 
-            this.PostureCombo.FormattingEnabled = true;
-            this.PostureCombo.Location = new System.Drawing.Point(244, 13);
-            this.PostureCombo.Name = "PostureCombo";
-            this.PostureCombo.Size = new System.Drawing.Size(224, 21);
-            this.PostureCombo.TabIndex = 2;
-            this.PostureCombo.SelectedIndexChanged += new System.EventHandler(this.PostureCombo_SelectedIndexChanged);
+            this.comboPosture.FormattingEnabled = true;
+            this.comboPosture.Location = new System.Drawing.Point(244, 13);
+            this.comboPosture.Name = "comboPosture";
+            this.comboPosture.Size = new System.Drawing.Size(198, 21);
+            this.comboPosture.TabIndex = 2;
+            this.comboPosture.SelectedIndexChanged += new System.EventHandler(this.comboPosture_SelectedIndexChanged);
             // 
             // ContinuousChart
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(743, 412);
-            this.Controls.Add(this.PostureCombo);
+            this.Controls.Add(this.comboPosture);
             this.Controls.Add(this.comboPersons);
             this.Controls.Add(this.ProgressChart);
             this.Name = "ContinuousChart";
@@ -90,6 +90,6 @@
 
         private System.Windows.Forms.DataVisualization.Charting.Chart ProgressChart;
         private System.Windows.Forms.ComboBox comboPersons;
-        private System.Windows.Forms.ComboBox PostureCombo;
+        private System.Windows.Forms.ComboBox comboPosture;
     }
 }

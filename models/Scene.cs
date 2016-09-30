@@ -94,10 +94,14 @@ namespace cl.uv.multimodalvisualizer.models
             instance = BackupDataContext.LoadScene(path);
             instance.Status = Statuses.Imported;
             instance.InitTimeLine();
-
+            var microPostures = BackupDataContext.Load_MicroPostures(path);
             foreach (Person person in Scene.Instance.Persons)
             {
                 if (!person.HasBeenTracked) continue;
+                if (microPostures.Exists(mp => mp.PersonId == person.PersonId))
+                {
+                    person.MicroPostures = microPostures.FindAll(mp => mp.PersonId == person.PersonId);
+                }
                 person.generateView();
                 person.View.repaintIntervalGroups();
                 MainWindow.Instance().timeLineContentGrid.Children.Add(person.View.postureGroupsGrid);

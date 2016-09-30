@@ -64,29 +64,56 @@
             <!--<ColumnDefinition Width="457*"/>-->
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0" />
+            <RowDefinition Height="27" />
             <RowDefinition Height="100*"/>
             <RowDefinition Height="75*" />
             <RowDefinition Height="20" />
             <!--<RowDefinition Height="Auto" />-->
         </Grid.RowDefinitions>
-        
-        
-        
-        <Grid x:Name="Center" Grid.Row="1" Grid.ColumnSpan="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
+
+
+        <Grid x:Name="Menu" Grid.Row="0">
+            <Menu>
+                <MenuItem Header="_File">
+                    <MenuItem x:Name="ImportButton" Header="_Import"></MenuItem>
+                    <MenuItem x:Name="ExportButton" Header="_Export"></MenuItem>
+                    <MenuItem x:Name="pgsqlExport" Header="Pgsql Export" Click="pgsqlExport_Click" IsEnabled="False"></MenuItem>
+                </MenuItem>
+                <MenuItem Header="Scene">
+                    <MenuItem x:Name="sceneAdmin" Header="Configure _Scene"></MenuItem>
+                    <MenuItem x:Name="posturesAdmin" Header="_Postures" Click="posturesAdmin_Click"></MenuItem>
+                </MenuItem>
+                <MenuItem Header="_Charts">
+                    <MenuItem x:Name="showGraphButtons" Header="_Discrete Postures" Click="showGraphButtons_Click"></MenuItem>
+                    <MenuItem Header="_Continuous Postures" Click="showContinuousGraph_Click"></MenuItem>
+                    <MenuItem Header="_Total Distances"></MenuItem>
+                </MenuItem>
+                <MenuItem Header="_View">
+                    <MenuItem x:Name="BackgroundEnableCheckBox" Header="Background" IsCheckable="True"  IsChecked="True" Click="BackgroundEnableCheckBox_Click"></MenuItem>
+                    <MenuItem x:Name="SkeletonsEnableCheckBox" Header="Skeletons" IsCheckable="True" IsChecked="True" Click="SkeletonsEnableCheckBox_Click"></MenuItem>
+                </MenuItem>
+
+                <ComboBox x:Name="SourceComboBox">
+                    <ComboBoxItem Content="From Sensor" IsSelected="True"></ComboBoxItem>
+                        <ComboBoxItem Content="From File"></ComboBoxItem>
+                    </ComboBox>
+                
+            </Menu>
+            
+        </Grid>
+
+
+        <Grid x:Name="Center" Grid.Row="1">
+           <!-- <Grid.RowDefinitions> -->
                 <!--<RowDefinition Height="106*"/>-->
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
+                <!--<RowDefinition Height="*"/>
+            </Grid.RowDefinitions> -->
+            <!--
             <StackPanel Orientation="Vertical">
 
                 <Button x:Name="ImportButton" Content="Import" HorizontalAlignment="Left" VerticalAlignment="Top" Width="110" Height="Auto" Margin="0,3,0,0"/>
                 <Button x:Name="ExportButton" Content="Export" HorizontalAlignment="Left" VerticalAlignment="Top" Width="110" Height="Auto" Margin="0,3,0,0"/>
-                <!--<Button x:Name="pgsqlExport" Content="Pgsql Export" HorizontalAlignment="Left" VerticalAlignment="Top" Width="110" Height="Auto" Margin="0,3,0,0" Click="pgsqlExport_Click" />-->
+                
                 <Button x:Name="posturesAdmin" Content="Postures" HorizontalAlignment="Left" VerticalAlignment="Top" Width="110" Height="Auto" Margin="0,10,0,0" Click="posturesAdmin_Click" />
                 <Button x:Name="showGraphButtons" Content="Charts" HorizontalAlignment="Left" VerticalAlignment="Top" Width="110" Height="Auto" Margin="0,3,0,0" Click="showGraphButtons_Click"/>
 
@@ -114,12 +141,13 @@
                     </StackPanel>
                 </Border>
                 
-                <!--<Button x:Name="Test" Content="Test" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto" Height="Auto" Margin="0,20,0,0" Click="Test_Click"/>-->
+                
                 
             </StackPanel>
+            -->
 
 
-            <Grid x:Name="playerGrid" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch">
+            <Grid x:Name="playerGrid">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
@@ -129,10 +157,10 @@
                     <RowDefinition Height="50"/>
                 </Grid.RowDefinitions>
 
-                <Image x:Name="colorImageControl" Grid.Row="0" Grid.Column="1" />
-                <Image x:Name="bodyImageControl" Grid.Row="0" Grid.Column="1"/>
+                <Image x:Name="colorImageControl" Grid.Row="0" Grid.Column="0" />
+                <Image x:Name="bodyImageControl" Grid.Row="0" Grid.Column="0"/>
 
-                <Grid Grid.Row="2" Grid.ColumnSpan="2">
+                <Grid Grid.Row="1" Grid.ColumnSpan="2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*"/>
                         <ColumnDefinition Width="1*"/>
@@ -403,7 +431,9 @@
 
 
         <!--<Label x:Name="sceneTitleLabel" Content="Importa o graba una escena." HorizontalAlignment="Left" Margin="0,-1,0,0" VerticalAlignment="Top" FontSize="16"/>-->
+        <!--
         <Image Grid.Row="0" Source="Images\Status.png" Stretch="None" HorizontalAlignment="Center" Margin="672,0,0,4" />
+        -->
 
 
         <StatusBar Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Left">

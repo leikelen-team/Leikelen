@@ -184,7 +184,6 @@ namespace cl.uv.multimodalvisualizer.core
                     IReadOnlyDictionary<Gesture, DiscreteGestureResult> discreteResults = frame.DiscreteGestureResults;
 
                     IReadOnlyDictionary<Gesture, ContinuousGestureResult> continuousResults = frame.ContinuousGestureResults;
-                    IReadOnlyDictionary<TimeSpan, float> tiempo;
 
 
                     if (discreteResults != null || continuousResults != null)
@@ -192,7 +191,7 @@ namespace cl.uv.multimodalvisualizer.core
                         Person person = Scene.Instance.Persons
                                                 .FirstOrDefault(p => p.TrackingId == (long)this.TrackingId);
                         // we only have one gesture in this source object, but you can get multiple gestures
-                        bool postureDetected = false;
+                        bool discretePostureDetected = false;
                         foreach (Gesture gesture in this.vgbFrameSource.Gestures)
                         {
                             //Posture.Name[] postures = (Posture.Name[])Enum.GetValues(typeof(Posture.Name));
@@ -218,7 +217,7 @@ namespace cl.uv.multimodalvisualizer.core
                                                     );
                                             
                                             person.MicroPostures.Add(mc);
-                                            postureDetected = true;
+                                            discretePostureDetected = true;
                                             //Scene.Instance.persons[BodyIndex].postures.
                                         }
                                     }
@@ -244,7 +243,7 @@ namespace cl.uv.multimodalvisualizer.core
                                                     );
 
                                             person.MicroPostures.Add(mc);
-                                            postureDetected = true;
+                                            //postureDetected = true;
                                             //Scene.Instance.persons[BodyIndex].postures.
                                         }
                                     }
@@ -253,7 +252,7 @@ namespace cl.uv.multimodalvisualizer.core
                             }
                             }
                         }
-                        if (!postureDetected && Scene.Instance != null)
+                        if (!discretePostureDetected && Scene.Instance != null)
                         {
                             //Console.WriteLine("registered posture:" + PostureType.none.name);
                             person.MicroPostures.Add(new MicroPosture(PostureType.none, Kinect.Instance.Recorder.getCurrentLocation(), GestureType.None));

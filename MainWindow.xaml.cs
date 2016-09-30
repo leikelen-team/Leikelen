@@ -74,13 +74,14 @@ namespace cl.uv.multimodalvisualizer
 
             sceneSlider.ValueChanged += Kinect.Instance.Player.LocationSlider_ValueChanged;
 
-            FromSensorRadioButton.Checked += FromSensorRadioButton_Checked;
-            FromSceneRadioButton.Checked += FromSceneRadioButton_Checked;
+            //FromSensorRadioButton.Checked += FromSensorRadioButton_Checked;
+            //FromSceneRadioButton.Checked += FromSceneRadioButton_Checked;
 
+            SourceComboBox.Loaded += SourceComboBox_Loaded;
+            SourceComboBox.SelectionChanged += Source_ComboBox_SelectionChanged;
 
             BackgroundEnableCheckBox.IsEnabled = false;
             SkeletonsEnableCheckBox.IsEnabled = false;
-
             
         }
 
@@ -167,7 +168,11 @@ namespace cl.uv.multimodalvisualizer
             //chartForm.updateCharts();
             Charts c = new windows.Charts();
             c.Show();
+            
+        }
 
+        private void showContinuousGraph_Click(object sender, RoutedEventArgs e)
+        {
             ContinuousChart cc = new windows.ContinuousChart();
             cc.Show();
         }
@@ -272,6 +277,7 @@ namespace cl.uv.multimodalvisualizer
         }
 
 
+
         //private void analizePostures_Click(object sender, RoutedEventArgs e)
         //{
         //    if (Scene.Instance == null) return;
@@ -345,6 +351,26 @@ namespace cl.uv.multimodalvisualizer
         //}
         #endregion
 
-        
+        private void Source_ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var cmbox = sender as ComboBox;
+            int indexSelected = cmbox.SelectedIndex;
+            switch (indexSelected)
+            {
+                case 0:
+                    MediaView.SetFromSensor();
+                    break;
+                case 1:
+                    MediaView.SetFromScene();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void SourceComboBox_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

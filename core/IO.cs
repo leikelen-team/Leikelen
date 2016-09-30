@@ -38,7 +38,7 @@ namespace cl.uv.multimodalvisualizer.core
                 ZipFile.ExtractToDirectory(dlg.FileName, Properties.Paths.CurrentSceneDirectory);
                 Kinect.Instance.Player.OpenFile(Properties.Paths.CurrentKdvrFile);
                 Scene.CreateFromDbContext(Properties.Paths.CurrentDataFile);
-                MainWindow.Instance().FromSceneRadioButton.IsChecked = true;
+                MainWindow.Instance().SourceComboBox.SelectedIndex = 1;
             }
         }
 

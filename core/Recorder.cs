@@ -73,7 +73,7 @@ namespace cl.uv.multimodalvisualizer.core
                 
 
 
-                MainWindow.Instance().FromSceneRadioButton.IsChecked = true;
+                MainWindow.Instance().SourceComboBox.SelectedIndex = 1;
             }
         }
 
@@ -95,7 +95,7 @@ namespace cl.uv.multimodalvisualizer.core
                     }
                 }
 
-                MainWindow.Instance().FromSensorRadioButton.IsChecked = true;
+                MainWindow.Instance().SourceComboBox.SelectedIndex = 0;
 
                 //if (File.Exists(Properties.Paths.asd)) File.Delete(Properties.Paths.asd);
                 if (Kinect.Instance.Player.IsOpen) Kinect.Instance.Player.Close();

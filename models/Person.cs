@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
+using Microsoft.Kinect.VisualGestureBuilder;
 
 namespace cl.uv.multimodalvisualizer.models
 {
@@ -40,7 +41,7 @@ namespace cl.uv.multimodalvisualizer.models
         public GenderEnum Gender { get; set; }
         public int Age { get; set; }
         public List<PostureIntervalGroup> PostureIntervalGroups { get; set; }
-        [NotMapped]
+        //[NotMapped]
         public List<MicroPosture> MicroPostures { get; set; }
 
         public int SceneId { get; set; }
@@ -155,6 +156,7 @@ namespace cl.uv.multimodalvisualizer.models
                 foreach (MicroPosture microPosture in this.MicroPostures)
                 {
                     if (microPosture.PostureType.Name != currentPostureType.Name) continue;
+                    if (microPosture.GestureType == GestureType.Continuous) continue;
 
                     if (lastMicroPosture == null)
                     {

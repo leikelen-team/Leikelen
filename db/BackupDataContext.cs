@@ -18,6 +18,7 @@ namespace cl.uv.multimodalvisualizer.db
         public DbSet<PostureIntervalGroup> PostureIntervalGroup { get; set; }
         public DbSet<PostureType> PostureType { get; set; }
         public DbSet<Interval> Interval { get; set; }
+        public DbSet<MicroPosture> MicroPosture { get; set; }
 
 
         public BackupDataContext(DbContextOptions options)
@@ -45,7 +46,16 @@ namespace cl.uv.multimodalvisualizer.db
                 .Include(pig => pig.Intervals)
                 .Include(pig => pig.PostureType)
                 .Include(pig => pig.Person.Scene);
+
             return groups.ToList()[0].Person.Scene;
+        }
+
+        public static List<MicroPosture> Load_MicroPostures(string filePath)
+        {
+            CreateConnection(filePath);
+            var query = db.MicroPosture
+                .Include(m => m.PostureType);
+            return query.ToList();
         }
 
         public static void SaveScene(string filePath)
