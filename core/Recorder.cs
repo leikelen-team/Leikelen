@@ -70,7 +70,36 @@ namespace cl.uv.multimodalvisualizer.core
                     person.View.repaintIntervalGroups();
                     MainWindow.Instance().timeLineContentGrid.Children.Add(person.View.postureGroupsGrid);
                 }
-                
+
+                Dictionary<ulong, DistanceTypeList> totalDistanceWithInferred = Scene.Instance.calculateDistances.calculateTotalDistance(DistanceInferred.WithInferred);
+                Dictionary<ulong, DistanceTypeList> totalDistanceWithoutInferred = Scene.Instance.calculateDistances.calculateTotalDistance(DistanceInferred.WithoutInferred);
+
+                Dictionary<ulong, DistanceTypeList> totalDistanceOnlyInferred = Scene.Instance.calculateDistances.calculateTotalDistance(DistanceInferred.OnlyInferred);
+
+                foreach (ulong personTrackingId in totalDistanceWithInferred.Keys)
+                {
+                    if (Scene.Instance.Persons.Exists(p => p.TrackingId == (long)personTrackingId))
+                    {
+                        Scene.Instance.Persons.Find(p => p.TrackingId == (long)personTrackingId).Distances.AddRange(totalDistanceWithInferred[personTrackingId]);
+                    }
+                }
+
+                foreach (ulong personTrackingId in totalDistanceWithoutInferred.Keys)
+                {
+                    if (Scene.Instance.Persons.Exists(p => p.TrackingId == (long)personTrackingId))
+                    {
+                        Scene.Instance.Persons.Find(p => p.TrackingId == (long)personTrackingId).Distances.AddRange(totalDistanceWithoutInferred[personTrackingId]);
+                    }
+                }
+
+                foreach (ulong personTrackingId in totalDistanceOnlyInferred.Keys)
+                {
+                    if (Scene.Instance.Persons.Exists(p => p.TrackingId == (long)personTrackingId))
+                    {
+                        Scene.Instance.Persons.Find(p => p.TrackingId == (long)personTrackingId).Distances.AddRange(totalDistanceOnlyInferred[personTrackingId]);
+                    }
+                }
+
 
 
                 MainWindow.Instance().SourceComboBox.SelectedIndex = 1;

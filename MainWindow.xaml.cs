@@ -77,7 +77,7 @@ namespace cl.uv.multimodalvisualizer
             //FromSensorRadioButton.Checked += FromSensorRadioButton_Checked;
             //FromSceneRadioButton.Checked += FromSceneRadioButton_Checked;
 
-            SourceComboBox.Loaded += SourceComboBox_Loaded;
+            //SourceComboBox.Loaded += SourceComboBox_Loaded;
             SourceComboBox.SelectionChanged += Source_ComboBox_SelectionChanged;
 
             BackgroundEnableCheckBox.IsEnabled = false;
@@ -367,9 +367,16 @@ namespace cl.uv.multimodalvisualizer
                     break;
             }
         }
-
+        /*
         private void SourceComboBox_Loaded(object sender, RoutedEventArgs e)
         {
+
+        }*/
+
+        private void showDistances_Click(object sender, RoutedEventArgs e)
+        {
+            DistanceForm df = new DistanceForm();
+            df.Show();
 
         }
     }

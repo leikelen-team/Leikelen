@@ -80,13 +80,13 @@
                     <MenuItem x:Name="pgsqlExport" Header="Pgsql Export" Click="pgsqlExport_Click" IsEnabled="False"></MenuItem>
                 </MenuItem>
                 <MenuItem Header="Scene">
-                    <MenuItem x:Name="sceneAdmin" Header="Configure _Scene"></MenuItem>
+                    <MenuItem x:Name="sceneAdmin" Header="Configure _Scene" IsEnabled="False"></MenuItem>
                     <MenuItem x:Name="posturesAdmin" Header="_Postures" Click="posturesAdmin_Click"></MenuItem>
                 </MenuItem>
                 <MenuItem Header="_Charts">
                     <MenuItem x:Name="showGraphButtons" Header="_Discrete Postures" Click="showGraphButtons_Click"></MenuItem>
                     <MenuItem Header="_Continuous Postures" Click="showContinuousGraph_Click"></MenuItem>
-                    <MenuItem Header="_Total Distances"></MenuItem>
+                    <MenuItem Header="_Total Distances" Click="showDistances_Click"></MenuItem>
                 </MenuItem>
                 <MenuItem Header="_View">
                     <MenuItem x:Name="BackgroundEnableCheckBox" Header="Background" IsCheckable="True"  IsChecked="True" Click="BackgroundEnableCheckBox_Click"></MenuItem>

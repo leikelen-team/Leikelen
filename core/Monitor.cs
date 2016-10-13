@@ -103,6 +103,10 @@ namespace cl.uv.multimodalvisualizer.core
                 {
                     frame.GetAndRefreshBodyData(_bodies);
                     bodies = _bodies;
+
+                    Body[] bodiesInFrame = new Body[frame.BodyCount];
+                    frame.GetAndRefreshBodyData(bodiesInFrame);
+                    Scene.Instance.calculateDistances.AddBodies(bodiesInFrame);
                 }
             }
 

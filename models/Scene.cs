@@ -34,6 +34,9 @@ namespace cl.uv.multimodalvisualizer.models
         public enum Statuses { Imported, Recorded }
 
         public List<Person> Persons { get; set; }
+
+        [NotMapped]
+        public CalculateDistances calculateDistances = new CalculateDistances();
         //public DbSet<Person> Personss { get; set; }
 
         [NotMapped]
@@ -94,14 +97,14 @@ namespace cl.uv.multimodalvisualizer.models
             instance = BackupDataContext.LoadScene(path);
             instance.Status = Statuses.Imported;
             instance.InitTimeLine();
-            var microPostures = BackupDataContext.Load_MicroPostures(path);
+            //var microPostures = BackupDataContext.Load_MicroPostures(path);
             foreach (Person person in Scene.Instance.Persons)
             {
                 if (!person.HasBeenTracked) continue;
-                if (microPostures.Exists(mp => mp.PersonId == person.PersonId))
+                /*if (microPostures.Exists(mp => mp.PersonId == person.PersonId))
                 {
                     person.MicroPostures = microPostures.FindAll(mp => mp.PersonId == person.PersonId);
-                }
+                }*/
                 person.generateView();
                 person.View.repaintIntervalGroups();
                 MainWindow.Instance().timeLineContentGrid.Children.Add(person.View.postureGroupsGrid);

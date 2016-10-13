@@ -200,6 +200,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="models\Distance.cs" />
+    <Compile Include="models\DistanceTypeList.cs" />
+    <Compile Include="utils\CalculateDistances.cs" />
     <Compile Include="core\IO.cs" />
     <Compile Include="core\Monitor.cs" />
     <Compile Include="core\Player.cs" />
@@ -207,6 +210,7 @@
     <Compile Include="core\Kinect.cs" />
     <Compile Include="db\BackupDataContext.cs" />
     <Compile Include="db\PgsqlContext.cs" />
+    <Compile Include="models\BodyDistance.cs" />
     <Compile Include="models\Interval.cs" />
     <Compile Include="utils\Files.cs" />
     <Compile Include="views\ChartView.cs" />
@@ -225,6 +229,12 @@
     </Compile>
     <Compile Include="windows\ContinuousChart.Designer.cs">
       <DependentUpon>ContinuousChart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="windows\DistanceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="windows\DistanceForm.designer.cs">
+      <DependentUpon>DistanceForm.cs</DependentUpon>
     </Compile>
     <Compile Include="windows\PostureCRUD.xaml.cs">
       <DependentUpon>PostureCRUD.xaml</DependentUpon>
@@ -297,6 +307,9 @@
     </Compile>
     <EmbeddedResource Include="windows\ContinuousChart.resx">
       <DependentUpon>ContinuousChart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="windows\DistanceForm.resx">
+      <DependentUpon>DistanceForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="windows\EditPersonForm.resx">
       <DependentUpon>EditPersonForm.cs</DependentUpon>

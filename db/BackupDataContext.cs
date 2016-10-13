@@ -19,6 +19,9 @@ namespace cl.uv.multimodalvisualizer.db
         public DbSet<PostureType> PostureType { get; set; }
         public DbSet<Interval> Interval { get; set; }
         public DbSet<MicroPosture> MicroPosture { get; set; }
+        //public DbSet<BodyDistance> BodyDistance { get; set; }
+        public DbSet<Distance> Distance { get; set; }
+        //public DbSet<BodyDistance> DistancesWithoutInferred { get; set; }
 
 
         public BackupDataContext(DbContextOptions options)
@@ -47,17 +50,38 @@ namespace cl.uv.multimodalvisualizer.db
                 .Include(pig => pig.PostureType)
                 .Include(pig => pig.Person.Scene);
 
-            return groups.ToList()[0].Person.Scene;
+            var microPosturesDb = db.MicroPosture
+                .Include(m => m.PostureType)
+                .OrderBy(m => m.SceneLocationTime);
+
+
+            Scene newScene = groups.ToList()[0].Person.Scene;
+            List<MicroPosture> microPostures = microPosturesDb.ToList();
+
+
+            foreach (Person person in newScene.Persons)
+            {
+                if (!person.HasBeenTracked) continue;
+                if (microPostures.Exists(mp => mp.PersonId == person.PersonId))
+                {
+                    person.MicroPostures = microPostures.FindAll(mp => mp.PersonId == person.PersonId);
+                }
+            }
+
+                return newScene;
         }
 
+
+        /*
+         * //esto se eliminara despues de probar
         public static List<MicroPosture> Load_MicroPostures(string filePath)
         {
             CreateConnection(filePath);
-            var query = db.MicroPosture
+            var micropostures = db.MicroPosture
                 .Include(m => m.PostureType)
                 .OrderBy(m => m.SceneLocationTime);
-            return query.ToList();
-        }
+            return micropostures.ToList();
+        }*/
 
         public static void SaveScene(string filePath)
         {

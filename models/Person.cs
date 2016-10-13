@@ -44,6 +44,10 @@ namespace cl.uv.multimodalvisualizer.models
         //[NotMapped]
         public List<MicroPosture> MicroPostures { get; set; }
 
+        //public int BodyDistanceId { get; set; }
+        public List<Distance> Distances { get; set; }
+
+
         public int SceneId { get; set; }
         public Scene Scene { get; set; }
 
@@ -101,6 +105,8 @@ namespace cl.uv.multimodalvisualizer.models
             //this.Age = null;
             this.MicroPostures = new List<MicroPosture>();
             this.PostureIntervalGroups = new List<PostureIntervalGroup>();
+            //this.BodyDistance = new BodyDistance();
+            this.Distances = new List<Distance>();
             //this.PosturesView = null;
             this.Color = colors[currentColorIndex++];
             if (currentColorIndex == colors.Count()) currentColorIndex = 0;
