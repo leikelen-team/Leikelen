@@ -18,6 +18,7 @@ namespace cl.uv.multimodalvisualizer.core
         KinectSensor _sensor = null;
         BodyFrameReader _bodyReader = null;
         ColorFrameReader _colorReader = null;
+        AudioBeamFrameReader _audioBeamReader = null;
         
         ColorFrameBitmap _colorBitmap;
         List<CustomBody> _bodies = null;
@@ -66,7 +67,35 @@ namespace cl.uv.multimodalvisualizer.core
             _colorReader = _sensor.ColorFrameSource.OpenReader();
             _colorReader.FrameArrived += _colorReader_FrameArrived;
 
+            _audioBeamReader = _sensor.AudioSource.OpenReader();
+            _audioBeamReader.FrameArrived += _audioBeamReader_FrameArrived;
+
             MainWindow.Instance().colorImageControl.Source = _colorBitmap.Bitmap;
+        }
+
+        private void _audioBeamReader_FrameArrived(object sender, AudioBeamFrameArrivedEventArgs e)
+        {
+            var frames = e.FrameReference.AcquireBeamFrames();
+            
+            foreach(var frame in frames)
+            {
+                foreach(var subFrame in frame.SubFrames)
+                {
+                    TimeSpan startTime = subFrame.RelativeTime;
+                    TimeSpan duration = subFrame.Duration;
+                    foreach(var audioBodyCorrelation in subFrame.AudioBodyCorrelations)
+                    {
+                        long bodyTrackingId = (long)audioBodyCorrelation.BodyTrackingId;
+                        if(Scene.Instance.Persons.Exists(p => p.TrackingId == bodyTrackingId))
+                        {
+                            PostureIntervalGroup pig = new PostureIntervalGroup(new PostureType("Audio", ""));
+                            pig.addAudioBeamInterval(startTime, duration);
+                            Scene.Instance.Persons.Find(p => p.TrackingId == bodyTrackingId).PostureIntervalGroups.Add(pig);
+                        }
+                    }
+                }
+            }
+            
         }
 
         public void Close()

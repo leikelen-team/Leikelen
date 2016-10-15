@@ -39,6 +39,8 @@ namespace cl.uv.multimodalvisualizer.models
         //public int BodyDistanceId { get; set; }
         //public BodyDistance BodyDistance { get; set; }
 
+        public Distance() { }
+
         public Distance(DistanceTypes distanceType, JointType jointType, DistanceInferred inferredType)
         {
             this.jointType = jointType;

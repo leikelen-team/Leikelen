@@ -70,6 +70,15 @@ namespace cl.uv.multimodalvisualizer.models
             }
         }
 
+        public void addAudioBeamInterval(TimeSpan startTime, TimeSpan duration)
+        {
+            Interval IntervalTMP = new Interval();
+            IntervalTMP.StartTime = startTime;
+            IntervalTMP.EndTime = startTime.Add(duration);
+            IntervalTMP.Duration = duration;
+            Intervals.Add(IntervalTMP);
+        }
+
         //public IReadOnlyList<Tuple<MicroPosture, MicroPosture>> Intervals {
         //    get
         //    {

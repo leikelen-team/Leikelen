@@ -54,9 +54,12 @@ namespace cl.uv.multimodalvisualizer.db
                 .Include(m => m.PostureType)
                 .OrderBy(m => m.SceneLocationTime);
 
+            var distancesBd = db.Distance.OrderBy(d=> d.DistanceId);
+
 
             Scene newScene = groups.ToList()[0].Person.Scene;
             List<MicroPosture> microPostures = microPosturesDb.ToList();
+            List<Distance> distances = distancesBd.ToList();
 
 
             foreach (Person person in newScene.Persons)
@@ -65,6 +68,10 @@ namespace cl.uv.multimodalvisualizer.db
                 if (microPostures.Exists(mp => mp.PersonId == person.PersonId))
                 {
                     person.MicroPostures = microPostures.FindAll(mp => mp.PersonId == person.PersonId);
+                }
+                if(distances.Exists(d => d.PersonId == person.PersonId))
+                {
+                    person.Distances = distances.FindAll(d => d.PersonId == person.PersonId);
                 }
             }
 
