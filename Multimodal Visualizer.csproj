@@ -75,7 +75,7 @@
     </Reference>
     <Reference Include="KinectEx, Version=0.4.0.0, Culture=neutral, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin_files\KinectEx.dll</HintPath>
+      <HintPath>bin_files\x86\KinectEx.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Data.Sqlite, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Data.Sqlite.1.0.0\lib\net451\Microsoft.Data.Sqlite.dll</HintPath>
@@ -236,6 +236,12 @@
     <Compile Include="windows\DistanceForm.designer.cs">
       <DependentUpon>DistanceForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="windows\ManageScene.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="windows\ManageScene.Designer.cs">
+      <DependentUpon>ManageScene.cs</DependentUpon>
+    </Compile>
     <Compile Include="windows\PostureCRUD.xaml.cs">
       <DependentUpon>PostureCRUD.xaml</DependentUpon>
     </Compile>
@@ -331,6 +337,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Paths.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="windows\ManageScene.resx">
+      <DependentUpon>ManageScene.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="ClassDiagram1.cd" />
     <None Include="ClassDiagram2.cd" />
     <None Include="packages.config" />
@@ -369,6 +378,11 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy "$(KINECTSDK20_DIR)Redist\VGB\$(Platform)\vgbtechs" "$(TargetDir)\vgbtechs" /S /R /Y /I</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>xcopy "$(ProjectDir)bin_files\anyPlatform" $(OutDir) /Y /E
+IF $(PlatformName) == "x86" xcopy "$(ProjectDir)bin_files\x86" $(OutDir) /Y /E
+IF $(PlatformName) == "x64" xcopy "$(ProjectDir)bin_files\x64" $(OutDir) /Y /E</PreBuildEvent>
   </PropertyGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

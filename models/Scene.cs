@@ -24,6 +24,10 @@ namespace cl.uv.multimodalvisualizer.models
         [Key]
         public DateTime StartDate { get; set; } // start date when begin to record
         public string Name { get; set; }
+        public DateTime DateTime { get; set; }
+        public int NumberOfParticipants { get; set; }
+        public String Type { get; set; }
+        public String Place { get; set; }
         public string Description { get; set; }
         public TimeSpan Duration { get; set; }
         //public List<SceneFrame> Frames { get; set; }

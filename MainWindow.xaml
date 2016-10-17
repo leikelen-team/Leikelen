@@ -15,45 +15,6 @@
         <SolidColorBrush x:Key="MediumGreyBrush" Color="#ff6e6e6e" />
         <SolidColorBrush x:Key="KinectPurpleBrush" Color="#ff52318f" />
         <SolidColorBrush x:Key="KinectBlueBrush" Color="#ff00BCF2" />
-
-        <!--<DataTemplate DataType="{x:Type pojos:Person}">
-            <Grid Width="Auto" Margin="5" Background="{Binding BodyColor}">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <TextBlock HorizontalAlignment="Stretch" 
-                           Text="{Binding BodyIndex, StringFormat='Body Index: {0}'}" 
-                           FontSize="14" FontFamily="Segoe UI" FontWeight="SemiBold" Margin="5"/>
-                <Image Source="{Binding ImageSource}" Stretch="Uniform" Grid.Row="1" Margin="5"/>
-                <TextBlock Text="{Binding Detected, StringFormat='Sentado: {0}'}" FontSize="11" FontFamily="Segoe UI" Grid.Row="0" Margin="5 5 0 0"/>
-                <TextBlock Text="{Binding Confidence, StringFormat='Confidencia: {0}'}" 
-                           FontSize="11" FontFamily="Segoe UI" FontWeight="SemiBold" Grid.Row="1" Margin="5 0 0 0"/>
-            </Grid>
-        </DataTemplate>-->
-
-        <!--<DataTemplate DataType="{x:Type models:Person}">
-            <Grid Width="Auto" Margin="5" Background="{Binding BodyColor}">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <TextBlock HorizontalAlignment="Stretch" 
-                           Text="{Binding BodyIndex, StringFormat='Body Index: {0}'}" 
-                           FontSize="14" FontFamily="Segoe UI" FontWeight="SemiBold" Margin="5"/>
-                <Image Source="{Binding ImageSource}" Stretch="Uniform" Grid.Row="1" Margin="5"/>
-                <TextBlock Text="{Binding Detected, StringFormat='Sentado: {0}'}" FontSize="11" FontFamily="Segoe UI" Grid.Row="0" Margin="5 5 0 0"/>
-                <TextBlock Text="{Binding Confidence, StringFormat='Confidencia: {0}'}" 
-                           FontSize="11" FontFamily="Segoe UI" FontWeight="SemiBold" Grid.Row="1" Margin="5 0 0 0"/>
-            </Grid>
-        </DataTemplate>-->
-
     </Window.Resources>
     
     
@@ -61,14 +22,12 @@
     <Grid x:Name="appLayoutGrid" Margin="10 0 10 0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="265*"/>
-            <!--<ColumnDefinition Width="457*"/>-->
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="27" />
             <RowDefinition Height="100*"/>
             <RowDefinition Height="75*" />
             <RowDefinition Height="20" />
-            <!--<RowDefinition Height="Auto" />-->
         </Grid.RowDefinitions>
 
 
@@ -80,7 +39,7 @@
                     <MenuItem x:Name="pgsqlExport" Header="Pgsql Export" Click="pgsqlExport_Click" IsEnabled="False"></MenuItem>
                 </MenuItem>
                 <MenuItem Header="Scene">
-                    <MenuItem x:Name="sceneAdmin" Header="Configure _Scene" IsEnabled="False"></MenuItem>
+                    <MenuItem x:Name="sceneAdmin" Header="Configure _Scene" Click="sceneAdmin_Click"></MenuItem>
                     <MenuItem x:Name="posturesAdmin" Header="_Postures" Click="posturesAdmin_Click"></MenuItem>
                 </MenuItem>
                 <MenuItem Header="_Charts">
@@ -104,48 +63,6 @@
 
 
         <Grid x:Name="Center" Grid.Row="1">
-           <!-- <Grid.RowDefinitions> -->
-                <!--<RowDefinition Height="106*"/>-->
-                <!--<RowDefinition Height="*"/>
-            </Grid.RowDefinitions> -->
-            <!--
-            <StackPanel Orientation="Vertical">
-
-                <Button x:Name="ImportButton" Content="Import" HorizontalAlignment="Left" VerticalAlignment="Top" Width="110" Height="Auto" Margin="0,3,0,0"/>
-                <Button x:Name="ExportButton" Content="Export" HorizontalAlignment="Left" VerticalAlignment="Top" Width="110" Height="Auto" Margin="0,3,0,0"/>
-                
-                <Button x:Name="posturesAdmin" Content="Postures" HorizontalAlignment="Left" VerticalAlignment="Top" Width="110" Height="Auto" Margin="0,10,0,0" Click="posturesAdmin_Click" />
-                <Button x:Name="showGraphButtons" Content="Charts" HorizontalAlignment="Left" VerticalAlignment="Top" Width="110" Height="Auto" Margin="0,3,0,0" Click="showGraphButtons_Click"/>
-
-                <Border Background="GhostWhite" BorderBrush="Silver" BorderThickness="1" CornerRadius="8,8,3,3" Margin="0,10,0,0">
-                    <StackPanel Orientation="Vertical" Margin="7,5,0,10">
-                        <Label Content="View"/>
-                        <CheckBox Grid.Column="0" x:Name="BackgroundEnableCheckBox" 
-                                      HorizontalAlignment="Left" VerticalAlignment="Center"  
-                                      Content="Background" IsChecked="True" Click="BackgroundEnableCheckBox_Click"
-                                  Margin="0,0,0,0"
-                                  />
-                        <CheckBox Grid.Column="0" x:Name="SkeletonsEnableCheckBox" 
-                                      HorizontalAlignment="Left" VerticalAlignment="Center"  
-                                      Content="Skeletons" IsChecked="True" Click="SkeletonsEnableCheckBox_Click"
-                                  Margin="0,0,0,0"
-                                  />
-                    </StackPanel>
-                </Border>
-                
-                <Border Background="GhostWhite" BorderBrush="Silver" BorderThickness="1" CornerRadius="8,8,3,3" Margin="0,10,0,0">
-                    <StackPanel Orientation="Vertical" Margin="7,5,0,10">
-                        <Label Content="Image source"/>
-                        <RadioButton x:Name="FromSensorRadioButton" Content="From Sensor" IsChecked="True"/>
-                        <RadioButton x:Name="FromSceneRadioButton" Content="From Scene"/>
-                    </StackPanel>
-                </Border>
-                
-                
-                
-            </StackPanel>
-            -->
-
 
             <Grid x:Name="playerGrid">
                 <Grid.ColumnDefinitions>
@@ -178,24 +95,8 @@
                                      HorizontalAlignment="Stretch"  HorizontalContentAlignment="Left"
                                      VerticalAlignment="Center"
                                      Maximum="100"/>
-                    <!--<Slider  Grid.Row="0" Grid.ColumnSpan="2"  x:Name="sceneSlider" Height="22" Value="0"
-                                     HorizontalAlignment="Stretch"  HorizontalContentAlignment="Left"
-                                     VerticalAlignment="Center"
-                                     ValueChanged="sceneSlider_ValueChanged"
-                                     Thumb.DragStarted="sceneSlider_DragStarted"
-                                     Thumb.DragCompleted="sceneSlider_DragCompleted"
-                                     Maximum="100"/>-->
                     <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal">
-                        <!--<Button x:Name="recordButton" 
-                            HorizontalAlignment="Left" VerticalAlignment="Center" Width="Auto"
-                            Content="O" Click="grabarButton_Click"/>
-                        <Button x:Name="stopButton" 
-                            HorizontalAlignment="Left" VerticalAlignment="Center" Width="Auto" Margin="3,0,0,0"
-                            Content="■" Click="stopButton_Click"/>
-                        <Button x:Name="playButton" 
-                            HorizontalAlignment="Left" VerticalAlignment="Center" Width="Auto" Margin="3,0,0,0"
-                            Content=">" Click="playButton_Click"/>-->
-                        
+
                         <Button x:Name="recordButton2" 
                             HorizontalAlignment="Left" VerticalAlignment="Center" Width="Auto" Margin="3,0,0,0"
                             Content="O"/>
@@ -205,7 +106,7 @@
                         <Button x:Name="playButton2" 
                             HorizontalAlignment="Left" VerticalAlignment="Center" Width="Auto" Margin="3,0,0,0"
                             Content=">"/>
-                        
+
                         <Label x:Name="sceneCurrentTimeLabel" 
                            Content="00:00:00" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center"/>
                         <Label Content="/" 
@@ -213,18 +114,10 @@
                         <Label x:Name="sceneDurationLabel" 
                            Content="00:00:00" HorizontalAlignment="Left" Margin="3,0,0,0" VerticalAlignment="Center"/>
                     </StackPanel>
-                    
-
-                    
-
-
-                    <!--<Button x:Name="playButton" Content="Reproducir" HorizontalAlignment="Left" Margin="350,30,0,0" VerticalAlignment="Top" Width="75" Click="playButton_Click"/>
-                    <Button x:Name="stopButton" Content="Detener" HorizontalAlignment="Left" Margin="282,30,0,0" VerticalAlignment="Top" Width="63" Click="stopButton_Click"/>-->
 
                 </Grid>
             </Grid>
         </Grid>
-        <!--<ScrollViewer Grid.Row="2" Grid.ColumnSpan="2" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">-->
 
         <Grid x:Name="timeLineLayoutGrid" Grid.Row="2" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
@@ -253,42 +146,7 @@
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <!--<RowDefinition Height="77"/>-->
-                            <!--<RowDefinition Height="77"/>
-                            <RowDefinition Height="77" />
-                            <RowDefinition Height="77" />
-                            <RowDefinition Height="77" />
-                            <RowDefinition Height="77" />
-                            <RowDefinition Height="20" />-->
                         </Grid.RowDefinitions>
-
-                        <!--<Border Grid.Column="0" Grid.ColumnSpan="2" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="8,8,3,3"/>-->
-                        <!--<Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="8,8,3,3"></Border>-->
-                        <!--<Border Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="8,8,3,3"></Border>
-                        <Border Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="8,8,3,3"></Border>
-                        <Border Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="8,8,3,3"></Border>
-                        <Border Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="8,8,3,3"></Border>-->
-
-                        <!--<Label Grid.Column="0" x:Name="label_sujeto1" Content="Sujeto 1" HorizontalAlignment="Left" VerticalAlignment="Top"/>-->
-                        <!--<Label Grid.Row="1" Grid.Column="0" x:Name="label_sujeto2" Content="Sujeto 2" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                        <Label Grid.Row="2" Grid.Column="0" x:Name="label_sujeto3" Content="Sujeto 3" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                        <Label Grid.Row="3" Grid.Column="0" x:Name="label_sujeto4" Content="Sujeto 4" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                        <Label Grid.Row="4" Grid.Column="0" x:Name="label_sujeto5" Content="Sujeto 5" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                        <Label Grid.Row="5" Grid.Column="0" x:Name="label_sujeto6" Content="Sujeto 6" HorizontalAlignment="Left" VerticalAlignment="Top"/>-->
-
-
-                        <!--<StackPanel x:Name="postureIntervalGroupNamesComboBox_person0" Grid.Row="0" Grid.Column="1" Orientation="Vertical" Margin="0,6,7,0">
-                        </StackPanel>-->
-                        <!--<StackPanel x:Name="postureIntervalGroupNamesComboBox_person1" Grid.Row="1" Grid.Column="1" Orientation="Vertical" Margin="0,6,7,0">
-                        </StackPanel>
-                        <StackPanel x:Name="postureIntervalGroupNamesComboBox_person2" Grid.Row="2" Grid.Column="1" Orientation="Vertical" Margin="0,6,7,0">
-                        </StackPanel>
-                        <StackPanel x:Name="postureIntervalGroupNamesComboBox_person3" Grid.Row="3" Grid.Column="1" Orientation="Vertical" Margin="0,6,7,0">
-                        </StackPanel>
-                        <StackPanel x:Name="postureIntervalGroupNamesComboBox_person4" Grid.Row="4" Grid.Column="1" Orientation="Vertical" Margin="0,6,7,0">
-                        </StackPanel>
-                        <StackPanel x:Name="postureIntervalGroupNamesComboBox_person5" Grid.Row="5" Grid.Column="1" Orientation="Vertical" Margin="0,6,7,0">
-                        </StackPanel>-->
                     </Grid>
                 </ScrollViewer>
             </Grid>
@@ -320,22 +178,8 @@
                                   ScrollChanged="TimeLineVerticalScrollsChange">
                         <Grid x:Name="timeLineContentGrid" Grid.Row="1" Grid.RowSpan="1">
                             <Grid.RowDefinitions>
-                                <!--<RowDefinition Height="77"/>-->
-                                <!--<RowDefinition Height="77"/>
-                                <RowDefinition Height="77" />
-                                <RowDefinition Height="77" />
-                                <RowDefinition Height="77" />
-                                <RowDefinition Height="77" />-->
-                            </Grid.RowDefinitions>
 
-                            <!--<Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2147483647" 
-                                    Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" 
-                                    CornerRadius="3,3,3,3"></Border>-->
-                            <!--<Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2147483647" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="3,3,3,3"></Border>
-                            <Border Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2147483647" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="3,3,3,3"></Border>
-                            <Border Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2147483647" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="3,3,3,3"></Border>
-                            <Border Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2147483647" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="3,3,3,3"></Border>
-                            <Border Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2147483647" Background="GhostWhite" BorderBrush="Silver" BorderThickness="3" CornerRadius="3,3,3,3"></Border>-->
+                            </Grid.RowDefinitions>
 
                             <Line x:Name="lineCurrentTimeCursor" Grid.Column="0" Grid.RowSpan="6"
                               VerticalAlignment="Stretch" HorizontalAlignment="Left" Stretch="Fill" 
@@ -343,57 +187,6 @@
                               X1="0" X2="0" Y1="0" Y2="1" />
                         </Grid>
                     </ScrollViewer>
-
-
-
-
-
-
-                    <!--<Grid Grid.Row="2" Grid.ColumnSpan="7">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-
-                        <Path x:Name="pathvariable" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Stroke="Red" StrokeThickness="10" Stretch="Fill">
-                            <Path.Data>
-                                <LineGeometry StartPoint="0,0" EndPoint="1,0" />
-                            </Path.Data>
-                        </Path>
-
-                        -->
-                    <!--<Line  Grid.Row="0" Grid.Column="0"
-                          X1="0" X2="1" Y1="0" Y2="0"
-                          StrokeThickness="11" Stroke="Red"
-                          VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Stretch="Fill"/>
-                        <Label  Grid.Row="0" Grid.Column="0" 
-                            HorizontalAlignment="Left" VerticalAlignment="Stretch" VerticalContentAlignment="Top"
-                            FontSize="7" FontFamily="Segoe UI"
-                            Content="Seated"
-                            />
-                        <Line  Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3"
-                          X1="0" X2="1" Y1="0" Y2="0"
-                          StrokeThickness="11" Stroke="Blue"
-                          VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Stretch="UniformToFill"
-                          />
-                        <Label  Grid.Row="1" Grid.Column="0" 
-                            HorizontalAlignment="Left" VerticalAlignment="Stretch" VerticalContentAlignment="Top"
-                            FontSize="7" FontFamily="Segoe UI"
-                            Content="Ninguno"
-                            />-->
-                    <!--
-                    </Grid>-->
-
-
 
                 </Grid>
             </ScrollViewer>
@@ -408,33 +201,13 @@
                               ScrollChanged="TimeLineVerticalScrollsChange" >
                     <Grid x:Name="timeLineVerticalScrollViewSubGrid">
                         <Grid.RowDefinitions>
-                            <!--<RowDefinition Height="20"/>
-                            <RowDefinition Height="20"/>-->
-                            <!--<RowDefinition Height="77"/>
-                            <RowDefinition Height="77"/>
-                            <RowDefinition Height="77" />
-                            <RowDefinition Height="77" />
-                            <RowDefinition Height="77" />
-                            <RowDefinition Height="77" />-->
                             <RowDefinition Height="20" />
                         </Grid.RowDefinitions>
                     </Grid>
                 </ScrollViewer>
             </Grid>
 
-
-
         </Grid>
-
-
-
-
-
-        <!--<Label x:Name="sceneTitleLabel" Content="Importa o graba una escena." HorizontalAlignment="Left" Margin="0,-1,0,0" VerticalAlignment="Top" FontSize="16"/>-->
-        <!--
-        <Image Grid.Row="0" Source="Images\Status.png" Stretch="None" HorizontalAlignment="Center" Margin="672,0,0,4" />
-        -->
-
 
         <StatusBar Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Left">
             <StatusBar.Background>
@@ -442,8 +215,6 @@
             </StatusBar.Background>
             <TextBlock x:Name="statusBar" HorizontalAlignment="Left"/>
         </StatusBar>
-
-        <!--<Button x:Name="button" Content="*" HorizontalAlignment="Left" Margin="10,15,0,0" Grid.Row="2" VerticalAlignment="Top" Width="15" Click="button_Click" Height="15"/>-->
 
     </Grid>
 </Window>

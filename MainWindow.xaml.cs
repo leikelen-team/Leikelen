@@ -379,5 +379,11 @@ namespace cl.uv.multimodalvisualizer
             df.Show();
 
         }
+
+        private void sceneAdmin_Click(object sender, RoutedEventArgs e)
+        {
+            ManageScene mScene = new ManageScene();
+            mScene.Show();
+        }
     }
 }

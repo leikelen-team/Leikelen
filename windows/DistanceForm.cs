@@ -49,11 +49,6 @@ namespace cl.uv.multimodalvisualizer.windows
             update();
         }
 
-        private void checkBoxInfered_CheckedChanged(object sender, EventArgs e)
-        {
-            update();
-        }
-
         public void AddPersons(List<Person> persons)
         {
             bool hasPerson = false;
@@ -71,34 +66,45 @@ namespace cl.uv.multimodalvisualizer.windows
             }
             if(hasPerson)
             {
-                TypeComboBox.Items.Add("Total en 3D");
-                TypeComboBox.Items.Add("Total en X");
-                TypeComboBox.Items.Add("Total en Y");
-                TypeComboBox.Items.Add("Total en Z");
-                TypeComboBox.SelectedItem = "Total en 3D";
+                AxisComboBox.Items.Add("Total en 3D");
+                AxisComboBox.Items.Add("Total en X");
+                AxisComboBox.Items.Add("Total en Y");
+                AxisComboBox.Items.Add("Total en Z");
+                AxisComboBox.SelectedItem = "Total en 3D";
+
+                TypeComboBox.Items.Add(DistanceInferred.WithInferred.ToString());
+                TypeComboBox.Items.Add(DistanceInferred.WithoutInferred.ToString());
+                TypeComboBox.Items.Add(DistanceInferred.OnlyInferred.ToString());
+                TypeComboBox.SelectedItem = DistanceInferred.WithInferred.ToString();
             } else
             {
                 string noPersons = "No se detectaron personas";
-                TypeComboBox.Items.Add(noPersons);
+                AxisComboBox.Items.Add(noPersons);
                 personComboBox.SelectedItem = noPersons;
                 personComboBox.Items.Add(noPersons);
-                TypeComboBox.SelectedItem = noPersons;
+                AxisComboBox.SelectedItem = noPersons;
             }
         }
 
-        private void updateLabels(string personName, string typeName, List<Person> persons, bool inferred)
+        private void updateLabels(string personName, string typeName, List<Person> persons, string type)
         {
             if (persons.Exists(p => p.Name == personName))
             {
                 List<Distance> bodyDistance;
-                if (inferred)
+                DistanceInferred dISearch = new DistanceInferred();
+                switch (type)
                 {
-                    bodyDistance = persons.Find(p => p.Name == personName).Distances.FindAll(d => d.inferredType == DistanceInferred.WithInferred);
+                    case "WithInferred":
+                        dISearch = DistanceInferred.WithInferred;
+                        break;
+                    case "WithoutInferred":
+                        dISearch = DistanceInferred.WithoutInferred;
+                        break;
+                    case "OnlyInferred":
+                        dISearch = DistanceInferred.OnlyInferred;
+                        break;
                 }
-                else
-                {
-                    bodyDistance = persons.Find(p => p.Name == personName).Distances.FindAll(d => d.inferredType == DistanceInferred.WithoutInferred);
-                }
+                bodyDistance = persons.Find(p => p.Name == personName).Distances.FindAll(d => d.inferredType == dISearch);
                 //BodyDistance bodyDistance = persons.Find(p => p.Name == personName).distances;
                 DistanceTypes showType;
                 switch (typeName)
@@ -134,16 +140,27 @@ namespace cl.uv.multimodalvisualizer.windows
         private void update()
         {
             string selectedPerson = personComboBox.GetItemText(personComboBox.SelectedItem);
-            string selectedType = TypeComboBox.GetItemText(TypeComboBox.SelectedItem);
+            string selectedType = AxisComboBox.GetItemText(AxisComboBox.SelectedItem);
+            string selectedTypeReal = TypeComboBox.GetItemText(TypeComboBox.SelectedItem);
             Console.Write(selectedType);
             if (hasPersons())
             {
-                updateLabels(selectedPerson, selectedType, Scene.Instance.Persons, checkBoxInferred.Checked);
+                updateLabels(selectedPerson, selectedType, Scene.Instance.Persons, selectedTypeReal);
             }
             else
             {
                 MessageBox.Show("Error: No se ha reproducido nada aún");
             }
+        }
+
+        private void TypeComboBox_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            update();
+        }
+
+        private void DistanceForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
