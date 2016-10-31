@@ -44,6 +44,9 @@ namespace cl.uv.multimodalvisualizer.models
         //[NotMapped]
         public List<MicroPosture> MicroPostures { get; set; }
 
+        [NotMapped]
+        public PostureIntervalGroup pigVoz = new PostureIntervalGroup(new PostureType("Voz Muchas", ""));
+
         //public int BodyDistanceId { get; set; }
         public List<Distance> Distances { get; set; }
 
@@ -146,6 +149,7 @@ namespace cl.uv.multimodalvisualizer.models
 
         public void generatePostureIntervals()
         {
+            addVoice();
             if (this.MicroPostures.Count == 0) return;
             //Dictionary<string, string> dic = new Dictionary<string, string>();
 
@@ -184,6 +188,55 @@ namespace cl.uv.multimodalvisualizer.models
                 }
                 if (postureIntervalGroup.Intervals.Count > 0) this.PostureIntervalGroups.Add(postureIntervalGroup);
             }
+        }
+
+        public void addVoice()
+        {
+            PostureIntervalGroup pigVozAux = new PostureIntervalGroup(new PostureType("Voz Real", ""));
+
+            pigVoz.Intervals.OrderBy(v => v.StartTime);
+            int i = 0;
+            TimeSpan initial = new TimeSpan();
+            TimeSpan final = new TimeSpan();
+            TimeSpan threshold = TimeSpan.FromMilliseconds(Convert.ToDouble(Properties.Resources.PostureDurationDetectionThreshold));
+            bool intervalEnded = true;
+            for(i = 0; i < pigVoz.Intervals.Count; i++)
+            {
+                Interval thisInterval = pigVoz.Intervals.ElementAt(i);
+                if (i == 0 || intervalEnded == true) //Primero o aun no hay intervalo vigente
+                {
+                    initial = thisInterval.StartTime;
+                    intervalEnded = false;
+                }
+                
+                if(i+1 == pigVoz.Intervals.Count) //ultimo
+                {
+                    final = thisInterval.EndTime;
+                }
+                else //no es el ultimo
+                {
+                    Interval nextInterval = pigVoz.Intervals.ElementAt(i + 1);
+                    if(nextInterval.StartTime.Subtract(thisInterval.EndTime) >= threshold)
+                    {
+                        final = thisInterval.EndTime;
+                        intervalEnded = true;
+                    }
+                }
+
+                if (intervalEnded == true)
+                {
+                    pigVozAux.addByStartAndEnd(initial, final);
+                }
+            }
+
+
+
+
+            if (pigVozAux.Intervals.Count > 0)
+            {
+                this.PostureIntervalGroups.Add(pigVozAux);
+            }
+            this.PostureIntervalGroups.Add(this.pigVoz);
         }
 
         override

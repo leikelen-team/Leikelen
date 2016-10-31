@@ -39,6 +39,8 @@ namespace cl.uv.multimodalvisualizer.models
 
         public List<Person> Persons { get; set; }
 
+        
+
         [NotMapped]
         public CalculateDistances calculateDistances = new CalculateDistances();
         //public DbSet<Person> Personss { get; set; }

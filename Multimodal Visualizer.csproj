@@ -173,6 +173,7 @@
       <HintPath>packages\System.Interactive.Async.3.0.0\lib\net45\System.Interactive.Async.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.IO.Compression" />
     <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -200,6 +201,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="core\audioBeam.cs" />
     <Compile Include="models\Distance.cs" />
     <Compile Include="models\DistanceTypeList.cs" />
     <Compile Include="utils\CalculateDistances.cs" />

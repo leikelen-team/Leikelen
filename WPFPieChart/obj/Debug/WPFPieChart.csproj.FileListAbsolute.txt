@@ -101,3 +101,4 @@ C:\Users\Erick\Documents\Datos_mios\profe_roberto\leikelen\WPFPieChart\obj\Debug
 C:\Users\Erick\Documents\Datos_mios\profe_roberto\leikelen\WPFPieChart\obj\Debug\WPFPieChart.csproj.GenerateResource.Cache
 C:\Users\Erick\Documents\Datos_mios\profe_roberto\leikelen\WPFPieChart\obj\Debug\WPFPieChart.exe
 C:\Users\Erick\Documents\Datos_mios\profe_roberto\leikelen\WPFPieChart\obj\Debug\WPFPieChart.pdb
+C:\Users\Erick\Documents\Datos_mios\profe_roberto\leikelen\WPFPieChart\obj\Debug\WPFPieChart.csprojResolveAssemblyReference.cache

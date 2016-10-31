@@ -41,17 +41,17 @@ namespace cl.uv.multimodalvisualizer.utils
                                 {
                                     if(body.Joints[jointType].TrackingState == TrackingState.Inferred)
                                     {
-                                        if(inferredType == DistanceInferred.WithInferred || inferredType == DistanceInferred.OnlyInferred)
-                                        {
+                                        //if(inferredType == DistanceInferred.WithInferred || inferredType == DistanceInferred.OnlyInferred)
+                                        //{
                                             calculateFrameToFrame(body, ref totalDistance, jointType, inferredType, true);
-                                        }
+                                        //}
                                     }
                                     else
                                     {
-                                        if(inferredType != DistanceInferred.OnlyInferred)
-                                        {
+                                        //if(inferredType != DistanceInferred.OnlyInferred)
+                                        //{
                                             calculateFrameToFrame(body, ref totalDistance, jointType, inferredType, false);
-                                        }
+                                        //}
                                     }
                                 }
                                 
@@ -68,10 +68,13 @@ namespace cl.uv.multimodalvisualizer.utils
 
         private void calculateFrameToFrame(Body body, ref Dictionary<ulong, DistanceTypeList> distanceObj, JointType jointType, DistanceInferred inferredType, bool inferred)
         {
-            calculateTotalWithFrame3D(body, ref distanceObj, jointType, inferredType, inferred);
-            calculateTotalWithFrameOneCoordinate(body, ref distanceObj, 'X', jointType, inferredType, inferred);
-            calculateTotalWithFrameOneCoordinate(body, ref distanceObj, 'Y', jointType, inferredType, inferred);
-            calculateTotalWithFrameOneCoordinate(body, ref distanceObj, 'Z', jointType, inferredType, inferred);
+            if(inferredType == DistanceInferred.WithInferred || (inferredType == DistanceInferred.WithoutInferred && inferred == false) || (inferredType == DistanceInferred.OnlyInferred && inferred == true)) //calcula distancia
+            {
+                calculateTotalWithFrame3D(body, ref distanceObj, jointType, inferredType, inferred);
+                calculateTotalWithFrameOneCoordinate(body, ref distanceObj, 'X', jointType, inferredType, inferred);
+                calculateTotalWithFrameOneCoordinate(body, ref distanceObj, 'Y', jointType, inferredType, inferred);
+                calculateTotalWithFrameOneCoordinate(body, ref distanceObj, 'Z', jointType, inferredType, inferred);
+            }
             setPrevious(body, ref distanceObj, jointType, inferredType);
         }
 

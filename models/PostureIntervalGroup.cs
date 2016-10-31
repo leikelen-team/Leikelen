@@ -79,6 +79,15 @@ namespace cl.uv.multimodalvisualizer.models
             Intervals.Add(IntervalTMP);
         }
 
+        public void addByStartAndEnd(TimeSpan startTime, TimeSpan endTime)
+        {
+            Interval IntervalTMP = new Interval();
+            IntervalTMP.StartTime = startTime;
+            IntervalTMP.EndTime = endTime;
+            IntervalTMP.Duration = startTime.Add(endTime);
+            Intervals.Add(IntervalTMP);
+        }
+
         //public IReadOnlyList<Tuple<MicroPosture, MicroPosture>> Intervals {
         //    get
         //    {
