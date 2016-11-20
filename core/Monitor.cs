@@ -158,7 +158,7 @@ namespace cl.uv.multimodalvisualizer.core
                     Body[] bodiesInFrame = new Body[frame.BodyCount];
                     frame.GetAndRefreshBodyData(bodiesInFrame);
                     if(Scene.Instance != null)
-                    Scene.Instance.calculateDistances.AddBodies(bodiesInFrame);
+                    Scene.Instance.calculateDistances.AddBodies(bodiesInFrame, Kinect.Instance.Recorder.getCurrentLocation());
                 }
             }
 

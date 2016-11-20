@@ -49,6 +49,12 @@ namespace cl.uv.multimodalvisualizer.models
 
         //public int BodyDistanceId { get; set; }
         public List<Distance> Distances { get; set; }
+        public Dictionary<Tuple<DistanceInferred, DistanceTypes>, double> DistancesSum { get; set; }
+        public Dictionary<Tuple<DistanceInferred, DistanceTypes>, double> DistancesEntropy { get; set; }
+
+        public Dictionary<TimeSpan, List<Distance>> IntervalDistances { get; set; }
+        public Dictionary<Tuple<DistanceInferred, DistanceTypes>, Dictionary<TimeSpan, double>> IntervalDistancesSum { get; set; }
+        public Dictionary<Tuple<DistanceInferred, DistanceTypes>, Dictionary<TimeSpan, double>> IntervalDistancesEntropy { get; set; }
 
 
         public int SceneId { get; set; }
@@ -110,6 +116,11 @@ namespace cl.uv.multimodalvisualizer.models
             this.PostureIntervalGroups = new List<PostureIntervalGroup>();
             //this.BodyDistance = new BodyDistance();
             this.Distances = new List<Distance>();
+            this.IntervalDistances = new Dictionary<TimeSpan, List<Distance>>();
+            this.DistancesSum = new Dictionary<Tuple<DistanceInferred, DistanceTypes>, double>();
+            this.DistancesEntropy = new Dictionary<Tuple<DistanceInferred, DistanceTypes>, double>();
+            this.IntervalDistancesSum = new Dictionary<Tuple<DistanceInferred, DistanceTypes>, Dictionary<TimeSpan, double>>();
+            this.IntervalDistancesEntropy = new Dictionary<Tuple<DistanceInferred, DistanceTypes>, Dictionary<TimeSpan, double>>();
             //this.PosturesView = null;
             this.Color = colors[currentColorIndex++];
             if (currentColorIndex == colors.Count()) currentColorIndex = 0;
@@ -243,6 +254,138 @@ namespace cl.uv.multimodalvisualizer.models
         public string ToString()
         {
             return Name;
+        }
+
+        public void generateDistanceSum()
+        {
+            foreach (Distance dist in this.Distances)
+            {
+                Tuple<DistanceInferred, DistanceTypes> tupleTMP = new Tuple<DistanceInferred, DistanceTypes>(dist.inferredType, dist.DistanceType);
+                if (this.DistancesSum.ContainsKey(tupleTMP))
+                {
+                    this.DistancesSum[tupleTMP] += dist.distance;
+                }
+                else
+                {
+                    this.DistancesSum[tupleTMP] = dist.distance;
+                }
+            }
+            generateDistanceEntropy();
+        }
+        private void generateDistanceEntropy()
+        {
+            foreach (Distance dist in this.Distances)
+            {
+                Tuple<DistanceInferred, DistanceTypes> tupleTMP = new Tuple<DistanceInferred, DistanceTypes>(dist.inferredType, dist.DistanceType);
+                if (this.DistancesSum.ContainsKey(tupleTMP))
+                {
+                    double probabilityDistance = 0;
+                    if(this.DistancesSum[tupleTMP] != 0)
+                        probabilityDistance = dist.distance / this.DistancesSum[tupleTMP];
+                    if (this.DistancesEntropy.ContainsKey(tupleTMP))
+                    {
+                        if(probabilityDistance != 0)
+                            this.DistancesEntropy[tupleTMP] += probabilityDistance*Math.Log10(probabilityDistance);
+                    }
+                    else
+                    {
+                        if (probabilityDistance != 0)
+                            this.DistancesEntropy[tupleTMP] = probabilityDistance * Math.Log10(probabilityDistance);
+                        else
+                            this.DistancesEntropy[tupleTMP] = 0;
+                    }
+                    
+                }
+            }
+
+            List<Tuple<DistanceInferred, DistanceTypes>> distancesEntropyKeys = new List<Tuple<DistanceInferred, DistanceTypes>>(this.DistancesEntropy.Keys);
+            foreach (Tuple<DistanceInferred, DistanceTypes> tupleKey in distancesEntropyKeys)
+            {
+                this.DistancesEntropy[tupleKey] = (this.DistancesEntropy[tupleKey] * - 1) / Math.Log10(25);
+                Console.WriteLine("Entropia Distancia Total persona: " + this.Name + " con tipos: " + tupleKey.Item1.ToString()+" y "+tupleKey.Item2.ToString()+" es: "+this.DistancesEntropy[tupleKey].ToString()+" y Suma: "+this.DistancesSum[tupleKey].ToString());
+            }
+        }
+
+
+        public void generateIntervalDistancesSum()
+        {
+            foreach (TimeSpan intervalTime in this.IntervalDistances.Keys)
+            {
+                foreach (Distance dist in this.IntervalDistances[intervalTime])
+                {
+                    Tuple<DistanceInferred, DistanceTypes> tupleTMP = new Tuple<DistanceInferred, DistanceTypes>(dist.inferredType, dist.DistanceType);
+                    if (this.IntervalDistancesSum.ContainsKey(tupleTMP))
+                    {
+                        if (this.IntervalDistancesSum[tupleTMP].ContainsKey(intervalTime))
+                        {
+                            this.IntervalDistancesSum[tupleTMP][intervalTime] += dist.distance;
+                        }
+                        else
+                        {
+                            this.IntervalDistancesSum[tupleTMP][intervalTime] = dist.distance;
+                        }
+                    }
+                    else
+                    {
+                        this.IntervalDistancesSum[tupleTMP] = new Dictionary<TimeSpan, double>();
+                        this.IntervalDistancesSum[tupleTMP][intervalTime] = dist.distance;
+                    }
+                }
+            }
+            generateIntervalDistancesEntropy();
+        }
+
+        private void generateIntervalDistancesEntropy()
+        {
+            foreach (TimeSpan intervalTime in this.IntervalDistances.Keys)
+            {
+                foreach (Distance dist in this.IntervalDistances[intervalTime])
+                {
+                    Tuple<DistanceInferred, DistanceTypes> tupleTMP = new Tuple<DistanceInferred, DistanceTypes>(dist.inferredType, dist.DistanceType);
+                    if (this.IntervalDistancesSum.ContainsKey(tupleTMP))
+                    {
+                        if (this.IntervalDistancesSum[tupleTMP].ContainsKey(intervalTime))
+                        {
+                            double probabilityDistance = 0;
+                            if(this.IntervalDistancesSum[tupleTMP][intervalTime] != 0)
+                                probabilityDistance = dist.distance / this.IntervalDistancesSum[tupleTMP][intervalTime];
+                            if (this.IntervalDistancesEntropy.ContainsKey(tupleTMP))
+                            {
+                                if (this.IntervalDistancesEntropy[tupleTMP].ContainsKey(intervalTime))
+                                {
+                                    if(probabilityDistance != 0)
+                                        this.IntervalDistancesEntropy[tupleTMP][intervalTime] += probabilityDistance * Math.Log10(probabilityDistance);
+                                }
+                                else
+                                {
+                                    if (probabilityDistance != 0)
+                                        this.IntervalDistancesEntropy[tupleTMP][intervalTime] = probabilityDistance * Math.Log10(probabilityDistance);
+                                    else
+                                        this.IntervalDistancesEntropy[tupleTMP][intervalTime] = 0;
+                                }
+                            }
+                            else
+                            {
+                                this.IntervalDistancesEntropy[tupleTMP] = new Dictionary<TimeSpan, double>();
+                                if (probabilityDistance != 0)
+                                    this.IntervalDistancesEntropy[tupleTMP][intervalTime] = probabilityDistance * Math.Log10(probabilityDistance);
+                                else
+                                    this.IntervalDistancesEntropy[tupleTMP][intervalTime] = 0;
+                            }
+                        }
+                    }
+                }
+            }
+            List<Tuple<DistanceInferred, DistanceTypes>> IntervalDistancesEntropyKeys = new List<Tuple<DistanceInferred, DistanceTypes>>(this.IntervalDistancesEntropy.Keys);
+            foreach (Tuple<DistanceInferred, DistanceTypes> tupleKey in IntervalDistancesEntropyKeys)
+            {
+                List<TimeSpan> timeKeysCol = new List<TimeSpan>(this.IntervalDistancesEntropy[tupleKey].Keys);
+                foreach(TimeSpan timeKey in timeKeysCol)
+                {
+                    this.IntervalDistancesEntropy[tupleKey][timeKey] = (this.IntervalDistancesEntropy[tupleKey][timeKey] * - 1) / Math.Log10(25);
+                    Console.WriteLine("Entropia Intervalo persona: " + this.Name +" en tiempo: "+timeKey.ToString()+" con tipos: "+ tupleKey.Item1.ToString()+" y "+tupleKey.Item2.ToString()+" es: "+this.IntervalDistancesEntropy[tupleKey][timeKey].ToString()+" y Suma: "+this.IntervalDistancesSum[tupleKey][timeKey].ToString());
+                }
+            }
         }
 
     }

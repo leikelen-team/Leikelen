@@ -10,11 +10,45 @@ namespace cl.uv.multimodalvisualizer.utils
 {
     public class CalculateDistances
     {
-        private LinkedList<Body[]> bodiesInAllFrames = new LinkedList<Body[]>();
-
-        public void AddBodies(Body[] bodiesInFrame)
+        private LinkedList<Tuple<TimeSpan, Body[]>> bodiesInAllFrames = new LinkedList<Tuple<TimeSpan, Body[]>>();
+        
+        public void AddBodies(Body[] bodiesInFrame, TimeSpan RelativeTime)
         {
-            this.bodiesInAllFrames.AddLast(bodiesInFrame);
+            if(bodiesInFrame != null)
+            {
+                this.bodiesInAllFrames.AddLast(new Tuple<TimeSpan, Body[]>(RelativeTime, bodiesInFrame));
+            }
+        }
+        
+        public Dictionary<TimeSpan, Dictionary<ulong, DistanceTypeList>> calculateTotalDistanceIntervals(DistanceInferred inferredType, int interval)
+        {
+            Dictionary<TimeSpan, Dictionary<ulong, DistanceTypeList>> distsInTime = new Dictionary<TimeSpan, Dictionary<ulong, DistanceTypeList>>();
+            Dictionary<ulong, DistanceTypeList> intervalDistance = new Dictionary<ulong, DistanceTypeList>();
+            TimeSpan StartTime = new TimeSpan(0);// this.bodiesInAllFrames.ElementAt<Tuple<TimeSpan, Body[]>>(0).Item1;
+            distsInTime[StartTime] = new Dictionary<ulong, DistanceTypeList>();
+            for (int i = 0; i < this.bodiesInAllFrames.Count; i++)
+            {
+                Tuple<TimeSpan, Body[]> bodiesInTime = this.bodiesInAllFrames.ElementAt<Tuple<TimeSpan, Body[]>>(i);
+                if(bodiesInTime.Item1.Subtract(StartTime).TotalSeconds < interval && i < this.bodiesInAllFrames.Count - 1)
+                {
+                    distanceAtFrame(bodiesInTime.Item2, ref intervalDistance, inferredType);
+                }
+                else
+                {
+                    distsInTime[StartTime] = new Dictionary<ulong, DistanceTypeList>(intervalDistance);
+                    StartTime = bodiesInTime.Item1;
+                    distsInTime[StartTime] = new Dictionary<ulong, DistanceTypeList>();
+                    intervalDistance = new Dictionary<ulong, DistanceTypeList>();
+                    distanceAtFrame(bodiesInTime.Item2, ref intervalDistance, inferredType);
+                }
+                
+                /*
+                if (/*i == 0 || bodiesInTime.Item1.Subtract(StartTime).TotalSeconds >= interval || i == this.bodiesInAllFrames.Count -1)
+                {
+                    
+                }*/
+            }
+            return distsInTime;
         }
 
         public Dictionary<ulong, DistanceTypeList> calculateTotalDistance(DistanceInferred inferredType)
@@ -22,48 +56,39 @@ namespace cl.uv.multimodalvisualizer.utils
             Dictionary<ulong, DistanceTypeList> totalDistance = new Dictionary<ulong, DistanceTypeList>();
             for(int i = 0; i < this.bodiesInAllFrames.Count; i++)
             {
-                Body[] bodiesAtFrameI = this.bodiesInAllFrames.ElementAt<Body[]>(i);
+                Body[] bodiesAtFrameI = this.bodiesInAllFrames.ElementAt<Tuple<TimeSpan, Body[]>>(i).Item2;
+                distanceAtFrame(bodiesAtFrameI, ref totalDistance, inferredType);
+            }
+            return totalDistance;
+        }
 
-                if (bodiesAtFrameI != null)
+        public void distanceAtFrame(Body[] bodies, ref Dictionary<ulong, DistanceTypeList> distanceObj , DistanceInferred inferredType)
+        {
+            foreach (Body body in bodies)
+            {
+                if (body.IsTracked)
                 {
-                    foreach (Body body in bodiesAtFrameI)
+                    Body bodyCopy = body;
+                    if (!distanceObj.ContainsKey(body.TrackingId))
                     {
-                        if (body.IsTracked)
+                        distanceObj[body.TrackingId] = new DistanceTypeList();
+                    }
+                    foreach (JointType jointType in body.Joints.Keys)
+                    {
+                        if (body.Joints[jointType].TrackingState != TrackingState.NotTracked)
                         {
-                            Body bodyCopy = body;
-                            if (!totalDistance.ContainsKey(body.TrackingId))
+                            if (body.Joints[jointType].TrackingState == TrackingState.Inferred)
                             {
-                                totalDistance[body.TrackingId] = new DistanceTypeList();
+                                calculateFrameToFrame(body, ref distanceObj, jointType, inferredType, true);
                             }
-                            foreach (JointType jointType in body.Joints.Keys)
+                            else
                             {
-                                if(body.Joints[jointType].TrackingState != TrackingState.NotTracked)
-                                {
-                                    if(body.Joints[jointType].TrackingState == TrackingState.Inferred)
-                                    {
-                                        //if(inferredType == DistanceInferred.WithInferred || inferredType == DistanceInferred.OnlyInferred)
-                                        //{
-                                            calculateFrameToFrame(body, ref totalDistance, jointType, inferredType, true);
-                                        //}
-                                    }
-                                    else
-                                    {
-                                        //if(inferredType != DistanceInferred.OnlyInferred)
-                                        //{
-                                            calculateFrameToFrame(body, ref totalDistance, jointType, inferredType, false);
-                                        //}
-                                    }
-                                }
-                                
-                                
+                                calculateFrameToFrame(body, ref distanceObj, jointType, inferredType, false);
                             }
-
                         }
                     }
                 }
             }
-            return totalDistance;
-
         }
 
         private void calculateFrameToFrame(Body body, ref Dictionary<ulong, DistanceTypeList> distanceObj, JointType jointType, DistanceInferred inferredType, bool inferred)
@@ -130,34 +155,6 @@ namespace cl.uv.multimodalvisualizer.utils
             }
 
         }
-
-        /*
-        private void calculateTotalWithFrameY(Body body, ref Dictionary<ulong, DistanceTypeList> distanceObj, JointType jointType)
-        {
-            if (!distanceObj[body.TrackingId].YTotal.containsJointType(jointType))
-            {
-                distanceObj[body.TrackingId].YTotal.addJointType(jointType);
-            }
-            else
-            {
-                distanceObj[body.TrackingId].YTotal.setDistance(jointType, distanceObj[body.TrackingId].YTotal.getDistance(jointType) + Math.Abs((body.Joints[jointType].Position.Y + 20) - (distanceObj[body.TrackingId].getDistance(DistanceTypes.YPrevious, jointType) + 20)));
-            }
-
-        }
-
-        private void calculateTotalWithFrameZ(Body body, ref Dictionary<ulong, DistanceTypeList> distanceObj, JointType jointType)
-        {
-            if (!distanceObj[body.TrackingId].ZTotal.containsJointType(jointType))
-            {
-                distanceObj[body.TrackingId].ZTotal.addJointType(jointType);
-            }
-            else
-            {
-                distanceObj[body.TrackingId].ZTotal.setDistance(jointType, distanceObj[body.TrackingId].ZTotal.getDistance(jointType) + Math.Abs((body.Joints[jointType].Position.Z + 20) - (distanceObj[body.TrackingId].getDistance(DistanceTypes.ZPrevious, jointType) + 20)));
-            }
-
-        }
-        */
 
         private void setPrevious(Body body, ref Dictionary<ulong, DistanceTypeList> distanceObj, JointType jointType, DistanceInferred inferredType)
         {

@@ -76,6 +76,11 @@ namespace cl.uv.multimodalvisualizer.core
 
                 Dictionary<ulong, DistanceTypeList> totalDistanceOnlyInferred = Scene.Instance.calculateDistances.calculateTotalDistance(DistanceInferred.OnlyInferred);
 
+                putDistanceInPersons(totalDistanceWithInferred);
+                putDistanceInPersons(totalDistanceWithoutInferred);
+                putDistanceInPersons(totalDistanceOnlyInferred);
+
+                /*
                 foreach (ulong personTrackingId in totalDistanceWithInferred.Keys)
                 {
                     if (Scene.Instance.Persons.Exists(p => p.TrackingId == (long)personTrackingId))
@@ -98,13 +103,96 @@ namespace cl.uv.multimodalvisualizer.core
                     {
                         Scene.Instance.Persons.Find(p => p.TrackingId == (long)personTrackingId).Distances.AddRange(totalDistanceOnlyInferred[personTrackingId]);
                     }
+                }*/
+
+                Dictionary<TimeSpan, Dictionary<ulong, DistanceTypeList>> intervalDistWithInferred = Scene.Instance.calculateDistances.calculateTotalDistanceIntervals(DistanceInferred.WithInferred, 20);
+                Dictionary<TimeSpan, Dictionary<ulong, DistanceTypeList>> intervalDistWithoutInferred = Scene.Instance.calculateDistances.calculateTotalDistanceIntervals(DistanceInferred.WithoutInferred, 20);
+                Dictionary<TimeSpan, Dictionary<ulong, DistanceTypeList>> intervalDistOnlyInferred = Scene.Instance.calculateDistances.calculateTotalDistanceIntervals(DistanceInferred.OnlyInferred, 20);
+
+                putIntervalDistanceInPersons(intervalDistWithInferred);
+                putIntervalDistanceInPersons(intervalDistWithoutInferred);
+                putIntervalDistanceInPersons(intervalDistOnlyInferred);
+
+                foreach(Person person in Scene.Instance.Persons)
+                {
+                    person.generateDistanceSum();
+                    person.generateIntervalDistancesSum();
                 }
 
+                /*
+                foreach (TimeSpan startTime in intervalDistWithInferred.Keys)
+                {
+                    foreach (ulong personTrackingId in intervalDistWithInferred[startTime].Keys)
+                    {
+                        if (Scene.Instance.Persons.Exists(p => p.TrackingId == (long)personTrackingId))
+                        {
+                            Scene.Instance.Persons.Find(p => p.TrackingId == (long)personTrackingId).IntervalDistances.Add(startTime, intervalDistWithInferred[startTime][personTrackingId]);
+                        }
+                    }
+                }
 
+                foreach (TimeSpan startTime in intervalDistWithoutInferred.Keys)
+                {
+                    foreach (ulong personTrackingId in intervalDistWithoutInferred[startTime].Keys)
+                    {
+                        if (Scene.Instance.Persons.Exists(p => p.TrackingId == (long)personTrackingId))
+                        {
+                            Scene.Instance.Persons.Find(p => p.TrackingId == (long)personTrackingId).IntervalDistances.Add(startTime, intervalDistWithoutInferred[startTime][personTrackingId]);
+                        }
+                    }
+                }
+
+                foreach (TimeSpan startTime in intervalDistOnlyInferred.Keys)
+                {
+                    foreach (ulong personTrackingId in intervalDistOnlyInferred[startTime].Keys)
+                    {
+                        if (Scene.Instance.Persons.Exists(p => p.TrackingId == (long)personTrackingId))
+                        {
+                            Scene.Instance.Persons.Find(p => p.TrackingId == (long)personTrackingId).IntervalDistances.Add(startTime, intervalDistOnlyInferred[startTime][personTrackingId]);
+                        }
+                    }
+                }*/
 
                 MainWindow.Instance().SourceComboBox.SelectedIndex = 1;
             }
         }
+
+        public void putDistanceInPersons(Dictionary<ulong, DistanceTypeList> totalDistanceObj)
+        {
+            foreach (ulong personTrackingId in totalDistanceObj.Keys)
+            {
+                if (Scene.Instance.Persons.Exists(p => p.TrackingId == (long)personTrackingId))
+                {
+                    Person person = Scene.Instance.Persons.Find(p => p.TrackingId == (long)personTrackingId);
+                    person.Distances.AddRange(totalDistanceObj[personTrackingId]);
+                }
+            }
+        }
+
+
+        public void putIntervalDistanceInPersons(Dictionary<TimeSpan, Dictionary<ulong, DistanceTypeList>> intervalDistObj)
+        {
+            foreach (TimeSpan startTime in intervalDistObj.Keys)
+            {
+                foreach (ulong personTrackingId in intervalDistObj[startTime].Keys)
+                {
+                    if (Scene.Instance.Persons.Exists(p => p.TrackingId == (long)personTrackingId))
+                    {
+                        Person person = Scene.Instance.Persons.Find(p => p.TrackingId == (long)personTrackingId);
+                        if (person.IntervalDistances.ContainsKey(startTime))
+                        {
+                            person.IntervalDistances[startTime].AddRange(intervalDistObj[startTime][personTrackingId]);
+                        }
+                        else
+                        {
+                            person.IntervalDistances.Add(startTime, intervalDistObj[startTime][personTrackingId]);
+                        }
+                        
+                    }
+                }
+            }
+        }
+        
 
         public async void RecordButton_Click(object sender, RoutedEventArgs e)
         {
