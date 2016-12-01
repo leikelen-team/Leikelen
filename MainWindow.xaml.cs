@@ -52,12 +52,16 @@ namespace cl.uv.multimodalvisualizer
 
         private static MainWindow _instance;
 
+        public static GesturesCRUD gestureCRUD;
+
 
         /// <summary>
         /// Initializes a new instance of the MainWindow class
         /// </summary>
         public MainWindow()
         {
+            PostureTypeContext.SaveAppDB();
+            
             // no borres esta linea de nuevo rolo!! estupida, mi código, idiota!! xD
             PostureType.none = PostureTypeContext.db.PostureType.ToList().FirstOrDefault(p => p.PostureTypeId == 0);
             this.InitializeComponent();
@@ -384,6 +388,12 @@ namespace cl.uv.multimodalvisualizer
         {
             ManageScene mScene = new ManageScene();
             mScene.Show();
+        }
+
+        private void gesturesAdmin_Click(object sender, RoutedEventArgs e)
+        {
+            gestureCRUD = new GesturesCRUD();
+            gestureCRUD.Show();
         }
     }
 }

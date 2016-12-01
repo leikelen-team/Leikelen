@@ -18,6 +18,7 @@
             <Button Grid.Row="0" x:Name="addPostureButton" Content="Add" HorizontalAlignment="Left" Click="addPostureButton_Click" Width="Auto" Height="Auto" Margin="3,0,0,0" />
             <Button Grid.Row="0" x:Name="editPostureButton" Content="Edit" HorizontalAlignment="Left"  Click="editPostureButton_Click" Width="Auto" Height="Auto" Margin="3,0,0,0" />
             <Button Grid.Row="0" x:Name="removePostureButton" Content="Delete" HorizontalAlignment="Left" Click="removePostureButton_Click" Width="Auto" Height="Auto" Margin="3,0,0,0" />
+            <Button Grid.Row="0" x:Name="AssociatePosturesButton" Content="Associate" HorizontalAlignment="Left" Click="AssociatePosturesButton_Click" Width="Auto" Height="Auto" Margin="3,0,0,0" />
         </StackPanel>
         
         <DataGrid Grid.Row="1" x:Name="postureCrudDataGrid" AutoGenerateColumns="False">

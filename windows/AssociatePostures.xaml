@@ -1,0 +1,25 @@
+﻿<Window x:Class="cl.uv.multimodalvisualizer.windows.AssociatePostures"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:cl.uv.multimodalvisualizer.windows"
+        mc:Ignorable="d"
+        Title="AssociatePostures" Height="300" Width="350">
+    <Grid>
+        <Label x:Name="groupName" Content="Nombre Grupo: " HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="startPosture" Content="Postura Discreta Inicio: " HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="continuousPosture" Content="Postura Continua: " HorizontalAlignment="Left" Margin="10,71,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="endPosture" Content="Postura Discreta Fin: " HorizontalAlignment="Left" Margin="10,101,0,0" VerticalAlignment="Top"/>
+
+        <TextBox x:Name="nameTextBox" HorizontalAlignment="Left" Height="23" Margin="150,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="141"/>
+        <ComboBox x:Name="startCombo" HorizontalAlignment="Left" Height="23" Width="141" Margin="150,41,0,0" VerticalAlignment="Top"></ComboBox>
+        <ComboBox x:Name="continuosCombo" HorizontalAlignment="Left" Height="23" Width="141" Margin="150,71,0,0" VerticalAlignment="Top"></ComboBox>
+        <ComboBox x:Name="endCombo" HorizontalAlignment="Left" Height="23" Width="141" Margin="150,101,0,0" VerticalAlignment="Top"></ComboBox>
+
+        <Button x:Name="saveButton" Content="Guardar" HorizontalAlignment="Left" Margin="10,140,0,0" VerticalAlignment="Top" Width="90" Height="Auto" Click="saveButton_Click"/>
+        <Button x:Name="cancelButton" Content="Cancelar" HorizontalAlignment="Left" Margin="242, 140,0,0" VerticalAlignment="Top" Width="90" Height="Auto" Click="cancelButton_Click"/>
+
+
+    </Grid>
+</Window>

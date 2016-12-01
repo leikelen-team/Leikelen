@@ -2,3 +2,8 @@ obj/*
 bin/*
 .vs/*
 /.project
+
+WPFPieChart/bin/*
+WPFPieChart/obj/*
+WPFPieChart.vs/*
+WPFPieChart/.project

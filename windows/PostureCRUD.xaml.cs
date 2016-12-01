@@ -57,5 +57,14 @@ namespace cl.uv.multimodalvisualizer.windows
             AddOrEditPostureType addPostureView = new AddOrEditPostureType(selectedPosture);
             addPostureView.Show();
         }
+
+        private void AssociatePosturesButton_Click(object sender, RoutedEventArgs e)
+        {
+            AssociatePostures associatePsView = new AssociatePostures();
+            associatePsView.Show();
+
+            //GesturesCRUD gcrud = new GesturesCRUD();
+            //gcrud.Show();
+        }
     }
 }

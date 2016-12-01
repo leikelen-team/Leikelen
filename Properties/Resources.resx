@@ -151,11 +151,11 @@
   <data name="MaxPostureIntervalGroupViewPerUser" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="PostureTypeDbPath" xml:space="preserve">
-    <value>app_sqlite.db</value>
-  </data>
   <data name="MinPostureIntervalDuration" xml:space="preserve">
     <value>2000</value>
     <comment>in ms</comment>
+  </data>
+  <data name="PostureTypeDbPath" xml:space="preserve">
+    <value>app_sqlite.db</value>
   </data>
 </root>

@@ -44,16 +44,22 @@ namespace cl.uv.multimodalvisualizer.models
         //[NotMapped]
         public List<MicroPosture> MicroPostures { get; set; }
 
+        public List<myGesture> gestures { get; set; }
+
         [NotMapped]
         public PostureIntervalGroup pigVoz = new PostureIntervalGroup(new PostureType("Voz Muchas", ""));
 
         //public int BodyDistanceId { get; set; }
         public List<Distance> Distances { get; set; }
+        [NotMapped]
         public Dictionary<Tuple<DistanceInferred, DistanceTypes>, double> DistancesSum { get; set; }
+        [NotMapped]
         public Dictionary<Tuple<DistanceInferred, DistanceTypes>, double> DistancesEntropy { get; set; }
-
+        [NotMapped]
         public Dictionary<TimeSpan, List<Distance>> IntervalDistances { get; set; }
+        [NotMapped]
         public Dictionary<Tuple<DistanceInferred, DistanceTypes>, Dictionary<TimeSpan, double>> IntervalDistancesSum { get; set; }
+        [NotMapped]
         public Dictionary<Tuple<DistanceInferred, DistanceTypes>, Dictionary<TimeSpan, double>> IntervalDistancesEntropy { get; set; }
 
 
@@ -385,6 +391,14 @@ namespace cl.uv.multimodalvisualizer.models
                     this.IntervalDistancesEntropy[tupleKey][timeKey] = (this.IntervalDistancesEntropy[tupleKey][timeKey] * - 1) / Math.Log10(25);
                     Console.WriteLine("Entropia Intervalo persona: " + this.Name +" en tiempo: "+timeKey.ToString()+" con tipos: "+ tupleKey.Item1.ToString()+" y "+tupleKey.Item2.ToString()+" es: "+this.IntervalDistancesEntropy[tupleKey][timeKey].ToString()+" y Suma: "+this.IntervalDistancesSum[tupleKey][timeKey].ToString());
                 }
+            }
+        }
+
+        public void putGestures()
+        {
+            foreach(myGesture ges in this.gestures)
+            {
+                this.PostureIntervalGroups.Add(ges.gestureIntervalGroup);
             }
         }
 

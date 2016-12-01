@@ -40,6 +40,7 @@ namespace cl.uv.multimodalvisualizer.models
         //            throw new Exception("Unknow scene status (or null): " + Scene.Instance.Status.ToString("g"));
         //    }
         //}
+        public int myGestureId;
 
         [NotMapped]
         public static PostureType none;// = new PostureType(Properties.Resources.NonePostureName, "");

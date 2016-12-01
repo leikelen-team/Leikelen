@@ -202,8 +202,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="core\audioBeam.cs" />
+    <Compile Include="core\GenerateGestures.cs" />
     <Compile Include="models\Distance.cs" />
     <Compile Include="models\DistanceTypeList.cs" />
+    <Compile Include="models\Gesture.cs" />
     <Compile Include="utils\CalculateDistances.cs" />
     <Compile Include="core\IO.cs" />
     <Compile Include="core\Monitor.cs" />
@@ -215,11 +217,15 @@
     <Compile Include="models\BodyDistance.cs" />
     <Compile Include="models\Interval.cs" />
     <Compile Include="utils\Files.cs" />
+    <Compile Include="utils\LinearRegression.cs" />
     <Compile Include="views\ChartView.cs" />
     <Compile Include="views\MediaView.cs" />
     <Compile Include="views\PersonView.cs" />
     <Compile Include="windows\AddOrEditPostureType.xaml.cs">
       <DependentUpon>AddOrEditPostureType.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="windows\AssociatePostures.xaml.cs">
+      <DependentUpon>AssociatePostures.xaml</DependentUpon>
     </Compile>
     <Compile Include="windows\Charts.xaml.cs">
       <DependentUpon>Charts.xaml</DependentUpon>
@@ -237,6 +243,9 @@
     </Compile>
     <Compile Include="windows\DistanceForm.designer.cs">
       <DependentUpon>DistanceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="windows\GesturesCRUD.xaml.cs">
+      <DependentUpon>GesturesCRUD.xaml</DependentUpon>
     </Compile>
     <Compile Include="windows\ManageScene.cs">
       <SubType>Form</SubType>
@@ -290,7 +299,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="windows\AssociatePostures.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="windows\Charts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="windows\GesturesCRUD.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -318,6 +335,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="windows\DistanceForm.resx">
       <DependentUpon>DistanceForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="windows\EditPersonForm.resx">
       <DependentUpon>EditPersonForm.cs</DependentUpon>

@@ -12,7 +12,7 @@ namespace cl.uv.multimodalvisualizer.db
 {
     public class BackupDataContext : DbContext
     {
-        private static BackupDataContext db = null;
+        public static BackupDataContext db = null;
         public DbSet<Scene> Scene { get; set; }
         public DbSet<Person> Person { get; set; }
         public DbSet<PostureIntervalGroup> PostureIntervalGroup { get; set; }
@@ -21,6 +21,7 @@ namespace cl.uv.multimodalvisualizer.db
         public DbSet<MicroPosture> MicroPosture { get; set; }
         //public DbSet<BodyDistance> BodyDistance { get; set; }
         public DbSet<Distance> Distance { get; set; }
+        //public DbSet<myGesture> Gesture { get; set; }
         //public DbSet<BodyDistance> DistancesWithoutInferred { get; set; }
 
 

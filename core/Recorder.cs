@@ -153,6 +153,8 @@ namespace cl.uv.multimodalvisualizer.core
                     }
                 }*/
 
+                GenerateGestures.generate_Gestures();
+
                 MainWindow.Instance().SourceComboBox.SelectedIndex = 1;
             }
         }
