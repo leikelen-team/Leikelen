@@ -35,9 +35,9 @@ namespace cl.uv.multimodalvisualizer
     using System.Windows.Shapes;
     using views;
     using windows;
-    using core;
+    using kinectmedia;
     using models;
-    using utils;
+    using helpers;
     using db;
 
     using FirstFloor.ModernUI.Windows.Controls;
@@ -63,16 +63,17 @@ namespace cl.uv.multimodalvisualizer
             this.InitializeComponent();
             _instance = this;
 
+            IO.EnsureDirectoriesHasBeenCreated();
             
             ImportButton.Click += IO.ImportButton_Click;
             ExportButton.Click += IO.ExportButton_Click;
 
-            recordButton2.Click += Kinect.Instance.Recorder.RecordButton_Click;
-            stopButton2.Click += Kinect.Instance.Recorder.StopRecordButton_Click;
-            stopButton2.Click += Kinect.Instance.Player.StopButton_Click;
-            playButton2.Click += Kinect.Instance.Player.PlayButton_Click;
+            recordButton2.Click += KinectMediaFacade.Instance.Recorder.RecordButton_Click;
+            stopButton2.Click += KinectMediaFacade.Instance.Recorder.StopRecordButton_Click;
+            stopButton2.Click += KinectMediaFacade.Instance.Player.StopButton_Click;
+            playButton2.Click += KinectMediaFacade.Instance.Player.PlayButton_Click;
 
-            sceneSlider.ValueChanged += Kinect.Instance.Player.LocationSlider_ValueChanged;
+            sceneSlider.ValueChanged += KinectMediaFacade.Instance.Player.LocationSlider_ValueChanged;
 
             //FromSensorRadioButton.Checked += FromSensorRadioButton_Checked;
             //FromSceneRadioButton.Checked += FromSceneRadioButton_Checked;
@@ -192,11 +193,11 @@ namespace cl.uv.multimodalvisualizer
         #region Other Events
         private void BackgroundEnableCheckBox_Click(object sender, RoutedEventArgs e)
         {
-            Kinect.Instance.Player.ToggleColorFrameEnable();
+            KinectMediaFacade.Instance.Player.ToggleColorFrameEnable();
         }
         private void SkeletonsEnableCheckBox_Click(object sender, RoutedEventArgs e)
         {
-            Kinect.Instance.Player.ToggleBodyFrameEnable();
+            KinectMediaFacade.Instance.Player.ToggleBodyFrameEnable();
         }
 
         public void TimeLineVerticalScrollsChange(object sender, ScrollChangedEventArgs e)

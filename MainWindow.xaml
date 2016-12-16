@@ -16,8 +16,8 @@
         <SolidColorBrush x:Key="KinectPurpleBrush" Color="#ff52318f" />
         <SolidColorBrush x:Key="KinectBlueBrush" Color="#ff00BCF2" />
     </Window.Resources>
-    
-    
+
+
 
     <Grid x:Name="appLayoutGrid" Margin="10 0 10 0">
         <Grid.ColumnDefinitions>
@@ -54,11 +54,11 @@
 
                 <ComboBox x:Name="SourceComboBox">
                     <ComboBoxItem Content="From Sensor" IsSelected="True"></ComboBoxItem>
-                        <ComboBoxItem Content="From File"></ComboBoxItem>
-                    </ComboBox>
-                
+                    <ComboBoxItem Content="From File"></ComboBoxItem>
+                </ComboBox>
+
             </Menu>
-            
+
         </Grid>
 
 
@@ -99,7 +99,7 @@
 
                         <Button x:Name="recordButton2" 
                             HorizontalAlignment="Left" VerticalAlignment="Center" Width="Auto" Margin="3,0,0,0"
-                            Content="O"/>
+                            Content="O" />
                         <Button x:Name="stopButton2" 
                             HorizontalAlignment="Left" VerticalAlignment="Center" Width="Auto" Margin="3,0,0,0"
                             Content="■"/>
