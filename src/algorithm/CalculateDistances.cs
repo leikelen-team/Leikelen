@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Kinect;
 using cl.uv.multimodalvisualizer.src.model;
 
@@ -24,7 +22,7 @@ namespace cl.uv.multimodalvisualizer.src.algorithm
         {
             Dictionary<TimeSpan, Dictionary<ulong, DistanceTypeList>> distsInTime = new Dictionary<TimeSpan, Dictionary<ulong, DistanceTypeList>>();
             Dictionary<ulong, DistanceTypeList> intervalDistance = new Dictionary<ulong, DistanceTypeList>();
-            TimeSpan StartTime = new TimeSpan(0);// this.bodiesInAllFrames.ElementAt<Tuple<TimeSpan, Body[]>>(0).Item1;
+            TimeSpan StartTime = new TimeSpan(0);
             distsInTime[StartTime] = new Dictionary<ulong, DistanceTypeList>();
             for (int i = 0; i < this.bodiesInAllFrames.Count; i++)
             {
@@ -41,12 +39,6 @@ namespace cl.uv.multimodalvisualizer.src.algorithm
                     intervalDistance = new Dictionary<ulong, DistanceTypeList>();
                     distanceAtFrame(bodiesInTime.Item2, ref intervalDistance, inferredType);
                 }
-                
-                /*
-                if (/*i == 0 || bodiesInTime.Item1.Subtract(StartTime).TotalSeconds >= interval || i == this.bodiesInAllFrames.Count -1)
-                {
-                    
-                }*/
             }
             return distsInTime;
         }

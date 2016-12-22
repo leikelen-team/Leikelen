@@ -1,8 +1,6 @@
 ﻿using KinectEx;
 using KinectEx.DVR;
-using cl.uv.multimodalvisualizer.src.dbcontext;
 using cl.uv.multimodalvisualizer.src.model;
-using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -190,7 +188,6 @@ namespace cl.uv.multimodalvisualizer.src.kinectmedia
             else
             {
                 _replay.Stop();
-                //PlayButton.Content = "Play";
                 MainWindow.Instance().playButton2.Content = Properties.Buttons.StartPlaying;
             }
         }
@@ -248,8 +245,6 @@ namespace cl.uv.multimodalvisualizer.src.kinectmedia
 
             Color color;
             var bitmap = BitmapFactory.New((int)_width, (int)_height);
-            //using (var context = bitmap.GetBitmapContext())
-            //{
             foreach (var body in e.Frame.Bodies)
             {
                 if (body.IsTracked)
@@ -259,7 +254,7 @@ namespace cl.uv.multimodalvisualizer.src.kinectmedia
                     body.AddToBitmap(bitmap, color, color);
                 }
             }
-            MainWindow.Instance().bodyImageControl.Source = bitmap; // e.Frame.Bodies.GetBitmap(Colors.LightGreen, Colors.Yellow);
+            MainWindow.Instance().bodyImageControl.Source = bitmap;
         }
         
         private void _replay_ColorFrameArrived(object sender, ReplayFrameArrivedEventArgs<ReplayColorFrame> e)
@@ -269,7 +264,6 @@ namespace cl.uv.multimodalvisualizer.src.kinectmedia
             {
                 _colorBitmap = new ColorFrameBitmap(e.Frame);
                 MainWindow.Instance().colorImageControl.Source = _colorBitmap.Bitmap;
-                //_justColorFrameEnabled = false;
             }
             _colorBitmap.Update(e.Frame);
             

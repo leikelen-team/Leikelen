@@ -229,7 +229,6 @@
     <Compile Include="src\kinectmedia\KinectMediaFacade.cs" />
     <Compile Include="src\dbcontext\BackupDataContext.cs" />
     <Compile Include="src\dbcontext\PgsqlContext.cs" />
-    <Compile Include="src\model\BodyDistance.cs" />
     <Compile Include="src\model\Interval.cs" />
     <Compile Include="src\controller\ChartController.cs" />
     <Compile Include="src\controller\MediaController.cs" />

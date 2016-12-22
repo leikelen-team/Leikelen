@@ -3,21 +3,17 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace cl.uv.multimodalvisualizer.src.helpers
 {
     static class Utils
     {
-
-
         public static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs = true)
         {
             // Get the subdirectories for the specified directory.
@@ -65,16 +61,9 @@ namespace cl.uv.multimodalvisualizer.src.helpers
             {
                 shortForm += t.Hours.ToString("00") + ":";
             }
-            //if (t.Minutes > 0 || t.Hours > 0)
-            //{
-                shortForm += t.Minutes.ToString("00") + ":";
-            //}
-            //if (t.Seconds > 0)
-            //{
+            shortForm += t.Minutes.ToString("00") + ":";
             shortForm += t.Seconds.ToString("00");
-            //}
             return shortForm;
-            //return t.ToString(@"hh\:mm\:ss");
         }
 
         public static BitmapSource ToBitmap(this ColorFrame frame)
@@ -101,11 +90,7 @@ namespace cl.uv.multimodalvisualizer.src.helpers
 
         public static RenderTargetBitmap ToBitmap(this DrawingImage drawingImage)
         {
-            //System.Drawing.Bitmap btm = null;
-            //btm.Save();
             var image = new Image { Source = drawingImage };
-            //int width = (int)drawingImage.Width;
-            //int height = (int)drawingImage.Height;
             var bitmap = new RenderTargetBitmap(1920, 1080, 96, 96, PixelFormats.Pbgra32);
             image.Arrange(new Rect(0, 0, bitmap.Width, bitmap.Height));
             bitmap.Render(image);

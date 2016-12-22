@@ -1,6 +1,4 @@
 ﻿using KinectEx;
-using KinectEx.DVR;
-using KinectEx.Smoothing;
 using Microsoft.Kinect;
 using cl.uv.multimodalvisualizer.src.model;
 using System;
@@ -9,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
 
 namespace cl.uv.multimodalvisualizer.src.kinectmedia
 {
@@ -34,18 +31,6 @@ namespace cl.uv.multimodalvisualizer.src.kinectmedia
             Open();
         }
 
-        //public void Enable()
-        //{
-        //    _bodyFrameEnable = true;
-        //    _colorFrameEnable = true;
-        //}
-
-        //public void Disable()
-        //{
-        //    _bodyFrameEnable = false;
-        //    _colorFrameEnable = false;
-        //}
-
         public bool IsOpen
         {
             get
@@ -57,8 +42,6 @@ namespace cl.uv.multimodalvisualizer.src.kinectmedia
         public void Open()
         {
             _colorBitmap = new ColorFrameBitmap();
-            //DepthFrameBitmap _depthBitmap = new DepthFrameBitmap();
-            //InfraredFrameBitmap _infraredBitmap = new InfraredFrameBitmap();
 
             this._sensor = KinectMediaFacade.Sensor;
             _bodies = new List<CustomBody>();
@@ -97,19 +80,6 @@ namespace cl.uv.multimodalvisualizer.src.kinectmedia
                         long bodyTrackingId = (long)audioBodyCorrelation.BodyTrackingId;
                         if (Scene.Instance.Persons.Exists(p => p.TrackingId == bodyTrackingId))
                         {
-                            /*
-
-                            Person pers = Scene.Instance.Persons.Find(p => p.TrackingId == bodyTrackingId);
-                            MicroPosture mc = new MicroPosture(
-                                                        voice,
-                                                        Kinect.Instance.Recorder.getCurrentLocation(),
-                                                        Microsoft.Kinect.VisualGestureBuilder.GestureType.Discrete
-                                                    );
-
-                            pers.MicroPostures.Add(mc);
-
-                            */
-
                             Person pers = Scene.Instance.Persons.Find(p => p.TrackingId == bodyTrackingId);
                             pers.pigVoz.addAudioBeamInterval(KinectMediaFacade.Instance.Recorder.getCurrentLocation().Subtract(duration), duration);
 
@@ -195,15 +165,7 @@ namespace cl.uv.multimodalvisualizer.src.kinectmedia
                 }
 
                 bodies.MapDepthPositions();
-                //bodies.MapColorPositions();
 
-
-
-                
-
-                //AddBodyToContext(body, context, boneColors[body.TrackingId], jointColor);
-
-                //MainWindow.Instance().bodyImageControl.Source = bitmap;
                 MainWindow.Instance().bodyImageControl.Source = bodies.GetBitmap(Colors.LightGreen, Colors.Yellow);
                 
                 
@@ -211,7 +173,6 @@ namespace cl.uv.multimodalvisualizer.src.kinectmedia
             else
             {
                 MainWindow.Instance().bodyImageControl.Source = null;
-                //OutputImage = null;
             }
         }
 

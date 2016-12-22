@@ -36,9 +36,6 @@ namespace cl.uv.multimodalvisualizer.src.model
         public int PersonId { get; set; }
         public Person Person { get; set; }
 
-        //public int BodyDistanceId { get; set; }
-        //public BodyDistance BodyDistance { get; set; }
-
         public Distance() { }
 
         public Distance(DistanceTypes distanceType, JointType jointType, DistanceInferred inferredType)

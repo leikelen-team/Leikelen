@@ -10,24 +10,17 @@ namespace cl.uv.multimodalvisualizer.src.algorithm
     using System.Collections.Generic;
     using Microsoft.Kinect;
     using Microsoft.Kinect.VisualGestureBuilder;
-    //using pojos;
     using System.Linq;
-    using cl.uv.multimodalvisualizer.src.kinectmedia;
-    using cl.uv.multimodalvisualizer.src.dbcontext;
-    using cl.uv.multimodalvisualizer.src.model;
+    using kinectmedia;
+    using dbcontext;
+    using model;
 
-    //using System.Data.SQLite;
     /// <summary>
     /// Gesture Detector class which listens for VisualGestureBuilderFrame events from the service
     /// and updates the associated GestureResultView object with the latest results for the 'Seated' gesture
     /// </summary>
     public class GestureDetector : IDisposable
     {
-        /// <summary> Path to the gesture database that was trained with VGB </summary>
-        //private readonly string gestureDatabase = @"Database\Seated.gbd";
-
-        /// <summary> Name of the discrete gesture in the database that we want to track </summary>
-        //private readonly string seatedGestureName = "Seated";
 
         /// <summary> Gesture frame source which should be tied to a body tracking ID </summary>
         private VisualGestureBuilderFrameSource vgbFrameSource = null;
@@ -48,17 +41,9 @@ namespace cl.uv.multimodalvisualizer.src.algorithm
             {
                 throw new ArgumentNullException("kinectSensor");
             }
-
-            //if (gestureResultView == null)
-            //{
-            //    throw new ArgumentNullException("gestureResultView");
-            //}
-            
-            //this.GestureResultView = gestureResultView;
             
             // create the vgb source. The associated body tracking ID will be set when a valid body frame arrives from the sensor.
             this.vgbFrameSource = new VisualGestureBuilderFrameSource(kinectSensor, 0);
-            //this.vgbFrameSource.TrackingIdLost += this.Source_TrackingIdLost;
 
             // open the reader for the vgb frames
             this.vgbFrameReader = this.vgbFrameSource.OpenReader();
@@ -67,9 +52,6 @@ namespace cl.uv.multimodalvisualizer.src.algorithm
                 this.vgbFrameReader.IsPaused = true;
                 this.vgbFrameReader.FrameArrived += this.Reader_GestureFrameArrived;
             }
-
-
-            //Console.WriteLine("-----------");
 
             // agrupa todos las posturas que tienen el mismo path
             var posturePaths = PostureTypeContext.db.PostureType.ToList()
@@ -85,9 +67,6 @@ namespace cl.uv.multimodalvisualizer.src.algorithm
             }
             
         }
-
-        /// <summary> Gets the GestureResultView object which stores the detector results for display in the UI </summary>
-        //public GestureResultView GestureResultView { get; private set; }
 
         /// <summary> The body index (0-5) associated with the current gesture detector </summary>
         public int BodyIndex { get; private set; }
@@ -194,10 +173,8 @@ namespace cl.uv.multimodalvisualizer.src.algorithm
                         bool discretePostureDetected = false;
                         foreach (Gesture gesture in this.vgbFrameSource.Gestures)
                         {
-                            //Posture.Name[] postures = (Posture.Name[])Enum.GetValues(typeof(Posture.Name));
                             foreach (PostureType postureType in PostureTypeContext.db.PostureType.ToList())
                             {
-                                //if (gesture.Name.Equals(this.seatedGestureName) && gesture.GestureType == GestureType.Discrete)
                                 if (gesture.Name.Equals(postureType.Name) && gesture.GestureType == GestureType.Discrete)
                                 {
                                     DiscreteGestureResult result = null;
@@ -206,10 +183,8 @@ namespace cl.uv.multimodalvisualizer.src.algorithm
                                     if (result != null)
                                     {
                                         // update the GestureResultView object with new gesture result values
-                                        //this.GestureResultView.UpdateGestureResult(true, result.Detected, result.Confidence);
                                         if (result.Detected && Scene.Instance!=null)
                                         {
-                                            //Console.WriteLine("registered posture:"+postureType.name);
                                             MicroPosture mc = new MicroPosture(
                                                         postureType,
                                                         KinectMediaFacade.Instance.Recorder.getCurrentLocation(),
@@ -218,7 +193,6 @@ namespace cl.uv.multimodalvisualizer.src.algorithm
                                             
                                             person.MicroPostures.Add(mc);
                                             discretePostureDetected = true;
-                                            //Scene.Instance.persons[BodyIndex].postures.
                                         }
                                     }
                                     break;
@@ -231,10 +205,8 @@ namespace cl.uv.multimodalvisualizer.src.algorithm
                                     if (result != null)
                                     {
                                         // update the GestureResultView object with new gesture result values
-                                        //this.GestureResultView.UpdateGestureResult(true, result.Detected, result.Confidence);
                                         if (Scene.Instance != null)
                                         {
-                                            //Console.WriteLine("registered posture:"+postureType.name);
                                             MicroPosture mc = new MicroPosture(
                                                         postureType,
                                                         KinectMediaFacade.Instance.Recorder.getCurrentLocation(),
@@ -243,8 +215,6 @@ namespace cl.uv.multimodalvisualizer.src.algorithm
                                                     );
 
                                             person.MicroPostures.Add(mc);
-                                            //postureDetected = true;
-                                            //Scene.Instance.persons[BodyIndex].postures.
                                         }
                                     }
                                     break;
@@ -254,7 +224,6 @@ namespace cl.uv.multimodalvisualizer.src.algorithm
                         }
                         if (!discretePostureDetected && Scene.Instance != null)
                         {
-                            //Console.WriteLine("registered posture:" + PostureType.none.name);
                             person.MicroPostures.Add(new MicroPosture(PostureType.none, KinectMediaFacade.Instance.Recorder.getCurrentLocation(), GestureType.None));
                         }
                     }

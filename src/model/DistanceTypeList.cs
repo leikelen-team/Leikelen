@@ -9,10 +9,6 @@ namespace cl.uv.multimodalvisualizer.src.model
 {
     public class DistanceTypeList : List<Distance>
     {
-        //public int DistanceTypeListId { get; set; }
-
-        //public int BodyDistanceId { get; set; }
-        //public BodyDistance BodyDistance { get; set; }
         public bool addJointType(DistanceTypes distanceType, JointType jointType, DistanceInferred inferredType)
         {
             if (this.Exists(d => d.jointType == jointType && d.DistanceType == distanceType && d.inferredType == inferredType))

@@ -53,7 +53,6 @@ namespace cl.uv.multimodalvisualizer.src.model
             }
             bool exists = this.Intervals.Exists(
                 interval =>
-                    //tuple.Item1.sceneLocationTime >= initialMicroPosture.sceneLocationTime ||
                     interval.EndTime >= initialMicroPosture.SceneLocationTime
                 );
             if (exists)
@@ -87,12 +86,5 @@ namespace cl.uv.multimodalvisualizer.src.model
             IntervalTMP.Duration = startTime.Add(endTime);
             Intervals.Add(IntervalTMP);
         }
-
-        //public IReadOnlyList<Tuple<MicroPosture, MicroPosture>> Intervals {
-        //    get
-        //    {
-        //        return this.intervals;
-        //    }
-        //}
     }
 }

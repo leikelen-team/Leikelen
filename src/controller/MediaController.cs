@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using cl.uv.multimodalvisualizer.src.kinectmedia;
-
-namespace cl.uv.multimodalvisualizer.src.controller
+﻿namespace cl.uv.multimodalvisualizer.src.controller
 {
     public static class MediaView
     {

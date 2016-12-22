@@ -1,7 +1,5 @@
 ﻿using cl.uv.multimodalvisualizer.src.dbcontext;
 using cl.uv.multimodalvisualizer.src.model;
-
-using cl.uv.multimodalvisualizer.src.helpers;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,13 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace cl.uv.multimodalvisualizer.src.view.window
 {
@@ -24,7 +15,6 @@ namespace cl.uv.multimodalvisualizer.src.view.window
     /// </summary>
     public partial class AddOrEditPostureType : Window
     {
-        //public enum Action { Add, Edit };
         private PostureType editingPosture = null;
         private string path = null;
 
@@ -42,11 +32,6 @@ namespace cl.uv.multimodalvisualizer.src.view.window
             this.path = editingPosture.Path;
         }
 
-        
-        //private string name = null;
-       
-
-
         private void browseButton_Click(object sender, RoutedEventArgs e)
         {
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
@@ -58,17 +43,8 @@ namespace cl.uv.multimodalvisualizer.src.view.window
 
             if (result == true)
             {
-                //Console.WriteLine("filePath: " + dlg.FileName);
                 this.fileNameTextBox.Text = dlg.SafeFileName;
                 this.path = dlg.FileName;
-                
-                //File.Copy(this.playingFilePath, @"Database\"+dlg.N);
-
-                //this.kstudio.ImportScene(dlg.FileName);
-                //enableButtons();
-                //this.Title = "Visualizador Multimodal - " + Scene.Instance.name;
-                //sceneTitleLabel.Content = Scene.Instance.name;
-                //sceneDurationLabel.Content = Scene.Instance.duration.ToString(@"hh\:mm\:ss");
             }
         }
 
@@ -107,7 +83,6 @@ namespace cl.uv.multimodalvisualizer.src.view.window
                     string oldPath = postureToUpdate.Path;
                     postureToUpdate.Name = name;
                     postureToUpdate.Path = internalFilePath;
-                    //SqliteAppContext.db.Entry(postureToUpdate).CurrentValues.SetValues(product);
                     PostureTypeContext.db.SaveChanges();
 
                     if ( !PostureTypeContext.db.PostureType.Any(p => p.Path == oldPath)

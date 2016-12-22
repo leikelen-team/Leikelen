@@ -1,9 +1,6 @@
 ﻿using Microsoft.Kinect;
-//using cl.uv.multimodalvisualizer.analytics;
-using cl.uv.multimodalvisualizer.src.kinectmedia;
 using cl.uv.multimodalvisualizer.src.dbcontext;
 using cl.uv.multimodalvisualizer.src.view;
-using cl.uv.multimodalvisualizer.src.view.window;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,8 +16,6 @@ namespace cl.uv.multimodalvisualizer.src.model
 {
     public class Person: IPerson
     {
-        //private IHumanModal postureModal = new IPosture();
-
         public IHumanModal PostureModal {
             get
             {
@@ -36,8 +31,6 @@ namespace cl.uv.multimodalvisualizer.src.model
         public int ListIndex { get; private set; }
 
         public int PersonId { get; set; }
-        //public int BodyIndex { get; set; }
-        //[Column(TypeName = "bigint")]
         public long TrackingId { get; set; }
         [NotMapped]
         private string name;
@@ -60,8 +53,6 @@ namespace cl.uv.multimodalvisualizer.src.model
 
         [NotMapped]
         public PostureIntervalGroup pigVoz = new PostureIntervalGroup(new PostureType("Voz Muchas", ""));
-
-        //public int BodyDistanceId { get; set; }
         public List<Distance> Distances { get; set; }
         public Dictionary<Tuple<DistanceInferred, DistanceTypes>, double> DistancesSum { get; set; }
         public Dictionary<Tuple<DistanceInferred, DistanceTypes>, double> DistancesEntropy { get; set; }
@@ -106,27 +97,19 @@ namespace cl.uv.multimodalvisualizer.src.model
             this.Color = colors[currentColorIndex++];
             if (currentColorIndex == colors.Count()) currentColorIndex = 0;
         }
-
-        //public enum GenderEnum { Male, Female };
-        public Person(ulong trackingId, int listIndex/*int bodyIndex, string name, GenderEnum gender, int age*/)
-        //public Person(int bodyIndex, string name)
+        public Person(ulong trackingId, int listIndex)
         {
-            //this.BodyIndex = bodyIndex;
             this.TrackingId = (long)trackingId;
             this.ListIndex = listIndex;
             this.Name = "Person "+ listIndex;
-            //this.Gender = null;
-            //this.Age = null;
             this.MicroPostures = new List<MicroPosture>();
             this.PostureIntervalGroups = new List<PostureIntervalGroup>();
-            //this.BodyDistance = new BodyDistance();
             this.Distances = new List<Distance>();
             this.IntervalDistances = new Dictionary<TimeSpan, List<Distance>>();
             this.DistancesSum = new Dictionary<Tuple<DistanceInferred, DistanceTypes>, double>();
             this.DistancesEntropy = new Dictionary<Tuple<DistanceInferred, DistanceTypes>, double>();
             this.IntervalDistancesSum = new Dictionary<Tuple<DistanceInferred, DistanceTypes>, Dictionary<TimeSpan, double>>();
             this.IntervalDistancesEntropy = new Dictionary<Tuple<DistanceInferred, DistanceTypes>, Dictionary<TimeSpan, double>>();
-            //this.PosturesView = null;
             this.Color = colors[currentColorIndex++];
             if (currentColorIndex == colors.Count()) currentColorIndex = 0;
 
@@ -142,17 +125,12 @@ namespace cl.uv.multimodalvisualizer.src.model
         {
             addVoice();
             if (this.MicroPostures.Count == 0) return;
-            //Dictionary<string, string> dic = new Dictionary<string, string>();
 
             foreach (PostureType currentPostureType in PostureTypeContext.db.PostureType.ToList())
             {
-                //System.Collections.IEnumerable microPostures = person.microPostures.Where(microPosture => microPosture.postureType.name == postureType.name);
-
                 PostureIntervalGroup postureIntervalGroup = new PostureIntervalGroup(currentPostureType);
                 MicroPosture initialMicroPosture = null, lastMicroPosture = null;
                 TimeSpan threshold = TimeSpan.FromMilliseconds(Convert.ToDouble(Properties.Resources.PostureDurationDetectionThreshold));
-                //bool moreThanOneInterval = false;
-                //bool intervalOpen = false;
 
                 foreach (MicroPosture microPosture in this.MicroPostures)
                 {
@@ -162,13 +140,11 @@ namespace cl.uv.multimodalvisualizer.src.model
                     if (lastMicroPosture == null)
                     {
                         initialMicroPosture = microPosture;
-                        //intervalOpen = true;
                     }
                     else if (microPosture.SceneLocationTime.Subtract(lastMicroPosture.SceneLocationTime) >= threshold)
                     {
                         postureIntervalGroup.addInterval(initialMicroPosture, lastMicroPosture);
                         initialMicroPosture = microPosture;
-                        //intervalOpen = true;
                     }
                     lastMicroPosture = microPosture;
 

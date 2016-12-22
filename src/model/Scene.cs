@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using cl.uv.multimodalvisualizer.src.dbcontext;
+﻿using cl.uv.multimodalvisualizer.src.dbcontext;
 using cl.uv.multimodalvisualizer.src.helpers;
 using cl.uv.multimodalvisualizer.src.algorithm;
 using System;
@@ -58,11 +57,6 @@ namespace cl.uv.multimodalvisualizer.src.model
                 Persons = new List<Person>(),
                 Status = Statuses.Recorded
             };
-            //if (PgsqlContext.IsConnected)
-            //{
-            //    var db = PgsqlContext.db;
-            //    instance.SceneId = db.Scene.Last().SceneId + 1;
-            //}
             return instance;
         }
 
@@ -73,22 +67,13 @@ namespace cl.uv.multimodalvisualizer.src.model
             instance = BackupDataContext.LoadScene(path);
             instance.Status = Statuses.Imported;
             instance.InitTimeLine();
-            //var microPostures = BackupDataContext.Load_MicroPostures(path);
             foreach (Person person in Scene.Instance.Persons)
             {
                 if (!person.HasBeenTracked) continue;
-                /*if (microPostures.Exists(mp => mp.PersonId == person.PersonId))
-                {
-                    person.MicroPostures = microPostures.FindAll(mp => mp.PersonId == person.PersonId);
-                }*/
                 person.generateView();
                 person.View.repaintIntervalGroups();
                 MainWindow.Instance().timeLineContentGrid.Children.Add(person.View.postureGroupsGrid);
             }
-            
-
-            //Console.WriteLine("oa");
-            //instance = db.Scene.First();
         }
 
         public void InitTimeLine()
@@ -98,13 +83,11 @@ namespace cl.uv.multimodalvisualizer.src.model
             TextBlock text;
             
             TimeSpan frameTime = TimeSpan.FromSeconds(0);
-            //int currentSeg = 0;
             int colSpan = 10;
             for (int colCount = 0; true; colCount++)
             {
                 if (frameTime < Duration)
                 {
-                    //Scene.Instance.Frames.Add(new SceneFrame(frameTime));
                     Instance.TickCount++;
                     rulerCol = new ColumnDefinition();
                     rulerCol.Width = new GridLength(5, GridUnitType.Pixel);
@@ -125,7 +108,6 @@ namespace cl.uv.multimodalvisualizer.src.model
                         MainWindow.Instance().timeRulerGrid.Children.Add(text);
 
                         text = new TextBlock();
-                        //text.Text = frameTime.TotalSeconds.ToString("N0");
                         text.Text = frameTime.ToShortForm();
                         text.HorizontalAlignment = colCount == 0 ?
                             HorizontalAlignment.Left : HorizontalAlignment.Center;
@@ -136,14 +118,12 @@ namespace cl.uv.multimodalvisualizer.src.model
                         MainWindow.Instance().timeRulerGrid.Children.Add(text);
                     }
                     else
-                    //if (colCount % (colSpan / 2) == 0)
                     {
                         text = new TextBlock();
                         text.Text = "·";
                         text.HorizontalAlignment = HorizontalAlignment.Left;
                         Grid.SetRow(text, 0);
                         Grid.SetColumn(text, colCount);
-                        //Grid.SetColumnSpan(text, colSpan/2);
                         MainWindow.Instance().timeRulerGrid.Children.Add(text);
                     }
 

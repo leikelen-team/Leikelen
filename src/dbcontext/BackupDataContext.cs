@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using cl.uv.multimodalvisualizer.src.model;
 using System.IO;
-//using Microsoft.Data.Sqlite;
 
 namespace cl.uv.multimodalvisualizer.src.dbcontext
 {
@@ -19,9 +16,7 @@ namespace cl.uv.multimodalvisualizer.src.dbcontext
         public DbSet<PostureType> PostureType { get; set; }
         public DbSet<Interval> Interval { get; set; }
         public DbSet<MicroPosture> MicroPosture { get; set; }
-        //public DbSet<BodyDistance> BodyDistance { get; set; }
         public DbSet<Distance> Distance { get; set; }
-        //public DbSet<BodyDistance> DistancesWithoutInferred { get; set; }
 
 
         public BackupDataContext(DbContextOptions options)
@@ -35,12 +30,6 @@ namespace cl.uv.multimodalvisualizer.src.dbcontext
             db = new BackupDataContext(optionsBuilder.Options);
             return db;
         }
-        //public static void CloseConnection()
-        //{
-        //    db.Database.CloseConnection();
-        //    db.Dispose();
-        //    db = null;
-        //}
 
         public static Scene LoadScene(string filePath)
         {
@@ -78,18 +67,6 @@ namespace cl.uv.multimodalvisualizer.src.dbcontext
                 return newScene;
         }
 
-
-        /*
-         * //esto se eliminara despues de probar
-        public static List<MicroPosture> Load_MicroPostures(string filePath)
-        {
-            CreateConnection(filePath);
-            var micropostures = db.MicroPosture
-                .Include(m => m.PostureType)
-                .OrderBy(m => m.SceneLocationTime);
-            return micropostures.ToList();
-        }*/
-
         public static void SaveScene(string filePath)
         {
             if (File.Exists(filePath)) File.Delete(filePath);
@@ -98,11 +75,5 @@ namespace cl.uv.multimodalvisualizer.src.dbcontext
             db.Scene.Add(model.Scene.Instance);
             db.SaveChanges();
         }
-
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    optionsBuilder.UseSqlite("Filename="+Properties.Resources.SQLiteAppDbPath);
-
-        //}
     }
 }

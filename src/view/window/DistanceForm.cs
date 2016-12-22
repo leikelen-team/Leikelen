@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -8,7 +7,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using cl.uv.multimodalvisualizer.src.model;
-using Microsoft.Kinect;
 
 namespace cl.uv.multimodalvisualizer.src.view.window
 {
@@ -105,7 +103,6 @@ namespace cl.uv.multimodalvisualizer.src.view.window
                         break;
                 }
                 bodyDistance = persons.Find(p => p.Name == personName).Distances.FindAll(d => d.inferredType == dISearch);
-                //BodyDistance bodyDistance = persons.Find(p => p.Name == personName).distances;
                 DistanceTypes showType;
                 switch (typeName)
                 {

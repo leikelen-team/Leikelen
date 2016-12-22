@@ -1,26 +1,12 @@
-﻿using Microsoft.Kinect;
-using System;
+﻿using System;
 using System.Collections.Generic;
-
-//using System.Linq;
-
-//using System.Data.Linq.Mapping;
-//using System.Data.SQLite.Linq;
-//using System.Data.SQLite;
-
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
-//using System.ComponentModel.DataAnnotations;
-//using System.ComponentModel.DataAnnotations.Schema;
-//using System.ComponentModel.DataAnnotations;
-//using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using cl.uv.multimodalvisualizer.src.helpers;
-using cl.uv.multimodalvisualizer.src.dbcontext;
 
 namespace cl.uv.multimodalvisualizer.src.model
 {

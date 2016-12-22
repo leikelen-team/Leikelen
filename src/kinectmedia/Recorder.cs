@@ -1,11 +1,7 @@
 ﻿using KinectEx;
 using KinectEx.DVR;
-using KinectEx.Smoothing;
 using Microsoft.Kinect;
-using cl.uv.multimodalvisualizer.src.dbcontext;
 using cl.uv.multimodalvisualizer.src.model;
-using cl.uv.multimodalvisualizer.src.view;
-using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,7 +10,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Forms;
 
 namespace cl.uv.multimodalvisualizer.src.kinectmedia
 {

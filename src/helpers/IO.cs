@@ -1,16 +1,11 @@
-﻿//cl.uv.multimodalvisualizer
-using cl.uv.multimodalvisualizer.src.dbcontext;
+﻿using cl.uv.multimodalvisualizer.src.dbcontext;
 using cl.uv.multimodalvisualizer.src.model;
-using cl.uv.multimodalvisualizer.src.view;
 using cl.uv.multimodalvisualizer.src.kinectmedia;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace cl.uv.multimodalvisualizer.src.helpers
@@ -61,10 +56,6 @@ namespace cl.uv.multimodalvisualizer.src.helpers
 
             if (dlg.ShowDialog().GetValueOrDefault())
             {
-                //string tmpScenePath = Properties.Paths.tmpDirectory + @"\exporting_scene";
-                //Utils.DirectoryCopy(Properties.Paths.RecordedSceneDirectory, tmpScenePath);
-                //if (File.Exists(dlg.FileName)) File.Delete(dlg.FileName);
-
                 if (File.Exists(dlg.FileName))
                 {
                     System.Windows.Forms.DialogResult dialogResult =

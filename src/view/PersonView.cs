@@ -1,6 +1,4 @@
 ﻿using cl.uv.multimodalvisualizer.src.model;
-//using cl.uv.multimodalvisualizer.pojos;
-
 using cl.uv.multimodalvisualizer.src.view.window;
 using System;
 using System.Collections.Generic;
@@ -40,7 +38,6 @@ namespace cl.uv.multimodalvisualizer.src.view
             visiblePostures = new List<Tuple<PostureType, ComboBox, RowDefinition>>();
 
             postureGroupsGrid = new Grid();
-            //foreach (SceneFrame sceneFrame in Scene.Instance.Frames)
             for(int i=0; i < Scene.Instance.TickCount; i++)
             {
                 ColumnDefinition colDef = new ColumnDefinition();
@@ -59,14 +56,9 @@ namespace cl.uv.multimodalvisualizer.src.view
                     posturesDetectedInPerson.Add(group.PostureType);
             }
             
-
-            //visiblePostureTypes = new PostureType[maxVisiblePostureTypes];
             PostureType postureType;
             for (int i = 0; i < maxVisiblePostureTypes && i < posturesDetectedInPerson.Count; i++)
             {
-                //postureType = i + 1 < PostureType.availablesPostureTypes.Count ?
-                //                PostureType.availablesPostureTypes[i + 1] :
-                //                PostureType.none;
 
                 postureType = posturesDetectedInPerson[i];
 
@@ -94,11 +86,6 @@ namespace cl.uv.multimodalvisualizer.src.view
             }
             combosGenerated = true;
         }
-
-        //private void EditButton_Click()
-        //{
-        //    
-        //}
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
@@ -208,7 +195,6 @@ namespace cl.uv.multimodalvisualizer.src.view
 
             // CLEAR ROW OF INTERVAL GROUP
             int rowDefIndex = postureGroupsGrid.RowDefinitions.IndexOf(rowDef);
-            //foreach (UIElement path in postureGroupsGrid.Children)
             for (int i = postureGroupsGrid.Children.Count - 1; i >= 0; i--)
             {
                 if (Grid.GetRow(postureGroupsGrid.Children[i]) == rowDefIndex)
@@ -228,7 +214,6 @@ namespace cl.uv.multimodalvisualizer.src.view
                                     (g => g.PostureType == newPostureType);
             if (postureIntervalGroup != null)
             {
-                //StackPanel pathStackPanel = new StackPanel();
                 foreach (var interval in postureIntervalGroup.Intervals)
                 {
                     Console.WriteLine("\t[" + interval.StartTime.ToString(@"mm\:ss") + ", "
@@ -238,7 +223,7 @@ namespace cl.uv.multimodalvisualizer.src.view
                     int intervalFinCol = Convert.ToInt32(interval.EndTime.TotalSeconds);
 
                     System.Windows.Shapes.Path path = new System.Windows.Shapes.Path();
-                    path.Stroke = Person.Color;//System.Windows.Media.Brushes.Red; //person.Color; // postureIntervalGroup.postureType.color; //
+                    path.Stroke = Person.Color;
                     path.StrokeThickness = 10;
                     path.Stretch = System.Windows.Media.Stretch.Fill;
                     Grid.SetRow(path, rowDefIndex);
@@ -250,7 +235,6 @@ namespace cl.uv.multimodalvisualizer.src.view
                     line.StartPoint = new System.Windows.Point(0d, 0d);
                     line.EndPoint = new System.Windows.Point(1d, 0d);
                     path.Data = line;
-                    //postureGroupsGrid.
                     postureGroupsGrid.Children.Add(path);
                 }
             }

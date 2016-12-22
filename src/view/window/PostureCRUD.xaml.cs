@@ -1,19 +1,11 @@
 ﻿using cl.uv.multimodalvisualizer.src.dbcontext;
 using cl.uv.multimodalvisualizer.src.model;
-using cl.uv.multimodalvisualizer.src.helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace cl.uv.multimodalvisualizer.src.view.window
 {
@@ -40,7 +32,6 @@ namespace cl.uv.multimodalvisualizer.src.view.window
 
         private void removePostureButton_Click(object sender, RoutedEventArgs e)
         {
-            //int idx = postureCrudDataGrid.SelectedIndex;
             PostureType selectedItem = (PostureType) postureCrudDataGrid.SelectedItem;
             if (selectedItem != PostureType.none)
             {

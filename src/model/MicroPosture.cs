@@ -1,5 +1,4 @@
-﻿using Microsoft.Kinect;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -21,7 +20,6 @@ namespace cl.uv.multimodalvisualizer.src.model
         public float Progress { get; set; }
         public GestureType GestureType { get; set; }
 
-        //public Body body { get; set; }
         public MicroPosture() { }
         public MicroPosture(PostureType postureType, TimeSpan sceneLocationTime, GestureType GestureType)
         {
