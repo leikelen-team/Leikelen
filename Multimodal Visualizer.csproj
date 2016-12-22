@@ -63,7 +63,7 @@
     <StartupObject>cl.uv.multimodalvisualizer.App</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Images\Kinect.ico</ApplicationIcon>
+    <ApplicationIcon>src\Images\Kinect.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
@@ -201,77 +201,77 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="algorithm\AudioBeam.cs" />
-    <Compile Include="interfaces\GenderEnum.cs" />
-    <Compile Include="interfaces\humanmodals\DiscretePosture.cs" />
-    <Compile Include="interfaces\humanmodals\IEntropy.cs" />
-    <Compile Include="interfaces\IHumanModal.cs" />
-    <Compile Include="interfaces\humanmodals\IPosture.cs" />
-    <Compile Include="interfaces\IHumanModals.cs" />
-    <Compile Include="interfaces\IPerson.cs" />
-    <Compile Include="interfaces\IRepresentType.cs" />
-    <Compile Include="interfaces\humanmodals\IVoice.cs" />
-    <Compile Include="interfaces\IScene.cs" />
-    <Compile Include="interfaces\representtypes\IGraph.cs" />
-    <Compile Include="interfaces\representtypes\ITimeLine.cs" />
-    <Compile Include="interfaces\representtypes\timeline\IModalEvent.cs" />
-    <Compile Include="interfaces\representtypes\timeline\IModalInterval.cs" />
-    <Compile Include="interfaces\representtypes\timeline\IModalIntervalGroup.cs" />
-    <Compile Include="interfaces\representtypes\timeline\IModalType.cs" />
-    <Compile Include="model\DiscretePosture.cs" />
-    <Compile Include="model\Distance.cs" />
-    <Compile Include="model\DistanceTypeList.cs" />
-    <Compile Include="algorithm\CalculateDistances.cs" />
-    <Compile Include="helpers\IO.cs" />
-    <Compile Include="kinectmedia\Monitor.cs" />
-    <Compile Include="kinectmedia\Player.cs" />
-    <Compile Include="kinectmedia\Recorder.cs" />
-    <Compile Include="kinectmedia\KinectMediaFacade.cs" />
-    <Compile Include="dbcontext\BackupDataContext.cs" />
-    <Compile Include="dbcontext\PgsqlContext.cs" />
-    <Compile Include="model\BodyDistance.cs" />
-    <Compile Include="model\Interval.cs" />
-    <Compile Include="controller\ChartController.cs" />
-    <Compile Include="controller\MediaController.cs" />
-    <Compile Include="view\PersonView.cs" />
-    <Compile Include="view\window\AddOrEditPostureType.xaml.cs">
+    <Compile Include="src\algorithm\AudioBeam.cs" />
+    <Compile Include="src\interfaces\GenderEnum.cs" />
+    <Compile Include="src\interfaces\humanmodals\DiscretePosture.cs" />
+    <Compile Include="src\interfaces\humanmodals\IEntropy.cs" />
+    <Compile Include="src\interfaces\IHumanModal.cs" />
+    <Compile Include="src\interfaces\humanmodals\IPosture.cs" />
+    <Compile Include="src\interfaces\IHumanModals.cs" />
+    <Compile Include="src\interfaces\IPerson.cs" />
+    <Compile Include="src\interfaces\IRepresentType.cs" />
+    <Compile Include="src\interfaces\humanmodals\IVoice.cs" />
+    <Compile Include="src\interfaces\IScene.cs" />
+    <Compile Include="src\interfaces\representtypes\IGraph.cs" />
+    <Compile Include="src\interfaces\representtypes\ITimeLine.cs" />
+    <Compile Include="src\interfaces\representtypes\timeline\IModalEvent.cs" />
+    <Compile Include="src\interfaces\representtypes\timeline\IModalInterval.cs" />
+    <Compile Include="src\interfaces\representtypes\timeline\IModalIntervalGroup.cs" />
+    <Compile Include="src\interfaces\representtypes\timeline\IModalType.cs" />
+    <Compile Include="src\model\DiscretePosture.cs" />
+    <Compile Include="src\model\Distance.cs" />
+    <Compile Include="src\model\DistanceTypeList.cs" />
+    <Compile Include="src\algorithm\CalculateDistances.cs" />
+    <Compile Include="src\helpers\IO.cs" />
+    <Compile Include="src\kinectmedia\Monitor.cs" />
+    <Compile Include="src\kinectmedia\Player.cs" />
+    <Compile Include="src\kinectmedia\Recorder.cs" />
+    <Compile Include="src\kinectmedia\KinectMediaFacade.cs" />
+    <Compile Include="src\dbcontext\BackupDataContext.cs" />
+    <Compile Include="src\dbcontext\PgsqlContext.cs" />
+    <Compile Include="src\model\BodyDistance.cs" />
+    <Compile Include="src\model\Interval.cs" />
+    <Compile Include="src\controller\ChartController.cs" />
+    <Compile Include="src\controller\MediaController.cs" />
+    <Compile Include="src\view\PersonView.cs" />
+    <Compile Include="src\view\window\AddOrEditPostureType.xaml.cs">
       <DependentUpon>AddOrEditPostureType.xaml</DependentUpon>
     </Compile>
-    <Compile Include="view\window\Charts.xaml.cs">
+    <Compile Include="src\view\window\Charts.xaml.cs">
       <DependentUpon>Charts.xaml</DependentUpon>
     </Compile>
-    <Compile Include="model\PostureIntervalGroup.cs" />
-    <Compile Include="model\MicroPosture.cs" />
-    <Compile Include="view\window\ContinuousChart.cs">
+    <Compile Include="src\model\PostureIntervalGroup.cs" />
+    <Compile Include="src\model\MicroPosture.cs" />
+    <Compile Include="src\view\window\ContinuousChart.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="view\window\ContinuousChart.Designer.cs">
+    <Compile Include="src\view\window\ContinuousChart.Designer.cs">
       <DependentUpon>ContinuousChart.cs</DependentUpon>
     </Compile>
-    <Compile Include="view\window\DistanceForm.cs">
+    <Compile Include="src\view\window\DistanceForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="view\window\DistanceForm.designer.cs">
+    <Compile Include="src\view\window\DistanceForm.designer.cs">
       <DependentUpon>DistanceForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="view\window\ManageScene.cs">
+    <Compile Include="src\view\window\ManageScene.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="view\window\ManageScene.Designer.cs">
+    <Compile Include="src\view\window\ManageScene.Designer.cs">
       <DependentUpon>ManageScene.cs</DependentUpon>
     </Compile>
-    <Compile Include="view\window\PostureCRUD.xaml.cs">
+    <Compile Include="src\view\window\PostureCRUD.xaml.cs">
       <DependentUpon>PostureCRUD.xaml</DependentUpon>
     </Compile>
-    <Compile Include="dbcontext\PostureTypeContext.cs" />
-    <Compile Include="view\window\EditPersonForm.cs">
+    <Compile Include="src\dbcontext\PostureTypeContext.cs" />
+    <Compile Include="src\view\window\EditPersonForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="view\window\EditPersonForm.Designer.cs">
+    <Compile Include="src\view\window\EditPersonForm.Designer.cs">
       <DependentUpon>EditPersonForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="model\Person.cs" />
-    <Compile Include="model\PostureType.cs" />
+    <Compile Include="src\model\Person.cs" />
+    <Compile Include="src\model\PostureType.cs" />
     <Compile Include="Properties\Buttons.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -287,9 +287,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Paths.resx</DependentUpon>
     </Compile>
-    <Compile Include="model\Scene.cs" />
-    <Compile Include="helpers\Utils.cs" />
-    <Page Include="view\window\AddOrEditPostureType.xaml">
+    <Compile Include="src\model\Scene.cs" />
+    <Compile Include="src\helpers\Utils.cs" />
+    <Page Include="src\view\window\AddOrEditPostureType.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -301,16 +301,16 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="algorithm\GestureDetector.cs" />
+    <Compile Include="src\algorithm\GestureDetector.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="view\window\Charts.xaml">
+    <Page Include="src\view\window\Charts.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="view\window\PostureCRUD.xaml">
+    <Page Include="src\view\window\PostureCRUD.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -329,13 +329,13 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="view\window\ContinuousChart.resx">
+    <EmbeddedResource Include="src\view\window\ContinuousChart.resx">
       <DependentUpon>ContinuousChart.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="view\window\DistanceForm.resx">
+    <EmbeddedResource Include="src\view\window\DistanceForm.resx">
       <DependentUpon>DistanceForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="view\window\EditPersonForm.resx">
+    <EmbeddedResource Include="src\view\window\EditPersonForm.resx">
       <DependentUpon>EditPersonForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -355,7 +355,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Paths.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="view\window\ManageScene.resx">
+    <EmbeddedResource Include="src\view\window\ManageScene.resx">
       <DependentUpon>ManageScene.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
@@ -371,12 +371,12 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Kinect.ico" />
-    <Resource Include="Images\Logo.png" />
-    <Resource Include="Images\Status.png" />
-    <Resource Include="Images\NotSeated.png" />
-    <Resource Include="Images\NotTracked.png" />
-    <Resource Include="Images\Seated.png" />
+    <Resource Include="src\Images\Kinect.ico" />
+    <Resource Include="src\Images\Logo.png" />
+    <Resource Include="src\Images\Status.png" />
+    <Resource Include="src\Images\NotSeated.png" />
+    <Resource Include="src\Images\NotTracked.png" />
+    <Resource Include="src\Images\Seated.png" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />

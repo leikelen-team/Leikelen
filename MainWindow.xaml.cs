@@ -33,12 +33,13 @@ namespace cl.uv.multimodalvisualizer
     //using pojos;    //using System.Windows.Forms;                    //using System.Windows.Forms;/// <summary>
     using System.Threading;
     using System.Windows.Shapes;
-    using views;
-    using windows;
-    using kinectmedia;
-    using models;
-    using helpers;
-    using db;
+    using src.view;
+    using src.view.window;
+    using src.kinectmedia;
+    using src.model;
+    using src.helpers;
+    using src.dbcontext;
+    using src.controller;
 
     using FirstFloor.ModernUI.Windows.Controls;
     using System.IO.Compression;
@@ -167,14 +168,14 @@ namespace cl.uv.multimodalvisualizer
             //chartForm = new ChartForm();
             //chartForm.Show();
             //chartForm.updateCharts();
-            Charts c = new windows.Charts();
+            Charts c = new src.view.window.Charts();
             c.Show();
             
         }
 
         private void showContinuousGraph_Click(object sender, RoutedEventArgs e)
         {
-            ContinuousChart cc = new windows.ContinuousChart();
+            ContinuousChart cc = new ContinuousChart();
             cc.Show();
         }
 
