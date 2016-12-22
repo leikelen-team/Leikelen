@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using cl.uv.multimodalvisualizer.src.model;
-using cl.uv.multimodalvisualizer.src.interfaces;
+using cl.uv.leikelen.src.model;
+using cl.uv.leikelen.src.interfaces;
 
-namespace cl.uv.multimodalvisualizer.src.view.window
+namespace cl.uv.leikelen.src.view.window
 {
     partial class EditPersonForm : Form
     {

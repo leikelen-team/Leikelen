@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace cl.uv.multimodalvisualizer.src.algorithm
+namespace cl.uv.leikelen.src.algorithm
 {
     class audioBeam
     {

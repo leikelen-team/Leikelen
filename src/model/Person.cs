@@ -1,6 +1,6 @@
 ﻿using Microsoft.Kinect;
-using cl.uv.multimodalvisualizer.src.dbcontext;
-using cl.uv.multimodalvisualizer.src.view;
+using cl.uv.leikelen.src.dbcontext;
+using cl.uv.leikelen.src.view;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,9 +10,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
 using Microsoft.Kinect.VisualGestureBuilder;
-using cl.uv.multimodalvisualizer.src.interfaces;
+using cl.uv.leikelen.src.interfaces;
 
-namespace cl.uv.multimodalvisualizer.src.model
+namespace cl.uv.leikelen.src.model
 {
     public class Person: IPerson
     {

@@ -4,7 +4,7 @@
 // </copyright>
 //------------------------------------------------------------------------------
 
-namespace cl.uv.multimodalvisualizer.src.algorithm
+namespace cl.uv.leikelen.src.algorithm
 {
     using System;
     using System.Collections.Generic;

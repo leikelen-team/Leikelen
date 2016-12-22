@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Kinect.VisualGestureBuilder;
 
-namespace cl.uv.multimodalvisualizer.src.model
+namespace cl.uv.leikelen.src.model
 {
     
     public class MicroPosture

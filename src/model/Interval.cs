@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace cl.uv.multimodalvisualizer.src.model
+namespace cl.uv.leikelen.src.model
 {
     public class Interval
     {

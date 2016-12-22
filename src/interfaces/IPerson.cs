@@ -1,4 +1,4 @@
-﻿using cl.uv.multimodalvisualizer.src.view;
+﻿using cl.uv.leikelen.src.view;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
 
-namespace cl.uv.multimodalvisualizer.src.interfaces
+namespace cl.uv.leikelen.src.interfaces
 {
     public interface IPerson
     {

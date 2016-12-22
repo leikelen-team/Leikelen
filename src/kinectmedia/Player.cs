@@ -1,6 +1,6 @@
 ﻿using KinectEx;
 using KinectEx.DVR;
-using cl.uv.multimodalvisualizer.src.model;
+using cl.uv.leikelen.src.model;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,7 +14,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-namespace cl.uv.multimodalvisualizer.src.kinectmedia
+namespace cl.uv.leikelen.src.kinectmedia
 {
     public class Player
     {

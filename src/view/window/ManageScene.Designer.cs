@@ -1,4 +1,4 @@
-﻿namespace cl.uv.multimodalvisualizer.src.view.window
+﻿namespace cl.uv.leikelen.src.view.window
 {
     partial class ManageScene
     {

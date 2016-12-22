@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Kinect;
 
-namespace cl.uv.multimodalvisualizer.src.model
+namespace cl.uv.leikelen.src.model
 {
     public enum DistanceTypes
     {

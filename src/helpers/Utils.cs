@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-namespace cl.uv.multimodalvisualizer.src.helpers
+namespace cl.uv.leikelen.src.helpers
 {
     static class Utils
     {

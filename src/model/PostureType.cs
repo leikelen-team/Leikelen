@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
-namespace cl.uv.multimodalvisualizer.src.model
+namespace cl.uv.leikelen.src.model
 {
     public class PostureType
     {

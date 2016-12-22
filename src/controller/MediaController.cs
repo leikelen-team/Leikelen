@@ -1,4 +1,4 @@
-﻿namespace cl.uv.multimodalvisualizer.src.controller
+﻿namespace cl.uv.leikelen.src.controller
 {
     public static class MediaView
     {

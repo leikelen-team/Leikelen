@@ -1,5 +1,5 @@
-﻿using cl.uv.multimodalvisualizer.src.dbcontext;
-using cl.uv.multimodalvisualizer.src.model;
+﻿using cl.uv.leikelen.src.dbcontext;
+using cl.uv.leikelen.src.model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace cl.uv.multimodalvisualizer.src.view.window
+namespace cl.uv.leikelen.src.view.window
 {
     /// <summary>
     /// Interaction logic for PostureCRUD.xaml

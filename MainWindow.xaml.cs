@@ -11,7 +11,7 @@
 // </Description>
 //----------------------------------------------------------------------------------------------------
 
-namespace cl.uv.multimodalvisualizer
+namespace cl.uv.leikelen
 {
     using System;
     using System.Collections.Generic;

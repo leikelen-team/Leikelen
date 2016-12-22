@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-using cl.uv.multimodalvisualizer.src.model;
+using cl.uv.leikelen.src.model;
 
-namespace cl.uv.multimodalvisualizer.src.dbcontext
+namespace cl.uv.leikelen.src.dbcontext
 {
     public class PostureTypeContext : DbContext
     {

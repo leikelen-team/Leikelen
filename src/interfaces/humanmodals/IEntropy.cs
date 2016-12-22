@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace cl.uv.multimodalvisualizer.src.interfaces.humanmodals
+namespace cl.uv.leikelen.src.interfaces.humanmodals
 {
     interface IEntropy: IHumanModal
     {

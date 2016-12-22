@@ -1,6 +1,6 @@
-﻿using cl.uv.multimodalvisualizer.src.dbcontext;
-using cl.uv.multimodalvisualizer.src.model;
-using cl.uv.multimodalvisualizer.src.kinectmedia;
+﻿using cl.uv.leikelen.src.dbcontext;
+using cl.uv.leikelen.src.model;
+using cl.uv.leikelen.src.kinectmedia;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.IO;
 using System.IO.Compression;
 using System.Windows;
 
-namespace cl.uv.multimodalvisualizer.src.helpers
+namespace cl.uv.leikelen.src.helpers
 {
     public class IO
     {

@@ -2,9 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using cl.uv.multimodalvisualizer.src.algorithm;
+using cl.uv.leikelen.src.algorithm;
 
-namespace cl.uv.multimodalvisualizer.src.kinectmedia
+namespace cl.uv.leikelen.src.kinectmedia
 {
     public class KinectMediaFacade
     {

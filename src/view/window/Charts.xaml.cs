@@ -1,5 +1,5 @@
-﻿using cl.uv.multimodalvisualizer.src.model;
-using cl.uv.multimodalvisualizer.src.controller;
+﻿using cl.uv.leikelen.src.model;
+using cl.uv.leikelen.src.controller;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,7 +10,7 @@ using System.Windows;
 using System.Windows.Controls;
 using WPFPieChart;
 
-namespace cl.uv.multimodalvisualizer.src.view.window
+namespace cl.uv.leikelen.src.view.window
 {
     /// <summary>
     /// Interaction logic for Charts.xaml

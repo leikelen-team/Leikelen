@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using cl.uv.multimodalvisualizer.src.model;
+using cl.uv.leikelen.src.model;
 using System;
 
-namespace cl.uv.multimodalvisualizer.src.dbcontext
+namespace cl.uv.leikelen.src.dbcontext
 {
     public class PgsqlContext : DbContext
     {
@@ -26,7 +26,7 @@ namespace cl.uv.multimodalvisualizer.src.dbcontext
         {
             string server = "127.0.0.1";
             string port = "5432";
-            string database = "MultimodalVisualizer";
+            string database = "leikelen";
             string userId = "mv_user";
             string password = "asd123";
 

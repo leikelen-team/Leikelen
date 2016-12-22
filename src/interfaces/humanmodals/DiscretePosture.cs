@@ -1,11 +1,11 @@
-﻿using cl.uv.multimodalvisualizer.src.interfaces.representtypes;
+﻿using cl.uv.leikelen.src.interfaces.representtypes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace cl.uv.multimodalvisualizer.src.interfaces.humanmodals
+namespace cl.uv.leikelen.src.interfaces.humanmodals
 {
     public interface IDiscretePosture: IPosture
     {

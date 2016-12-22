@@ -1,5 +1,5 @@
-﻿using cl.uv.multimodalvisualizer.src.model;
-using cl.uv.multimodalvisualizer.src.view.window;
+﻿using cl.uv.leikelen.src.model;
+using cl.uv.leikelen.src.view.window;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace cl.uv.multimodalvisualizer.src.view
+namespace cl.uv.leikelen.src.view
 {
     public class PersonView
     {

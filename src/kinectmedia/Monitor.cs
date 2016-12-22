@@ -1,6 +1,6 @@
 ﻿using KinectEx;
 using Microsoft.Kinect;
-using cl.uv.multimodalvisualizer.src.model;
+using cl.uv.leikelen.src.model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
 
-namespace cl.uv.multimodalvisualizer.src.kinectmedia
+namespace cl.uv.leikelen.src.kinectmedia
 {
     public class Monitor
     {

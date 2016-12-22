@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Kinect;
-using cl.uv.multimodalvisualizer.src.model;
+using cl.uv.leikelen.src.model;
 
-namespace cl.uv.multimodalvisualizer.src.algorithm
+namespace cl.uv.leikelen.src.algorithm
 {
     public class CalculateDistances
     {

@@ -1,6 +1,6 @@
-﻿using cl.uv.multimodalvisualizer.src.dbcontext;
-using cl.uv.multimodalvisualizer.src.helpers;
-using cl.uv.multimodalvisualizer.src.algorithm;
+﻿using cl.uv.leikelen.src.dbcontext;
+using cl.uv.leikelen.src.helpers;
+using cl.uv.leikelen.src.algorithm;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -10,9 +10,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using cl.uv.multimodalvisualizer.src.interfaces;
+using cl.uv.leikelen.src.interfaces;
 
-namespace cl.uv.multimodalvisualizer.src.model
+namespace cl.uv.leikelen.src.model
 {
     public class Scene: IScene
     {

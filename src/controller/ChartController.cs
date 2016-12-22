@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using cl.uv.multimodalvisualizer.src.model;
+using cl.uv.leikelen.src.model;
 
-namespace cl.uv.multimodalvisualizer.src.controller
+namespace cl.uv.leikelen.src.controller
 {
     public class ChartView : INotifyPropertyChanged
     {

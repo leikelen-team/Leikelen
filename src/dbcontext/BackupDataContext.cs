@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using cl.uv.multimodalvisualizer.src.model;
+using cl.uv.leikelen.src.model;
 using System.IO;
 
-namespace cl.uv.multimodalvisualizer.src.dbcontext
+namespace cl.uv.leikelen.src.dbcontext
 {
     public class BackupDataContext : DbContext
     {
