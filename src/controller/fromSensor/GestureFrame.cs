@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace cl.uv.leikelen.src.interfaces
+namespace cl.uv.leikelen.src.controller.fromSensor
 {
-    interface IHumanModals
+    class GestureFrame
     {
-        List<IHumanModal> List { get; }
     }
 }

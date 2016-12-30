@@ -11,7 +11,7 @@ namespace cl.uv.leikelen.src.interfaces
     public interface IPerson
     {
         int         ListIndex { get; }
-        int         PersonId { get; }
+        int         Id { get; }
         long        TrackingId { get; }
         string      Name { get; }
         GenderEnum  Gender { get; }
@@ -24,7 +24,7 @@ namespace cl.uv.leikelen.src.interfaces
         IHumanModal PostureModal { get; }
         //IHumanModal VoiceModal { get; }
 
-        void generateView();
+        //void generateView();
 
         //void generatePostureIntervals();
         //void generatePostureIntervals();

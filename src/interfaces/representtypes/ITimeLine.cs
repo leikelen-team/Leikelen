@@ -10,6 +10,5 @@ namespace cl.uv.leikelen.src.interfaces.representtypes
     public interface ITimeLine: IRepresentType
     {
         List<IModalIntervalGroup> IntervalGroups { get; }
-        List<IModalInterval> Intervals { get; }
     }
 }

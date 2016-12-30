@@ -202,22 +202,21 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="src\algorithm\AudioBeam.cs" />
+    <Compile Include="src\controller\fromSensor\Distance.cs" />
+    <Compile Include="src\controller\fromSensor\GestureFrame.cs" />
     <Compile Include="src\interfaces\GenderEnum.cs" />
-    <Compile Include="src\interfaces\humanmodals\DiscretePosture.cs" />
-    <Compile Include="src\interfaces\humanmodals\IEntropy.cs" />
+    <Compile Include="src\interfaces\humanmodals\IDiscretePosture.cs" />
     <Compile Include="src\interfaces\IHumanModal.cs" />
     <Compile Include="src\interfaces\humanmodals\IPosture.cs" />
-    <Compile Include="src\interfaces\IHumanModals.cs" />
     <Compile Include="src\interfaces\IPerson.cs" />
     <Compile Include="src\interfaces\IRepresentType.cs" />
-    <Compile Include="src\interfaces\humanmodals\IVoice.cs" />
     <Compile Include="src\interfaces\IScene.cs" />
     <Compile Include="src\interfaces\representtypes\IGraph.cs" />
     <Compile Include="src\interfaces\representtypes\ITimeLine.cs" />
-    <Compile Include="src\interfaces\representtypes\timeline\IModalEvent.cs" />
+    <Compile Include="src\interfaces\representtypes\IModalEvent.cs" />
     <Compile Include="src\interfaces\representtypes\timeline\IModalInterval.cs" />
     <Compile Include="src\interfaces\representtypes\timeline\IModalIntervalGroup.cs" />
-    <Compile Include="src\interfaces\representtypes\timeline\IModalType.cs" />
+    <Compile Include="src\interfaces\representtypes\IModalType.cs" />
     <Compile Include="src\model\DiscretePosture.cs" />
     <Compile Include="src\model\Distance.cs" />
     <Compile Include="src\model\DistanceTypeList.cs" />
@@ -232,6 +231,24 @@
     <Compile Include="src\model\Interval.cs" />
     <Compile Include="src\controller\ChartController.cs" />
     <Compile Include="src\controller\MediaController.cs" />
+    <Compile Include="src\true_model\ContinuousPostures.cs" />
+    <Compile Include="src\true_model\core\GenderEnum.cs" />
+    <Compile Include="src\true_model\core\PersonData.cs" />
+    <Compile Include="src\true_model\core\SceneStatuses.cs" />
+    <Compile Include="src\true_model\DiscretePostures.cs" />
+    <Compile Include="src\true_model\PostureType.cs" />
+    <Compile Include="src\true_model\Voice.cs" />
+    <Compile Include="src\true_model\_ModalType.cs" />
+    <Compile Include="src\true_model\timeline\BooleanEvent.cs" />
+    <Compile Include="src\true_model\distance\DistanceInferredType.cs" />
+    <Compile Include="src\true_model\distance\DistanceType.cs" />
+    <Compile Include="src\true_model\timeline\Interval.cs" />
+    <Compile Include="src\true_model\timeline\IntervalGroup.cs" />
+    <Compile Include="src\true_model\distance\JointDistance.cs" />
+    <Compile Include="src\true_model\core\Person.cs" />
+    <Compile Include="src\true_model\distance\PersonJointsDistances.cs" />
+    <Compile Include="src\true_model\core\Scene.cs" />
+    <Compile Include="src\true_model\graph\ValueEvent.cs" />
     <Compile Include="src\view\PersonView.cs" />
     <Compile Include="src\view\window\AddOrEditPostureType.xaml.cs">
       <DependentUpon>AddOrEditPostureType.xaml</DependentUpon>
@@ -371,11 +388,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="src\Images\Kinect.ico" />
-    <Resource Include="src\Images\Logo.png" />
-    <Resource Include="src\Images\Status.png" />
-    <Resource Include="src\Images\NotSeated.png" />
-    <Resource Include="src\Images\NotTracked.png" />
-    <Resource Include="src\Images\Seated.png" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
@@ -383,6 +395,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\DataSources\" />
+    <Folder Include="src\controller\toModel\" />
+    <Folder Include="src\real_interfaces\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="WPFPieChart\WPFPieChart.csproj">

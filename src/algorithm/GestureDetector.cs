@@ -1,10 +1,4 @@
-﻿//------------------------------------------------------------------------------
-// <copyright file="GestureDetector.cs" company="Microsoft">
-//     Copyright (c) Microsoft Corporation.  All rights reserved.
-// </copyright>
-//------------------------------------------------------------------------------
-
-namespace cl.uv.leikelen.src.algorithm
+﻿namespace cl.uv.leikelen.src.algorithm
 {
     using System;
     using System.Collections.Generic;

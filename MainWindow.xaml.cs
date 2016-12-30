@@ -1,6 +1,6 @@
 ﻿//---------------------------------------------------------------------------------------------------
-// <copyright file="MainWindow.xaml.cs" company="Microsoft">
-//     Copyright (c) Microsoft Corporation.  All rights reserved.
+// <copyright file="MainWindow.xaml.cs" company="Universidad de Valparaíso">
+//     Copyright (c) Universidad de Valparaíso.  All rights reserved.
 // </copyright>
 //
 // <Description>
@@ -27,6 +27,10 @@ namespace cl.uv.leikelen
     using src.dbcontext;
     using src.controller;
 
+
+    /// <summary>
+    /// This is the Initial and Main Window
+    /// </summary>
     public partial class MainWindow : Window//, INotifyPropertyChanged
     {
 

@@ -9,10 +9,9 @@ namespace cl.uv.leikelen.src.interfaces.representtypes.timeline
     public interface IModalInterval
     {
         //List<IModalEvent> Events { get; }
-        int ModalIntervalId { get; }
+        int Id { get; }
         TimeSpan StartTime { get; }
         TimeSpan EndTime { get; }
-        TimeSpan Duration { get; }
         int IModalIntervalGroupId { get; }
         IModalIntervalGroup IModalIntervalGroup { get; }
     }

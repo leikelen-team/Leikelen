@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace cl.uv.leikelen.src.interfaces.humanmodals
+namespace cl.uv.leikelen.src.controller.fromSensor
 {
-    interface IEntropy: IHumanModal
+    class Distance
     {
-
     }
 }
