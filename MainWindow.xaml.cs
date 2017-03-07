@@ -11,54 +11,44 @@
 // </Description>
 //----------------------------------------------------------------------------------------------------
 
+using cl.uv.leikelen.src.Controller;
+using cl.uv.leikelen.src.Data;
+using cl.uv.leikelen.src.Data.Model;
+using cl.uv.leikelen.src.Data.Persistence.MVSFile;
+using cl.uv.leikelen.src.Helpers;
+using cl.uv.leikelen.src.kinectmedia;
+using System;
+using System.ComponentModel;
+using System.Windows;
+using System.Windows.Controls;
+
 namespace cl.uv.leikelen
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.Windows;
-    using System.Windows.Controls;
-    using System.Linq;
-
-    using src.view.window;
-    using src.kinectmedia;
-    using src.model;
-    using src.helpers;
-    using src.dbcontext;
-    using src.controller;
-
 
     /// <summary>
     /// This is the Initial and Main Window
     /// </summary>
     public partial class MainWindow : Window//, INotifyPropertyChanged
     {
-
-        
-        public static PostureCRUD postureCrud;
-
         private static MainWindow _instance;
-
 
         /// <summary>
         /// Initializes a new instance of the MainWindow class
         /// </summary>
         public MainWindow()
         {
-            // no borres esta linea de nuevo rolo!! estupida, mi código, idiota!! xD
-            PostureType.none = PostureTypeContext.db.PostureType.ToList().FirstOrDefault(p => p.PostureTypeId == 0);
             this.InitializeComponent();
             _instance = this;
 
-            IO.EnsureDirectoriesHasBeenCreated();
+            MVSFileManager.EnsureDirectoriesHasBeenCreated();
             
-            ImportButton.Click += IO.ImportButton_Click;
-            ExportButton.Click += IO.ExportButton_Click;
+            ImportButton.Click += this.Import_Click;
+            ExportButton.Click += this.Export_Click;
 
-            recordButton2.Click += KinectMediaFacade.Instance.Recorder.RecordButton_Click;
-            stopButton2.Click += KinectMediaFacade.Instance.Recorder.StopRecordButton_Click;
-            stopButton2.Click += KinectMediaFacade.Instance.Player.StopButton_Click;
-            playButton2.Click += KinectMediaFacade.Instance.Player.PlayButton_Click;
+            recordButton.Click += KinectMediaFacade.Instance.Recorder.RecordButton_Click;
+            stopButton.Click += KinectMediaFacade.Instance.Recorder.StopRecordButton_Click;
+            stopButton.Click += KinectMediaFacade.Instance.Player.StopButton_Click;
+            playButton.Click += KinectMediaFacade.Instance.Player.PlayButton_Click;
 
             sceneSlider.ValueChanged += KinectMediaFacade.Instance.Player.LocationSlider_ValueChanged;
 
@@ -69,106 +59,26 @@ namespace cl.uv.leikelen
             
         }
 
-        
+        #region importar/exportar
+        public void Import_Click(object sender, RoutedEventArgs e)
+        {
+            MVSFileManager.Import();
+        }
+
+        public void Export_Click(object sender, RoutedEventArgs e)
+        {
+            MVSFileManager.Export();
+        }
+        #endregion
 
         public static MainWindow Instance()
         {
             return _instance;
         }
-
-        public void disableButtons()
-        {
-
-            //this.exportButtons.IsEnabled = false;
-            //this.playButton2.IsEnabled = false;
-            //this.showGraphButtons.IsEnabled = false;
-        }
-
-        public void enableButtons()
-        {
-
-            //this.exportButtons.IsEnabled = true;
-            //this.playButton2.IsEnabled = true;
-            //this.showGraphButtons.IsEnabled = true;
-        }
-
         
         private void MainWindow_Closing(object sender, CancelEventArgs e)
         {
         }
-
-        #region Button Events
-
-        private void pgsqlExport_Click(object sender, RoutedEventArgs e)
-        {
-            var db = PgsqlContext.CreateConnection();
-            db.Database.EnsureCreated();
-
-            //Scene psqlScene = db.Scene.FirstOrDefault(s => s.SceneId == Scene.Instance.SceneId);
-            //if (psqlScene!=null)
-            //{
-            //    System.Windows.Forms.DialogResult dialogResult =
-            //        System.Windows.Forms.MessageBox.Show(
-            //            "May be this scene already exists in PostgreSQL database."
-            //            +" Psql scene name: " + psqlScene.Name
-            //            +" This scene name: " + Scene.Instance.Name
-            //            +" Are you sure you want insert it?",
-            //            "Think about it!",
-            //            System.Windows.Forms.MessageBoxButtons.YesNo);
-            //    if (dialogResult == System.Windows.Forms.DialogResult.Yes)
-            //    {
-            //        Console.WriteLine("testing1");
-            //        Scene.Instance.SceneId = db.Scene.Last().SceneId + 1;
-            //        Console.WriteLine("testing2");
-            //    }
-            //    else if (dialogResult == System.Windows.Forms.DialogResult.No)
-            //    {
-            //        return;
-            //    }
-                    
-            //}
-            
-            //List<Scene> list = db.Scene.ToList();
-            //Console.WriteLine("algo");
-
-            db.Scene.Add(Scene.Instance);
-
-            //list = db.Scene.ToList();
-            //Console.WriteLine("algo");
-
-            db.SaveChanges();
-        }
-
-        private void posturesAdmin_Click(object sender, RoutedEventArgs e)
-        {
-            postureCrud = new PostureCRUD();
-            postureCrud.Show();
-        }
-
-        private void showGraphButtons_Click(object sender, RoutedEventArgs e)
-        {
-            Charts c = new Charts();
-            c.Show();
-            
-        }
-
-        private void showContinuousGraph_Click(object sender, RoutedEventArgs e)
-        {
-            ContinuousChart cc = new ContinuousChart();
-            cc.Show();
-        }
-
-        private void FromSensorRadioButton_Checked(object sender, RoutedEventArgs e)
-        {
-            MediaView.SetFromSensor();
-        }
-
-        private void FromSceneRadioButton_Checked(object sender, RoutedEventArgs e)
-        {
-            MediaView.SetFromScene();
-        }
-
-        #endregion
 
         #region Other Events
         private void BackgroundEnableCheckBox_Click(object sender, RoutedEventArgs e)
@@ -205,14 +115,9 @@ namespace cl.uv.leikelen
                 timeLineContentScroll.ScrollToHorizontalOffset(e.HorizontalOffset);
             }
         }
-        
-        private void RowDefinition_MouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e)
-        {
-            Console.WriteLine("Delta: " + e.Delta);
-        }
         #endregion
 
-        #region Pending Events
+        #region Pending Events edit Persons
         //private void button_EditPerson1_Click(object sender, RoutedEventArgs e)
         //{
         //    EditPersonForm editPersonForm = new EditPersonForm(0, ref label_sujeto1);
@@ -267,16 +172,73 @@ namespace cl.uv.leikelen
             }
         }
 
-        private void showDistances_Click(object sender, RoutedEventArgs e)
-        {
-            DistanceForm df = new DistanceForm();
-            df.Show();
-        }
-
         private void sceneAdmin_Click(object sender, RoutedEventArgs e)
         {
-            ManageScene mScene = new ManageScene();
-            mScene.Show();
+            
+        }
+
+        public void InstanciateFromScene()
+        {
+            foreach (PersonInScene personInScene in StaticScene.Instance.PersonsInScene)
+            {
+                Person person = personInScene.Person;
+                if (!person.HasBeenTracked) continue;
+                //person.generateView();
+                //person.View.repaintIntervalGroups();
+                //MainWindow.Instance().timeLineContentGrid.Children.Add(person.View.postureGroupsGrid);
+            }
+        }
+
+        public void InitTimeLine(TimeSpan duration)
+        {
+
+            ColumnDefinition rulerCol, contentCol;
+            TextBlock text;
+
+            TimeSpan frameTime = TimeSpan.FromSeconds(0);
+            int colSpan = 10;
+            for (int colCount = 0; frameTime < duration; colCount++)
+            {
+                rulerCol = new ColumnDefinition();
+                rulerCol.Width = new GridLength(5, GridUnitType.Pixel);
+                MainWindow.Instance().timeRulerGrid.ColumnDefinitions.Add(rulerCol);
+
+                contentCol = new ColumnDefinition();
+                contentCol.Width = new GridLength(5, GridUnitType.Pixel);
+                MainWindow.Instance().timeLineContentGrid.ColumnDefinitions.Add(contentCol);
+
+                if (colCount % colSpan == 0 && colCount != 0)
+                {
+                    text = new TextBlock();
+                    text.Text = "|";
+                    text.HorizontalAlignment = HorizontalAlignment.Left;
+                    Grid.SetRow(text, 0);
+                    Grid.SetColumn(text, colCount);
+                    Grid.SetColumnSpan(text, colSpan);
+                    MainWindow.Instance().timeRulerGrid.Children.Add(text);
+
+                    text = new TextBlock();
+                    text.Text = TimeUtils.TimeSpanToShortString(frameTime);
+                    text.HorizontalAlignment = colCount == 0 ?
+                        HorizontalAlignment.Left : HorizontalAlignment.Center;
+                    Grid.SetRow(text, 1);
+                    int offset = colCount == 0 ? 0 : (colSpan / 2);
+                    Grid.SetColumn(text, colCount - offset);
+                    Grid.SetColumnSpan(text, colSpan);
+                    MainWindow.Instance().timeRulerGrid.Children.Add(text);
+                }
+                else
+                {
+                    text = new TextBlock();
+                    text.Text = "·";
+                    text.HorizontalAlignment = HorizontalAlignment.Left;
+                    Grid.SetRow(text, 0);
+                    Grid.SetColumn(text, colCount);
+                    MainWindow.Instance().timeRulerGrid.Children.Add(text);
+                }
+
+                frameTime = frameTime.Add(TimeSpan.FromMilliseconds(1000.00));
+            }
         }
     }
 }

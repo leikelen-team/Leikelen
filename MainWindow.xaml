@@ -7,7 +7,6 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:cl.uv.leikelen"
-        xmlns:models="clr-namespace:cl.uv.leikelen.src.model"
         Title="Multimodal Visualizer"
         Height="650" Width="750"
         Closing="MainWindow_Closing" WindowStartupLocation="CenterScreen">
@@ -36,16 +35,12 @@
                 <MenuItem Header="_File">
                     <MenuItem x:Name="ImportButton" Header="_Import"></MenuItem>
                     <MenuItem x:Name="ExportButton" Header="_Export"></MenuItem>
-                    <MenuItem x:Name="pgsqlExport" Header="Pgsql Export" Click="pgsqlExport_Click" IsEnabled="False"></MenuItem>
                 </MenuItem>
                 <MenuItem Header="Scene">
                     <MenuItem x:Name="sceneAdmin" Header="Configure _Scene" Click="sceneAdmin_Click"></MenuItem>
-                    <MenuItem x:Name="posturesAdmin" Header="_Postures" Click="posturesAdmin_Click"></MenuItem>
                 </MenuItem>
                 <MenuItem Header="_Charts">
-                    <MenuItem x:Name="showGraphButtons" Header="_Discrete Postures" Click="showGraphButtons_Click"></MenuItem>
-                    <MenuItem Header="_Continuous Postures" Click="showContinuousGraph_Click"></MenuItem>
-                    <MenuItem Header="_Total Distances" Click="showDistances_Click"></MenuItem>
+                    
                 </MenuItem>
                 <MenuItem Header="_View">
                     <MenuItem x:Name="BackgroundEnableCheckBox" Header="Background" IsCheckable="True"  IsChecked="True" Click="BackgroundEnableCheckBox_Click"></MenuItem>
@@ -97,13 +92,13 @@
                                      Maximum="100"/>
                     <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal">
 
-                        <Button x:Name="recordButton2" 
+                        <Button x:Name="recordButton" 
                             HorizontalAlignment="Left" VerticalAlignment="Center" Width="Auto" Margin="3,0,0,0"
                             Content="O" />
-                        <Button x:Name="stopButton2" 
+                        <Button x:Name="stopButton" 
                             HorizontalAlignment="Left" VerticalAlignment="Center" Width="Auto" Margin="3,0,0,0"
                             Content="■"/>
-                        <Button x:Name="playButton2" 
+                        <Button x:Name="playButton" 
                             HorizontalAlignment="Left" VerticalAlignment="Center" Width="Auto" Margin="3,0,0,0"
                             Content=">"/>
 

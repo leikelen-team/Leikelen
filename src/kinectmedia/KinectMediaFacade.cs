@@ -1,8 +1,6 @@
 ﻿using Microsoft.Kinect;
 using System;
 using System.Collections.Generic;
-using System.Text;
-using cl.uv.leikelen.src.algorithm;
 
 namespace cl.uv.leikelen.src.kinectmedia
 {
@@ -16,8 +14,6 @@ namespace cl.uv.leikelen.src.kinectmedia
         private static KinectMediaFacade _instance;
         private static KinectSensor _sensor;
 
-        // TODO: Move this to other class in algorithms probably
-        public List<GestureDetector> gestureDetectorList { get; private set; }
         public Monitor Monitor;
         public Recorder Recorder { get; private set; }
         public Player Player { get; private set; }
@@ -30,12 +26,6 @@ namespace cl.uv.leikelen.src.kinectmedia
             Monitor = new Monitor();
             Recorder = new Recorder();
             Player = new Player();
-            gestureDetectorList = new List<GestureDetector>();
-            for (int i = 0; i < _sensor.BodyFrameSource.BodyCount; ++i)
-            {
-                GestureDetector detector = new GestureDetector(i, _sensor/*, result*/);
-                this.gestureDetectorList.Add(detector);
-            }
         }
         
         /// <summary>

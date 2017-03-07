@@ -1,14 +1,10 @@
-﻿using KinectEx;
+﻿using cl.uv.leikelen.src.Data;
+using cl.uv.leikelen.src.Data.Model;
+using cl.uv.leikelen.src.Data.Model.AccessLogic;
+using KinectEx;
 using KinectEx.DVR;
-using cl.uv.leikelen.src.model;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.IO.Compression;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -170,7 +166,7 @@ namespace cl.uv.leikelen.src.kinectmedia
             {
                 _replay.Stop();
             }
-            MainWindow.Instance().playButton2.Content = Properties.Buttons.StartPlaying;
+            MainWindow.Instance().playButton.Content = Properties.Buttons.StartPlaying;
             this.sendToStartLocation();
 
         }
@@ -183,12 +179,12 @@ namespace cl.uv.leikelen.src.kinectmedia
             if (!_replay.IsStarted)
             {
                 _replay.Start();
-                MainWindow.Instance().playButton2.Content = Properties.Buttons.PausePlaying;
+                MainWindow.Instance().playButton.Content = Properties.Buttons.PausePlaying;
             }
             else
             {
                 _replay.Stop();
-                MainWindow.Instance().playButton2.Content = Properties.Buttons.StartPlaying;
+                MainWindow.Instance().playButton.Content = Properties.Buttons.StartPlaying;
             }
         }
 
@@ -227,7 +223,7 @@ namespace cl.uv.leikelen.src.kinectmedia
         {
             if (e.PropertyName == KinectReplay.IsFinishedPropertyName)
             {
-                MainWindow.Instance().playButton2.Content = Properties.Buttons.StartPlaying;
+                MainWindow.Instance().playButton.Content = Properties.Buttons.StartPlaying;
             }
             else if (e.PropertyName == KinectReplay.LocationPropertyName)
             {
@@ -238,20 +234,20 @@ namespace cl.uv.leikelen.src.kinectmedia
 
         private void _replay_BodyFrameArrived(object sender, ReplayFrameArrivedEventArgs<ReplayBodyFrame> e)
         {
-            if (!bodyFrameEnable || !viewEnable || Scene.Instance==null) return;
+            if (!bodyFrameEnable || !viewEnable || StaticScene.Instance==null) return;
 
             float _width = 512;
             float _height = 424;
 
-            Color color;
             var bitmap = BitmapFactory.New((int)_width, (int)_height);
             foreach (var body in e.Frame.Bodies)
             {
                 if (body.IsTracked)
                 {
-                    Person person = Scene.Instance.Persons.FirstOrDefault(p => p.TrackingId == (long)body.TrackingId);
-                    color = (person.Color as SolidColorBrush).Color;
-                    body.AddToBitmap(bitmap, color, color);
+                    Person person = StaticScene.Instance.getPersonInSceneByTrackingId(body.TrackingId).Person;
+                    var boneColor = (StaticScene.boneColors[person.ListIndex] as SolidColorBrush).Color;
+                    var jointColor = (StaticScene.jointColors[person.ListIndex] as SolidColorBrush).Color;
+                    body.AddToBitmap(bitmap, boneColor, jointColor);
                 }
             }
             MainWindow.Instance().bodyImageControl.Source = bitmap;

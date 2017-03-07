@@ -1,14 +1,13 @@
-﻿using KinectEx;
+﻿//using System.ComponentModel.Composition;
+using cl.uv.leikelen.src.Data;
+using cl.uv.leikelen.src.Data.Model;
+using cl.uv.leikelen.src.Data.Model.AccessLogic;
 using KinectEx.DVR;
 using Microsoft.Kinect;
-using cl.uv.leikelen.src.model;
 using System;
+using cl.uv.leikelen.src.Module;
 using System.Collections.Generic;
 using System.IO;
-using System.IO.Compression;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace cl.uv.leikelen.src.kinectmedia
@@ -33,7 +32,7 @@ namespace cl.uv.leikelen.src.kinectmedia
 
         public TimeSpan getCurrentLocation()
         {
-            if (_recorder != null) return DateTime.Now.Subtract(Scene.Instance.StartDate);
+            if (_recorder != null) return DateTime.Now.Subtract(StaticScene.Instance.RecordStartDate);
             else
             {
                 throw new Exception("_recorder null");
@@ -48,92 +47,41 @@ namespace cl.uv.leikelen.src.kinectmedia
             {
                 await _recorder.StopAsync();
                 _recorder = null;
-                MainWindow.Instance().recordButton2.Background = System.Windows.Media.Brushes.White;
+                MainWindow.Instance().recordButton.Background = System.Windows.Media.Brushes.White;
                 KinectMediaFacade.Instance.Player.OpenFile(Properties.Paths.CurrentKdvrFile);
 
-                Scene.Instance.Duration = KinectMediaFacade.Instance.Player.Duration;
-                Scene.Instance.InitTimeLine();
+                StaticScene.Instance.Duration = KinectMediaFacade.Instance.Player.Duration;
+                MainWindow.Instance().InitTimeLine(StaticScene.Instance.Duration);
 
-                foreach (Person person in Scene.Instance.Persons)
+                foreach (var module in Loader.Modules)
                 {
-                    if (!person.HasBeenTracked) continue;
-                    person.generatePostureIntervals();
-                    person.generateView();
-                    person.View.repaintIntervalGroups();
-                    MainWindow.Instance().timeLineContentGrid.Children.Add(person.View.postureGroupsGrid);
+                    if(module.FunctionAfterStop() != null)
+                    {
+                        module.FunctionAfterStop();
+                    }
                 }
 
-                Dictionary<ulong, DistanceTypeList> totalDistanceWithInferred = Scene.Instance.calculateDistances.calculateTotalDistance(DistanceInferred.WithInferred);
-                Dictionary<ulong, DistanceTypeList> totalDistanceWithoutInferred = Scene.Instance.calculateDistances.calculateTotalDistance(DistanceInferred.WithoutInferred);
-
-                Dictionary<ulong, DistanceTypeList> totalDistanceOnlyInferred = Scene.Instance.calculateDistances.calculateTotalDistance(DistanceInferred.OnlyInferred);
-
-                putDistanceInPersons(totalDistanceWithInferred);
-                putDistanceInPersons(totalDistanceWithoutInferred);
-                putDistanceInPersons(totalDistanceOnlyInferred);
-
-
-                Dictionary<TimeSpan, Dictionary<ulong, DistanceTypeList>> intervalDistWithInferred = Scene.Instance.calculateDistances.calculateTotalDistanceIntervals(DistanceInferred.WithInferred, 20);
-                Dictionary<TimeSpan, Dictionary<ulong, DistanceTypeList>> intervalDistWithoutInferred = Scene.Instance.calculateDistances.calculateTotalDistanceIntervals(DistanceInferred.WithoutInferred, 20);
-                Dictionary<TimeSpan, Dictionary<ulong, DistanceTypeList>> intervalDistOnlyInferred = Scene.Instance.calculateDistances.calculateTotalDistanceIntervals(DistanceInferred.OnlyInferred, 20);
-
-                putIntervalDistanceInPersons(intervalDistWithInferred);
-                putIntervalDistanceInPersons(intervalDistWithoutInferred);
-                putIntervalDistanceInPersons(intervalDistOnlyInferred);
-
-                foreach(Person person in Scene.Instance.Persons)
+                foreach(var personInScene in StaticScene.Instance.PersonsInScene)
                 {
-                    person.generateDistanceSum();
-                    person.generateIntervalDistancesSum();
+                    Person person = personInScene.Person;
+                    if(!StaticScene.personsView.ContainsKey(person))
+                    {
+                        StaticScene.personsView[person] = new View.Classes.PersonView(personInScene, (int)(StaticScene.Instance.Duration.TotalSeconds));
+                    }
+                    StaticScene.personsView[person].repaintIntervalGroups();
+                    MainWindow.Instance().timeLineContentGrid.Children.Add(StaticScene.personsView[person].postureGroupsGrid);
                 }
                 
                 MainWindow.Instance().SourceComboBox.SelectedIndex = 1;
             }
         }
 
-        public void putDistanceInPersons(Dictionary<ulong, DistanceTypeList> totalDistanceObj)
-        {
-            foreach (ulong personTrackingId in totalDistanceObj.Keys)
-            {
-                if (Scene.Instance.Persons.Exists(p => p.TrackingId == (long)personTrackingId))
-                {
-                    Person person = Scene.Instance.Persons.Find(p => p.TrackingId == (long)personTrackingId);
-                    person.Distances.AddRange(totalDistanceObj[personTrackingId]);
-                }
-            }
-        }
-
-
-        public void putIntervalDistanceInPersons(Dictionary<TimeSpan, Dictionary<ulong, DistanceTypeList>> intervalDistObj)
-        {
-            foreach (TimeSpan startTime in intervalDistObj.Keys)
-            {
-                foreach (ulong personTrackingId in intervalDistObj[startTime].Keys)
-                {
-                    if (Scene.Instance.Persons.Exists(p => p.TrackingId == (long)personTrackingId))
-                    {
-                        Person person = Scene.Instance.Persons.Find(p => p.TrackingId == (long)personTrackingId);
-                        if (person.IntervalDistances.ContainsKey(startTime))
-                        {
-                            person.IntervalDistances[startTime].AddRange(intervalDistObj[startTime][personTrackingId]);
-                        }
-                        else
-                        {
-                            person.IntervalDistances.Add(startTime, intervalDistObj[startTime][personTrackingId]);
-                        }
-                        
-                    }
-                }
-            }
-        }
-        
-
         public async void RecordButton_Click(object sender, RoutedEventArgs e)
         {
             if (_recorder == null)
             {
                 
-                if (Scene.Instance != null)
+                if (StaticScene.Instance != null)
                 {
                     System.Windows.Forms.DialogResult dialogResult =
                     System.Windows.Forms.MessageBox.Show(
@@ -147,7 +95,7 @@ namespace cl.uv.leikelen.src.kinectmedia
                 }
 
                 MainWindow.Instance().SourceComboBox.SelectedIndex = 0;
-                MainWindow.Instance().recordButton2.Background = System.Windows.Media.Brushes.Red;
+                MainWindow.Instance().recordButton.Background = System.Windows.Media.Brushes.Red;
                 
                 if (KinectMediaFacade.Instance.Player.IsOpen) KinectMediaFacade.Instance.Player.Close();
                 if (File.Exists(Properties.Paths.CurrentKdvrFile)) File.Delete(Properties.Paths.CurrentKdvrFile);
@@ -166,7 +114,7 @@ namespace cl.uv.leikelen.src.kinectmedia
 
                 string sceneName = DateTime.Now.ToString("yyyy-MM-dd _ hh-mm-ss");
 
-                Scene.CreateFromRecord(sceneName);
+                StaticScene.CreateSceneFromRecord(sceneName);
                     
                 _recorder.Start();
                     

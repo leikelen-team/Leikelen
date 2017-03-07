@@ -1,9 +1,7 @@
-﻿namespace cl.uv.leikelen.src.controller
+﻿namespace cl.uv.leikelen.src.Controller
 {
     public static class MediaView
     {
-        public enum SourceType { Sensor, Scene };
-
         public static SourceType Source { get; private set; }
         
         static MediaView()
