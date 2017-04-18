@@ -9,10 +9,11 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using cl.uv.leikelen.src.API;
 
 namespace cl.uv.leikelen.src.kinectmedia
 {
-    public class Player
+    public class Player : IPlayer
     {
         private KinectReplay _replay;
         private bool _locationSetByHand = false;
@@ -26,6 +27,10 @@ namespace cl.uv.leikelen.src.kinectmedia
         private ColorFrameBitmap _colorBitmap = null;
         private int lastCurrentSecondForTimeLineCursor = 0;
         private ImageSource lastBodyFrame = null;
+
+        public event EventHandler Finished;
+        public event EventHandler LocationChanged;
+
         public Player(){}
 
         public TimeSpan Duration
@@ -157,44 +162,82 @@ namespace cl.uv.leikelen.src.kinectmedia
 
         #endregion
 
-        public void StopButton_Click(object sender, RoutedEventArgs e)
+        public TimeSpan? getTotalDuration()
         {
-            if (_replay == null)
-                return;
-            
-            if (_replay.IsStarted)
+            if (_replay != null)
+            {
+                return _replay.Duration;
+            }
+            return null;
+        }
+
+        public TimeSpan? getLocation()
+        {
+            if( _replay != null)
+            {
+                return _replay.Location;
+            }
+            return null;
+        }
+
+        public void Stop()
+        {
+            if (_replay != null && _replay.IsStarted)
             {
                 _replay.Stop();
             }
-            MainWindow.Instance().playButton.Content = Properties.Buttons.StartPlaying;
             this.sendToStartLocation();
-
         }
 
-        public void PlayButton_Click(object sender, RoutedEventArgs e)
+        public void Pause()
         {
-            if (_replay == null)
-                return;
+            if (_replay != null && _replay.IsStarted)
+            {
+                _replay.Stop();
+            }
+        }
 
-            if (!_replay.IsStarted)
+        public void Play()
+        {
+            if (_replay != null && !_replay.IsStarted)
+            {
+                this.sendToStartLocation();
+                _replay.Start();
+            }
+        }
+
+        public void Unpause()
+        {
+            if (_replay != null && !_replay.IsStarted)
             {
                 _replay.Start();
-                MainWindow.Instance().playButton.Content = Properties.Buttons.PausePlaying;
-            }
-            else
-            {
-                _replay.Stop();
-                MainWindow.Instance().playButton.Content = Properties.Buttons.StartPlaying;
             }
         }
 
-        
+        public bool IsPlaying()
+        {
+            return _replay.IsStarted;
+        }
 
         private void sendToStartLocation()
         {
             _replay.ScrubTo(TimeSpan.FromMilliseconds(StartFromMillis));
         }
 
+        public void ChangeTime(TimeSpan newTime)
+        {
+            if (_locationSetByHand)
+            {
+                if (_replay != null)
+                    _replay.ScrubTo(newTime);
+            }
+            else
+            {
+                _locationSetByHand = true;
+            }
+        }
+
+        /*
         public void LocationSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             if (_locationSetByHand)
@@ -214,21 +257,20 @@ namespace cl.uv.leikelen.src.kinectmedia
                 Grid.SetColumn(MainWindow.Instance().lineCurrentTimeCursor, currentSecond); // 1seg = 1col
                 Grid.SetColumn(MainWindow.Instance().lineCurrentTimeRulerCursor, currentSecond); // 1seg = 1col
                 lastCurrentSecondForTimeLineCursor = currentSecond;
-                MainWindow.Instance().sceneCurrentTimeLabel.Content = _replay.Location.ToString(@"hh\:mm\:ss");
             }
             
-        }
+        } */
 
         private void _replay_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if (e.PropertyName == KinectReplay.IsFinishedPropertyName)
             {
-                MainWindow.Instance().playButton.Content = Properties.Buttons.StartPlaying;
+                OnFinished(EventArgs.Empty);
             }
             else if (e.PropertyName == KinectReplay.LocationPropertyName)
             {
+                OnLocationChange(EventArgs.Empty);
                 _locationSetByHand = false;
-                MainWindow.Instance().sceneSlider.Value = 100 - (100 * ((_replay.Duration.TotalMilliseconds - _replay.Location.TotalMilliseconds) / _replay.Duration.TotalMilliseconds));
             }
         }
 
@@ -244,7 +286,7 @@ namespace cl.uv.leikelen.src.kinectmedia
             {
                 if (body.IsTracked)
                 {
-                    Person person = StaticScene.Instance.getPersonInSceneByTrackingId(body.TrackingId).Person;
+                    Person person = StaticScene.Instance.getPersonInScene(body.TrackingId).Person;
                     var boneColor = (StaticScene.boneColors[person.ListIndex] as SolidColorBrush).Color;
                     var jointColor = (StaticScene.jointColors[person.ListIndex] as SolidColorBrush).Color;
                     body.AddToBitmap(bitmap, boneColor, jointColor);
@@ -265,6 +307,16 @@ namespace cl.uv.leikelen.src.kinectmedia
             
         }
 
+
+        protected virtual void OnFinished(EventArgs e)
+        {
+            Finished?.Invoke(this, e);
+        }
+
+        protected virtual void OnLocationChange(EventArgs e)
+        {
+            LocationChanged?.Invoke(this, e);
+        }
 
     }
 }

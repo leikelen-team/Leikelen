@@ -1,8 +1,4 @@
-﻿using cl.uv.leikelen.src.Data;
-using cl.uv.leikelen.src.Data.Model;
-using cl.uv.leikelen.src.Data.Model.AccessLogic;
-using cl.uv.leikelen.src.kinectmedia;
-using Microsoft.Kinect;
+﻿using Microsoft.Kinect;
 using System;
 
 namespace cl.uv.leikelen.src.Module.Voice
@@ -34,7 +30,7 @@ namespace cl.uv.leikelen.src.Module.Voice
 
         public Action FunctionAfterStop()
         {
-            return null;
+            return logic.StopRecording;
         }
 
         

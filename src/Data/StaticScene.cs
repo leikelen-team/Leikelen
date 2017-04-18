@@ -1,4 +1,5 @@
 ﻿using cl.uv.leikelen.src.Data.Model;
+using cl.uv.leikelen.src.Data.Access;
 using cl.uv.leikelen.src.Data.Model.AccessLogic;
 using cl.uv.leikelen.src.View.Classes;
 using System.Windows.Media;
@@ -27,6 +28,10 @@ namespace cl.uv.leikelen.src.Data
             Brushes.Red };
 
         public static Dictionary<Person, PersonView> personsView = new Dictionary<Person, PersonView>();
+
+        //TODO: separar esto por tipo, hacerlo bien blabla, interfaz o algo que contenga todo esto.
+        public static IntervalInsert IntervalInsert;
+        public static EventInsert EventInsert;
 
         public static Scene Instance
         {

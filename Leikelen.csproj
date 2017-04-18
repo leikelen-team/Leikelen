@@ -63,7 +63,7 @@
     <StartupObject>cl.uv.leikelen.App</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>src\Images\Kinect.ico</ApplicationIcon>
+    <ApplicationIcon>Static\Image\Kinect.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
@@ -135,8 +135,8 @@
     <Reference Include="Microsoft.Kinect.VisualGestureBuilder">
       <HintPath>$(KINECTSDK20_DIR)Redist\VGB\$(Platform)\Microsoft.Kinect.VisualGestureBuilder.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="npgsql, Version=3.1.5.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
@@ -147,6 +147,7 @@
       <HintPath>packages\Npgsql.EntityFrameworkCore.PostgreSQL.1.0.1\lib\net451\Npgsql.EntityFrameworkCore.PostgreSQL.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="Remotion.Linq, Version=2.1.0.0, Culture=neutral, PublicKeyToken=fee00910d6e5f53b, processorArchitecture=MSIL">
       <HintPath>packages\Remotion.Linq.2.1.1\lib\net45\Remotion.Linq.dll</HintPath>
       <Private>True</Private>
@@ -160,9 +161,6 @@
       <HintPath>packages\System.Collections.Immutable.1.2.0\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.ComponentModel.Composition" />
-    <Reference Include="System.ComponentModel.Composition.registration" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -190,7 +188,6 @@
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
     <Reference Include="WindowsBase" />
-    <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="WriteableBitmapEx.Wpf, Version=1.5.0.0, Culture=neutral, PublicKeyToken=50375ca6144f1c69, processorArchitecture=MSIL">
       <HintPath>packages\WriteableBitmapEx.1.5.0.0\lib\net40\WriteableBitmapEx.Wpf.dll</HintPath>
@@ -202,47 +199,51 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="src\API\IEventInsert.cs" />
+    <Compile Include="src\API\IInsertType.cs" />
+    <Compile Include="src\API\IIntervalInsert.cs" />
+    <Compile Include="src\API\IPlayer.cs" />
+    <Compile Include="src\API\IRecorder.cs" />
+    <Compile Include="src\Controller\PlayerRecorderController.cs" />
+    <Compile Include="src\Controller\PlayerState.cs" />
     <Compile Include="src\Controller\SourceType.cs" />
+    <Compile Include="src\Data\Access\EventInsert.cs" />
+    <Compile Include="src\Data\Access\IntervalInsert.cs" />
+    <Compile Include="src\Data\Model\Enum\DataType.cs" />
     <Compile Include="src\Data\Persistence\BackupDataContext.cs" />
     <Compile Include="src\Data\Persistence\Sqlite\SqliteDataContext.cs" />
-    <Compile Include="src\Data\Model\AccessLogic\IntervalGroupLogic.cs" />
     <Compile Include="src\Data\Model\AccessLogic\PersonInSceneLogic.cs" />
     <Compile Include="src\Data\Model\AccessLogic\ModalTypeLogic.cs" />
     <Compile Include="src\Data\Model\AccessLogic\SubModalTypeLogic.cs" />
     <Compile Include="src\Data\Model\AccessLogic\SceneLogic.cs" />
     <Compile Include="src\Data\Persistence\Interface\IBackupDataContext.cs" />
     <Compile Include="src\Data\Model\EventData.cs" />
-    <Compile Include="src\Data\Model\Gender.cs" />
-    <Compile Include="src\Data\Model\Graph.cs" />
-    <Compile Include="src\Data\Model\Interval.cs" />
-    <Compile Include="src\Data\Model\IntervalGroup.cs" />
-    <Compile Include="src\Data\Model\JointArray.cs" />
-    <Compile Include="src\Data\Model\JointData.cs" />
+    <Compile Include="src\Data\Model\Enum\Gender.cs" />
+    <Compile Include="src\Data\Model\IntervalData.cs" />
+    <Compile Include="src\Data\Model\ArrayData.cs" />
     <Compile Include="src\Data\Model\ModalType.cs" />
-    <Compile Include="src\Data\Model\NumberData.cs" />
     <Compile Include="src\Data\Model\Person.cs" />
     <Compile Include="src\Data\Model\PersonInScene.cs" />
-    <Compile Include="src\Data\Model\PointInTime.cs" />
     <Compile Include="src\Data\Model\Scene.cs" />
-    <Compile Include="src\Data\Model\SceneStatus.cs" />
-    <Compile Include="src\Data\Model\StringData.cs" />
+    <Compile Include="src\Data\Model\Enum\SceneStatus.cs" />
     <Compile Include="src\Data\Model\SubModalType.cs" />
     <Compile Include="src\Data\StaticScene.cs" />
-    <Compile Include="src\Helpers\FileSystemUtils.cs" />
-    <Compile Include="src\Helpers\ImageFileUtils.cs" />
-    <Compile Include="src\Helpers\ImageUtils.cs" />
+    <Compile Include="src\Helper\FileSystemUtils.cs" />
+    <Compile Include="src\Helper\ImageFileUtils.cs" />
+    <Compile Include="src\Helper\ImageUtils.cs" />
     <Compile Include="src\Data\Persistence\MVSFile\MVSFileManager.cs" />
-    <Compile Include="src\Helpers\TimeUtils.cs" />
+    <Compile Include="src\Helper\TimeUtils.cs" />
     <Compile Include="src\KinectMedia\Monitor.cs" />
     <Compile Include="src\KinectMedia\Player.cs" />
+    <Compile Include="src\KinectMedia\PostureDB.cs" />
     <Compile Include="src\KinectMedia\Recorder.cs" />
     <Compile Include="src\KinectMedia\KinectMediaFacade.cs" />
     <Compile Include="src\Controller\MediaController.cs" />
     <Compile Include="src\Module\Distance\Distance.cs" />
-    <Compile Include="src\Module\IModule.cs" />
+    <Compile Include="src\API\IModule.cs" />
     <Compile Include="src\Module\Distance\DistanceLogic.cs" />
     <Compile Include="src\Module\Voice\VoiceLogic.cs" />
-    <Compile Include="src\Module\Loader.cs" />
+    <Compile Include="src\Module\TMPLoader.cs" />
     <Compile Include="src\Module\Voice\Voice.cs" />
     <Compile Include="Properties\Buttons.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -259,7 +260,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Paths.resx</DependentUpon>
     </Compile>
-    <Compile Include="src\View\Classes\PersonView.cs" />
+    <Compile Include="src\View\Procedural\PersonView.cs" />
+    <Compile Include="src\View\Procedural\TimeLine.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -295,6 +297,7 @@
     <EmbeddedResource Include="Properties\Buttons.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Buttons.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Messages.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -317,7 +320,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="src\Images\Kinect.ico" />
+    <Resource Include="Static\Image\Kinect.ico" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
@@ -325,6 +328,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\DataSources\" />
+    <Folder Include="src\Data\Persistence\MySQL\" />
+    <Folder Include="src\Data\Persistence\PostgreSQL\" />
+    <Folder Include="src\Main\" />
+    <Folder Include="src\Module\Postures\Continuous\" />
+    <Folder Include="src\Module\Postures\Discrete\" />
     <Folder Include="src\View\Widget\" />
     <Folder Include="src\View\Window\" />
   </ItemGroup>

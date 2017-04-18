@@ -26,7 +26,7 @@ namespace cl.uv.leikelen.src.Module.Distance
                     Body[] bodiesInFrame = new Body[frame.BodyCount];
                     frame.GetAndRefreshBodyData(bodiesInFrame);
                     //TODO: quitar kinectmediafacade de aqui y hacerlo de otra forma
-                    bodiesInAllFrames.Add(new Tuple<TimeSpan, Body[]>(KinectMediaFacade.Instance.Recorder.getCurrentLocation(), bodiesInFrame));
+                    bodiesInAllFrames.Add(new Tuple<TimeSpan, Body[]>(KinectMediaFacade.Instance.Recorder.getLocation().Value, bodiesInFrame));
                 }
             }
         }

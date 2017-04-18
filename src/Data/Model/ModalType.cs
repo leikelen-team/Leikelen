@@ -6,6 +6,7 @@ namespace cl.uv.leikelen.src.Data.Model
     {
         public int ModalTypeId { get; set; }
         public string Name { get; set; }
+        public string Explanation { get; set; }
 
         public int PersonInSceneId { get; set; }
         public PersonInScene PersonInScene { get; set; }
@@ -17,9 +18,10 @@ namespace cl.uv.leikelen.src.Data.Model
             this.SubModalTypes = new List<SubModalType>();
         }
 
-        public ModalType(string name, PersonInScene pis)
+        public ModalType(string name, string explanation, PersonInScene pis)
         {
             this.Name = name;
+            this.Explanation = explanation;
             this.PersonInScene = pis;
             this.SubModalTypes = new List<SubModalType>();
         }

@@ -12,15 +12,19 @@
 //----------------------------------------------------------------------------------------------------
 
 using cl.uv.leikelen.src.Controller;
+using cl.uv.leikelen.src.API;
 using cl.uv.leikelen.src.Data;
 using cl.uv.leikelen.src.Data.Model;
 using cl.uv.leikelen.src.Data.Persistence.MVSFile;
-using cl.uv.leikelen.src.Helpers;
+using cl.uv.leikelen.src.Helper;
 using cl.uv.leikelen.src.kinectmedia;
+using cl.uv.leikelen.src.View.Classes;
 using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
+using cl.uv.leikelen.src.Module;
+using System.Timers;
 
 namespace cl.uv.leikelen
 {
@@ -32,6 +36,13 @@ namespace cl.uv.leikelen
     {
         private static MainWindow _instance;
 
+        private PlayerState _playerState;
+
+        private IPlayer _player;
+        private IRecorder _recorder;
+
+        private Timer _timeLabelTimer;
+
         /// <summary>
         /// Initializes a new instance of the MainWindow class
         /// </summary>
@@ -39,24 +50,168 @@ namespace cl.uv.leikelen
         {
             this.InitializeComponent();
             _instance = this;
-
-            MVSFileManager.EnsureDirectoriesHasBeenCreated();
+            _playerState = PlayerState.Waiting;
+            
+            FileSystemUtils.EnsureDirectoriesHasBeenCreated();
             
             ImportButton.Click += this.Import_Click;
             ExportButton.Click += this.Export_Click;
 
-            recordButton.Click += KinectMediaFacade.Instance.Recorder.RecordButton_Click;
-            stopButton.Click += KinectMediaFacade.Instance.Recorder.StopRecordButton_Click;
-            stopButton.Click += KinectMediaFacade.Instance.Player.StopButton_Click;
-            playButton.Click += KinectMediaFacade.Instance.Player.PlayButton_Click;
+            _player = KinectMediaFacade.Instance.Player;
+            _recorder = KinectMediaFacade.Instance.Recorder;
 
-            sceneSlider.ValueChanged += KinectMediaFacade.Instance.Player.LocationSlider_ValueChanged;
+            _player.Finished += PlayerFinished;
+            _player.LocationChanged += PlayerChangedLocation;
+
+            recordButton.Click += this.RecordButton_Click;
+            stopButton.Click += this.StopButton_Click;
+            playButton.Click += this.PlayPauseButton_Click;
+
+            sceneSlider.ValueChanged += this.LocationSlider_ValueChanged;
 
             SourceComboBox.SelectionChanged += Source_ComboBox_SelectionChanged;
 
             BackgroundEnableCheckBox.IsEnabled = false;
             SkeletonsEnableCheckBox.IsEnabled = false;
+
             
+        }
+
+        private void PlayPauseButton_Click(object sender, RoutedEventArgs e)
+        {
+            if(_playerState == PlayerState.Playing)
+            {
+                _player.Pause();
+                _playerState = PlayerState.Paused;
+                this.playButton.Content = Properties.Buttons.PausePlaying;
+            }
+            if(_playerState == PlayerState.Paused)
+            {
+                _player.Unpause();
+                _playerState = PlayerState.Playing;
+                this.playButton.Content = Properties.Buttons.StartPlaying;
+            }
+            if(_playerState == PlayerState.Waiting)
+            {
+                _player.Play();
+                _playerState = PlayerState.Playing;
+                this.playButton.Content = Properties.Buttons.PausePlaying;
+            }
+        }
+
+        private void StopButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (_playerState == PlayerState.Playing)
+            {
+                _player.Stop();
+                _playerState = PlayerState.Waiting;
+                this.playButton.Content = Properties.Buttons.StartPlaying;
+            }
+            if(_playerState == PlayerState.Recording)
+            {
+                _recorder.Stop();
+                //_timeLabelTimer.Stop();
+                _playerState = PlayerState.Waiting;
+                foreach (var module in TMPLoader.Modules)
+                {
+                    if (module.FunctionAfterStop() != null)
+                    {
+                        module.FunctionAfterStop();
+                    }
+                }
+                
+                foreach (var personInScene in StaticScene.Instance.PersonsInScene)
+                {
+                    Person person = personInScene.Person;
+                    if (!StaticScene.personsView.ContainsKey(person))
+                    {
+                        StaticScene.personsView[person] = new PersonView(personInScene, (int)(StaticScene.Instance.Duration.TotalSeconds));
+                    }
+                    StaticScene.personsView[person].repaintIntervalGroups();
+                    this.timeLineContentGrid.Children.Add(StaticScene.personsView[person].postureGroupsGrid);
+                }
+
+                this.SourceComboBox.SelectedIndex = 1;
+                this.recordButton.Background = System.Windows.Media.Brushes.White;
+
+            }
+        }
+
+        private void RecordButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (_playerState == PlayerState.Waiting)
+            {
+                if (StaticScene.Instance != null)
+                {
+                    System.Windows.Forms.DialogResult dialogResult =
+                    System.Windows.Forms.MessageBox.Show(
+                        "Are you sure to record scene?",
+                        "Did you save the current scene data?",
+                        System.Windows.Forms.MessageBoxButtons.YesNo);
+                    if (dialogResult == System.Windows.Forms.DialogResult.No)
+                    {
+                        return;
+                    }
+                }
+                _recorder.Record();
+                //_timeLabelTimer = new Timer(TimeSpan.FromSeconds(1).TotalMilliseconds);
+                //_timeLabelTimer.Elapsed += _timeLabelTimer_Elapsed;
+                //_timeLabelTimer.Start();
+                _playerState = PlayerState.Recording;
+                this.SourceComboBox.SelectedIndex = 0;
+                this.recordButton.Background = System.Windows.Media.Brushes.Red;
+            }
+        }
+
+        private void _timeLabelTimer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            Console.WriteLine("timeeer");
+            if (_recorder.getLocation().HasValue)
+                this.sceneCurrentTimeLabel.Content = _recorder.getLocation().Value.ToString(@"hh\:mm\:ss");
+        }
+
+        public void LocationSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (_playerState == PlayerState.Playing || _playerState == PlayerState.Paused)
+            {
+                
+                if (_player.getLocation().HasValue && _player.getTotalDuration().HasValue)
+                {
+                    _player.ChangeTime(TimeSpan.FromMilliseconds((e.NewValue / 100.0) * _player.getTotalDuration().Value.TotalMilliseconds));
+                    this.sceneCurrentTimeLabel.Content = _player.getLocation().Value.ToString(@"hh\:mm\:ss");
+                }
+
+                int currentSecond = (int)_player.getLocation().Value.TotalSeconds;
+                if (TimeSpan.FromMilliseconds(e.NewValue).TotalSeconds != currentSecond)
+                {
+                    Grid.SetColumn(this.lineCurrentTimeCursor, currentSecond); // 1seg = 1col
+                    Grid.SetColumn(this.lineCurrentTimeRulerCursor, currentSecond); // 1seg = 1col
+                }
+
+            }
+        }
+
+        public void PlayerFinished(object sender, EventArgs e)
+        {
+            this.playButton.Content = Properties.Buttons.StartPlaying;
+        }
+
+        public void PlayerChangedLocation(object sender, EventArgs e)
+        {
+            if(_player.getTotalDuration().HasValue && _player.getLocation().HasValue)
+            {
+                this.sceneSlider.Value = 100 - (100 * ((_player.getTotalDuration().Value.TotalMilliseconds - _player.getLocation().Value.TotalMilliseconds) / _player.getTotalDuration().Value.TotalMilliseconds));
+
+            }
+        }
+
+        public static MainWindow Instance()
+        {
+            return _instance;
+        }
+
+        private void MainWindow_Closing(object sender, CancelEventArgs e)
+        {
         }
 
         #region importar/exportar
@@ -71,16 +226,7 @@ namespace cl.uv.leikelen
         }
         #endregion
 
-        public static MainWindow Instance()
-        {
-            return _instance;
-        }
-        
-        private void MainWindow_Closing(object sender, CancelEventArgs e)
-        {
-        }
-
-        #region Other Events
+        #region CheckBox Events
         private void BackgroundEnableCheckBox_Click(object sender, RoutedEventArgs e)
         {
             KinectMediaFacade.Instance.Player.ToggleColorFrameEnable();
@@ -89,6 +235,7 @@ namespace cl.uv.leikelen
         {
             KinectMediaFacade.Instance.Player.ToggleBodyFrameEnable();
         }
+        #endregion
 
         public void TimeLineVerticalScrollsChange(object sender, ScrollChangedEventArgs e)
         {
@@ -115,8 +262,7 @@ namespace cl.uv.leikelen
                 timeLineContentScroll.ScrollToHorizontalOffset(e.HorizontalOffset);
             }
         }
-        #endregion
-
+        
         #region Pending Events edit Persons
         //private void button_EditPerson1_Click(object sender, RoutedEventArgs e)
         //{
@@ -186,58 +332,6 @@ namespace cl.uv.leikelen
                 //person.generateView();
                 //person.View.repaintIntervalGroups();
                 //MainWindow.Instance().timeLineContentGrid.Children.Add(person.View.postureGroupsGrid);
-            }
-        }
-
-        public void InitTimeLine(TimeSpan duration)
-        {
-
-            ColumnDefinition rulerCol, contentCol;
-            TextBlock text;
-
-            TimeSpan frameTime = TimeSpan.FromSeconds(0);
-            int colSpan = 10;
-            for (int colCount = 0; frameTime < duration; colCount++)
-            {
-                rulerCol = new ColumnDefinition();
-                rulerCol.Width = new GridLength(5, GridUnitType.Pixel);
-                MainWindow.Instance().timeRulerGrid.ColumnDefinitions.Add(rulerCol);
-
-                contentCol = new ColumnDefinition();
-                contentCol.Width = new GridLength(5, GridUnitType.Pixel);
-                MainWindow.Instance().timeLineContentGrid.ColumnDefinitions.Add(contentCol);
-
-                if (colCount % colSpan == 0 && colCount != 0)
-                {
-                    text = new TextBlock();
-                    text.Text = "|";
-                    text.HorizontalAlignment = HorizontalAlignment.Left;
-                    Grid.SetRow(text, 0);
-                    Grid.SetColumn(text, colCount);
-                    Grid.SetColumnSpan(text, colSpan);
-                    MainWindow.Instance().timeRulerGrid.Children.Add(text);
-
-                    text = new TextBlock();
-                    text.Text = TimeUtils.TimeSpanToShortString(frameTime);
-                    text.HorizontalAlignment = colCount == 0 ?
-                        HorizontalAlignment.Left : HorizontalAlignment.Center;
-                    Grid.SetRow(text, 1);
-                    int offset = colCount == 0 ? 0 : (colSpan / 2);
-                    Grid.SetColumn(text, colCount - offset);
-                    Grid.SetColumnSpan(text, colSpan);
-                    MainWindow.Instance().timeRulerGrid.Children.Add(text);
-                }
-                else
-                {
-                    text = new TextBlock();
-                    text.Text = "·";
-                    text.HorizontalAlignment = HorizontalAlignment.Left;
-                    Grid.SetRow(text, 0);
-                    Grid.SetColumn(text, colCount);
-                    MainWindow.Instance().timeRulerGrid.Children.Add(text);
-                }
-
-                frameTime = frameTime.Add(TimeSpan.FromMilliseconds(1000.00));
             }
         }
     }

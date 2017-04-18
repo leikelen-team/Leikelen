@@ -66,11 +66,35 @@ namespace cl.uv.leikelen.src.Data.Model.AccessLogic
             return false;
         }
 
-        public static PersonInScene getPersonInSceneByTrackingId(this Scene _instance, ulong trackingPersonId)
+        public static bool isPersonInScene(this Scene _instance, int personId)
+        {
+            foreach (PersonInScene pis in _instance.PersonsInScene)
+            {
+                if (pis.Person.PersonId == personId)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public static PersonInScene getPersonInScene(this Scene _instance, ulong trackingPersonId)
         {
             foreach (PersonInScene pis in _instance.PersonsInScene)
             {
                 if (pis.Person.TrackingId == trackingPersonId)
+                {
+                    return pis;
+                }
+            }
+            return null;
+        }
+
+        public static PersonInScene getPersonInScene(this Scene _instance, int personId)
+        {
+            foreach (PersonInScene pis in _instance.PersonsInScene)
+            {
+                if (pis.Person.PersonId == personId)
                 {
                     return pis;
                 }

@@ -26,7 +26,7 @@ namespace cl.uv.leikelen.src.kinectmedia
 
         public Monitor()
         {
-            Loader.addModules();
+            TMPLoader.addModules();
             Open();
         }
 
@@ -53,7 +53,7 @@ namespace cl.uv.leikelen.src.kinectmedia
             _colorReader.FrameArrived += _colorReader_FrameArrived;
 
             _audioBeamReader = _sensor.AudioSource.OpenReader();
-            foreach(var module in Loader.Modules)
+            foreach(var module in TMPLoader.Modules)
             {
                 if(module.BeforeRecording())
                 {
@@ -84,7 +84,7 @@ namespace cl.uv.leikelen.src.kinectmedia
             _bodyReader.FrameArrived -= _bodyReader_FrameArrived;
             _colorReader.FrameArrived -= _colorReader_FrameArrived;
 
-            foreach (var module in Loader.Modules)
+            foreach (var module in TMPLoader.Modules)
             {
                 if (module.BodyListener() != null)
                 {
@@ -137,12 +137,13 @@ namespace cl.uv.leikelen.src.kinectmedia
                 {
                     
                     ulong trackingId = body.TrackingId;
-                    if (StaticScene.Instance != null && KinectMediaFacade.Instance.Recorder.IsRecording)
+                    if (StaticScene.Instance != null && KinectMediaFacade.Instance.Recorder.IsRecording())
                     {
                         bool personExists = StaticScene.Instance.isPersonInScene(trackingId);
                         if (!personExists && trackingId != 0)
                         {
                             Person person = new Person(
+                                    (int)trackingId,
                                     trackingId,
                                     StaticScene.Instance.numberOfPersons()
                                 );

@@ -16,14 +16,6 @@ namespace cl.uv.leikelen.src.Data.Persistence.MVSFile
         private static readonly string MvsFilter = "Multimodal Visualizer Scene (*.mvs)|*.mvs";
         private static IBackupDataContext dataContext = new SqliteDataContext();
 
-        public static void EnsureDirectoriesHasBeenCreated()
-        {
-            if (!Directory.Exists(Properties.Paths.tmpDirectory)) Directory.CreateDirectory(Properties.Paths.tmpDirectory);
-            if (!Directory.Exists(Properties.Paths.CurrentSceneDirectory)) Directory.CreateDirectory(Properties.Paths.CurrentSceneDirectory);
-            if (!Directory.Exists(Properties.Paths.ImportedSceneDirectory)) Directory.CreateDirectory(Properties.Paths.ImportedSceneDirectory);
-            if (!Directory.Exists(Properties.Paths.RecordedSceneDirectory)) Directory.CreateDirectory(Properties.Paths.RecordedSceneDirectory);
-        }
-
         public static void Import()
         {
             var dlg = new OpenFileDialog()

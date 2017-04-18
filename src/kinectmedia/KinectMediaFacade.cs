@@ -14,7 +14,7 @@ namespace cl.uv.leikelen.src.kinectmedia
         private static KinectMediaFacade _instance;
         private static KinectSensor _sensor;
 
-        public Monitor Monitor;
+        public Monitor Monitor { get; private set; }
         public Recorder Recorder { get; private set; }
         public Player Player { get; private set; }
 

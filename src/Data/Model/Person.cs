@@ -19,8 +19,9 @@ namespace cl.uv.leikelen.src.Data.Model
             this.PersonInScenes = new List<PersonInScene>();
         }
 
-        public Person(ulong trackingId, int listIndex)
+        public Person(int id, ulong trackingId, int listIndex)
         {
+            this.PersonId = id;
             this.TrackingId = trackingId;
             this.ListIndex = listIndex;
             this.PersonInScenes = new List<PersonInScene>();
