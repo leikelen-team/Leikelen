@@ -99,7 +99,7 @@ namespace cl.uv.leikelen
             }
         }
 
-        private void StopButton_Click(object sender, RoutedEventArgs e)
+        private async void StopButton_Click(object sender, RoutedEventArgs e)
         {
             if (_playerState == PlayerState.Playing)
             {
@@ -109,7 +109,7 @@ namespace cl.uv.leikelen
             }
             if(_playerState == PlayerState.Recording)
             {
-                _recorder.Stop();
+                await _recorder.Stop();
                 //_timeLabelTimer.Stop();
                 _playerState = PlayerState.Waiting;
                 foreach (var module in TMPLoader.Modules)

@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Windows;
 using cl.uv.leikelen.src.API;
+using System.Threading.Tasks;
 
 namespace cl.uv.leikelen.src.kinectmedia
 {
@@ -36,7 +37,7 @@ namespace cl.uv.leikelen.src.kinectmedia
             else return null;
         }
 
-        public async void Stop()
+        public async Task Stop()
         {
             if(_recorder != null)
             {

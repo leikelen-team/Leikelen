@@ -9,7 +9,7 @@ namespace cl.uv.leikelen.src.API
     public interface IRecorder
     {
         void Record();
-        void Stop();
+        Task Stop();
         bool IsRecording();
         TimeSpan? getLocation();
     }
