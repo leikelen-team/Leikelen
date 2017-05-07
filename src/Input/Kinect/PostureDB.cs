@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace cl.uv.leikelen.src.Module
+namespace cl.uv.leikelen.src.Input.Kinect
 {
-    public interface IModule
+    public class PostureDB
     {
-        bool BeforeRecording();
-        Action FunctionAfterStop();
     }
 }

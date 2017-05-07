@@ -1,7 +1,7 @@
 ﻿using cl.uv.leikelen.src.Data.Model;
 using cl.uv.leikelen.src.Data.Access;
 using cl.uv.leikelen.src.Data.Model.AccessLogic;
-using cl.uv.leikelen.src.View.Classes;
+using cl.uv.leikelen.src.View.Procedural;
 using System.Windows.Media;
 using System.Collections.Generic;
 
@@ -29,9 +29,9 @@ namespace cl.uv.leikelen.src.Data
 
         public static Dictionary<Person, PersonView> personsView = new Dictionary<Person, PersonView>();
 
-        //TODO: separar esto por tipo, hacerlo bien blabla, interfaz o algo que contenga todo esto.
-        public static IntervalInsert IntervalInsert;
-        public static EventInsert EventInsert;
+        //TODO: separar esto por tipo, hacer una interfaz o algo que contenga todos los accesores a datos.
+        public static IntervalInsert IntervalInsert = new IntervalInsert();
+        public static EventInsert EventInsert = new EventInsert();
 
         public static Scene Instance
         {

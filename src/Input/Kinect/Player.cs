@@ -5,13 +5,11 @@ using KinectEx;
 using KinectEx.DVR;
 using System;
 using System.IO;
-using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using cl.uv.leikelen.src.API;
 
-namespace cl.uv.leikelen.src.kinectmedia
+namespace cl.uv.leikelen.src.Input.Kinect
 {
     public class Player : IPlayer
     {
@@ -25,7 +23,6 @@ namespace cl.uv.leikelen.src.kinectmedia
 
         private bool wasPlayingAtDisable = false;
         private ColorFrameBitmap _colorBitmap = null;
-        private int lastCurrentSecondForTimeLineCursor = 0;
         private ImageSource lastBodyFrame = null;
 
         public event EventHandler Finished;
@@ -65,12 +62,8 @@ namespace cl.uv.leikelen.src.kinectmedia
             {
                 _replay.ColorFrameArrived += _replay_ColorFrameArrived;
             }
-            MainWindow.Instance().sceneDurationLabel.Content = _replay.Duration.ToString(@"hh\:mm\:ss");
+            StaticScene.Instance.Duration = _replay.Duration;
             this.sendToStartLocation();
-            //_replay.Start();
-            //Thread.Sleep(150);
-            //_replay.Stop();
-
         }
 
         public void Close()
@@ -107,6 +100,7 @@ namespace cl.uv.leikelen.src.kinectmedia
                 _replay.Start();
                 wasPlayingAtDisable = false;
             }
+            //TODO: revisar estos enable
             //bodyFrameEnable = true;
             //colorFrameEnable = true;
             viewEnable = true;
@@ -236,30 +230,6 @@ namespace cl.uv.leikelen.src.kinectmedia
                 _locationSetByHand = true;
             }
         }
-
-        /*
-        public void LocationSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            if (_locationSetByHand)
-            {
-                if (_replay != null)
-                    _replay.ScrubTo(TimeSpan.FromMilliseconds((MainWindow.Instance().sceneSlider.Value / 100.0) * _replay.Duration.TotalMilliseconds));
-            }
-            else
-            {
-                _locationSetByHand = true;
-            }
-
-            int currentSecond = (int)_replay.Location.TotalSeconds;
-
-            if (lastCurrentSecondForTimeLineCursor != currentSecond)
-            {
-                Grid.SetColumn(MainWindow.Instance().lineCurrentTimeCursor, currentSecond); // 1seg = 1col
-                Grid.SetColumn(MainWindow.Instance().lineCurrentTimeRulerCursor, currentSecond); // 1seg = 1col
-                lastCurrentSecondForTimeLineCursor = currentSecond;
-            }
-            
-        } */
 
         private void _replay_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {

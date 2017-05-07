@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Kinect;
-using cl.uv.leikelen.src.kinectmedia;
+using cl.uv.leikelen.src.Input.Kinect;
 
 namespace cl.uv.leikelen.src.Module.Distance
 {

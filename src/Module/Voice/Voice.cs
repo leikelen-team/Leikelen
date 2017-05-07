@@ -1,9 +1,10 @@
 ﻿using Microsoft.Kinect;
 using System;
+using cl.uv.leikelen.src.Input.Kinect;
 
 namespace cl.uv.leikelen.src.Module.Voice
 {
-    public class Voice : IModule
+    public class Voice : IModule, IInputKinect
     {
         private VoiceLogic logic;
 

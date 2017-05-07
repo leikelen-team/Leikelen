@@ -17,14 +17,12 @@ using cl.uv.leikelen.src.Data;
 using cl.uv.leikelen.src.Data.Model;
 using cl.uv.leikelen.src.Data.Persistence.MVSFile;
 using cl.uv.leikelen.src.Helper;
-using cl.uv.leikelen.src.kinectmedia;
-using cl.uv.leikelen.src.View.Classes;
+using cl.uv.leikelen.src.Input.Kinect; //TODO: quitar inputs de acá
+using cl.uv.leikelen.src.View.Procedural;
 using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
-using cl.uv.leikelen.src.Module;
-using System.Timers;
 
 namespace cl.uv.leikelen
 {
@@ -32,16 +30,14 @@ namespace cl.uv.leikelen
     /// <summary>
     /// This is the Initial and Main Window
     /// </summary>
-    public partial class MainWindow : Window//, INotifyPropertyChanged
+    public partial class MainWindow : Window
     {
         private static MainWindow _instance;
 
         private PlayerState _playerState;
 
         private IPlayer _player;
-        private IRecorder _recorder;
-
-        private Timer _timeLabelTimer;
+        private RecorderController _recorderController;
 
         /// <summary>
         /// Initializes a new instance of the MainWindow class
@@ -58,7 +54,7 @@ namespace cl.uv.leikelen
             ExportButton.Click += this.Export_Click;
 
             _player = KinectMediaFacade.Instance.Player;
-            _recorder = KinectMediaFacade.Instance.Recorder;
+            _recorderController = new RecorderController();
 
             _player.Finished += PlayerFinished;
             _player.LocationChanged += PlayerChangedLocation;
@@ -83,15 +79,15 @@ namespace cl.uv.leikelen
             {
                 _player.Pause();
                 _playerState = PlayerState.Paused;
-                this.playButton.Content = Properties.Buttons.PausePlaying;
+                this.playButton.Content = Properties.Buttons.StartPlaying;
             }
-            if(_playerState == PlayerState.Paused)
+            else if(_playerState == PlayerState.Paused)
             {
                 _player.Unpause();
                 _playerState = PlayerState.Playing;
-                this.playButton.Content = Properties.Buttons.StartPlaying;
+                this.playButton.Content = Properties.Buttons.PausePlaying;
             }
-            if(_playerState == PlayerState.Waiting)
+            else if(_playerState == PlayerState.Waiting)
             {
                 _player.Play();
                 _playerState = PlayerState.Playing;
@@ -107,18 +103,10 @@ namespace cl.uv.leikelen
                 _playerState = PlayerState.Waiting;
                 this.playButton.Content = Properties.Buttons.StartPlaying;
             }
-            if(_playerState == PlayerState.Recording)
+            else if(_playerState == PlayerState.Recording)
             {
-                await _recorder.Stop();
-                //_timeLabelTimer.Stop();
+                await _recorderController.Stop();
                 _playerState = PlayerState.Waiting;
-                foreach (var module in TMPLoader.Modules)
-                {
-                    if (module.FunctionAfterStop() != null)
-                    {
-                        module.FunctionAfterStop();
-                    }
-                }
                 
                 foreach (var personInScene in StaticScene.Instance.PersonsInScene)
                 {
@@ -137,7 +125,7 @@ namespace cl.uv.leikelen
             }
         }
 
-        private void RecordButton_Click(object sender, RoutedEventArgs e)
+        private async void RecordButton_Click(object sender, RoutedEventArgs e)
         {
             if (_playerState == PlayerState.Waiting)
             {
@@ -153,21 +141,11 @@ namespace cl.uv.leikelen
                         return;
                     }
                 }
-                _recorder.Record();
-                //_timeLabelTimer = new Timer(TimeSpan.FromSeconds(1).TotalMilliseconds);
-                //_timeLabelTimer.Elapsed += _timeLabelTimer_Elapsed;
-                //_timeLabelTimer.Start();
+                await _recorderController.Record();
                 _playerState = PlayerState.Recording;
                 this.SourceComboBox.SelectedIndex = 0;
                 this.recordButton.Background = System.Windows.Media.Brushes.Red;
             }
-        }
-
-        private void _timeLabelTimer_Elapsed(object sender, ElapsedEventArgs e)
-        {
-            Console.WriteLine("timeeer");
-            if (_recorder.getLocation().HasValue)
-                this.sceneCurrentTimeLabel.Content = _recorder.getLocation().Value.ToString(@"hh\:mm\:ss");
         }
 
         public void LocationSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -193,7 +171,10 @@ namespace cl.uv.leikelen
 
         public void PlayerFinished(object sender, EventArgs e)
         {
+            _playerState = PlayerState.Waiting;
             this.playButton.Content = Properties.Buttons.StartPlaying;
+            Grid.SetColumn(this.lineCurrentTimeCursor, 0); // 1seg = 1col
+            Grid.SetColumn(this.lineCurrentTimeRulerCursor, 0); // 1seg = 1col
         }
 
         public void PlayerChangedLocation(object sender, EventArgs e)
@@ -262,44 +243,6 @@ namespace cl.uv.leikelen
                 timeLineContentScroll.ScrollToHorizontalOffset(e.HorizontalOffset);
             }
         }
-        
-        #region Pending Events edit Persons
-        //private void button_EditPerson1_Click(object sender, RoutedEventArgs e)
-        //{
-        //    EditPersonForm editPersonForm = new EditPersonForm(0, ref label_sujeto1);
-        //    editPersonForm.Show();
-        //}
-
-        //private void button_EditPerson2_Click(object sender, RoutedEventArgs e)
-        //{
-        //    EditPersonForm editPersonForm = new EditPersonForm(1, ref label_sujeto2);
-        //    editPersonForm.Show();
-        //}
-
-        //private void button_EditPerson3_Click(object sender, RoutedEventArgs e)
-        //{
-        //    EditPersonForm editPersonForm = new EditPersonForm(2, ref label_sujeto3);
-        //    editPersonForm.Show();
-        //}
-
-        //private void button_EditPerson4_Click(object sender, RoutedEventArgs e)
-        //{
-        //    EditPersonForm editPersonForm = new EditPersonForm(3, ref label_sujeto4);
-        //    editPersonForm.Show();
-        //}
-
-        //private void button_EditPerson5_Click(object sender, RoutedEventArgs e)
-        //{
-        //    EditPersonForm editPersonForm = new EditPersonForm(4, ref label_sujeto5);
-        //    editPersonForm.Show();
-        //}
-
-        //private void button_EditPerson6_Click(object sender, RoutedEventArgs e)
-        //{
-        //    EditPersonForm editPersonForm = new EditPersonForm(5, ref label_sujeto6);
-        //    editPersonForm.Show();
-        //}
-        #endregion
 
         private void Source_ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -329,9 +272,7 @@ namespace cl.uv.leikelen
             {
                 Person person = personInScene.Person;
                 if (!person.HasBeenTracked) continue;
-                //person.generateView();
-                //person.View.repaintIntervalGroups();
-                //MainWindow.Instance().timeLineContentGrid.Children.Add(person.View.postureGroupsGrid);
+                //TODO: acciones al instanciar escena desde archivo (personview, repintar, etc)
             }
         }
     }

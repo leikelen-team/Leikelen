@@ -91,21 +91,17 @@ namespace cl.uv.leikelen.src.Data.Access
             SubModalType intervalSubModal = pis.addModalType(intervalModalTypeName, null).addSubModalType(intervalSubModalTypeName, null, null, DataType.IntervalGroup);
             TimeSpan? start = null, end = null;
             int threshold = millisecondsThreshold;
-            //bool moreThanOneInterval = false;
-            //bool intervalOpen = false;
 
             foreach (var timeEvent in events)
             {
                 if (end == null)
                 {
                     start = timeEvent.EventTime;
-                    //intervalOpen = true;
                 }
                 else if (end.Value.Subtract(start.Value).TotalMilliseconds >= millisecondsThreshold)
                 {
                     intervalSubModal.addInterval(start.Value, end.Value);
                     start = timeEvent.EventTime;
-                    //intervalOpen = true;
                 }
                 end = timeEvent.EventTime;
 

@@ -1,7 +1,7 @@
 ﻿using cl.uv.leikelen.src.Data.Model.AccessLogic;
 using cl.uv.leikelen.src.Data.Persistence.Interface;
 using cl.uv.leikelen.src.Data.Persistence.Sqlite;
-using cl.uv.leikelen.src.kinectmedia;
+using cl.uv.leikelen.src.Input.Kinect;
 using Microsoft.Win32;
 using System;
 using System.IO;

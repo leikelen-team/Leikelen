@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace cl.uv.leikelen.src.KinectMedia
+namespace cl.uv.leikelen.src.Controller
 {
-    public class PostureDB
+    class MonitorController
     {
     }
 }

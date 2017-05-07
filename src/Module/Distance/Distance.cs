@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using cl.uv.leikelen.src.Input.Kinect;
 using Microsoft.Kinect;
 
 namespace cl.uv.leikelen.src.Module.Distance
 {
-    public class Distance : IModule
+    public class Distance : IModule, IInputKinect
     {
         private DistanceLogic logic;
         public Distance()

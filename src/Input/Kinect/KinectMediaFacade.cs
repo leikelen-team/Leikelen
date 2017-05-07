@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace cl.uv.leikelen.src.kinectmedia
+namespace cl.uv.leikelen.src.Input.Kinect
 {
     /// <summary>
     /// Class implementing Facade Design Pattern
@@ -24,7 +24,7 @@ namespace cl.uv.leikelen.src.kinectmedia
         private KinectMediaFacade()
         {
             Monitor = new Monitor();
-            Recorder = new Recorder();
+            Recorder = new Recorder(Sensor);
             Player = new Player();
         }
         

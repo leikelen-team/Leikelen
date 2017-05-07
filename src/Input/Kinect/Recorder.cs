@@ -1,29 +1,22 @@
-﻿//using System.ComponentModel.Composition;
-using cl.uv.leikelen.src.Data;
-//using cl.uv.leikelen.src.Data.Model;
-using cl.uv.leikelen.src.Data.Model.AccessLogic;
+﻿using cl.uv.leikelen.src.Data;
 using KinectEx.DVR;
 using Microsoft.Kinect;
 using System;
-using cl.uv.leikelen.src.Module;
-using cl.uv.leikelen.src.View.Procedural;
 using System.Collections.Generic;
 using System.IO;
-using System.Windows;
 using cl.uv.leikelen.src.API;
 using System.Threading.Tasks;
 
-namespace cl.uv.leikelen.src.kinectmedia
+namespace cl.uv.leikelen.src.Input.Kinect
 {
     public class Recorder : IRecorder
     {
         private KinectSensor _sensor;
         private KinectRecorder _recorder = null;
 
-        public Recorder()
+        public Recorder(KinectSensor sensor)
         {
-            this._sensor = KinectMediaFacade.Sensor;
-            //StaticScene.Instance.RecordStartDate = DateTime.Now;
+            this._sensor = sensor;
         }
 
         public bool IsRecording()
@@ -45,18 +38,13 @@ namespace cl.uv.leikelen.src.kinectmedia
                 _recorder = null;
                 
                 KinectMediaFacade.Instance.Player.OpenFile(Properties.Paths.CurrentKdvrFile);
-
-                StaticScene.Instance.Duration = KinectMediaFacade.Instance.Player.Duration;
-                TimeLine.InitTimeLine(StaticScene.Instance.Duration);
-                
             }
         }
 
-        public void Record()
+        public async Task Record()
         {
             if (_recorder == null)
             {
-                
                 if (KinectMediaFacade.Instance.Player.IsOpen) KinectMediaFacade.Instance.Player.Close();
                 if (File.Exists(Properties.Paths.CurrentKdvrFile)) File.Delete(Properties.Paths.CurrentKdvrFile);
                 if (File.Exists(Properties.Paths.CurrentDataFile)) File.Delete(Properties.Paths.CurrentDataFile);
@@ -77,7 +65,6 @@ namespace cl.uv.leikelen.src.kinectmedia
                 StaticScene.CreateSceneFromRecord(sceneName);
                     
                 _recorder.Start();
-                    
             }
         }
     }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace cl.uv.leikelen.src.Module
 {
-    public static class TMPLoader
+    public static class Loader
     {
         public static List<IModule> Modules = new List<IModule>();
 

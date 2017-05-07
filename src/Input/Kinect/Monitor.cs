@@ -9,7 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Media;
 
-namespace cl.uv.leikelen.src.kinectmedia
+namespace cl.uv.leikelen.src.Input.Kinect
 {
     public class Monitor
     {
@@ -26,7 +26,7 @@ namespace cl.uv.leikelen.src.kinectmedia
 
         public Monitor()
         {
-            TMPLoader.addModules();
+            Loader.addModules();
             Open();
         }
 
@@ -53,23 +53,27 @@ namespace cl.uv.leikelen.src.kinectmedia
             _colorReader.FrameArrived += _colorReader_FrameArrived;
 
             _audioBeamReader = _sensor.AudioSource.OpenReader();
-            foreach(var module in TMPLoader.Modules)
+            foreach(var module in Loader.Modules)
             {
                 if(module.BeforeRecording())
                 {
-                    if (module.BodyListener() != null)
+                    IInputKinect kinectModule = module as IInputKinect;
+                    if(kinectModule != null)
                     {
-                        _bodyReader.FrameArrived += module.BodyListener();
-                    }
+                        if (kinectModule.BodyListener() != null)
+                        {
+                            _bodyReader.FrameArrived += kinectModule.BodyListener();
+                        }
 
-                    if (module.ColorListener() != null)
-                    {
-                        _colorReader.FrameArrived += module.ColorListener();
-                    }
+                        if (kinectModule.ColorListener() != null)
+                        {
+                            _colorReader.FrameArrived += kinectModule.ColorListener();
+                        }
 
-                    if (module.AudioListener() != null)
-                    {
-                        _audioBeamReader.FrameArrived += module.AudioListener();
+                        if (kinectModule.AudioListener() != null)
+                        {
+                            _audioBeamReader.FrameArrived += kinectModule.AudioListener();
+                        }
                     }
                 }
             }
@@ -84,21 +88,25 @@ namespace cl.uv.leikelen.src.kinectmedia
             _bodyReader.FrameArrived -= _bodyReader_FrameArrived;
             _colorReader.FrameArrived -= _colorReader_FrameArrived;
 
-            foreach (var module in TMPLoader.Modules)
+            foreach (object module in Loader.Modules)
             {
-                if (module.BodyListener() != null)
+                IInputKinect kinectModule = module as IInputKinect;
+                if (kinectModule != null)
                 {
-                    _bodyReader.FrameArrived -= module.BodyListener();
-                }
+                    if (kinectModule.BodyListener() != null)
+                    {
+                        _bodyReader.FrameArrived -= kinectModule.BodyListener();
+                    }
 
-                if (module.ColorListener() != null)
-                {
-                    _colorReader.FrameArrived -= module.ColorListener();
-                }
+                    if (kinectModule.ColorListener() != null)
+                    {
+                        _colorReader.FrameArrived -= kinectModule.ColorListener();
+                    }
 
-                if (module.AudioListener() != null)
-                {
-                    _audioBeamReader.FrameArrived -= module.AudioListener();
+                    if (kinectModule.AudioListener() != null)
+                    {
+                        _audioBeamReader.FrameArrived -= kinectModule.AudioListener();
+                    }
                 }
             }
 

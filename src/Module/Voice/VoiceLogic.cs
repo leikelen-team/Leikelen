@@ -5,9 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using cl.uv.leikelen.src.Data;
 using cl.uv.leikelen.src.Data.Access;
-using cl.uv.leikelen.src.Data.Model;
 using cl.uv.leikelen.src.Data.Model.AccessLogic;
-using cl.uv.leikelen.src.kinectmedia;
+using cl.uv.leikelen.src.Input.Kinect;
 using Microsoft.Kinect;
 
 namespace cl.uv.leikelen.src.Module.Voice
@@ -37,7 +36,7 @@ namespace cl.uv.leikelen.src.Module.Voice
                     foreach (var audioBodyCorrelation in subFrame.AudioBodyCorrelations)
                     {
                         long bodyTrackingId = (long)audioBodyCorrelation.BodyTrackingId;
-                        //Console.WriteLine("Tiempo: {0}, Llegó Voz de {1}", DateTime.Now, audioBodyCorrelation.BodyTrackingId);
+                        Console.WriteLine("Tiempo: {0}, Llegó Voz de {1}", DateTime.Now, audioBodyCorrelation.BodyTrackingId);
                         if (StaticScene.Instance.isPersonInScene(audioBodyCorrelation.BodyTrackingId))
                         {
                             personsId.Add((int)audioBodyCorrelation.BodyTrackingId);

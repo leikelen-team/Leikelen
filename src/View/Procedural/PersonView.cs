@@ -10,7 +10,7 @@ using cl.uv.leikelen.src.Data;
 using cl.uv.leikelen.src.Data.Model;
 using cl.uv.leikelen.src.Data.Model.AccessLogic;
 
-namespace cl.uv.leikelen.src.View.Classes
+namespace cl.uv.leikelen.src.View.Procedural
 {
     public class PersonView
     {
@@ -55,12 +55,6 @@ namespace cl.uv.leikelen.src.View.Classes
             postureGroupsGrid.Margin = new Thickness(0, 6, 0, 0);
 
             List<Tuple<ModalType, SubModalType>> posturesDetectedInPerson = new List<Tuple<ModalType, SubModalType>>();
-
-            /* foreach (var group in Person.PostureIntervalGroups)
-            {
-                if (!posturesDetectedInPerson.Contains(group.PostureType))
-                    posturesDetectedInPerson.Add(group.PostureType);
-            } */
 
             foreach(var type in this.personInScene.ModalTypes)
             {
@@ -186,8 +180,6 @@ namespace cl.uv.leikelen.src.View.Classes
             verticalScrollSyncGrid.RowDefinitions.Add(verticalScrollSyncRowDef);
         }
 
-
-
         public void repaintIntervalGroups()
         {
             if (!combosGenerated) this.generateCombos();
@@ -208,7 +200,6 @@ namespace cl.uv.leikelen.src.View.Classes
 
             // CLEAR ROW OF INTERVAL GROUP
             int rowDefIndex = postureGroupsGrid.RowDefinitions.IndexOf(rowDef);
-            //foreach (UIElement path in postureGroupsGrid.Children)
             for (int i = postureGroupsGrid.Children.Count - 1; i >= 0; i--)
             {
                 if (Grid.GetRow(postureGroupsGrid.Children[i]) == rowDefIndex)
