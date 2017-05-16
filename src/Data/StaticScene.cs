@@ -1,7 +1,7 @@
 ﻿using cl.uv.leikelen.src.Data.Model;
 using cl.uv.leikelen.src.Data.Access;
 using cl.uv.leikelen.src.Data.Model.AccessLogic;
-using cl.uv.leikelen.src.View.Procedural;
+using cl.uv.leikelen.src.View.Widget;
 using System.Windows.Media;
 using System.Collections.Generic;
 

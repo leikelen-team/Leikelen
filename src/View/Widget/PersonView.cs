@@ -9,8 +9,9 @@ using System.Windows.Media;
 using cl.uv.leikelen.src.Data;
 using cl.uv.leikelen.src.Data.Model;
 using cl.uv.leikelen.src.Data.Model.AccessLogic;
+using cl.uv.leikelen.src.View.CoreWindow; //TODO: si mainwindow añade esto, y personview usa mainwindow hay interdependencia.
 
-namespace cl.uv.leikelen.src.View.Procedural
+namespace cl.uv.leikelen.src.View.Widget
 {
     public class PersonView
     {
@@ -38,7 +39,7 @@ namespace cl.uv.leikelen.src.View.Procedural
 
         private void generateCombos()
         {
-            int maxVisiblePostureTypes = Convert.ToInt32(Properties.Resources.MaxPostureIntervalGroupViewPerUser);
+            int maxVisiblePostureTypes = Convert.ToInt32(Properties.Resources.maxIntervalGroupsInViewPerPerson);
 
             visiblePostures = new List<Tuple<Tuple<ModalType, SubModalType>, ComboBox, RowDefinition>>();
 

@@ -1,64 +1,76 @@
-﻿//using System.ComponentModel.Composition;
-using cl.uv.leikelen.src.Data;
-using cl.uv.leikelen.src.Data.Model;
-using cl.uv.leikelen.src.Data.Model.AccessLogic;
-using cl.uv.leikelen.src.Module;
-using KinectEx;
-using Microsoft.Kinect;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Windows.Media;
+using System.Linq;
+using System.Text;
+using System.IO;
+using System.Threading.Tasks;
+using cl.uv.leikelen.src.API.Input;
+using cl.uv.leikelen.src.Module;
+using Microsoft.Kinect;
+using KinectEx.DVR;
+
 
 namespace cl.uv.leikelen.src.Input.Kinect
 {
-    public class Monitor
+    public class Monitor : IMonitor
     {
-        KinectSensor _sensor = null;
-        BodyFrameReader _bodyReader = null;
-        ColorFrameReader _colorReader = null;
-        AudioBeamFrameReader _audioBeamReader = null;
+        public event EventHandler StatusChanged;
 
-        ColorFrameBitmap _colorBitmap;
-        List<CustomBody> _bodies = null;
+        //Kinect related attributes
+        private KinectSensor _sensor;
+        private KinectRecorder _recorder;
 
-        bool _bodyFrameEnable = true;
-        bool _colorFrameEnable = true;
+        //Kinect Frames
+        private BodyFrameReader _bodyReader = null;
+        private ColorFrameReader _colorReader = null;
+        private AudioBeamFrameReader _audioBeamReader = null;
+
+        public SkeletonColorVideoViewer videoViewer;
 
         public Monitor()
         {
-            Loader.addModules();
-            Open();
+            videoViewer = new SkeletonColorVideoViewer();
         }
 
-        public bool IsOpen
+        public InputStatus getStatus()
         {
-            get
+            if (Sensor == null)
             {
-                return _colorReader != null;
+                return InputStatus.Unconnected;
+            }
+            else if (Sensor.IsOpen)
+            {
+                return InputStatus.Connected;
+            }
+            else
+            {
+                return InputStatus.Error;
             }
         }
 
-        public void Open()
+        public bool IsRecording()
         {
-            _colorBitmap = new ColorFrameBitmap();
+            return _recorder != null;
+        }
 
-            this._sensor = KinectMediaFacade.Sensor;
-            _bodies = new List<CustomBody>();
+        /// <summary>
+        /// Open Kinect Sensor
+        /// </summary>
+        /// <returns>Task</returns>
+        public async Task Open()
+        {
+            _bodyReader = Sensor.BodyFrameSource.OpenReader();
+            _bodyReader.FrameArrived += videoViewer._bodyReader_FrameArrived;
+            _colorReader = Sensor.ColorFrameSource.OpenReader();
+            _colorReader.FrameArrived += videoViewer._colorReader_FrameArrived;
+            _audioBeamReader = Sensor.AudioSource.OpenReader();
 
-            _bodyReader = _sensor.BodyFrameSource.OpenReader();
-            
-            _bodyReader.FrameArrived += _bodyReader_FrameArrived;
-
-            _colorReader = _sensor.ColorFrameSource.OpenReader();
-            _colorReader.FrameArrived += _colorReader_FrameArrived;
-
-            _audioBeamReader = _sensor.AudioSource.OpenReader();
-            foreach(var module in Loader.Modules)
+            foreach (var module in ModuleLoader.Instance.Modules)
             {
-                if(module.BeforeRecording())
+                if (module.BeforeRecording())
                 {
-                    IInputKinect kinectModule = module as IInputKinect;
-                    if(kinectModule != null)
+                    IKinectModule kinectModule = module as IKinectModule;
+                    if (kinectModule != null)
                     {
                         if (kinectModule.BodyListener() != null)
                         {
@@ -77,20 +89,17 @@ namespace cl.uv.leikelen.src.Input.Kinect
                     }
                 }
             }
-
-            MainWindow.Instance().colorImageControl.Source = _colorBitmap.Bitmap;
         }
 
-        public void Close()
+        /// <summary>
+        /// Close Kinect Sensor
+        /// </summary>
+        /// <returns></returns>
+        public async Task Close()
         {
-            _bodies = new List<CustomBody>();
-
-            _bodyReader.FrameArrived -= _bodyReader_FrameArrived;
-            _colorReader.FrameArrived -= _colorReader_FrameArrived;
-
-            foreach (object module in Loader.Modules)
+            foreach (var module in ModuleLoader.Instance.Modules)
             {
-                IInputKinect kinectModule = module as IInputKinect;
+                IKinectModule kinectModule = module as IKinectModule;
                 if (kinectModule != null)
                 {
                     if (kinectModule.BodyListener() != null)
@@ -112,74 +121,112 @@ namespace cl.uv.leikelen.src.Input.Kinect
 
             _bodyReader.Dispose();
             _colorReader.Dispose();
+            _audioBeamReader.Dispose();
 
             _bodyReader = null;
             _colorReader = null;
+            _audioBeamReader = null;
 
-            MainWindow.Instance().colorImageControl.Source = null;
-            MainWindow.Instance().bodyImageControl.Source = null;
+            Sensor.Close();
 
-            _colorBitmap = null;
-
-            this._sensor.Close();
+            
         }
 
-
-        private void _bodyReader_FrameArrived(object sender, BodyFrameArrivedEventArgs e)
+        public async Task StartRecording()
         {
-            if (!_bodyFrameEnable) return;
-            IEnumerable<IBody> bodies = null; // to make the GetBitmap call a little cleaner
-            using (var frame = e.FrameReference.AcquireFrame())
+            if (_recorder == null)
             {
-                if (frame != null)
-                {
-                    frame.GetAndRefreshBodyData(_bodies);
-                    bodies = _bodies;
-                }
-            }
+                if (File.Exists(Properties.Paths.CurrentKdvrFile)) File.Delete(Properties.Paths.CurrentKdvrFile);
+                if (File.Exists(Properties.Paths.CurrentDataFile)) File.Delete(Properties.Paths.CurrentDataFile);
 
-            if (bodies != null)
-            {
-                int i = 0;
-                foreach (IBody body in bodies)
+                _recorder = new KinectRecorder(File.Open(Properties.Paths.CurrentKdvrFile, FileMode.Create), Sensor);
+                _recorder.EnableBodyRecorder = true;
+                _recorder.EnableColorRecorder = true;
+                _recorder.EnableDepthRecorder = false;
+                _recorder.EnableInfraredRecorder = false;
+
+                _recorder.ColorRecorderCodec = new JpegColorCodec();
+                _recorder.ColorRecorderCodec.OutputWidth = 1280;
+                _recorder.ColorRecorderCodec.OutputHeight = 720;
+
+                _recorder.Start();
+
+                foreach (var module in ModuleLoader.Instance.Modules)
                 {
-                    
-                    ulong trackingId = body.TrackingId;
-                    if (StaticScene.Instance != null && KinectMediaFacade.Instance.Recorder.IsRecording())
+                    if (!module.BeforeRecording())
                     {
-                        bool personExists = StaticScene.Instance.isPersonInScene(trackingId);
-                        if (!personExists && trackingId != 0)
+                        IKinectModule kinectModule = module as IKinectModule;
+                        if (kinectModule != null)
                         {
-                            Person person = new Person(
-                                    (int)trackingId,
-                                    trackingId,
-                                    StaticScene.Instance.numberOfPersons()
-                                );
-                            StaticScene.Instance.addPerson(person);
+                            if (kinectModule.BodyListener() != null)
+                            {
+                                _bodyReader.FrameArrived += kinectModule.BodyListener();
+                            }
+
+                            if (kinectModule.ColorListener() != null)
+                            {
+                                _colorReader.FrameArrived += kinectModule.ColorListener();
+                            }
+
+                            if (kinectModule.AudioListener() != null)
+                            {
+                                _audioBeamReader.FrameArrived += kinectModule.AudioListener();
+                            }
                         }
                     }
-                    i++;
                 }
-
-                bodies.MapDepthPositions();
-
-                MainWindow.Instance().bodyImageControl.Source = bodies.GetBitmap(Colors.LightGreen, Colors.Yellow);
-                
-                
-            }
-            else
-            {
-                MainWindow.Instance().bodyImageControl.Source = null;
             }
         }
 
-        private void _colorReader_FrameArrived(object sender, ColorFrameArrivedEventArgs e)
+        public async Task StopRecording()
         {
-            if (!_colorFrameEnable) return;
+            if (_recorder != null)
+            {
+                await _recorder.StopAsync();
+                _recorder = null;
+            }
 
-            _colorBitmap.Update(e.FrameReference);
-            MainWindow.Instance().colorImageControl.Source = _colorBitmap.Bitmap;
+
+            foreach (var module in ModuleLoader.Instance.Modules)
+            {
+                if (!module.BeforeRecording())
+                {
+                    IKinectModule kinectModule = module as IKinectModule;
+                    if (kinectModule != null)
+                    {
+                        if (kinectModule.BodyListener() != null)
+                        {
+                            _bodyReader.FrameArrived -= kinectModule.BodyListener();
+                        }
+
+                        if (kinectModule.ColorListener() != null)
+                        {
+                            _colorReader.FrameArrived -= kinectModule.ColorListener();
+                        }
+
+                        if (kinectModule.AudioListener() != null)
+                        {
+                            _audioBeamReader.FrameArrived -= kinectModule.AudioListener();
+                        }
+                    }
+                }
+            }
         }
 
+        /// <summary>
+        /// Kinect Sensor Object Instance
+        /// </summary>
+        public KinectSensor Sensor
+        {
+            get
+            {
+                if (_sensor == null || !_sensor.IsOpen)
+                {
+                    _sensor = KinectSensor.GetDefault();
+                    _sensor.Open();
+                }
+                return _sensor;
+            }
+        }
     }
 }

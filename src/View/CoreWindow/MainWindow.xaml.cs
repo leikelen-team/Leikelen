@@ -12,19 +12,19 @@
 //----------------------------------------------------------------------------------------------------
 
 using cl.uv.leikelen.src.Controller;
-using cl.uv.leikelen.src.API;
+using cl.uv.leikelen.src.API.Input;
 using cl.uv.leikelen.src.Data;
 using cl.uv.leikelen.src.Data.Model;
 using cl.uv.leikelen.src.Data.Persistence.MVSFile;
 using cl.uv.leikelen.src.Helper;
 using cl.uv.leikelen.src.Input.Kinect; //TODO: quitar inputs de acá
-using cl.uv.leikelen.src.View.Procedural;
+using cl.uv.leikelen.src.View.Widget;
 using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace cl.uv.leikelen
+namespace cl.uv.leikelen.src.View.CoreWindow
 {
 
     /// <summary>
@@ -70,7 +70,26 @@ namespace cl.uv.leikelen
             BackgroundEnableCheckBox.IsEnabled = false;
             SkeletonsEnableCheckBox.IsEnabled = false;
 
-            
+            Input.InputLoader.Instance.videoViewer.colorImageArrived += VideoViewer_colorImageArrived;
+            Input.InputLoader.Instance.videoViewer.skeletonImageArrived += VideoViewer_skeletonImageArrived;
+
+            setFromSensor();
+        }
+
+        private void VideoViewer_skeletonImageArrived(object sender, System.Windows.Media.ImageSource e)
+        {
+            if (SkeletonsEnableCheckBox.IsChecked)
+            {
+                bodyImageControl.Source = e;
+            }
+        }
+
+        private void VideoViewer_colorImageArrived(object sender, System.Windows.Media.ImageSource e)
+        {
+            if (BackgroundEnableCheckBox.IsChecked)
+            {
+                colorImageControl.Source = e;
+            }
         }
 
         private void PlayPauseButton_Click(object sender, RoutedEventArgs e)
@@ -97,7 +116,7 @@ namespace cl.uv.leikelen
 
         private async void StopButton_Click(object sender, RoutedEventArgs e)
         {
-            if (_playerState == PlayerState.Playing)
+            if (_playerState == PlayerState.Playing || _playerState == PlayerState.Paused)
             {
                 _player.Stop();
                 _playerState = PlayerState.Waiting;
@@ -106,6 +125,8 @@ namespace cl.uv.leikelen
             else if(_playerState == PlayerState.Recording)
             {
                 await _recorderController.Stop();
+                _player.OpenFile(Properties.Paths.CurrentKdvrFile);
+                TimeLine.InitTimeLine(StaticScene.Instance.Duration);
                 _playerState = PlayerState.Waiting;
                 
                 foreach (var personInScene in StaticScene.Instance.PersonsInScene)
@@ -199,6 +220,7 @@ namespace cl.uv.leikelen
         public void Import_Click(object sender, RoutedEventArgs e)
         {
             MVSFileManager.Import();
+            SourceComboBox.SelectedIndex = 1;
         }
 
         public void Export_Click(object sender, RoutedEventArgs e)
@@ -251,29 +273,32 @@ namespace cl.uv.leikelen
             switch (indexSelected)
             {
                 case 0:
-                    MediaView.SetFromSensor();
+                    setFromSensor();
                     break;
                 case 1:
-                    MediaView.SetFromScene();
+                    setFromFile();
                     break;
                 default:
                     break;
             }
         }
 
+        private void setFromSensor()
+        {
+            MediaController.Instance.SetFromSensor();
+            BackgroundEnableCheckBox.IsEnabled = false;
+            SkeletonsEnableCheckBox.IsEnabled = false;
+        }
+
+        private void setFromFile()
+        {
+            MediaController.Instance.SetFromScene();
+            BackgroundEnableCheckBox.IsEnabled = true;
+            SkeletonsEnableCheckBox.IsEnabled = true;
+        }
         private void sceneAdmin_Click(object sender, RoutedEventArgs e)
         {
             
-        }
-
-        public void InstanciateFromScene()
-        {
-            foreach (PersonInScene personInScene in StaticScene.Instance.PersonsInScene)
-            {
-                Person person = personInScene.Person;
-                if (!person.HasBeenTracked) continue;
-                //TODO: acciones al instanciar escena desde archivo (personview, repintar, etc)
-            }
         }
     }
 }

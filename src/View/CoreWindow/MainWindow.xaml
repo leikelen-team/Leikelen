@@ -1,12 +1,10 @@
 ﻿<!--<mui:ModernWindow x:Class="cl.uv.leikelen.MainWindow"-->
 <!--xmlns:mui="http://firstfloorsoftware.com/ModernUI"-->
 
-<Window x:Class="cl.uv.leikelen.MainWindow"
+<Window x:Class="cl.uv.leikelen.src.View.CoreWindow.MainWindow"
         
-
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:local="clr-namespace:cl.uv.leikelen"
         Title="Multimodal Visualizer"
         Height="650" Width="750"
         Closing="MainWindow_Closing" WindowStartupLocation="CenterScreen">

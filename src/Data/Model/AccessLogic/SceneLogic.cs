@@ -24,7 +24,6 @@ namespace cl.uv.leikelen.src.Data.Model.AccessLogic
             if (!dataContext.isConnected()) dataContext.CreateConnection(optionString);
             _instance = dataContext.LoadScene();
             _instance.Status = SceneStatus.Imported;
-            MainWindow.Instance().InstanciateFromScene();
         }
 
         public static void ClearScene()

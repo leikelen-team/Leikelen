@@ -3,31 +3,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using cl.uv.leikelen.src.API;
 using cl.uv.leikelen.src.Module;
-using cl.uv.leikelen.src.Input.Kinect; //TODO: generalizar inputs
-using cl.uv.leikelen.src.View.Procedural;
+using cl.uv.leikelen.src.Input;
+using cl.uv.leikelen.src.View.Widget;
 using cl.uv.leikelen.src.Data;
 
 namespace cl.uv.leikelen.src.Controller
 {
     public class RecorderController
     {
-        private List<IRecorder> _recorders;
-
-        public RecorderController()
+        public bool IsRecording = false;
+        public TimeSpan? getLocation()
         {
-            _recorders = new List<IRecorder>();
-            _recorders.Add(KinectMediaFacade.Instance.Recorder);
+            if (IsRecording) return DateTime.Now.Subtract(StaticScene.Instance.RecordStartDate);
+            else return null;
         }
-
         public async Task Stop()
         {
-            foreach(var recorder in _recorders)
+            IsRecording = false;
+            foreach (var input in InputLoader.Instance.Inputs)
             {
-                await recorder.Stop();
+                await input.Monitor.StopRecording();
             }
-            foreach (var module in Loader.Modules)
+            foreach (var module in ModuleLoader.Instance.Modules)
             {
                 if (module.FunctionAfterStop() != null)
                 {
@@ -35,15 +33,19 @@ namespace cl.uv.leikelen.src.Controller
                 }
             }
 
-            TimeLine.InitTimeLine(StaticScene.Instance.Duration);
+
+            
         }
 
         public async Task Record()
         {
-            foreach (var recorder in _recorders)
+            IsRecording = true;
+            foreach (var input in InputLoader.Instance.Inputs)
             {
-                await recorder.Record();
+                await input.Monitor.StartRecording();
             }
+            string sceneName = DateTime.Now.ToString("yyyy-MM-dd _ hh-mm-ss");
+            StaticScene.CreateSceneFromRecord(sceneName);
         }
     }
 }

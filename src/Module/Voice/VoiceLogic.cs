@@ -40,7 +40,7 @@ namespace cl.uv.leikelen.src.Module.Voice
                         if (StaticScene.Instance.isPersonInScene(audioBodyCorrelation.BodyTrackingId))
                         {
                             personsId.Add((int)audioBodyCorrelation.BodyTrackingId);
-                            StaticScene.EventInsert.AddEvent((int)audioBodyCorrelation.BodyTrackingId, "Voice", "Talked", KinectMediaFacade.Instance.Recorder.getLocation().Value, true);
+                            StaticScene.EventInsert.AddEvent((int)audioBodyCorrelation.BodyTrackingId, "Voice", "Talked", new TimeSpan(DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second), true);
                             //PersonInScene pis = StaticScene.Instance.getPersonInSceneByTrackingId(audioBodyCorrelation.BodyTrackingId);
                             //pis.getModalType("Voice").getSubModalTypeByName("Talked").addEventData(KinectMediaFacade.Instance.Recorder.getLocation().Value);
                             //TODO: Crear clase accesora y creadora de datos

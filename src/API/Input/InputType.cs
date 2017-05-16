@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace cl.uv.leikelen.src.Controller
+namespace cl.uv.leikelen.src.API.Input
 {
-    class MonitorController
+    public struct InputType
     {
+        public IMonitor Monitor;
+        public IPlayer Player;
     }
 }

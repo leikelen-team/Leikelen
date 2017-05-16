@@ -99,9 +99,9 @@ namespace cl.uv.leikelen.Properties {
         /// <summary>
         ///   Busca una cadena traducida similar a 3.
         /// </summary>
-        public static string MaxPostureIntervalGroupViewPerUser {
+        public static string maxIntervalGroupsInViewPerPerson {
             get {
-                return ResourceManager.GetString("MaxPostureIntervalGroupViewPerUser", resourceCulture);
+                return ResourceManager.GetString("maxIntervalGroupsInViewPerPerson", resourceCulture);
             }
         }
         

@@ -22,16 +22,5 @@ namespace cl.uv.leikelen.Properties {
                 return defaultInstance;
             }
         }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("data source=\"C:\\Users\\elrod_000\\Documents\\Rodo\\Develop\\Projects\\Visualizador Mult" +
-            "imodal\\SourceCode\\bin\\x64\\Debug\\app_sqlite.db\"")]
-        public string app_sqliteConnectionString {
-            get {
-                return ((string)(this["app_sqliteConnectionString"]));
-            }
-        }
     }
 }

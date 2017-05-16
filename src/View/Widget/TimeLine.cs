@@ -2,8 +2,9 @@
 using System.Windows;
 using System.Windows.Controls;
 using cl.uv.leikelen.src.Helper;
+using cl.uv.leikelen.src.View.CoreWindow; //TODO: eliminar interdependencia
 
-namespace cl.uv.leikelen.src.View.Procedural
+namespace cl.uv.leikelen.src.View.Widget
 {
     public static class TimeLine
     {

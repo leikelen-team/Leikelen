@@ -7,7 +7,7 @@ using Microsoft.Kinect;
 
 namespace cl.uv.leikelen.src.Input.Kinect
 {
-    interface IInputKinect
+    interface IKinectModule
     {
         EventHandler<BodyFrameArrivedEventArgs> BodyListener();
         EventHandler<ColorFrameArrivedEventArgs> ColorListener();

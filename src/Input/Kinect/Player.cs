@@ -1,13 +1,14 @@
 ﻿using cl.uv.leikelen.src.Data;
 using cl.uv.leikelen.src.Data.Model;
 using cl.uv.leikelen.src.Data.Model.AccessLogic;
+using cl.uv.leikelen.src.View.CoreWindow; //TODO: quitar mainwindow de player
 using KinectEx;
 using KinectEx.DVR;
 using System;
 using System.IO;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using cl.uv.leikelen.src.API;
+using cl.uv.leikelen.src.API.Input;
 
 namespace cl.uv.leikelen.src.Input.Kinect
 {
@@ -100,7 +101,7 @@ namespace cl.uv.leikelen.src.Input.Kinect
                 _replay.Start();
                 wasPlayingAtDisable = false;
             }
-            //TODO: revisar estos enable
+            //TODO: hacer funcionar los color y body frame sólo si están habilitados
             //bodyFrameEnable = true;
             //colorFrameEnable = true;
             viewEnable = true;

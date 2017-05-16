@@ -14,8 +14,6 @@ namespace cl.uv.leikelen.src.Input.Kinect
         private static KinectMediaFacade _instance;
         private static KinectSensor _sensor;
 
-        public Monitor Monitor { get; private set; }
-        public Recorder Recorder { get; private set; }
         public Player Player { get; private set; }
 
         /// <summary>
@@ -23,8 +21,6 @@ namespace cl.uv.leikelen.src.Input.Kinect
         /// </summary>
         private KinectMediaFacade()
         {
-            Monitor = new Monitor();
-            Recorder = new Recorder(Sensor);
             Player = new Player();
         }
         

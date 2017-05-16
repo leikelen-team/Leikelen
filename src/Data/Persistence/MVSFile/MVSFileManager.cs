@@ -33,7 +33,6 @@ namespace cl.uv.leikelen.src.Data.Persistence.MVSFile
                 ZipFile.ExtractToDirectory(dlg.FileName, Properties.Paths.CurrentSceneDirectory);
                 KinectMediaFacade.Instance.Player.OpenFile(Properties.Paths.CurrentKdvrFile);
                 StaticScene.Instance.CreateFromDbContext(dataContext, "Filename=" + Properties.Paths.CurrentDataFile);
-                MainWindow.Instance().SourceComboBox.SelectedIndex = 1;
             }
         }
 
