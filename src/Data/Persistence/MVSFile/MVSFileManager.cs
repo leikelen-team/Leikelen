@@ -28,11 +28,11 @@ namespace cl.uv.leikelen.src.Data.Persistence.MVSFile
             if (dlg.ShowDialog().GetValueOrDefault())
             {
                 KinectMediaFacade.Instance.Player.Close();
-                if (File.Exists(Properties.Paths.CurrentKdvrFile)) File.Delete(Properties.Paths.CurrentKdvrFile);
-                if (File.Exists(Properties.Paths.CurrentDataFile)) File.Delete(Properties.Paths.CurrentDataFile);
-                ZipFile.ExtractToDirectory(dlg.FileName, Properties.Paths.CurrentSceneDirectory);
-                KinectMediaFacade.Instance.Player.OpenFile(Properties.Paths.CurrentKdvrFile);
-                StaticScene.Instance.CreateFromDbContext(dataContext, "Filename=" + Properties.Paths.CurrentDataFile);
+                if (File.Exists(CoreSettings.Instance.currentKdvrFile)) File.Delete(CoreSettings.Instance.currentKdvrFile);
+                if (File.Exists(CoreSettings.Instance.currentDataFile)) File.Delete(CoreSettings.Instance.currentDataFile);
+                ZipFile.ExtractToDirectory(dlg.FileName, CoreSettings.Instance.currentSceneDirectory);
+                KinectMediaFacade.Instance.Player.OpenFile(CoreSettings.Instance.currentKdvrFile);
+                StaticScene.Instance.CreateFromDbContext(dataContext, "Filename=" + CoreSettings.Instance.currentDataFile);
             }
         }
 
@@ -68,11 +68,11 @@ namespace cl.uv.leikelen.src.Data.Persistence.MVSFile
                 }
 
                 dataContext.SaveScene(StaticScene.Instance);
-                ZipFile.CreateFromDirectory(Properties.Paths.CurrentSceneDirectory, dlg.FileName);
+                ZipFile.CreateFromDirectory(CoreSettings.Instance.currentSceneDirectory, dlg.FileName);
 
                 if (wasOpened)
                 {
-                    KinectMediaFacade.Instance.Player.OpenFile(Properties.Paths.CurrentKdvrFile);
+                    KinectMediaFacade.Instance.Player.OpenFile(CoreSettings.Instance.currentKdvrFile);
                 }
                 MessageBox.Show("Scene exported succefully");
             }

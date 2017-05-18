@@ -39,7 +39,7 @@ namespace cl.uv.leikelen.src.View.Widget
 
         private void generateCombos()
         {
-            int maxVisiblePostureTypes = Convert.ToInt32(Properties.Resources.maxIntervalGroupsInViewPerPerson);
+            int maxVisiblePostureTypes = Convert.ToInt32(CoreSettings.Instance.maxIntervalGroupsInViewPerPerson);
 
             visiblePostures = new List<Tuple<Tuple<ModalType, SubModalType>, ComboBox, RowDefinition>>();
 

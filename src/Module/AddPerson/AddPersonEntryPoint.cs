@@ -71,6 +71,7 @@ namespace cl.uv.leikelen.src.Module.AddPerson
                                 trackingId,
                                 StaticScene.Instance.numberOfPersons()
                             );
+                        person.Name = "Persona " + StaticScene.Instance.numberOfPersons() + 1;
                         StaticScene.Instance.addPerson(person);
                     }
                 }

@@ -54,7 +54,7 @@ namespace cl.uv.leikelen.src.Data.Persistence.Sqlite
         }
         public void SaveScene(Scene instance)
         {
-            if (File.Exists(Properties.Paths.CurrentDataFile)) File.Delete(Properties.Paths.CurrentDataFile);
+            if (File.Exists(CoreSettings.Instance.currentDataFile)) File.Delete(CoreSettings.Instance.currentDataFile);
             BackupDataContext.db.Database.EnsureCreated();
             BackupDataContext.db.Scene.Add(instance);
             BackupDataContext.db.SaveChanges();

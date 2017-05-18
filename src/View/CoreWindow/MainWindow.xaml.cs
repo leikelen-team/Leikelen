@@ -125,7 +125,7 @@ namespace cl.uv.leikelen.src.View.CoreWindow
             else if(_playerState == PlayerState.Recording)
             {
                 await _recorderController.Stop();
-                _player.OpenFile(Properties.Paths.CurrentKdvrFile);
+                _player.OpenFile(CoreSettings.Instance.currentKdvrFile);
                 TimeLine.InitTimeLine(StaticScene.Instance.Duration);
                 _playerState = PlayerState.Waiting;
                 

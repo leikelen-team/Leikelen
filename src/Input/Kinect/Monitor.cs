@@ -136,10 +136,10 @@ namespace cl.uv.leikelen.src.Input.Kinect
         {
             if (_recorder == null)
             {
-                if (File.Exists(Properties.Paths.CurrentKdvrFile)) File.Delete(Properties.Paths.CurrentKdvrFile);
-                if (File.Exists(Properties.Paths.CurrentDataFile)) File.Delete(Properties.Paths.CurrentDataFile);
+                if (File.Exists(CoreSettings.Instance.currentKdvrFile)) File.Delete(CoreSettings.Instance.currentKdvrFile);
+                if (File.Exists(CoreSettings.Instance.currentDataFile)) File.Delete(CoreSettings.Instance.currentDataFile);
 
-                _recorder = new KinectRecorder(File.Open(Properties.Paths.CurrentKdvrFile, FileMode.Create), Sensor);
+                _recorder = new KinectRecorder(File.Open(CoreSettings.Instance.currentKdvrFile, FileMode.Create), Sensor);
                 _recorder.EnableBodyRecorder = true;
                 _recorder.EnableColorRecorder = true;
                 _recorder.EnableDepthRecorder = false;

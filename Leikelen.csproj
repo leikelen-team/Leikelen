@@ -227,6 +227,7 @@
     <Compile Include="src\API\Input\IMonitor.cs" />
     <Compile Include="src\API\Input\InputStatus.cs" />
     <Compile Include="src\API\Input\IPlayer.cs" />
+    <Compile Include="src\CoreSettings.cs" />
     <Compile Include="src\Input\Kinect\SkeletonColorVideoViewer.cs" />
     <Compile Include="src\Controller\PlayerController.cs" />
     <Compile Include="src\Controller\PlayerState.cs" />
