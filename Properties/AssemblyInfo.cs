@@ -1,55 +1,55 @@
-﻿//------------------------------------------------------------------------------
-// <copyright file="AssemblyInfo.cs" company="Microsoft">
-//     Copyright (c) Microsoft Corporation.  All rights reserved.
-// </copyright>
-//------------------------------------------------------------------------------
-
-using System;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Resources;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Windows;
 
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-[assembly: AssemblyTitle("DiscreteGestureBasics-WPF")]
+// La información general de un ensamblado se controla mediante el siguiente 
+// conjunto de atributos. Cambie estos valores de atributo para modificar la información
+// asociada con un ensamblado.
+[assembly: AssemblyTitle("Leikelen")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("Hewlett-Packard")]
+[assembly: AssemblyProduct("Leikelen")]
+[assembly: AssemblyCopyright("Copyright © Hewlett-Packard 2017")]
 [assembly: AssemblyTrademark("")]
-[assembly: AssemblyVersionAttribute("1.0.0.0")]
+[assembly: AssemblyCulture("")]
 
-// Setting ComVisible to false makes the types in this assembly not visible 
-// to COM components.  If you need to access a type in this assembly from 
-// COM, set the ComVisible attribute to true on that type.
+// Si establece ComVisible en false, los tipos de este ensamblado no estarán visibles 
+// para los componentes COM.  Si es necesario obtener acceso a un tipo en este ensamblado desde 
+// COM, establezca el atributo ComVisible en true en este tipo.
 [assembly: ComVisible(false)]
 
-// In order to begin building localizable applications, set 
-// <UICulture>CultureYouAreCodingWith</UICulture> in your .csproj file
-// inside a <PropertyGroup>.  For example, if you are using US english
-// in your source files, set the <UICulture> to en-US.  Then uncomment
-// the NeutralResourceLanguage attribute below.  Update the "en-US" in
-// the line below to match the UICulture setting in the project file.
+//Para comenzar a compilar aplicaciones que se puedan traducir, establezca
+//<UICulture>CultureYouAreCodingWith</UICulture> en el archivo .csproj
+//dentro de <PropertyGroup>.  Por ejemplo, si utiliza inglés de EE.UU.
+//en los archivos de código fuente, establezca <UICulture> en en-US.  A continuación, quite la marca de comentario
+//del atributo NeutralResourceLanguage.  Actualice "en-US" en
+//la siguiente línea para que coincida con el valor UICulture del archivo de proyecto.
 
-//// [assembly: NeutralResourcesLanguage("en-US", UltimateResourceFallbackLocation.Satellite)]
+//[assembly: NeutralResourcesLanguage("en-US", UltimateResourceFallbackLocation.Satellite)]
+
 
 [assembly: ThemeInfo(
-    ResourceDictionaryLocation.None, // where theme specific resource dictionaries are located
-    // (used if a resource is not found in the page, 
-    // or application resource dictionaries)
-    ResourceDictionaryLocation.SourceAssembly)] // where the generic resource dictionary is located
-    // (used if a resource is not found in the page, 
-    // app, or any theme specific resource dictionaries)
+    ResourceDictionaryLocation.None, //donde se encuentran los diccionarios de recursos específicos del tema
+                                     //(se utiliza si no se encuentra ningún recurso en la página,
+                                     // ni diccionarios de recursos de la aplicación)
+    ResourceDictionaryLocation.SourceAssembly //donde se encuentra el diccionario de recursos genérico
+                                              //(se utiliza si no se encuentra ningún recurso en la página,
+                                              // aplicación o diccionarios de recursos específicos del tema)
+)]
 
-// Version information for an assembly consists of the following four values:
+
+// La información de versión de un ensamblado consta de los cuatro valores siguientes:
 //
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
+//      Versión principal
+//      Versión secundaria
+//      Número de compilación
+//      Revisión
 //
-// You can specify all the values or you can default the Build and Revision Numbers 
-// by using the '*' as shown below:
-// [assembly: AssemblyVersion("1.0.*")][assembly: NeutralResourcesLanguageAttribute("en-US")]
-[assembly: NeutralResourcesLanguage("en-US")]
-[assembly: CLSCompliant(false)]
+// Puede especificar todos los valores o utilizar los números de compilación y de revisión predeterminados
+// mediante el carácter '*', como se muestra a continuación:
+// [assembly: AssemblyVersion("1.0.*")]
+[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyFileVersion("1.0.0.0")]
