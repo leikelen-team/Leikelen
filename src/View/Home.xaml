@@ -4,9 +4,97 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:cl.uv.leikelen.src.View"
+        xmlns:resx="clr-namespace:cl.uv.leikelen.Properties"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.FontWeight="Medium"
+        TextElement.FontSize="14"
+        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
         mc:Ignorable="d"
-        Title="Home" Height="300" Width="300">
+        Title="Leikelen" Height="650" Width="750">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="45" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="5" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <DockPanel Grid.Row="0">
+            <Menu IsMainMenu="True" DockPanel.Dock="Top">
+                <MenuItem Header="{x:Static resx:Menu.File}">
+                    <MenuItem Header="{x:Static resx:Menu.File_NewScene}" Click="NewScene_Click" InputGestureText="Ctrl+N" />
+                    <MenuItem Header="{x:Static resx:Menu.File_Save}" InputGestureText="Ctrl+S">
+                        <MenuItem.Icon>
+                            <materialDesign:PackIcon Kind="ContentSave" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="{x:Static resx:Menu.File_RecentScenes}">
+                        <Separator />
+                        <MenuItem Header="{x:Static resx:Menu.File_RecentScenes_More}" InputGestureText="Ctrl+M"/>
+                    </MenuItem>
+                    <MenuItem Header="{x:Static resx:Menu.File_Import}"/>
+                    <MenuItem Header="{x:Static resx:Menu.File_Export}"/>
+                    <MenuItem Header="{x:Static resx:Menu.File_Quit}" InputGestureText="Ctrl+Q">
+                        <MenuItem.Icon>
+                            <materialDesign:PackIcon Kind="ExitToApp" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </MenuItem>
+                <MenuItem Header="{x:Static resx:Menu.Tools}">
+                    <MenuItem Header="{x:Static resx:Menu.Tools_Preferences}" InputGestureText="Ctrl+P"></MenuItem>
+                    <MenuItem Header="{x:Static resx:Menu.Tools_ConfigureScene}" Click="ConfigureScene_Click" InputGestureText="Ctrl+C"></MenuItem>
+                    <MenuItem Header="{x:Static resx:Menu.Tools_DataBase}" InputGestureText="Ctrl+D"></MenuItem>
+                    <Separator />
+                </MenuItem>
+                <MenuItem Header="{x:Static resx:Menu.Help}">
+                    <MenuItem Header="{x:Static resx:Menu.Help_Manual}" InputGestureText="Ctrl+H"></MenuItem>
+                    <MenuItem Header="{x:Static resx:Menu.Help_AboutUs}"></MenuItem>
+                </MenuItem>
+            </Menu>
+        </DockPanel>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="7*" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="35" />
+            </Grid.RowDefinitions>
+            <Image x:Name="colorImageControl" Grid.Row="0" />
+            <Image x:Name="bodyImageControl" Grid.Row="0"/>
+            <Slider Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" Minimum="1" Maximum="100" />
+            <StackPanel Grid.Row="2" Orientation="Horizontal">
+                <Button x:Name="recordButton" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3,0,0,0" Width="Auto">
+                    <materialDesign:PackIcon Kind="Record" />
+                </Button>
+                <Button x:Name="stopButton" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3,0,0,0" Width="Auto">
+                    <materialDesign:PackIcon Kind="Stop" />
+                </Button>
+                <Button x:Name="playButton" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3,0,0,0" Width="Auto">
+                    <materialDesign:PackIcon Kind="Play" />
+                </Button>
+                <ToggleButton x:Name="volumeToggle" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3,0,0,0" Style="{StaticResource MaterialDesignActionToggleButton}"
+                          ToolTip="MaterialDesignActionLightToggleButton">
+                    <ToggleButton.Content>
+                        <materialDesign:PackIcon Kind="VolumeHigh" />
+                    </ToggleButton.Content>
+                    <materialDesign:ToggleButtonAssist.OnContent>
+                        <materialDesign:PackIcon Kind="VolumeOff" />
+                    </materialDesign:ToggleButtonAssist.OnContent>
+                </ToggleButton>
+                <Slider Orientation="Horizontal" Margin="3,0,0,0" Width="100" HorizontalAlignment="Left" VerticalAlignment="Center" Minimum="1" Maximum="100" />
+            </StackPanel>
+        </Grid>
+        <GridSplitter Grid.Row="2" HorizontalAlignment="Stretch" />
+        <dragablz:TabablzControl Grid.Row="3">
+            <dragablz:TabablzControl.InterTabController>
+                <dragablz:InterTabController />
+            </dragablz:TabablzControl.InterTabController>
+            <TabItem Header="{x:Static resx:GUI.Intervals}"></TabItem>
+            <TabItem Header="{x:Static resx:GUI.Graphs}"></TabItem>
+            <TabItem Header="{x:Static resx:GUI.Distances}"></TabItem>
+            <TabItem Header="{x:Static resx:GUI.Scene}"></TabItem>
+        </dragablz:TabablzControl>
     </Grid>
 </Window>

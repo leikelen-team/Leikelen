@@ -1,0 +1,91 @@
+﻿<Window x:Class="cl.uv.leikelen.src.View.ConfigureScene"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:cl.uv.leikelen.src.View"
+        xmlns:resx="clr-namespace:cl.uv.leikelen.Properties"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.FontWeight="Medium"
+        TextElement.FontSize="14"
+        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
+        mc:Ignorable="d"
+        Title="{x:Static resx:GUI.Title_ConfigureScene}" Height="350" Width="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="100" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <TextBlock VerticalAlignment="Bottom" Grid.Row="0" Grid.Column="0" Text="{x:Static resx:GUI.Name}" />
+        <TextBox Grid.Row="0" Grid.Column="1" 
+				    x:Name="NameTextBox"
+				    materialDesign:HintAssist.Hint="{x:Static resx:GUI.Name}">
+            <TextBox.Text>
+                <Binding Path="Name" UpdateSourceTrigger="PropertyChanged">
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        
+        <TextBlock VerticalAlignment="Bottom" Grid.Row="1" Grid.Column="0" Text="{x:Static resx:GUI.Type}" />
+        <TextBox Grid.Row="1" Grid.Column="1" 
+				    x:Name="TypeTextBox"
+				    materialDesign:HintAssist.Hint="{x:Static resx:GUI.Type}">
+            <TextBox.Text>
+                <Binding Path="Type" UpdateSourceTrigger="PropertyChanged">
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
+        <TextBlock VerticalAlignment="Bottom" Grid.Row="2" Grid.Column="0" Text="{x:Static resx:GUI.Place}" />
+        <TextBox Grid.Row="2" Grid.Column="1" 
+				    x:Name="PlaceTextBox"
+				    materialDesign:HintAssist.Hint="{x:Static resx:GUI.Place}">
+            <TextBox.Text>
+                <Binding Path="Place" UpdateSourceTrigger="PropertyChanged">
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
+       
+        <TextBlock VerticalAlignment="Bottom" Grid.Row="3" Grid.Column="0" Text="{x:Static resx:GUI.Participants}" />
+        <TextBox Grid.Row="3" Grid.Column="1" 
+				    x:Name="ParticipantsTextBox"
+				    materialDesign:HintAssist.Hint="{x:Static resx:GUI.Participants}">
+            <TextBox.Text>
+                <Binding Path="Participants" UpdateSourceTrigger="PropertyChanged">
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
+        <TextBlock VerticalAlignment="Bottom" Grid.Row="4" Grid.Column="0" Text="{x:Static resx:GUI.RecordDate}" />
+        
+        <TextBlock VerticalAlignment="Bottom" Grid.Row="5" Grid.Column="0" Text="{x:Static resx:GUI.RecordTime}" />
+
+        <TextBlock VerticalAlignment="Top" Grid.Row="6" Grid.Column="0" Text="{x:Static resx:GUI.Description}" />
+        <TextBox Grid.Row="6" Grid.Column="1" 
+				    x:Name="DescriptionTextBox"
+				    materialDesign:HintAssist.Hint="{x:Static resx:GUI.Description}">
+            <TextBox.Text>
+                <Binding Path="Description" UpdateSourceTrigger="PropertyChanged">
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="7" Grid.ColumnSpan="2" Orientation="Horizontal">
+            <Button Content="{x:Static resx:GUI.Accept}" Margin="5" />
+            <Button Content="{x:Static resx:GUI.Cancel}" Margin="5" />
+        </StackPanel>
+    </Grid>
+</Window>

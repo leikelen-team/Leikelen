@@ -15,25 +15,13 @@ using System.Windows.Shapes;
 namespace cl.uv.leikelen.src.View
 {
     /// <summary>
-    /// Lógica de interacción para Home.xaml
+    /// Lógica de interacción para ConfigureScene.xaml
     /// </summary>
-    public partial class Home : Window
+    public partial class ConfigureScene : Window
     {
-        public Home()
+        public ConfigureScene()
         {
             InitializeComponent();
-        }
-
-        private void NewScene_Click(object sender, RoutedEventArgs e)
-        {
-            var configureSceneWin = new ConfigureScene();
-            configureSceneWin.Show();
-        }
-
-        private void ConfigureScene_Click(object sender, RoutedEventArgs e)
-        {
-            var configureSceneWin = new ConfigureScene();
-            configureSceneWin.Show();
         }
     }
 }
