@@ -162,4 +162,10 @@
   <data name="Title_ConfigureScene" xml:space="preserve">
     <value>Configurar escena</value>
   </data>
+  <data name="FromScene" xml:space="preserve">
+    <value>Desde escena guardada</value>
+  </data>
+  <data name="FromSensor" xml:space="preserve">
+    <value>Desde sensor</value>
+  </data>
 </root>

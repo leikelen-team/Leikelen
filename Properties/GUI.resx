@@ -142,4 +142,10 @@
   <data name="Title_ConfigureScene" xml:space="preserve">
     <value>Configure scene</value>
   </data>
+  <data name="FromScene" xml:space="preserve">
+    <value>From saved scene</value>
+  </data>
+  <data name="FromSensor" xml:space="preserve">
+    <value>From sensor</value>
+  </data>
 </root>

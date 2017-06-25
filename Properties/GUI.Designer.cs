@@ -106,6 +106,24 @@ namespace cl.uv.leikelen.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a From saved scene.
+        /// </summary>
+        public static string FromScene {
+            get {
+                return ResourceManager.GetString("FromScene", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a From sensor.
+        /// </summary>
+        public static string FromSensor {
+            get {
+                return ResourceManager.GetString("FromSensor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Graphs.
         /// </summary>
         public static string Graphs {

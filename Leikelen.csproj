@@ -171,6 +171,45 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
+    <Compile Include="src\API\DataAccess\IEventAccess.cs" />
+    <Compile Include="src\API\DataAccess\IIntervalAccess.cs" />
+    <Compile Include="src\API\DataAccess\IModalAccess.cs" />
+    <Compile Include="src\API\DataAccess\ISubModalAccess.cs" />
+    <Compile Include="src\API\DataAccess\ITimelessAccess.cs" />
+    <Compile Include="src\API\DataAccess\Types.cs" />
+    <Compile Include="src\API\InputModule\IMonitor.cs" />
+    <Compile Include="src\API\InputModule\InputStatus.cs" />
+    <Compile Include="src\API\InputModule\InputType.cs" />
+    <Compile Include="src\API\InputModule\IPlayer.cs" />
+    <Compile Include="src\API\InputModule\IVideo.cs" />
+    <Compile Include="src\API\ProcessingModule\IProcessingModule.cs" />
+    <Compile Include="src\Controller\MediaController.cs" />
+    <Compile Include="src\Controller\RecorderController.cs" />
+    <Compile Include="src\Controller\SourceType.cs" />
+    <Compile Include="src\Data\Access\External\EventAccess.cs" />
+    <Compile Include="src\Data\Access\External\IntervalAccess.cs" />
+    <Compile Include="src\Data\Access\External\ModalAccess.cs" />
+    <Compile Include="src\Data\Access\External\TMPSubModalTypes.cs" />
+    <Compile Include="src\Data\Access\Internal\SceneInUse.cs" />
+    <Compile Include="src\Data\Access\External\SubModalAccess.cs" />
+    <Compile Include="src\Data\Access\External\TimelessAccess.cs" />
+    <Compile Include="src\Data\Model\EventData.cs" />
+    <Compile Include="src\Data\Model\IntervalData.cs" />
+    <Compile Include="src\Data\Model\ModalType.cs" />
+    <Compile Include="src\Data\Model\Person.cs" />
+    <Compile Include="src\Data\Model\PersonInScene.cs" />
+    <Compile Include="src\Data\Model\RepresentType.cs" />
+    <Compile Include="src\Data\Model\Scene.cs" />
+    <Compile Include="src\Data\Model\SubModalType.cs" />
+    <Compile Include="src\Data\Model\SubModalType_PersonInScene.cs" />
+    <Compile Include="src\Data\Persistence\DBDataContext.cs" />
+    <Compile Include="src\Data\Persistence\DBException.cs" />
+    <Compile Include="src\Data\Persistence\DBFacade.cs" />
+    <Compile Include="src\Data\Persistence\IDBProvider.cs" />
+    <Compile Include="src\Data\Persistence\PgSQLProvider.cs" />
+    <Compile Include="src\Data\Persistence\RepresentTypeException.cs" />
+    <Compile Include="src\InputModule\InputLoader.cs" />
+    <Compile Include="src\ProcessingModule\ProcessingLoader.cs" />
     <Compile Include="src\View\ConfigureScene.xaml.cs">
       <DependentUpon>ConfigureScene.xaml</DependentUpon>
     </Compile>
@@ -181,6 +220,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="src\View\PlayerState.cs" />
     <Page Include="src\View\ConfigureScene.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -225,17 +265,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="src\API\InputModule\" />
-    <Folder Include="src\API\ProcessingModule\" />
-    <Folder Include="src\Controller\" />
-    <Folder Include="src\Data\Access\External\" />
-    <Folder Include="src\Data\Access\Internal\" />
     <Folder Include="src\Data\LeikelenFile\" />
-    <Folder Include="src\Data\Model\" />
-    <Folder Include="src\Data\Persistence\PostgreSQL\" />
     <Folder Include="src\Helper\" />
     <Folder Include="src\InputModule\OpenBCI\" />
-    <Folder Include="src\ProcessingModule\" />
     <Folder Include="static\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,0 +1,23 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace cl.uv.leikelen.src.Data.Model
+{
+    public class ModalType
+    {
+        [Key]
+        [Column("name")]
+        public string Name { get; set; }
+        [Column("description")]
+        public string Description { get; set; }
+
+        public List<SubModalType> SubmodalTypes { get; set; }
+
+        public ModalType() { }
+    }
+}
