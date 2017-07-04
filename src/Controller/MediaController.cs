@@ -9,6 +9,15 @@ namespace cl.uv.leikelen.src.Controller
 {
     public class MediaController
     {
+        public void SetFromNone()
+        {
+            foreach (var input in InputLoader.Instance.InputModules)
+            {
+                input.Player.Close();
+                input.Monitor.Close();
+            }
+        }
+
         public void SetFromSensor()
         {
             foreach (var input in InputLoader.Instance.InputModules)

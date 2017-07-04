@@ -163,4 +163,16 @@
   <data name="Tools_Preferences" xml:space="preserve">
     <value>Preferencias</value>
   </data>
+  <data name="Tools_Player" xml:space="preserve">
+    <value>Reproductor</value>
+  </data>
+  <data name="Tools_Player_SkeletonLayerCheckbox" xml:space="preserve">
+    <value>Ver esqueleto</value>
+  </data>
+  <data name="Tools_Sensors" xml:space="preserve">
+    <value>Sensores</value>
+  </data>
+  <data name="Tools_Player_ColorLayerCheckbox" xml:space="preserve">
+    <value>Ver color</value>
+  </data>
 </root>

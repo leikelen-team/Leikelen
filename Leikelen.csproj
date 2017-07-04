@@ -184,6 +184,7 @@
     <Compile Include="src\API\InputModule\IVideo.cs" />
     <Compile Include="src\API\ProcessingModule\IProcessingModule.cs" />
     <Compile Include="src\Controller\MediaController.cs" />
+    <Compile Include="src\Controller\PlayerController.cs" />
     <Compile Include="src\Controller\RecorderController.cs" />
     <Compile Include="src\Controller\SourceType.cs" />
     <Compile Include="src\Data\Access\External\EventAccess.cs" />
@@ -209,6 +210,18 @@
     <Compile Include="src\Data\Persistence\PgSQLProvider.cs" />
     <Compile Include="src\Data\Persistence\RepresentTypeException.cs" />
     <Compile Include="src\InputModule\InputLoader.cs" />
+    <Compile Include="src\InputModule\OpenBCI\AccelerometerFrameArrivedEventArgs.cs" />
+    <Compile Include="src\InputModule\OpenBCI\Convert.cs" />
+    <Compile Include="src\InputModule\OpenBCI\EEGFrameArrivedEventArgs.cs" />
+    <Compile Include="src\InputModule\OpenBCI\FileManage.cs" />
+    <Compile Include="src\InputModule\OpenBCI\Filter.cs" />
+    <Compile Include="src\InputModule\OpenBCI\FilterType.cs" />
+    <Compile Include="src\InputModule\OpenBCI\IAccelerometer.cs" />
+    <Compile Include="src\InputModule\OpenBCI\IEEG.cs" />
+    <Compile Include="src\InputModule\OpenBCI\InterpretStream.cs" />
+    <Compile Include="src\InputModule\OpenBCI\Monitor.cs" />
+    <Compile Include="src\InputModule\OpenBCI\NotchType.cs" />
+    <Compile Include="src\InputModule\OpenBCI\Player.cs" />
     <Compile Include="src\ProcessingModule\ProcessingLoader.cs" />
     <Compile Include="src\View\ConfigureScene.xaml.cs">
       <DependentUpon>ConfigureScene.xaml</DependentUpon>
@@ -267,7 +280,6 @@
   <ItemGroup>
     <Folder Include="src\Data\LeikelenFile\" />
     <Folder Include="src\Helper\" />
-    <Folder Include="src\InputModule\OpenBCI\" />
     <Folder Include="static\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

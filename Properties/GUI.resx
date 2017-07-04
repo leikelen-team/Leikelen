@@ -148,4 +148,7 @@
   <data name="FromSensor" xml:space="preserve">
     <value>From sensor</value>
   </data>
+  <data name="FromNone" xml:space="preserve">
+    <value>Select</value>
+  </data>
 </root>

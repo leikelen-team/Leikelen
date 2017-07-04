@@ -168,4 +168,7 @@
   <data name="FromSensor" xml:space="preserve">
     <value>Desde sensor</value>
   </data>
+  <data name="FromNone" xml:space="preserve">
+    <value>Seleccionar</value>
+  </data>
 </root>

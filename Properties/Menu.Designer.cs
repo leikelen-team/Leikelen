@@ -187,11 +187,47 @@ namespace cl.uv.leikelen.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Player.
+        /// </summary>
+        public static string Tools_Player {
+            get {
+                return ResourceManager.GetString("Tools_Player", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a View color.
+        /// </summary>
+        public static string Tools_Player_ColorLayerCheckbox {
+            get {
+                return ResourceManager.GetString("Tools_Player_ColorLayerCheckbox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a View skeleton.
+        /// </summary>
+        public static string Tools_Player_SkeletonLayerCheckbox {
+            get {
+                return ResourceManager.GetString("Tools_Player_SkeletonLayerCheckbox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Preferences.
         /// </summary>
         public static string Tools_Preferences {
             get {
                 return ResourceManager.GetString("Tools_Preferences", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Sensors.
+        /// </summary>
+        public static string Tools_Sensors {
+            get {
+                return ResourceManager.GetString("Tools_Sensors", resourceCulture);
             }
         }
     }

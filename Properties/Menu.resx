@@ -165,4 +165,16 @@
   <data name="Tools_Preferences" xml:space="preserve">
     <value>Preferences</value>
   </data>
+  <data name="Tools_Player" xml:space="preserve">
+    <value>Player</value>
+  </data>
+  <data name="Tools_Player_SkeletonLayerCheckbox" xml:space="preserve">
+    <value>View skeleton</value>
+  </data>
+  <data name="Tools_Player_ColorLayerCheckbox" xml:space="preserve">
+    <value>View color</value>
+  </data>
+  <data name="Tools_Sensors" xml:space="preserve">
+    <value>Sensors</value>
+  </data>
 </root>

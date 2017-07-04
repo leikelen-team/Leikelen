@@ -24,7 +24,7 @@ namespace cl.uv.leikelen.src.Controller
             IsRecording = false;
             foreach (var input in InputLoader.Instance.InputModules)
             {
-                await input.Monitor.StopRecording();
+                input.Monitor.StopRecording();
             }
             foreach (var processingModule in ProcessingLoader.Instance.ProcessingModules)
             {
@@ -40,7 +40,7 @@ namespace cl.uv.leikelen.src.Controller
             
             foreach (var input in InputLoader.Instance.InputModules)
             {
-                await input.Monitor.StartRecording();
+                input.Monitor.StartRecording();
             }
             DateTime now = DateTime.Now;
             string sceneName = now.ToString("yyyy-MM-dd _ hh-mm-ss");

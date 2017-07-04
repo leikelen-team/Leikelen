@@ -106,6 +106,15 @@ namespace cl.uv.leikelen.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Select.
+        /// </summary>
+        public static string FromNone {
+            get {
+                return ResourceManager.GetString("FromNone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a From saved scene.
         /// </summary>
         public static string FromScene {
