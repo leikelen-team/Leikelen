@@ -79,6 +79,15 @@ namespace cl.uv.leikelen.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Associate.
+        /// </summary>
+        public static string Associate {
+            get {
+                return ResourceManager.GetString("Associate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Cancel.
         /// </summary>
         public static string Cancel {
@@ -102,6 +111,15 @@ namespace cl.uv.leikelen.Properties {
         public static string Distances {
             get {
                 return ResourceManager.GetString("Distances", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Edit.
+        /// </summary>
+        public static string Edit {
+            get {
+                return ResourceManager.GetString("Edit", resourceCulture);
             }
         }
         

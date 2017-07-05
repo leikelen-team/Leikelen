@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using cl.uv.leikelen.src.API.FrameProvider.EEG;
 
 namespace cl.uv.leikelen.src.InputModule.OpenBCI
 {

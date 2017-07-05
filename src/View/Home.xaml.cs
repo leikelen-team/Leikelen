@@ -49,10 +49,10 @@ namespace cl.uv.leikelen.src.View
             SourceComboBox.SelectionChanged += SourceComboBox_SelectionChanged;
 
             Player_LocationSlider.IsEnabled = false;
-            _buttonBackground = Player_RecordButton.Background;
+            _buttonBackground = Player_VolumeToggle.Background;
             _recordTimer = new DispatcherTimer();
             _recordTimer.Tick += _recordTimer_Tick;
-            _recordTimer.Interval = new TimeSpan(0, 0, 1);
+            _recordTimer.Interval = new TimeSpan(0, 0, 0, 0, 500);
             SetFromNone();
 
             _playerState = PlayerState.Wait;
@@ -142,6 +142,8 @@ namespace cl.uv.leikelen.src.View
                 Player_ActualTimeLabel.Content = "--:--:--";
                 Player_TotalTimeLabel.Content = "--:--:--";
                 Player_RecordButton.Background = _buttonBackground;
+                Player_RecordButton.IsEnabled = true;
+                Player_StopButton.IsEnabled = false;
             }
         }
 
@@ -150,6 +152,7 @@ namespace cl.uv.leikelen.src.View
             if(_playerState == PlayerState.Wait)
             {
                 await _recorderController.Record();
+                Player_ActualTimeLabel.Content = "00:00:00";
                 _playerState = PlayerState.Record;
                 Player_RecordButton.IsEnabled = false;
                 Player_StopButton.IsEnabled = true;

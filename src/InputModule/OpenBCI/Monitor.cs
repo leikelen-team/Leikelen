@@ -5,21 +5,26 @@ using System.Text;
 using System.Threading.Tasks;
 using cl.uv.leikelen.src.API.InputModule;
 using System.IO.Ports;
+using System.Windows.Threading;
 using System.IO;
+using cl.uv.leikelen.src.API.FrameProvider.Accelerometer;
+using cl.uv.leikelen.src.API.FrameProvider.EEG;
 
 namespace cl.uv.leikelen.src.InputModule.OpenBCI
 {
     public class Monitor : IMonitor
     {
         public event EventHandler StatusChanged;
-        public NotchType Notch;
 
         private InterpretStream _interpretStream;
         private Filter _filter;
         private SerialPort _serialPort;
         private InputStatus _status;
         private FileManage _filemanage;
-        
+        private string[] Positions;
+
+        private bool _isRecording;
+
 
         private event EventHandler<EEGFrameArrivedEventArgs> EEGFrameArrived;
         private event EventHandler<AccelerometerFrameArrivedEventArgs> AccelerometerFrameArrived;
@@ -29,13 +34,15 @@ namespace cl.uv.leikelen.src.InputModule.OpenBCI
             _interpretStream = new InterpretStream();
             _filter = new Filter();
             _status = InputStatus.Unconnected;
+            Positions = new string[8];
+            _isRecording = false;
         }
 
         #region IMonitor methods
         public async Task Close()
         {
             StopStream();
-            _serialPort.Close();
+            if(_serialPort != null) _serialPort.Close();
         }
 
         public InputStatus GetStatus()
@@ -45,29 +52,28 @@ namespace cl.uv.leikelen.src.InputModule.OpenBCI
 
         public bool IsRecording()
         {
-            throw new NotImplementedException();
+            return _isRecording;
         }
 
         public async Task Open()
         {
-            throw new NotImplementedException();
+            StartStream();
         }
 
-        public Task StartRecording()
+        public async Task StartRecording()
         {
-            throw new NotImplementedException();
+            _filemanage = new FileManage(GeneralSettings.Instance.TmpDirectory.Value + GeneralSettings.Instance.TmpDirectory.Value + "openbci.csv");
         }
 
-        public Task StopRecording()
+        public async Task StopRecording()
         {
-            throw new NotImplementedException();
+            StopStream();
         }
         #endregion
 
         private void OpenPort(String portName)
         {
-            _serialPort.PortName = portName;
-            _serialPort.BaudRate = 115200;
+            _serialPort = new SerialPort(portName, 115200);
             try
             {
                 _serialPort.Open();
@@ -80,6 +86,8 @@ namespace cl.uv.leikelen.src.InputModule.OpenBCI
         }
         private void StartStream()
         {
+            if (_serialPort == null) return;
+
             char[] buff = new char[1];
             buff[0] = 'b';
             try
@@ -94,10 +102,11 @@ namespace cl.uv.leikelen.src.InputModule.OpenBCI
 
         private void StopStream()
         {
+            if (_filemanage != null) _filemanage.CloseFile();
+            if (_serialPort == null) return;
             char[] buff = new char[1];
             buff[0] = 's';
             _serialPort.Write(buff, 0, 1);
-            if (_filemanage != null) _filemanage.CloseFile();
         }
 
         private void serialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
@@ -110,19 +119,22 @@ namespace cl.uv.leikelen.src.InputModule.OpenBCI
                 double[] data = _interpretStream.interpretBinaryStream(buffer[i]);
                 if(data != null && data.Length >= 9)
                 {
-                    double[] dataTmp = new double[9];
-                    for (int j = 0; j < 9; j++)
-                    {
-                        dataTmp[j] = data[j];
-                    }
                     var EEGArgs = new EEGFrameArrivedEventArgs()
                     {
-                        Data = dataTmp,
-                        Filter = FilterType.None,
-                        Notch = Notch,
-                        NumberOfChannels = 8
-                        //Time = 
+                        //Time = ,
+                        Channels = new List<EEGChannel>()
                     };
+                    for (int j = 1; j < 9; j++)
+                    {
+                        EEGArgs.Channels.Add(new EEGChannel()
+                        {
+                            Filter = FilterType.None,
+                            Notch = (NotchType)OpenBCI_Settings.Instance.Notch.Value,
+                            PositionSystem = "10/20",
+                            Position = Positions[j-1],
+                            Value = data[j]
+                        });
+                    }
                     OnEEGFrameArrived(EEGArgs);
                 }
                 if(data != null && data.Length == 12)

@@ -101,11 +101,25 @@
             </StackPanel>
         </Grid>
         <GridSplitter Grid.Row="2" HorizontalAlignment="Stretch" />
-        <dragablz:TabablzControl Grid.Row="3">
+        <dragablz:TabablzControl Grid.Row="3" >
             <dragablz:TabablzControl.InterTabController>
                 <dragablz:InterTabController />
             </dragablz:TabablzControl.InterTabController>
-            <TabItem x:Name="Intervals_Tab" Header="{x:Static resx:GUI.Intervals}"></TabItem>
+            
+            <TabItem x:Name="Intervals_Tab" Header="{x:Static resx:GUI.Intervals}">
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="200"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
             <TabItem x:Name="Graphs_Tab" Header="{x:Static resx:GUI.Graphs}"></TabItem>
             <TabItem x:Name="Distances_Tab" Header="{x:Static resx:GUI.Distances}"></TabItem>
             <TabItem x:Name="Scene_Tab" Header="{x:Static resx:GUI.Scene}"></TabItem>

@@ -40,6 +40,21 @@
     <StartupObject>cl.uv.leikelen.App</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Accord, Version=3.5.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
+      <HintPath>packages\Accord.3.5.0\lib\net45\Accord.dll</HintPath>
+    </Reference>
+    <Reference Include="Accord.MachineLearning, Version=3.5.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
+      <HintPath>packages\Accord.MachineLearning.3.5.0\lib\net45\Accord.MachineLearning.dll</HintPath>
+    </Reference>
+    <Reference Include="Accord.Math, Version=3.5.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
+      <HintPath>packages\Accord.Math.3.5.0\lib\net45\Accord.Math.dll</HintPath>
+    </Reference>
+    <Reference Include="Accord.Math.Core, Version=3.5.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
+      <HintPath>packages\Accord.Math.3.5.0\lib\net45\Accord.Math.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Accord.Statistics, Version=3.5.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
+      <HintPath>packages\Accord.Statistics.3.5.0\lib\net45\Accord.Statistics.dll</HintPath>
+    </Reference>
     <Reference Include="CodeContracts, Version=1.0.5680.18392, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\CodeContracts.1.0.5680.18392\lib\net40\CodeContracts.dll</HintPath>
     </Reference>
@@ -92,19 +107,19 @@
       <HintPath>packages\Microsoft.Extensions.Primitives.1.1.1\lib\netstandard1.0\Microsoft.Extensions.Primitives.dll</HintPath>
     </Reference>
     <Reference Include="NetBox, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8dea52f811e261ef, processorArchitecture=MSIL">
-      <HintPath>packages\NetBox.1.4.3\lib\net45\NetBox.dll</HintPath>
+      <HintPath>packages\NetBox.1.4.7\lib\net45\NetBox.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Npgsql, Version=3.2.4.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
-      <HintPath>packages\Npgsql.3.2.4\lib\net451\Npgsql.dll</HintPath>
+    <Reference Include="Npgsql, Version=3.2.4.1, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
+      <HintPath>packages\Npgsql.3.2.4.1\lib\net451\Npgsql.dll</HintPath>
     </Reference>
     <Reference Include="Npgsql.EntityFrameworkCore.PostgreSQL, Version=1.1.0.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
       <HintPath>packages\Npgsql.EntityFrameworkCore.PostgreSQL.1.1.0\lib\net451\Npgsql.EntityFrameworkCore.PostgreSQL.dll</HintPath>
     </Reference>
     <Reference Include="Remotion.Linq, Version=2.1.0.0, Culture=neutral, PublicKeyToken=fee00910d6e5f53b, processorArchitecture=MSIL">
-      <HintPath>packages\Remotion.Linq.2.1.1\lib\net45\Remotion.Linq.dll</HintPath>
+      <HintPath>packages\Remotion.Linq.2.1.2\lib\net45\Remotion.Linq.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Collections" />
@@ -114,8 +129,8 @@
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>packages\System.Diagnostics.DiagnosticSource.4.3.1\lib\portable-net45+win8+wpa81\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Diagnostics.DiagnosticSource.4.4.0\lib\net45\System.Diagnostics.DiagnosticSource.dll</HintPath>
     </Reference>
     <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Interactive.Async, Version=3.0.1000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
@@ -210,19 +225,32 @@
     <Compile Include="src\Data\Persistence\PgSQLProvider.cs" />
     <Compile Include="src\Data\Persistence\RepresentTypeException.cs" />
     <Compile Include="src\InputModule\InputLoader.cs" />
-    <Compile Include="src\InputModule\OpenBCI\AccelerometerFrameArrivedEventArgs.cs" />
+    <Compile Include="src\API\FrameProvider\Accelerometer\AccelerometerFrameArrivedEventArgs.cs" />
     <Compile Include="src\InputModule\OpenBCI\Convert.cs" />
-    <Compile Include="src\InputModule\OpenBCI\EEGFrameArrivedEventArgs.cs" />
+    <Compile Include="src\API\FrameProvider\EEG\EEGFrameArrivedEventArgs.cs" />
     <Compile Include="src\InputModule\OpenBCI\FileManage.cs" />
     <Compile Include="src\InputModule\OpenBCI\Filter.cs" />
-    <Compile Include="src\InputModule\OpenBCI\FilterType.cs" />
-    <Compile Include="src\InputModule\OpenBCI\IAccelerometer.cs" />
-    <Compile Include="src\InputModule\OpenBCI\IEEG.cs" />
+    <Compile Include="src\API\FrameProvider\EEG\FilterType.cs" />
+    <Compile Include="src\API\FrameProvider\Accelerometer\IAccelerometer.cs" />
+    <Compile Include="src\API\FrameProvider\EEG\IEEG.cs" />
     <Compile Include="src\InputModule\OpenBCI\InterpretStream.cs" />
     <Compile Include="src\InputModule\OpenBCI\Monitor.cs" />
-    <Compile Include="src\InputModule\OpenBCI\NotchType.cs" />
+    <Compile Include="src\API\FrameProvider\EEG\NotchType.cs" />
+    <Compile Include="src\InputModule\OpenBCI\OpenBCIWindow.xaml.cs">
+      <DependentUpon>OpenBCIWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="src\InputModule\OpenBCI\OpenBCI_Settings.cs" />
     <Compile Include="src\InputModule\OpenBCI\Player.cs" />
+    <Compile Include="src\ProcessingModule\EEGEmotion2Channels\Classifier\EEGEmotion2ChannelsEntryPoint.cs" />
+    <Compile Include="src\ProcessingModule\EEGEmotion2Channels\EEGEmo2ChannelWindow.xaml.cs">
+      <DependentUpon>EEGEmo2ChannelWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="src\ProcessingModule\EEGEmotion2Channels\EEGEmoProc2ChSettings.cs" />
+    <Compile Include="src\ProcessingModule\EEGEmotion2Channels\Helper\Emd.cs" />
+    <Compile Include="src\ProcessingModule\EEGEmotion2Channels\Helper\SampleEntropy.cs" />
+    <Compile Include="src\ProcessingModule\EEGEmotion2Channels\LearningModel.cs" />
     <Compile Include="src\ProcessingModule\ProcessingLoader.cs" />
+    <Compile Include="src\GeneralSettings.cs" />
     <Compile Include="src\View\ConfigureScene.xaml.cs">
       <DependentUpon>ConfigureScene.xaml</DependentUpon>
     </Compile>
@@ -233,12 +261,27 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="src\View\PersonCard.xaml.cs">
+      <DependentUpon>PersonCard.xaml</DependentUpon>
+    </Compile>
     <Compile Include="src\View\PlayerState.cs" />
+    <Page Include="src\InputModule\OpenBCI\OpenBCIWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="src\ProcessingModule\EEGEmotion2Channels\EEGEmo2ChannelWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="src\View\ConfigureScene.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="src\View\Home.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="src\View\PersonCard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -278,8 +321,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="src\API\FrameProvider\Kinect\" />
     <Folder Include="src\Data\LeikelenFile\" />
     <Folder Include="src\Helper\" />
+    <Folder Include="src\ProcessingModule\EEGEmotion2Channels\Detect\" />
     <Folder Include="static\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
@@ -288,5 +333,10 @@
       <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('packages\SQLite.3.13.0\build\net45\SQLite.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\SQLite.3.13.0\build\net45\SQLite.props'))" />
+    <Error Condition="!Exists('packages\Accord.3.5.0\build\Accord.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Accord.3.5.0\build\Accord.targets'))" />
   </Target>
+  <Import Project="packages\Accord.3.5.0\build\Accord.targets" Condition="Exists('packages\Accord.3.5.0\build\Accord.targets')" />
+  <PropertyGroup>
+    <PreBuildEvent>xcopy "$(ProjectDir)bin_files\anyPlatform" $(OutDir) /Y /E</PreBuildEvent>
+  </PropertyGroup>
 </Project>

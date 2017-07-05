@@ -171,4 +171,10 @@
   <data name="FromNone" xml:space="preserve">
     <value>Seleccionar</value>
   </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Editar</value>
+  </data>
+  <data name="Associate" xml:space="preserve">
+    <value>Asociar</value>
+  </data>
 </root>
