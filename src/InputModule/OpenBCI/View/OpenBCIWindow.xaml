@@ -30,7 +30,7 @@
         <RadioButton GroupName="inputType" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Content="{x:Static resx:OpenBCI.PortUSB}"></RadioButton>
         <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" Orientation="Horizontal">
         <ComboBox x:Name="PortsCmbx" Margin="0,0,10,0"></ComboBox>
-        <Button x:Name="PortsRenew" Width="Auto">
+        <Button x:Name="PortsRenewBtn" Width="Auto">
             <materialDesign:PackIcon Kind="Autorenew" />
         </Button>
         </StackPanel>
@@ -51,12 +51,12 @@
         </ComboBox>
         <Button x:Name="TestBtn" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Probar" />
         <StackPanel Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Orientation="Horizontal">
-            <materialDesign:PackIcon VerticalAlignment="Center" Kind="Close" />
-            <Label x:Name="Status" VerticalAlignment="Center" Content="{x:Static resx:OpenBCI.NotConnected}"></Label>
+            <materialDesign:PackIcon x:Name="TestIcon" VerticalAlignment="Center" Kind="Close" />
+            <Label x:Name="StatusLabel" VerticalAlignment="Center" Content="{x:Static resx:OpenBCI.NotConnected}"></Label>
         </StackPanel>
         <StackPanel Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
-            <Button x:Name="Accept" Margin="0,0,4,0" Content="Accept" />
-            <Button x:Name="Cancel" Margin="4,0,0,0" Content="Cancel"/>
+            <Button x:Name="AcceptBtn" Margin="0,0,4,0" Content="Accept" />
+            <Button x:Name="CancelBtn" Margin="4,0,0,0" Content="Cancel"/>
         </StackPanel>
     </Grid>
 </Window>

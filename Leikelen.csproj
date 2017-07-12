@@ -236,6 +236,7 @@
     <Compile Include="src\InputModule\OpenBCI\InterpretStream.cs" />
     <Compile Include="src\InputModule\OpenBCI\Monitor.cs" />
     <Compile Include="src\API\FrameProvider\EEG\NotchType.cs" />
+    <Compile Include="src\InputModule\OpenBCI\OpenBCIInstance.cs" />
     <Compile Include="src\InputModule\OpenBCI\Properties\OpenBCI.es.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -372,6 +373,6 @@
   </Target>
   <Import Project="packages\Accord.3.5.0\build\Accord.targets" Condition="Exists('packages\Accord.3.5.0\build\Accord.targets')" />
   <PropertyGroup>
-    <PreBuildEvent>xcopy "$(ProjectDir)bin_files\anyPlatform" $(OutDir) /Y /E</PreBuildEvent>
+    <PreBuildEvent>xcopy "$(ProjectDir)bin_files\anyPlatform" . /Y /E</PreBuildEvent>
   </PropertyGroup>
 </Project>

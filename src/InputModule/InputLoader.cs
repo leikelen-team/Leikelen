@@ -31,6 +31,8 @@ namespace cl.uv.leikelen.src.InputModule
             openbci.Name = "OpenBCI";
             openbci.Player = new OpenBCI.Player();
             openbci.Windows = new List<Tuple<string, System.Windows.Window>>();
+
+            InputModules.Add(openbci);
         }
     }
 }

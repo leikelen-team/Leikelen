@@ -38,6 +38,7 @@ namespace cl.uv.leikelen.src.InputModule.OpenBCI
         public void CloseFile()
         {
             sw.Close();
+            sw = null;
         }
     }
 }

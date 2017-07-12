@@ -62,7 +62,9 @@ namespace cl.uv.leikelen.src.InputModule.OpenBCI
 
         public async Task StartRecording()
         {
-            _filemanage = new FileManage(GeneralSettings.Instance.TmpDirectory.Value + GeneralSettings.Instance.TmpDirectory.Value + "openbci.csv");
+            StartStream();
+            _filemanage = new FileManage(GeneralSettings.Instance.TmpDirectory.Value + GeneralSettings.Instance.CurrentSceneDirectory.Value + "openbci.csv");
+            _isRecording = true;
         }
 
         public async Task StopRecording()
@@ -71,18 +73,23 @@ namespace cl.uv.leikelen.src.InputModule.OpenBCI
         }
         #endregion
 
-        private void OpenPort(String portName)
+        public async Task OpenPort(string portName)
         {
-            _serialPort = new SerialPort(portName, 115200);
             try
             {
-                _serialPort.Open();
+                if(_serialPort == null || _serialPort.IsOpen == false)
+                {
+                    _serialPort = new SerialPort(portName, 115200);
+                    _serialPort.Open();
+                    _serialPort.DataReceived += serialPort_DataReceived;
+                    _status = InputStatus.Connected;
+                }
             }
             catch
             {
+                _serialPort = null;
                 _status = InputStatus.Error;
             }
-            _serialPort.DataReceived += serialPort_DataReceived;
         }
         private void StartStream()
         {
@@ -117,39 +124,49 @@ namespace cl.uv.leikelen.src.InputModule.OpenBCI
             for(int i = 0; i < buffer.Length; i++)
             {
                 double[] data = _interpretStream.interpretBinaryStream(buffer[i]);
-                if(data != null && data.Length >= 9)
+
+                if(data != null)
                 {
-                    var EEGArgs = new EEGFrameArrivedEventArgs()
+                    foreach (double d in data)
                     {
-                        //Time = ,
-                        Channels = new List<EEGChannel>()
-                    };
-                    for (int j = 1; j < 9; j++)
-                    {
-                        EEGArgs.Channels.Add(new EEGChannel()
-                        {
-                            Filter = FilterType.None,
-                            Notch = (NotchType)OpenBCI_Settings.Instance.Notch.Value,
-                            PositionSystem = "10/20",
-                            Position = Positions[j-1],
-                            Value = data[j]
-                        });
+                        Console.Write(d);
+                        Console.Write(",");
                     }
-                    OnEEGFrameArrived(EEGArgs);
-                }
-                if(data != null && data.Length == 12)
-                {
-                    var AccArgs = new AccelerometerFrameArrivedEventArgs()
+                    Console.WriteLine();
+                    if (data.Length >= 9)
                     {
-                        Place = "Head",
-                        // Time = ,
-                        XAxis = data[9],
-                        YAxis = data[10],
-                        ZAxis = data[11]
-                    };
-                    OnAccelerometerArrived(AccArgs);
+                        var EEGArgs = new EEGFrameArrivedEventArgs()
+                        {
+                            //Time = ,
+                            Channels = new List<EEGChannel>()
+                        };
+                        for (int j = 1; j < 9; j++)
+                        {
+                            EEGArgs.Channels.Add(new EEGChannel()
+                            {
+                                Filter = FilterType.None,
+                                Notch = (NotchType)OpenBCI_Settings.Instance.Notch.Value,
+                                PositionSystem = "10/20",
+                                Position = Positions[j - 1],
+                                Value = data[j]
+                            });
+                        }
+                        OnEEGFrameArrived(EEGArgs);
+                    }
+                    if (data.Length == 12 && data[9] != 0 && data[10] != 0 && data[11] != 0)
+                    {
+                        var AccArgs = new AccelerometerFrameArrivedEventArgs()
+                        {
+                            Place = "Head",
+                            // Time = ,
+                            XAxis = data[9],
+                            YAxis = data[10],
+                            ZAxis = data[11]
+                        };
+                        OnAccelerometerArrived(AccArgs);
+                    }
+                    if (_filemanage != null) _filemanage.WriteFile(data);
                 }
-                if (_filemanage != null) _filemanage.WriteFile(data);
             }
         }
 

@@ -19,47 +19,47 @@ namespace cl.uv.leikelen.src.InputModule.OpenBCI
 
         public void Close()
         {
-            throw new NotImplementedException();
+            return;
         }
 
         public TimeSpan? GetLocation()
         {
-            throw new NotImplementedException();
+            return null;
         }
 
         public TimeSpan? GetTotalDuration()
         {
-            throw new NotImplementedException();
+            return null;
         }
 
         public bool IsPlaying()
         {
-            throw new NotImplementedException();
+            return false;
         }
 
         public void OpenFile(int SceneId)
         {
-            throw new NotImplementedException();
+            return;
         }
 
         public void Pause()
         {
-            throw new NotImplementedException();
+            return;
         }
 
         public void Play()
         {
-            throw new NotImplementedException();
+            return;
         }
 
         public void Stop()
         {
-            throw new NotImplementedException();
+            return;
         }
 
         public void Unpause()
         {
-            throw new NotImplementedException();
+            return;
         }
     }
 }

@@ -71,7 +71,7 @@ namespace cl.uv.leikelen.src.View
 
         private void MenuItems_Tools_Sensors_OpenBCI_Click(object sender, RoutedEventArgs e)
         {
-            var w = new InputModule.OpenBCI.OpenBCIWindow();
+            var w = new InputModule.OpenBCI.OpenBCIWindow( InputLoader.Instance.InputModules[0].Monitor);
             w.Show();
         }
 

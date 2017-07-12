@@ -14,6 +14,7 @@ namespace cl.uv.leikelen.src.API.InputModule
         Task Close();
         Task StartRecording();
         Task StopRecording();
+        Task OpenPort(string portName);
         event EventHandler StatusChanged;
     }
 }
