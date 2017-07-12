@@ -52,7 +52,12 @@
                     </MenuItem>
                     <MenuItem x:Name="MenuItem_Tools_DB" Header="{x:Static resx:Menu.Tools_DataBase}" InputGestureText="Ctrl+D"></MenuItem>
                     <Separator />
-                    <MenuItem x:Name="MenuItems_Tools_Sensors" Header="{x:Static resx:Menu.Tools_Sensors}"></MenuItem>
+                    <MenuItem x:Name="MenuItems_Tools_Sensors" Header="{x:Static resx:Menu.Tools_Sensors}">
+                        <MenuItem x:Name="MenuItems_Tools_Sensors_OpenBCI" Header="OpenBCI"></MenuItem>
+                    </MenuItem>
+                    <MenuItem x:Name="MenuItems_Tools_Processing" Header="Módulos de Procesamiento">
+                        <MenuItem x:Name="MenuItem_Tools_Processing_Emo2Channel" Header="Detección de emociones con 2 canales EEG"></MenuItem>
+                    </MenuItem>
                 </MenuItem>
                 <MenuItem x:Name="MenuItem_Help" Header="{x:Static resx:Menu.Help}">
                     <MenuItem x:Name="MenuItem_Help_Manual" Header="{x:Static resx:Menu.Help_Manual}" InputGestureText="Ctrl+H"></MenuItem>

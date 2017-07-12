@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using cl.uv.leikelen.src.API.FrameProvider.EEG;
 
-namespace cl.uv.leikelen.src.ProcessingModule.EEGEmotion2Channels.Classifier
+namespace cl.uv.leikelen.src.ProcessingModule.EEGEmotion2Channels
 {
     public class EEGEmotion2ChannelsEntryPoint : IEEG
     {

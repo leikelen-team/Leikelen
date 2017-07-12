@@ -12,6 +12,6 @@ namespace cl.uv.leikelen.src.API.InputModule
         public IMonitor Monitor;
         public IPlayer Player;
         public string Name;
-        public Window Window;
+        public List<Tuple<string, Window>> Windows;
     }
 }

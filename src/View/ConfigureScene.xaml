@@ -21,7 +21,7 @@
             <RowDefinition Height="25" />
             <RowDefinition Height="25" />
             <RowDefinition Height="25" />
-            <RowDefinition Height="25" />
+            <RowDefinition Height="35" />
             <RowDefinition Height="100" />
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
@@ -71,9 +71,13 @@
         </TextBox>
 
         <TextBlock VerticalAlignment="Bottom" Grid.Row="4" Grid.Column="0" Text="{x:Static resx:GUI.RecordDate}" />
+        <DatePicker x:Name="RealDatePicker" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Pick Date" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
         
         <TextBlock VerticalAlignment="Bottom" Grid.Row="5" Grid.Column="0" Text="{x:Static resx:GUI.RecordTime}" />
-
+        <materialDesign:TimePicker Grid.Row="5" Grid.Column="1"  VerticalAlignment="Center" HorizontalAlignment="Left"
+                                   Style="{StaticResource MaterialDesignFloatingHintTimePicker}"
+                                   materialDesign:HintAssist.Hint="Custom hint" />
+        
         <TextBlock VerticalAlignment="Top" Grid.Row="6" Grid.Column="0" Text="{x:Static resx:GUI.Description}" />
         <TextBox Grid.Row="6" Grid.Column="1" 
 				    x:Name="DescriptionTextBox"

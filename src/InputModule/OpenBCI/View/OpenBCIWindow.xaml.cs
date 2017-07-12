@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.IO.Ports;
 
 namespace cl.uv.leikelen.src.InputModule.OpenBCI
 {
@@ -22,6 +23,17 @@ namespace cl.uv.leikelen.src.InputModule.OpenBCI
         public OpenBCIWindow()
         {
             InitializeComponent();
+
+            int i = 0;
+            foreach (string s in SerialPort.GetPortNames())
+            {
+                PortsCmbx.Items.Add(s);
+                if (i == 0)
+                {
+                    PortsCmbx.SelectedItem = s;
+                    i++;
+                }
+            }
         }
     }
 }

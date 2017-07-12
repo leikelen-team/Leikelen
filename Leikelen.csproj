@@ -236,13 +236,33 @@
     <Compile Include="src\InputModule\OpenBCI\InterpretStream.cs" />
     <Compile Include="src\InputModule\OpenBCI\Monitor.cs" />
     <Compile Include="src\API\FrameProvider\EEG\NotchType.cs" />
-    <Compile Include="src\InputModule\OpenBCI\OpenBCIWindow.xaml.cs">
+    <Compile Include="src\InputModule\OpenBCI\Properties\OpenBCI.es.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OpenBCI.es.resx</DependentUpon>
+    </Compile>
+    <Compile Include="src\InputModule\OpenBCI\View\OpenBCIWindow.xaml.cs">
       <DependentUpon>OpenBCIWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="src\InputModule\OpenBCI\OpenBCI_Settings.cs" />
     <Compile Include="src\InputModule\OpenBCI\Player.cs" />
-    <Compile Include="src\ProcessingModule\EEGEmotion2Channels\Classifier\EEGEmotion2ChannelsEntryPoint.cs" />
-    <Compile Include="src\ProcessingModule\EEGEmotion2Channels\EEGEmo2ChannelWindow.xaml.cs">
+    <Compile Include="src\InputModule\OpenBCI\Properties\OpenBCI.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OpenBCI.resx</DependentUpon>
+    </Compile>
+    <Compile Include="src\ProcessingModule\EEGEmotion2Channels\EEGEmotion2ChannelsEntryPoint.cs" />
+    <Compile Include="src\ProcessingModule\EEGEmotion2Channels\Properties\EEGEmotion2Channels.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EEGEmotion2Channels.resx</DependentUpon>
+    </Compile>
+    <Compile Include="src\ProcessingModule\EEGEmotion2Channels\Properties\EEGEmotion2Channels.es.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EEGEmotion2Channels.es.resx</DependentUpon>
+    </Compile>
+    <Compile Include="src\ProcessingModule\EEGEmotion2Channels\View\EEGEmo2ChannelWindow.xaml.cs">
       <DependentUpon>EEGEmo2ChannelWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="src\ProcessingModule\EEGEmotion2Channels\EEGEmoProc2ChSettings.cs" />
@@ -265,11 +285,11 @@
       <DependentUpon>PersonCard.xaml</DependentUpon>
     </Compile>
     <Compile Include="src\View\PlayerState.cs" />
-    <Page Include="src\InputModule\OpenBCI\OpenBCIWindow.xaml">
+    <Page Include="src\InputModule\OpenBCI\View\OpenBCIWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="src\ProcessingModule\EEGEmotion2Channels\EEGEmo2ChannelWindow.xaml">
+    <Page Include="src\ProcessingModule\EEGEmotion2Channels\View\EEGEmo2ChannelWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -311,6 +331,22 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Menu.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="src\InputModule\OpenBCI\Properties\OpenBCI.es.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>OpenBCI.es.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\InputModule\OpenBCI\Properties\OpenBCI.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>OpenBCI.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\ProcessingModule\EEGEmotion2Channels\Properties\EEGEmotion2Channels.es.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>EEGEmotion2Channels.es.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\ProcessingModule\EEGEmotion2Channels\Properties\EEGEmotion2Channels.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>EEGEmotion2Channels.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -324,7 +360,6 @@
     <Folder Include="src\API\FrameProvider\Kinect\" />
     <Folder Include="src\Data\LeikelenFile\" />
     <Folder Include="src\Helper\" />
-    <Folder Include="src\ProcessingModule\EEGEmotion2Channels\Detect\" />
     <Folder Include="static\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

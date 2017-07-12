@@ -14,6 +14,8 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 using cl.uv.leikelen.src.Controller;
 using cl.uv.leikelen.src.Data.Access.Internal;
+using cl.uv.leikelen.src.InputModule;
+using cl.uv.leikelen.src.ProcessingModule;
 
 namespace cl.uv.leikelen.src.View
 {
@@ -40,6 +42,8 @@ namespace cl.uv.leikelen.src.View
 
             MenuItem_File_NewScene.Click += File_NewScene_Click;
             MenuItem_Tools_ConfigureScene.Click += Tools_ConfigureScene_Click;
+            MenuItems_Tools_Sensors_OpenBCI.Click += MenuItems_Tools_Sensors_OpenBCI_Click;
+            MenuItem_Tools_Processing_Emo2Channel.Click += MenuItem_Tools_Processing_Emo2Channel_Click;
 
             Player_PlayButton.Click += PlayPauseButton_Click;
             Player_StopButton.Click += StopButton_Click;
@@ -56,6 +60,19 @@ namespace cl.uv.leikelen.src.View
             SetFromNone();
 
             _playerState = PlayerState.Wait;
+        }
+
+        private void MenuItem_Tools_Processing_Emo2Channel_Click(object sender, RoutedEventArgs e)
+        {
+            var w = new ProcessingModule.EEGEmotion2Channels.EEGEmo2ChannelWindow();
+            w.Show();
+            
+        }
+
+        private void MenuItems_Tools_Sensors_OpenBCI_Click(object sender, RoutedEventArgs e)
+        {
+            var w = new InputModule.OpenBCI.OpenBCIWindow();
+            w.Show();
         }
 
         private void _recordTimer_Tick(object sender, EventArgs e)
