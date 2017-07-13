@@ -121,4 +121,7 @@
   <data name="Cancel" xml:space="preserve">
     <value>Cancelar</value>
   </data>
+  <data name="SensorName" xml:space="preserve">
+    <value>Sensor EEG OpenBCI</value>
+  </data>
 </root>

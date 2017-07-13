@@ -26,13 +26,7 @@ namespace cl.uv.leikelen.src.InputModule
         {
             InputModules = new List<InputType>();
 
-            var openbci = new InputType();
-            openbci.Monitor = new OpenBCI.Monitor();
-            openbci.Name = "OpenBCI";
-            openbci.Player = new OpenBCI.Player();
-            openbci.Windows = new List<Tuple<string, System.Windows.Window>>();
-
-            InputModules.Add(openbci);
+            InputModules.Add(new OpenBCI.OpenBCISensor());
         }
     }
 }

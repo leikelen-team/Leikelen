@@ -9,7 +9,7 @@ namespace cl.uv.leikelen.src.ProcessingModule
 {
     public class ProcessingLoader
     {
-        public List<IProcessingModule> ProcessingModules { get; private set; }
+        public List<ProcessingType> ProcessingModules { get; private set; }
 
         private static ProcessingLoader _instance;
 
@@ -24,7 +24,9 @@ namespace cl.uv.leikelen.src.ProcessingModule
 
         private ProcessingLoader()
         {
-            ProcessingModules = new List<IProcessingModule>();
+            ProcessingModules = new List<ProcessingType>();
+
+            ProcessingModules.Add(new EEGEmotion2Channels.EEGEmotion2ChannelsEntryPoint());
         }
     }
 }

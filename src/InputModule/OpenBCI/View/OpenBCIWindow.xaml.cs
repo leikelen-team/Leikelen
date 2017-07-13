@@ -14,7 +14,7 @@ using System.Windows.Shapes;
 using System.IO.Ports;
 using cl.uv.leikelen.src.API.InputModule;
 
-namespace cl.uv.leikelen.src.InputModule.OpenBCI
+namespace cl.uv.leikelen.src.InputModule.OpenBCI.View
 {
     /// <summary>
     /// Lógica de interacción para OpenBCIWindow.xaml

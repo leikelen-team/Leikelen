@@ -89,6 +89,15 @@ namespace cl.uv.leikelen.src.ProcessingModule.EEGEmotion2Channels.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Emotion Detector with EEG.
+        /// </summary>
+        public static string Name {
+            get {
+                return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Sampling.
         /// </summary>
         public static string Sampling {

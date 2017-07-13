@@ -175,4 +175,13 @@
   <data name="Tools_Player_ColorLayerCheckbox" xml:space="preserve">
     <value>Ver color</value>
   </data>
+  <data name="Enable" xml:space="preserve">
+    <value>Habilitar</value>
+  </data>
+  <data name="Disable" xml:space="preserve">
+    <value>Deshabilitar</value>
+  </data>
+  <data name="Tools_Processing" xml:space="preserve">
+    <value>Módulos de procesamiento</value>
+  </data>
 </root>

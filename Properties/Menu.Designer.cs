@@ -61,6 +61,24 @@ namespace cl.uv.leikelen.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Disable.
+        /// </summary>
+        public static string Disable {
+            get {
+                return ResourceManager.GetString("Disable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Enable.
+        /// </summary>
+        public static string Enable {
+            get {
+                return ResourceManager.GetString("Enable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a _File.
         /// </summary>
         public static string File {
@@ -219,6 +237,15 @@ namespace cl.uv.leikelen.Properties {
         public static string Tools_Preferences {
             get {
                 return ResourceManager.GetString("Tools_Preferences", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Processing Modules.
+        /// </summary>
+        public static string Tools_Processing {
+            get {
+                return ResourceManager.GetString("Tools_Processing", resourceCulture);
             }
         }
         

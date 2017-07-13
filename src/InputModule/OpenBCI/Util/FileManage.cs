@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 
-namespace cl.uv.leikelen.src.InputModule.OpenBCI
+namespace cl.uv.leikelen.src.InputModule.OpenBCI.Util
 {
     public class FileManage
     {

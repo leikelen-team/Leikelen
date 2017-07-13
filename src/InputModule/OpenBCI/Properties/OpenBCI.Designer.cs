@@ -131,5 +131,14 @@ namespace cl.uv.leikelen.src.InputModule.OpenBCI.Properties {
                 return ResourceManager.GetString("PortUSB", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a OpenBCI EEG Sensor.
+        /// </summary>
+        public static string SensorName {
+            get {
+                return ResourceManager.GetString("SensorName", resourceCulture);
+            }
+        }
     }
 }

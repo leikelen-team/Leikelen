@@ -16,11 +16,11 @@ namespace cl.uv.leikelen.src.InputModule.OpenBCI
     {
         public event EventHandler StatusChanged;
 
-        private InterpretStream _interpretStream;
-        private Filter _filter;
+        private Util.InterpretStream _interpretStream;
+        private Util.Filter _filter;
         private SerialPort _serialPort;
         private InputStatus _status;
-        private FileManage _filemanage;
+        private Util.FileManage _filemanage;
         private string[] Positions;
 
         private bool _isRecording;
@@ -31,8 +31,8 @@ namespace cl.uv.leikelen.src.InputModule.OpenBCI
 
         public Monitor()
         {
-            _interpretStream = new InterpretStream();
-            _filter = new Filter();
+            _interpretStream = new Util.InterpretStream();
+            _filter = new Util.Filter();
             _status = InputStatus.Unconnected;
             Positions = new string[8];
             _isRecording = false;
@@ -63,7 +63,7 @@ namespace cl.uv.leikelen.src.InputModule.OpenBCI
         public async Task StartRecording()
         {
             StartStream();
-            _filemanage = new FileManage(GeneralSettings.Instance.TmpDirectory.Value + GeneralSettings.Instance.CurrentSceneDirectory.Value + "openbci.csv");
+            _filemanage = new Util.FileManage(GeneralSettings.Instance.TmpDirectory.Value + GeneralSettings.Instance.CurrentSceneDirectory.Value + "openbci.csv");
             _isRecording = true;
         }
 
@@ -109,7 +109,11 @@ namespace cl.uv.leikelen.src.InputModule.OpenBCI
 
         private void StopStream()
         {
-            if (_filemanage != null) _filemanage.CloseFile();
+            if (_filemanage != null)
+            {
+                _filemanage.CloseFile();
+                _filemanage = null;
+            }
             if (_serialPort == null) return;
             char[] buff = new char[1];
             buff[0] = 's';
@@ -127,12 +131,6 @@ namespace cl.uv.leikelen.src.InputModule.OpenBCI
 
                 if(data != null)
                 {
-                    foreach (double d in data)
-                    {
-                        Console.Write(d);
-                        Console.Write(",");
-                    }
-                    Console.WriteLine();
                     if (data.Length >= 9)
                     {
                         var EEGArgs = new EEGFrameArrivedEventArgs()

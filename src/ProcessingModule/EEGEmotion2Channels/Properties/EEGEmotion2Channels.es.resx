@@ -115,4 +115,7 @@
   <data name="Cancel" xml:space="preserve">
     <value>Cancelar</value>
   </data>
+  <data name="Name" xml:space="preserve">
+    <value>Detector de Emociones con EEG</value>
+  </data>
 </root>

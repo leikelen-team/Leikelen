@@ -177,4 +177,13 @@
   <data name="Tools_Sensors" xml:space="preserve">
     <value>Sensors</value>
   </data>
+  <data name="Enable" xml:space="preserve">
+    <value>Enable</value>
+  </data>
+  <data name="Disable" xml:space="preserve">
+    <value>Disable</value>
+  </data>
+  <data name="Tools_Processing" xml:space="preserve">
+    <value>Processing Modules</value>
+  </data>
 </root>

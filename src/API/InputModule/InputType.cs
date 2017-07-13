@@ -7,8 +7,9 @@ using System.Windows;
 
 namespace cl.uv.leikelen.src.API.InputModule
 {
-    public struct InputType
+    public abstract class InputType
     {
+        public InputPlurality Plurality;
         public IMonitor Monitor;
         public IPlayer Player;
         public string Name;

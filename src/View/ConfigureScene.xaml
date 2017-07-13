@@ -13,7 +13,7 @@
         TextElement.FontSize="14"
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
         mc:Ignorable="d"
-        Title="{x:Static resx:GUI.Title_ConfigureScene}" Height="350" Width="300">
+        Title="Configure Scene" Height="350" Width="300">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="25" />
