@@ -79,6 +79,15 @@ namespace cl.uv.leikelen.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Are you sure you want to leave?.
+        /// </summary>
+        public static string AreSureExit {
+            get {
+                return ResourceManager.GetString("AreSureExit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Associate.
         /// </summary>
         public static string Associate {

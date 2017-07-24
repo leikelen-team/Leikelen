@@ -8,6 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace cl.uv.leikelen.src.Data.Model
 {
+    [Table("scene")]
     public class Scene
     {
         [Column("scene_id")]
@@ -21,7 +22,7 @@ namespace cl.uv.leikelen.src.Data.Model
         [Column("place")]
         public string Place { get; set; }
         [DataType(DataType.MultilineText)]
-        [Column("duration")]
+        [Column("description")]
         public string Description { get; set; }
         [Column("record_real_datetime")]
         public DateTime RecordRealDateTime { get; set; }

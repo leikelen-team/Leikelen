@@ -8,10 +8,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace cl.uv.leikelen.src.Data.Model
 {
+    [Table("submodal_type")]
     public class SubModalType
     {
         [Key]
-        [Column("sub_modal_type_id")]
+        [Column("submodal_type_id")]
         public int SubModalTypeId { get; set; }
         [Column("name")]
         public string Name { get; set; }

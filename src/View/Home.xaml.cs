@@ -17,6 +17,8 @@ using cl.uv.leikelen.src.Data.Access.Internal;
 using cl.uv.leikelen.src.InputModule;
 using cl.uv.leikelen.src.ProcessingModule;
 using System.Diagnostics;
+using cl.uv.leikelen.src.Data.Persistence;
+using MaterialDesignThemes.Wpf;
 
 namespace cl.uv.leikelen.src.View
 {
@@ -32,23 +34,23 @@ namespace cl.uv.leikelen.src.View
         /// <summary>
         /// Controller associated with the recorder
         /// </summary>
-        private RecorderController _recorderController;
+        private readonly RecorderController _recorderController;
         /// <summary>
         /// Controller associated with the player
         /// </summary>
-        private PlayerController _playerController;
+        private readonly PlayerController _playerController;
         /// <summary>
         /// Controller that manage the change between the sensor (monitor/recorder) or file (player) mode
         /// </summary>
-        private MediaController _mediaController;
+        private readonly MediaController _mediaController;
         /// <summary>
         /// Color of a disabled button background
         /// </summary>
-        private Brush _buttonBackground;
+        private readonly Brush _buttonBackground;
         /// <summary>
         /// Timer used when is recording to alternate the color of the button and change the actual time label
         /// </summary>
-        private DispatcherTimer _recordTimer;
+        private readonly DispatcherTimer _recordTimer;
 
         public Home()
         {
@@ -64,7 +66,7 @@ namespace cl.uv.leikelen.src.View
             //Initialize record button timer arguments
             _recordTimer = new DispatcherTimer();
             _recordTimer.Tick += _recordTimer_Tick;
-            _recordTimer.Interval = new TimeSpan(0, 0, 0, 0, 500);
+            _recordTimer.Interval = new TimeSpan(0, 0, 0, 0, 500); //0.5 seconds
 
             //File MenuItems
             MenuItem_File_NewScene.Click += File_NewScene_Click;
@@ -72,11 +74,15 @@ namespace cl.uv.leikelen.src.View
             MenuItem_File_Export.Click += MenuItem_File_Export_Click;
             MenuItem_File_Save.Click += MenuItem_File_Save_Click;
             MenuItem_File_Recent_More.Click += MenuItem_File_Recent_More_Click;
+            MenuItem_File_Quit.Click += MenuItem_File_Quit_Click;
 
             //Tools MenuItems
-            MenuItem_Tools_ConfigureScene.Click += Tools_ConfigureScene_Click;
             MenuItem_Tools_Preferences.Click += MenuItem_Tools_Preferences_Click;
             MenuItem_Tools_DB.Click += MenuItem_Tools_DB_Click;
+
+            //SCene MenuItems
+            MenuItem_Scene_Configure.Click += MenuItem_Scene_Configure_Click;
+            MenuItem_Scene_AddPerson.Click += MenuItem_Scene_AddPerson_Click;
 
             //Help MenuItems
             MenuItem_Help_AboutUs.Click += MenuItem_Help_AboutUs_Click;
@@ -98,6 +104,9 @@ namespace cl.uv.leikelen.src.View
 
             //Set initial states
             Player_LocationSlider.IsEnabled = false;
+            MenuItem_Scene.IsEnabled = false;
+            MenuItem_File_Save.IsEnabled = false;
+            MenuItem_File_NewScene.IsEnabled = false;
 
             //Actions
             SetFromNone();
@@ -105,10 +114,13 @@ namespace cl.uv.leikelen.src.View
             FillMenuProccessingModules();
         }
 
+        
+
         #region Window Events
-        private void Home_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private async void Home_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            return;
+            //var exitDialog = new Widget.AcceptCancelDialog(Properties.GUI.AreSureExit, ExitWindow);
+            //var result = await DialogHost.Show(exitDialog);
         }
 
         private void Home_Closed(object sender, EventArgs e)
@@ -117,12 +129,16 @@ namespace cl.uv.leikelen.src.View
         }
         #endregion
 
-        #region MenuItems Click
         #region File MenuItems
         private void File_NewScene_Click(object sender, RoutedEventArgs e)
         {
             var configureSceneWin = new ConfigureScene();
             configureSceneWin.Show();
+            if (SceneInUse.Instance.Scene != null)
+            {
+                MenuItem_File_Save.IsEnabled = true;
+                MenuItem_Scene.IsEnabled = true;
+            }
         }
 
         private void MenuItem_File_Recent_More_Click(object sender, RoutedEventArgs e)
@@ -132,7 +148,10 @@ namespace cl.uv.leikelen.src.View
 
         private void MenuItem_File_Save_Click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            if (SceneInUse.Instance.Scene != null)
+            {
+                DBFacade.Instance.Provider.SaveScene(SceneInUse.Instance.Scene);
+            }
         }
 
         private void MenuItem_File_Export_Click(object sender, RoutedEventArgs e)
@@ -144,15 +163,15 @@ namespace cl.uv.leikelen.src.View
         {
             throw new NotImplementedException();
         }
+
+        private async void MenuItem_File_Quit_Click(object sender, RoutedEventArgs e)
+        {
+            //TODO: está seguro dialog
+            this.Close();
+        }
         #endregion
 
         #region Tools MenuItems
-        private void Tools_ConfigureScene_Click(object sender, RoutedEventArgs e)
-        {
-            var configureSceneWin = new ConfigureScene();
-            configureSceneWin.Show();
-        }
-
         private void MenuItem_Tools_DB_Click(object sender, RoutedEventArgs e)
         {
             throw new NotImplementedException();
@@ -164,13 +183,27 @@ namespace cl.uv.leikelen.src.View
         }
         #endregion
 
-        #region Help MenuItems
-        private void MenuItem_Help_AboutUs_Click(object sender, RoutedEventArgs e)
+        #region Scene MenuItems
+        private void MenuItem_Scene_AddPerson_Click(object sender, RoutedEventArgs e)
         {
             throw new NotImplementedException();
         }
+
+        private void MenuItem_Scene_Configure_Click(object sender, RoutedEventArgs e)
+        {
+            if (SceneInUse.Instance.Scene != null)
+            {
+                var configureSceneWin = new ConfigureScene(SceneInUse.Instance.Scene);
+                configureSceneWin.Show();
+            }
+        }
         #endregion
 
+        #region Help MenuItems
+        private void MenuItem_Help_AboutUs_Click(object sender, RoutedEventArgs e)
+        {
+            return;
+        }
         #endregion
 
         #region video viewer
@@ -291,6 +324,7 @@ namespace cl.uv.leikelen.src.View
         private void SourceComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var comboBox = sender as ComboBox;
+            if (comboBox==null) throw new ArgumentNullException(nameof(sender), "Source combobox is null");
             switch (comboBox.SelectedIndex)
             {
                 case 0:
@@ -310,10 +344,18 @@ namespace cl.uv.leikelen.src.View
         private void SetFromNone()
         {
             _mediaController.SetFromNone();
+
             MenuItems_Tools_Sensors.IsEnabled = false;
             MenuItems_Tools_Processing.IsEnabled = false;
+            MenuItem_Scene_Configure.IsEnabled = false;
+            MenuItem_Scene_AddPerson.IsEnabled = false;
+            MenuItem_Scene.IsEnabled = false;
+            MenuItem_File_Save.IsEnabled = false;
+            MenuItem_File_NewScene.IsEnabled = false;
+
             SkeletonLayerCheckbox.IsEnabled = false;
             ColorLayerCheckbox.IsEnabled = false;
+
             Player_LocationSlider.IsEnabled = false;
             Player_RecordButton.IsEnabled = false;
             Player_PlayButton.IsEnabled = false;
@@ -323,13 +365,22 @@ namespace cl.uv.leikelen.src.View
         private void SetFromSensor()
         {
             _mediaController.SetFromSensor();
-            Player_RecordButton.IsEnabled = true;
+
             MenuItems_Tools_Sensors.IsEnabled = true;
             MenuItems_Tools_Processing.IsEnabled = true;
+            MenuItem_Scene_Configure.IsEnabled = true;
+            MenuItem_Scene_AddPerson.IsEnabled = true;
+            MenuItem_Scene.IsEnabled = false;
+            MenuItem_File_Save.IsEnabled = false;
+            MenuItem_File_NewScene.IsEnabled = true;
+
             SkeletonLayerCheckbox.IsEnabled = false;
             ColorLayerCheckbox.IsEnabled = false;
+
             Player_LocationSlider.IsEnabled = false;
+            Player_RecordButton.IsEnabled = true;
             Player_PlayButton.IsEnabled = false;
+            Player_StopButton.IsEnabled = false;
         }
 
         private void SetFromFile()
@@ -337,13 +388,22 @@ namespace cl.uv.leikelen.src.View
             if(SceneInUse.Instance != null && SceneInUse.Instance.Scene != null)
             {
                 _mediaController.SetFromFile(SceneInUse.Instance.Scene.SceneId);
+
                 MenuItems_Tools_Sensors.IsEnabled = false;
                 MenuItems_Tools_Processing.IsEnabled = false;
+                MenuItem_Scene_Configure.IsEnabled = true;
+                MenuItem_Scene_AddPerson.IsEnabled = false;
+                MenuItem_Scene.IsEnabled = false;
+                MenuItem_File_Save.IsEnabled = false;
+                MenuItem_File_NewScene.IsEnabled = false;
+
                 SkeletonLayerCheckbox.IsEnabled = true;
                 ColorLayerCheckbox.IsEnabled = true;
+
                 Player_LocationSlider.IsEnabled = true;
                 Player_RecordButton.IsEnabled = false;
                 Player_PlayButton.IsEnabled = true;
+                Player_StopButton.IsEnabled = false;
             }
             else
             {

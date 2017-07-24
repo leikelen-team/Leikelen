@@ -8,6 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace cl.uv.leikelen.src.Data.Model
 {
+    [Table("person")]
     public class Person
     {
         [Column("person_id")]

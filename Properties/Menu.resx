@@ -156,7 +156,7 @@
     <value>_Tools</value>
     <comment>Menu principal</comment>
   </data>
-  <data name="Tools_ConfigureScene" xml:space="preserve">
+  <data name="Scene_Configure" xml:space="preserve">
     <value>Configure scene</value>
   </data>
   <data name="Tools_DataBase" xml:space="preserve">
@@ -185,5 +185,11 @@
   </data>
   <data name="Tools_Processing" xml:space="preserve">
     <value>Processing Modules</value>
+  </data>
+  <data name="Scene" xml:space="preserve">
+    <value>Scene</value>
+  </data>
+  <data name="Scene_AddPerson" xml:space="preserve">
+    <value>Add Person</value>
   </data>
 </root>

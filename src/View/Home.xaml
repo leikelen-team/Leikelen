@@ -45,7 +45,6 @@
                 </MenuItem>
                 <MenuItem x:Name="MenuItem_Tools" Header="{x:Static resx:Menu.Tools}">
                     <MenuItem x:Name="MenuItem_Tools_Preferences" Header="{x:Static resx:Menu.Tools_Preferences}" InputGestureText="Ctrl+P"></MenuItem>
-                    <MenuItem x:Name="MenuItem_Tools_ConfigureScene" Header="{x:Static resx:Menu.Tools_ConfigureScene}" InputGestureText="Ctrl+C"></MenuItem>
                     <MenuItem Header="{x:Static resx:Menu.Tools_Player}">
                         <CheckBox x:Name="SkeletonLayerCheckbox" Content="{x:Static resx:Menu.Tools_Player_SkeletonLayerCheckbox}"/>
                         <CheckBox x:Name="ColorLayerCheckbox" Content="{x:Static resx:Menu.Tools_Player_ColorLayerCheckbox}" />
@@ -56,6 +55,10 @@
                     </MenuItem>
                     <MenuItem x:Name="MenuItems_Tools_Processing" Header="{x:Static resx:Menu.Tools_Processing}">
                     </MenuItem>
+                </MenuItem>
+                <MenuItem x:Name="MenuItem_Scene" Header="{x:Static resx:Menu.Scene}">
+                    <MenuItem x:Name="MenuItem_Scene_Configure" Header="{x:Static resx:Menu.Scene_Configure}" InputGestureText="Ctrl+C"></MenuItem>
+                    <MenuItem x:Name="MenuItem_Scene_AddPerson" Header="{x:Static resx:Menu.Scene_AddPerson}"></MenuItem>
                 </MenuItem>
                 <MenuItem x:Name="MenuItem_Help" Header="{x:Static resx:Menu.Help}">
                     <MenuItem x:Name="MenuItem_Help_Manual" Header="{x:Static resx:Menu.Help_Manual}" InputGestureText="Ctrl+H"></MenuItem>

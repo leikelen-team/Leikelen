@@ -8,9 +8,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace cl.uv.leikelen.src.Data.Model
 {
+    [Table("submodal_type_person_in_scene")]
     public class SubModalType_PersonInScene
     {
-        [Column("sub_modal_type_id")]
+        [Column("submodal_type_id")]
         public int SubModalTypeId { get; set; }
         [Column("scene_id")]
         public int SceneId { get; set; }

@@ -178,20 +178,38 @@ namespace cl.uv.leikelen.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a _Tools.
+        ///   Busca una cadena traducida similar a Scene.
         /// </summary>
-        public static string Tools {
+        public static string Scene {
             get {
-                return ResourceManager.GetString("Tools", resourceCulture);
+                return ResourceManager.GetString("Scene", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Add Person.
+        /// </summary>
+        public static string Scene_AddPerson {
+            get {
+                return ResourceManager.GetString("Scene_AddPerson", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Busca una cadena traducida similar a Configure scene.
         /// </summary>
-        public static string Tools_ConfigureScene {
+        public static string Scene_Configure {
             get {
-                return ResourceManager.GetString("Tools_ConfigureScene", resourceCulture);
+                return ResourceManager.GetString("Scene_Configure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a _Tools.
+        /// </summary>
+        public static string Tools {
+            get {
+                return ResourceManager.GetString("Tools", resourceCulture);
             }
         }
         

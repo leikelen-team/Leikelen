@@ -8,6 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace cl.uv.leikelen.src.Data.Model
 {
+    [Table("modal_type")]
     public class ModalType
     {
         [Key]

@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using cl.uv.leikelen.src.Data.Model;
 
-namespace cl.uv.leikelen.src.View
+namespace cl.uv.leikelen.src.View.Widget
 {
     /// <summary>
     /// Lógica de interacción para PersonCard.xaml
@@ -25,7 +25,7 @@ namespace cl.uv.leikelen.src.View
             InitializeComponent();
         }
 
-        public Control getPerson(Person person)
+        public Control GetPerson(Person person)
         {
             Name.Content = person.Name;
             string photoUri = GeneralSettings.Instance.TmpDirectory + GeneralSettings.Instance.CurrentSceneDirectory + person.Photo;

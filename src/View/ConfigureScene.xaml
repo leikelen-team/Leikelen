@@ -88,8 +88,8 @@
             </TextBox.Text>
         </TextBox>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="7" Grid.ColumnSpan="2" Orientation="Horizontal">
-            <Button Content="{x:Static resx:GUI.Accept}" Margin="5" />
-            <Button Content="{x:Static resx:GUI.Cancel}" Margin="5" />
+            <Button x:Name="AcceptBtn" Content="{x:Static resx:GUI.Accept}" Margin="5" />
+            <Button x:Name="CancelBtn" Content="{x:Static resx:GUI.Cancel}" Margin="5" />
         </StackPanel>
     </Grid>
 </Window>

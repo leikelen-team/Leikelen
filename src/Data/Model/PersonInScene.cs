@@ -7,6 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace cl.uv.leikelen.src.Data.Model
 {
+    [Table("person_in_scene")]
     public class PersonInScene
     {
         [Column("scene_id")]

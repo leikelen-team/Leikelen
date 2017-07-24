@@ -157,4 +157,7 @@
   <data name="Associate" xml:space="preserve">
     <value>Associate</value>
   </data>
+  <data name="AreSureExit" xml:space="preserve">
+    <value>Are you sure you want to leave?</value>
+  </data>
 </root>
