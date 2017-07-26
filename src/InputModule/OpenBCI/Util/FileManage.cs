@@ -5,22 +5,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 
-namespace cl.uv.leikelen.src.InputModule.OpenBCI.Util
+namespace cl.uv.leikelen.InputModule.OpenBCI.Util
 {
     public class FileManage
     {
-        private StreamWriter sw;
-        public string fileName;
-        private const string SEPARADOR = "\t";
+        private StreamWriter _sw;
+        private string _fileName;
+        private const string Separador = "\t";
 
         public FileManage(string fileName)
         {
-            sw = new StreamWriter(fileName);
+            _sw = new StreamWriter(fileName);
         }
 
         public void WriteFile(double[] data)
         {
-            if (sw == null) return;
+            if (_sw == null) return;
             double multiplier = (4.5 / 24 / (Math.Pow(2, 23) - 1)) * (Math.Pow(10, 6));
 
             for (int i = 0; i < 8; i++)
@@ -30,15 +30,15 @@ namespace cl.uv.leikelen.src.InputModule.OpenBCI.Util
 
             for(int i = 0; i < 11; i++)
             {
-                sw.Write("{0}"+SEPARADOR, data[i]);
+                _sw.Write("{0}"+Separador, data[i]);
             }
-            sw.WriteLine("{0}", data[11]);
+            _sw.WriteLine("{0}", data[11]);
         }
 
         public void CloseFile()
         {
-            sw.Close();
-            sw = null;
+            _sw.Close();
+            _sw = null;
         }
     }
 }

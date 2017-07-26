@@ -12,15 +12,15 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
-using cl.uv.leikelen.src.Controller;
-using cl.uv.leikelen.src.Data.Access.Internal;
-using cl.uv.leikelen.src.InputModule;
-using cl.uv.leikelen.src.ProcessingModule;
+using cl.uv.leikelen.Controller;
+using cl.uv.leikelen.Data.Access.Internal;
+using cl.uv.leikelen.InputModule;
+using cl.uv.leikelen.ProcessingModule;
 using System.Diagnostics;
-using cl.uv.leikelen.src.Data.Persistence;
+using cl.uv.leikelen.Data.Persistence;
 using MaterialDesignThemes.Wpf;
 
-namespace cl.uv.leikelen.src.View
+namespace cl.uv.leikelen.View
 {
     /// <summary>
     /// Lógica de interacción para Home.xaml
@@ -88,8 +88,8 @@ namespace cl.uv.leikelen.src.View
             MenuItem_Help_AboutUs.Click += MenuItem_Help_AboutUs_Click;
 
             //Window related events
-            this.Closed += Home_Closed;
-            this.Closing += Home_Closing;
+            Closed += Home_Closed;
+            Closing += Home_Closing;
 
             //Player related events
             Player_PlayButton.Click += PlayPauseButton_Click;
@@ -117,7 +117,7 @@ namespace cl.uv.leikelen.src.View
         
 
         #region Window Events
-        private async void Home_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private void Home_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             //var exitDialog = new Widget.AcceptCancelDialog(Properties.GUI.AreSureExit, ExitWindow);
             //var result = await DialogHost.Show(exitDialog);
@@ -134,29 +134,34 @@ namespace cl.uv.leikelen.src.View
         {
             var configureSceneWin = new ConfigureScene();
             configureSceneWin.Show();
-            if (SceneInUse.Instance.Scene != null)
+            configureSceneWin.Closed += (senderClosed, eClosed) =>
             {
-                MenuItem_File_Save.IsEnabled = true;
-                MenuItem_Scene.IsEnabled = true;
-            }
+                if (SceneInUse.Instance.Scene != null)
+                {
+                    MenuItem_File_Save.IsEnabled = true;
+                    MenuItem_Scene.IsEnabled = true;
+                }
+            };
         }
 
         private void MenuItem_File_Recent_More_Click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            var allScenesWin = new AllScenes();
+            allScenesWin.Show();
         }
 
         private void MenuItem_File_Save_Click(object sender, RoutedEventArgs e)
         {
             if (SceneInUse.Instance.Scene != null)
             {
-                DBFacade.Instance.Provider.SaveScene(SceneInUse.Instance.Scene);
+                DbFacade.Instance.Provider.SaveScene(SceneInUse.Instance.Scene);
             }
         }
 
         private void MenuItem_File_Export_Click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            var exportWin = new Export();
+            exportWin.Show();
         }
 
         private void MenuItem_File_Import_Click(object sender, RoutedEventArgs e)
@@ -164,29 +169,35 @@ namespace cl.uv.leikelen.src.View
             throw new NotImplementedException();
         }
 
-        private async void MenuItem_File_Quit_Click(object sender, RoutedEventArgs e)
+        private void MenuItem_File_Quit_Click(object sender, RoutedEventArgs e)
         {
             //TODO: está seguro dialog
-            this.Close();
+            Close();
         }
         #endregion
 
         #region Tools MenuItems
         private void MenuItem_Tools_DB_Click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            var preferencesWin = new Preferences();
+            preferencesWin.ShowBd();
         }
 
         private void MenuItem_Tools_Preferences_Click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            var preferencesWin = new Preferences();
+            preferencesWin.Show();
         }
         #endregion
 
         #region Scene MenuItems
         private void MenuItem_Scene_AddPerson_Click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            if (SceneInUse.Instance.Scene != null)
+            {
+                var addPersonWin = new ConfigurePerson();
+                addPersonWin.Show();
+            }
         }
 
         private void MenuItem_Scene_Configure_Click(object sender, RoutedEventArgs e)
@@ -202,11 +213,12 @@ namespace cl.uv.leikelen.src.View
         #region Help MenuItems
         private void MenuItem_Help_AboutUs_Click(object sender, RoutedEventArgs e)
         {
-            return;
+            var aboutWin = new AboutUs();
+            aboutWin.Show();
         }
         #endregion
 
-        #region video viewer
+        #region Video viewer
 
         private void VideoViewer_skeletonImageArrived(object sender, System.Windows.Media.ImageSource e)
         {
@@ -234,19 +246,19 @@ namespace cl.uv.leikelen.src.View
                 case PlayerState.Play:
                     await _playerController.Pause();
                     _playerState = PlayerState.Pause;
-                    Player_PlayButton_Icon.Kind = MaterialDesignThemes.Wpf.PackIconKind.Play;
+                    Player_PlayButton_Icon.Kind = PackIconKind.Play;
                     break;
 
                 case PlayerState.Pause:
                     await _playerController.UnPause();
                     _playerState = PlayerState.Play;
-                    Player_PlayButton_Icon.Kind = MaterialDesignThemes.Wpf.PackIconKind.Pause;
+                    Player_PlayButton_Icon.Kind = PackIconKind.Pause;
                     break;
 
                 case PlayerState.Wait:
                     await _playerController.Play();
                     _playerState = PlayerState.Play;
-                    Player_PlayButton_Icon.Kind = MaterialDesignThemes.Wpf.PackIconKind.Pause;
+                    Player_PlayButton_Icon.Kind = PackIconKind.Pause;
                     break;
             }
         }
@@ -257,7 +269,7 @@ namespace cl.uv.leikelen.src.View
             {
                 await _playerController.Stop();
                 _playerState = PlayerState.Wait;
-                Player_PlayButton_Icon.Kind = MaterialDesignThemes.Wpf.PackIconKind.Play;
+                Player_PlayButton_Icon.Kind = PackIconKind.Play;
             }
             else if (_playerState == PlayerState.Record){
                 await _recorderController.Stop();
@@ -311,9 +323,10 @@ namespace cl.uv.leikelen.src.View
 
         private void _recordTimer_Tick(object sender, EventArgs e)
         {
-            if (_recorderController.getLocation().HasValue)
+            var location = _recorderController.GetLocation();
+            if (location.HasValue)
             {
-                Player_ActualTimeLabel.Content = _recorderController.getLocation().Value.ToString(@"hh\:mm\:ss");
+                Player_ActualTimeLabel.Content = location.Value.ToString(@"hh\:mm\:ss");
                 Player_RecordButton.Background = Player_RecordButton.Background == _buttonBackground ? Brushes.Red : _buttonBackground;
             }
         }
@@ -422,12 +435,12 @@ namespace cl.uv.leikelen.src.View
                 processMenuItem.Header = process.Name;
                 CheckBox processCheck = new CheckBox();
                 processCheck.Content = Properties.Menu.Enable;
-                processCheck.Checked += (object sender, RoutedEventArgs e) =>
+                processCheck.Checked += (sender, e) =>
                 {
                     process.IsEnabled = true;
 
                 };
-                processCheck.Unchecked += (object sender, RoutedEventArgs e) =>
+                processCheck.Unchecked += (sender, e) =>
                 {
                     process.IsEnabled = false;
                 };
@@ -436,7 +449,7 @@ namespace cl.uv.leikelen.src.View
                 {
                     MenuItem processWin = new MenuItem();
                     processWin.Header = window.Item1;
-                    processWin.Click += (object sender, RoutedEventArgs e) => {
+                    processWin.Click += (sender, e) => {
                         window.Item2.Show();
                     };
                     processMenuItem.Items.Add(processWin);

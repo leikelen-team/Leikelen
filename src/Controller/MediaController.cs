@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using cl.uv.leikelen.src.InputModule;
+using cl.uv.leikelen.InputModule;
 
-namespace cl.uv.leikelen.src.Controller
+namespace cl.uv.leikelen.Controller
 {
     public class MediaController
     {
@@ -27,12 +27,12 @@ namespace cl.uv.leikelen.src.Controller
             }
         }
 
-        public void SetFromFile(int SceneId)
+        public void SetFromFile(int sceneId)
         {
             foreach (var input in InputLoader.Instance.InputModules)
             {
                 input.Monitor.Close();
-                input.Player.OpenFile(SceneId);
+                input.Player.OpenFile(sceneId);
             }
         }
     }

@@ -11,17 +11,20 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using cl.uv.leikelen.src.Data.Access.Internal;
-using cl.uv.leikelen.src.Data.Model;
+using cl.uv.leikelen.Data.Access.Internal;
+using cl.uv.leikelen.Data.Model;
 
-namespace cl.uv.leikelen.src.View
+namespace cl.uv.leikelen.View
 {
     /// <summary>
+    /// Interaction logic for ConfigureScene.xaml
+    /// </summary>
+    /// <summary xml:lang="es">
     /// Lógica de interacción para ConfigureScene.xaml
     /// </summary>
     public partial class ConfigureScene : Window
     {
-        private Scene scene;
+        private readonly Scene _scene;
 
         public ConfigureScene()
         {
@@ -33,7 +36,7 @@ namespace cl.uv.leikelen.src.View
         public ConfigureScene(Scene scene)
         {
             InitializeComponent();
-            this.scene = scene;
+            _scene = scene;
             NameTextBox.Text = scene.Name;
             TypeTextBox.Text = scene.Type;
             DescriptionTextBox.Text = scene.Description;
@@ -46,13 +49,13 @@ namespace cl.uv.leikelen.src.View
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void AcceptBtn_Click(object sender, RoutedEventArgs e)
         {
             //TODO: está seguro dialog
-            if (scene == null)
+            if (_scene == null)
             {
                 var newScene = new Scene()
                 {
@@ -64,9 +67,30 @@ namespace cl.uv.leikelen.src.View
                     RecordRealDateTime = RealDatePicker.DisplayDate,
                     PersonInScenes = new List<PersonInScene>()
                 };
-                SceneInUse.Instance.Set(scene);
+                SceneInUse.Instance.Set(newScene);
             }
-            this.Close();
+            else
+            {
+                _scene.Name = NameTextBox.Text;
+                _scene.Type = TypeTextBox.Text;
+                _scene.Description = DescriptionTextBox.Text;
+                _scene.NumberOfParticipants = Int32.Parse(ParticipantsTextBox.Text);
+                _scene.Place = PlaceTextBox.Text;
+                if (RealTimePicker.SelectedTime.HasValue)
+                {
+                    _scene.RecordRealDateTime = new DateTime(RealDatePicker.DisplayDate.Year,
+                        RealDatePicker.DisplayDate.Month, RealDatePicker.DisplayDate.Day,
+                        RealTimePicker.SelectedTime.Value.Hour, RealTimePicker.SelectedTime.Value.Minute,
+                        RealTimePicker.SelectedTime.Value.Second);
+                }
+                else
+                {
+                    _scene.RecordRealDateTime = new DateTime(RealDatePicker.DisplayDate.Year,
+                        RealDatePicker.DisplayDate.Month, RealDatePicker.DisplayDate.Day, 0, 0, 0);
+                }
+                SceneInUse.Instance.Set(_scene);
+            }
+            Close();
         }
     }
 }

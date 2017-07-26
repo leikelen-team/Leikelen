@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace cl.uv.leikelen.src.View
+namespace cl.uv.leikelen.View
 {
     public enum PlayerState
     {

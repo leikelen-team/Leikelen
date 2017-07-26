@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace cl.uv.leikelen.src.View.Widget
+namespace cl.uv.leikelen.View.Widget
 {
     /// <summary>
     /// Lógica de interacción para ExitDialog.xaml

@@ -12,9 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.IO.Ports;
-using cl.uv.leikelen.src.API.InputModule;
+using cl.uv.leikelen.API.InputModule;
 
-namespace cl.uv.leikelen.src.InputModule.OpenBCI.View
+namespace cl.uv.leikelen.InputModule.OpenBCI.View
 {
     /// <summary>
     /// Lógica de interacción para OpenBCIWindow.xaml
@@ -44,7 +44,7 @@ namespace cl.uv.leikelen.src.InputModule.OpenBCI.View
         {
             if (PortsCmbx.SelectedItem != null)
             {
-                OpenBCI_Settings.Instance.Notch.Write(NotchCmbx.SelectedIndex);
+                OpenBCISettings.Instance.Notch.Write(NotchCmbx.SelectedIndex);
                 _monitor.OpenPort(PortsCmbx.SelectedItem as string);
             }
             this.Close();
@@ -55,7 +55,7 @@ namespace cl.uv.leikelen.src.InputModule.OpenBCI.View
             bool isConnected = false;
             if(PortsCmbx.SelectedItem != null)
             {
-                OpenBCI_Settings.Instance.Notch.Write(NotchCmbx.SelectedIndex);
+                OpenBCISettings.Instance.Notch.Write(NotchCmbx.SelectedIndex);
                 await _monitor.OpenPort(PortsCmbx.SelectedItem as string);
                 if (_monitor.GetStatus() == API.InputModule.InputStatus.Connected)
                 {
@@ -80,6 +80,10 @@ namespace cl.uv.leikelen.src.InputModule.OpenBCI.View
         private void RenewPorts()
         {
             int i = 0;
+            foreach (var item in PortsCmbx.Items)
+            {
+                PortsCmbx.Items.Remove(item);
+            }
             foreach (string s in SerialPort.GetPortNames())
             {
                 PortsCmbx.Items.Add(s);

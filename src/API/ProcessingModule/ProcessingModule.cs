@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace cl.uv.leikelen.src.API.ProcessingModule
+namespace cl.uv.leikelen.API.ProcessingModule
 {
-    public abstract class ProcessingType
+    public abstract class ProcessingModule
     {
         public string Name { get; protected set; }
         public List<Tuple<string, Window>> Windows { get; protected set; }

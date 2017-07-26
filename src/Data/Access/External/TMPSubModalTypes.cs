@@ -4,32 +4,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace cl.uv.leikelen.src.Data.Access.External
+namespace cl.uv.leikelen.Data.Access.External
 {
-    public class TMPSubModalTypes
+    public class TmpSubModalTypes
     {
         public List<Tuple<string, string>> TemporalSubmodals;
 
-        private static TMPSubModalTypes _instance;
+        private static TmpSubModalTypes _instance;
 
-        public static TMPSubModalTypes Instance
+        public static TmpSubModalTypes Instance
         {
             get
             {
-                if (_instance == null) _instance = new TMPSubModalTypes();
+                if (_instance == null) _instance = new TmpSubModalTypes();
                 return _instance;
             }
         }
 
-        private TMPSubModalTypes()
+        private TmpSubModalTypes()
         {
             TemporalSubmodals = new List<Tuple<string, string>>();
         }
 
         public void CheckSubmodals()
         {
-            SubModalAccess smAccess = new SubModalAccess();
-            ModalAccess mAccess = new ModalAccess();
+            var smAccess = new SubModalAccess();
+            var mAccess = new ModalAccess();
             foreach (var subModalElement in TemporalSubmodals)
             {
                 if (!mAccess.Exists(subModalElement.Item1))

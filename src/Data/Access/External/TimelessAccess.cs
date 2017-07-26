@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using cl.uv.leikelen.src.API.DataAccess;
-using cl.uv.leikelen.src.Data.Access.Internal;
-using cl.uv.leikelen.src.Data.Model;
+using cl.uv.leikelen.API.DataAccess;
+using cl.uv.leikelen.Data.Access.Internal;
+using cl.uv.leikelen.Data.Model;
 
-namespace cl.uv.leikelen.src.Data.Access.External
+namespace cl.uv.leikelen.Data.Access.External
 {
     public class TimelessAccess : ITimelessAccess
     {
         public List<Timeless> GetAll(int personId, string modalName, string subModalName)
         {
             var personInScene = SceneInUse.Instance.Scene.PersonInScenes.Find(pis => pis.PersonId == personId);
-            var subModal_PersonInScene = personInScene.SubModalType_PersonInScenes.Find(smt_pis => smt_pis.SubModalType.Name == subModalName && smt_pis.SubModalType.ModalType.Name == modalName);
-            var timelessRepresent = subModal_PersonInScene.RepresentType.FindAll(rt => rt.IntervalData == null && rt.EventData == null);
+            var subModalPersonInScene = personInScene.SubModalType_PersonInScenes.Find(smtPis => smtPis.SubModalType.Name == subModalName && smtPis.SubModalType.ModalType.Name == modalName);
+            var timelessRepresent = subModalPersonInScene.RepresentType.FindAll(rt => rt.IntervalData == null && rt.EventData == null);
             List<Timeless> timelessList = new List<Timeless>();
             foreach (var timeless in timelessRepresent)
             {
@@ -32,11 +32,11 @@ namespace cl.uv.leikelen.src.Data.Access.External
         #region public add methods
         public void Add(int personId, string modalName, string subModalName, double value)
         {
-            Add(personId, modalName, subModalName, value, null, null);
+            InternalAdd(personId, modalName, subModalName, value, null, null);
         }
         public void Add(int personId, string modalName, string subModalName, double value, string subtitle)
         {
-            Add(personId, modalName, subModalName, value, subtitle, null);
+            InternalAdd(personId, modalName, subModalName, value, subtitle, null);
         }
         public void Add(int personId, string modalName, string subModalName, double value, int index)
         {
@@ -45,38 +45,38 @@ namespace cl.uv.leikelen.src.Data.Access.External
 
         public void Add(int personId, string modalName, string subModalName, string subtitle)
         {
-            Add(personId, modalName, subModalName, null, subtitle, null);
+            InternalAdd(personId, modalName, subModalName, null, subtitle, null);
         }
         public void Add(int personId, string modalName, string subModalName, int index)
         {
-            Add(personId, modalName, subModalName, null, null, index);
+            InternalAdd(personId, modalName, subModalName, null, null, index);
         }
 
         public void Add(int personId, string modalName, string subModalName, string subtitle, int index)
         {
-            Add(personId, modalName, subModalName, null, subtitle, index);
+            InternalAdd(personId, modalName, subModalName, null, subtitle, index);
         }
 
         public void Add(int personId, string modalName, string subModalName, double value, string subtitle, int index)
         {
-            Add(personId, modalName, subModalName, value, subtitle, index);
+            InternalAdd(personId, modalName, subModalName, value, subtitle, index);
         }
         #endregion
 
-        private void Add(int personId, string modalName, string subModalName, double? value, string subtitle, int? index)
+        private void InternalAdd(int personId, string modalName, string subModalName, double? value, string subtitle, int? index)
         {
             var personInScene = SceneInUse.Instance.Scene.PersonInScenes.Find(pis => pis.PersonId == personId);
-            var subModal_PersonInScene = personInScene.SubModalType_PersonInScenes.Find(smt_pis => smt_pis.SubModalType.Name == subModalName && smt_pis.SubModalType.ModalType.Name == modalName);
-            subModal_PersonInScene.RepresentType.Add(new RepresentType()
+            var subModalPersonInScene = personInScene.SubModalType_PersonInScenes.Find(smtPis => smtPis.SubModalType.Name == subModalName && smtPis.SubModalType.ModalType.Name == modalName);
+            subModalPersonInScene.RepresentType.Add(new RepresentType()
             {
                 Value = value,
                 Subtitle = subtitle,
                 Index = index
             });
             var submodalModalKey = new Tuple<string, string>(modalName, subModalName);
-            if (!TMPSubModalTypes.Instance.TemporalSubmodals.Contains(submodalModalKey))
+            if (!TmpSubModalTypes.Instance.TemporalSubmodals.Contains(submodalModalKey))
             {
-                TMPSubModalTypes.Instance.TemporalSubmodals.Add(submodalModalKey);
+                TmpSubModalTypes.Instance.TemporalSubmodals.Add(submodalModalKey);
             }
         }
     }

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
 
-namespace cl.uv.leikelen.src.API.InputModule
+namespace cl.uv.leikelen.API.InputModule
 {
     public interface IVideo
     {

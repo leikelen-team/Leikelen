@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Threading.Tasks;
-using cl.uv.leikelen.src.API.ProcessingModule;
-using cl.uv.leikelen.src.API.FrameProvider.EEG;
+using cl.uv.leikelen.API.ProcessingModule;
+using cl.uv.leikelen.API.FrameProvider.EEG;
 
-namespace cl.uv.leikelen.src.ProcessingModule.EEGEmotion2Channels
+namespace cl.uv.leikelen.ProcessingModule.EEGEmotion2Channels
 {
-    public sealed class EEGEmotion2ChannelsEntryPoint : ProcessingType, IEEG
+    public sealed class EEGEmotion2ChannelsEntryPoint : API.ProcessingModule.ProcessingModule, IEeg
     {
         private Classifier.EEGReceiver logic;
 
@@ -30,7 +30,7 @@ namespace cl.uv.leikelen.src.ProcessingModule.EEGEmotion2Channels
             logic = new Classifier.EEGReceiver();
         }
 
-        public EventHandler<EEGFrameArrivedEventArgs> EEGListener()
+        public EventHandler<EegFrameArrivedEventArgs> EegListener()
         {
             return logic.DataReceiver;
         }

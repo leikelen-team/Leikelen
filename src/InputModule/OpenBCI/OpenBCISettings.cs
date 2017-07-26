@@ -5,20 +5,20 @@ using System.Text;
 using System.Threading.Tasks;
 using Config.Net;
 
-namespace cl.uv.leikelen.src.InputModule.OpenBCI
+namespace cl.uv.leikelen.InputModule.OpenBCI
 {
-    public class OpenBCI_Settings : SettingsContainer
+    public class OpenBCISettings : SettingsContainer
     {
         public readonly Option<int> Notch;
         public readonly Option<int> Filter;
 
-        private static OpenBCI_Settings _instance;
+        private static OpenBCISettings _instance;
 
-        public static OpenBCI_Settings Instance
+        public static OpenBCISettings Instance
         {
             get
             {
-                if (_instance == null) _instance = new OpenBCI_Settings();
+                if (_instance == null) _instance = new OpenBCISettings();
                 return _instance;
             }
         }

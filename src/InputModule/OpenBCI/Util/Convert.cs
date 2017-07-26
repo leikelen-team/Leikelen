@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace cl.uv.leikelen.src.InputModule.OpenBCI.Util
+namespace cl.uv.leikelen.InputModule.OpenBCI.Util
 {
     public static class Convert
     {

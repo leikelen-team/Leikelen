@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace cl.uv.leikelen.src.Data.Model
+namespace cl.uv.leikelen.Data.Model
 {
     [Table("person_in_scene")]
     public class PersonInScene

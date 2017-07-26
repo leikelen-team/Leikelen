@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Config.Net;
 
-namespace cl.uv.leikelen.src
+namespace cl.uv.leikelen
 {
     public class GeneralSettings : SettingsContainer
     {

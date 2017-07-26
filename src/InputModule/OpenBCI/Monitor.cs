@@ -3,30 +3,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using cl.uv.leikelen.src.API.InputModule;
+using cl.uv.leikelen.API.InputModule;
 using System.IO.Ports;
 using System.Windows.Threading;
 using System.IO;
-using cl.uv.leikelen.src.API.FrameProvider.Accelerometer;
-using cl.uv.leikelen.src.API.FrameProvider.EEG;
+using cl.uv.leikelen.API.FrameProvider.Accelerometer;
+using cl.uv.leikelen.API.FrameProvider.EEG;
 
-namespace cl.uv.leikelen.src.InputModule.OpenBCI
+namespace cl.uv.leikelen.InputModule.OpenBCI
 {
     public class Monitor : IMonitor
     {
         public event EventHandler StatusChanged;
 
-        private Util.InterpretStream _interpretStream;
+        private readonly Util.InterpretStream _interpretStream;
         private Util.Filter _filter;
         private SerialPort _serialPort;
         private InputStatus _status;
         private Util.FileManage _filemanage;
-        private string[] Positions;
+        private readonly string[] _positions;
 
         private bool _isRecording;
 
 
-        private event EventHandler<EEGFrameArrivedEventArgs> EEGFrameArrived;
+        private event EventHandler<EegFrameArrivedEventArgs> EegFrameArrived;
         private event EventHandler<AccelerometerFrameArrivedEventArgs> AccelerometerFrameArrived;
 
         public Monitor()
@@ -34,7 +34,7 @@ namespace cl.uv.leikelen.src.InputModule.OpenBCI
             _interpretStream = new Util.InterpretStream();
             _filter = new Util.Filter();
             _status = InputStatus.Unconnected;
-            Positions = new string[8];
+            _positions = new string[8];
             _isRecording = false;
         }
 
@@ -42,7 +42,7 @@ namespace cl.uv.leikelen.src.InputModule.OpenBCI
         public async Task Close()
         {
             StopStream();
-            if(_serialPort != null) _serialPort.Close();
+            _serialPort?.Close();
         }
 
         public InputStatus GetStatus()
@@ -123,37 +123,38 @@ namespace cl.uv.leikelen.src.InputModule.OpenBCI
         private void serialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             SerialPort port = sender as SerialPort;
+            if (port == null) return;
             byte[] buffer = new byte[port.BytesToRead];
             port.Read(buffer, 0, buffer.Length);
-            for(int i = 0; i < buffer.Length; i++)
+            foreach(var bufferData in buffer)
             {
-                double[] data = _interpretStream.interpretBinaryStream(buffer[i]);
+                double[] data = _interpretStream.interpretBinaryStream(bufferData);
 
                 if(data != null)
                 {
                     if (data.Length >= 9)
                     {
-                        var EEGArgs = new EEGFrameArrivedEventArgs()
+                        var eegArgs = new EegFrameArrivedEventArgs()
                         {
                             //Time = ,
-                            Channels = new List<EEGChannel>()
+                            Channels = new List<EegChannel>()
                         };
                         for (int j = 1; j < 9; j++)
                         {
-                            EEGArgs.Channels.Add(new EEGChannel()
+                            eegArgs.Channels.Add(new EegChannel()
                             {
                                 Filter = FilterType.None,
-                                Notch = (NotchType)OpenBCI_Settings.Instance.Notch.Value,
+                                Notch = (NotchType)OpenBCISettings.Instance.Notch.Value,
                                 PositionSystem = "10/20",
-                                Position = Positions[j - 1],
+                                Position = _positions[j - 1],
                                 Value = data[j]
                             });
                         }
-                        OnEEGFrameArrived(EEGArgs);
+                        OnEegFrameArrived(eegArgs);
                     }
                     if (data.Length == 12 && data[9] != 0 && data[10] != 0 && data[11] != 0)
                     {
-                        var AccArgs = new AccelerometerFrameArrivedEventArgs()
+                        var accArgs = new AccelerometerFrameArrivedEventArgs()
                         {
                             Place = "Head",
                             // Time = ,
@@ -161,17 +162,17 @@ namespace cl.uv.leikelen.src.InputModule.OpenBCI
                             YAxis = data[10],
                             ZAxis = data[11]
                         };
-                        OnAccelerometerArrived(AccArgs);
+                        OnAccelerometerArrived(accArgs);
                     }
-                    if (_filemanage != null) _filemanage.WriteFile(data);
+                    _filemanage?.WriteFile(data);
                 }
             }
         }
 
 
-        private void OnEEGFrameArrived(EEGFrameArrivedEventArgs e)
+        private void OnEegFrameArrived(EegFrameArrivedEventArgs e)
         {
-            EEGFrameArrived?.Invoke(this, e);
+            EegFrameArrived?.Invoke(this, e);
         }
 
         private void OnAccelerometerArrived(AccelerometerFrameArrivedEventArgs e)

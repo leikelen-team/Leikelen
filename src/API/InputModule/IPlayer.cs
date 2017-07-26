@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace cl.uv.leikelen.src.API.InputModule
+namespace cl.uv.leikelen.API.InputModule
 {
     public interface IPlayer
     {
@@ -14,7 +14,7 @@ namespace cl.uv.leikelen.src.API.InputModule
         void Stop();
         void ChangeTime(TimeSpan newTime);
         bool IsPlaying();
-        void OpenFile(int SceneId);
+        void OpenFile(int sceneId);
         void Close();
         TimeSpan? GetTotalDuration();
         TimeSpan? GetLocation();

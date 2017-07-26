@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Config.Net;
 
-namespace cl.uv.leikelen.src.ProcessingModule.EEGEmotion2Channels
+namespace cl.uv.leikelen.ProcessingModule.EEGEmotion2Channels
 {
     public class EEGEmoProc2ChSettings : SettingsContainer
     {

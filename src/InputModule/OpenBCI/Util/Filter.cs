@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using cl.uv.leikelen.src.API.FrameProvider.EEG;
+using cl.uv.leikelen.API.FrameProvider.EEG;
 
-namespace cl.uv.leikelen.src.InputModule.OpenBCI.Util
+namespace cl.uv.leikelen.InputModule.OpenBCI.Util
 {
     public class Filter
     {
@@ -22,19 +22,19 @@ namespace cl.uv.leikelen.src.InputModule.OpenBCI.Util
             double[] notchA;
             switch (filter)
             {
-                case FilterType.Filter_1_50Hz:
+                case FilterType.BandFilter1HzTo50Hz:
                     filterB = new double[5] { 0.2001387256580675, 0, -0.4002774513161350, 0, 0.2001387256580675 };
                     filterA = new double[5] { 1, -2.355934631131582, 1.941257088655214, -0.7847063755334187, 0.1999076052968340 };
                     break;
-                case FilterType.Filter_7_13Hz:
+                case FilterType.BandFilter7HzTo13Hz:
                     filterB = new double[5] { 0.005129268366104263, 0, -0.01025853673220853, 0, 0.005129268366104263 };
                     filterA = new double[5] { 1, -3.678895469764040, 5.179700413522124, -3.305801890016702, 0.8079495914209149 };
                     break;
-                case FilterType.Filter_15_50Hz:
+                case FilterType.BandFilter15HzTo50Hz:
                     filterB = new double[5] { 0.1173510367246093, 0, -0.2347020734492186, 0, 0.1173510367246093 };
                     filterA = new double[5] { 1, -2.137430180172061, 2.038578008108517, -1.070144399200925, 0.2946365275879138 };
                     break;
-                case FilterType.Filter_5_50Hz:
+                case FilterType.BandFilter5HzTo50Hz:
                     filterB = new double[5] { 0.1750876436721012, 0, -0.3501752873442023, 0, 0.1750876436721012 };
                     filterA = new double[5] { 1, -2.299055356038497, 1.967497759984450, -0.8748055564494800, 0.2196539839136946 };
                     break;

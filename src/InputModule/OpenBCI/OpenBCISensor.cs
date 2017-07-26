@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using cl.uv.leikelen.src.API.InputModule;
+using cl.uv.leikelen.API.InputModule;
 
-namespace cl.uv.leikelen.src.InputModule.OpenBCI
+namespace cl.uv.leikelen.InputModule.OpenBCI
 {
-    public sealed class OpenBCISensor : InputType
+    public sealed class OpenBCISensor : API.InputModule.InputModule
     {
         public OpenBCISensor()
         {

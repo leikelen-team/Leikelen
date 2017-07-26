@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace cl.uv.leikelen.src.API.FrameProvider.EEG
+namespace cl.uv.leikelen.API.FrameProvider.EEG
 {
-    public class EEGFrameArrivedEventArgs
+    public class EegFrameArrivedEventArgs
     {
         public TimeSpan Time;
-        public List<EEGChannel> Channels;
+        public List<EegChannel> Channels;
     }
 
-    public struct EEGChannel
+    public struct EegChannel
     {
         public string Position;
         public string PositionSystem;

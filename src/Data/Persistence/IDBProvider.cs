@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using cl.uv.leikelen.src.Data.Model;
+using cl.uv.leikelen.Data.Model;
 
-namespace cl.uv.leikelen.src.Data.Persistence
+namespace cl.uv.leikelen.Data.Persistence
 {
-    public interface IDBProvider
+    public interface IDbProvider
     {
         void CreateConnection(string options);
         void CloseConnection();

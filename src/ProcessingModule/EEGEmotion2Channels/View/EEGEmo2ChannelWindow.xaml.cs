@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace cl.uv.leikelen.src.ProcessingModule.EEGEmotion2Channels
+namespace cl.uv.leikelen.ProcessingModule.EEGEmotion2Channels
 {
     /// <summary>
     /// Lógica de interacción para EEGEmo2ChannelWindow.xaml

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Accord.Math;
 
-namespace cl.uv.leikelen.src.ProcessingModule.EEGEmotion2Channels.Helper
+namespace cl.uv.leikelen.ProcessingModule.EEGEmotion2Channels.Helper
 {
     public class SampleEntropy
     {

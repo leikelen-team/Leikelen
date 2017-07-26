@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace cl.uv.leikelen.src.Controller
+namespace cl.uv.leikelen.Controller
 {
     public class PlayerController
     {

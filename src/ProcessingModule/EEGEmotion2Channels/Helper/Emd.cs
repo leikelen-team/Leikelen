@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace cl.uv.leikelen.src.ProcessingModule.EEGEmotion2Channels.Helper
+namespace cl.uv.leikelen.ProcessingModule.EEGEmotion2Channels.Helper
 {
     public struct EmdData
     {

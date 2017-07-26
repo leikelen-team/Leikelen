@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using cl.uv.leikelen.src.Data.Access.Internal;
-using cl.uv.leikelen.src.InputModule;
-using cl.uv.leikelen.src.ProcessingModule;
+using cl.uv.leikelen.Data.Access.Internal;
+using cl.uv.leikelen.InputModule;
+using cl.uv.leikelen.ProcessingModule;
 
-namespace cl.uv.leikelen.src.Controller
+namespace cl.uv.leikelen.Controller
 {
     public class RecorderController
     {
         public bool IsRecording = false;
 
-        public TimeSpan? getLocation()
+        public TimeSpan? GetLocation()
         {
             if (IsRecording) return DateTime.Now.Subtract(SceneInUse.Instance.Scene.RecordStartedDateTime);
             else return null;
@@ -37,7 +37,6 @@ namespace cl.uv.leikelen.src.Controller
 
         public async Task Record()
         {
-            
             foreach (var input in InputLoader.Instance.InputModules)
             {
                 input.Monitor.StartRecording();

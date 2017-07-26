@@ -4,24 +4,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace cl.uv.leikelen.src.Data.Persistence
+namespace cl.uv.leikelen.Data.Persistence
 {
-    class DBException : Exception
+    public class DbException : Exception
     {
-        public DBException() : base()
+        public DbException() : base()
         {
 
         }
 
-        public DBException(string message) : base(message)
+        public DbException(string message) : base(message)
         {
 
         }
 
-        public DBException(string message, Exception innerException) : base(message, innerException)
+        public DbException(string message, Exception innerException) : base(message, innerException)
         {
 
         }
-
     }
 }

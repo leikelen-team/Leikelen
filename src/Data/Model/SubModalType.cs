@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace cl.uv.leikelen.src.Data.Model
+namespace cl.uv.leikelen.Data.Model
 {
     [Table("submodal_type")]
     public class SubModalType

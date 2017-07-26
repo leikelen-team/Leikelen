@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using cl.uv.leikelen.src.Data.Model;
+using cl.uv.leikelen.Data.Model;
 
-namespace cl.uv.leikelen.src.API.DataAccess
+namespace cl.uv.leikelen.API.DataAccess
 {
     public interface IModalAccess
     {

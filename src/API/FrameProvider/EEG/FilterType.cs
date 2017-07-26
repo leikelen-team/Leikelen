@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace cl.uv.leikelen.src.API.FrameProvider.EEG
+namespace cl.uv.leikelen.API.FrameProvider.EEG
 {
     public enum FilterType
     {
         None,
-        Filter_1_50Hz,
-        Filter_7_13Hz,
-        Filter_15_50Hz,
-        Filter_5_50Hz
+        BandFilter1HzTo50Hz,
+        BandFilter7HzTo13Hz,
+        BandFilter15HzTo50Hz,
+        BandFilter5HzTo50Hz
     }
 }

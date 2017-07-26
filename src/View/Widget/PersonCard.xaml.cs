@@ -11,14 +11,14 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using cl.uv.leikelen.src.Data.Model;
+using cl.uv.leikelen.Data.Model;
 
-namespace cl.uv.leikelen.src.View.Widget
+namespace cl.uv.leikelen.View.Widget
 {
     /// <summary>
     /// Lógica de interacción para PersonCard.xaml
     /// </summary>
-    public partial class PersonCard : Window
+    public partial class PersonCard : UserControl
     {
         public PersonCard()
         {

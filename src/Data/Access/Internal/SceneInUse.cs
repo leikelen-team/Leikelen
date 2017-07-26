@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using cl.uv.leikelen.src.Data.Model;
+using cl.uv.leikelen.Data.Model;
 
-namespace cl.uv.leikelen.src.Data.Access.Internal
+namespace cl.uv.leikelen.Data.Access.Internal
 {
     public class SceneInUse
     {
@@ -28,7 +28,7 @@ namespace cl.uv.leikelen.src.Data.Access.Internal
 
         public void Set(Scene scene)
         {
-            this.Scene = scene;
+            Scene = scene;
         }
     }
 }

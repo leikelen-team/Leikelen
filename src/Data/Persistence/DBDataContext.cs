@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using cl.uv.leikelen.src.Data.Model;
+using cl.uv.leikelen.Data.Model;
 using Microsoft.EntityFrameworkCore;
 
-namespace cl.uv.leikelen.src.Data.Persistence
+namespace cl.uv.leikelen.Data.Persistence
 {
-    public class DBDataContext :DbContext
+    public class DbDataContext : DbContext
     {
         
         public DbSet<Scene> Scenes { get; set; }
@@ -16,18 +16,18 @@ namespace cl.uv.leikelen.src.Data.Persistence
         public DbSet<PersonInScene> PersonInScenes { get; set; }
         public DbSet<ModalType> ModalTypes { get; set; }
         public DbSet<SubModalType> SubModalTypes { get; set; }
-        public DbSet<SubModalType_PersonInScene> SMT_PIS { get; set; }
+        public DbSet<SubModalType_PersonInScene> SmtPis { get; set; }
         public DbSet<RepresentType> RepresentTypes { get; set; }
         public DbSet<EventData> EventDatas { get; set; }
         public DbSet<IntervalData> IntervalDatas { get; set; }
-        public static DBDataContext db = null;
+        public static DbDataContext Db = null;
 
         public static bool IsConnected()
         {
-            return db != null;
+            return Db != null;
         }
 
-        public DBDataContext(DbContextOptions options)
+        public DbDataContext(DbContextOptions options)
             : base(options)
         { }
 

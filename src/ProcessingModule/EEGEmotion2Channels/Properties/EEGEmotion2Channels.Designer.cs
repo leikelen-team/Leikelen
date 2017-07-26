@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace cl.uv.leikelen.src.ProcessingModule.EEGEmotion2Channels.Properties {
+namespace cl.uv.leikelen.ProcessingModule.EEGEmotion2Channels.Properties {
     using System;
     
     

@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using cl.uv.leikelen.src.API.InputModule;
+using cl.uv.leikelen.API.InputModule;
 
-namespace cl.uv.leikelen.src.InputModule
+namespace cl.uv.leikelen.InputModule
 {
     public class InputLoader
     {
-        public List<InputType> InputModules { get; private set; }
+        public List<API.InputModule.InputModule> InputModules { get; private set; }
         public IVideo VideoHandler { get; private set; }
         private static InputLoader _instance;
 
@@ -24,7 +24,7 @@ namespace cl.uv.leikelen.src.InputModule
 
         private InputLoader()
         {
-            InputModules = new List<InputType>();
+            InputModules = new List<API.InputModule.InputModule>();
 
             InputModules.Add(new OpenBCI.OpenBCISensor());
         }

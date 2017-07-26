@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using cl.uv.leikelen.src.Data.Model;
+using cl.uv.leikelen.Data.Model;
 
-namespace cl.uv.leikelen.src.Data.Persistence
+namespace cl.uv.leikelen.Data.Persistence.Provider
 {
-    public class PgSQLProvider : IDBProvider
+    public class PgSqlProvider : IDbProvider
     {
-        public PgSQLProvider()
+        public PgSqlProvider()
         {
 
         }

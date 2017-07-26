@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace cl.uv.leikelen.src.API.FrameProvider.EEG
+namespace cl.uv.leikelen.API.FrameProvider.EEG
 {
-    public interface IEEG
+    public interface IEeg
     {
-        EventHandler<EEGFrameArrivedEventArgs> EEGListener();
+        EventHandler<EegFrameArrivedEventArgs> EegListener();
     }
 }

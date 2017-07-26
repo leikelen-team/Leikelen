@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace cl.uv.leikelen.src.API.DataAccess
+namespace cl.uv.leikelen.API.DataAccess
 {
     public struct Timeless
     {

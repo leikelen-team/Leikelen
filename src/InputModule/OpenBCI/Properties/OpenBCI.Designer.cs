@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace cl.uv.leikelen.src.InputModule.OpenBCI.Properties {
+namespace cl.uv.leikelen.InputModule.OpenBCI.Properties {
     using System;
     
     

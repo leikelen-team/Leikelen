@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using cl.uv.leikelen.src.API.InputModule;
+using cl.uv.leikelen.API.InputModule;
 
-namespace cl.uv.leikelen.src.InputModule.OpenBCI
+namespace cl.uv.leikelen.InputModule.OpenBCI
 {
     public class Player : IPlayer
     {
@@ -37,7 +37,7 @@ namespace cl.uv.leikelen.src.InputModule.OpenBCI
             return false;
         }
 
-        public void OpenFile(int SceneId)
+        public void OpenFile(int sceneId)
         {
             return;
         }

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using cl.uv.leikelen.src.API.FrameProvider.EEG;
+using cl.uv.leikelen.API.FrameProvider.EEG;
 
-namespace cl.uv.leikelen.src.ProcessingModule.EEGEmotion2Channels.Classifier
+namespace cl.uv.leikelen.ProcessingModule.EEGEmotion2Channels.Classifier
 {
     public class EEGReceiver
     {
@@ -16,7 +16,7 @@ namespace cl.uv.leikelen.src.ProcessingModule.EEGEmotion2Channels.Classifier
             ChannelValues = new List<double[]>();
         }
 
-        public void DataReceiver(object sender, EEGFrameArrivedEventArgs e)
+        public void DataReceiver(object sender, EegFrameArrivedEventArgs e)
         {
             foreach (var channel in e.Channels)
             {
