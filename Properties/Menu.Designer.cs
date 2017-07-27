@@ -268,11 +268,29 @@ namespace cl.uv.leikelen.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Add processing module (not implemented).
+        /// </summary>
+        public static string Tools_Processing_AddNotImplemented {
+            get {
+                return ResourceManager.GetString("Tools_Processing_AddNotImplemented", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Sensors.
         /// </summary>
         public static string Tools_Sensors {
             get {
                 return ResourceManager.GetString("Tools_Sensors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Add sensor (not implemented).
+        /// </summary>
+        public static string Tools_Sensors_AddNotImplemented {
+            get {
+                return ResourceManager.GetString("Tools_Sensors_AddNotImplemented", resourceCulture);
             }
         }
     }

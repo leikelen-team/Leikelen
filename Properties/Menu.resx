@@ -192,4 +192,10 @@
   <data name="Scene_AddPerson" xml:space="preserve">
     <value>Add Person</value>
   </data>
+  <data name="Tools_Sensors_AddNotImplemented" xml:space="preserve">
+    <value>Add sensor (not implemented)</value>
+  </data>
+  <data name="Tools_Processing_AddNotImplemented" xml:space="preserve">
+    <value>Add processing module (not implemented)</value>
+  </data>
 </root>

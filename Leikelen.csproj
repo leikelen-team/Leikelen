@@ -224,6 +224,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Properties\Error.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Error.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\GUI.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -281,6 +286,7 @@
     <Compile Include="src\Data\Persistence\DbException.cs" />
     <Compile Include="src\Data\Persistence\DbFacade.cs" />
     <Compile Include="src\Data\Persistence\IDbProvider.cs" />
+    <Compile Include="src\Data\Persistence\Provider\MemoryProvider.cs" />
     <Compile Include="src\Data\Persistence\Provider\PgSQLProvider.cs" />
     <Compile Include="src\Data\Persistence\RepresentTypeException.cs" />
     <Compile Include="src\InputModule\InputLoader.cs" />
@@ -335,6 +341,9 @@
     <Compile Include="src\View\AboutUs.xaml.cs">
       <DependentUpon>AboutUs.xaml</DependentUpon>
     </Compile>
+    <Compile Include="src\View\AllPersons.xaml.cs">
+      <DependentUpon>AllPersons.xaml</DependentUpon>
+    </Compile>
     <Compile Include="src\View\AllScenes.xaml.cs">
       <DependentUpon>AllScenes.xaml</DependentUpon>
     </Compile>
@@ -354,6 +363,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="src\View\HomeState.cs" />
     <Compile Include="src\View\Preferences.xaml.cs">
       <DependentUpon>Preferences.xaml</DependentUpon>
     </Compile>
@@ -391,6 +401,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="src\View\AboutUs.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="src\View\AllPersons.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -464,6 +478,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Properties\Error.es.resx" />
+    <EmbeddedResource Include="Properties\Error.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Error.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\GUI.es.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>GUI.es.Designer.cs</LastGenOutput>

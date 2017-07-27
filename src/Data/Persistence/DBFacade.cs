@@ -23,7 +23,8 @@ namespace cl.uv.leikelen.Data.Persistence
 
         private DbFacade()
         {
-            Provider = new Provider.PgSqlProvider();
+            Provider = new Provider.MemoryProvider();
+            Provider.CreateConnection(null);
         }
     }
 }

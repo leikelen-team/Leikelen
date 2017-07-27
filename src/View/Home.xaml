@@ -45,7 +45,7 @@
                 </MenuItem>
                 <MenuItem x:Name="MenuItem_Tools" Header="{x:Static resx:Menu.Tools}">
                     <MenuItem x:Name="MenuItem_Tools_Preferences" Header="{x:Static resx:Menu.Tools_Preferences}" InputGestureText="Ctrl+P"></MenuItem>
-                    <MenuItem Header="{x:Static resx:Menu.Tools_Player}">
+                    <MenuItem x:Name="MenuItem_Tools_Player" Header="{x:Static resx:Menu.Tools_Player}">
                         <CheckBox x:Name="SkeletonLayerCheckbox" Content="{x:Static resx:Menu.Tools_Player_SkeletonLayerCheckbox}"/>
                         <CheckBox x:Name="ColorLayerCheckbox" Content="{x:Static resx:Menu.Tools_Player_ColorLayerCheckbox}" />
                     </MenuItem>

@@ -190,4 +190,10 @@
   <data name="Scene_AddPerson" xml:space="preserve">
     <value>Añadir Persona</value>
   </data>
+  <data name="Tools_Sensors_AddNotImplemented" xml:space="preserve">
+    <value>Añadir sensor (no implementado)</value>
+  </data>
+  <data name="Tools_Processing_AddNotImplemented" xml:space="preserve">
+    <value>Añadir módulo de procesamiento (no implementado)</value>
+  </data>
 </root>

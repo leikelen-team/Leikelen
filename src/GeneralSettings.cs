@@ -11,6 +11,8 @@ namespace cl.uv.leikelen
     {
         public readonly Option<string> TmpDirectory;
         public readonly Option<string> CurrentSceneDirectory;
+        public readonly Option<string> Extension;
+        public readonly Option<string> ExtensionFilter;
 
         private static GeneralSettings _instance;
 

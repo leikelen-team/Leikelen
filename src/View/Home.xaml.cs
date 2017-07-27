@@ -52,6 +52,8 @@ namespace cl.uv.leikelen.View
         /// </summary>
         private readonly DispatcherTimer _recordTimer;
 
+        private HomeState _homeState;
+
         public Home()
         {
             InitializeComponent();
@@ -114,7 +116,164 @@ namespace cl.uv.leikelen.View
             FillMenuProccessingModules();
         }
 
-        
+        private void ChangeHomeState(HomeState newHomeState)
+        {
+            _homeState = newHomeState;
+            switch (newHomeState)
+            {
+                case HomeState.Initial:
+                    MenuItem_File_NewScene.IsEnabled = false;
+                    MenuItem_File_Save.IsEnabled = false;
+                    MenuItem_File_Recent.IsEnabled = false;
+                    MenuItem_File_Recent_More.IsEnabled = false;
+                    MenuItem_File_Import.IsEnabled = false;
+                    MenuItem_File_Export.IsEnabled = false;
+                    MenuItem_File_Quit.IsEnabled = true;
+
+                    MenuItem_Tools_Preferences.IsEnabled = true;
+                    MenuItem_Tools_DB.IsEnabled = true;
+                    MenuItem_Tools_Player.IsEnabled = false;
+                    MenuItems_Tools_Sensors.IsEnabled = false;
+                    MenuItems_Tools_Processing.IsEnabled = false;
+
+                    MenuItem_Scene.IsEnabled = false;
+                    MenuItem_Scene_Configure.IsEnabled = false;
+                    MenuItem_Scene_AddPerson.IsEnabled = false;
+
+                    Player_LocationSlider.IsEnabled = false;
+                    Player_RecordButton.IsEnabled = false;
+                    Player_PlayButton.IsEnabled = false;
+                    Player_StopButton.IsEnabled = false;
+                    Player_VolumeToggle.IsEnabled = false;
+                    break;
+                case HomeState.FromSensor:
+                    MenuItem_File_NewScene.IsEnabled = true;
+                    MenuItem_File_Save.IsEnabled = false;
+                    MenuItem_File_Recent.IsEnabled = false;
+                    MenuItem_File_Recent_More.IsEnabled = false;
+                    MenuItem_File_Import.IsEnabled = false;
+                    MenuItem_File_Export.IsEnabled = false;
+                    MenuItem_File_Quit.IsEnabled = true;
+
+                    MenuItem_Tools_Preferences.IsEnabled = true;
+                    MenuItem_Tools_DB.IsEnabled = true;
+                    MenuItem_Tools_Player.IsEnabled = true;
+                    MenuItems_Tools_Sensors.IsEnabled = true;
+                    MenuItems_Tools_Processing.IsEnabled = true;
+
+                    MenuItem_Scene.IsEnabled = false;
+                    MenuItem_Scene_Configure.IsEnabled = false;
+                    MenuItem_Scene_AddPerson.IsEnabled = false;
+
+                    Player_LocationSlider.IsEnabled = false;
+                    Player_RecordButton.IsEnabled = false;
+                    Player_PlayButton.IsEnabled = false;
+                    Player_StopButton.IsEnabled = false;
+                    Player_VolumeToggle.IsEnabled = false;
+                    break;
+                case HomeState.FromSensorWithScene:
+                    MenuItem_File_NewScene.IsEnabled = true;
+                    MenuItem_File_Save.IsEnabled = true;
+                    MenuItem_File_Recent.IsEnabled = false;
+                    MenuItem_File_Recent_More.IsEnabled = false;
+                    MenuItem_File_Import.IsEnabled = false;
+                    MenuItem_File_Export.IsEnabled = true;
+                    MenuItem_File_Quit.IsEnabled = true;
+
+                    MenuItem_Tools_Preferences.IsEnabled = true;
+                    MenuItem_Tools_DB.IsEnabled = true;
+                    MenuItem_Tools_Player.IsEnabled = true;
+                    MenuItems_Tools_Sensors.IsEnabled = true;
+                    MenuItems_Tools_Processing.IsEnabled = true;
+
+                    MenuItem_Scene.IsEnabled = true;
+                    MenuItem_Scene_Configure.IsEnabled = true;
+                    MenuItem_Scene_AddPerson.IsEnabled = true;
+
+                    Player_LocationSlider.IsEnabled = false;
+                    Player_RecordButton.IsEnabled = true;
+                    Player_PlayButton.IsEnabled = false;
+                    Player_StopButton.IsEnabled = false;
+                    Player_VolumeToggle.IsEnabled = false;
+                    break;
+                case HomeState.FromSensorRecording:
+                    MenuItem_File_NewScene.IsEnabled = false;
+                    MenuItem_File_Save.IsEnabled = false;
+                    MenuItem_File_Recent.IsEnabled = false;
+                    MenuItem_File_Recent_More.IsEnabled = false;
+                    MenuItem_File_Import.IsEnabled = false;
+                    MenuItem_File_Export.IsEnabled = false;
+                    MenuItem_File_Quit.IsEnabled = true;
+
+                    MenuItem_Tools_Preferences.IsEnabled = true;
+                    MenuItem_Tools_DB.IsEnabled = false;
+                    MenuItem_Tools_Player.IsEnabled = true;
+                    MenuItems_Tools_Sensors.IsEnabled = false;
+                    MenuItems_Tools_Processing.IsEnabled = false;
+
+                    MenuItem_Scene.IsEnabled = true;
+                    MenuItem_Scene_Configure.IsEnabled = true;
+                    MenuItem_Scene_AddPerson.IsEnabled = true;
+
+                    Player_LocationSlider.IsEnabled = false;
+                    Player_RecordButton.IsEnabled = false;
+                    Player_PlayButton.IsEnabled = false;
+                    Player_StopButton.IsEnabled = true;
+                    Player_VolumeToggle.IsEnabled = true;
+                    break;
+                case HomeState.FromFile:
+                    MenuItem_File_NewScene.IsEnabled = false;
+                    MenuItem_File_Save.IsEnabled = false;
+                    MenuItem_File_Recent.IsEnabled = true;
+                    MenuItem_File_Recent_More.IsEnabled = true;
+                    MenuItem_File_Import.IsEnabled = true;
+                    MenuItem_File_Export.IsEnabled = false;
+                    MenuItem_File_Quit.IsEnabled = true;
+
+                    MenuItem_Tools_Preferences.IsEnabled = true;
+                    MenuItem_Tools_DB.IsEnabled = true;
+                    MenuItem_Tools_Player.IsEnabled = false;
+                    MenuItems_Tools_Sensors.IsEnabled = false;
+                    MenuItems_Tools_Processing.IsEnabled = false;
+
+                    MenuItem_Scene.IsEnabled = false;
+                    MenuItem_Scene_Configure.IsEnabled = false;
+                    MenuItem_Scene_AddPerson.IsEnabled = false;
+
+                    Player_LocationSlider.IsEnabled = false;
+                    Player_RecordButton.IsEnabled = false;
+                    Player_PlayButton.IsEnabled = false;
+                    Player_StopButton.IsEnabled = false;
+                    Player_VolumeToggle.IsEnabled = false;
+                    break;
+                case HomeState.FromFileWithScene:
+                    MenuItem_File_NewScene.IsEnabled = false;
+                    MenuItem_File_Save.IsEnabled = true;
+                    MenuItem_File_Recent.IsEnabled = true;
+                    MenuItem_File_Recent_More.IsEnabled = true;
+                    MenuItem_File_Import.IsEnabled = true;
+                    MenuItem_File_Export.IsEnabled = true;
+                    MenuItem_File_Quit.IsEnabled = true;
+
+                    MenuItem_Tools_Preferences.IsEnabled = true;
+                    MenuItem_Tools_DB.IsEnabled = true;
+                    MenuItem_Tools_Player.IsEnabled = true;
+                    MenuItems_Tools_Sensors.IsEnabled = false;
+                    MenuItems_Tools_Processing.IsEnabled = false;
+
+                    MenuItem_Scene.IsEnabled = true;
+                    MenuItem_Scene_Configure.IsEnabled = true;
+                    MenuItem_Scene_AddPerson.IsEnabled = false;
+
+                    Player_LocationSlider.IsEnabled = true;
+                    Player_RecordButton.IsEnabled = false;
+                    Player_PlayButton.IsEnabled = true;
+                    Player_StopButton.IsEnabled = false;
+                    Player_VolumeToggle.IsEnabled = true;
+                    break;
+            }
+        }
+
 
         #region Window Events
         private void Home_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -138,8 +297,7 @@ namespace cl.uv.leikelen.View
             {
                 if (SceneInUse.Instance.Scene != null)
                 {
-                    MenuItem_File_Save.IsEnabled = true;
-                    MenuItem_Scene.IsEnabled = true;
+                    ChangeHomeState(HomeState.FromSensorWithScene);
                 }
             };
         }
@@ -148,6 +306,13 @@ namespace cl.uv.leikelen.View
         {
             var allScenesWin = new AllScenes();
             allScenesWin.Show();
+            allScenesWin.Closed += (senderAllScenes, eAllScenes) =>
+            {
+                if (SceneInUse.Instance.Scene != null)
+                {
+                    ChangeHomeState(HomeState.FromFileWithScene);
+                }
+            };
         }
 
         private void MenuItem_File_Save_Click(object sender, RoutedEventArgs e)
@@ -166,6 +331,7 @@ namespace cl.uv.leikelen.View
 
         private void MenuItem_File_Import_Click(object sender, RoutedEventArgs e)
         {
+            //ChangeHomeState(HomeState.FromFileWithScene);
             throw new NotImplementedException();
         }
 
@@ -293,6 +459,7 @@ namespace cl.uv.leikelen.View
                 Player_RecordButton.IsEnabled = false;
                 Player_StopButton.IsEnabled = true;
                 _recordTimer.Start();
+                ChangeHomeState(HomeState.FromSensorRecording);
             }
         }
 
@@ -358,42 +525,14 @@ namespace cl.uv.leikelen.View
         {
             _mediaController.SetFromNone();
 
-            MenuItems_Tools_Sensors.IsEnabled = false;
-            MenuItems_Tools_Processing.IsEnabled = false;
-            MenuItem_Scene_Configure.IsEnabled = false;
-            MenuItem_Scene_AddPerson.IsEnabled = false;
-            MenuItem_Scene.IsEnabled = false;
-            MenuItem_File_Save.IsEnabled = false;
-            MenuItem_File_NewScene.IsEnabled = false;
-
-            SkeletonLayerCheckbox.IsEnabled = false;
-            ColorLayerCheckbox.IsEnabled = false;
-
-            Player_LocationSlider.IsEnabled = false;
-            Player_RecordButton.IsEnabled = false;
-            Player_PlayButton.IsEnabled = false;
-            Player_StopButton.IsEnabled = false;
+            ChangeHomeState(HomeState.Initial);
         }
 
         private void SetFromSensor()
         {
             _mediaController.SetFromSensor();
 
-            MenuItems_Tools_Sensors.IsEnabled = true;
-            MenuItems_Tools_Processing.IsEnabled = true;
-            MenuItem_Scene_Configure.IsEnabled = true;
-            MenuItem_Scene_AddPerson.IsEnabled = true;
-            MenuItem_Scene.IsEnabled = false;
-            MenuItem_File_Save.IsEnabled = false;
-            MenuItem_File_NewScene.IsEnabled = true;
-
-            SkeletonLayerCheckbox.IsEnabled = false;
-            ColorLayerCheckbox.IsEnabled = false;
-
-            Player_LocationSlider.IsEnabled = false;
-            Player_RecordButton.IsEnabled = true;
-            Player_PlayButton.IsEnabled = false;
-            Player_StopButton.IsEnabled = false;
+            ChangeHomeState(HomeState.FromSensor);
         }
 
         private void SetFromFile()
@@ -402,21 +541,7 @@ namespace cl.uv.leikelen.View
             {
                 _mediaController.SetFromFile(SceneInUse.Instance.Scene.SceneId);
 
-                MenuItems_Tools_Sensors.IsEnabled = false;
-                MenuItems_Tools_Processing.IsEnabled = false;
-                MenuItem_Scene_Configure.IsEnabled = true;
-                MenuItem_Scene_AddPerson.IsEnabled = false;
-                MenuItem_Scene.IsEnabled = false;
-                MenuItem_File_Save.IsEnabled = false;
-                MenuItem_File_NewScene.IsEnabled = false;
-
-                SkeletonLayerCheckbox.IsEnabled = true;
-                ColorLayerCheckbox.IsEnabled = true;
-
-                Player_LocationSlider.IsEnabled = true;
-                Player_RecordButton.IsEnabled = false;
-                Player_PlayButton.IsEnabled = true;
-                Player_StopButton.IsEnabled = false;
+                ChangeHomeState(HomeState.FromFile);
             }
             else
             {

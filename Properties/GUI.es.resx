@@ -180,4 +180,55 @@
   <data name="AreSureExit" xml:space="preserve">
     <value>¿Está seguro que desea salir?</value>
   </data>
+  <data name="Age" xml:space="preserve">
+    <value>Edad</value>
+  </data>
+  <data name="Gender" xml:space="preserve">
+    <value>Género</value>
+  </data>
+  <data name="Male" xml:space="preserve">
+    <value>Masculino</value>
+  </data>
+  <data name="Female" xml:space="preserve">
+    <value>Femenino</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>Archivo</value>
+  </data>
+  <data name="OnlyBD" xml:space="preserve">
+    <value>Sólo archivo de base de datos</value>
+  </data>
+  <data name="BD_Engine" xml:space="preserve">
+    <value>Motor de base de datos</value>
+  </data>
+  <data name="BD_Port" xml:space="preserve">
+    <value>Puerto</value>
+  </data>
+  <data name="BD_Host" xml:space="preserve">
+    <value>Host</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>Usuario</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Contraseña</value>
+  </data>
+  <data name="DataBase" xml:space="preserve">
+    <value>Base de datos</value>
+  </data>
+  <data name="General" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>Abierto</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>Nuevo</value>
+  </data>
+  <data name="Assign" xml:space="preserve">
+    <value>Asignar</value>
+  </data>
+  <data name="years" xml:space="preserve">
+    <value>años</value>
+  </data>
 </root>

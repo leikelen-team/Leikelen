@@ -13,7 +13,7 @@
         TextElement.FontSize="14"
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
         mc:Ignorable="d"
-        Title="Emotion Detector" Height="300" Width="300">
+        Title="Emotion Detector" Height="300" Width="240">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100" />
