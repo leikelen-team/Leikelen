@@ -1,0 +1,53 @@
+﻿<Window x:Class="cl.uv.leikelen.View.ConfigurePerson"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:cl.uv.leikelen.View"
+        mc:Ignorable="d"
+        xmlns:resx="clr-namespace:cl.uv.leikelen.Properties"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.FontWeight="Medium"
+        TextElement.FontSize="14"
+        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
+        Title="ConfigurePerson" Height="230" Width="230">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition MinHeight="30" Height="1*" />
+            <RowDefinition MinHeight="30" Height="1*" />
+            <RowDefinition MinHeight="30" Height="1*" />
+            <RowDefinition MinHeight="30" Height="1*" />
+            <RowDefinition MinHeight="50" Height="1.5*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition MinWidth="100" Width="1*" />
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
+        <Label VerticalAlignment="Bottom" Grid.Row="0" Grid.Column="0" Content="{x:Static resx:GUI.Name}" />
+        <TextBox VerticalAlignment="Bottom" Grid.Row="0" Grid.Column="1" x:Name="NameTextBox" materialDesign:HintAssist.Hint="{x:Static resx:GUI.Name}"></TextBox>
+        
+        <Label VerticalAlignment="Bottom" Grid.Row="1" Grid.Column="0" Content="{x:Static resx:GUI.Age}"/>
+        <TextBox VerticalAlignment="Bottom" Grid.Row="1" Grid.Column="1" x:Name="AgeTextBox" materialDesign:HintAssist.Hint="{x:Static resx:GUI.Age}"></TextBox>
+        
+        <Label VerticalAlignment="Bottom" Grid.Row="2" Grid.Column="0" Content="{x:Static resx:GUI.Gender}"/>
+        <ComboBox VerticalAlignment="Bottom" Grid.Row="2" Grid.Column="1" x:Name="GenderComboBox">
+            <ComboBoxItem Content="{x:Static resx:GUI.Unknown}"></ComboBoxItem>
+            <ComboBoxItem Content="{x:Static resx:GUI.Male}" ></ComboBoxItem>
+            <ComboBoxItem Content="{x:Static resx:GUI.Female}"></ComboBoxItem>
+        </ComboBox>
+        
+        <Label VerticalAlignment="Bottom" Grid.Row="3" Grid.Column="0" Content="{x:Static resx:GUI.Photo}" />
+        <Grid ClipToBounds="True" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Grid.Row="3" Grid.Column="1">
+            <TextBox HorizontalAlignment="Stretch" x:Name="PhotoPathTextBox"></TextBox>
+            <Button HorizontalAlignment="Right" x:Name="PhotoBtn" Content="..." ></Button>
+        </Grid>
+
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
+            <Button x:Name="AcceptBtn" Content="{x:Static resx:GUI.Accept}" Margin="5" />
+            <Button x:Name="CancelBtn" Content="{x:Static resx:GUI.Cancel}" Margin="5" />
+        </StackPanel>
+    </Grid>
+</Window>

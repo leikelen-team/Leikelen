@@ -1,0 +1,27 @@
+﻿<Window x:Class="cl.uv.leikelen.View.AboutUs"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:cl.uv.leikelen.View"
+        mc:Ignorable="d"
+        xmlns:resx="clr-namespace:cl.uv.leikelen.Properties"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.FontWeight="Medium"
+        TextElement.FontSize="14"
+        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
+        Title="AboutUs" Height="300" Width="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="4*" />
+            <RowDefinition MinHeight="40" Height="*" />
+            <RowDefinition MinHeight="40" Height="*" />
+        </Grid.RowDefinitions>
+        <Image Grid.Row="0" Source="../static/logo.png" />
+        <TextBlock Grid.Row="1" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{x:Static resx:GUI.Authors}"/>
+        <TextBlock TextWrapping="Wrap" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Bottom" Text="{x:Static resx:GUI.Copyright}"/>
+    </Grid>
+</Window>

@@ -231,4 +231,31 @@
   <data name="years" xml:space="preserve">
     <value>años</value>
   </data>
+  <data name="Unknown" xml:space="preserve">
+    <value>Desconocido</value>
+  </data>
+  <data name="Authors" xml:space="preserve">
+    <value>Creado por Erick Merino</value>
+  </data>
+  <data name="Copyright" xml:space="preserve">
+    <value>Copyright © 2017, Universidad de Valparaíso. Todos los derechos reservados.</value>
+  </data>
+  <data name="confScene_SureSave" xml:space="preserve">
+    <value>¿Está seguro que desea guardar estos datos?</value>
+  </data>
+  <data name="confScene_SureSaveTitle" xml:space="preserve">
+    <value>Confirmación de guardado</value>
+  </data>
+  <data name="Confirmation" xml:space="preserve">
+    <value>Confirmación</value>
+  </data>
+  <data name="stopReccordBeforeFromFile" xml:space="preserve">
+    <value>Por favor detenga la grabación antes de configurar desde archivo</value>
+  </data>
+  <data name="Atention" xml:space="preserve">
+    <value>Atención</value>
+  </data>
+  <data name="Photo" xml:space="preserve">
+    <value>Foto</value>
+  </data>
 </root>

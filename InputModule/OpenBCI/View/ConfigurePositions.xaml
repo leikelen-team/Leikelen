@@ -1,0 +1,54 @@
+﻿<Window x:Class="cl.uv.leikelen.InputModule.OpenBCI.View.ConfigurePositions"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:cl.uv.leikelen.InputModule.OpenBCI.View"
+        mc:Ignorable="d"
+        xmlns:resx="clr-namespace:cl.uv.leikelen.InputModule.OpenBCI.Properties"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.FontWeight="Medium"
+        TextElement.FontSize="14"
+        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
+        Title="ConfigurePositions" MinHeight="350" Height="400" Width="650">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Image x:Name="PositionPhotoImage" Grid.Column="0" />
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition MinHeight="30"/>
+                <RowDefinition MinHeight="30"/>
+                <RowDefinition MinHeight="30"/>
+                <RowDefinition MinHeight="30"/>
+                <RowDefinition MinHeight="30"/>
+                <RowDefinition MinHeight="30"/>
+                <RowDefinition MinHeight="30"/>
+                <RowDefinition MinHeight="30"/>
+                <RowDefinition MinHeight="30"/>
+                <RowDefinition MinHeight="45"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Grid.Column="0" VerticalAlignment="Bottom" Content="{x:Static resx:OpenBCI.PositionSystem}" />
+            <ComboBox Grid.Row="0" Grid.Column="1">
+                <ComboBoxItem>10/10</ComboBoxItem>
+                <ComboBoxItem>10/20</ComboBoxItem>
+            </ComboBox>
+
+
+
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
+                <Button x:Name="AcceptBtn" Content="{x:Static resx:OpenBCI.Accept}" Margin="5" />
+                <Button x:Name="CancelBtn" Content="{x:Static resx:OpenBCI.Cancel}" Margin="5" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

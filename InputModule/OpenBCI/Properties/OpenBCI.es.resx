@@ -97,145 +97,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Intervals" xml:space="preserve">
-    <value>Intervals</value>
+  <data name="PortUSB" xml:space="preserve">
+    <value>Puerto USB</value>
   </data>
-  <data name="Graphs" xml:space="preserve">
-    <value>Graphs</value>
-  </data>
-  <data name="Distances" xml:space="preserve">
-    <value>Distances</value>
-  </data>
-  <data name="Scene" xml:space="preserve">
-    <value>Scene</value>
-  </data>
-  <data name="Name" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="Type" xml:space="preserve">
-    <value>Type</value>
-  </data>
-  <data name="Place" xml:space="preserve">
-    <value>Place</value>
-  </data>
-  <data name="Participants" xml:space="preserve">
-    <value>Participants</value>
-  </data>
-  <data name="RecordDate" xml:space="preserve">
-    <value>Record date</value>
-  </data>
-  <data name="RecordTime" xml:space="preserve">
-    <value>Record time</value>
-  </data>
-  <data name="Description" xml:space="preserve">
-    <value>Description</value>
-  </data>
-  <data name="Accept" xml:space="preserve">
-    <value>Accept</value>
-  </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
-  </data>
-  <data name="Apply" xml:space="preserve">
-    <value>Apply</value>
-  </data>
-  <data name="Title_ConfigureScene" xml:space="preserve">
-    <value>Configure scene</value>
-  </data>
-  <data name="FromScene" xml:space="preserve">
-    <value>From saved scene</value>
-  </data>
-  <data name="FromSensor" xml:space="preserve">
-    <value>From sensor</value>
-  </data>
-  <data name="FromNone" xml:space="preserve">
-    <value>Select</value>
-  </data>
-  <data name="Edit" xml:space="preserve">
-    <value>Edit</value>
-  </data>
-  <data name="Associate" xml:space="preserve">
-    <value>Associate</value>
-  </data>
-  <data name="AreSureExit" xml:space="preserve">
-    <value>Are you sure you want to leave?</value>
-  </data>
-  <data name="Age" xml:space="preserve">
-    <value>Age</value>
-  </data>
-  <data name="Gender" xml:space="preserve">
-    <value>Gender</value>
-  </data>
-  <data name="Male" xml:space="preserve">
-    <value>Male</value>
-  </data>
-  <data name="Female" xml:space="preserve">
-    <value>Female</value>
+  <data name="ConfigWindowTitle" xml:space="preserve">
+    <value>Sensor OpenBCI</value>
   </data>
   <data name="File" xml:space="preserve">
-    <value>File</value>
+    <value>Archivo</value>
   </data>
-  <data name="OnlyBD" xml:space="preserve">
-    <value>Only database file</value>
+  <data name="None" xml:space="preserve">
+    <value>Ninguno</value>
   </data>
-  <data name="BD_Engine" xml:space="preserve">
-    <value>Database engine</value>
+  <data name="NotConnected" xml:space="preserve">
+    <value>No conectado</value>
   </data>
-  <data name="BD_Port" xml:space="preserve">
-    <value>Port</value>
+  <data name="Connected" xml:space="preserve">
+    <value>Conectado</value>
   </data>
-  <data name="BD_Host" xml:space="preserve">
-    <value>Host</value>
+  <data name="Accept" xml:space="preserve">
+    <value>Aceptar</value>
   </data>
-  <data name="User" xml:space="preserve">
-    <value>User</value>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancelar</value>
   </data>
-  <data name="Password" xml:space="preserve">
-    <value>Password</value>
+  <data name="SensorName" xml:space="preserve">
+    <value>Sensor EEG OpenBCI</value>
   </data>
-  <data name="DataBase" xml:space="preserve">
-    <value>Database</value>
+  <data name="Next" xml:space="preserve">
+    <value>Siguiente</value>
   </data>
-  <data name="General" xml:space="preserve">
-    <value>General</value>
+  <data name="Channel" xml:space="preserve">
+    <value>Canal</value>
   </data>
-  <data name="Open" xml:space="preserve">
-    <value>Open</value>
-  </data>
-  <data name="New" xml:space="preserve">
-    <value>New</value>
-  </data>
-  <data name="Assign" xml:space="preserve">
-    <value>Assign</value>
-  </data>
-  <data name="years" xml:space="preserve">
-    <value>years</value>
-  </data>
-  <data name="Unknown" xml:space="preserve">
-    <value>Unknown</value>
-  </data>
-  <data name="Copyright" xml:space="preserve">
-    <value>Copyright © 2017, University of Valparaíso. All rights reserved.</value>
-  </data>
-  <data name="Authors" xml:space="preserve">
-    <value>Created by Erick Merino</value>
-  </data>
-  <data name="confScene_SureSave" xml:space="preserve">
-    <value>Are you sure you want to save this data?</value>
-  </data>
-  <data name="confScene_SureSaveTitle" xml:space="preserve">
-    <value>Save confirmation</value>
-  </data>
-  <data name="Confirmation" xml:space="preserve">
-    <value>Confirmation</value>
-  </data>
-  <data name="stopReccordBeforeFromFile" xml:space="preserve">
-    <value>Please stop the recording before set from file</value>
-  </data>
-  <data name="Atention" xml:space="preserve">
-    <value>Atention</value>
-  </data>
-  <data name="Photo" xml:space="preserve">
-    <value>Photo</value>
+  <data name="PositionSystem" xml:space="preserve">
+    <value>Sistema de posicionamiento</value>
   </data>
 </root>

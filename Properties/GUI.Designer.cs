@@ -115,6 +115,24 @@ namespace cl.uv.leikelen.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Atention.
+        /// </summary>
+        public static string Atention {
+            get {
+                return ResourceManager.GetString("Atention", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Created by Erick Merino.
+        /// </summary>
+        public static string Authors {
+            get {
+                return ResourceManager.GetString("Authors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Database engine.
         /// </summary>
         public static string BD_Engine {
@@ -147,6 +165,42 @@ namespace cl.uv.leikelen.Properties {
         public static string Cancel {
             get {
                 return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Confirmation.
+        /// </summary>
+        public static string Confirmation {
+            get {
+                return ResourceManager.GetString("Confirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Are you sure you want to save this data?.
+        /// </summary>
+        public static string confScene_SureSave {
+            get {
+                return ResourceManager.GetString("confScene_SureSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Save confirmation.
+        /// </summary>
+        public static string confScene_SureSaveTitle {
+            get {
+                return ResourceManager.GetString("confScene_SureSaveTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Copyright © 2017, University of Valparaíso. All rights reserved..
+        /// </summary>
+        public static string Copyright {
+            get {
+                return ResourceManager.GetString("Copyright", resourceCulture);
             }
         }
         
@@ -331,6 +385,15 @@ namespace cl.uv.leikelen.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Photo.
+        /// </summary>
+        public static string Photo {
+            get {
+                return ResourceManager.GetString("Photo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Place.
         /// </summary>
         public static string Place {
@@ -367,6 +430,15 @@ namespace cl.uv.leikelen.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Please stop the recording before set from file.
+        /// </summary>
+        public static string stopReccordBeforeFromFile {
+            get {
+                return ResourceManager.GetString("stopReccordBeforeFromFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Configure scene.
         /// </summary>
         public static string Title_ConfigureScene {
@@ -381,6 +453,15 @@ namespace cl.uv.leikelen.Properties {
         public static string Type {
             get {
                 return ResourceManager.GetString("Type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Unknown.
+        /// </summary>
+        public static string Unknown {
+            get {
+                return ResourceManager.GetString("Unknown", resourceCulture);
             }
         }
         

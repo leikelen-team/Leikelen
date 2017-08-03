@@ -16,6 +16,21 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -59,7 +74,7 @@
       <HintPath>packages\CodeContracts.1.0.5680.18392\lib\net40\CodeContracts.dll</HintPath>
     </Reference>
     <Reference Include="Config.Net, Version=3.0.0.0, Culture=neutral, PublicKeyToken=d836a57afd299520, processorArchitecture=MSIL">
-      <HintPath>packages\Config.Net.3.2.6\lib\net451\Config.Net.dll</HintPath>
+      <HintPath>packages\Config.Net.3.2.14\lib\net451\Config.Net.dll</HintPath>
     </Reference>
     <Reference Include="Dragablz, Version=0.0.3.191, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\Dragablz.0.0.3.191\lib\net45\Dragablz.dll</HintPath>
@@ -139,11 +154,11 @@
     <Reference Include="Microsoft.Extensions.Primitives, Version=1.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Extensions.Primitives.1.1.1\lib\netstandard1.0\Microsoft.Extensions.Primitives.dll</HintPath>
     </Reference>
-    <Reference Include="MySqlConnector, Version=0.23.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\MySqlConnector.0.23.0\lib\net45\MySqlConnector.dll</HintPath>
+    <Reference Include="MySqlConnector, Version=0.24.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\MySqlConnector.0.24.0\lib\net45\MySqlConnector.dll</HintPath>
     </Reference>
     <Reference Include="NetBox, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8dea52f811e261ef, processorArchitecture=MSIL">
-      <HintPath>packages\NetBox.1.4.16\lib\net45\NetBox.dll</HintPath>
+      <HintPath>packages\NetBox.1.4.19\lib\net45\NetBox.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -224,6 +239,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="InputModule\OpenBCI\View\ConfigurePositions.xaml.cs">
+      <DependentUpon>ConfigurePositions.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Error.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -249,218 +267,224 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
-    <Compile Include="src\API\DataAccess\IEventAccess.cs" />
-    <Compile Include="src\API\DataAccess\IIntervalAccess.cs" />
-    <Compile Include="src\API\DataAccess\IModalAccess.cs" />
-    <Compile Include="src\API\DataAccess\ISubModalAccess.cs" />
-    <Compile Include="src\API\DataAccess\ITimelessAccess.cs" />
-    <Compile Include="src\API\DataAccess\Types.cs" />
-    <Compile Include="src\API\InputModule\IMonitor.cs" />
-    <Compile Include="src\API\InputModule\InputPlurality.cs" />
-    <Compile Include="src\API\InputModule\InputStatus.cs" />
-    <Compile Include="src\API\InputModule\InputModule.cs" />
-    <Compile Include="src\API\InputModule\IPlayer.cs" />
-    <Compile Include="src\API\InputModule\IVideo.cs" />
-    <Compile Include="src\API\ProcessingModule\ProcessingModule.cs" />
-    <Compile Include="src\Controller\MediaController.cs" />
-    <Compile Include="src\Controller\PlayerController.cs" />
-    <Compile Include="src\Controller\RecorderController.cs" />
-    <Compile Include="src\Controller\SourceType.cs" />
-    <Compile Include="src\Data\Access\External\EventAccess.cs" />
-    <Compile Include="src\Data\Access\External\IntervalAccess.cs" />
-    <Compile Include="src\Data\Access\External\ModalAccess.cs" />
-    <Compile Include="src\Data\Access\External\TMPSubModalTypes.cs" />
-    <Compile Include="src\Data\Access\Internal\SceneInUse.cs" />
-    <Compile Include="src\Data\Access\External\SubModalAccess.cs" />
-    <Compile Include="src\Data\Access\External\TimelessAccess.cs" />
-    <Compile Include="src\Data\Model\EventData.cs" />
-    <Compile Include="src\Data\Model\IntervalData.cs" />
-    <Compile Include="src\Data\Model\ModalType.cs" />
-    <Compile Include="src\Data\Model\Person.cs" />
-    <Compile Include="src\Data\Model\PersonInScene.cs" />
-    <Compile Include="src\Data\Model\RepresentType.cs" />
-    <Compile Include="src\Data\Model\Scene.cs" />
-    <Compile Include="src\Data\Model\SubModalType.cs" />
-    <Compile Include="src\Data\Model\SubModalType_PersonInScene.cs" />
-    <Compile Include="src\Data\Persistence\DbDataContext.cs" />
-    <Compile Include="src\Data\Persistence\DbException.cs" />
-    <Compile Include="src\Data\Persistence\DbFacade.cs" />
-    <Compile Include="src\Data\Persistence\IDbProvider.cs" />
-    <Compile Include="src\Data\Persistence\Provider\MemoryProvider.cs" />
-    <Compile Include="src\Data\Persistence\Provider\PgSQLProvider.cs" />
-    <Compile Include="src\Data\Persistence\RepresentTypeException.cs" />
-    <Compile Include="src\InputModule\InputLoader.cs" />
-    <Compile Include="src\API\FrameProvider\Accelerometer\AccelerometerFrameArrivedEventArgs.cs" />
-    <Compile Include="src\InputModule\OpenBCI\Util\Convert.cs" />
-    <Compile Include="src\API\FrameProvider\EEG\EegFrameArrivedEventArgs.cs" />
-    <Compile Include="src\InputModule\OpenBCI\Util\FileManage.cs" />
-    <Compile Include="src\InputModule\OpenBCI\Util\Filter.cs" />
-    <Compile Include="src\API\FrameProvider\EEG\FilterType.cs" />
-    <Compile Include="src\API\FrameProvider\Accelerometer\IAccelerometer.cs" />
-    <Compile Include="src\API\FrameProvider\EEG\IEeg.cs" />
-    <Compile Include="src\InputModule\OpenBCI\Util\InterpretStream.cs" />
-    <Compile Include="src\InputModule\OpenBCI\Monitor.cs" />
-    <Compile Include="src\API\FrameProvider\EEG\NotchType.cs" />
-    <Compile Include="src\InputModule\OpenBCI\OpenBCISensor.cs" />
-    <Compile Include="src\InputModule\OpenBCI\Properties\OpenBCI.es.Designer.cs">
+    <Compile Include="API\DataAccess\IEventAccess.cs" />
+    <Compile Include="API\DataAccess\IIntervalAccess.cs" />
+    <Compile Include="API\DataAccess\IModalAccess.cs" />
+    <Compile Include="API\DataAccess\ISubModalAccess.cs" />
+    <Compile Include="API\DataAccess\ITimelessAccess.cs" />
+    <Compile Include="API\DataAccess\Types.cs" />
+    <Compile Include="API\InputModule\IMonitor.cs" />
+    <Compile Include="API\InputModule\InputPlurality.cs" />
+    <Compile Include="API\InputModule\InputStatus.cs" />
+    <Compile Include="API\InputModule\InputModule.cs" />
+    <Compile Include="API\InputModule\IPlayer.cs" />
+    <Compile Include="API\InputModule\IVideo.cs" />
+    <Compile Include="API\ProcessingModule\ProcessingModule.cs" />
+    <Compile Include="Controller\MediaController.cs" />
+    <Compile Include="Controller\PlayerController.cs" />
+    <Compile Include="Controller\RecorderController.cs" />
+    <Compile Include="Controller\SourceType.cs" />
+    <Compile Include="Data\Access\External\EventAccess.cs" />
+    <Compile Include="Data\Access\External\IntervalAccess.cs" />
+    <Compile Include="Data\Access\External\ModalAccess.cs" />
+    <Compile Include="Data\Access\External\TMPSubModalTypes.cs" />
+    <Compile Include="Data\Access\Internal\SceneInUse.cs" />
+    <Compile Include="Data\Access\External\SubModalAccess.cs" />
+    <Compile Include="Data\Access\External\TimelessAccess.cs" />
+    <Compile Include="Data\Model\EventData.cs" />
+    <Compile Include="Data\Model\IntervalData.cs" />
+    <Compile Include="Data\Model\ModalType.cs" />
+    <Compile Include="Data\Model\Person.cs" />
+    <Compile Include="Data\Model\PersonInScene.cs" />
+    <Compile Include="Data\Model\RepresentType.cs" />
+    <Compile Include="Data\Model\Scene.cs" />
+    <Compile Include="Data\Model\SubModalType.cs" />
+    <Compile Include="Data\Model\SubModalType_PersonInScene.cs" />
+    <Compile Include="Data\Persistence\DbDataContext.cs" />
+    <Compile Include="Data\Persistence\DbException.cs" />
+    <Compile Include="Data\Persistence\DbFacade.cs" />
+    <Compile Include="Data\Persistence\IDbProvider.cs" />
+    <Compile Include="Data\Persistence\Provider\MemoryProvider.cs" />
+    <Compile Include="Data\Persistence\Provider\PgSQLProvider.cs" />
+    <Compile Include="Data\Persistence\RepresentTypeException.cs" />
+    <Compile Include="InputModule\InputLoader.cs" />
+    <Compile Include="API\FrameProvider\Accelerometer\AccelerometerFrameArrivedEventArgs.cs" />
+    <Compile Include="InputModule\OpenBCI\Util\Convert.cs" />
+    <Compile Include="API\FrameProvider\EEG\EegFrameArrivedEventArgs.cs" />
+    <Compile Include="InputModule\OpenBCI\Util\FileManage.cs" />
+    <Compile Include="InputModule\OpenBCI\Util\Filter.cs" />
+    <Compile Include="API\FrameProvider\EEG\FilterType.cs" />
+    <Compile Include="API\FrameProvider\Accelerometer\IAccelerometer.cs" />
+    <Compile Include="API\FrameProvider\EEG\IEeg.cs" />
+    <Compile Include="InputModule\OpenBCI\Util\InterpretStream.cs" />
+    <Compile Include="InputModule\OpenBCI\Monitor.cs" />
+    <Compile Include="API\FrameProvider\EEG\NotchType.cs" />
+    <Compile Include="InputModule\OpenBCI\OpenBCISensor.cs" />
+    <Compile Include="InputModule\OpenBCI\Properties\OpenBCI.es.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>OpenBCI.es.resx</DependentUpon>
     </Compile>
-    <Compile Include="src\InputModule\OpenBCI\View\OpenBCIWindow.xaml.cs">
+    <Compile Include="InputModule\OpenBCI\View\OpenBCIWindow.xaml.cs">
       <DependentUpon>OpenBCIWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="src\InputModule\OpenBCI\OpenBCISettings.cs" />
-    <Compile Include="src\InputModule\OpenBCI\Player.cs" />
-    <Compile Include="src\InputModule\OpenBCI\Properties\OpenBCI.Designer.cs">
+    <Compile Include="InputModule\OpenBCI\OpenBCISettings.cs" />
+    <Compile Include="InputModule\OpenBCI\Player.cs" />
+    <Compile Include="InputModule\OpenBCI\Properties\OpenBCI.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>OpenBCI.resx</DependentUpon>
     </Compile>
-    <Compile Include="src\ProcessingModule\EEGEmotion2Channels\Classifier\EEGReceiver.cs" />
-    <Compile Include="src\ProcessingModule\EEGEmotion2Channels\EEGEmotion2ChannelsEntryPoint.cs" />
-    <Compile Include="src\ProcessingModule\EEGEmotion2Channels\Properties\EEGEmotion2Channels.Designer.cs">
+    <Compile Include="ProcessingModule\EEGEmotion2Channels\ClassifierType.cs" />
+    <Compile Include="ProcessingModule\EEGEmotion2Channels\EEGReceiver.cs" />
+    <Compile Include="ProcessingModule\EEGEmotion2Channels\DetectorEntryPoint.cs" />
+    <Compile Include="ProcessingModule\EEGEmotion2Channels\Properties\EEGEmotion2Channels.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>EEGEmotion2Channels.resx</DependentUpon>
     </Compile>
-    <Compile Include="src\ProcessingModule\EEGEmotion2Channels\Properties\EEGEmotion2Channels.es.Designer.cs">
+    <Compile Include="ProcessingModule\EEGEmotion2Channels\Properties\EEGEmotion2Channels.es.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>EEGEmotion2Channels.es.resx</DependentUpon>
     </Compile>
-    <Compile Include="src\ProcessingModule\EEGEmotion2Channels\View\EEGEmo2ChannelWindow.xaml.cs">
+    <Compile Include="ProcessingModule\EEGEmotion2Channels\TrainerEntryPoint.cs" />
+    <Compile Include="ProcessingModule\EEGEmotion2Channels\View\EEGEmo2ChannelWindow.xaml.cs">
       <DependentUpon>EEGEmo2ChannelWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="src\ProcessingModule\EEGEmotion2Channels\EEGEmoProc2ChSettings.cs" />
-    <Compile Include="src\ProcessingModule\EEGEmotion2Channels\Helper\Emd.cs" />
-    <Compile Include="src\ProcessingModule\EEGEmotion2Channels\Helper\SampleEntropy.cs" />
-    <Compile Include="src\ProcessingModule\EEGEmotion2Channels\LearningModel.cs" />
-    <Compile Include="src\ProcessingModule\ProcessingLoader.cs" />
-    <Compile Include="src\GeneralSettings.cs" />
-    <Compile Include="src\View\AboutUs.xaml.cs">
+    <Compile Include="ProcessingModule\EEGEmotion2Channels\EEGEmoProc2ChSettings.cs" />
+    <Compile Include="ProcessingModule\EEGEmotion2Channels\PreProcessing\Emd.cs" />
+    <Compile Include="ProcessingModule\EEGEmotion2Channels\PreProcessing\SampleEntropy.cs" />
+    <Compile Include="ProcessingModule\EEGEmotion2Channels\LearningModel.cs" />
+    <Compile Include="ProcessingModule\ProcessingLoader.cs" />
+    <Compile Include="GeneralSettings.cs" />
+    <Compile Include="View\AboutUs.xaml.cs">
       <DependentUpon>AboutUs.xaml</DependentUpon>
     </Compile>
-    <Compile Include="src\View\AllPersons.xaml.cs">
+    <Compile Include="View\AllPersons.xaml.cs">
       <DependentUpon>AllPersons.xaml</DependentUpon>
     </Compile>
-    <Compile Include="src\View\AllScenes.xaml.cs">
+    <Compile Include="View\AllScenes.xaml.cs">
       <DependentUpon>AllScenes.xaml</DependentUpon>
     </Compile>
-    <Compile Include="src\View\ConfigurePerson.xaml.cs">
+    <Compile Include="View\ConfigurePerson.xaml.cs">
       <DependentUpon>ConfigurePerson.xaml</DependentUpon>
     </Compile>
-    <Compile Include="src\View\ConfigureScene.xaml.cs">
+    <Compile Include="View\ConfigureScene.xaml.cs">
       <DependentUpon>ConfigureScene.xaml</DependentUpon>
     </Compile>
-    <Compile Include="src\View\Export.xaml.cs">
+    <Compile Include="View\Export.xaml.cs">
       <DependentUpon>Export.xaml</DependentUpon>
     </Compile>
-    <Compile Include="src\View\Home.xaml.cs">
+    <Compile Include="View\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\View\HomeState.cs" />
-    <Compile Include="src\View\Preferences.xaml.cs">
+    <Compile Include="View\HomeState.cs" />
+    <Compile Include="View\Preferences.xaml.cs">
       <DependentUpon>Preferences.xaml</DependentUpon>
     </Compile>
-    <Compile Include="src\View\Widget\AcceptCancelDialog.xaml.cs">
+    <Compile Include="View\Widget\AcceptCancelDialog.xaml.cs">
       <DependentUpon>AcceptCancelDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="src\View\Widget\PersonCard.xaml.cs">
+    <Compile Include="View\Widget\PersonCard.xaml.cs">
       <DependentUpon>PersonCard.xaml</DependentUpon>
     </Compile>
-    <Compile Include="src\View\PlayerState.cs" />
-    <Compile Include="src\View\Widget\PreferencesBD.xaml.cs">
+    <Compile Include="View\PlayerState.cs" />
+    <Compile Include="View\Widget\PreferencesBD.xaml.cs">
       <DependentUpon>PreferencesBD.xaml</DependentUpon>
     </Compile>
-    <Compile Include="src\View\Widget\PreferencesGeneral.xaml.cs">
+    <Compile Include="View\Widget\PreferencesGeneral.xaml.cs">
       <DependentUpon>PreferencesGeneral.xaml</DependentUpon>
     </Compile>
-    <Compile Include="src\View\Widget\TabDistance.xaml.cs">
+    <Compile Include="View\Widget\TabDistance.xaml.cs">
       <DependentUpon>TabDistance.xaml</DependentUpon>
     </Compile>
-    <Compile Include="src\View\Widget\TabGraph.xaml.cs">
+    <Compile Include="View\Widget\TabGraph.xaml.cs">
       <DependentUpon>TabGraph.xaml</DependentUpon>
     </Compile>
-    <Compile Include="src\View\Widget\TabInterval.xaml.cs">
+    <Compile Include="View\Widget\TabInterval.xaml.cs">
       <DependentUpon>TabInterval.xaml</DependentUpon>
     </Compile>
-    <Compile Include="src\View\Widget\TabScene.xaml.cs">
+    <Compile Include="View\Widget\TabScene.xaml.cs">
       <DependentUpon>TabScene.xaml</DependentUpon>
     </Compile>
-    <Page Include="src\InputModule\OpenBCI\View\OpenBCIWindow.xaml">
+    <Page Include="InputModule\OpenBCI\View\ConfigurePositions.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="src\ProcessingModule\EEGEmotion2Channels\View\EEGEmo2ChannelWindow.xaml">
+    <Page Include="InputModule\OpenBCI\View\OpenBCIWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="src\View\AboutUs.xaml">
+    <Page Include="ProcessingModule\EEGEmotion2Channels\View\EEGEmo2ChannelWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="src\View\AllPersons.xaml">
+    <Page Include="View\AboutUs.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="src\View\AllScenes.xaml">
+    <Page Include="View\AllPersons.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="src\View\ConfigurePerson.xaml">
+    <Page Include="View\AllScenes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="src\View\ConfigureScene.xaml">
+    <Page Include="View\ConfigurePerson.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="src\View\Export.xaml">
+    <Page Include="View\ConfigureScene.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="src\View\Home.xaml">
+    <Page Include="View\Export.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="src\View\Preferences.xaml">
+    <Page Include="View\Home.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="src\View\Widget\AcceptCancelDialog.xaml">
+    <Page Include="View\Preferences.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="src\View\Widget\PersonCard.xaml">
+    <Page Include="View\Widget\AcceptCancelDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="src\View\Widget\PreferencesBD.xaml">
+    <Page Include="View\Widget\PersonCard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="src\View\Widget\PreferencesGeneral.xaml">
+    <Page Include="View\Widget\PreferencesBD.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="src\View\Widget\TabDistance.xaml">
+    <Page Include="View\Widget\PreferencesGeneral.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="src\View\Widget\TabGraph.xaml">
+    <Page Include="View\Widget\TabDistance.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="src\View\Widget\TabInterval.xaml">
+    <Page Include="View\Widget\TabGraph.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="src\View\Widget\TabScene.xaml">
+    <Page Include="View\Widget\TabInterval.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Widget\TabScene.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -499,19 +523,19 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Menu.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="src\InputModule\OpenBCI\Properties\OpenBCI.es.resx">
+    <EmbeddedResource Include="InputModule\OpenBCI\Properties\OpenBCI.es.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>OpenBCI.es.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="src\InputModule\OpenBCI\Properties\OpenBCI.resx">
+    <EmbeddedResource Include="InputModule\OpenBCI\Properties\OpenBCI.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>OpenBCI.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="src\ProcessingModule\EEGEmotion2Channels\Properties\EEGEmotion2Channels.es.resx">
+    <EmbeddedResource Include="ProcessingModule\EEGEmotion2Channels\Properties\EEGEmotion2Channels.es.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>EEGEmotion2Channels.es.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="src\ProcessingModule\EEGEmotion2Channels\Properties\EEGEmotion2Channels.resx">
+    <EmbeddedResource Include="ProcessingModule\EEGEmotion2Channels\Properties\EEGEmotion2Channels.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>EEGEmotion2Channels.Designer.cs</LastGenOutput>
     </EmbeddedResource>
@@ -525,13 +549,24 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="src\API\FrameProvider\Kinect\" />
-    <Folder Include="src\Data\LeikelenFile\" />
-    <Folder Include="src\Helper\" />
-    <Folder Include="src\ProcessingModule\EEGEmotion2ChannelsClassifier\" />
-    <Folder Include="src\ProcessingModule\EEGEmotion2ChannelsDetector\" />
-    <Folder Include="src\ProcessingModule\EEGEmotion2Channels\Detector\" />
-    <Folder Include="static\" />
+    <Folder Include="API\FrameProvider\Kinect\" />
+    <Folder Include="Data\LeikelenFile\" />
+    <Folder Include="Helper\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 y x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="static\logo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
