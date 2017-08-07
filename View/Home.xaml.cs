@@ -17,6 +17,7 @@ using cl.uv.leikelen.Data.Access.Internal;
 using cl.uv.leikelen.InputModule;
 using cl.uv.leikelen.ProcessingModule;
 using System.Diagnostics;
+using cl.uv.leikelen.Data.Access.External;
 using cl.uv.leikelen.Data.Persistence;
 using cl.uv.leikelen.Properties;
 using MaterialDesignThemes.Wpf;
@@ -500,7 +501,7 @@ namespace cl.uv.leikelen.View
 
         private void _recordTimer_Tick(object sender, EventArgs e)
         {
-            var location = _recorderController.GetLocation();
+            var location = SceneInUseAccess.Instance.GetLocation();
             if (location.HasValue)
             {
                 Player_ActualTimeLabel.Content = location.Value.ToString(@"hh\:mm\:ss");
@@ -514,7 +515,7 @@ namespace cl.uv.leikelen.View
         private void SourceComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var comboBox = sender as ComboBox;
-            if (comboBox==null) throw new ArgumentNullException(nameof(sender), "Source combobox is null");
+            if (comboBox==null) throw new ArgumentNullException(nameof(sender), Error.SourceComboboxIsNull);
             switch (comboBox.SelectedIndex)
             {
                 case 0:
@@ -603,7 +604,7 @@ namespace cl.uv.leikelen.View
 
         private void FillMenuInputModules()
         {
-            foreach (var input in InputLoader.Instance.InputModules)
+            foreach (var input in InputLoader.Instance.SceneInputModules)
             {
                 MenuItem inputMenuItem = new MenuItem();
                 inputMenuItem.Header = input.Name;

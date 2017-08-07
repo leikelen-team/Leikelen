@@ -239,6 +239,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Data\Access\External\SceneInUseAccess.cs" />
     <Compile Include="InputModule\OpenBCI\View\ConfigurePositions.xaml.cs">
       <DependentUpon>ConfigurePositions.xaml</DependentUpon>
     </Compile>

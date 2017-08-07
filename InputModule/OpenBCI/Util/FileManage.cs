@@ -10,15 +10,16 @@ namespace cl.uv.leikelen.InputModule.OpenBCI.Util
     public class FileManage
     {
         private StreamWriter _sw;
-        private string _fileName;
+        public string FileName { get; private set; }
         private const string Separador = "\t";
 
         public FileManage(string fileName)
         {
             _sw = new StreamWriter(fileName);
+            FileName = fileName;
         }
 
-        public void WriteFile(double[] data)
+        public void WriteFile(TimeSpan actualTime, double[] data)
         {
             if (_sw == null) return;
             double multiplier = (4.5 / 24 / (Math.Pow(2, 23) - 1)) * (Math.Pow(10, 6));
@@ -28,7 +29,7 @@ namespace cl.uv.leikelen.InputModule.OpenBCI.Util
                 data[i + 1] = data[i + 1] * multiplier;
             }
 
-            _sw.Write(DateTime.Now.ToString("HH:mm:ss")+Separador);
+            _sw.Write(actualTime.ToString("HH:mm:ss")+Separador);
             for (int i = 0; i < 11; i++)
             {
                 _sw.Write("{0}"+Separador, data[i]);

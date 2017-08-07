@@ -11,6 +11,7 @@ namespace cl.uv.leikelen.Data.Access.Internal
     {
         private static SceneInUse _instance;
         public Scene Scene { get; private set; }
+        public bool IsRecording = false;
 
         public static SceneInUse Instance
         {

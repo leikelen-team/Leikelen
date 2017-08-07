@@ -11,18 +11,10 @@ namespace cl.uv.leikelen.Controller
 {
     public class RecorderController
     {
-        public bool IsRecording = false;
-
-        public TimeSpan? GetLocation()
-        {
-            if (IsRecording) return DateTime.Now.Subtract(SceneInUse.Instance.Scene.RecordStartedDateTime);
-            else return null;
-        }
-
         public async Task Stop()
         {
-            IsRecording = false;
-            foreach (var input in InputLoader.Instance.InputModules)
+            SceneInUse.Instance.IsRecording = false;
+            foreach (var input in InputLoader.Instance.SceneInputModules)
             {
                 input.Monitor.StopRecording();
             }
@@ -37,14 +29,14 @@ namespace cl.uv.leikelen.Controller
 
         public async Task Record()
         {
-            foreach (var input in InputLoader.Instance.InputModules)
+            foreach (var input in InputLoader.Instance.SceneInputModules)
             {
                 input.Monitor.StartRecording();
             }
             DateTime now = DateTime.Now;
             string sceneName = now.ToString("yyyy-MM-dd _ hh-mm-ss");
             SceneInUse.Instance.Set(new Data.Model.Scene() { Name = sceneName, RecordStartedDateTime = now });
-            IsRecording = true;
+            SceneInUse.Instance.IsRecording = true;
         }
     }
 }

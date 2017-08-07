@@ -59,5 +59,41 @@ namespace cl.uv.leikelen.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a  already exists..
+        /// </summary>
+        internal static string AlreadyExists {
+            get {
+                return ResourceManager.GetString("AlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a in ModalType: .
+        /// </summary>
+        internal static string inModalType {
+            get {
+                return ResourceManager.GetString("inModalType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Not Exists modalType: .
+        /// </summary>
+        internal static string ModalTypeNotExists {
+            get {
+                return ResourceManager.GetString("ModalTypeNotExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Source combobox is null.
+        /// </summary>
+        internal static string SourceComboboxIsNull {
+            get {
+                return ResourceManager.GetString("SourceComboboxIsNull", resourceCulture);
+            }
+        }
     }
 }

@@ -11,7 +11,7 @@ namespace cl.uv.leikelen.Controller
     {
         public void SetFromNone()
         {
-            foreach (var input in InputLoader.Instance.InputModules)
+            foreach (var input in InputLoader.Instance.SceneInputModules)
             {
                 input.Player.Close();
                 input.Monitor.Close();
@@ -20,7 +20,7 @@ namespace cl.uv.leikelen.Controller
 
         public void SetFromSensor()
         {
-            foreach (var input in InputLoader.Instance.InputModules)
+            foreach (var input in InputLoader.Instance.SceneInputModules)
             {
                 input.Player.Close();
                 input.Monitor.Open();
@@ -29,7 +29,7 @@ namespace cl.uv.leikelen.Controller
 
         public void SetFromFile(int sceneId)
         {
-            foreach (var input in InputLoader.Instance.InputModules)
+            foreach (var input in InputLoader.Instance.SceneInputModules)
             {
                 input.Monitor.Close();
                 input.Player.OpenFile(sceneId);

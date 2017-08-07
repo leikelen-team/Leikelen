@@ -9,6 +9,7 @@ using System.Windows.Threading;
 using System.IO;
 using cl.uv.leikelen.API.FrameProvider.Accelerometer;
 using cl.uv.leikelen.API.FrameProvider.EEG;
+using cl.uv.leikelen.Data.Access.External;
 using cl.uv.leikelen.ProcessingModule;
 
 namespace cl.uv.leikelen.InputModule.OpenBCI
@@ -69,16 +70,19 @@ namespace cl.uv.leikelen.InputModule.OpenBCI
 
             foreach (var module in ProcessingLoader.Instance.ProcessingModules)
             {
-                var eegModule = module as IEeg;
-                if (eegModule != null)
+                if (module.IsEnabled)
                 {
-                    EegFrameArrived += eegModule.EegListener();
-                }
+                    var eegModule = module as IEeg;
+                    if (eegModule != null)
+                    {
+                        EegFrameArrived += eegModule.EegListener();
+                    }
 
-                var accModule = module as IAccelerometer;
-                if (accModule != null)
-                {
-                    AccelerometerFrameArrived += accModule.AccelerometerListener();
+                    var accModule = module as IAccelerometer;
+                    if (accModule != null)
+                    {
+                        AccelerometerFrameArrived += accModule.AccelerometerListener();
+                    }
                 }
             }
         }
@@ -195,7 +199,9 @@ namespace cl.uv.leikelen.InputModule.OpenBCI
                         };
                         OnAccelerometerArrived(accArgs);
                     }
-                    _filemanage?.WriteFile(data);
+                    var actualTime = SceneInUseAccess.Instance.GetLocation();
+                    if (actualTime.HasValue)
+                        _filemanage?.WriteFile(actualTime.Value, data);
                 }
             }
         }

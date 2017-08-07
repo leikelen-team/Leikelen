@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using cl.uv.leikelen.API.DataAccess;
 using cl.uv.leikelen.Data.Persistence;
 using cl.uv.leikelen.Data.Model;
+using cl.uv.leikelen.Properties;
 
 namespace cl.uv.leikelen.Data.Access.External
 {
@@ -20,7 +21,7 @@ namespace cl.uv.leikelen.Data.Access.External
         {
             if (Exists(name))
             {
-                throw new DbException("ModalType "+name+" already exists");
+                throw new DbException("ModalType "+name+ Error.AlreadyExists);
             }
             else
             {

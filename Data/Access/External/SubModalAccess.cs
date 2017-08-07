@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using cl.uv.leikelen.API.DataAccess;
 using cl.uv.leikelen.Data.Persistence;
 using cl.uv.leikelen.Data.Model;
+using cl.uv.leikelen.Properties;
 
 namespace cl.uv.leikelen.Data.Access.External
 {
@@ -16,7 +17,7 @@ namespace cl.uv.leikelen.Data.Access.External
             var modal = DbFacade.Instance.Provider.LoadModal(modalName);
             if (modal == null)
             {
-                throw new DbException("Not Exists modalType: " + modalName);
+                throw new DbException(Error.ModalTypeNotExists + modalName);
             }
             else
             {
@@ -29,13 +30,13 @@ namespace cl.uv.leikelen.Data.Access.External
             var modal = DbFacade.Instance.Provider.LoadModal(modalName);
             if (modal == null)
             {
-                throw new DbException("Not Exists modalType: " + modalName);
+                throw new DbException(Error.ModalTypeNotExists + modalName);
             }
             else
             {
                 if(Exists(modalName, name))
                 {
-                    throw new DbException("SubModalType "+name+" in ModalType "+modalName+" already exists");
+                    throw new DbException("SubModalType: "+name+Error.inModalType +modalName+Error.AlreadyExists);
                 }
                 else
                 {
@@ -54,7 +55,7 @@ namespace cl.uv.leikelen.Data.Access.External
             var modal = DbFacade.Instance.Provider.LoadModal(modalName);
             if (modal == null)
             {
-                throw new DbException("Not Exists modalType: "+modalName);
+                throw new DbException(Error.ModalTypeNotExists  + modalName);
             }
             else
             {
