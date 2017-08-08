@@ -133,4 +133,19 @@
   <data name="Channel" xml:space="preserve">
     <value>Channel</value>
   </data>
+  <data name="AreSure" xml:space="preserve">
+    <value>Are you sure of this data?</value>
+  </data>
+  <data name="Confirmation" xml:space="preserve">
+    <value>Confirmation</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="NotSelectedPort" xml:space="preserve">
+    <value>Haven't selected a sensor</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
 </root>

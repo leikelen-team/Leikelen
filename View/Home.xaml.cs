@@ -284,10 +284,15 @@ namespace cl.uv.leikelen.View
 
 
         #region Window Events
+
         private void Home_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            //var exitDialog = new Widget.AcceptCancelDialog(Properties.GUI.AreSureExit, ExitWindow);
-            //var result = await DialogHost.Show(exitDialog);
+            MessageBoxResult result = MessageBox.Show(GUI.AreSureExit, GUI.Confirmation, MessageBoxButton.YesNo,
+                MessageBoxImage.Question);
+            if (result == MessageBoxResult.No)
+            {
+                e.Cancel = true;
+            }
         }
 
         private void Home_Closed(object sender, EventArgs e)
@@ -345,11 +350,7 @@ namespace cl.uv.leikelen.View
 
         private void MenuItem_File_Quit_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult result = MessageBox.Show(GUI.AreSureExit, GUI.Confirmation, MessageBoxButton.YesNo, MessageBoxImage.Question);
-            if (result == MessageBoxResult.Yes)
-            {
-                Close();
-            }
+            Close();
         }
         #endregion
 
@@ -594,7 +595,7 @@ namespace cl.uv.leikelen.View
                     MenuItem processWin = new MenuItem();
                     processWin.Header = window.Item1;
                     processWin.Click += (sender, e) => {
-                        window.Item2.Show();
+                        window.Item2.GetWindow().Show();
                     };
                     processMenuItem.Items.Add(processWin);
                 }
@@ -639,7 +640,7 @@ namespace cl.uv.leikelen.View
                     MenuItem inputWin = new MenuItem();
                     inputWin.Header = window.Item1;
                     inputWin.Click += (object sender, RoutedEventArgs e) => {
-                        window.Item2.Show();
+                        window.Item2.GetWindow().Show();
                     };
                     inputMenuItem.Items.Add(inputWin);
                 }

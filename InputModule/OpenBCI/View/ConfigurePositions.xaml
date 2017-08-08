@@ -38,14 +38,65 @@
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
             <Label Grid.Row="0" Grid.Column="0" VerticalAlignment="Bottom" Content="{x:Static resx:OpenBCI.PositionSystem}" />
-            <ComboBox Grid.Row="0" Grid.Column="1">
+            <ComboBox x:Name="posSystemCmbx" Grid.Row="0" Grid.Column="1">
                 <ComboBoxItem>10/10</ComboBoxItem>
                 <ComboBoxItem>10/20</ComboBoxItem>
             </ComboBox>
+            
+            <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+                <Run Text="{x:Static resx:OpenBCI.Channel}"/>
+                <Run Text="1"/>
+            </TextBlock>
+            <ComboBox x:Name="ChannelCmbx1" Grid.Row="1" Grid.Column="1"></ComboBox>
+
+            <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+                <Run Text="{x:Static resx:OpenBCI.Channel}"/>
+                <Run Text="2"/>
+            </TextBlock>
+            <ComboBox x:Name="ChannelCmbx2" Grid.Row="2" Grid.Column="1"></ComboBox>
+
+            <TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+                <Run Text="{x:Static resx:OpenBCI.Channel}"/>
+                <Run Text="3"/>
+            </TextBlock>
+            <ComboBox x:Name="ChannelCmbx3" Grid.Row="3" Grid.Column="1"></ComboBox>
+
+            
+
+            <TextBlock Grid.Row="4" Grid.Column="0" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+                <Run Text="{x:Static resx:OpenBCI.Channel}"/>
+                <Run Text="4"/>
+            </TextBlock>
+            <ComboBox x:Name="ChannelCmbx4" Grid.Row="4" Grid.Column="1"></ComboBox>
 
 
+            <TextBlock Grid.Row="5" Grid.Column="0" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+                <Run Text="{x:Static resx:OpenBCI.Channel}"/>
+                <Run Text="5"/>
+            </TextBlock>
+            <ComboBox x:Name="ChannelCmbx5" Grid.Row="5" Grid.Column="1"></ComboBox>
 
+            <TextBlock Grid.Row="6" Grid.Column="0" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+                <Run Text="{x:Static resx:OpenBCI.Channel}"/>
+                <Run Text="6"/>
+            </TextBlock>
+            <ComboBox x:Name="ChannelCmbx6" Grid.Row="6" Grid.Column="1"></ComboBox>
+
+
+            <TextBlock Grid.Row="7" Grid.Column="0" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+                <Run Text="{x:Static resx:OpenBCI.Channel}"/>
+                <Run Text="7"/>
+            </TextBlock>
+            <ComboBox x:Name="ChannelCmbx7" Grid.Row="7" Grid.Column="1"></ComboBox>
+
+
+            <TextBlock Grid.Row="8" Grid.Column="0" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+                <Run Text="{x:Static resx:OpenBCI.Channel}"/>
+                <Run Text="8"/>
+            </TextBlock>
+            <ComboBox x:Name="ChannelCmbx8" Grid.Row="8" Grid.Column="1"></ComboBox>
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
+                <Button x:Name="BackBtn" Content="{x:Static resx:OpenBCI.Back}" Margin="5" />
                 <Button x:Name="AcceptBtn" Content="{x:Static resx:OpenBCI.Accept}" Margin="5" />
                 <Button x:Name="CancelBtn" Content="{x:Static resx:OpenBCI.Cancel}" Margin="5" />
             </StackPanel>

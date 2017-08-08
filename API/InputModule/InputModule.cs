@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using cl.uv.leikelen.Helper;
 
 namespace cl.uv.leikelen.API.InputModule
 {
@@ -13,6 +14,6 @@ namespace cl.uv.leikelen.API.InputModule
         public IMonitor Monitor;
         public IPlayer Player;
         public string Name;
-        public List<Tuple<string, Window>> Windows;
+        public List<Tuple<string, WindowBuilder>> Windows;
     }
 }

@@ -27,14 +27,14 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <RadioButton GroupName="inputType" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Content="{x:Static resx:OpenBCI.PortUSB}"></RadioButton>
+        <RadioButton x:Name="InputTypePortRadio" GroupName="inputType" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Content="{x:Static resx:OpenBCI.PortUSB}"></RadioButton>
         <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" Orientation="Horizontal">
         <ComboBox x:Name="PortsCmbx" Margin="0,0,10,0"></ComboBox>
         <Button x:Name="PortsRenewBtn" Width="Auto">
             <materialDesign:PackIcon Kind="Autorenew" />
         </Button>
         </StackPanel>
-        <RadioButton GroupName="inputType" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Content="{x:Static resx:OpenBCI.File}"></RadioButton>
+        <RadioButton x:Name="InputTypeFileRadio" GroupName="inputType" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Content="{x:Static resx:OpenBCI.File}"></RadioButton>
         <Grid ClipToBounds="True" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Grid.Row="1" Grid.Column="1">
             <TextBox HorizontalAlignment="Stretch" x:Name="FilePathTextBox"></TextBox>
             <Button HorizontalAlignment="Right" x:Name="FileBtn" Content="..." ></Button>
@@ -60,7 +60,7 @@
             <Label x:Name="StatusLabel" VerticalAlignment="Center" Content="{x:Static resx:OpenBCI.NotConnected}"></Label>
         </StackPanel>
         <StackPanel Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
-            <Button x:Name="AcceptBtn" Margin="0,0,4,0" Content="{x:Static resx:OpenBCI.Next}" />
+            <Button x:Name="NextBtn" Margin="4,0,4,0" Content="{x:Static resx:OpenBCI.Next}" />
             <Button x:Name="CancelBtn" Margin="4,0,0,0" Content="{x:Static resx:OpenBCI.Cancel}"/>
         </StackPanel>
     </Grid>

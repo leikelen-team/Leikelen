@@ -36,7 +36,17 @@ namespace cl.uv.leikelen.InputModule.OpenBCI
             _interpretStream = new Util.InterpretStream();
             _filter = new Util.Filter();
             _status = InputStatus.Unconnected;
-            _positions = new string[8]{"F3", "C4","","","","", "", "" }; //TODO: cambiar esto
+            _positions = new string[8]
+            {
+                OpenBCISettings.Instance.PositionChannel1.Value,
+                OpenBCISettings.Instance.PositionChannel2.Value,
+                OpenBCISettings.Instance.PositionChannel3.Value,
+                OpenBCISettings.Instance.PositionChannel4.Value,
+                OpenBCISettings.Instance.PositionChannel5.Value,
+                OpenBCISettings.Instance.PositionChannel6.Value,
+                OpenBCISettings.Instance.PositionChannel7.Value,
+                OpenBCISettings.Instance.PositionChannel8.Value,
+            };
             _isRecording = false;
         }
 
@@ -176,13 +186,15 @@ namespace cl.uv.leikelen.InputModule.OpenBCI
                         };
                         for (int j = 1; j < 9; j++)
                         {
+                            double value = _filter.FiltersSelect((FilterType) (OpenBCISettings.Instance.Filter.Value),
+                                (NotchType) (OpenBCISettings.Instance.Notch.Value), data[j], j - 1);
                             eegArgs.Channels.Add(new EegChannel()
                             {
                                 Filter = FilterType.None,
                                 Notch = (NotchType)OpenBCISettings.Instance.Notch.Value,
                                 PositionSystem = "10/20",
                                 Position = _positions[j - 1],
-                                Value = data[j]
+                                Value = value
                             });
                         }
                         OnEegFrameArrived(eegArgs);

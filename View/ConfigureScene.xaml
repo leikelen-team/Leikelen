@@ -67,6 +67,9 @@
         <Label VerticalAlignment="Top" Grid.Row="6" Grid.Column="0" Content="{x:Static resx:GUI.Description}" />
         <TextBox Grid.Row="6" Grid.Column="1" 
 				    x:Name="DescriptionTextBox"
+                 TextWrapping="Wrap"
+                 AcceptsReturn="True"
+                 VerticalScrollBarVisibility="Auto"
 				    materialDesign:HintAssist.Hint="{x:Static resx:GUI.Description}">
         </TextBox>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">

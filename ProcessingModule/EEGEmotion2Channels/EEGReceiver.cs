@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using cl.uv.leikelen.API.FrameProvider.EEG;
+using cl.uv.leikelen.Data.Access.External;
 
 namespace cl.uv.leikelen.ProcessingModule.EEGEmotion2Channels
 {
@@ -13,6 +14,7 @@ namespace cl.uv.leikelen.ProcessingModule.EEGEmotion2Channels
         private List<List<double[]>> _allsignalsList;
         private bool _signalGet;
         private readonly ClassifierType _type;
+        private int _lastSecond;
 
         public EEGReceiver(ClassifierType type)
         {
@@ -20,6 +22,7 @@ namespace cl.uv.leikelen.ProcessingModule.EEGEmotion2Channels
             _allsignalsList = new List<List<double[]>>();
             _signaList = new List<double[]>();
             _signalGet = true;
+            _lastSecond = 0;
         }
 
         public void DataReceiver(object sender, EegFrameArrivedEventArgs e)
@@ -52,10 +55,13 @@ namespace cl.uv.leikelen.ProcessingModule.EEGEmotion2Channels
             }
             if(channelCounter == 2)
                 _signaList.Add(values);
-
-            if (_signaList.Count >= EEGEmoProc2ChSettings.Instance.SamplingHz * EEGEmoProc2ChSettings.Instance.secs)
+            var sceneLocation = SceneInUseAccess.Instance.GetLocation();
+            if (_signaList.Count >= 0 
+                && sceneLocation.HasValue 
+                && _lastSecond != (int)sceneLocation.Value.TotalSeconds 
+                && (int)sceneLocation.Value.TotalSeconds % 9 == 0)
             {
-                //TODO: arreglar cada 9 segundos
+                _lastSecond = (int) sceneLocation.Value.TotalSeconds;
                 switch (_type)
                 {
                     case ClassifierType.Detector:

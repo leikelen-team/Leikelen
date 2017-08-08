@@ -59,6 +59,15 @@ namespace cl.uv.leikelen.View
             MessageBoxResult result = MessageBox.Show(GUI.confScene_SureSave, GUI.confScene_SureSaveTitle, MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (result == MessageBoxResult.Yes)
             {
+                int numberP = 0;
+                try
+                {
+                    numberP = Int32.Parse(ParticipantsTextBox.Text);
+                }
+                catch (Exception ex)
+                {
+                    numberP = 0;
+                }
 
                 if (_scene == null)
                 {
@@ -67,7 +76,7 @@ namespace cl.uv.leikelen.View
                 _scene.Name = NameTextBox?.Text;
                 _scene.Type = TypeTextBox?.Text;
                 _scene.Description = DescriptionTextBox?.Text;
-                _scene.NumberOfParticipants = Int32.Parse(ParticipantsTextBox.Text);
+                _scene.NumberOfParticipants = numberP;
                 _scene.Place = PlaceTextBox?.Text;
                 if (!String.IsNullOrEmpty(RealDatePicker.Text))
                 {

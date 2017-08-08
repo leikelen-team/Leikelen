@@ -37,10 +37,10 @@ namespace cl.uv.leikelen.ProcessingModule.EEGEmotion2Channels
             }
 
             var emdF3 = new Emd();
-            var imfsF3 = emdF3.GetImfs(f3, 4, 20, 0);
+            var imfsF3 = emdF3.GetImfs(f3, 4, 1, 0);
 
             var emdC4 = new Emd();
-            var imfsC4 = emdC4.GetImfs(c4, 4, 20, 0);
+            var imfsC4 = emdC4.GetImfs(c4, 4, 1, 0);
 
             List<double> features = new List<double>();
             foreach (var imfF3 in imfsF3)

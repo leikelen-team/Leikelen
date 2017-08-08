@@ -19,20 +19,32 @@ namespace cl.uv.leikelen.InputModule.OpenBCI.View
     /// <summary>
     /// Lógica de interacción para OpenBCIWindow.xaml
     /// </summary>
-    public partial class OpenBCIWindow : Window
+    public partial class OpenBCIWindow : Window, ICloneable
     {
-        private IMonitor _monitor;
+        public IMonitor Monitor { get; }
         public OpenBCIWindow(IMonitor monitor)
         {
             InitializeComponent();
-            _monitor = monitor;
+            Monitor = monitor;
             RenewPorts();
 
             PortsRenewBtn.Click += PortsRenewBtn_Click;
             TestBtn.Click += TestBtn_Click;
-            AcceptBtn.Click += AcceptBtn_Click;
+            NextBtn.Click += NextBtn_Click;
             CancelBtn.Click += CancelBtn_Click;
 
+        }
+
+        public OpenBCIWindow(OpenBCIWindow openBCIwindow)
+        {
+            InitializeComponent();
+            Monitor = openBCIwindow.Monitor;
+            RenewPorts();
+
+            PortsRenewBtn.Click += PortsRenewBtn_Click;
+            TestBtn.Click += TestBtn_Click;
+            NextBtn.Click += NextBtn_Click;
+            CancelBtn.Click += CancelBtn_Click;
         }
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
@@ -40,14 +52,38 @@ namespace cl.uv.leikelen.InputModule.OpenBCI.View
             this.Close();
         }
 
-        private void AcceptBtn_Click(object sender, RoutedEventArgs e)
+        private void NextBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (PortsCmbx.SelectedItem != null)
+            var confPosition = new ConfigurePositions(this);
+            if (InputTypePortRadio.IsChecked.HasValue && InputTypePortRadio.IsChecked.Value && PortsCmbx.SelectedItem != null)
             {
                 OpenBCISettings.Instance.Notch.Write(NotchCmbx.SelectedIndex);
-                _monitor.OpenPort(PortsCmbx.SelectedItem as string);
+                OpenBCISettings.Instance.Filter.Write(FilterCmbx.SelectedIndex);
+                Monitor.OpenPort(PortsCmbx.SelectedItem as string);
+
+                //var confPosition = new ConfigurePositions(this);
+                confPosition.Show();
+                Hide();
             }
-            this.Close();
+            else if (InputTypeFileRadio.IsChecked.HasValue && InputTypeFileRadio.IsChecked.Value && !String.IsNullOrEmpty(FilePathTextBox.Text))
+            {
+                OpenBCISettings.Instance.Notch.Write(NotchCmbx.SelectedIndex);
+                OpenBCISettings.Instance.Filter.Write(FilterCmbx.SelectedIndex);
+                //TODO: desde archivo
+
+                //var confPosition = new ConfigurePositions(this);
+                confPosition.Show();
+                Hide();
+            }
+            else
+            {
+                MessageBoxResult result = MessageBox.Show(OpenBCI.Properties.OpenBCI.NotSelectedPort, OpenBCI.Properties.OpenBCI.Error, MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+            }
+            //var confPosition = new ConfigurePositions();
+            //confPosition.Show();
+            //Hide();
+
         }
 
         private async void TestBtn_Click(object sender, RoutedEventArgs e)
@@ -56,8 +92,8 @@ namespace cl.uv.leikelen.InputModule.OpenBCI.View
             if(PortsCmbx.SelectedItem != null)
             {
                 OpenBCISettings.Instance.Notch.Write(NotchCmbx.SelectedIndex);
-                await _monitor.OpenPort(PortsCmbx.SelectedItem as string);
-                if (_monitor.GetStatus() == API.InputModule.InputStatus.Connected)
+                await Monitor.OpenPort(PortsCmbx.SelectedItem as string);
+                if (Monitor.GetStatus() == API.InputModule.InputStatus.Connected)
                 {
                     TestIcon.Kind = MaterialDesignThemes.Wpf.PackIconKind.Check;
                     StatusLabel.Content = Properties.OpenBCI.Connected;
@@ -90,6 +126,11 @@ namespace cl.uv.leikelen.InputModule.OpenBCI.View
                     i++;
                 }
             }
+        }
+
+        public object Clone()
+        {
+            return new OpenBCIWindow(this);
         }
     }
 }

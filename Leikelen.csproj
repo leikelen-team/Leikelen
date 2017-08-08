@@ -240,6 +240,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Data\Access\External\SceneInUseAccess.cs" />
+    <Compile Include="Helper\WindowBuilder.cs" />
     <Compile Include="InputModule\OpenBCI\View\ConfigurePositions.xaml.cs">
       <DependentUpon>ConfigurePositions.xaml</DependentUpon>
     </Compile>
@@ -388,9 +389,6 @@
     <Compile Include="View\Preferences.xaml.cs">
       <DependentUpon>Preferences.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Widget\AcceptCancelDialog.xaml.cs">
-      <DependentUpon>AcceptCancelDialog.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\Widget\PersonCard.xaml.cs">
       <DependentUpon>PersonCard.xaml</DependentUpon>
     </Compile>
@@ -454,10 +452,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Preferences.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Widget\AcceptCancelDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -552,7 +546,6 @@
   <ItemGroup>
     <Folder Include="API\FrameProvider\Kinect\" />
     <Folder Include="Data\LeikelenFile\" />
-    <Folder Include="Helper\" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
@@ -568,6 +561,10 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="static\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="InputModule\OpenBCI\Assets\eegPosSystem_10_10.png" />
+    <Resource Include="InputModule\OpenBCI\Assets\eegPosSystem_10_20.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

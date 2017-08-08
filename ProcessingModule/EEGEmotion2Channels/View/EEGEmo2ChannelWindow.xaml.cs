@@ -17,11 +17,16 @@ namespace cl.uv.leikelen.ProcessingModule.EEGEmotion2Channels
     /// <summary>
     /// Lógica de interacción para EEGEmo2ChannelWindow.xaml
     /// </summary>
-    public partial class EEGEmo2ChannelWindow : Window
+    public partial class EEGEmo2ChannelWindow : Window, ICloneable
     {
         public EEGEmo2ChannelWindow()
         {
             InitializeComponent();
+        }
+
+        public object Clone()
+        {
+            return new EEGEmo2ChannelWindow();
         }
     }
 }

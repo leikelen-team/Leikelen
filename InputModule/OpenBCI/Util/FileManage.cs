@@ -29,7 +29,7 @@ namespace cl.uv.leikelen.InputModule.OpenBCI.Util
                 data[i + 1] = data[i + 1] * multiplier;
             }
 
-            _sw.Write(actualTime.ToString("HH:mm:ss")+Separador);
+            _sw.Write(actualTime.Hours+":"+actualTime.Minutes+":"+actualTime.Seconds+ Separador);
             for (int i = 0; i < 11; i++)
             {
                 _sw.Write("{0}"+Separador, data[i]);

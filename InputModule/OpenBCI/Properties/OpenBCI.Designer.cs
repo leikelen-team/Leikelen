@@ -70,6 +70,24 @@ namespace cl.uv.leikelen.InputModule.OpenBCI.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Are you sure of this data?.
+        /// </summary>
+        public static string AreSure {
+            get {
+                return ResourceManager.GetString("AreSure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Back.
+        /// </summary>
+        public static string Back {
+            get {
+                return ResourceManager.GetString("Back", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Cancel.
         /// </summary>
         public static string Cancel {
@@ -97,11 +115,29 @@ namespace cl.uv.leikelen.InputModule.OpenBCI.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Confirmation.
+        /// </summary>
+        public static string Confirmation {
+            get {
+                return ResourceManager.GetString("Confirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Connected.
         /// </summary>
         public static string Connected {
             get {
                 return ResourceManager.GetString("Connected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Error.
+        /// </summary>
+        public static string Error {
+            get {
+                return ResourceManager.GetString("Error", resourceCulture);
             }
         }
         
@@ -138,6 +174,15 @@ namespace cl.uv.leikelen.InputModule.OpenBCI.Properties {
         public static string NotConnected {
             get {
                 return ResourceManager.GetString("NotConnected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Haven&apos;t selected a sensor.
+        /// </summary>
+        public static string NotSelectedPort {
+            get {
+                return ResourceManager.GetString("NotSelectedPort", resourceCulture);
             }
         }
         

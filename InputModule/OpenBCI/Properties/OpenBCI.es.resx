@@ -133,4 +133,19 @@
   <data name="PositionSystem" xml:space="preserve">
     <value>Sistema de posicionamiento</value>
   </data>
+  <data name="AreSure" xml:space="preserve">
+    <value>¿Está seguro de los datos?</value>
+  </data>
+  <data name="Confirmation" xml:space="preserve">
+    <value>Confirmación</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Atrás</value>
+  </data>
+  <data name="NotSelectedPort" xml:space="preserve">
+    <value>No ha seleccionado un sensor</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
 </root>

@@ -5,6 +5,7 @@ using System.Text;
 using System.Windows;
 using System.Threading.Tasks;
 using cl.uv.leikelen.API.FrameProvider.EEG;
+using cl.uv.leikelen.Helper;
 
 namespace cl.uv.leikelen.ProcessingModule.EEGEmotion2Channels
 {
@@ -19,12 +20,12 @@ namespace cl.uv.leikelen.ProcessingModule.EEGEmotion2Channels
 
         public TrainerEntryPoint()
         {
-            Windows = new List<Tuple<string, Window>>();
+            Windows = new List<Tuple<string, WindowBuilder>>();
             IsActiveBeforeRecording = false;
             Name = Properties.EEGEmotion2Channels.ModuleName;
             IsEnabled = true;
-            var configWindow = new Tuple<string, Window>(Properties.EEGEmotion2Channels.ConfigWindowTitle,
-                new EEGEmo2ChannelWindow());
+            var configWindow = new Tuple<string, WindowBuilder>(Properties.EEGEmotion2Channels.ConfigWindowTitle,
+                new WindowBuilder(new EEGEmo2ChannelWindow()));
             Windows.Add(configWindow);
             
             _logic = new EEGReceiver(ClassifierType.Trainer);
