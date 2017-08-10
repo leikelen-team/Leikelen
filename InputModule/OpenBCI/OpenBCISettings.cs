@@ -9,17 +9,17 @@ namespace cl.uv.leikelen.InputModule.OpenBCI
 {
     public class OpenBCISettings : SettingsContainer
     {
-        public readonly Option<int> Notch;
-        public readonly Option<int> Filter;
+        public readonly Option<int> Notch = new Option<int>("Notch", 0);
+        public readonly Option<int> Filter = new Option<int>("Filter", 0);
 
-        public readonly Option<string> PositionChannel1;
-        public readonly Option<string> PositionChannel2;
-        public readonly Option<string> PositionChannel3;
-        public readonly Option<string> PositionChannel4;
-        public readonly Option<string> PositionChannel5;
-        public readonly Option<string> PositionChannel6;
-        public readonly Option<string> PositionChannel7;
-        public readonly Option<string> PositionChannel8;
+        public readonly Option<string> PositionChannel1 = new Option<string>("PositionChannel1", null);
+        public readonly Option<string> PositionChannel2 = new Option<string>("PositionChannel2", null);
+        public readonly Option<string> PositionChannel3 = new Option<string>("PositionChannel3", null);
+        public readonly Option<string> PositionChannel4 = new Option<string>("PositionChannel4", null);
+        public readonly Option<string> PositionChannel5 = new Option<string>("PositionChannel5", null);
+        public readonly Option<string> PositionChannel6 = new Option<string>("PositionChannel6", null);
+        public readonly Option<string> PositionChannel7 = new Option<string>("PositionChannel7", null);
+        public readonly Option<string> PositionChannel8 = new Option<string>("PositionChannel8", null);
 
         private static OpenBCISettings _instance;
 

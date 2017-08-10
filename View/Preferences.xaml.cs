@@ -12,7 +12,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using cl.uv.leikelen.View.Widget;
 
 namespace cl.uv.leikelen.View
 {
@@ -24,12 +23,13 @@ namespace cl.uv.leikelen.View
         public Preferences()
         {
             InitializeComponent();
-            
+            Tabs.AddToSource(new Widget.PreferencesGeneral());
+            Tabs.AddToSource(new Widget.PreferencesBD());
         }
 
         public void ShowBd()
         {
-            //TODO: mostrar bd
+            Tabs.SelectedIndex = 1;
             Show();
         }
     }

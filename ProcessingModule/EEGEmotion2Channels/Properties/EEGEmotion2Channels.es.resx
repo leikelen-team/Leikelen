@@ -118,4 +118,19 @@
   <data name="ModuleName" xml:space="preserve">
     <value>Detector de Emociones con EEG</value>
   </data>
+  <data name="ErrorWindowValuesTitle" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="ErrorWindowValues" xml:space="preserve">
+    <value>Algunos campos están vacíos</value>
+  </data>
+  <data name="mHint" xml:space="preserve">
+    <value>dimensión de encaje</value>
+  </data>
+  <data name="rHint" xml:space="preserve">
+    <value>valor umbral</value>
+  </data>
+  <data name="secsHint" xml:space="preserve">
+    <value>tamaño de la ventana</value>
+  </data>
 </root>

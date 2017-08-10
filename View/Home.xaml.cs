@@ -54,6 +54,8 @@ namespace cl.uv.leikelen.View
         /// </summary>
         private readonly DispatcherTimer _recordTimer;
 
+
+
         private HomeState _homeState;
 
         public Home()
@@ -111,6 +113,11 @@ namespace cl.uv.leikelen.View
             MenuItem_Scene.IsEnabled = false;
             MenuItem_File_Save.IsEnabled = false;
             MenuItem_File_NewScene.IsEnabled = false;
+
+            Tabs.AddToSource(new Widget.TabInterval());
+            Tabs.AddToSource(new Widget.TabGraph());
+            Tabs.AddToSource(new Widget.TabDistance());
+            Tabs.AddToSource(new Widget.TabScene());
 
             //Actions
             SetFromNone();

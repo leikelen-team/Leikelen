@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using cl.uv.leikelen.Helper;
+using cl.uv.leikelen.API.Helper;
 
 namespace cl.uv.leikelen.API.ProcessingModule
 {

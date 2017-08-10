@@ -17,7 +17,7 @@ namespace cl.uv.leikelen.View.Widget
     /// <summary>
     /// Lógica de interacción para TabScene.xaml
     /// </summary>
-    public partial class TabScene : UserControl
+    public partial class TabScene : TabItem
     {
         public TabScene()
         {

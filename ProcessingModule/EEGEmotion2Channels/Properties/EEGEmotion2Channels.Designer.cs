@@ -89,11 +89,47 @@ namespace cl.uv.leikelen.ProcessingModule.EEGEmotion2Channels.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Some fields are empty.
+        /// </summary>
+        public static string ErrorWindowValues {
+            get {
+                return ResourceManager.GetString("ErrorWindowValues", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Error.
+        /// </summary>
+        public static string ErrorWindowValuesTitle {
+            get {
+                return ResourceManager.GetString("ErrorWindowValuesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a embedding dimension.
+        /// </summary>
+        public static string mHint {
+            get {
+                return ResourceManager.GetString("mHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Emotion Detector with EEG.
         /// </summary>
         public static string ModuleName {
             get {
                 return ResourceManager.GetString("ModuleName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a threshold value.
+        /// </summary>
+        public static string rHint {
+            get {
+                return ResourceManager.GetString("rHint", resourceCulture);
             }
         }
         
@@ -112,6 +148,15 @@ namespace cl.uv.leikelen.ProcessingModule.EEGEmotion2Channels.Properties {
         public static string Seconds {
             get {
                 return ResourceManager.GetString("Seconds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a window size.
+        /// </summary>
+        public static string secsHint {
+            get {
+                return ResourceManager.GetString("secsHint", resourceCulture);
             }
         }
         

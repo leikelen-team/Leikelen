@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using cl.uv.leikelen.API.InputModule;
-using cl.uv.leikelen.Helper;
+using cl.uv.leikelen.API.Helper;
 
 namespace cl.uv.leikelen.InputModule.OpenBCI
 {

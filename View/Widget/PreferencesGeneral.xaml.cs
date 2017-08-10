@@ -17,7 +17,7 @@ namespace cl.uv.leikelen.View.Widget
     /// <summary>
     /// Lógica de interacción para PreferencesGeneral.xaml
     /// </summary>
-    public partial class PreferencesGeneral : UserControl
+    public partial class PreferencesGeneral : TabItem
     {
         public PreferencesGeneral()
         {

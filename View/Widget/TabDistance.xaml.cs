@@ -17,7 +17,7 @@ namespace cl.uv.leikelen.View.Widget
     /// <summary>
     /// Lógica de interacción para TabDistance.xaml
     /// </summary>
-    public partial class TabDistance : UserControl
+    public partial class TabDistance : TabItem
     {
         public TabDistance()
         {

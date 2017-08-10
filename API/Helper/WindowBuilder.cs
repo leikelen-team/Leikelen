@@ -5,11 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace cl.uv.leikelen.Helper
+namespace cl.uv.leikelen.API.Helper
 {
     public class WindowBuilder
     {
-        private ICloneable _window;
+        private readonly ICloneable _window;
 
         public WindowBuilder(ICloneable window)
         {

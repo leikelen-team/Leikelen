@@ -17,7 +17,7 @@ namespace cl.uv.leikelen.View.Widget
     /// <summary>
     /// Lógica de interacción para PreferencesBD.xaml
     /// </summary>
-    public partial class PreferencesBD : UserControl
+    public partial class PreferencesBD : TabItem
     {
         public PreferencesBD()
         {

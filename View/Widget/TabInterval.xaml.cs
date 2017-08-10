@@ -17,7 +17,7 @@ namespace cl.uv.leikelen.View.Widget
     /// <summary>
     /// Lógica de interacción para TabInterval.xaml
     /// </summary>
-    public partial class TabInterval : UserControl
+    public partial class TabInterval : TabItem
     {
         public TabInterval()
         {

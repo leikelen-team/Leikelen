@@ -17,7 +17,7 @@ namespace cl.uv.leikelen.View.Widget
     /// <summary>
     /// Lógica de interacción para TabGraph.xaml
     /// </summary>
-    public partial class TabGraph : UserControl
+    public partial class TabGraph : TabItem
     {
         public TabGraph()
         {

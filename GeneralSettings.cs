@@ -9,10 +9,10 @@ namespace cl.uv.leikelen
 {
     public class GeneralSettings : SettingsContainer
     {
-        public readonly Option<string> TmpDirectory;
-        public readonly Option<string> CurrentSceneDirectory;
-        public readonly Option<string> Extension;
-        public readonly Option<string> ExtensionFilter;
+        public readonly Option<string> TmpDirectory = new Option<string>("TmpDirectory", "tmp/");
+        public readonly Option<string> CurrentSceneDirectory = new Option<string>("CurrentSceneDirectory", "current_scene/");
+        public readonly Option<string> Extension = new Option<string>("Extension", ".leikelen");
+        public readonly Option<string> ExtensionFilter = new Option<string>("ExtensionFilter", "*.leikelen");
 
         private static GeneralSettings _instance;
 

@@ -34,7 +34,7 @@
         
         <Label VerticalAlignment="Bottom" Grid.Row="2" Grid.Column="0" Content="{x:Static resx:GUI.Gender}"/>
         <ComboBox VerticalAlignment="Bottom" Grid.Row="2" Grid.Column="1" x:Name="GenderComboBox">
-            <ComboBoxItem Content="{x:Static resx:GUI.Unknown}"></ComboBoxItem>
+            <ComboBoxItem IsSelected="True" Content="{x:Static resx:GUI.Unknown}"></ComboBoxItem>
             <ComboBoxItem Content="{x:Static resx:GUI.Male}" ></ComboBoxItem>
             <ComboBoxItem Content="{x:Static resx:GUI.Female}"></ComboBoxItem>
         </ComboBox>

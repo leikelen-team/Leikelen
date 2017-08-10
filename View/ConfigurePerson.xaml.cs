@@ -22,6 +22,25 @@ namespace cl.uv.leikelen.View
         public ConfigurePerson()
         {
             InitializeComponent();
+
+            PhotoBtn.Click += PhotoBtn_Click;
+            AcceptBtn.Click += AcceptBtn_Click;
+            CancelBtn.Click += CancelBtn_Click;
+        }
+
+        private void CancelBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void AcceptBtn_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void PhotoBtn_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -12,21 +12,21 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace cl.uv.leikelen.ProcessingModule.EEGEmotion2Channels
+namespace cl.uv.leikelen.ProcessingModule.EEGEmotion2Channels.View
 {
     /// <summary>
-    /// Lógica de interacción para EEGEmo2ChannelWindow.xaml
+    /// Lógica de interacción para ClassifierWindow.xaml
     /// </summary>
-    public partial class EEGEmo2ChannelWindow : Window, ICloneable
+    public partial class ClassifierWindow : Window, ICloneable
     {
-        public EEGEmo2ChannelWindow()
+        public ClassifierWindow()
         {
             InitializeComponent();
         }
 
         public object Clone()
         {
-            return new EEGEmo2ChannelWindow();
+            return new ClassifierWindow();
         }
     }
 }
