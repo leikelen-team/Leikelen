@@ -14,16 +14,13 @@
         TextElement.FontSize="14"
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
         mc:Ignorable="d"
-        Title="Leikelen" Height="650" Width="750">
+        Title="Leikelen" Height="450" Width="750">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="45" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="5" />
-            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-
-        <DockPanel Grid.Row="0">
+            <DockPanel Grid.Row="0">
             <Menu IsMainMenu="True" DockPanel.Dock="Top">
                 <MenuItem x:Name="MenuItem_File" Header="{x:Static resx:Menu.File}">
                     <MenuItem x:Name="MenuItem_File_NewScene" Header="{x:Static resx:Menu.File_NewScene}" InputGestureText="Ctrl+N" />
@@ -67,52 +64,54 @@
                 </MenuItem>
             </Menu>
         </DockPanel>
-        <Grid Grid.Row="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="7*" />
-                <RowDefinition Height="20" />
-                <RowDefinition Height="35" />
-            </Grid.RowDefinitions>
-            <Rectangle x:Name="Player_BlackRectangle" Fill="Black" Grid.Row="0" Panel.ZIndex="-1" />
-            <Image x:Name="Player_ImageControl_Layer2" Grid.Row="0" />
-            <Image x:Name="Player_ImageControl_Layer1" Grid.Row="0"/>
-            <Slider x:Name="Player_LocationSlider" Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" Minimum="1" Maximum="100" />
-            <StackPanel Grid.Row="2" Orientation="Horizontal">
-                <Button x:Name="Player_RecordButton" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3,0,3,0" Width="Auto">
-                    <materialDesign:PackIcon x:Name="Player_RecordButton_Icon" Kind="Record" />
-                </Button>
-                <Button x:Name="Player_StopButton" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3,0,3,0" Width="Auto">
-                    <materialDesign:PackIcon Kind="Stop" />
-                </Button>
-                <Button x:Name="Player_PlayButton" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3,0,3,0" Width="Auto">
-                    <materialDesign:PackIcon x:Name="Player_PlayButton_Icon" Kind="Play" />
-                </Button>
-                <Label VerticalAlignment="Center" x:Name="Player_ActualTimeLabel" Content="--:--:--"></Label>
-                <Label VerticalAlignment="Center" x:Name="Player_TimeSeparatorLabel" Content="/"></Label>
-                <Label VerticalAlignment="Center" x:Name="Player_TotalTimeLabel" Content="--:--:--"></Label>
-                <ToggleButton x:Name="Player_VolumeToggle" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3,0,3,0" Style="{StaticResource MaterialDesignActionToggleButton}"
-                          ToolTip="Mute">
-                    <ToggleButton.Content>
-                        <materialDesign:PackIcon Kind="VolumeHigh" />
-                    </ToggleButton.Content>
-                    <materialDesign:ToggleButtonAssist.OnContent>
-                        <materialDesign:PackIcon Kind="VolumeOff" />
-                    </materialDesign:ToggleButtonAssist.OnContent>
-                </ToggleButton>
-                <Slider x:Name="Player_VolumeSlider" Orientation="Horizontal" Margin="3,0,0,0" Width="100" HorizontalAlignment="Left" VerticalAlignment="Center" Minimum="1" Maximum="100" />
-                <ComboBox x:Name="SourceComboBox" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="3,0,3,0">
-                    <ComboBoxItem Content="{x:Static resx:GUI.FromNone}" IsSelected="True"></ComboBoxItem>
-                    <ComboBoxItem Content="{x:Static resx:GUI.FromSensor}"></ComboBoxItem>
-                    <ComboBoxItem Content="{x:Static resx:GUI.FromScene}"></ComboBoxItem>
-                </ComboBox>
-            </StackPanel>
-        </Grid>
-        <GridSplitter Grid.Row="2" HorizontalAlignment="Stretch" />
-        <dragablz:TabablzControl x:Name="Tabs" Grid.Row="3" >
+
+        <dragablz:TabablzControl Grid.Row="1" x:Name="Tabs" Grid.RowSpan="2" >
             <dragablz:TabablzControl.InterTabController>
                 <dragablz:InterTabController />
             </dragablz:TabablzControl.InterTabController>
-            
+            <TabItem Header="Player">
+                <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20*" />
+                            <RowDefinition MinHeight="20" MaxHeight="60" Height="1*" />
+                            <RowDefinition MinHeight="35" MaxHeight="100" Height="3*"/>
+                        </Grid.RowDefinitions>
+                        <Rectangle x:Name="Player_BlackRectangle" Fill="Black" Grid.Row="0" Panel.ZIndex="-1" />
+                        <Image x:Name="Player_ImageControl_Layer2" Grid.Row="0" />
+                        <Image x:Name="Player_ImageControl_Layer1" Grid.Row="0"/>
+                        <Slider x:Name="Player_LocationSlider" Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" Minimum="1" Maximum="100" />
+                        <StackPanel Grid.Row="2" Orientation="Horizontal">
+                            <Button x:Name="Player_RecordButton" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3,0,3,0" Width="Auto">
+                                <materialDesign:PackIcon x:Name="Player_RecordButton_Icon" Kind="Record" />
+                            </Button>
+                            <Button x:Name="Player_StopButton" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3,0,3,0" Width="Auto">
+                                <materialDesign:PackIcon Kind="Stop" />
+                            </Button>
+                            <Button x:Name="Player_PlayButton" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3,0,3,0" Width="Auto">
+                                <materialDesign:PackIcon x:Name="Player_PlayButton_Icon" Kind="Play" />
+                            </Button>
+                            <Label VerticalAlignment="Center" x:Name="Player_ActualTimeLabel" Content="--:--:--"></Label>
+                            <Label VerticalAlignment="Center" x:Name="Player_TimeSeparatorLabel" Content="/"></Label>
+                            <Label VerticalAlignment="Center" x:Name="Player_TotalTimeLabel" Content="--:--:--"></Label>
+                            <ToggleButton x:Name="Player_VolumeToggle" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3,0,3,0" Style="{StaticResource MaterialDesignActionToggleButton}"
+                          ToolTip="Mute">
+                                <ToggleButton.Content>
+                                    <materialDesign:PackIcon Kind="VolumeHigh" />
+                                </ToggleButton.Content>
+                                <materialDesign:ToggleButtonAssist.OnContent>
+                                    <materialDesign:PackIcon Kind="VolumeOff" />
+                                </materialDesign:ToggleButtonAssist.OnContent>
+                            </ToggleButton>
+                            <Slider x:Name="Player_VolumeSlider" Orientation="Horizontal" Margin="3,0,0,0" Width="100" HorizontalAlignment="Left" VerticalAlignment="Center" Minimum="1" Maximum="100" />
+                            <ComboBox x:Name="SourceComboBox" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="3,0,3,0">
+                                <ComboBoxItem Content="{x:Static resx:GUI.FromNone}" IsSelected="True"></ComboBoxItem>
+                                <ComboBoxItem Content="{x:Static resx:GUI.FromSensor}"></ComboBoxItem>
+                                <ComboBoxItem Content="{x:Static resx:GUI.FromScene}"></ComboBoxItem>
+                            </ComboBox>
+                        </StackPanel>
+                    </Grid>
+            </TabItem>
+
         </dragablz:TabablzControl>
     </Grid>
 </Window>
