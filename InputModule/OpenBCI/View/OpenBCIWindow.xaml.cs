@@ -55,7 +55,7 @@ namespace cl.uv.leikelen.InputModule.OpenBCI.View
         private void NextBtn_Click(object sender, RoutedEventArgs e)
         {
             var confPosition = new ConfigurePositions(this);
-            if (InputTypePortRadio.IsChecked.HasValue && InputTypePortRadio.IsChecked.Value && PortsCmbx.SelectedItem != null)
+            if (PortsCmbx.SelectedItem != null)
             {
                 OpenBCISettings.Instance.Notch.Write(NotchCmbx.SelectedIndex);
                 OpenBCISettings.Instance.Filter.Write(FilterCmbx.SelectedIndex);
@@ -65,19 +65,9 @@ namespace cl.uv.leikelen.InputModule.OpenBCI.View
                 confPosition.Show();
                 Hide();
             }
-            else if (InputTypeFileRadio.IsChecked.HasValue && InputTypeFileRadio.IsChecked.Value && !String.IsNullOrEmpty(FilePathTextBox.Text))
-            {
-                OpenBCISettings.Instance.Notch.Write(NotchCmbx.SelectedIndex);
-                OpenBCISettings.Instance.Filter.Write(FilterCmbx.SelectedIndex);
-                //TODO: desde archivo
-
-                //var confPosition = new ConfigurePositions(this);
-                confPosition.Show();
-                Hide();
-            }
             else
             {
-                MessageBoxResult result = MessageBox.Show(OpenBCI.Properties.OpenBCI.NotSelectedPort, OpenBCI.Properties.OpenBCI.Error, MessageBoxButton.OK,
+                MessageBoxResult result = MessageBox.Show(Properties.OpenBCI.NotSelectedPort, Properties.OpenBCI.Error, MessageBoxButton.OK,
                     MessageBoxImage.Error);
             }
             //var confPosition = new ConfigurePositions();
@@ -93,7 +83,7 @@ namespace cl.uv.leikelen.InputModule.OpenBCI.View
             {
                 OpenBCISettings.Instance.Notch.Write(NotchCmbx.SelectedIndex);
                 await Monitor.OpenPort(PortsCmbx.SelectedItem as string);
-                if (Monitor.GetStatus() == API.InputModule.InputStatus.Connected)
+                if (Monitor.GetStatus() == InputStatus.Connected)
                 {
                     TestIcon.Kind = MaterialDesignThemes.Wpf.PackIconKind.Check;
                     StatusLabel.Content = Properties.OpenBCI.Connected;

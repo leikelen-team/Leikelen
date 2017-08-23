@@ -14,6 +14,9 @@ namespace cl.uv.leikelen
         public readonly Option<string> Extension = new Option<string>("Extension", ".leikelen");
         public readonly Option<string> ExtensionFilter = new Option<string>("ExtensionFilter", "*.leikelen");
 
+        public readonly Option<string> Database = new Option<string>("Database", "memory");
+        public readonly Option<string> DbConectionString = new Option<string>("conectionString", null);
+
         private static GeneralSettings _instance;
 
         public static GeneralSettings Instance

@@ -15,8 +15,8 @@ namespace cl.uv.leikelen.API.FrameProvider.EEG
     public struct EegChannel
     {
         public string Position;
-        public string PositionSystem;
         public double Value;
+        public int PersonId;
         public NotchType Notch;
         public FilterType Filter;
     }

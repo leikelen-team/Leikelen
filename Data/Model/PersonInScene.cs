@@ -13,6 +13,7 @@ namespace cl.uv.leikelen.Data.Model
         [Column("scene_id")]
         public int SceneId { get; set; }
         public Scene Scene { get; set; }
+
         [Column("person_id")]
         public int PersonId { get; set; }
         public Person Person { get; set; }

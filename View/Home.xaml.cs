@@ -108,6 +108,9 @@ namespace cl.uv.leikelen.View
             //Source related events
             SourceComboBox.SelectionChanged += SourceComboBox_SelectionChanged;
 
+            InputLoader.Instance.VideoHandler.ColorImageArrived += VideoViewer_colorImageArrived;
+            InputLoader.Instance.VideoHandler.SkeletonImageArrived += VideoViewer_skeletonImageArrived;
+
             //Set initial states
             Player_LocationSlider.IsEnabled = false;
             MenuItem_Scene.IsEnabled = false;
@@ -407,6 +410,7 @@ namespace cl.uv.leikelen.View
 
         private void VideoViewer_skeletonImageArrived(object sender, System.Windows.Media.ImageSource e)
         {
+            Console.WriteLine("skeleton arrived");
             if (SkeletonLayerCheckbox.IsChecked.HasValue && SkeletonLayerCheckbox.IsChecked.Value)
             {
                 Player_ImageControl_Layer1.Source = e;
@@ -415,6 +419,7 @@ namespace cl.uv.leikelen.View
 
         private void VideoViewer_colorImageArrived(object sender, System.Windows.Media.ImageSource e)
         {
+            Console.WriteLine("color arrived");
             if (ColorLayerCheckbox.IsChecked.HasValue && ColorLayerCheckbox.IsChecked.Value)
             {
                 Player_ImageControl_Layer2.Source = e;
@@ -655,5 +660,24 @@ namespace cl.uv.leikelen.View
             }
         }
         #endregion
+    }
+
+    public enum PlayerState
+    {
+        Wait,
+        Record,
+        Play,
+        Pause
+    }
+
+
+    public enum HomeState
+    {
+        Initial,
+        FromSensor,
+        FromSensorWithScene,
+        FromSensorRecording,
+        FromFile,
+        FromFileWithScene
     }
 }

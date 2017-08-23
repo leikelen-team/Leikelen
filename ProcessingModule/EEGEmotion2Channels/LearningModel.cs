@@ -9,12 +9,14 @@ namespace cl.uv.leikelen.ProcessingModule.EEGEmotion2Channels
 {
     public class LearningModel
     {
-        public static void Classify(List<double[]> signalsList)
+        public static TagType Classify(List<double[]> signalsList)
         {
             var featureVector = PreProcess(signalsList);
+            //TODO: esto es temporal, hay que clasificar
+            return 0;
         }
 
-        public static void Train(List<List<double[]>> allsignalsList)
+        public static void Train(List<List<double[]>> allsignalsList, TagType tagToTrain)
         {
             foreach (var signalsList in allsignalsList)
             {

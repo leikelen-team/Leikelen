@@ -18,12 +18,12 @@ namespace cl.uv.leikelen.Controller
             }
         }
 
-        public void SetFromSensor()
+        public async void SetFromSensor()
         {
             foreach (var input in InputLoader.Instance.SceneInputModules)
             {
                 input.Player.Close();
-                input.Monitor.Open();
+                await input.Monitor.Open();
             }
         }
 

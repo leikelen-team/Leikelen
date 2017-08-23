@@ -31,7 +31,7 @@ namespace cl.uv.leikelen.Controller
         {
             foreach (var input in InputLoader.Instance.SceneInputModules)
             {
-                input.Monitor.StartRecording();
+                await input.Monitor.StartRecording();
             }
             DateTime now = DateTime.Now;
             string sceneName = now.ToString("yyyy-MM-dd _ hh-mm-ss");

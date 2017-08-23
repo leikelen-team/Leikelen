@@ -8,6 +8,7 @@ namespace cl.uv.leikelen.API.InputModule
 {
     public interface IMonitor
     {
+        event EventHandler StatusChanged;
         bool IsRecording();
         InputStatus GetStatus();
         Task Open();
@@ -15,6 +16,5 @@ namespace cl.uv.leikelen.API.InputModule
         Task StartRecording();
         Task StopRecording();
         Task OpenPort(string portName);
-        event EventHandler StatusChanged;
     }
 }

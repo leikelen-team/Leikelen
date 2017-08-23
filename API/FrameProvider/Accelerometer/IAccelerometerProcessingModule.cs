@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace cl.uv.leikelen.API.FrameProvider.Accelerometer
 {
-    public interface IAccelerometer
+    public interface IAccelerometerProcessingModule
     {
         EventHandler<AccelerometerFrameArrivedEventArgs> AccelerometerListener();
     }

@@ -133,4 +133,25 @@
   <data name="secsHint" xml:space="preserve">
     <value>tamaño de la ventana</value>
   </data>
+  <data name="TagTrain" xml:space="preserve">
+    <value>A entrenar</value>
+  </data>
+  <data name="AreSure" xml:space="preserve">
+    <value>¿Está seguro de los datos ingresados son correctos?</value>
+  </data>
+  <data name="Confirmation" xml:space="preserve">
+    <value>Confirmación</value>
+  </data>
+  <data name="LALV" xml:space="preserve">
+    <value>Baja agitación, baja valencia</value>
+  </data>
+  <data name="LAHV" xml:space="preserve">
+    <value>Baja agitación, alta valencia</value>
+  </data>
+  <data name="HALV" xml:space="preserve">
+    <value>Alta agitación, baja valencia</value>
+  </data>
+  <data name="HAHV" xml:space="preserve">
+    <value>Alta agitación, alta valencia</value>
+  </data>
 </root>

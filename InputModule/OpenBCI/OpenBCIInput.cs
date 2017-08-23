@@ -9,9 +9,9 @@ using cl.uv.leikelen.API.Helper;
 
 namespace cl.uv.leikelen.InputModule.OpenBCI
 {
-    public sealed class OpenBCISensor : API.InputModule.InputModule
+    public sealed class OpenBCIInput : API.InputModule.InputModule
     {
-        public OpenBCISensor()
+        public OpenBCIInput()
         {
             Plurality = InputPlurality.Person;
             Monitor = new Monitor();

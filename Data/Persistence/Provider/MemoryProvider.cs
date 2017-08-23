@@ -4,87 +4,38 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using cl.uv.leikelen.Data.Model;
+using cl.uv.leikelen.Data.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 namespace cl.uv.leikelen.Data.Persistence.Provider
 {
-    public class MemoryProvider : IDbProvider
+    public class MemoryProvider : DbDataContext
     {
-        private DbContext _db;
-
-        public void CreateConnection(string options)
+        public MemoryProvider()
         {
-            _db = new DbContext();
+            
         }
 
-        public void CloseConnection()
+        public MemoryProvider(DbContextOptions options)
+            : base(options)
+        { }
+
+        public override void CreateConnection(string options)
         {
-            _db = null;
+            var optionsBuilder = new DbContextOptionsBuilder();
+            optionsBuilder.UseInMemoryDatabase();
+            Db = new MemoryProvider(optionsBuilder.Options);
         }
 
-        public List<Scene> LoadScenes()
+        public override void CloseConnection()
         {
-            return _db.Scenes;
+            Db.CloseConnection();
+            Db = null;
         }
 
-        public Scene LoadScene(int sceneId, bool timeless, bool intervals, bool events)
-        {
-            return _db.Scenes.Find(s => s.SceneId == sceneId);
-        }
-
-        public void SaveScene(Scene instance)
-        {
-            _db.Scenes.Add(instance);
-        }
-
-        public void UpdateScene(int sceneId, Scene newScene)
-        {
-            _db.Scenes.RemoveAll(s => s.SceneId == sceneId);
-            _db.Scenes.Add(newScene);
-        }
-
-        public List<Person> LoadPersons()
-        {
-            return _db.Persons;
-        }
-
-        public void SavePerson(Person person)
-        {
-            _db.Persons.Add(person);
-        }
-
-        public void UpdatePerson(int personId, Person newPerson)
-        {
-            _db.Persons.RemoveAll(s => s.PersonId == personId);
-            _db.Persons.Add(newPerson);
-        }
-
-        public List<ModalType> LoadModals()
-        {
-            return _db.ModalTypes;
-        }
-
-        public ModalType LoadModal(string name)
-        {
-            return _db.ModalTypes.Find(m => m.Name == name);
-        }
-
-        public void SaveModal(ModalType modalType)
-        {
-            _db.ModalTypes.Add(modalType);
-        }
-
-        public List<SubModalType> LoadSubModals(ModalType modalType)
-        {
-            return _db.ModalTypes.Find(m => m.Name == modalType.Name).SubmodalTypes;
-        }
-
-        public void SaveSubModal(string modalTypeName, SubModalType submodalType)
-        {
-            _db.ModalTypes.Find(m => m.Name == modalTypeName).SubmodalTypes.Add(submodalType);
-        }
     }
 
-    class DbContext
+    /*class DbContext
     {
         public List<Scene> Scenes { get; set; }
         public List<Person> Persons { get; set; }
@@ -108,5 +59,5 @@ namespace cl.uv.leikelen.Data.Persistence.Provider
             EventDatas = new List<EventData>();
             IntervalDatas = new List<IntervalData>();
         }
-    }
+    }*/
 }

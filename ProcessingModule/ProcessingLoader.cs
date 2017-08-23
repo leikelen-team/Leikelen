@@ -27,6 +27,9 @@ namespace cl.uv.leikelen.ProcessingModule
             ProcessingModules = new List<API.ProcessingModule.ProcessingModule>();
 
             ProcessingModules.Add(new EEGEmotion2Channels.TrainerEntryPoint());
+            ProcessingModules.Add(new EEGEmotion2Channels.DetectorEntryPoint());
+
+            ProcessingModules.Add(new Kinect.Voice.VoiceEntryPoint());;
         }
     }
 }

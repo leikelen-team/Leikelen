@@ -82,13 +82,13 @@ namespace cl.uv.leikelen.InputModule.OpenBCI
             {
                 if (module.IsEnabled)
                 {
-                    var eegModule = module as IEeg;
+                    var eegModule = module as IEegProcessingModule;
                     if (eegModule != null)
                     {
                         EegFrameArrived += eegModule.EegListener();
                     }
 
-                    var accModule = module as IAccelerometer;
+                    var accModule = module as IAccelerometerProcessingModule;
                     if (accModule != null)
                     {
                         AccelerometerFrameArrived += accModule.AccelerometerListener();
@@ -103,13 +103,13 @@ namespace cl.uv.leikelen.InputModule.OpenBCI
 
             foreach (var module in ProcessingLoader.Instance.ProcessingModules)
             {
-                var eegModule = module as IEeg;
+                var eegModule = module as IEegProcessingModule;
                 if (eegModule != null)
                 {
                     EegFrameArrived -= eegModule.EegListener();
                 }
 
-                var accModule = module as IAccelerometer;
+                var accModule = module as IAccelerometerProcessingModule;
                 if (accModule != null)
                 {
                     AccelerometerFrameArrived -= accModule.AccelerometerListener();
@@ -192,7 +192,6 @@ namespace cl.uv.leikelen.InputModule.OpenBCI
                             {
                                 Filter = FilterType.None,
                                 Notch = (NotchType)OpenBCISettings.Instance.Notch.Value,
-                                PositionSystem = "10/20",
                                 Position = _positions[j - 1],
                                 Value = value
                             });

@@ -27,7 +27,7 @@ namespace cl.uv.leikelen.InputModule
         public void FillPersonInputModules(Person person)
         {
             var personInputModules = new List<API.InputModule.InputModule>();
-            personInputModules.Add(new OpenBCI.OpenBCISensor());
+            personInputModules.Add(new OpenBCI.OpenBCIInput());
 
             PersonInputModules.Add(person, personInputModules);
 
@@ -43,8 +43,12 @@ namespace cl.uv.leikelen.InputModule
 
         private void FillSceneInputModules()
         {
+            var kinectInput = new Kinect.KinectInput();
+            SceneInputModules.Add(kinectInput);
+            VideoHandler = kinectInput.SkeletonColorVideoViewer;
+
             //TODO: esto es temporal
-            SceneInputModules.Add(new OpenBCI.OpenBCISensor());
+            SceneInputModules.Add(new OpenBCI.OpenBCIInput());
         }
 
         

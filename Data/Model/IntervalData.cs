@@ -14,10 +14,14 @@ namespace cl.uv.leikelen.Data.Model
         [Key]
         [Column("interval_data_id")]
         public int IntervalDataId { get; set; }
+
         [Column("start_time")]
         public TimeSpan StartTime { get; set; }
+
         [Column("end_time")]
         public TimeSpan EndTime { get; set; }
+
+        public RepresentType RepresentType { get; set; }
 
         public IntervalData() { }
     }

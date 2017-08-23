@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace cl.uv.leikelen.API.FrameProvider.EEG
+namespace cl.uv.leikelen.ProcessingModule.Kinect.AddPerson
 {
-    public interface IEeg
+    public class AddPersonEntryPoint
     {
-        EventHandler<EegFrameArrivedEventArgs> EegListener();
     }
 }

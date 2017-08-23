@@ -13,7 +13,7 @@
         TextElement.FontSize="14"
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
         mc:Ignorable="d"
-        Title="OpenBCI Sensor" Height="300" Width="300">
+        Title="OpenBCI Sensor" Height="270" Width="300">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100" />
@@ -25,41 +25,35 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <RadioButton x:Name="InputTypePortRadio" GroupName="inputType" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Content="{x:Static resx:OpenBCI.PortUSB}"></RadioButton>
+        <Label Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Content="{x:Static resx:OpenBCI.PortUSB}" />
         <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" Orientation="Horizontal">
-        <ComboBox x:Name="PortsCmbx" Margin="0,0,10,0"></ComboBox>
-        <Button x:Name="PortsRenewBtn" Width="Auto">
-            <materialDesign:PackIcon Kind="Autorenew" />
-        </Button>
+            <ComboBox x:Name="PortsCmbx" Margin="0,0,10,0"></ComboBox>
+            <Button x:Name="PortsRenewBtn" Width="Auto">
+                <materialDesign:PackIcon Kind="Autorenew" />
+            </Button>
         </StackPanel>
-        <RadioButton x:Name="InputTypeFileRadio" GroupName="inputType" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Content="{x:Static resx:OpenBCI.File}"></RadioButton>
-        <Grid ClipToBounds="True" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Grid.Row="1" Grid.Column="1">
-            <TextBox HorizontalAlignment="Stretch" x:Name="FilePathTextBox"></TextBox>
-            <Button HorizontalAlignment="Right" x:Name="FileBtn" Content="..." ></Button>
-        </Grid>
-        
-        <Label x:Name="NotchLabel" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Notch" />
-        <ComboBox x:Name="NotchCmbx" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right">
+
+        <Label x:Name="NotchLabel" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Notch" />
+        <ComboBox x:Name="NotchCmbx" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right">
             <ComboBoxItem IsSelected="True" Content="{x:Static resx:OpenBCI.None}"></ComboBoxItem>
             <ComboBoxItem>50Hz</ComboBoxItem>
             <ComboBoxItem>60Hz</ComboBoxItem>
         </ComboBox>
-        <Label x:Name="FilterLabel" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Filter" />
-        <ComboBox x:Name="FilterCmbx" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right">
+        <Label x:Name="FilterLabel" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Filter" />
+        <ComboBox x:Name="FilterCmbx" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right">
             <ComboBoxItem IsSelected="True" Content="{x:Static resx:OpenBCI.None}"></ComboBoxItem>
             <ComboBoxItem>01Hz - 50Hz</ComboBoxItem>
             <ComboBoxItem>07Hz - 13Hz</ComboBoxItem>
             <ComboBoxItem>15Hz - 50Hz</ComboBoxItem>
             <ComboBoxItem>05Hz - 50Hz</ComboBoxItem>
         </ComboBox>
-        <Button x:Name="TestBtn" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Probar" />
-        <StackPanel Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Orientation="Horizontal">
+        <Button x:Name="TestBtn" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Probar" />
+        <StackPanel Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Orientation="Horizontal">
             <materialDesign:PackIcon x:Name="TestIcon" VerticalAlignment="Center" Kind="Close" />
             <Label x:Name="StatusLabel" VerticalAlignment="Center" Content="{x:Static resx:OpenBCI.NotConnected}"></Label>
         </StackPanel>
-        <StackPanel Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
+        <StackPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
             <Button x:Name="NextBtn" Margin="4,0,4,0" Content="{x:Static resx:OpenBCI.Next}" />
             <Button x:Name="CancelBtn" Margin="4,0,0,0" Content="{x:Static resx:OpenBCI.Cancel}"/>
         </StackPanel>

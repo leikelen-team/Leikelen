@@ -13,9 +13,9 @@ namespace cl.uv.leikelen.Data.Access.External
     {
         public List<Interval> GetAll(int personId, string modalName, string subModalName)
         {
-            var personInScene = Internal.SceneInUse.Instance.Scene.PersonInScenes.Find(pis => pis.PersonId == personId);
-            var subModalPersonInScene = personInScene.SubModalType_PersonInScenes.Find(smtPis => smtPis.SubModalType.Name == subModalName && smtPis.SubModalType.ModalType.Name == modalName);
-            var intervalRepresent = subModalPersonInScene.RepresentType.FindAll(rt => rt.IntervalData != null && rt.EventData == null);
+            var personInScene = Internal.SceneInUse.Instance.Scene.PersonsInScene.Find(pis => pis.PersonId == personId);
+            var subModalPersonInScene = personInScene.SubModalType_PersonInScenes.Find(smtPis => smtPis.SubModalType.SubModalTypeId == subModalName && smtPis.SubModalType.ModalType.ModalTypeId == modalName);
+            var intervalRepresent = subModalPersonInScene.RepresentTypes.FindAll(rt => rt.IntervalData != null && rt.EventData == null);
             List<Interval> intervalList = new List<Interval>();
             foreach (var interval in intervalRepresent)
             {
@@ -67,14 +67,14 @@ namespace cl.uv.leikelen.Data.Access.External
 
         private void InternalAdd(int personId, string modalName, string subModalName, TimeSpan startTime, TimeSpan endTime, double? value, string subtitle, int? index)
         {
-            var personInScene = Internal.SceneInUse.Instance.Scene.PersonInScenes.Find(pis => pis.PersonId == personId);
-            var subModalPersonInScene = personInScene.SubModalType_PersonInScenes.Find(smtPis => smtPis.SubModalType.Name == subModalName && smtPis.SubModalType.ModalType.Name == modalName);
+            var personInScene = Internal.SceneInUse.Instance.Scene.PersonsInScene.Find(pis => pis.PersonId == personId);
+            var subModalPersonInScene = personInScene.SubModalType_PersonInScenes.Find(smtPis => smtPis.SubModalType.SubModalTypeId == subModalName && smtPis.SubModalType.ModalType.ModalTypeId == modalName);
             IntervalData intervalElement = new IntervalData()
             {
                 StartTime = startTime,
                 EndTime = endTime
             };
-            subModalPersonInScene.RepresentType.Add(new RepresentType()
+            subModalPersonInScene.RepresentTypes.Add(new RepresentType()
             {
                 Value = value,
                 Subtitle = subtitle,

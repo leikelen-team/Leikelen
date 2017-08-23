@@ -33,24 +33,28 @@ namespace cl.uv.leikelen.ProcessingModule.EEGEmotion2Channels.View
 
         private void AcceptBtnOnClick(object sender, RoutedEventArgs routedEventArgs)
         {
-            int m=0;
-            int secs=0;
-            double r=0;
-            if (Int32.TryParse(mTextBox.Text, out m) && Double.TryParse(rTextBox.Text, out r) &&
-                Int32.TryParse(SecsTextBox.Text, out secs))
+            MessageBoxResult sureResult = MessageBox.Show(Properties.EEGEmotion2Channels.AreSure, Properties.EEGEmotion2Channels.Confirmation, MessageBoxButton.YesNo,
+                MessageBoxImage.Question);
+            if (sureResult == MessageBoxResult.Yes)
             {
-                EEGEmoProc2ChSettings.Instance.SamplingHz.Write((int) SamplingCmbx.SelectedItem);
-                EEGEmoProc2ChSettings.Instance.m.Write(m);
-                EEGEmoProc2ChSettings.Instance.r.Write(r);
-                EEGEmoProc2ChSettings.Instance.secs.Write(secs);
-                Close();
+                int m = 0;
+                int secs = 0;
+                double r = 0;
+                if (Int32.TryParse(mTextBox.Text, out m) && Double.TryParse(rTextBox.Text, out r) &&
+                    Int32.TryParse(SecsTextBox.Text, out secs))
+                {
+                    EEGEmoProc2ChSettings.Instance.SamplingHz.Write((int)SamplingCmbx.SelectedItem);
+                    EEGEmoProc2ChSettings.Instance.m.Write(m);
+                    EEGEmoProc2ChSettings.Instance.r.Write(r);
+                    EEGEmoProc2ChSettings.Instance.secs.Write(secs);
+                    Close();
+                }
+                else
+                {
+                    MessageBox.Show(Properties.EEGEmotion2Channels.ErrorWindowValues, Properties.EEGEmotion2Channels.ErrorWindowValuesTitle, MessageBoxButton.OK,
+                        MessageBoxImage.Error);
+                }
             }
-            else
-            {
-                MessageBoxResult result = MessageBox.Show(Properties.EEGEmotion2Channels.ErrorWindowValues, Properties.EEGEmotion2Channels.ErrorWindowValuesTitle, MessageBoxButton.OK,
-                    MessageBoxImage.Error);
-            }
-            
         }
 
         public object Clone()

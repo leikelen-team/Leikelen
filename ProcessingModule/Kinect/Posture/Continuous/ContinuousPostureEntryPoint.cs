@@ -4,13 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace cl.uv.leikelen.View
+namespace cl.uv.leikelen.ProcessingModule.Kinect.Posture.Continuous
 {
-    public enum PlayerState
+    public class ContinuousPostureEntryPoint
     {
-        Wait,
-        Record,
-        Play,
-        Pause
     }
 }

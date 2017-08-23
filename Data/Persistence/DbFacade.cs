@@ -23,8 +23,21 @@ namespace cl.uv.leikelen.Data.Persistence
 
         private DbFacade()
         {
-            Provider = new Provider.MemoryProvider();
-            Provider.CreateConnection(null);
+            switch (GeneralSettings.Instance.Database.Value)
+            {
+                case "postgreSQL":
+                    Provider = new Provider.PgSqlProvider();
+                    Provider.CreateConnection(GeneralSettings.Instance.DbConectionString.Value);
+                    break;
+                case "mySQL":
+                    Provider = new Provider.MySqlProvider();
+                    Provider.CreateConnection(GeneralSettings.Instance.DbConectionString.Value);
+                    break;
+                default:
+                    Provider = new Provider.MemoryProvider();
+                    Provider.CreateConnection(GeneralSettings.Instance.DbConectionString.Value);
+                    break;
+            }
         }
     }
 }

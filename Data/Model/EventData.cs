@@ -14,8 +14,11 @@ namespace cl.uv.leikelen.Data.Model
         [Key]
         [Column("event_data_id")]
         public int EventDataId { get; set; }
+
         [Column("event_time")]
         public TimeSpan EventTime { get; set; }
+
+        public RepresentType RepresentType { get; set; }
 
         public EventData() { }
     }

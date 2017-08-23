@@ -13,11 +13,11 @@ namespace cl.uv.leikelen.Data.Model
     {
         [Key]
         [Column("name")]
-        public string Name { get; set; }
+        public string ModalTypeId { get; set; }
         [Column("description")]
         public string Description { get; set; }
 
-        public List<SubModalType> SubmodalTypes { get; set; }
+        public List<SubModalType> SubModalTypes { get; set; }
 
         public ModalType() { }
     }

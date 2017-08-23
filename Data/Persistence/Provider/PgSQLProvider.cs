@@ -4,84 +4,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using cl.uv.leikelen.Data.Model;
+using Microsoft.EntityFrameworkCore;
 
 namespace cl.uv.leikelen.Data.Persistence.Provider
 {
-    public class PgSqlProvider : IDbProvider
+    public class PgSqlProvider : DbDataContext
     {
         public PgSqlProvider()
         {
-
+            
         }
 
-        public void CloseConnection()
+        public PgSqlProvider(DbContextOptions options)
+            : base(options)
+        { }
+
+        public override void CreateConnection(string options)
         {
-            throw new NotImplementedException();
+            var optionsBuilder = new DbContextOptionsBuilder();
+            optionsBuilder.UseNpgsql(options);
+            Db = new PgSqlProvider(optionsBuilder.Options);
         }
 
-        public void CreateConnection(string options)
+        public override void CloseConnection()
         {
-            throw new NotImplementedException();
-        }
-
-        public ModalType LoadModal(string name)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<ModalType> LoadModals()
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Person> LoadPersons()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Scene LoadScene(int sceneId, bool timeless, bool intervals, bool events)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Scene> LoadScenes()
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<SubModalType> LoadSubModals(ModalType modalType)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SaveModal(ModalType modalType)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SavePerson(Person person)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SaveScene(Scene instance)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SaveSubModal(string modalTypeName, SubModalType submodalType)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void UpdatePerson(int personId, Person newPerson)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void UpdateScene(int sceneId, Scene newScene)
-        {
-            throw new NotImplementedException();
+            Db.CloseConnection();
+            Db = null;
         }
     }
 }

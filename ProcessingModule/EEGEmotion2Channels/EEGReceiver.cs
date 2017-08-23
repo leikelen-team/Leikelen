@@ -27,20 +27,18 @@ namespace cl.uv.leikelen.ProcessingModule.EEGEmotion2Channels
 
         public void DataReceiver(object sender, EegFrameArrivedEventArgs e)
         {
+            //if samplingHz is 128, then alternates if the signal is processed or no
             if (EEGEmoProc2ChSettings.Instance.SamplingHz == 256)
-            {
                 _signalGet = true;
-            }
             else if (EEGEmoProc2ChSettings.Instance.SamplingHz == 128)
-            {
                 _signalGet = !_signalGet;
-            }
+            if (!_signalGet)
+                return;
+
             double[] values = new double[2];
             var channelCounter = 0;
             foreach (var channel in e.Channels)
             {
-                if (_signalGet)
-                {
                     if (channel.Position == "F3")
                     {
                         values[0] = channel.Value;
@@ -51,10 +49,11 @@ namespace cl.uv.leikelen.ProcessingModule.EEGEmotion2Channels
                         values[1] = channel.Value;
                         channelCounter++;
                     }
-                }
             }
             if(channelCounter == 2)
                 _signaList.Add(values);
+
+            //if the window ends, sends the signal to process
             var sceneLocation = SceneInUseAccess.Instance.GetLocation();
             if (_signaList.Count >= 0 
                 && sceneLocation.HasValue 
@@ -77,7 +76,8 @@ namespace cl.uv.leikelen.ProcessingModule.EEGEmotion2Channels
 
         public void Train()
         {
-            LearningModel.Train(_allsignalsList);
+            //train signal and then empty it
+            LearningModel.Train(_allsignalsList, (TagType)EEGEmoProc2ChSettings.Instance.TagToTrain.Value);
             _allsignalsList = new List<List<double[]>>();
         }
     }

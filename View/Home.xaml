@@ -14,7 +14,7 @@
         TextElement.FontSize="14"
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
         mc:Ignorable="d"
-        Title="Leikelen" Height="450" Width="750">
+        Title="Leikelen" Height="500" Width="750">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="45" />
@@ -71,13 +71,12 @@
             </dragablz:TabablzControl.InterTabController>
             <TabItem Header="Player">
                 <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="20*" />
-                            <RowDefinition MinHeight="20" MaxHeight="60" Height="1*" />
-                            <RowDefinition MinHeight="35" MaxHeight="100" Height="3*"/>
-                        </Grid.RowDefinitions>
-                        <Rectangle x:Name="Player_BlackRectangle" Fill="Black" Grid.Row="0" Panel.ZIndex="-1" />
-                        <Image x:Name="Player_ImageControl_Layer2" Grid.Row="0" />
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20*" />
+                        <RowDefinition MinHeight="20" MaxHeight="60" Height="1*" />
+                        <RowDefinition MinHeight="35" MaxHeight="100" Height="3*"/>
+                    </Grid.RowDefinitions>
+                    <Image x:Name="Player_ImageControl_Layer2" Grid.Row="0" />
                         <Image x:Name="Player_ImageControl_Layer1" Grid.Row="0"/>
                         <Slider x:Name="Player_LocationSlider" Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" Minimum="1" Maximum="100" />
                         <StackPanel Grid.Row="2" Orientation="Horizontal">

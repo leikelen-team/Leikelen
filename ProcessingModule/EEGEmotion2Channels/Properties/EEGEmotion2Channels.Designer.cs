@@ -19,7 +19,7 @@ namespace cl.uv.leikelen.ProcessingModule.EEGEmotion2Channels.Properties {
     // a través de una herramienta como ResGen o Visual Studio.
     // Para agregar o quitar un miembro, edite el archivo .ResX y, a continuación, vuelva a ejecutar ResGen
     // con la opción /str o recompile su proyecto de VS.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class EEGEmotion2Channels {
@@ -71,6 +71,15 @@ namespace cl.uv.leikelen.ProcessingModule.EEGEmotion2Channels.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Are you sure this data is correct?.
+        /// </summary>
+        public static string AreSure {
+            get {
+                return ResourceManager.GetString("AreSure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Cancel.
         /// </summary>
         public static string Cancel {
@@ -89,6 +98,15 @@ namespace cl.uv.leikelen.ProcessingModule.EEGEmotion2Channels.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Confirmation.
+        /// </summary>
+        public static string Confirmation {
+            get {
+                return ResourceManager.GetString("Confirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Some fields are empty.
         /// </summary>
         public static string ErrorWindowValues {
@@ -103,6 +121,42 @@ namespace cl.uv.leikelen.ProcessingModule.EEGEmotion2Channels.Properties {
         public static string ErrorWindowValuesTitle {
             get {
                 return ResourceManager.GetString("ErrorWindowValuesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a High arousal, high valence.
+        /// </summary>
+        public static string HAHV {
+            get {
+                return ResourceManager.GetString("HAHV", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a High arousal, low valence.
+        /// </summary>
+        public static string HALV {
+            get {
+                return ResourceManager.GetString("HALV", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Low arousal, high valence.
+        /// </summary>
+        public static string LAHV {
+            get {
+                return ResourceManager.GetString("LAHV", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Low arousal, low valence.
+        /// </summary>
+        public static string LALV {
+            get {
+                return ResourceManager.GetString("LALV", resourceCulture);
             }
         }
         
@@ -157,6 +211,15 @@ namespace cl.uv.leikelen.ProcessingModule.EEGEmotion2Channels.Properties {
         public static string secsHint {
             get {
                 return ResourceManager.GetString("secsHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Tag to train.
+        /// </summary>
+        public static string TagTrain {
+            get {
+                return ResourceManager.GetString("TagTrain", resourceCulture);
             }
         }
         

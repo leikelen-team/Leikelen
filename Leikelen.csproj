@@ -16,6 +16,7 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -28,7 +29,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -54,21 +54,61 @@
   <PropertyGroup>
     <StartupObject>cl.uv.leikelen.App</StartupObject>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Accord, Version=3.6.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
-      <HintPath>packages\Accord.3.6.0\lib\net45\Accord.dll</HintPath>
+    <Reference Include="Accord, Version=3.7.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
+      <HintPath>packages\Accord.3.7.0\lib\net45\Accord.dll</HintPath>
     </Reference>
-    <Reference Include="Accord.MachineLearning, Version=3.6.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
-      <HintPath>packages\Accord.MachineLearning.3.6.0\lib\net45\Accord.MachineLearning.dll</HintPath>
+    <Reference Include="Accord.MachineLearning, Version=3.7.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
+      <HintPath>packages\Accord.MachineLearning.3.7.0\lib\net45\Accord.MachineLearning.dll</HintPath>
     </Reference>
-    <Reference Include="Accord.Math, Version=3.6.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
-      <HintPath>packages\Accord.Math.3.6.0\lib\net45\Accord.Math.dll</HintPath>
+    <Reference Include="Accord.Math, Version=3.7.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
+      <HintPath>packages\Accord.Math.3.7.0\lib\net45\Accord.Math.dll</HintPath>
     </Reference>
-    <Reference Include="Accord.Math.Core, Version=3.6.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
-      <HintPath>packages\Accord.Math.3.6.0\lib\net45\Accord.Math.Core.dll</HintPath>
+    <Reference Include="Accord.Math.Core, Version=3.7.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
+      <HintPath>packages\Accord.Math.3.7.0\lib\net45\Accord.Math.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Accord.Statistics, Version=3.6.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
-      <HintPath>packages\Accord.Statistics.3.6.0\lib\net45\Accord.Statistics.dll</HintPath>
+    <Reference Include="Accord.Statistics, Version=3.7.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
+      <HintPath>packages\Accord.Statistics.3.7.0\lib\net45\Accord.Statistics.dll</HintPath>
     </Reference>
     <Reference Include="CodeContracts, Version=1.0.5680.18392, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\CodeContracts.1.0.5680.18392\lib\net40\CodeContracts.dll</HintPath>
@@ -78,6 +118,9 @@
     </Reference>
     <Reference Include="Dragablz, Version=0.0.3.193, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\Dragablz.0.0.3.193\lib\net45\Dragablz.dll</HintPath>
+    </Reference>
+    <Reference Include="KinectEx">
+      <HintPath>bin_files\x86\KinectEx.dll</HintPath>
     </Reference>
     <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
       <HintPath>packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
@@ -111,6 +154,9 @@
     </Reference>
     <Reference Include="Microsoft.EntityFrameworkCore.Design, Version=1.1.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.EntityFrameworkCore.Design.1.1.2\lib\net451\Microsoft.EntityFrameworkCore.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EntityFrameworkCore.InMemory, Version=1.1.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.EntityFrameworkCore.InMemory.1.1.2\lib\net451\Microsoft.EntityFrameworkCore.InMemory.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.EntityFrameworkCore.Relational, Version=1.1.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.EntityFrameworkCore.Relational.1.1.2\lib\net451\Microsoft.EntityFrameworkCore.Relational.dll</HintPath>
@@ -154,6 +200,14 @@
     <Reference Include="Microsoft.Extensions.Primitives, Version=1.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Extensions.Primitives.1.1.1\lib\netstandard1.0\Microsoft.Extensions.Primitives.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Kinect, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Kinect.2.0.1410.19000\lib\net45\Microsoft.Kinect.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Kinect.VisualGestureBuilder, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=AMD64">
+      <HintPath>packages\Microsoft.Kinect.VisualGestureBuilder.x64.2.0.1410.19000\lib\net45\Microsoft.Kinect.VisualGestureBuilder.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="MySqlConnector, Version=0.24.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\MySqlConnector.0.24.2\lib\net45\MySqlConnector.dll</HintPath>
     </Reference>
@@ -183,6 +237,12 @@
     </Reference>
     <Reference Include="Remotion.Linq, Version=2.1.0.0, Culture=neutral, PublicKeyToken=fee00910d6e5f53b, processorArchitecture=MSIL">
       <HintPath>packages\Remotion.Linq.2.1.2\lib\net45\Remotion.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>packages\SharpDX.4.0.1\lib\net45\SharpDX.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.Mathematics, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>packages\SharpDX.Mathematics.4.0.1\lib\net45\SharpDX.Mathematics.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -233,20 +293,43 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.Dotnet" Version="1.0.1" />
+    <Reference Include="WriteableBitmapEx.Wpf, Version=1.5.0.0, Culture=neutral, PublicKeyToken=50375ca6144f1c69, processorArchitecture=MSIL">
+      <HintPath>packages\WriteableBitmapEx.1.5.1.0\lib\net40\WriteableBitmapEx.Wpf.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="API\FrameProvider\Accelerometer\IAccelerometerProcessingModule.cs" />
+    <Compile Include="API\FrameProvider\EEG\IEegProcessingModule.cs" />
+    <Compile Include="API\FrameProvider\Kinect\IKinectProcessingModule.cs" />
+    <Compile Include="API\ProcessingModule\ProcessingPlurality.cs" />
+    <Compile Include="Data\Access\External\PersonAccess.cs" />
     <Compile Include="Data\Access\External\SceneInUseAccess.cs" />
     <Compile Include="API\Helper\WindowBuilder.cs" />
+    <Compile Include="Data\Persistence\Provider\MySqlProvider.cs" />
+    <Compile Include="InputModule\Kinect\KinectInput.cs" />
+    <Compile Include="InputModule\Kinect\KinectSettings.cs" />
+    <Compile Include="InputModule\Kinect\Monitor.cs" />
+    <Compile Include="InputModule\Kinect\Player.cs" />
+    <Compile Include="InputModule\Kinect\Properties\Kinect.Designer.cs" />
+    <Compile Include="InputModule\Kinect\SkeletonColorVideoViewer.cs" />
+    <Compile Include="InputModule\OpenBCI\OpenBCIInput.cs" />
     <Compile Include="InputModule\OpenBCI\View\ConfigurePositions.xaml.cs">
       <DependentUpon>ConfigurePositions.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ProcessingModule\EEGEmotion2Channels\TagType.cs" />
     <Compile Include="ProcessingModule\EEGEmotion2Channels\View\ClassifierWindow.xaml.cs">
       <DependentUpon>ClassifierWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ProcessingModule\Kinect\AddPerson\AddPersonEntryPoint.cs" />
+    <Compile Include="ProcessingModule\Kinect\Distance\DistanceEntryPoint.cs" />
+    <Compile Include="ProcessingModule\Kinect\Posture\Continuous\ContinuousPostureEntryPoint.cs" />
+    <Compile Include="ProcessingModule\Kinect\Posture\Discrete\DiscretePostureEntryPoint.cs" />
+    <Compile Include="ProcessingModule\Kinect\Voice\VoiceEntryPoint.cs" />
+    <Compile Include="ProcessingModule\Kinect\Voice\VoiceLogic.cs" />
     <Compile Include="Properties\Error.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -319,12 +402,9 @@
     <Compile Include="InputModule\OpenBCI\Util\FileManage.cs" />
     <Compile Include="InputModule\OpenBCI\Util\Filter.cs" />
     <Compile Include="API\FrameProvider\EEG\FilterType.cs" />
-    <Compile Include="API\FrameProvider\Accelerometer\IAccelerometer.cs" />
-    <Compile Include="API\FrameProvider\EEG\IEeg.cs" />
     <Compile Include="InputModule\OpenBCI\Util\InterpretStream.cs" />
     <Compile Include="InputModule\OpenBCI\Monitor.cs" />
     <Compile Include="API\FrameProvider\EEG\NotchType.cs" />
-    <Compile Include="InputModule\OpenBCI\OpenBCISensor.cs" />
     <Compile Include="InputModule\OpenBCI\Properties\OpenBCI.es.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -388,14 +468,12 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="View\HomeState.cs" />
     <Compile Include="View\Preferences.xaml.cs">
       <DependentUpon>Preferences.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Widget\PersonCard.xaml.cs">
       <DependentUpon>PersonCard.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\PlayerState.cs" />
     <Compile Include="View\Widget\PreferencesBD.xaml.cs">
       <DependentUpon>PreferencesBD.xaml</DependentUpon>
     </Compile>
@@ -504,6 +582,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="InputModule\Kinect\Properties\Kinect.es.resx" />
+    <EmbeddedResource Include="InputModule\Kinect\Properties\Kinect.resx" />
     <EmbeddedResource Include="Properties\Error.es.resx" />
     <EmbeddedResource Include="Properties\Error.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -551,8 +631,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="API\FrameProvider\Kinect\" />
     <Folder Include="Data\LeikelenFile\" />
+    <Folder Include="InputModule\Kinect\View\" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
@@ -573,16 +653,24 @@
     <Resource Include="InputModule\OpenBCI\Assets\eegPosSystem_10_10.png" />
     <Resource Include="InputModule\OpenBCI\Assets\eegPosSystem_10_20.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="vgbtechs\AdaBoostTech.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="vgbtechs\RFRProgressTech.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('packages\SQLite.3.13.0\build\net45\SQLite.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\SQLite.3.13.0\build\net45\SQLite.props'))" />
-    <Error Condition="!Exists('packages\Accord.3.6.0\build\Accord.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Accord.3.6.0\build\Accord.targets'))" />
+    <Error Condition="!Exists('packages\Accord.3.7.0\build\Accord.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Accord.3.7.0\build\Accord.targets'))" />
   </Target>
   <PropertyGroup>
     <PreBuildEvent>xcopy "$(ProjectDir)bin_files\anyPlatform" . /Y /E</PreBuildEvent>
   </PropertyGroup>
-  <Import Project="packages\Accord.3.6.0\build\Accord.targets" Condition="Exists('packages\Accord.3.6.0\build\Accord.targets')" />
+  <Import Project="packages\Accord.3.7.0\build\Accord.targets" Condition="Exists('packages\Accord.3.7.0\build\Accord.targets')" />
 </Project>

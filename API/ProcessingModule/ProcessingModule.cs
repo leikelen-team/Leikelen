@@ -14,6 +14,7 @@ namespace cl.uv.leikelen.API.ProcessingModule
         public List<Tuple<string, WindowBuilder>> Windows { get; protected set; }
         public bool IsActiveBeforeRecording { get; protected set; }
         public bool IsEnabled { get; set; }
+        public ProcessingPlurality Plurality;
 
         public abstract Task FunctionAfterStop();
     }

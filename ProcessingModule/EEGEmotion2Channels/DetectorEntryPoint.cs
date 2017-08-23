@@ -6,11 +6,12 @@ using System.Windows;
 using System.Threading.Tasks;
 using cl.uv.leikelen.API.FrameProvider.EEG;
 using cl.uv.leikelen.API.Helper;
+using cl.uv.leikelen.API.ProcessingModule;
 using cl.uv.leikelen.ProcessingModule.EEGEmotion2Channels.View;
 
 namespace cl.uv.leikelen.ProcessingModule.EEGEmotion2Channels
 {
-    public sealed class DetectorEntryPoint : API.ProcessingModule.ProcessingModule, IEeg
+    public sealed class DetectorEntryPoint : API.ProcessingModule.ProcessingModule, IEegProcessingModule
     {
         private readonly EEGReceiver _logic;
 
@@ -28,6 +29,7 @@ namespace cl.uv.leikelen.ProcessingModule.EEGEmotion2Channels
             var configWindow = new Tuple<string, WindowBuilder>(Properties.EEGEmotion2Channels.ConfigWindowTitle,
                new WindowBuilder(new DetectorWindow()));
             Windows.Add(configWindow);
+            Plurality = ProcessingPlurality.Scene;
             
             _logic = new EEGReceiver(ClassifierType.Detector);
         }

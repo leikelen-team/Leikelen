@@ -27,7 +27,7 @@ namespace cl.uv.leikelen.Data.Access.External
             {
                 DbFacade.Instance.Provider.SaveModal(new ModalType()
                 {
-                    Name = name,
+                    ModalTypeId = name,
                     Description = description
                 });
             }
@@ -36,7 +36,7 @@ namespace cl.uv.leikelen.Data.Access.External
         public bool Exists(string name)
         {
             var modalTypes = DbFacade.Instance.Provider.LoadModals();
-            return modalTypes.Exists(m => m.Name.Equals(name));
+            return modalTypes.Exists(m => m.ModalTypeId.Equals(name));
         }
     }
 }
