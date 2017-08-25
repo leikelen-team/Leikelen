@@ -22,6 +22,8 @@ using cl.uv.leikelen.Data.Persistence;
 using cl.uv.leikelen.Properties;
 using MaterialDesignThemes.Wpf;
 
+using cl.uv.leikelen.Data.Model;
+
 namespace cl.uv.leikelen.View
 {
     /// <summary>
@@ -76,6 +78,7 @@ namespace cl.uv.leikelen.View
 
             //File MenuItems
             MenuItem_File_NewScene.Click += File_NewScene_Click;
+            MenuItem_File_LoadTestScene.Click += MenuItem_File_LoadTestScene_Click;
             MenuItem_File_Import.Click += MenuItem_File_Import_Click;
             MenuItem_File_Export.Click += MenuItem_File_Export_Click;
             MenuItem_File_Save.Click += MenuItem_File_Save_Click;
@@ -126,6 +129,138 @@ namespace cl.uv.leikelen.View
             SetFromNone();
             FillMenuInputModules();
             FillMenuProccessingModules();
+        }
+
+        private void MenuItem_File_LoadTestScene_Click(object sender, RoutedEventArgs e)
+        {
+            ChangeHomeState(HomeState.FromFileWithScene);
+
+            var scenes = DbFacade.Instance.Provider.LoadScenes();
+            if(scenes != null)
+            {
+                var testScene = scenes.Find(s => s.Name == "Test");
+                if(testScene != null)
+                {
+                    SceneInUse.Instance.Set(testScene);
+                    return;
+                }
+            }
+
+
+
+                var scene = new Scene()
+            {
+                Name = "Test",
+                NumberOfParticipants = 2,
+                Type = "Test scene",
+                Description = "This is a test scene\n only for purposes of development",
+                Place = "Programmed",
+                RecordRealDateTime = new DateTime(2017, 8, 25, 16, 2, 0),
+                Duration = new TimeSpan(0, 2, 35)
+            };
+            SceneInUse.Instance.Set(scene);
+            var pAccess = new PersonAccess();
+            var person1 = pAccess.Add("Erick",null, null, 'M');
+            var person2 = pAccess.Add("Dorotea", null, null, 'F');
+            pAccess.AddToScene(person1, scene);
+            pAccess.AddToScene(person2, scene);
+
+            var mAccess = new ModalAccess();
+            var smAccess = new SubModalAccess();
+
+            var modalPosture2 = mAccess.Add("Voice", "Hablo o no de kinect");
+            smAccess.Add("Voice", "Talked", "Talked or not", null);
+
+            var modalPosture1 = mAccess.Add("Posture", "Posturas de kinect");
+            smAccess.Add("Posture", "Seated", "Is Seated", null);
+            smAccess.Add("Posture", "Hand On Wrist", "o<>===<", null);
+            smAccess.Add("Posture", "Asking Help", "I have a question teacher plis", null);
+            smAccess.Add("Posture", "CrossedArms", "Is crossing his/her arms", null);
+            
+            
+            var rnd = new Random();
+            var eAccess = new EventAccess();
+            var iAccess = new IntervalAccess();
+            var tAccess = new TimelessAccess();
+            Console.WriteLine(mAccess.GetAll().Count);       
+            foreach(var pis in SceneInUse.Instance.Scene.PersonsInScene)
+            {
+                var howMany = rnd.Next(1, 5);
+                int i = 0;
+                Console.WriteLine($"How many: {howMany}");
+                foreach (var m in mAccess.GetAll())
+                {
+                    Console.WriteLine($"{m.ModalTypeId} tiene {m.SubModalTypes.Count} submodaltypes");
+                    foreach (var s in m.SubModalTypes)
+                    {
+                        i++;
+                        if (i > howMany) break;
+                            var which = rnd.Next(1, 3);
+                            Console.WriteLine($"Which: {which}");
+                            var data = rnd.Next(1, 3);
+                            Console.WriteLine($"Data: {data}");
+                            for (int j = 0; j<rnd.Next(0, 100);j++)
+                            {
+                                double doubleData = rnd.NextDouble();
+                                string subtitleData = "hola";
+                                switch (which)
+                                {
+                                    case 1:
+                                        switch (data)
+                                        {
+                                            case 1:
+                                                eAccess.Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, new TimeSpan(rnd.Next(0, (int)SceneInUse.Instance.Scene.Duration.Ticks)), doubleData);
+                                                break;
+                                            case 2:
+                                                eAccess.Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, new TimeSpan(rnd.Next(0, (int)SceneInUse.Instance.Scene.Duration.Ticks)), subtitleData);
+                                                break;
+                                            case 3:
+                                                eAccess.Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, new TimeSpan(rnd.Next(0, (int)SceneInUse.Instance.Scene.Duration.Ticks)), 1);
+                                                break;
+                                        }
+                                        break;
+                                    case 2:
+                                        int minTicks = rnd.Next(0, (int)SceneInUse.Instance.Scene.Duration.Ticks);
+                                        TimeSpan min = new TimeSpan(minTicks);
+                                        TimeSpan max = new TimeSpan(rnd.Next(minTicks, (int)SceneInUse.Instance.Scene.Duration.Ticks));
+                                        switch (data)
+                                        {
+                                            case 1:
+                                                iAccess.Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId,min,max, doubleData);
+                                                break;
+                                            case 2:
+                                                iAccess.Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, min, max, subtitleData);
+                                                break;
+                                            case 3:
+                                                iAccess.Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, min, max, 1);
+                                                break;
+                                        }
+                                        break;
+                                    case 3:
+                                        switch (data)
+                                        {
+                                            case 1:
+                                                tAccess.Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, doubleData, rnd.Next(0, 24));
+                                                break;
+                                            case 2:
+                                                tAccess.Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, subtitleData, rnd.Next(0, 24));
+                                                break;
+                                            case 3:
+                                                tAccess.Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, rnd.Next(0, 24));
+                                                break;
+                                        }
+                                        break;
+                                }
+                            }
+                            
+                        
+                    }
+                }
+            }
+
+
+
+            
         }
 
         private void ChangeHomeState(HomeState newHomeState)
@@ -342,7 +477,12 @@ namespace cl.uv.leikelen.View
         {
             if (SceneInUse.Instance.Scene != null)
             {
-                DbFacade.Instance.Provider.SaveScene(SceneInUse.Instance.Scene);
+                if (DbFacade.Instance.Provider.LoadScene(SceneInUse.Instance.Scene.SceneId) == null)
+                    DbFacade.Instance.Provider.SaveScene(SceneInUse.Instance.Scene);
+                else
+                    DbFacade.Instance.Provider.UpdateScene(SceneInUse.Instance.Scene);
+
+
             }
         }
 

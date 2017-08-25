@@ -10,7 +10,7 @@ namespace cl.uv.leikelen.API.DataAccess
     public interface ISubModalAccess
     {
         List<SubModalType> GetAll(string modalName);
-        void Add(string modalName, string name, string description, string path);
+        SubModalType Add(string modalName, string name, string description, string path);
         bool Exists(string modalName, string subModalName);
     }
 }

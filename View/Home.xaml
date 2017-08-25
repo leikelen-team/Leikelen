@@ -29,6 +29,8 @@
                             <materialDesign:PackIcon Kind="ContentSave" />
                         </MenuItem.Icon>
                     </MenuItem>
+                    <MenuItem x:Name="MenuItem_File_LoadTestScene" Header="Load test scene">
+                    </MenuItem>
                     <MenuItem x:Name="MenuItem_File_Recent" Header="{x:Static resx:Menu.File_RecentScenes}">
                         <Separator />
                         <MenuItem x:Name="MenuItem_File_Recent_More" Header="{x:Static resx:Menu.File_RecentScenes_More}" InputGestureText="Ctrl+M"/>

@@ -13,19 +13,22 @@ namespace cl.uv.leikelen.Data.Persistence
         void CloseConnection();
 
         List<Scene> LoadScenes();
-        Scene LoadScene(int sceneId ,bool timeless, bool intervals, bool events);
-        void SaveScene(Scene instance);
-        void UpdateScene(int sceneId, Scene newScene);
+        Scene LoadScene(int sceneId);
+        Scene SaveScene(Scene instance);
+        Scene UpdateScene(Scene newScene);
 
         List<Person> LoadPersons();
-        void SavePerson(Person person);
-        void UpdatePerson(int personId, Person newPerson);
+        Person SavePerson(Person person);
+        Person UpdatePerson(Person newPerson);
+
+        PersonInScene AddPersonToScene(Person person, Scene scene);
+        bool ExistsPersonInScene(Person person, Scene scene);
 
         List<ModalType> LoadModals();
         ModalType LoadModal(string name);
-        void SaveModal(ModalType modalType);
+        ModalType SaveModal(ModalType modalType);
 
-        List<SubModalType> LoadSubModals(ModalType modalType);
-        void SaveSubModal(string modalTypeName, SubModalType submodalType);
+        List<SubModalType> LoadSubModals(string ModalTypeName);
+        SubModalType SaveSubModal(SubModalType submodalType);
     }
 }

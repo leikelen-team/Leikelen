@@ -184,7 +184,7 @@
     <value>Disable</value>
   </data>
   <data name="Tools_Processing" xml:space="preserve">
-    <value>Processing Modules</value>
+    <value>Scene processing modules</value>
   </data>
   <data name="Scene" xml:space="preserve">
     <value>Scene</value>
@@ -197,5 +197,8 @@
   </data>
   <data name="Tools_Processing_AddNotImplemented" xml:space="preserve">
     <value>Add processing module (not implemented)</value>
+  </data>
+  <data name="Tools_Processing_General" xml:space="preserve">
+    <value>General processing modules</value>
   </data>
 </root>

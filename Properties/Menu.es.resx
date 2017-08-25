@@ -182,7 +182,7 @@
     <value>Deshabilitar</value>
   </data>
   <data name="Tools_Processing" xml:space="preserve">
-    <value>Módulos de procesamiento</value>
+    <value>Módulos de procesamiento de la escena</value>
   </data>
   <data name="Scene" xml:space="preserve">
     <value>Escena</value>
@@ -195,5 +195,8 @@
   </data>
   <data name="Tools_Processing_AddNotImplemented" xml:space="preserve">
     <value>Añadir módulo de procesamiento (no implementado)</value>
+  </data>
+  <data name="Tools_Processing_General" xml:space="preserve">
+    <value>Módulos de procesamiento generales</value>
   </data>
 </root>

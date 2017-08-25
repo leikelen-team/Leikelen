@@ -115,7 +115,7 @@
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
-  <data name="ModuleName" xml:space="preserve">
+  <data name="DetectionModuleName" xml:space="preserve">
     <value>Emotion Detector with EEG</value>
   </data>
   <data name="ErrorWindowValues" xml:space="preserve">
@@ -153,5 +153,8 @@
   </data>
   <data name="HAHV" xml:space="preserve">
     <value>High arousal, high valence</value>
+  </data>
+  <data name="ClassificationModuleName" xml:space="preserve">
+    <value>Emotion Classification with EEG</value>
   </data>
 </root>

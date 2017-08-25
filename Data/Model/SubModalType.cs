@@ -11,10 +11,10 @@ namespace cl.uv.leikelen.Data.Model
     [Table("submodal_type")]
     public class SubModalType
     {
-        [Column("name")]
+        [Column("submodaltype_name")]
         public string SubModalTypeId { get; set; }
 
-        [Column("modal_type_name")]
+        [Column("modaltype_name")]
         public string ModalTypeId { get; set; }
 
         [Column("description")]
@@ -23,11 +23,14 @@ namespace cl.uv.leikelen.Data.Model
         [Column("file")]
         public string File { get; set; }
         
-        [ForeignKey("ModalTypeName")]
+        [ForeignKey("ModalTypeId")]
         public ModalType ModalType { get; set; }
 
         public List<SubModalType_PersonInScene> SubModalType_PersonInScenes { get; set; }
 
-        public SubModalType() { }
+        public SubModalType()
+        {
+            SubModalType_PersonInScenes = new List<SubModalType_PersonInScene>();
+        }
     }
 }

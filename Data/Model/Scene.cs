@@ -15,7 +15,7 @@ namespace cl.uv.leikelen.Data.Model
         public int SceneId { get; set; }
 
         [Column("number_of_participants")]
-        public int NumberOfParticipants { get; set; }
+        public int? NumberOfParticipants { get; set; }
 
         [Column("name")]
         public string Name { get; set; }
@@ -31,7 +31,7 @@ namespace cl.uv.leikelen.Data.Model
         public string Description { get; set; }
 
         [Column("record_real_datetime")]
-        public DateTime RecordRealDateTime { get; set; }
+        public DateTime? RecordRealDateTime { get; set; }
 
         [Column("record_start_datetime")]
         public DateTime RecordStartedDateTime { get; set; }
@@ -42,6 +42,9 @@ namespace cl.uv.leikelen.Data.Model
 
         public List<PersonInScene> PersonsInScene { get; set; }
 
-        public Scene() { }
+        public Scene()
+        {
+            PersonsInScene = new List<PersonInScene>();
+        }
     }
 }

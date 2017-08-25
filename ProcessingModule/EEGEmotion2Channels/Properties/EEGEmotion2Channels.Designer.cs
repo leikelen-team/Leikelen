@@ -89,6 +89,15 @@ namespace cl.uv.leikelen.ProcessingModule.EEGEmotion2Channels.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Emotion Classification with EEG.
+        /// </summary>
+        public static string ClassificationModuleName {
+            get {
+                return ResourceManager.GetString("ClassificationModuleName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Emotion detection with EEG Configuration.
         /// </summary>
         public static string ConfigWindowTitle {
@@ -103,6 +112,15 @@ namespace cl.uv.leikelen.ProcessingModule.EEGEmotion2Channels.Properties {
         public static string Confirmation {
             get {
                 return ResourceManager.GetString("Confirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Emotion Detector with EEG.
+        /// </summary>
+        public static string DetectionModuleName {
+            get {
+                return ResourceManager.GetString("DetectionModuleName", resourceCulture);
             }
         }
         
@@ -166,15 +184,6 @@ namespace cl.uv.leikelen.ProcessingModule.EEGEmotion2Channels.Properties {
         public static string mHint {
             get {
                 return ResourceManager.GetString("mHint", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a Emotion Detector with EEG.
-        /// </summary>
-        public static string ModuleName {
-            get {
-                return ResourceManager.GetString("ModuleName", resourceCulture);
             }
         }
         

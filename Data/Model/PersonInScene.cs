@@ -20,6 +20,9 @@ namespace cl.uv.leikelen.Data.Model
 
         public List<SubModalType_PersonInScene> SubModalType_PersonInScenes { get; set; }
 
-        public PersonInScene() { }
+        public PersonInScene()
+        {
+            SubModalType_PersonInScenes = new List<SubModalType_PersonInScene>();
+        }
     }
 }

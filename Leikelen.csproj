@@ -119,8 +119,11 @@
     <Reference Include="Dragablz, Version=0.0.3.193, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\Dragablz.0.0.3.193\lib\net45\Dragablz.dll</HintPath>
     </Reference>
-    <Reference Include="KinectEx">
+    <Reference Include="KinectEx.x86" Condition="'$(Platform)' == 'x86'">
       <HintPath>bin_files\x86\KinectEx.dll</HintPath>
+    </Reference>
+    <Reference Include="KinectEx.x64" Condition="'$(Platform)' == 'x64'">
+      <HintPath>bin_files\x64\KinectEx.dll</HintPath>
     </Reference>
     <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
       <HintPath>packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
@@ -152,8 +155,8 @@
     <Reference Include="Microsoft.EntityFrameworkCore, Version=1.1.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.EntityFrameworkCore.1.1.2\lib\net451\Microsoft.EntityFrameworkCore.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.EntityFrameworkCore.Design, Version=1.1.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>packages\Microsoft.EntityFrameworkCore.Design.1.1.2\lib\net451\Microsoft.EntityFrameworkCore.Design.dll</HintPath>
+    <Reference Include="Microsoft.EntityFrameworkCore.Design, Version=1.0.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.EntityFrameworkCore.Design.1.0.1\lib\net451\Microsoft.EntityFrameworkCore.Design.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.EntityFrameworkCore.InMemory, Version=1.1.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.EntityFrameworkCore.InMemory.1.1.2\lib\net451\Microsoft.EntityFrameworkCore.InMemory.dll</HintPath>
@@ -302,13 +305,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="API\DataAccess\IPersonAccess.cs" />
+    <Compile Include="API\DataAccess\ISceneAccess.cs" />
     <Compile Include="API\FrameProvider\Accelerometer\IAccelerometerProcessingModule.cs" />
     <Compile Include="API\FrameProvider\EEG\IEegProcessingModule.cs" />
     <Compile Include="API\FrameProvider\Kinect\IKinectProcessingModule.cs" />
     <Compile Include="API\ProcessingModule\ProcessingPlurality.cs" />
     <Compile Include="Data\Access\External\PersonAccess.cs" />
+    <Compile Include="Data\Access\External\SceneAccess.cs" />
     <Compile Include="Data\Access\External\SceneInUseAccess.cs" />
     <Compile Include="API\Helper\WindowBuilder.cs" />
+    <Compile Include="Data\Access\External\TypeValidation.cs" />
     <Compile Include="Data\Persistence\Provider\MySqlProvider.cs" />
     <Compile Include="InputModule\Kinect\KinectInput.cs" />
     <Compile Include="InputModule\Kinect\KinectSettings.cs" />
@@ -375,7 +382,6 @@
     <Compile Include="Data\Access\External\EventAccess.cs" />
     <Compile Include="Data\Access\External\IntervalAccess.cs" />
     <Compile Include="Data\Access\External\ModalAccess.cs" />
-    <Compile Include="Data\Access\External\TMPSubModalTypes.cs" />
     <Compile Include="Data\Access\Internal\SceneInUse.cs" />
     <Compile Include="Data\Access\External\SubModalAccess.cs" />
     <Compile Include="Data\Access\External\TimelessAccess.cs" />

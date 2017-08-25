@@ -24,7 +24,7 @@ namespace cl.uv.leikelen.ProcessingModule.EEGEmotion2Channels
         {
             Windows = new List<Tuple<string, WindowBuilder>>();
             IsActiveBeforeRecording = false;
-            Name = Properties.EEGEmotion2Channels.ModuleName;
+            Name = Properties.EEGEmotion2Channels.DetectionModuleName;
             IsEnabled = true;
             var configWindow = new Tuple<string, WindowBuilder>(Properties.EEGEmotion2Channels.ConfigWindowTitle,
                new WindowBuilder(new DetectorWindow()));

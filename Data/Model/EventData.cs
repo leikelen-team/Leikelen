@@ -20,6 +20,9 @@ namespace cl.uv.leikelen.Data.Model
 
         public RepresentType RepresentType { get; set; }
 
-        public EventData() { }
+        public EventData()
+        {
+
+        }
     }
 }

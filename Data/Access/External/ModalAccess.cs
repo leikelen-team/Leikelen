@@ -17,7 +17,7 @@ namespace cl.uv.leikelen.Data.Access.External
             return DbFacade.Instance.Provider.LoadModals();
         }
 
-        public void Add(string name, string description)
+        public ModalType Add(string name, string description)
         {
             if (Exists(name))
             {
@@ -25,7 +25,7 @@ namespace cl.uv.leikelen.Data.Access.External
             }
             else
             {
-                DbFacade.Instance.Provider.SaveModal(new ModalType()
+                return DbFacade.Instance.Provider.SaveModal(new ModalType()
                 {
                     ModalTypeId = name,
                     Description = description

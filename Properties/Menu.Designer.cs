@@ -259,7 +259,7 @@ namespace cl.uv.leikelen.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Processing Modules.
+        ///   Busca una cadena traducida similar a Scene processing modules.
         /// </summary>
         public static string Tools_Processing {
             get {
@@ -273,6 +273,15 @@ namespace cl.uv.leikelen.Properties {
         public static string Tools_Processing_AddNotImplemented {
             get {
                 return ResourceManager.GetString("Tools_Processing_AddNotImplemented", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a General processing modules.
+        /// </summary>
+        public static string Tools_Processing_General {
+            get {
+                return ResourceManager.GetString("Tools_Processing_General", resourceCulture);
             }
         }
         

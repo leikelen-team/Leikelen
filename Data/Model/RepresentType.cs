@@ -27,25 +27,19 @@ namespace cl.uv.leikelen.Data.Model
         [Column("index_data")]
         public int? Index { get; set; }
 
-        public RepresentDataType Type { get; set; }
-
         [Column("event_data_id")]
-        public int EventDataId { get; set; }
+        public int? EventDataId { get; set; }
 
         [Column("interval_data_id")]
-        public int IntervalDataId { get; set; }
+        public int? IntervalDataId { get; set; }
 
         public EventData EventData { get; set; }
         public IntervalData IntervalData { get; set; }
         public SubModalType_PersonInScene SubModalType_PersonInScene { get; set; }
 
-        public RepresentType() { }
-    }
+        public RepresentType()
+        {
 
-    public enum RepresentDataType
-    {
-        EventType,
-        IntervalType,
-        TimelessType
+        }
     }
 }

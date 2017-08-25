@@ -7,10 +7,10 @@ using cl.uv.leikelen.Data.Model;
 
 namespace cl.uv.leikelen.API.DataAccess
 {
-    public interface IModalAccess
+    public interface ISceneAccess
     {
-        List<ModalType> GetAll();
-        ModalType Add(string name, string description);
-        bool Exists(string name);
+        List<Scene> GetAll();
+        Scene Get(int sceneId);
+        bool Exists(int sceneId);
     }
 }

@@ -108,10 +108,26 @@ namespace cl.uv.leikelen.Data.Persistence
 
         public virtual void CreateConnection(string options)
         {
+            var optionsBuilder = new DbContextOptionsBuilder();
+            switch (GeneralSettings.Instance.Database.Value)
+            {
+                case "postgreSQL":
+                    optionsBuilder.UseNpgsql(options);
+                    break;
+                case "mySQL":
+                    optionsBuilder.UseMySql(options);
+                    break;
+                default:
+                    optionsBuilder.UseInMemoryDatabase();
+                    break;
+            }
+            Db = new DbDataContext(optionsBuilder.Options);
         }
 
         public virtual void CloseConnection()
         {
+            Db.CloseConnection();
+            Db = null;
         }
 
         public List<Scene> LoadScenes()
@@ -119,19 +135,23 @@ namespace cl.uv.leikelen.Data.Persistence
             return Db.Scenes.ToList();
         }
 
-        public Scene LoadScene(int sceneId, bool timeless, bool intervals, bool events)
+        public Scene LoadScene(int sceneId)
         {
             return Db.Scenes.ToList().Find(s => s.SceneId == sceneId);
         }
 
-        public void SaveScene(Scene instance)
+        public Scene SaveScene(Scene instance)
         {
-            Db.Scenes.Add(instance);
+            var r = Db.Scenes.Add(instance).Entity;
+            Db.SaveChanges();
+            return r;
         }
 
-        public void UpdateScene(int sceneId, Scene newScene)
+        public Scene UpdateScene(Scene newScene)
         {
-            Db.Scenes.Update(newScene);
+            var r = Db.Scenes.Update(newScene).Entity;
+            Db.SaveChanges();
+            return r;
         }
 
         public List<Person> LoadPersons()
@@ -139,14 +159,18 @@ namespace cl.uv.leikelen.Data.Persistence
             return Db.Persons.ToList();
         }
 
-        public void SavePerson(Person person)
+        public Person SavePerson(Person person)
         {
-            Db.Persons.Add(person);
+            var r = Db.Persons.Add(person).Entity;
+            Db.SaveChanges();
+            return r;
         }
 
-        public void UpdatePerson(int personId, Person newPerson)
+        public Person UpdatePerson(Person newPerson)
         {
-            Db.Persons.Update(newPerson);
+            var r = Db.Persons.Update(newPerson).Entity;
+            Db.Db.SaveChanges();
+            return r;
         }
 
         public List<ModalType> LoadModals()
@@ -156,23 +180,42 @@ namespace cl.uv.leikelen.Data.Persistence
 
         public ModalType LoadModal(string name)
         {
-            return Db.ModalTypes.ToList().Find(m => m.ModalTypeId == name);
+            return Db.ModalTypes.ToList().Find(m => m.ModalTypeId.Equals(name));
         }
 
-        public void SaveModal(ModalType modalType)
+        public ModalType SaveModal(ModalType modalType)
         {
-            Db.ModalTypes.Add(modalType);
+            var r = Db.ModalTypes.Add(modalType).Entity;
+            Db.SaveChanges();
+            return r;
         }
 
-        public List<SubModalType> LoadSubModals(ModalType modalType)
+        public List<SubModalType> LoadSubModals(string modalTypeName)
         {
-            return Db.ModalTypes.ToList().Find(m => m.ModalTypeId == modalType.ModalTypeId).SubModalTypes;
+            return Db.ModalTypes.Find(modalTypeName).SubModalTypes;
         }
 
-        public void SaveSubModal(string modalTypeName, SubModalType submodalType)
+        public SubModalType SaveSubModal(SubModalType submodalType)
         {
-            Db.ModalTypes.ToList().Find(m => m.ModalTypeId == modalTypeName).SubModalTypes.Add(submodalType);
+            var r = Db.SubModalTypes.Add(submodalType).Entity;
+            Db.SaveChanges();
+            return r;
         }
 
+        public PersonInScene AddPersonToScene(Person person, Scene scene)
+        {
+            var r = Db.PersonInScenes.Add(new PersonInScene()
+            {
+                Person = person,
+                Scene = scene
+            }).Entity;
+            Db.SaveChanges();
+            return r;
+        }
+
+        public bool ExistsPersonInScene(Person person, Scene scene)
+        {
+            return Db.PersonInScenes.ToList().Exists(pis => pis.Person == person && pis.Scene == scene);
+        }
     }
 }

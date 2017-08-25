@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace cl.uv.leikelen.Data.Model
 {
-    [Table("submodal_type_person_in_scene")]
+    [Table("smt_pis")]
     public class SubModalType_PersonInScene
     {
         [Column("smt_pis_id")]
@@ -20,16 +20,19 @@ namespace cl.uv.leikelen.Data.Model
         [Column("person_id")]
         public int PersonId { get; set; }
 
-        [Column("submodal_type_name")]
+        [Column("submodaltype_name")]
         public string SubModalTypeId { get; set; }
 
-        [Column("submodal_type_modal_type_name")]
+        [Column("modaltype_name")]
         public string ModalTypeId { get; set; }
 
         public SubModalType SubModalType { get; set; }
         public PersonInScene PersonInScene { get; set; }
         public List<RepresentType> RepresentTypes { get; set; }
 
-        public SubModalType_PersonInScene() { }
+        public SubModalType_PersonInScene()
+        {
+            RepresentTypes = new List<RepresentType>();
+        }
     }
 }

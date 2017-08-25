@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using cl.uv.leikelen.API.DataAccess;
-using cl.uv.leikelen.Data.Access.Internal;
 using cl.uv.leikelen.Data.Model;
 
 namespace cl.uv.leikelen.Data.Access.External
@@ -15,20 +14,27 @@ namespace cl.uv.leikelen.Data.Access.External
         {
             var personInScene = Internal.SceneInUse.Instance.Scene.PersonsInScene.Find(pis => pis.PersonId == personId);
             var subModalPersonInScene = personInScene.SubModalType_PersonInScenes.Find(smtPis => smtPis.SubModalType.SubModalTypeId == subModalName && smtPis.SubModalType.ModalType.ModalTypeId == modalName);
-            var intervalRepresent = subModalPersonInScene.RepresentTypes.FindAll(rt => rt.IntervalData != null && rt.EventData == null);
-            List<Interval> intervalList = new List<Interval>();
-            foreach (var interval in intervalRepresent)
+            var intervalRepresent = subModalPersonInScene.RepresentTypes.FindAll(rt => rt.IntervalData != null && rt.EventData == null && !rt.Index.HasValue);
+            if(intervalRepresent == null)
             {
-                intervalList.Add(new Interval()
-                {
-                    Value = interval.Value,
-                    Subtitle = interval.Subtitle,
-                    Index = interval.Index,
-                    StartTime = interval.IntervalData.StartTime,
-                    EndTime = interval.IntervalData.EndTime
-                });
+                return null;
             }
-            return intervalList;
+            else
+            {
+                List<Interval> intervalList = new List<Interval>();
+                foreach (var interval in intervalRepresent)
+                {
+                    intervalList.Add(new Interval()
+                    {
+                        Value = interval.Value,
+                        Subtitle = interval.Subtitle,
+                        Index = interval.Index,
+                        StartTime = interval.IntervalData.StartTime,
+                        EndTime = interval.IntervalData.EndTime
+                    });
+                }
+                return intervalList;
+            }
         }
 
         #region public add methods
@@ -67,8 +73,9 @@ namespace cl.uv.leikelen.Data.Access.External
 
         private void InternalAdd(int personId, string modalName, string subModalName, TimeSpan startTime, TimeSpan endTime, double? value, string subtitle, int? index)
         {
-            var personInScene = Internal.SceneInUse.Instance.Scene.PersonsInScene.Find(pis => pis.PersonId == personId);
-            var subModalPersonInScene = personInScene.SubModalType_PersonInScenes.Find(smtPis => smtPis.SubModalType.SubModalTypeId == subModalName && smtPis.SubModalType.ModalType.ModalTypeId == modalName);
+            var subModalPersonInScene = TypeValidation.GetSmtPis(personId, modalName, subModalName); 
+
+            //create interval and add to smtPis
             IntervalData intervalElement = new IntervalData()
             {
                 StartTime = startTime,
@@ -79,13 +86,9 @@ namespace cl.uv.leikelen.Data.Access.External
                 Value = value,
                 Subtitle = subtitle,
                 Index = index,
-                IntervalData = intervalElement
+                IntervalData = intervalElement,
+                SubModalType_PersonInScene = subModalPersonInScene
             });
-            var submodalModalKey = new Tuple<string, string>(modalName, subModalName);
-            if (!TmpSubModalTypes.Instance.TemporalSubmodals.Contains(submodalModalKey))
-            {
-                TmpSubModalTypes.Instance.TemporalSubmodals.Add(submodalModalKey);
-            }
         }
     }
 }

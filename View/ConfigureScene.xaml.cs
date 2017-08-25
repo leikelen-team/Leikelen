@@ -41,10 +41,10 @@ namespace cl.uv.leikelen.View
             NameTextBox.Text = scene.Name;
             TypeTextBox.Text = scene.Type;
             DescriptionTextBox.Text = scene.Description;
-            ParticipantsTextBox.Text = scene.NumberOfParticipants.ToString();
+            ParticipantsTextBox.Text = scene.NumberOfParticipants?.ToString();
             PlaceTextBox.Text = scene.Place;
-            RealDatePicker.Text = scene.RecordRealDateTime.ToString("dd-MM-yyyy");
-            RealTimePicker.Text = scene.RecordRealDateTime.ToString("hh:mm");
+            RealDatePicker.Text = scene.RecordRealDateTime?.ToString("dd-MM-yyyy");
+            RealTimePicker.Text = scene.RecordRealDateTime?.ToString("hh:mm");
             AcceptBtn.Click += AcceptBtn_Click;
             CancelBtn.Click += CancelBtn_Click;
         }

@@ -18,19 +18,15 @@ namespace cl.uv.leikelen.Data.Model
         [Column("photo")]
         public string Photo { get; set; }
         [Column("birthday")]
-        public DateTime Birthday { get; set; }
+        public DateTime? Birthday { get; set; }
         [Column("sex")]
-        public Sex Sex { get; set; }
+        public char? Sex { get; set; }
 
         public List<PersonInScene> PersonInScenes { get; set; }
 
-        public Person() { }
-    }
-
-    public enum Sex
-    {
-        Unknown,
-        Male,
-        Female
+        public Person()
+        {
+            PersonInScenes = new List<PersonInScene>();
+        }
     }
 }
