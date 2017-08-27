@@ -22,7 +22,7 @@ namespace cl.uv.leikelen.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Error {
+    public class Error {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace cl.uv.leikelen.Properties {
         ///   Devuelve la instancia de ResourceManager almacenada en caché utilizada por esta clase.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("cl.uv.leikelen.Properties.Error", typeof(Error).Assembly);
@@ -51,7 +51,7 @@ namespace cl.uv.leikelen.Properties {
         ///   búsquedas de recursos mediante esta clase de recurso fuertemente tipado.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,16 +63,52 @@ namespace cl.uv.leikelen.Properties {
         /// <summary>
         ///   Busca una cadena traducida similar a  already exists..
         /// </summary>
-        internal static string AlreadyExists {
+        public static string AlreadyExists {
             get {
                 return ResourceManager.GetString("AlreadyExists", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a The database is not connected, so it will work only in principal memory.
+        /// </summary>
+        public static string BdNotConnect {
+            get {
+                return ResourceManager.GetString("BdNotConnect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Database not connected.
+        /// </summary>
+        public static string BdNotConnectTitle {
+            get {
+                return ResourceManager.GetString("BdNotConnectTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a The file already exists, do you want to replace it?.
+        /// </summary>
+        public static string FileAlreadyExists {
+            get {
+                return ResourceManager.GetString("FileAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a File already Exists.
+        /// </summary>
+        public static string FileAlreadyExistsTitle {
+            get {
+                return ResourceManager.GetString("FileAlreadyExistsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a in ModalType: .
         /// </summary>
-        internal static string inModalType {
+        public static string inModalType {
             get {
                 return ResourceManager.GetString("inModalType", resourceCulture);
             }
@@ -81,7 +117,7 @@ namespace cl.uv.leikelen.Properties {
         /// <summary>
         ///   Busca una cadena traducida similar a Not Exists modalType: .
         /// </summary>
-        internal static string ModalTypeNotExists {
+        public static string ModalTypeNotExists {
             get {
                 return ResourceManager.GetString("ModalTypeNotExists", resourceCulture);
             }
@@ -90,7 +126,7 @@ namespace cl.uv.leikelen.Properties {
         /// <summary>
         ///   Busca una cadena traducida similar a Source combobox is null.
         /// </summary>
-        internal static string SourceComboboxIsNull {
+        public static string SourceComboboxIsNull {
             get {
                 return ResourceManager.GetString("SourceComboboxIsNull", resourceCulture);
             }

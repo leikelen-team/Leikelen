@@ -311,17 +311,28 @@
     <Compile Include="API\FrameProvider\EEG\IEegProcessingModule.cs" />
     <Compile Include="API\FrameProvider\Kinect\IKinectProcessingModule.cs" />
     <Compile Include="API\ProcessingModule\ProcessingPlurality.cs" />
+    <Compile Include="Controller\FileController.cs" />
     <Compile Include="Data\Access\External\PersonAccess.cs" />
     <Compile Include="Data\Access\External\SceneAccess.cs" />
     <Compile Include="Data\Access\External\SceneInUseAccess.cs" />
     <Compile Include="API\Helper\WindowBuilder.cs" />
     <Compile Include="Data\Access\External\TypeValidation.cs" />
     <Compile Include="Data\Persistence\Provider\MySqlProvider.cs" />
+    <Compile Include="Data\Persistence\Provider\SqliteProvider.cs" />
     <Compile Include="InputModule\Kinect\KinectInput.cs" />
     <Compile Include="InputModule\Kinect\KinectSettings.cs" />
     <Compile Include="InputModule\Kinect\Monitor.cs" />
     <Compile Include="InputModule\Kinect\Player.cs" />
-    <Compile Include="InputModule\Kinect\Properties\Kinect.Designer.cs" />
+    <Compile Include="InputModule\Kinect\Properties\Kinect.es.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Kinect.es.resx</DependentUpon>
+    </Compile>
+    <Compile Include="InputModule\Kinect\Properties\Kinect1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Kinect.resx</DependentUpon>
+    </Compile>
     <Compile Include="InputModule\Kinect\SkeletonColorVideoViewer.cs" />
     <Compile Include="InputModule\OpenBCI\OpenBCIInput.cs" />
     <Compile Include="InputModule\OpenBCI\View\ConfigurePositions.xaml.cs">
@@ -341,6 +352,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Error.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Error.es.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Error.es.resx</DependentUpon>
     </Compile>
     <Compile Include="Properties\GUI.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -394,7 +410,7 @@
     <Compile Include="Data\Model\Scene.cs" />
     <Compile Include="Data\Model\SubModalType.cs" />
     <Compile Include="Data\Model\SubModalType_PersonInScene.cs" />
-    <Compile Include="Data\Persistence\DbDataContext.cs" />
+    <Compile Include="Data\Persistence\Provider\DbDataContext.cs" />
     <Compile Include="Data\Persistence\DbException.cs" />
     <Compile Include="Data\Persistence\DbFacade.cs" />
     <Compile Include="Data\Persistence\IDbProvider.cs" />
@@ -588,11 +604,20 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="InputModule\Kinect\Properties\Kinect.es.resx" />
-    <EmbeddedResource Include="InputModule\Kinect\Properties\Kinect.resx" />
-    <EmbeddedResource Include="Properties\Error.es.resx" />
+    <EmbeddedResource Include="InputModule\Kinect\Properties\Kinect.es.resx">
+      <LastGenOutput>Kinect.es.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputModule\Kinect\Properties\Kinect.resx">
+      <LastGenOutput>Kinect1.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Error.es.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Error.es.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Error.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Error.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\GUI.es.resx">
@@ -637,7 +662,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Data\LeikelenFile\" />
     <Folder Include="InputModule\Kinect\View\" />
   </ItemGroup>
   <ItemGroup>

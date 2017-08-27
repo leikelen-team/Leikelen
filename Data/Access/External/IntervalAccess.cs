@@ -40,38 +40,26 @@ namespace cl.uv.leikelen.Data.Access.External
         #region public add methods
         public void Add(int personId, string modalName, string subModalName, TimeSpan startTime, TimeSpan endTime, double value)
         {
-            InternalAdd(personId, modalName, subModalName, startTime, endTime, value, null, null);
+            InternalAdd(personId, modalName, subModalName, startTime, endTime, value, null);
         }
+
         public void Add(int personId, string modalName, string subModalName, TimeSpan startTime, TimeSpan endTime, double value, string subtitle)
         {
-            InternalAdd(personId, modalName, subModalName, startTime, endTime, value, subtitle, null);
-        }
-        public void Add(int personId, string modalName, string subModalName, TimeSpan startTime, TimeSpan endTime, double value, int index)
-        {
-            Add(personId, modalName, subModalName, startTime, endTime, value, null, index);
+            InternalAdd(personId, modalName, subModalName, startTime, endTime, value, subtitle);
         }
 
         public void Add(int personId, string modalName, string subModalName, TimeSpan startTime, TimeSpan endTime, string subtitle)
         {
-            InternalAdd(personId, modalName, subModalName, startTime, endTime, null, subtitle, null);
-        }
-        public void Add(int personId, string modalName, string subModalName, TimeSpan startTime, TimeSpan endTime, int index)
-        {
-            InternalAdd(personId, modalName, subModalName, startTime, endTime, null, null, index);
+            InternalAdd(personId, modalName, subModalName, startTime, endTime, null, subtitle);
         }
 
-        public void Add(int personId, string modalName, string subModalName, TimeSpan startTime, TimeSpan endTime, string subtitle, int index)
+        public void Add(int personId, string modalName, string subModalName, TimeSpan startTime, TimeSpan endTime)
         {
-            InternalAdd(personId, modalName, subModalName, startTime, endTime, null, subtitle, index);
-        }
-
-        public void Add(int personId, string modalName, string subModalName, TimeSpan startTime, TimeSpan endTime, double value, string subtitle, int index)
-        {
-            InternalAdd(personId, modalName, subModalName, startTime, endTime, value, subtitle, index);
+            InternalAdd(personId, modalName, subModalName, startTime, endTime, null, null);
         }
         #endregion
 
-        private void InternalAdd(int personId, string modalName, string subModalName, TimeSpan startTime, TimeSpan endTime, double? value, string subtitle, int? index)
+        private void InternalAdd(int personId, string modalName, string subModalName, TimeSpan startTime, TimeSpan endTime, double? value, string subtitle)
         {
             var subModalPersonInScene = TypeValidation.GetSmtPis(personId, modalName, subModalName); 
 
@@ -85,7 +73,7 @@ namespace cl.uv.leikelen.Data.Access.External
             {
                 Value = value,
                 Subtitle = subtitle,
-                Index = index,
+                Index = null,
                 IntervalData = intervalElement,
                 SubModalType_PersonInScene = subModalPersonInScene
             });

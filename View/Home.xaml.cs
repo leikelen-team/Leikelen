@@ -145,10 +145,7 @@ namespace cl.uv.leikelen.View
                     return;
                 }
             }
-
-
-
-                var scene = new Scene()
+            var scene = new Scene()
             {
                 Name = "Test",
                 NumberOfParticipants = 2,
@@ -195,65 +192,63 @@ namespace cl.uv.leikelen.View
                     {
                         i++;
                         if (i > howMany) break;
-                            var which = rnd.Next(1, 3);
-                            Console.WriteLine($"Which: {which}");
-                            var data = rnd.Next(1, 3);
-                            Console.WriteLine($"Data: {data}");
-                            for (int j = 0; j<rnd.Next(0, 100);j++)
+                        var which = rnd.Next(1, 3);
+                        Console.WriteLine($"Which: {which}");
+                        var data = rnd.Next(1, 3);
+                        Console.WriteLine($"Data: {data}");
+                        for (int j = 0; j<rnd.Next(0, 100);j++)
+                        {
+                            double doubleData = rnd.NextDouble();
+                            string subtitleData = "hola";
+                            switch (which)
                             {
-                                double doubleData = rnd.NextDouble();
-                                string subtitleData = "hola";
-                                switch (which)
-                                {
-                                    case 1:
-                                        switch (data)
-                                        {
-                                            case 1:
-                                                eAccess.Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, new TimeSpan(rnd.Next(0, (int)SceneInUse.Instance.Scene.Duration.Ticks)), doubleData);
-                                                break;
-                                            case 2:
-                                                eAccess.Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, new TimeSpan(rnd.Next(0, (int)SceneInUse.Instance.Scene.Duration.Ticks)), subtitleData);
-                                                break;
-                                            case 3:
-                                                eAccess.Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, new TimeSpan(rnd.Next(0, (int)SceneInUse.Instance.Scene.Duration.Ticks)), 1);
-                                                break;
-                                        }
-                                        break;
-                                    case 2:
-                                        int minTicks = rnd.Next(0, (int)SceneInUse.Instance.Scene.Duration.Ticks);
-                                        TimeSpan min = new TimeSpan(minTicks);
-                                        TimeSpan max = new TimeSpan(rnd.Next(minTicks, (int)SceneInUse.Instance.Scene.Duration.Ticks));
-                                        switch (data)
-                                        {
-                                            case 1:
-                                                iAccess.Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId,min,max, doubleData);
-                                                break;
-                                            case 2:
-                                                iAccess.Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, min, max, subtitleData);
-                                                break;
-                                            case 3:
-                                                iAccess.Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, min, max, 1);
-                                                break;
-                                        }
-                                        break;
-                                    case 3:
-                                        switch (data)
-                                        {
-                                            case 1:
-                                                tAccess.Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, doubleData, rnd.Next(0, 24));
-                                                break;
-                                            case 2:
-                                                tAccess.Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, subtitleData, rnd.Next(0, 24));
-                                                break;
-                                            case 3:
-                                                tAccess.Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, rnd.Next(0, 24));
-                                                break;
-                                        }
-                                        break;
-                                }
+                                case 1:
+                                    switch (data)
+                                    {
+                                        case 1:
+                                            eAccess.Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, new TimeSpan(rnd.Next(0, (int)SceneInUse.Instance.Scene.Duration.Ticks)), doubleData);
+                                            break;
+                                        case 2:
+                                            eAccess.Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, new TimeSpan(rnd.Next(0, (int)SceneInUse.Instance.Scene.Duration.Ticks)), subtitleData);
+                                            break;
+                                        case 3:
+                                            eAccess.Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, new TimeSpan(rnd.Next(0, (int)SceneInUse.Instance.Scene.Duration.Ticks)));
+                                            break;
+                                    }
+                                    break;
+                                case 2:
+                                    int minTicks = rnd.Next(0, (int)SceneInUse.Instance.Scene.Duration.Ticks);
+                                    TimeSpan min = new TimeSpan(minTicks);
+                                    TimeSpan max = new TimeSpan(rnd.Next(minTicks, (int)SceneInUse.Instance.Scene.Duration.Ticks));
+                                    switch (data)
+                                    {
+                                        case 1:
+                                            iAccess.Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId,min,max, doubleData);
+                                            break;
+                                        case 2:
+                                            iAccess.Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, min, max, subtitleData);
+                                            break;
+                                        case 3:
+                                            iAccess.Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, min, max);
+                                            break;
+                                    }
+                                    break;
+                                case 3:
+                                    switch (data)
+                                    {
+                                        case 1:
+                                            tAccess.Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, rnd.Next(0, 24), doubleData);
+                                            break;
+                                        case 2:
+                                            tAccess.Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, rnd.Next(0, 24), subtitleData);
+                                            break;
+                                        case 3:
+                                            tAccess.Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, rnd.Next(0, 24));
+                                            break;
+                                    }
+                                    break;
                             }
-                            
-                        
+                        }
                     }
                 }
             }
@@ -730,18 +725,8 @@ namespace cl.uv.leikelen.View
             {
                 MenuItem processMenuItem = new MenuItem();
                 processMenuItem.Header = process.Name;
-                CheckBox processCheck = new CheckBox();
-                processCheck.Content = Properties.Menu.Enable;
-                processCheck.Checked += (sender, e) =>
-                {
-                    process.IsEnabled = true;
-
-                };
-                processCheck.Unchecked += (sender, e) =>
-                {
-                    process.IsEnabled = false;
-                };
-                processMenuItem.Items.Add(processCheck);
+                //windows of processing modules
+                List<MenuItem> windowsMenuItems = new List<MenuItem>();
                 foreach (var window in process.Windows)
                 {
                     MenuItem processWin = new MenuItem();
@@ -749,9 +734,40 @@ namespace cl.uv.leikelen.View
                     processWin.Click += (sender, e) => {
                         window.Item2.GetWindow().Show();
                     };
+                    windowsMenuItems.Add(processWin);
                     processMenuItem.Items.Add(processWin);
                 }
-                MenuItems_Tools_Processing.Items.Add(processMenuItem);
+
+                //checkbox enable/disable
+                CheckBox processCheck = new CheckBox();
+                processCheck.Content = Properties.Menu.Enable;
+                processCheck.Checked += (sender, e) =>
+                {
+                    process.IsEnabled = true;
+                    foreach (var winItem in windowsMenuItems)
+                    {
+                        winItem.IsEnabled = true;
+                    }
+                };
+                processCheck.Unchecked += (sender, e) =>
+                {
+                    process.IsEnabled = false;
+                    foreach(var winItem in windowsMenuItems)
+                    {
+                        winItem.IsEnabled = false;
+                    }
+                };
+                processMenuItem.Items.Add(processCheck);
+
+                switch (process.Plurality)
+                {
+                    case API.ProcessingModule.ProcessingPlurality.Scene:
+                        MenuItems_Tools_Processing.Items.Add(processMenuItem);
+                        break;
+                    case API.ProcessingModule.ProcessingPlurality.General:
+                        MenuItems_Tools_Processing_General.Items.Add(processMenuItem);
+                        break;
+                }
             }
         }
 

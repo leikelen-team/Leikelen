@@ -109,4 +109,16 @@
   <data name="SourceComboboxIsNull" xml:space="preserve">
     <value>Source combobox is null</value>
   </data>
+  <data name="BdNotConnectTitle" xml:space="preserve">
+    <value>Database not connected</value>
+  </data>
+  <data name="BdNotConnect" xml:space="preserve">
+    <value>The database is not connected, so it will work only in principal memory</value>
+  </data>
+  <data name="FileAlreadyExists" xml:space="preserve">
+    <value>The file already exists, do you want to replace it?</value>
+  </data>
+  <data name="FileAlreadyExistsTitle" xml:space="preserve">
+    <value>File already Exists</value>
+  </data>
 </root>

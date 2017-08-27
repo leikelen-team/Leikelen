@@ -21,7 +21,7 @@ namespace cl.uv.leikelen.ProcessingModule.Kinect.Voice
             IsActiveBeforeRecording = false;
             Name = "Voice";
             IsEnabled = true;
-            Plurality = ProcessingPlurality.General;
+            Plurality = ProcessingPlurality.Scene;
 
             _logic = new VoiceLogic();
         }

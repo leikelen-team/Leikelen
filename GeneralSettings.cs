@@ -14,8 +14,13 @@ namespace cl.uv.leikelen
         public readonly Option<string> Extension = new Option<string>("Extension", ".leikelen");
         public readonly Option<string> ExtensionFilter = new Option<string>("ExtensionFilter", "*.leikelen");
 
-        public readonly Option<string> Database = new Option<string>("Database", "postgreSQL");
-        public readonly Option<string> DbConectionString = new Option<string>("conectionString", "Host = localhost; Database=leikelen;Username=postgres;Password=erick1992");
+        public readonly Option<string> Database = new Option<string>("Database", "PostgreSQL");
+        public readonly Option<string> DbHost = new Option<string>("DbHost", "localhost");
+        public readonly Option<int> DbPort = new Option<int>("DbPort", 0);
+        public readonly Option<string> DbName = new Option<string>("DbName", "leikelen");
+        public readonly Option<string> DbUser = new Option<string>("DbUser", "postgres");
+        public readonly Option<string> DbPassword = new Option<string>("DbPassword", "erick1992");
+
 
         private static GeneralSettings _instance;
 

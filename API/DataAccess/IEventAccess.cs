@@ -12,10 +12,7 @@ namespace cl.uv.leikelen.API.DataAccess
 
         void Add(int personId, string modalName, string subModalName, TimeSpan eventTime, double value);
         void Add(int personId, string modalName, string subModalName, TimeSpan eventTime, double value, string subtitle);
-        void Add(int personId, string modalName, string subModalName, TimeSpan eventTime, double value, int index);
         void Add(int personId, string modalName, string subModalName, TimeSpan eventTime, string subtitle);
-        void Add(int personId, string modalName, string subModalName, TimeSpan eventTime, int index);
-        void Add(int personId, string modalName, string subModalName, TimeSpan eventTime, string subtitle, int index);
-        void Add(int personId, string modalName, string subModalName, TimeSpan eventTime, double value, string subtitle, int index);
+        void Add(int personId, string modalName, string subModalName, TimeSpan eventTime);
     }
 }

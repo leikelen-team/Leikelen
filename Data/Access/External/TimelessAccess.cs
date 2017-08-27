@@ -36,40 +36,28 @@ namespace cl.uv.leikelen.Data.Access.External
         }
 
         #region public add methods
-        public void Add(int personId, string modalName, string subModalName, double value)
+        public void Add(int personId, string modalName, string subModalName, int index, double value)
         {
-            InternalAdd(personId, modalName, subModalName, value, null, null);
-        }
-        public void Add(int personId, string modalName, string subModalName, double value, string subtitle)
-        {
-            InternalAdd(personId, modalName, subModalName, value, subtitle, null);
-        }
-        public void Add(int personId, string modalName, string subModalName, double value, int index)
-        {
-            Add(personId, modalName, subModalName, value, null, index);
+            InternalAdd(personId, modalName, subModalName, index, value, null);
         }
 
-        public void Add(int personId, string modalName, string subModalName, string subtitle)
+        public void Add(int personId, string modalName, string subModalName, int index, double value, string subtitle)
         {
-            InternalAdd(personId, modalName, subModalName, null, subtitle, null);
+            InternalAdd(personId, modalName, subModalName, index, value, subtitle);
         }
+
+        public void Add(int personId, string modalName, string subModalName, int index, string subtitle)
+        {
+            InternalAdd(personId, modalName, subModalName, index, null, subtitle);
+        }
+
         public void Add(int personId, string modalName, string subModalName, int index)
         {
-            InternalAdd(personId, modalName, subModalName, null, null, index);
-        }
-
-        public void Add(int personId, string modalName, string subModalName, string subtitle, int index)
-        {
-            InternalAdd(personId, modalName, subModalName, null, subtitle, index);
-        }
-
-        public void Add(int personId, string modalName, string subModalName, double value, string subtitle, int index)
-        {
-            InternalAdd(personId, modalName, subModalName, value, subtitle, index);
+            InternalAdd(personId, modalName, subModalName, index, null, null);
         }
         #endregion
 
-        private void InternalAdd(int personId, string modalName, string subModalName, double? value, string subtitle, int? index)
+        private void InternalAdd(int personId, string modalName, string subModalName, int index, double? value, string subtitle)
         {
             var subModalPersonInScene = TypeValidation.GetSmtPis(personId, modalName, subModalName);
             

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using cl.uv.leikelen.Data.Model;
 using Microsoft.EntityFrameworkCore;
 
-namespace cl.uv.leikelen.Data.Persistence
+namespace cl.uv.leikelen.Data.Persistence.Provider
 {
     public class DbDataContext : DbContext, IDbProvider
     {
@@ -20,7 +20,7 @@ namespace cl.uv.leikelen.Data.Persistence
         public DbSet<RepresentType> RepresentTypes { get; set; }
         public DbSet<EventData> EventDatas { get; set; }
         public DbSet<IntervalData> IntervalDatas { get; set; }
-        public DbDataContext Db = null;
+        protected DbDataContext Db = null;
 
         public bool IsConnected()
         {
@@ -108,25 +108,12 @@ namespace cl.uv.leikelen.Data.Persistence
 
         public virtual void CreateConnection(string options)
         {
-            var optionsBuilder = new DbContextOptionsBuilder();
-            switch (GeneralSettings.Instance.Database.Value)
-            {
-                case "postgreSQL":
-                    optionsBuilder.UseNpgsql(options);
-                    break;
-                case "mySQL":
-                    optionsBuilder.UseMySql(options);
-                    break;
-                default:
-                    optionsBuilder.UseInMemoryDatabase();
-                    break;
-            }
-            Db = new DbDataContext(optionsBuilder.Options);
         }
 
         public virtual void CloseConnection()
         {
             Db.CloseConnection();
+            Db.Dispose();
             Db = null;
         }
 

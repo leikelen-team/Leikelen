@@ -10,12 +10,9 @@ namespace cl.uv.leikelen.API.DataAccess
     {
         List<Timeless> GetAll(int personId, string modalName, string subModalName);
 
-        void Add(int personId, string modalName, string subModalName, double value);
-        void Add(int personId, string modalName, string subModalName, double value, string subtitle);
-        void Add(int personId, string modalName, string subModalName, double value, int index);
-        void Add(int personId, string modalName, string subModalName, string subtitle);
+        void Add(int personId, string modalName, string subModalName, int index, double value);
+        void Add(int personId, string modalName, string subModalName, int index, double value, string subtitle);
+        void Add(int personId, string modalName, string subModalName, int index, string subtitle);
         void Add(int personId, string modalName, string subModalName, int index);
-        void Add(int personId, string modalName, string subModalName, string subtitle, int index);
-        void Add(int personId, string modalName, string subModalName, double value, string subtitle, int index);
     }
 }

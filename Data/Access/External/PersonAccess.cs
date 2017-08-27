@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using cl.uv.leikelen.API.DataAccess;
 using cl.uv.leikelen.Data.Model;
 using cl.uv.leikelen.Data.Persistence;
+using cl.uv.leikelen.InputModule;
 
 namespace cl.uv.leikelen.Data.Access.External
 {
@@ -13,13 +14,15 @@ namespace cl.uv.leikelen.Data.Access.External
     {
         public Person Add(string name, string photo, DateTime? birthday, char? sex)
         {
-            return DbFacade.Instance.Provider.SavePerson(new Person()
+            var person = DbFacade.Instance.Provider.SavePerson(new Person()
             {
                 Name = name,
                 Photo = photo,
                 Birthday = birthday,
                 Sex = sex
             });
+            InputLoader.Instance.FillPersonInputModules(person);
+            return person;
         }
 
         public PersonInScene AddToScene(Person person, Scene scene)

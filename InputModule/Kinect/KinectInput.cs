@@ -14,6 +14,7 @@ namespace cl.uv.leikelen.InputModule.Kinect
 
         public KinectInput()
         {
+            Name = Properties.Kinect.SensorName;
             Plurality = InputPlurality.Scene;
             Monitor = new Monitor();
             Player = new Player();

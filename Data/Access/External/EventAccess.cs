@@ -10,6 +10,8 @@ namespace cl.uv.leikelen.Data.Access.External
 {
     public class EventAccess : IEventAccess
     {
+        
+
         public List<Event> GetAll(int personId, string modalName, string subModalName)
         {
             var personInScene = Internal.SceneInUse.Instance.Scene.PersonsInScene.Find(pis => pis.PersonId == personId);
@@ -39,38 +41,26 @@ namespace cl.uv.leikelen.Data.Access.External
         #region public add methods
         public void Add(int personId, string modalName, string subModalName, TimeSpan eventTime, double value)
         {
-            InternalAdd(personId, modalName, subModalName, eventTime, value, null, null);
+            InternalAdd(personId, modalName, subModalName, eventTime, value, null);
         }
+
         public void Add(int personId, string modalName, string subModalName, TimeSpan eventTime, double value, string subtitle)
         {
-            InternalAdd(personId, modalName, subModalName, eventTime, value, subtitle, null);
-        }
-        public void Add(int personId, string modalName, string subModalName, TimeSpan eventTime, double value, int index)
-        {
-            Add(personId, modalName, subModalName, eventTime, value, null, index);
+            InternalAdd(personId, modalName, subModalName, eventTime, value, subtitle);
         }
 
         public void Add(int personId, string modalName, string subModalName, TimeSpan eventTime, string subtitle)
         {
-            InternalAdd(personId, modalName, subModalName, eventTime, null, subtitle, null);
-        }
-        public void Add(int personId, string modalName, string subModalName, TimeSpan eventTime, int index)
-        {
-            InternalAdd(personId, modalName, subModalName, eventTime, null, null, index);
+            InternalAdd(personId, modalName, subModalName, eventTime, null, subtitle);
         }
 
-        public void Add(int personId, string modalName, string subModalName, TimeSpan eventTime, string subtitle, int index)
+        public void Add(int personId, string modalName, string subModalName, TimeSpan eventTime)
         {
-            InternalAdd(personId, modalName, subModalName, eventTime, null, subtitle, index);
-        }
-
-        public void Add(int personId, string modalName, string subModalName, TimeSpan eventTime, double value, string subtitle, int index)
-        {
-            InternalAdd(personId, modalName, subModalName, eventTime, value, subtitle, index);
+            InternalAdd(personId, modalName, subModalName, eventTime, null, null);
         }
         #endregion
 
-        private void InternalAdd(int personId, string modalName, string subModalName, TimeSpan eventTime, double? value, string subtitle, int? index)
+        private void InternalAdd(int personId, string modalName, string subModalName, TimeSpan eventTime, double? value, string subtitle)
         {
             var subModalPersonInScene = TypeValidation.GetSmtPis(personId, modalName, subModalName);
 
@@ -83,7 +73,7 @@ namespace cl.uv.leikelen.Data.Access.External
             {
                 Value = value,
                 Subtitle = subtitle,
-                Index = index,
+                Index = null,
                 EventData = eventElement,
                 SubModalType_PersonInScene = subModalPersonInScene
             });

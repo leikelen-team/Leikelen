@@ -214,6 +214,15 @@ namespace cl.uv.leikelen.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Delete.
+        /// </summary>
+        public static string Delete {
+            get {
+                return ResourceManager.GetString("Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Description.
         /// </summary>
         public static string Description {
@@ -228,6 +237,15 @@ namespace cl.uv.leikelen.Properties {
         public static string Distances {
             get {
                 return ResourceManager.GetString("Distances", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Duration.
+        /// </summary>
+        public static string Duration {
+            get {
+                return ResourceManager.GetString("Duration", resourceCulture);
             }
         }
         
@@ -403,6 +421,15 @@ namespace cl.uv.leikelen.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Player.
+        /// </summary>
+        public static string Player {
+            get {
+                return ResourceManager.GetString("Player", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Record date.
         /// </summary>
         public static string RecordDate {
@@ -426,6 +453,42 @@ namespace cl.uv.leikelen.Properties {
         public static string Scene {
             get {
                 return ResourceManager.GetString("Scene", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a The scene has been exported succesfully.
+        /// </summary>
+        public static string SceneExportedSuccesfully {
+            get {
+                return ResourceManager.GetString("SceneExportedSuccesfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Scene exported.
+        /// </summary>
+        public static string SceneExportedSuccesfullyTitle {
+            get {
+                return ResourceManager.GetString("SceneExportedSuccesfullyTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Scene imported.
+        /// </summary>
+        public static string SceneImportedSuccesfully {
+            get {
+                return ResourceManager.GetString("SceneImportedSuccesfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a The scene has been imported succesfully.
+        /// </summary>
+        public static string SceneImportedSuccesfullyTitle {
+            get {
+                return ResourceManager.GetString("SceneImportedSuccesfullyTitle", resourceCulture);
             }
         }
         

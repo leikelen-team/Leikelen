@@ -14,7 +14,7 @@
         TextElement.FontSize="14"
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
         Title="Export" Height="170" Width="300">
-    <Grid>
+    <Grid Margin="4">
         <Grid.RowDefinitions>
             <RowDefinition MinHeight="40" Height="*"/>
             <RowDefinition MinHeight="40" Height="*"/>
@@ -24,7 +24,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition MinWidth="30" />
                 <ColumnDefinition Width="2*" />
-                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="42"/>
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0" Content="{x:Static resx:GUI.File}" />
             <TextBox x:Name="FilePathTextBox" Grid.Column="1"></TextBox>

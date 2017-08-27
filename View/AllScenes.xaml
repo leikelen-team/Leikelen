@@ -15,6 +15,31 @@
         mc:Ignorable="d"
         Title="AllScenes" Height="300" Width="300">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition MaxHeight="55" />
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Orientation="Horizontal">
+            <Button x:Name="OpenBtn" Content="{x:Static resx:GUI.Open}" Margin="5" />
+            <Button x:Name="DeleteBtn" Content="{x:Static resx:GUI.Delete}" Margin="5" />
+        </StackPanel>
+        <DataGrid Grid.Row="1" x:Name="PersonDataGrid" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="True" CanUserResizeColumns="True" CanUserResizeRows="True" CanUserSortColumns="True">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <RadioButton x:Name="sceneRadio" GroupName="sceneRadioGroup" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="{x:Static resx:GUI.Name}" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="{x:Static resx:GUI.Participants}" Binding="{Binding NumberOfParticipants}"/>
+                <DataGridTextColumn Header="{x:Static resx:GUI.Type}" Binding="{Binding Type}"/>
+                <DataGridTextColumn Header="{x:Static resx:GUI.Description}" Binding="{Binding Description}"/>
+                <DataGridTextColumn Header="{x:Static resx:GUI.Place}" Binding="{Binding Place}"/>
+                <DataGridTextColumn Header="{x:Static resx:GUI.RecordDate}" Binding="{Binding RecordRealDateTime}"/>
+                <DataGridTextColumn Header="{x:Static resx:GUI.Duration}" Binding="{Binding Duration}"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>

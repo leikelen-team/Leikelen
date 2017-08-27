@@ -14,11 +14,11 @@ namespace cl.uv.leikelen.Data.Model
         [Column("scene_id")]
         public int SceneId { get; set; }
 
-        [Column("number_of_participants")]
-        public int? NumberOfParticipants { get; set; }
-
         [Column("name")]
         public string Name { get; set; }
+
+        [Column("number_of_participants")]
+        public int? NumberOfParticipants { get; set; }
 
         [Column("type")]
         public string Type { get; set; }

@@ -238,4 +238,25 @@
   <data name="Photo" xml:space="preserve">
     <value>Photo</value>
   </data>
+  <data name="Player" xml:space="preserve">
+    <value>Player</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Duration" xml:space="preserve">
+    <value>Duration</value>
+  </data>
+  <data name="SceneExportedSuccesfully" xml:space="preserve">
+    <value>The scene has been exported succesfully</value>
+  </data>
+  <data name="SceneExportedSuccesfullyTitle" xml:space="preserve">
+    <value>Scene exported</value>
+  </data>
+  <data name="SceneImportedSuccesfullyTitle" xml:space="preserve">
+    <value>The scene has been imported succesfully</value>
+  </data>
+  <data name="SceneImportedSuccesfully" xml:space="preserve">
+    <value>Scene imported</value>
+  </data>
 </root>

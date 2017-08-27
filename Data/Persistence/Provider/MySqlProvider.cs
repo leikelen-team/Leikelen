@@ -24,11 +24,5 @@ namespace cl.uv.leikelen.Data.Persistence.Provider
             optionsBuilder.UseMySql(options);
             Db = new MySqlProvider(optionsBuilder.Options);
         }
-
-        public override void CloseConnection()
-        {
-            Db.CloseConnection();
-            Db = null;
-        }
     }
 }

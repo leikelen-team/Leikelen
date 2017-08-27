@@ -47,7 +47,7 @@ namespace cl.uv.leikelen.InputModule
             SceneInputModules.Add(kinectInput);
             VideoHandler = kinectInput.SkeletonColorVideoViewer;
 
-            //TODO: esto es temporal
+            //TODO: esto es temporal por motivos de prueba
             SceneInputModules.Add(new OpenBCI.OpenBCIInput());
         }
 
