@@ -247,6 +247,8 @@
     <Compile Include="ProcessingModule\EEGEmotion2Channels\View\ClassifierWindow.xaml.cs">
       <DependentUpon>ClassifierWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ProcessingModule\test\AccessData.cs" />
+    <Compile Include="ProcessingModule\test\InsertData.cs" />
     <Compile Include="Properties\Error.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

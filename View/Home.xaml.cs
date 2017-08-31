@@ -655,5 +655,10 @@ namespace cl.uv.leikelen.View
             }
         }
         #endregion
+
+        private void Tabs_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
