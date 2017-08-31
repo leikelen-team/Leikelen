@@ -28,7 +28,7 @@ namespace cl.uv.leikelen.ProcessingModule.test
                     //de postura: sentado, parado, brazos cruzados
                     var intervals = new IntervalAccess().GetAll(4, m.Name, s.Name);
                     var arrays = new TimelessAccess().GetAll(4, m.Name, s.Name);
-                    var allEvents = new EventAccess().GetAll
+                    //var allEvents = new EventAccess().GetAll;
                     foreach (var i in intervals)
                     {
                         if(arrays == null)
