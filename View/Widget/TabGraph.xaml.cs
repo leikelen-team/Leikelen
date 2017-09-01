@@ -24,36 +24,45 @@ namespace cl.uv.leikelen.View.Widget
         public TabGraph()
         {
             InitializeComponent();
-
             SeriesCollection = new SeriesCollection
             {
-                new StackedColumnSeries
+                new StackedRowSeries
                 {
-                    Values = new ChartValues<double> {4, 5, 6, 8},
+                    Title = "Seated",
+                    Values = new ChartValues<int> {25, 20, 30, 15},
                     StackMode = StackMode.Values, // this is not necessary, values is the default stack mode
                     DataLabels = true
                 },
-                new StackedColumnSeries
+                new StackedRowSeries
                 {
-                    Values = new ChartValues<double> {2, 5, 6, 7},
+                    Title = "Hand Open",
+                    Values = new ChartValues<int> {25,7 , 40, 15},
                     StackMode = StackMode.Values,
                     DataLabels = true
-                }
+                },
+                new StackedRowSeries
+                {
+                    Title = "Standed",
+                    Values = new ChartValues<int> {25, 10, 15, 10},
+                    StackMode = StackMode.Values,
+                    DataLabels = true,                      
+                },
             };
 
+
+            /*
             //adding series updates and animates the chart
-            SeriesCollection.Add(new StackedColumnSeries
+            SeriesCollection.Add(new StackedRowSeries
             {
                 Values = new ChartValues<double> { 6, 2, 7 },
                 StackMode = StackMode.Values
             });
-
+            
             //adding values also updates and animates
-            SeriesCollection[2].Values.Add(4d);
-
-            Labels = new[] { "Chrome", "Mozilla", "Opera", "IE" };
-            YFormatter = value => value + " Mill";
-
+            SeriesCollection[2].Values.Add(4d);            
+            */
+            Labels = new[] { "Person 1", "Person 2", "Person 3", "Person 4" };
+            YFormatter = value => value + " Horas";
             DataContext = this;
 
         }

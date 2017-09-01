@@ -12,8 +12,7 @@
     mc:Ignorable="d" 
     d:DesignHeight="300" d:DesignWidth="300"
 
-    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-    Background="{DynamicResource MaterialDesignPaper}"
+    TextElement.Foreground="{DynamicResource MaterialDesignBody}"    Background="{DynamicResource MaterialDesignPaper}"
     TextElement.FontWeight="Medium"
     TextElement.FontSize="14"
     FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
@@ -23,12 +22,12 @@
     <Grid>
         <lvc:CartesianChart Series="{Binding SeriesCollection}" LegendLocation="Bottom">
             <lvc:CartesianChart.AxisX>
-                <lvc:Axis Title="Browser" 
-                          Labels="{Binding Labels}" 
-                          Separator="{x:Static lvc:DefaultAxes.CleanSeparator}" />
+                <lvc:Axis Title="Percent time" LabelFormatter="{Binding Formatter}"></lvc:Axis>
             </lvc:CartesianChart.AxisX>
             <lvc:CartesianChart.AxisY>
-                <lvc:Axis Title="Usage" LabelFormatter="{Binding Formatter}"></lvc:Axis>
+                 <lvc:Axis Title="Postures" 
+                          Labels="{Binding Labels}" 
+                          Separator="{x:Static lvc:DefaultAxes.CleanSeparator}" />
             </lvc:CartesianChart.AxisY>
         </lvc:CartesianChart>
     </Grid>
