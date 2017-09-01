@@ -22,6 +22,13 @@ namespace cl.uv.leikelen.View.Widget
         public PreferencesBD()
         {
             InitializeComponent();
+
+            AcceptBtn.Click += AcceptBtn_Click;
+        }
+
+        private void AcceptBtn_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }

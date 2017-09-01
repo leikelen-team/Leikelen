@@ -43,9 +43,8 @@
 
         <Label VerticalAlignment="Bottom" Content="{x:Static resx:GUI.Password}" Grid.Row="4" Grid.Column="0" />
         <TextBox x:Name="PasswordTxt" Grid.Row="4" Grid.Column="1"></TextBox>
-        
+
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="5" Grid.ColumnSpan="2" Orientation="Horizontal">
-            <Button x:Name="ApplyBtn" Content="{x:Static resx:GUI.Apply}" Margin="5" />
             <Button x:Name="AcceptBtn" Content="{x:Static resx:GUI.Accept}" Margin="5" />
             <Button x:Name="CancelBtn" Content="{x:Static resx:GUI.Cancel}" Margin="5" />
         </StackPanel>

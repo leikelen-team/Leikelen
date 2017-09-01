@@ -11,7 +11,7 @@ namespace cl.uv.leikelen.Data.Persistence
     public class DbFacade
     {
         public IDbProvider Provider { get; private set; }
-        public List<DatabaseEngine> DbEngineList { get; private set; }
+        public Dictionary<string, DatabaseEngine> DbEngineList { get; private set; }
 
         private static DbFacade _instance;
 
@@ -24,22 +24,28 @@ namespace cl.uv.leikelen.Data.Persistence
             }
         }
 
+        public static void Reset()
+        {
+            _instance.Provider.CloseConnection();
+            _instance = new DbFacade();
+        }
+
         private DbFacade()
         {
-            DbEngineList = new List<DatabaseEngine>();
+            DbEngineList = new Dictionary<string, DatabaseEngine>();
             FillDbEngines();
 
             //assign the selected engine in settings, and create the connection
             try
             {
-                foreach (var engine in DbEngineList)
+                foreach (var engineName in DbEngineList.Keys)
                 {
-                    if (engine.Name.Equals(GeneralSettings.Instance.Database.Value))
+                    if (engineName.Equals(GeneralSettings.Instance.Database.Value))
                     {
-                        Provider = engine.Provider;
-                        Provider.CreateConnection(engine.CreateConnectionString.Invoke(
+                        Provider = DbEngineList[engineName].Provider;
+                        Provider.CreateConnection(DbEngineList[engineName].CreateConnectionString.Invoke(
                             GeneralSettings.Instance.DbHost.Value,
-                            GeneralSettings.Instance.DbPort.Value != 0 ? GeneralSettings.Instance.DbPort.Value : engine.DefaultPort,
+                            GeneralSettings.Instance.DbPort.Value != 0 ? GeneralSettings.Instance.DbPort.Value : DbEngineList[engineName].DefaultPort,
                             GeneralSettings.Instance.DbName.Value,
                             GeneralSettings.Instance.DbUser.Value,
                             GeneralSettings.Instance.DbPassword.Value));
@@ -50,8 +56,8 @@ namespace cl.uv.leikelen.Data.Persistence
             {
                 MessageBoxResult result = MessageBox.Show(Properties.Error.BdNotConnect+"\n"+ex.Message, Properties.Error.BdNotConnectTitle, MessageBoxButton.OK,
                 MessageBoxImage.Exclamation);
-                Provider = DbEngineList[0].Provider;
-                Provider.CreateConnection(null);
+                Provider = DbEngineList["Memory"].Provider;
+                Provider.CreateConnection("MemoryDb");
             }
         }
 
@@ -61,38 +67,36 @@ namespace cl.uv.leikelen.Data.Persistence
         private void FillDbEngines()
         {
             //create engine providers and add its to DbEngineList attribute
-            var memoryEngine = new DatabaseEngine("Memory", new MemoryProvider(), 0, 
+            var memoryEngine = new DatabaseEngine(new MemoryProvider(), 0, 
                 (string host, int port, string name, string user, string password) =>
                 {
-                    return null;
+                    return "MemoryDb";
                 });
-            DbEngineList.Add(memoryEngine);
-            var postgreEngine = new DatabaseEngine("PostgreSQL", new PgSqlProvider(), 5432,
+            DbEngineList.Add("Memory", memoryEngine);
+            var postgreEngine = new DatabaseEngine(new PgSqlProvider(), 5432,
                 (string host, int port, string name, string user, string password) =>
                 {
                     return $"Host={host};Port={port};Database={name};Username={user};Password={password}";
                 });
-            DbEngineList.Add(postgreEngine);
-            var mySqlEngine = new DatabaseEngine("MySQL", new MySqlProvider(), 3306,
+            DbEngineList.Add("PostgreSQL", postgreEngine);
+            var mySqlEngine = new DatabaseEngine(new MySqlProvider(), 3306,
                 (string host, int port, string name, string user, string password) =>
                 {
                     return $"Server={host};Port={port};Database={name};uid={user};pwd={password}";
                 });
-            DbEngineList.Add(mySqlEngine);
+            DbEngineList.Add("MySQL", mySqlEngine);
         }
     }
 
     public class DatabaseEngine
     {
-        public string Name { get; }
         public IDbProvider Provider { get; }
         public int DefaultPort { get; }
         public Func<string, int, string, string, string, string> CreateConnectionString { get; }
 
-        public DatabaseEngine(string name, IDbProvider provider, int defaultPort, 
+        public DatabaseEngine(IDbProvider provider, int defaultPort, 
             Func<string, int, string, string, string, string> createConnectionString)
         {
-            Name = name;
             Provider = provider;
             DefaultPort = defaultPort;
             CreateConnectionString = createConnectionString;

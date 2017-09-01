@@ -134,7 +134,7 @@ namespace cl.uv.leikelen.View
         private void MenuItem_File_LoadTestScene_Click(object sender, RoutedEventArgs e)
         {
             ChangeHomeState(HomeState.FromFileWithScene);
-
+            var rnd = new Random();
             var scenes = DbFacade.Instance.Provider.LoadScenes();
             if(scenes != null)
             {
@@ -153,7 +153,7 @@ namespace cl.uv.leikelen.View
                 Description = "This is a test scene\n only for purposes of development",
                 Place = "Programmed",
                 RecordRealDateTime = new DateTime(2017, 8, 25, 16, 2, 0),
-                Duration = new TimeSpan(0, 2, 35)
+                Duration = new TimeSpan(0, 10, 30)
             };
             SceneInUse.Instance.Set(scene);
             var pAccess = new PersonAccess();
@@ -175,7 +175,7 @@ namespace cl.uv.leikelen.View
             smAccess.Add("Posture", "CrossedArms", "Is crossing his/her arms", null);
             
             
-            var rnd = new Random();
+            
             var eAccess = new EventAccess();
             var iAccess = new IntervalAccess();
             var tAccess = new TimelessAccess();
@@ -196,10 +196,12 @@ namespace cl.uv.leikelen.View
                         Console.WriteLine($"Which: {which}");
                         var data = rnd.Next(1, 3);
                         Console.WriteLine($"Data: {data}");
-                        for (int j = 0; j<rnd.Next(0, 100);j++)
+                        int representTypeQuantity = rnd.Next(1, 15);
+                        int lastTickGenerated = 0;
+                        for (int j = 1; j<=representTypeQuantity;j++)
                         {
                             double doubleData = rnd.NextDouble();
-                            string subtitleData = "hola";
+                            string subtitleData = "hola este es un string";
                             switch (which)
                             {
                                 case 1:
@@ -217,9 +219,11 @@ namespace cl.uv.leikelen.View
                                     }
                                     break;
                                 case 2:
-                                    int minTicks = rnd.Next(0, (int)SceneInUse.Instance.Scene.Duration.Ticks);
+                                    int minTicks = lastTickGenerated +  1;
+                                    int maxTicks = (int)SceneInUse.Instance.Scene.Duration.Ticks / representTypeQuantity * j;
+                                    lastTickGenerated = maxTicks;
                                     TimeSpan min = new TimeSpan(minTicks);
-                                    TimeSpan max = new TimeSpan(rnd.Next(minTicks, (int)SceneInUse.Instance.Scene.Duration.Ticks));
+                                    TimeSpan max = new TimeSpan(rnd.Next(minTicks, maxTicks));
                                     switch (data)
                                     {
                                         case 1:
