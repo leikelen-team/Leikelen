@@ -22,6 +22,7 @@
             <RowDefinition />
             <RowDefinition />
             <RowDefinition />
+            <RowDefinition />
             <RowDefinition MinHeight="55" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -32,19 +33,22 @@
         <Label VerticalAlignment="Bottom" Content="{x:Static resx:GUI.BD_Engine}" Grid.Row="0" Grid.Column="0" />
         <ComboBox x:Name="EngineCmbx" Grid.Row="0" Grid.Column="1"></ComboBox>
 
-        <Label VerticalAlignment="Bottom" Content="{x:Static resx:GUI.BD_Host}" Grid.Row="1" Grid.Column="0" />
-        <TextBox x:Name="HostTxt" Grid.Row="1" Grid.Column="1"></TextBox>
+        <Label VerticalAlignment="Bottom" Content="{x:Static resx:GUI.Name}" Grid.Row="1" Grid.Column="0" />
+        <TextBox x:Name="NameTxt" Grid.Row="1" Grid.Column="1"></TextBox>
+        
+        <Label VerticalAlignment="Bottom" Content="{x:Static resx:GUI.BD_Host}" Grid.Row="2" Grid.Column="0" />
+        <TextBox x:Name="HostTxt" Grid.Row="2" Grid.Column="1"></TextBox>
 
-        <Label VerticalAlignment="Bottom" Content="{x:Static resx:GUI.BD_Port}" Grid.Row="2" Grid.Column="0" />
-        <TextBox x:Name="PortTxt" Grid.Row="2" Grid.Column="1"></TextBox>
+        <Label VerticalAlignment="Bottom" Content="{x:Static resx:GUI.BD_Port}" Grid.Row="3" Grid.Column="0" />
+        <TextBox x:Name="PortTxt" Grid.Row="3" Grid.Column="1"></TextBox>
 
-        <Label VerticalAlignment="Bottom" Content="{x:Static resx:GUI.User}" Grid.Row="3" Grid.Column="0" />
-        <TextBox x:Name="UserTxt" Grid.Row="3" Grid.Column="1"></TextBox>
+        <Label VerticalAlignment="Bottom" Content="{x:Static resx:GUI.User}" Grid.Row="4" Grid.Column="0" />
+        <TextBox x:Name="UserTxt" Grid.Row="4" Grid.Column="1"></TextBox>
 
-        <Label VerticalAlignment="Bottom" Content="{x:Static resx:GUI.Password}" Grid.Row="4" Grid.Column="0" />
-        <TextBox x:Name="PasswordTxt" Grid.Row="4" Grid.Column="1"></TextBox>
+        <Label VerticalAlignment="Bottom" Content="{x:Static resx:GUI.Password}" Grid.Row="5" Grid.Column="0" />
+        <TextBox x:Name="PasswordTxt" Grid.Row="5" Grid.Column="1"></TextBox>
 
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="5" Grid.ColumnSpan="2" Orientation="Horizontal">
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="6" Grid.ColumnSpan="2" Orientation="Horizontal">
             <Button x:Name="AcceptBtn" Content="{x:Static resx:GUI.Accept}" Margin="5" />
             <Button x:Name="CancelBtn" Content="{x:Static resx:GUI.Cancel}" Margin="5" />
         </StackPanel>

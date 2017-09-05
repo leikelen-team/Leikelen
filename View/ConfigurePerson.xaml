@@ -20,6 +20,7 @@
             <RowDefinition MinHeight="30" Height="1*" />
             <RowDefinition MinHeight="30" Height="1*" />
             <RowDefinition MinHeight="30" Height="1*" />
+            <RowDefinition MinHeight="30" Height="1*" />
             <RowDefinition MinHeight="50" Height="1.5*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -28,12 +29,9 @@
         </Grid.ColumnDefinitions>
         <Label VerticalAlignment="Bottom" Grid.Row="0" Grid.Column="0" Content="{x:Static resx:GUI.Name}" />
         <TextBox VerticalAlignment="Bottom" Grid.Row="0" Grid.Column="1" x:Name="NameTextBox" materialDesign:HintAssist.Hint="{x:Static resx:GUI.Name}"></TextBox>
-        
-        <Label VerticalAlignment="Bottom" Grid.Row="1" Grid.Column="0" Content="{x:Static resx:GUI.Age}"/>
-        <TextBox VerticalAlignment="Bottom" Grid.Row="1" Grid.Column="1" x:Name="AgeTextBox" materialDesign:HintAssist.Hint="{x:Static resx:GUI.Age}"></TextBox>
-        
-        <Label VerticalAlignment="Bottom" Grid.Row="2" Grid.Column="0" Content="{x:Static resx:GUI.Gender}"/>
-        <ComboBox VerticalAlignment="Bottom" Grid.Row="2" Grid.Column="1" x:Name="GenderComboBox">
+
+        <Label VerticalAlignment="Bottom" Grid.Row="2" Grid.Column="0" Content="{x:Static resx:GUI.Sex}"/>
+        <ComboBox VerticalAlignment="Bottom" Grid.Row="2" Grid.Column="1" x:Name="SexComboBox">
             <ComboBoxItem IsSelected="True" Content="{x:Static resx:GUI.Unknown}"></ComboBoxItem>
             <ComboBoxItem Content="{x:Static resx:GUI.Male}" ></ComboBoxItem>
             <ComboBoxItem Content="{x:Static resx:GUI.Female}"></ComboBoxItem>
@@ -45,7 +43,11 @@
             <Button HorizontalAlignment="Right" x:Name="PhotoBtn" Content="..." ></Button>
         </Grid>
 
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
+        <Label VerticalAlignment="Bottom" Grid.Row="4" Grid.Column="0" Content="{x:Static resx:GUI.Birthday}" />
+        <DatePicker x:Name="BirthdayPicker" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="{x:Static resx:GUI.Date}" Style="{StaticResource MaterialDesignFloatingHintDatePicker}">
+        </DatePicker>
+
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
             <Button x:Name="AcceptBtn" Content="{x:Static resx:GUI.Accept}" Margin="5" />
             <Button x:Name="CancelBtn" Content="{x:Static resx:GUI.Cancel}" Margin="5" />
         </StackPanel>

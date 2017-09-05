@@ -13,7 +13,7 @@ namespace cl.uv.leikelen.Data.Access.External
         public List<Interval> GetAll(int personId, string modalName, string subModalName)
         {
             var personInScene = Internal.SceneInUse.Instance.Scene.PersonsInScene.Find(pis => pis.PersonId == personId);
-            var subModalPersonInScene = personInScene.SubModalType_PersonInScenes.Find(smtPis => smtPis.SubModalType.SubModalTypeId == subModalName && smtPis.SubModalType.ModalType.ModalTypeId == modalName);
+            var subModalPersonInScene = personInScene.SubModalType_PersonInScenes.Find(smtPis => smtPis.SubModalType.SubModalTypeId.Equals(subModalName) && smtPis.SubModalType.ModalType.ModalTypeId.Equals(modalName));
             var intervalRepresent = subModalPersonInScene.RepresentTypes.FindAll(rt => rt.IntervalData != null && rt.EventData == null && !rt.Index.HasValue);
             if(intervalRepresent == null)
             {
@@ -34,6 +34,35 @@ namespace cl.uv.leikelen.Data.Access.External
                     });
                 }
                 return intervalList;
+            }
+        }
+
+        public void FromEvent(int personId, string modalName, string subModalName, int millisecondsThreshold)
+        {
+            var eventAccess = new EventAccess();
+            var events = eventAccess.GetAll(personId, modalName, subModalName);
+            if (events == null)
+                throw new Exception("There are no events in ModalType:" + modalName + " and subModal:" + subModalName);
+            TimeSpan? start = null, end = null;
+            int threshold = millisecondsThreshold;
+
+            foreach (var timeEvent in events)
+            {
+                if (end == null)
+                {
+                    start = timeEvent.EventTime;
+                }
+                else if (end.Value.Subtract(start.Value).TotalMilliseconds >= millisecondsThreshold)
+                {
+                    Add(personId, modalName, subModalName, start.Value, end.Value);
+                    start = timeEvent.EventTime;
+                }
+                end = timeEvent.EventTime;
+
+            }
+            if (start != null)
+            {
+                Add(personId, modalName, subModalName, start.Value, end.Value);
             }
         }
 
@@ -77,6 +106,8 @@ namespace cl.uv.leikelen.Data.Access.External
                 IntervalData = intervalElement,
                 SubModalType_PersonInScene = subModalPersonInScene
             });
+
+            
         }
     }
 }

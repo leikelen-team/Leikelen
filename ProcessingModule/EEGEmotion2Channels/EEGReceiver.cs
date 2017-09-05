@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using cl.uv.leikelen.API.FrameProvider.EEG;
-using cl.uv.leikelen.Data.Access.External;
+using cl.uv.leikelen.Data.Access;
+using cl.uv.leikelen.API.DataAccess;
 
 namespace cl.uv.leikelen.ProcessingModule.EEGEmotion2Channels
 {
@@ -15,6 +16,7 @@ namespace cl.uv.leikelen.ProcessingModule.EEGEmotion2Channels
         private bool _signalGet;
         private readonly ClassifierType _type;
         private int _lastSecond;
+        private IDataAccessFacade DataAccessFacade = new DataAccessFacade();
 
         public EEGReceiver(ClassifierType type)
         {
@@ -39,12 +41,12 @@ namespace cl.uv.leikelen.ProcessingModule.EEGEmotion2Channels
             var channelCounter = 0;
             foreach (var channel in e.Channels)
             {
-                    if (channel.Position == "F3")
+                    if (channel.Position.Equals("F3"))
                     {
                         values[0] = channel.Value;
                         channelCounter++;
                     }
-                    if (channel.Position == "C4")
+                    if (channel.Position.Equals("C4"))
                     {
                         values[1] = channel.Value;
                         channelCounter++;
@@ -54,7 +56,7 @@ namespace cl.uv.leikelen.ProcessingModule.EEGEmotion2Channels
                 _signaList.Add(values);
 
             //if the window ends, sends the signal to process
-            var sceneLocation = SceneInUseAccess.Instance.GetLocation();
+            var sceneLocation = DataAccessFacade.GetSceneInUseAccess().GetLocation();
             if (_signaList.Count >= 0 
                 && sceneLocation.HasValue 
                 && _lastSecond != (int)sceneLocation.Value.TotalSeconds 

@@ -23,6 +23,8 @@ namespace cl.uv.leikelen.ProcessingModule.Kinect.Voice
             IsEnabled = true;
             Plurality = ProcessingPlurality.Scene;
 
+            
+
             _logic = new VoiceLogic();
         }
 

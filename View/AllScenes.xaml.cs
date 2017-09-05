@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using cl.uv.leikelen.Data.Access;
 
 namespace cl.uv.leikelen.View
 {
@@ -22,6 +23,21 @@ namespace cl.uv.leikelen.View
         public AllScenes()
         {
             InitializeComponent();
+            
+            PersonDataGrid.ItemsSource = DataAccessFacade.Instance.GetSceneAccess().GetAll();
+
+            OpenBtn.Click += OpenBtn_Click;
+            DeleteBtn.Click += DeleteBtn_Click;
+        }
+
+        private void DeleteBtn_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void OpenBtn_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }

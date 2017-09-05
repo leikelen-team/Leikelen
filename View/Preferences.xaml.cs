@@ -23,8 +23,17 @@ namespace cl.uv.leikelen.View
         public Preferences()
         {
             InitializeComponent();
-            Tabs.AddToSource(new Widget.PreferencesGeneral());
-            Tabs.AddToSource(new Widget.PreferencesBD());
+            var generalTab = new Widget.PreferencesGeneral();
+            var DbTab = new Widget.PreferencesBD();
+            Tabs.AddToSource(generalTab);
+            Tabs.AddToSource(DbTab);
+
+            DbTab.CancelBtn.Click += CancelBtn_Click;
+        }
+
+        private void CancelBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
 
         public void ShowBd()

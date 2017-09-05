@@ -8,22 +8,18 @@ using cl.uv.leikelen.Data.Model;
 
 namespace cl.uv.leikelen.Data.Persistence.Provider
 {
-    public class SqliteProvider : DbDataContext
+    public class SqliteProvider : EfAbstractProvider
     {
         public SqliteProvider()
         {
 
         }
 
-        public SqliteProvider(DbContextOptions options)
-            : base(options)
-        { }
-
         public override void CreateConnection(string options)
         {
             var optionsBuilder = new DbContextOptionsBuilder();
             optionsBuilder.UseSqlite(options);
-            Db = new SqliteProvider(optionsBuilder.Options);
+            Db = new DbDataContext(optionsBuilder.Options);
         }
 
         public void Save(Scene scene)

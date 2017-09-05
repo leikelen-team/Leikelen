@@ -25,5 +25,13 @@ namespace cl.uv.leikelen.Data.Access.External
         {
             return DbFacade.Instance.Provider.LoadScenes();
         }
+
+        public Scene SaveOrUpdate(Scene scene)
+        {
+            if (DbFacade.Instance.Provider.LoadScene(scene.SceneId) == null)
+                return DbFacade.Instance.Provider.SaveScene(scene);
+            else
+                return DbFacade.Instance.Provider.UpdateScene(scene);
+        }
     }
 }

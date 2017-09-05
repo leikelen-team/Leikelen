@@ -61,7 +61,7 @@ namespace cl.uv.leikelen.Data.Access.External
             else
             {
                 var submodals = DbFacade.Instance.Provider.LoadSubModals(modal.ModalTypeId);
-                return submodals.Exists(sm => sm.SubModalTypeId == subModalName);
+                return submodals.Exists(sm => sm.SubModalTypeId.Equals(subModalName));
             }
             
         }

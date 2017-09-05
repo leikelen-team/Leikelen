@@ -68,6 +68,7 @@ namespace cl.uv.leikelen.InputModule.Kinect
 
         public void OnSkeletonImageArrived(ImageSource e)
         {
+            Console.WriteLine("boody en on skeleton image arrived");
             SkeletonImageArrived?.Invoke(this, e);
         }
 

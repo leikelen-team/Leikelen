@@ -7,11 +7,9 @@ using cl.uv.leikelen.Data.Model;
 
 namespace cl.uv.leikelen.API.DataAccess
 {
-    public interface ISceneAccess
+    public interface ISceneInUseAccess
     {
-        List<Scene> GetAll();
-        Scene Get(int sceneId);
-        bool Exists(int sceneId);
-        Scene SaveOrUpdate(Scene scene);
+        Scene GetScene();
+        TimeSpan? GetLocation();
     }
 }

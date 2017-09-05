@@ -199,4 +199,10 @@
   <data name="Tools_Processing_General" xml:space="preserve">
     <value>Módulos de procesamiento generales</value>
   </data>
+  <data name="Help_DevDocumentation" xml:space="preserve">
+    <value>Documentación de desarrollador</value>
+  </data>
+  <data name="Scene_Persons" xml:space="preserve">
+    <value>Personas</value>
+  </data>
 </root>

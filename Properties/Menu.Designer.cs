@@ -169,6 +169,15 @@ namespace cl.uv.leikelen.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Developer Documentation.
+        /// </summary>
+        public static string Help_DevDocumentation {
+            get {
+                return ResourceManager.GetString("Help_DevDocumentation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a User manual.
         /// </summary>
         public static string Help_Manual {
@@ -201,6 +210,15 @@ namespace cl.uv.leikelen.Properties {
         public static string Scene_Configure {
             get {
                 return ResourceManager.GetString("Scene_Configure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Persons.
+        /// </summary>
+        public static string Scene_Persons {
+            get {
+                return ResourceManager.GetString("Scene_Persons", resourceCulture);
             }
         }
         

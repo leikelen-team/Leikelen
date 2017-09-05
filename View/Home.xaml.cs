@@ -13,12 +13,11 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using cl.uv.leikelen.Controller;
-using cl.uv.leikelen.Data.Access.Internal;
 using cl.uv.leikelen.InputModule;
 using cl.uv.leikelen.ProcessingModule;
 using System.Diagnostics;
-using cl.uv.leikelen.Data.Access.External;
-using cl.uv.leikelen.Data.Persistence;
+using cl.uv.leikelen.Data.Access.Internal;
+using cl.uv.leikelen.Data.Access;
 using cl.uv.leikelen.Properties;
 using MaterialDesignThemes.Wpf;
 
@@ -55,9 +54,9 @@ namespace cl.uv.leikelen.View
         /// Timer used when is recording to alternate the color of the button and change the actual time label
         /// </summary>
         private readonly DispatcherTimer _recordTimer;
-
-
-
+        /// <summary>
+        /// Get or Sets the state of the window
+        /// </summary>
         private HomeState _homeState;
 
         public Home()
@@ -89,11 +88,12 @@ namespace cl.uv.leikelen.View
             MenuItem_Tools_Preferences.Click += MenuItem_Tools_Preferences_Click;
             MenuItem_Tools_DB.Click += MenuItem_Tools_DB_Click;
 
-            //SCene MenuItems
+            //Scene MenuItems
             MenuItem_Scene_Configure.Click += MenuItem_Scene_Configure_Click;
             MenuItem_Scene_AddPerson.Click += MenuItem_Scene_AddPerson_Click;
 
             //Help MenuItems
+            MenuItem_Help_DevDoc.Click += MenuItem_Help_DevDoc_Click;
             MenuItem_Help_AboutUs.Click += MenuItem_Help_AboutUs_Click;
 
             //Window related events
@@ -115,10 +115,10 @@ namespace cl.uv.leikelen.View
             InputLoader.Instance.VideoHandler.SkeletonImageArrived += VideoViewer_skeletonImageArrived;
 
             //Set initial states
-            Player_LocationSlider.IsEnabled = false;
-            MenuItem_Scene.IsEnabled = false;
-            MenuItem_File_Save.IsEnabled = false;
-            MenuItem_File_NewScene.IsEnabled = false;
+            ChangeHomeState(HomeState.Initial);
+
+            SkeletonLayerCheckbox.IsChecked = true;
+            ColorLayerCheckbox.IsChecked = true;
 
             Tabs.AddToSource(new Widget.TabInterval());
             Tabs.AddToSource(new Widget.TabGraph());
@@ -131,14 +131,15 @@ namespace cl.uv.leikelen.View
             FillMenuProccessingModules();
         }
 
+
         private void MenuItem_File_LoadTestScene_Click(object sender, RoutedEventArgs e)
         {
             ChangeHomeState(HomeState.FromFileWithScene);
             var rnd = new Random();
-            var scenes = DbFacade.Instance.Provider.LoadScenes();
+            var scenes = DataAccessFacade.Instance.GetSceneAccess().GetAll();
             if(scenes != null)
             {
-                var testScene = scenes.Find(s => s.Name == "Test");
+                var testScene = scenes.Find(s => s.Name.Equals("Test"));
                 if(testScene != null)
                 {
                     SceneInUse.Instance.Set(testScene);
@@ -156,36 +157,34 @@ namespace cl.uv.leikelen.View
                 Duration = new TimeSpan(0, 10, 30)
             };
             SceneInUse.Instance.Set(scene);
-            var pAccess = new PersonAccess();
-            var person1 = pAccess.Add("Erick",null, null, 'M');
-            var person2 = pAccess.Add("Dorotea", null, null, 'F');
-            pAccess.AddToScene(person1, scene);
-            pAccess.AddToScene(person2, scene);
+            var person1 = DataAccessFacade.Instance.GetPersonAccess().Add("Erick",null, null, 'M');
+            var person2 = DataAccessFacade.Instance.GetPersonAccess().Add("Dorotea", null, null, 'F');
+            DataAccessFacade.Instance.GetPersonAccess().AddToScene(person1, scene);
+            DataAccessFacade.Instance.GetPersonAccess().AddToScene(person2, scene);
 
-            var mAccess = new ModalAccess();
-            var smAccess = new SubModalAccess();
+            if (!DataAccessFacade.Instance.GetModalAccess().Exists("Voice"))
+                DataAccessFacade.Instance.GetModalAccess().Add("Voice", "Hablo o no de kinect");
+            if(!DataAccessFacade.Instance.GetSubModalAccess().Exists("Voice", "Talked"))
+                DataAccessFacade.Instance.GetSubModalAccess().Add("Voice", "Talked", "Talked or not", null);
 
-            var modalPosture2 = mAccess.Add("Voice", "Hablo o no de kinect");
-            smAccess.Add("Voice", "Talked", "Talked or not", null);
-
-            var modalPosture1 = mAccess.Add("Posture", "Posturas de kinect");
-            smAccess.Add("Posture", "Seated", "Is Seated", null);
-            smAccess.Add("Posture", "Hand On Wrist", "o<>===<", null);
-            smAccess.Add("Posture", "Asking Help", "I have a question teacher plis", null);
-            smAccess.Add("Posture", "CrossedArms", "Is crossing his/her arms", null);
+            if(!DataAccessFacade.Instance.GetModalAccess().Exists("Posture"))
+                DataAccessFacade.Instance.GetModalAccess().Add("Posture", "Posturas de kinect");
+            if (!DataAccessFacade.Instance.GetSubModalAccess().Exists("Posture", "Seated"))
+                DataAccessFacade.Instance.GetSubModalAccess().Add("Posture", "Seated", "Is Seated", null);
+            if (!DataAccessFacade.Instance.GetSubModalAccess().Exists("Posture", "Hand On Wrist"))
+                DataAccessFacade.Instance.GetSubModalAccess().Add("Posture", "Hand On Wrist", "o<>===<", null);
+            if (!DataAccessFacade.Instance.GetSubModalAccess().Exists("Posture", "Asking Help"))
+                DataAccessFacade.Instance.GetSubModalAccess().Add("Posture", "Asking Help", "I have a question teacher plis", null);
+            if (!DataAccessFacade.Instance.GetSubModalAccess().Exists("Posture", "CrossedArms"))
+                DataAccessFacade.Instance.GetSubModalAccess().Add("Posture", "CrossedArms", "Is crossing his/her arms", null);
             
-            
-            
-            var eAccess = new EventAccess();
-            var iAccess = new IntervalAccess();
-            var tAccess = new TimelessAccess();
-            Console.WriteLine(mAccess.GetAll().Count);       
-            foreach(var pis in SceneInUse.Instance.Scene.PersonsInScene)
+                
+            foreach(var pis in DataAccessFacade.Instance.GetSceneInUseAccess().GetScene().PersonsInScene)
             {
                 var howMany = rnd.Next(1, 5);
                 int i = 0;
                 Console.WriteLine($"How many: {howMany}");
-                foreach (var m in mAccess.GetAll())
+                foreach (var m in DataAccessFacade.Instance.GetModalAccess().GetAll())
                 {
                     Console.WriteLine($"{m.ModalTypeId} tiene {m.SubModalTypes.Count} submodaltypes");
                     foreach (var s in m.SubModalTypes)
@@ -202,38 +201,39 @@ namespace cl.uv.leikelen.View
                         {
                             double doubleData = rnd.NextDouble();
                             string subtitleData = "hola este es un string";
+                            int sceneTicks = (int)DataAccessFacade.Instance.GetSceneInUseAccess().GetScene().Duration.Ticks;
                             switch (which)
                             {
                                 case 1:
                                     switch (data)
                                     {
                                         case 1:
-                                            eAccess.Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, new TimeSpan(rnd.Next(0, (int)SceneInUse.Instance.Scene.Duration.Ticks)), doubleData);
+                                            DataAccessFacade.Instance.GetEventAccess().Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, new TimeSpan(rnd.Next(0, sceneTicks)), doubleData);
                                             break;
                                         case 2:
-                                            eAccess.Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, new TimeSpan(rnd.Next(0, (int)SceneInUse.Instance.Scene.Duration.Ticks)), subtitleData);
+                                            DataAccessFacade.Instance.GetEventAccess().Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, new TimeSpan(rnd.Next(0, sceneTicks)), subtitleData);
                                             break;
                                         case 3:
-                                            eAccess.Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, new TimeSpan(rnd.Next(0, (int)SceneInUse.Instance.Scene.Duration.Ticks)));
+                                            DataAccessFacade.Instance.GetEventAccess().Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, new TimeSpan(rnd.Next(0, sceneTicks)));
                                             break;
                                     }
                                     break;
                                 case 2:
                                     int minTicks = lastTickGenerated +  1;
-                                    int maxTicks = (int)SceneInUse.Instance.Scene.Duration.Ticks / representTypeQuantity * j;
+                                    int maxTicks = sceneTicks / representTypeQuantity * j;
                                     lastTickGenerated = maxTicks;
                                     TimeSpan min = new TimeSpan(minTicks);
                                     TimeSpan max = new TimeSpan(rnd.Next(minTicks, maxTicks));
                                     switch (data)
                                     {
                                         case 1:
-                                            iAccess.Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId,min,max, doubleData);
+                                            DataAccessFacade.Instance.GetIntervalAccess().Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId,min,max, doubleData);
                                             break;
                                         case 2:
-                                            iAccess.Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, min, max, subtitleData);
+                                            DataAccessFacade.Instance.GetIntervalAccess().Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, min, max, subtitleData);
                                             break;
                                         case 3:
-                                            iAccess.Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, min, max);
+                                            DataAccessFacade.Instance.GetIntervalAccess().Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, min, max);
                                             break;
                                     }
                                     break;
@@ -241,13 +241,13 @@ namespace cl.uv.leikelen.View
                                     switch (data)
                                     {
                                         case 1:
-                                            tAccess.Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, rnd.Next(0, 24), doubleData);
+                                            DataAccessFacade.Instance.GetTimelessAccess().Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, rnd.Next(0, 24), doubleData);
                                             break;
                                         case 2:
-                                            tAccess.Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, rnd.Next(0, 24), subtitleData);
+                                            DataAccessFacade.Instance.GetTimelessAccess().Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, rnd.Next(0, 24), subtitleData);
                                             break;
                                         case 3:
-                                            tAccess.Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, rnd.Next(0, 24));
+                                            DataAccessFacade.Instance.GetTimelessAccess().Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, rnd.Next(0, 24));
                                             break;
                                     }
                                     break;
@@ -452,7 +452,7 @@ namespace cl.uv.leikelen.View
             configureSceneWin.Show();
             configureSceneWin.Closed += (senderClosed, eClosed) =>
             {
-                if (SceneInUse.Instance.Scene != null)
+                if (!Object.ReferenceEquals(null, DataAccessFacade.Instance.GetSceneInUseAccess().GetScene()))
                 {
                     ChangeHomeState(HomeState.FromSensorWithScene);
                 }
@@ -465,7 +465,7 @@ namespace cl.uv.leikelen.View
             allScenesWin.Show();
             allScenesWin.Closed += (senderAllScenes, eAllScenes) =>
             {
-                if (SceneInUse.Instance.Scene != null)
+                if (!Object.ReferenceEquals(null, DataAccessFacade.Instance.GetSceneInUseAccess().GetScene()))
                 {
                     ChangeHomeState(HomeState.FromFileWithScene);
                 }
@@ -474,14 +474,9 @@ namespace cl.uv.leikelen.View
 
         private void MenuItem_File_Save_Click(object sender, RoutedEventArgs e)
         {
-            if (SceneInUse.Instance.Scene != null)
+            if (!Object.ReferenceEquals(null, DataAccessFacade.Instance.GetSceneInUseAccess().GetScene()))
             {
-                if (DbFacade.Instance.Provider.LoadScene(SceneInUse.Instance.Scene.SceneId) == null)
-                    DbFacade.Instance.Provider.SaveScene(SceneInUse.Instance.Scene);
-                else
-                    DbFacade.Instance.Provider.UpdateScene(SceneInUse.Instance.Scene);
-
-
+                DataAccessFacade.Instance.GetSceneAccess().SaveOrUpdate(DataAccessFacade.Instance.GetSceneInUseAccess().GetScene());
             }
         }
 
@@ -520,7 +515,7 @@ namespace cl.uv.leikelen.View
         #region Scene MenuItems
         private void MenuItem_Scene_AddPerson_Click(object sender, RoutedEventArgs e)
         {
-            if (SceneInUse.Instance.Scene != null)
+            if (!Object.ReferenceEquals(null, DataAccessFacade.Instance.GetSceneInUseAccess().GetScene()))
             {
                 var addPersonWin = new ConfigurePerson();
                 addPersonWin.Show();
@@ -529,9 +524,9 @@ namespace cl.uv.leikelen.View
 
         private void MenuItem_Scene_Configure_Click(object sender, RoutedEventArgs e)
         {
-            if (SceneInUse.Instance.Scene != null)
+            if (!Object.ReferenceEquals(null, DataAccessFacade.Instance.GetSceneInUseAccess().GetScene()))
             {
-                var configureSceneWin = new ConfigureScene(SceneInUse.Instance.Scene);
+                var configureSceneWin = new ConfigureScene(DataAccessFacade.Instance.GetSceneInUseAccess().GetScene());
                 configureSceneWin.Show();
             }
         }
@@ -543,13 +538,19 @@ namespace cl.uv.leikelen.View
             var aboutWin = new AboutUs();
             aboutWin.Show();
         }
+
+
+        private void MenuItem_Help_DevDoc_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start(@"documentation\index.html");
+        }
         #endregion
 
         #region Video viewer
 
         private void VideoViewer_skeletonImageArrived(object sender, System.Windows.Media.ImageSource e)
         {
-            Console.WriteLine("skeleton arrived");
+            Console.WriteLine("----skeleton arrived");
             if (SkeletonLayerCheckbox.IsChecked.HasValue && SkeletonLayerCheckbox.IsChecked.Value)
             {
                 Player_ImageControl_Layer1.Source = e;
@@ -609,6 +610,7 @@ namespace cl.uv.leikelen.View
                 Player_RecordButton.Background = _buttonBackground;
                 Player_RecordButton.IsEnabled = true;
                 Player_StopButton.IsEnabled = false;
+                ChangeHomeState(HomeState.FromSensorWithScene);
             }
         }
 
@@ -653,7 +655,7 @@ namespace cl.uv.leikelen.View
 
         private void _recordTimer_Tick(object sender, EventArgs e)
         {
-            var location = SceneInUseAccess.Instance.GetLocation();
+            var location = DataAccessFacade.Instance.GetSceneInUseAccess().GetLocation();
             if (location.HasValue)
             {
                 Player_ActualTimeLabel.Content = location.Value.ToString(@"hh\:mm\:ss");
@@ -715,6 +717,7 @@ namespace cl.uv.leikelen.View
             }
             else
             {
+                //TODO: hacer from file
                 SceneInUse.Instance.Set(null);
                 ChangeHomeState(HomeState.FromFile);
             }
@@ -729,12 +732,14 @@ namespace cl.uv.leikelen.View
             {
                 MenuItem processMenuItem = new MenuItem();
                 processMenuItem.Header = process.Name;
+
                 //windows of processing modules
                 List<MenuItem> windowsMenuItems = new List<MenuItem>();
                 foreach (var window in process.Windows)
                 {
                     MenuItem processWin = new MenuItem();
                     processWin.Header = window.Item1;
+                    processWin.IsEnabled = false;
                     processWin.Click += (sender, e) => {
                         window.Item2.GetWindow().Show();
                     };
@@ -763,6 +768,7 @@ namespace cl.uv.leikelen.View
                 };
                 processMenuItem.Items.Add(processCheck);
 
+                //add to GUI menu according its plurality.
                 switch (process.Plurality)
                 {
                     case API.ProcessingModule.ProcessingPlurality.Scene:
@@ -781,6 +787,21 @@ namespace cl.uv.leikelen.View
             {
                 MenuItem inputMenuItem = new MenuItem();
                 inputMenuItem.Header = input.Name;
+                //fill the windows of inputmodules
+                List<MenuItem> windowsMenuItems = new List<MenuItem>();
+                foreach (var window in input.Windows)
+                {
+                    MenuItem inputWin = new MenuItem();
+                    inputWin.IsEnabled = false;
+                    inputWin.Header = window.Item1;
+                    inputWin.Click += (object sender, RoutedEventArgs e) => {
+                        window.Item2.GetWindow().Show();
+                    };
+                    windowsMenuItems.Add(inputWin);
+                    inputMenuItem.Items.Add(inputWin);
+                }
+
+                //fill the checkbox to enable/disable the module
                 CheckBox inputCheck = new CheckBox();
                 inputCheck.Content = Properties.Menu.Enable;
                 inputCheck.Checked += (object sender, RoutedEventArgs e) =>
@@ -788,10 +809,18 @@ namespace cl.uv.leikelen.View
                     try
                     {
                         input.Monitor.Open();
+                        foreach (var winItem in windowsMenuItems)
+                        {
+                            winItem.IsEnabled = true;
+                        }
                     }
                     catch (Exception ex)
                     {
                         inputCheck.IsChecked = false;
+                        foreach (var winItem in windowsMenuItems)
+                        {
+                            winItem.IsEnabled = false;
+                        }
                     }
 
                 };
@@ -800,22 +829,22 @@ namespace cl.uv.leikelen.View
                     try
                     {
                         input.Monitor.Close();
+                        foreach (var winItem in windowsMenuItems)
+                        {
+                            winItem.IsEnabled = false;
+                        }
                     }
                     catch (Exception ex)
                     {
                         inputCheck.IsChecked = true;
+                        foreach (var winItem in windowsMenuItems)
+                        {
+                            winItem.IsEnabled = true;
+                        }
                     }
                 };
                 inputMenuItem.Items.Add(inputCheck);
-                foreach (var window in input.Windows)
-                {
-                    MenuItem inputWin = new MenuItem();
-                    inputWin.Header = window.Item1;
-                    inputWin.Click += (object sender, RoutedEventArgs e) => {
-                        window.Item2.GetWindow().Show();
-                    };
-                    inputMenuItem.Items.Add(inputWin);
-                }
+                //add to GUI menu
                 MenuItems_Tools_Sensors.Items.Add(inputMenuItem);
             }
         }

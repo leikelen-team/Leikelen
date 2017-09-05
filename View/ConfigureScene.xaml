@@ -55,13 +55,13 @@
         </TextBox>
 
         <Label VerticalAlignment="Bottom" Grid.Row="4" Grid.Column="0" Content="{x:Static resx:GUI.RecordDate}" />
-        <DatePicker x:Name="RealDatePicker" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Pick Date" Style="{StaticResource MaterialDesignFloatingHintDatePicker}">
+        <DatePicker x:Name="RealDatePicker" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="{x:Static resx:GUI.Date}" Style="{StaticResource MaterialDesignFloatingHintDatePicker}">
         </DatePicker>
         
         <Label VerticalAlignment="Bottom" Grid.Row="5" Grid.Column="0" Content="{x:Static resx:GUI.RecordTime}" />
         <materialDesign:TimePicker x:Name="RealTimePicker"  Grid.Row="5" Grid.Column="1"  VerticalAlignment="Center" HorizontalAlignment="Left"
                                    Style="{StaticResource MaterialDesignFloatingHintTimePicker}"
-                                   materialDesign:HintAssist.Hint="Custom hint">
+                                   materialDesign:HintAssist.Hint="{x:Static resx:GUI.Time}">
         </materialDesign:TimePicker>
         
         <Label VerticalAlignment="Top" Grid.Row="6" Grid.Column="0" Content="{x:Static resx:GUI.Description}" />

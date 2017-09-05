@@ -7,22 +7,19 @@ using Microsoft.EntityFrameworkCore;
 
 namespace cl.uv.leikelen.Data.Persistence.Provider
 {
-    public class MySqlProvider : DbDataContext
+    public class MySqlProvider : EfAbstractProvider
     {
         public MySqlProvider()
         {
             
         }
 
-        public MySqlProvider(DbContextOptions options)
-        : base(options)
-        { }
-
         public override void CreateConnection(string options)
         {
             var optionsBuilder = new DbContextOptionsBuilder();
             optionsBuilder.UseMySql(options);
-            Db = new MySqlProvider(optionsBuilder.Options);
+            Db = new DbDataContext(optionsBuilder.Options);
+            Db.Database.OpenConnection();
         }
     }
 }

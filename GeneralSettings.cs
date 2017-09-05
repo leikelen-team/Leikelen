@@ -9,10 +9,13 @@ namespace cl.uv.leikelen
 {
     public class GeneralSettings : SettingsContainer
     {
+        public readonly Option<string> DataDirectory = new Option<string>("DataDirectory", "data/");
         public readonly Option<string> TmpDirectory = new Option<string>("TmpDirectory", "tmp/");
         public readonly Option<string> CurrentSceneDirectory = new Option<string>("CurrentSceneDirectory", "current_scene/");
         public readonly Option<string> Extension = new Option<string>("Extension", ".leikelen");
         public readonly Option<string> ExtensionFilter = new Option<string>("ExtensionFilter", "*.leikelen");
+
+        public readonly Option<int> DefaultMillisecondsThreshold = new Option<int>("DefaultMilliseconds", 2000);
 
         public readonly Option<string> Database = new Option<string>("Database", "PostgreSQL");
         public readonly Option<string> DbHost = new Option<string>("DbHost", "localhost");

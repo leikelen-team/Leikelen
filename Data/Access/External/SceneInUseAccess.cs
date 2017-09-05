@@ -3,25 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using cl.uv.leikelen.Data.Model;
+using cl.uv.leikelen.API.DataAccess;
 
 namespace cl.uv.leikelen.Data.Access.External
 {
-    public class SceneInUseAccess
+    public class SceneInUseAccess : ISceneInUseAccess
     {
-        private static SceneInUseAccess _instance;
-
-        public static SceneInUseAccess Instance
+        public SceneInUseAccess()
         {
-            get
-            {
-                if (_instance == null) _instance = new SceneInUseAccess();
-                return _instance;
-            }
+
         }
 
-        private SceneInUseAccess()
+        public Scene GetScene()
         {
-
+            return Internal.SceneInUse.Instance.Scene;
         }
 
         public TimeSpan? GetLocation()

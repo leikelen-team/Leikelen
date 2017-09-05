@@ -9,8 +9,9 @@ using System.Windows.Threading;
 using System.IO;
 using cl.uv.leikelen.API.FrameProvider.Accelerometer;
 using cl.uv.leikelen.API.FrameProvider.EEG;
-using cl.uv.leikelen.Data.Access.External;
+using cl.uv.leikelen.Data.Access;
 using cl.uv.leikelen.ProcessingModule;
+using cl.uv.leikelen.API.DataAccess;
 
 namespace cl.uv.leikelen.InputModule.OpenBCI
 {
@@ -24,6 +25,7 @@ namespace cl.uv.leikelen.InputModule.OpenBCI
         private InputStatus _status;
         private Util.FileManage _filemanage;
         private readonly string[] _positions;
+        private IDataAccessFacade DataAccessFacade = new DataAccessFacade();
 
         private bool _isRecording;
 
@@ -210,7 +212,7 @@ namespace cl.uv.leikelen.InputModule.OpenBCI
                         };
                         OnAccelerometerArrived(accArgs);
                     }
-                    var actualTime = SceneInUseAccess.Instance.GetLocation();
+                    var actualTime = DataAccessFacade.GetSceneInUseAccess().GetLocation();
                     if (actualTime.HasValue)
                         _filemanage?.WriteFile(actualTime.Value, data);
                 }

@@ -259,4 +259,22 @@
   <data name="SceneImportedSuccesfully" xml:space="preserve">
     <value>Scene imported</value>
   </data>
+  <data name="BdWillNew" xml:space="preserve">
+    <value>The database will close the connection and will open a new with the entered parameters, ¿Are you sure?</value>
+  </data>
+  <data name="BdWillNewTitle" xml:space="preserve">
+    <value>New connection</value>
+  </data>
+  <data name="Birthday" xml:space="preserve">
+    <value>Birthday</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Time</value>
+  </data>
+  <data name="Sex" xml:space="preserve">
+    <value>Sex</value>
+  </data>
 </root>

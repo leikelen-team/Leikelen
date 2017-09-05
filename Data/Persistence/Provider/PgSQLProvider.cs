@@ -7,22 +7,18 @@ using Microsoft.EntityFrameworkCore;
 
 namespace cl.uv.leikelen.Data.Persistence.Provider
 {
-    public class PgSqlProvider : DbDataContext
+    public class PgSqlProvider : EfAbstractProvider
     {
         public PgSqlProvider()
         {
             
         }
 
-        public PgSqlProvider(DbContextOptions options)
-            : base(options)
-        { }
-
         public override void CreateConnection(string options)
         {
             var optionsBuilder = new DbContextOptionsBuilder();
             optionsBuilder.UseNpgsql(options);
-            Db = new PgSqlProvider(optionsBuilder.Options);
+            Db = new DbDataContext(optionsBuilder.Options);
             Db.Database.OpenConnection();
         }
     }

@@ -160,6 +160,33 @@ namespace cl.uv.leikelen.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a The database will close the connection and will open a new with the entered parameters, ¿Are you sure?.
+        /// </summary>
+        public static string BdWillNew {
+            get {
+                return ResourceManager.GetString("BdWillNew", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a New connection.
+        /// </summary>
+        public static string BdWillNewTitle {
+            get {
+                return ResourceManager.GetString("BdWillNewTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Birthday.
+        /// </summary>
+        public static string Birthday {
+            get {
+                return ResourceManager.GetString("Birthday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Cancel.
         /// </summary>
         public static string Cancel {
@@ -210,6 +237,15 @@ namespace cl.uv.leikelen.Properties {
         public static string DataBase {
             get {
                 return ResourceManager.GetString("DataBase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Date.
+        /// </summary>
+        public static string Date {
+            get {
+                return ResourceManager.GetString("Date", resourceCulture);
             }
         }
         
@@ -493,11 +529,29 @@ namespace cl.uv.leikelen.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Sex.
+        /// </summary>
+        public static string Sex {
+            get {
+                return ResourceManager.GetString("Sex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Please stop the recording before set from file.
         /// </summary>
         public static string stopReccordBeforeFromFile {
             get {
                 return ResourceManager.GetString("stopReccordBeforeFromFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Time.
+        /// </summary>
+        public static string Time {
+            get {
+                return ResourceManager.GetString("Time", resourceCulture);
             }
         }
         

@@ -63,6 +63,8 @@
                 </MenuItem>
                 <MenuItem x:Name="MenuItem_Help" Header="{x:Static resx:Menu.Help}">
                     <MenuItem x:Name="MenuItem_Help_Manual" Header="{x:Static resx:Menu.Help_Manual}" InputGestureText="Ctrl+H"></MenuItem>
+                    <MenuItem x:Name="MenuItem_Help_DevDoc" Header="{x:Static resx:Menu.Help_DevDocumentation}"></MenuItem>
+                    <Separator />
                     <MenuItem x:Name="MenuItem_Help_AboutUs" Header="{x:Static resx:Menu.Help_AboutUs}"></MenuItem>
                 </MenuItem>
             </Menu>

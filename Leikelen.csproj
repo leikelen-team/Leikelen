@@ -305,18 +305,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="API\DataAccess\IDataAccessFacade.cs" />
     <Compile Include="API\DataAccess\IPersonAccess.cs" />
     <Compile Include="API\DataAccess\ISceneAccess.cs" />
+    <Compile Include="API\DataAccess\ISceneInUseAccess.cs" />
     <Compile Include="API\FrameProvider\Accelerometer\IAccelerometerProcessingModule.cs" />
     <Compile Include="API\FrameProvider\EEG\IEegProcessingModule.cs" />
     <Compile Include="API\FrameProvider\Kinect\IKinectProcessingModule.cs" />
     <Compile Include="API\ProcessingModule\ProcessingPlurality.cs" />
     <Compile Include="Controller\FileController.cs" />
+    <Compile Include="Data\Access\DataAccessFacade.cs" />
     <Compile Include="Data\Access\External\PersonAccess.cs" />
     <Compile Include="Data\Access\External\SceneAccess.cs" />
     <Compile Include="Data\Access\External\SceneInUseAccess.cs" />
     <Compile Include="API\Helper\WindowBuilder.cs" />
     <Compile Include="Data\Access\External\TypeValidation.cs" />
+    <Compile Include="Data\Persistence\Provider\EfAbstractProvider.cs" />
     <Compile Include="Data\Persistence\Provider\MySqlProvider.cs" />
     <Compile Include="Data\Persistence\Provider\SqliteProvider.cs" />
     <Compile Include="InputModule\Kinect\KinectInput.cs" />

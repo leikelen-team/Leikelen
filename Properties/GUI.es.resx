@@ -279,4 +279,22 @@
   <data name="SceneImportedSuccesfullyTitle" xml:space="preserve">
     <value>La escena ha sido importada exitosamente</value>
   </data>
+  <data name="BdWillNew" xml:space="preserve">
+    <value>Se cerrará la conexión y volverá a abrir con los parámetros ingresados. ¿Está seguro?</value>
+  </data>
+  <data name="BdWillNewTitle" xml:space="preserve">
+    <value>Nueva conexión</value>
+  </data>
+  <data name="Birthday" xml:space="preserve">
+    <value>Cumpleaños</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Hora</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Fecha</value>
+  </data>
+  <data name="Sex" xml:space="preserve">
+    <value>Sexo</value>
+  </data>
 </root>

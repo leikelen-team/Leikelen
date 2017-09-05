@@ -25,6 +25,11 @@ namespace cl.uv.leikelen.Data.Access.External
             return person;
         }
 
+        public Person Update(Person person)
+        {
+            return DbFacade.Instance.Provider.UpdatePerson(person);
+        }
+
         public PersonInScene AddToScene(Person person, Scene scene)
         {
             return DbFacade.Instance.Provider.AddPersonToScene(person, scene);
@@ -32,12 +37,12 @@ namespace cl.uv.leikelen.Data.Access.External
 
         public bool Exists(int personId)
         {
-            return DbFacade.Instance.Provider.LoadPersons().Exists(p => p.PersonId == personId);
+            return DbFacade.Instance.Provider.LoadPersons().Exists(p => p.PersonId.Equals(personId));
         }
 
         public Person Get(int personId)
         {
-            return DbFacade.Instance.Provider.LoadPersons().Find(p => p.PersonId == personId);
+            return DbFacade.Instance.Provider.LoadPersons().Find(p => p.PersonId.Equals(personId));
         }
 
         public List<Person> GetAll()
