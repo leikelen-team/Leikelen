@@ -1,4 +1,7 @@
-﻿using System;
+﻿using cl.uv.leikelen.API.DataAccess;
+using cl.uv.leikelen.Data.Access;
+using cl.uv.leikelen.Data.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +22,8 @@ namespace cl.uv.leikelen.ProcessingModule.EEGEmotion2Channels.View
     /// </summary>
     public partial class ClassifierWindow : Window, ICloneable
     {
+        private IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
+
         public ClassifierWindow()
         {
             InitializeComponent();
@@ -27,8 +32,38 @@ namespace cl.uv.leikelen.ProcessingModule.EEGEmotion2Channels.View
             mTextBox.Text = EEGEmoProc2ChSettings.Instance.m.Value.ToString();
             rTextBox.Text = EEGEmoProc2ChSettings.Instance.r.Value.ToString();
             SecsTextBox.Text = EEGEmoProc2ChSettings.Instance.secs.Value.ToString();
+
+            ScenesDataGrid.ItemsSource = _dataAccessFacade.GetSceneAccess().GetAll();
+
+            TagCmbx.SelectionChanged += TagCmbx_SelectionChanged;
+            AddScenesToTag.Click += AddScenesToTag_Click;
             Accept.Click += AcceptBtnOnClick;
             Cancel.Click += Cancel_Click;
+        }
+
+        private void TagCmbx_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var tag = (TagType)TagCmbx.SelectedIndex;
+            if (TagCmbx.SelectedIndex >= 0)
+            {
+                ScenesAddedDataGrid.ItemsSource = TrainerEntryPoint.ScenesAndTags[tag];
+            }
+        }
+
+        private void AddScenesToTag_Click(object sender, RoutedEventArgs e)
+        {
+            var scenes = ScenesAddedDataGrid.SelectedItems as List<Scene>;
+            if(TagCmbx.SelectedIndex >= 0)
+            {
+                var tag = (TagType)TagCmbx.SelectedIndex;
+                if (scenes != null)
+                {
+                    foreach (var scene in scenes)
+                    {
+                        TrainerEntryPoint.ScenesAndTags[tag].Add(scene);
+                    }
+                }
+            }
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)

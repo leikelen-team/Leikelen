@@ -20,11 +20,8 @@ namespace cl.uv.leikelen.ProcessingModule.Kinect.Voice
             Windows = new List<Tuple<string, WindowBuilder>>();
             IsActiveBeforeRecording = false;
             Name = "Voice";
-            IsEnabled = true;
             Plurality = ProcessingPlurality.Scene;
-
             
-
             _logic = new VoiceLogic();
         }
 
@@ -46,6 +43,11 @@ namespace cl.uv.leikelen.ProcessingModule.Kinect.Voice
         public EventHandler<AudioBeamFrameArrivedEventArgs> AudioListener()
         {
             return _logic._audioBeamReader_FrameArrived;
+        }
+
+        public EventHandler<KinectGestureFrameArrivedArgs> GestureListener()
+        {
+            return null;
         }
     }
 }

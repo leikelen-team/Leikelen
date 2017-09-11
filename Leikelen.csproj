@@ -306,12 +306,15 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="API\DataAccess\IDataAccessFacade.cs" />
+    <Compile Include="API\DataAccess\IGeneralSettings.cs" />
     <Compile Include="API\DataAccess\IPersonAccess.cs" />
     <Compile Include="API\DataAccess\ISceneAccess.cs" />
     <Compile Include="API\DataAccess\ISceneInUseAccess.cs" />
     <Compile Include="API\FrameProvider\Accelerometer\IAccelerometerProcessingModule.cs" />
     <Compile Include="API\FrameProvider\EEG\IEegProcessingModule.cs" />
     <Compile Include="API\FrameProvider\Kinect\IKinectProcessingModule.cs" />
+    <Compile Include="API\FrameProvider\Kinect\KinectGestureFrameArrivedArgs.cs" />
+    <Compile Include="API\Helper\ITab.cs" />
     <Compile Include="API\ProcessingModule\ProcessingPlurality.cs" />
     <Compile Include="Controller\FileController.cs" />
     <Compile Include="Data\Access\DataAccessFacade.cs" />
@@ -323,6 +326,7 @@
     <Compile Include="Data\Persistence\Provider\EfAbstractProvider.cs" />
     <Compile Include="Data\Persistence\Provider\MySqlProvider.cs" />
     <Compile Include="Data\Persistence\Provider\SqliteProvider.cs" />
+    <Compile Include="InputModule\Kinect\GestureDetector.cs" />
     <Compile Include="InputModule\Kinect\KinectInput.cs" />
     <Compile Include="InputModule\Kinect\KinectSettings.cs" />
     <Compile Include="InputModule\Kinect\Monitor.cs" />
@@ -338,6 +342,12 @@
       <DependentUpon>Kinect.resx</DependentUpon>
     </Compile>
     <Compile Include="InputModule\Kinect\SkeletonColorVideoViewer.cs" />
+    <Compile Include="InputModule\Kinect\View\AddOrEditPosture.xaml.cs">
+      <DependentUpon>AddOrEditPosture.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InputModule\Kinect\View\PostureCRUD.xaml.cs">
+      <DependentUpon>PostureCRUD.xaml</DependentUpon>
+    </Compile>
     <Compile Include="InputModule\OpenBCI\OpenBCIInput.cs" />
     <Compile Include="InputModule\OpenBCI\View\ConfigurePositions.xaml.cs">
       <DependentUpon>ConfigurePositions.xaml</DependentUpon>
@@ -346,10 +356,10 @@
     <Compile Include="ProcessingModule\EEGEmotion2Channels\View\ClassifierWindow.xaml.cs">
       <DependentUpon>ClassifierWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ProcessingModule\Kinect\AddPerson\AddPersonEntryPoint.cs" />
     <Compile Include="ProcessingModule\Kinect\Distance\DistanceEntryPoint.cs" />
-    <Compile Include="ProcessingModule\Kinect\Posture\Continuous\ContinuousPostureEntryPoint.cs" />
-    <Compile Include="ProcessingModule\Kinect\Posture\Discrete\DiscretePostureEntryPoint.cs" />
+    <Compile Include="ProcessingModule\Kinect\Distance\DistanceLogic.cs" />
+    <Compile Include="ProcessingModule\Kinect\Posture\GestureEntryPoint.cs" />
+    <Compile Include="ProcessingModule\Kinect\Posture\GestureLogic.cs" />
     <Compile Include="ProcessingModule\Kinect\Voice\VoiceEntryPoint.cs" />
     <Compile Include="ProcessingModule\Kinect\Voice\VoiceLogic.cs" />
     <Compile Include="Properties\Error.Designer.cs">
@@ -494,6 +504,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="View\LoadTestScene.cs" />
     <Compile Include="View\Preferences.xaml.cs">
       <DependentUpon>Preferences.xaml</DependentUpon>
     </Compile>
@@ -503,8 +514,14 @@
     <Compile Include="View\Widget\PreferencesBD.xaml.cs">
       <DependentUpon>PreferencesBD.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Widget\PreferencesColor.xaml.cs">
+      <DependentUpon>PreferencesColor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Widget\PreferencesGeneral.xaml.cs">
       <DependentUpon>PreferencesGeneral.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Widget\PreferencesPersonColors.xaml.cs">
+      <DependentUpon>PreferencesPersonColors.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Widget\TabDistance.xaml.cs">
       <DependentUpon>TabDistance.xaml</DependentUpon>
@@ -518,6 +535,14 @@
     <Compile Include="View\Widget\TabScene.xaml.cs">
       <DependentUpon>TabScene.xaml</DependentUpon>
     </Compile>
+    <Page Include="InputModule\Kinect\View\AddOrEditPosture.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InputModule\Kinect\View\PostureCRUD.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="InputModule\OpenBCI\View\ConfigurePositions.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -574,7 +599,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Widget\PreferencesColor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Widget\PreferencesGeneral.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Widget\PreferencesPersonColors.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -665,9 +698,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="InputModule\Kinect\View\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
       <Visible>False</Visible>

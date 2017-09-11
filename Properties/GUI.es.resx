@@ -297,4 +297,19 @@
   <data name="Sex" xml:space="preserve">
     <value>Sexo</value>
   </data>
+  <data name="TmpDirectory" xml:space="preserve">
+    <value>Directorio temporal</value>
+  </data>
+  <data name="CurrentScene" xml:space="preserve">
+    <value>Directorio de la escena actual</value>
+  </data>
+  <data name="DataDirectory" xml:space="preserve">
+    <value>Directorio de datos</value>
+  </data>
+  <data name="DefaultMillisecondsThreshold" xml:space="preserve">
+    <value>Milisegundos de umbral</value>
+  </data>
+  <data name="AddToScene" xml:space="preserve">
+    <value>Añadir a la escena</value>
+  </data>
 </root>

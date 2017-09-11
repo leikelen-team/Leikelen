@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Kinect;
+using Microsoft.Kinect.VisualGestureBuilder;
 
 namespace cl.uv.leikelen.API.FrameProvider.Kinect
 {
@@ -30,5 +31,7 @@ namespace cl.uv.leikelen.API.FrameProvider.Kinect
         /// </summary>
         /// <returns>The event handler of the audio frame</returns>
         EventHandler<AudioBeamFrameArrivedEventArgs> AudioListener();
+
+        EventHandler<KinectGestureFrameArrivedArgs> GestureListener();
     }
 }

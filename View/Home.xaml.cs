@@ -22,6 +22,7 @@ using cl.uv.leikelen.Properties;
 using MaterialDesignThemes.Wpf;
 
 using cl.uv.leikelen.Data.Model;
+using cl.uv.leikelen.API.Helper;
 
 namespace cl.uv.leikelen.View
 {
@@ -58,6 +59,12 @@ namespace cl.uv.leikelen.View
         /// Get or Sets the state of the window
         /// </summary>
         private HomeState _homeState;
+
+        private ImageSource _lastColorBeforePause;
+        private TimeSpan? _lastTimeBeforePause;
+        private ImageSource _lastSkeletonBeforePause;
+
+        private List<ITab> _tabs;
 
         public Home()
         {
@@ -115,15 +122,32 @@ namespace cl.uv.leikelen.View
             InputLoader.Instance.VideoHandler.SkeletonImageArrived += VideoViewer_skeletonImageArrived;
 
             //Set initial states
-            ChangeHomeState(HomeState.Initial);
+            ChangeHomeState(HomeState.Initial, PlayerState.Wait);
+
+            
+
+            _tabs = new List<ITab>()
+            {
+                new Widget.TabInterval(),
+                new Widget.TabGraph(),
+                new Widget.TabDistance(),
+                new Widget.TabScene()
+            };
+
+            foreach(var tab in _tabs)
+            {
+                if(tab is TabItem)
+                    Tabs.AddToSource(tab as TabItem);
+            }
+
+            SkeletonLayerCheckbox.Checked += SkeletonLayerCheckbox_Checked;
+            SkeletonLayerCheckbox.Unchecked += SkeletonLayerCheckbox_Unchecked;
+
+            ColorLayerCheckbox.Checked += ColorLayerCheckbox_Checked;
+            ColorLayerCheckbox.Unchecked += ColorLayerCheckbox_Unchecked;
 
             SkeletonLayerCheckbox.IsChecked = true;
             ColorLayerCheckbox.IsChecked = true;
-
-            Tabs.AddToSource(new Widget.TabInterval());
-            Tabs.AddToSource(new Widget.TabGraph());
-            Tabs.AddToSource(new Widget.TabDistance());
-            Tabs.AddToSource(new Widget.TabScene());
 
             //Actions
             SetFromNone();
@@ -134,140 +158,17 @@ namespace cl.uv.leikelen.View
 
         private void MenuItem_File_LoadTestScene_Click(object sender, RoutedEventArgs e)
         {
-            ChangeHomeState(HomeState.FromFileWithScene);
-            var rnd = new Random();
-            var scenes = DataAccessFacade.Instance.GetSceneAccess().GetAll();
-            if(scenes != null)
-            {
-                var testScene = scenes.Find(s => s.Name.Equals("Test"));
-                if(testScene != null)
-                {
-                    SceneInUse.Instance.Set(testScene);
-                    return;
-                }
-            }
-            var scene = new Scene()
-            {
-                Name = "Test",
-                NumberOfParticipants = 2,
-                Type = "Test scene",
-                Description = "This is a test scene\n only for purposes of development",
-                Place = "Programmed",
-                RecordRealDateTime = new DateTime(2017, 8, 25, 16, 2, 0),
-                Duration = new TimeSpan(0, 10, 30)
-            };
-            SceneInUse.Instance.Set(scene);
-            var person1 = DataAccessFacade.Instance.GetPersonAccess().Add("Erick",null, null, 'M');
-            var person2 = DataAccessFacade.Instance.GetPersonAccess().Add("Dorotea", null, null, 'F');
-            DataAccessFacade.Instance.GetPersonAccess().AddToScene(person1, scene);
-            DataAccessFacade.Instance.GetPersonAccess().AddToScene(person2, scene);
-
-            if (!DataAccessFacade.Instance.GetModalAccess().Exists("Voice"))
-                DataAccessFacade.Instance.GetModalAccess().Add("Voice", "Hablo o no de kinect");
-            if(!DataAccessFacade.Instance.GetSubModalAccess().Exists("Voice", "Talked"))
-                DataAccessFacade.Instance.GetSubModalAccess().Add("Voice", "Talked", "Talked or not", null);
-
-            if(!DataAccessFacade.Instance.GetModalAccess().Exists("Posture"))
-                DataAccessFacade.Instance.GetModalAccess().Add("Posture", "Posturas de kinect");
-            if (!DataAccessFacade.Instance.GetSubModalAccess().Exists("Posture", "Seated"))
-                DataAccessFacade.Instance.GetSubModalAccess().Add("Posture", "Seated", "Is Seated", null);
-            if (!DataAccessFacade.Instance.GetSubModalAccess().Exists("Posture", "Hand On Wrist"))
-                DataAccessFacade.Instance.GetSubModalAccess().Add("Posture", "Hand On Wrist", "o<>===<", null);
-            if (!DataAccessFacade.Instance.GetSubModalAccess().Exists("Posture", "Asking Help"))
-                DataAccessFacade.Instance.GetSubModalAccess().Add("Posture", "Asking Help", "I have a question teacher plis", null);
-            if (!DataAccessFacade.Instance.GetSubModalAccess().Exists("Posture", "CrossedArms"))
-                DataAccessFacade.Instance.GetSubModalAccess().Add("Posture", "CrossedArms", "Is crossing his/her arms", null);
-            
-                
-            foreach(var pis in DataAccessFacade.Instance.GetSceneInUseAccess().GetScene().PersonsInScene)
-            {
-                var howMany = rnd.Next(1, 5);
-                int i = 0;
-                Console.WriteLine($"How many: {howMany}");
-                foreach (var m in DataAccessFacade.Instance.GetModalAccess().GetAll())
-                {
-                    Console.WriteLine($"{m.ModalTypeId} tiene {m.SubModalTypes.Count} submodaltypes");
-                    foreach (var s in m.SubModalTypes)
-                    {
-                        i++;
-                        if (i > howMany) break;
-                        var which = rnd.Next(1, 3);
-                        Console.WriteLine($"Which: {which}");
-                        var data = rnd.Next(1, 3);
-                        Console.WriteLine($"Data: {data}");
-                        int representTypeQuantity = rnd.Next(1, 15);
-                        int lastTickGenerated = 0;
-                        for (int j = 1; j<=representTypeQuantity;j++)
-                        {
-                            double doubleData = rnd.NextDouble();
-                            string subtitleData = "hola este es un string";
-                            int sceneTicks = (int)DataAccessFacade.Instance.GetSceneInUseAccess().GetScene().Duration.Ticks;
-                            switch (which)
-                            {
-                                case 1:
-                                    switch (data)
-                                    {
-                                        case 1:
-                                            DataAccessFacade.Instance.GetEventAccess().Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, new TimeSpan(rnd.Next(0, sceneTicks)), doubleData);
-                                            break;
-                                        case 2:
-                                            DataAccessFacade.Instance.GetEventAccess().Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, new TimeSpan(rnd.Next(0, sceneTicks)), subtitleData);
-                                            break;
-                                        case 3:
-                                            DataAccessFacade.Instance.GetEventAccess().Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, new TimeSpan(rnd.Next(0, sceneTicks)));
-                                            break;
-                                    }
-                                    break;
-                                case 2:
-                                    int minTicks = lastTickGenerated +  1;
-                                    int maxTicks = sceneTicks / representTypeQuantity * j;
-                                    lastTickGenerated = maxTicks;
-                                    TimeSpan min = new TimeSpan(minTicks);
-                                    TimeSpan max = new TimeSpan(rnd.Next(minTicks, maxTicks));
-                                    switch (data)
-                                    {
-                                        case 1:
-                                            DataAccessFacade.Instance.GetIntervalAccess().Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId,min,max, doubleData);
-                                            break;
-                                        case 2:
-                                            DataAccessFacade.Instance.GetIntervalAccess().Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, min, max, subtitleData);
-                                            break;
-                                        case 3:
-                                            DataAccessFacade.Instance.GetIntervalAccess().Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, min, max);
-                                            break;
-                                    }
-                                    break;
-                                case 3:
-                                    switch (data)
-                                    {
-                                        case 1:
-                                            DataAccessFacade.Instance.GetTimelessAccess().Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, rnd.Next(0, 24), doubleData);
-                                            break;
-                                        case 2:
-                                            DataAccessFacade.Instance.GetTimelessAccess().Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, rnd.Next(0, 24), subtitleData);
-                                            break;
-                                        case 3:
-                                            DataAccessFacade.Instance.GetTimelessAccess().Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, rnd.Next(0, 24));
-                                            break;
-                                    }
-                                    break;
-                            }
-                        }
-                    }
-                }
-            }
-
-
-
-            
+            ChangeHomeState(HomeState.FromFileWithScene, PlayerState.Wait);
+            LoadTestScene.LoadTest();
         }
 
-        private void ChangeHomeState(HomeState newHomeState)
+        private bool ChangeHomeState(HomeState newHomeState, PlayerState newPlayerState)
         {
-            _homeState = newHomeState;
             switch (newHomeState)
             {
                 case HomeState.Initial:
+                    if (DataAccessFacade.Instance.GetSceneInUseAccess().GetScene() != null)
+                        return false;
                     MenuItem_File_NewScene.IsEnabled = false;
                     MenuItem_File_Save.IsEnabled = false;
                     MenuItem_File_Recent.IsEnabled = false;
@@ -294,6 +195,8 @@ namespace cl.uv.leikelen.View
                     Player_VolumeSlider.IsEnabled = false;
                     break;
                 case HomeState.FromSensor:
+                    if (DataAccessFacade.Instance.GetSceneInUseAccess().GetScene() != null)
+                        return false;
                     MenuItem_File_NewScene.IsEnabled = true;
                     MenuItem_File_Save.IsEnabled = false;
                     MenuItem_File_Recent.IsEnabled = false;
@@ -320,8 +223,37 @@ namespace cl.uv.leikelen.View
                     Player_VolumeSlider.IsEnabled = false;
                     break;
                 case HomeState.FromSensorWithScene:
-                    MenuItem_File_NewScene.IsEnabled = true;
-                    MenuItem_File_Save.IsEnabled = true;
+                    if (DataAccessFacade.Instance.GetSceneInUseAccess().GetScene() == null)
+                        return false;
+                    switch (newPlayerState)
+                    {
+                        case PlayerState.Wait:
+                            MenuItem_File_NewScene.IsEnabled = true;
+                            MenuItem_File_Save.IsEnabled = true;
+
+                            MenuItem_Tools_DB.IsEnabled = true;
+                            MenuItems_Tools_Sensors.IsEnabled = true;
+                            MenuItems_Tools_Processing.IsEnabled = true;
+
+                            Player_RecordButton.IsEnabled = true;
+                            Player_StopButton.IsEnabled = false;
+                            Player_VolumeToggle.IsEnabled = false;
+                            Player_VolumeSlider.IsEnabled = false;
+                            break;
+                        case PlayerState.Record:
+                            MenuItem_File_NewScene.IsEnabled = false;
+                            MenuItem_File_Save.IsEnabled = false;
+
+                            MenuItem_Tools_DB.IsEnabled = false;
+                            MenuItems_Tools_Sensors.IsEnabled = false;
+                            MenuItems_Tools_Processing.IsEnabled = false;
+
+                            Player_RecordButton.IsEnabled = false;
+                            Player_StopButton.IsEnabled = true;
+                            Player_VolumeToggle.IsEnabled = true;
+                            Player_VolumeSlider.IsEnabled = true;
+                            break;
+                    }
                     MenuItem_File_Recent.IsEnabled = false;
                     MenuItem_File_Recent_More.IsEnabled = false;
                     MenuItem_File_Import.IsEnabled = false;
@@ -329,49 +261,20 @@ namespace cl.uv.leikelen.View
                     MenuItem_File_Quit.IsEnabled = true;
 
                     MenuItem_Tools_Preferences.IsEnabled = true;
-                    MenuItem_Tools_DB.IsEnabled = true;
                     MenuItem_Tools_Player.IsEnabled = true;
-                    MenuItems_Tools_Sensors.IsEnabled = true;
-                    MenuItems_Tools_Processing.IsEnabled = true;
+                    
 
                     MenuItem_Scene.IsEnabled = true;
                     MenuItem_Scene_Configure.IsEnabled = true;
                     MenuItem_Scene_AddPerson.IsEnabled = true;
 
                     Player_LocationSlider.IsEnabled = false;
-                    Player_RecordButton.IsEnabled = true;
+                    
                     Player_PlayButton.IsEnabled = false;
-                    Player_StopButton.IsEnabled = false;
-                    Player_VolumeToggle.IsEnabled = false;
-                    Player_VolumeSlider.IsEnabled = false;
-                    break;
-                case HomeState.FromSensorRecording:
-                    MenuItem_File_NewScene.IsEnabled = false;
-                    MenuItem_File_Save.IsEnabled = false;
-                    MenuItem_File_Recent.IsEnabled = false;
-                    MenuItem_File_Recent_More.IsEnabled = false;
-                    MenuItem_File_Import.IsEnabled = false;
-                    MenuItem_File_Export.IsEnabled = false;
-                    MenuItem_File_Quit.IsEnabled = true;
-
-                    MenuItem_Tools_Preferences.IsEnabled = true;
-                    MenuItem_Tools_DB.IsEnabled = false;
-                    MenuItem_Tools_Player.IsEnabled = true;
-                    MenuItems_Tools_Sensors.IsEnabled = false;
-                    MenuItems_Tools_Processing.IsEnabled = false;
-
-                    MenuItem_Scene.IsEnabled = true;
-                    MenuItem_Scene_Configure.IsEnabled = true;
-                    MenuItem_Scene_AddPerson.IsEnabled = true;
-
-                    Player_LocationSlider.IsEnabled = false;
-                    Player_RecordButton.IsEnabled = false;
-                    Player_PlayButton.IsEnabled = false;
-                    Player_StopButton.IsEnabled = true;
-                    Player_VolumeToggle.IsEnabled = true;
-                    Player_VolumeSlider.IsEnabled = true;
                     break;
                 case HomeState.FromFile:
+                    if (DataAccessFacade.Instance.GetSceneInUseAccess().GetScene() != null)
+                        return false;
                     MenuItem_File_NewScene.IsEnabled = false;
                     MenuItem_File_Save.IsEnabled = false;
                     MenuItem_File_Recent.IsEnabled = true;
@@ -398,6 +301,24 @@ namespace cl.uv.leikelen.View
                     Player_VolumeSlider.IsEnabled = false;
                     break;
                 case HomeState.FromFileWithScene:
+                    if (DataAccessFacade.Instance.GetSceneInUseAccess().GetScene() == null)
+                        return false;
+                    foreach(var tab in _tabs)
+                    {
+                        tab.Fill();
+                    }
+                    switch (newPlayerState)
+                    {
+                        case PlayerState.Wait:
+                            Player_StopButton.IsEnabled = false;
+                            break;
+                        case PlayerState.Play:
+                            Player_StopButton.IsEnabled = true;
+                            break;
+                        case PlayerState.Pause:
+                            Player_StopButton.IsEnabled = true;
+                            break;
+                    }
                     MenuItem_File_NewScene.IsEnabled = false;
                     MenuItem_File_Save.IsEnabled = true;
                     MenuItem_File_Recent.IsEnabled = true;
@@ -419,11 +340,17 @@ namespace cl.uv.leikelen.View
                     Player_LocationSlider.IsEnabled = true;
                     Player_RecordButton.IsEnabled = false;
                     Player_PlayButton.IsEnabled = true;
-                    Player_StopButton.IsEnabled = false;
                     Player_VolumeToggle.IsEnabled = true;
                     Player_VolumeSlider.IsEnabled = true;
                     break;
             }
+
+            _homeState = newHomeState;
+            if (_homeState == HomeState.Initial)
+                _playerState = PlayerState.Wait;
+            else
+                _playerState = newPlayerState;
+            return true;
         }
 
 
@@ -454,7 +381,7 @@ namespace cl.uv.leikelen.View
             {
                 if (!Object.ReferenceEquals(null, DataAccessFacade.Instance.GetSceneInUseAccess().GetScene()))
                 {
-                    ChangeHomeState(HomeState.FromSensorWithScene);
+                    ChangeHomeState(HomeState.FromSensorWithScene, PlayerState.Wait);
                 }
             };
         }
@@ -467,7 +394,7 @@ namespace cl.uv.leikelen.View
             {
                 if (!Object.ReferenceEquals(null, DataAccessFacade.Instance.GetSceneInUseAccess().GetScene()))
                 {
-                    ChangeHomeState(HomeState.FromFileWithScene);
+                    ChangeHomeState(HomeState.FromFileWithScene, PlayerState.Wait);
                 }
             };
         }
@@ -548,7 +475,7 @@ namespace cl.uv.leikelen.View
 
         #region Video viewer
 
-        private void VideoViewer_skeletonImageArrived(object sender, System.Windows.Media.ImageSource e)
+        private void VideoViewer_skeletonImageArrived(object sender, ImageSource e)
         {
             Console.WriteLine("----skeleton arrived");
             if (SkeletonLayerCheckbox.IsChecked.HasValue && SkeletonLayerCheckbox.IsChecked.Value)
@@ -557,7 +484,7 @@ namespace cl.uv.leikelen.View
             }
         }
 
-        private void VideoViewer_colorImageArrived(object sender, System.Windows.Media.ImageSource e)
+        private void VideoViewer_colorImageArrived(object sender, ImageSource e)
         {
             Console.WriteLine("color arrived");
             if (ColorLayerCheckbox.IsChecked.HasValue && ColorLayerCheckbox.IsChecked.Value)
@@ -565,6 +492,45 @@ namespace cl.uv.leikelen.View
                 Player_ImageControl_Layer2.Source = e;
             }
         }
+
+        private void SkeletonLayerCheckbox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            InputLoader.Instance.VideoHandler.DisableSkeleton();
+            if (_lastTimeBeforePause?.CompareTo(DataAccessFacade.Instance.GetSceneInUseAccess().GetLocation()) == 0)
+            {
+                _lastSkeletonBeforePause = Player_ImageControl_Layer1.Source;
+            }
+            Player_ImageControl_Layer1.Source = null;
+        }
+
+        private void SkeletonLayerCheckbox_Checked(object sender, RoutedEventArgs e)
+        {
+            InputLoader.Instance.VideoHandler.EnableSkeleton();
+            if (_lastTimeBeforePause?.CompareTo(DataAccessFacade.Instance.GetSceneInUseAccess().GetLocation()) == 0)
+            {
+                Player_ImageControl_Layer1.Source = _lastSkeletonBeforePause;
+            }
+        }
+
+        private void ColorLayerCheckbox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            InputLoader.Instance.VideoHandler.DisableColor();
+            if (_lastTimeBeforePause?.CompareTo(DataAccessFacade.Instance.GetSceneInUseAccess().GetLocation()) == 0)
+            {
+                _lastColorBeforePause = Player_ImageControl_Layer2.Source;
+            }
+            Player_ImageControl_Layer2.Source = null;
+        }
+
+        private void ColorLayerCheckbox_Checked(object sender, RoutedEventArgs e)
+        {
+            InputLoader.Instance.VideoHandler.EnableColor();
+            if(_lastTimeBeforePause?.CompareTo(DataAccessFacade.Instance.GetSceneInUseAccess().GetLocation()) == 0)
+            {
+                Player_ImageControl_Layer2.Source = _lastColorBeforePause;
+            }
+        }
+
 
         #endregion
 
@@ -575,19 +541,19 @@ namespace cl.uv.leikelen.View
             {
                 case PlayerState.Play:
                     await _playerController.Pause();
-                    _playerState = PlayerState.Pause;
+                    ChangeHomeState(HomeState.FromFileWithScene, PlayerState.Pause);
                     Player_PlayButton_Icon.Kind = PackIconKind.Play;
                     break;
 
                 case PlayerState.Pause:
                     await _playerController.UnPause();
-                    _playerState = PlayerState.Play;
+                    ChangeHomeState(HomeState.FromFileWithScene, PlayerState.Play);
                     Player_PlayButton_Icon.Kind = PackIconKind.Pause;
                     break;
 
                 case PlayerState.Wait:
                     await _playerController.Play();
-                    _playerState = PlayerState.Play;
+                    ChangeHomeState(HomeState.FromFileWithScene, PlayerState.Play);
                     Player_PlayButton_Icon.Kind = PackIconKind.Pause;
                     break;
             }
@@ -598,19 +564,21 @@ namespace cl.uv.leikelen.View
             if(_playerState == PlayerState.Play || _playerState == PlayerState.Pause)
             {
                 await _playerController.Stop();
-                _playerState = PlayerState.Wait;
+                ChangeHomeState(HomeState.FromFileWithScene, PlayerState.Wait);
                 Player_PlayButton_Icon.Kind = PackIconKind.Play;
             }
             else if (_playerState == PlayerState.Record){
                 await _recorderController.Stop();
-                _playerState = PlayerState.Wait;
                 _recordTimer.Stop();
+                SceneInUse.Instance.Set(DataAccessFacade.Instance.GetSceneAccess().SaveOrUpdate(SceneInUse.Instance.Scene));
                 Player_ActualTimeLabel.Content = "--:--:--";
                 Player_TotalTimeLabel.Content = "--:--:--";
                 Player_RecordButton.Background = _buttonBackground;
-                Player_RecordButton.IsEnabled = true;
-                Player_StopButton.IsEnabled = false;
-                ChangeHomeState(HomeState.FromSensorWithScene);
+                ChangeHomeState(HomeState.FromFileWithScene, PlayerState.Wait);
+                foreach (var tab in _tabs)
+                {
+                    tab.Fill();
+                }
             }
         }
 
@@ -620,11 +588,10 @@ namespace cl.uv.leikelen.View
             {
                 await _recorderController.Record();
                 Player_ActualTimeLabel.Content = "00:00:00";
-                _playerState = PlayerState.Record;
                 Player_RecordButton.IsEnabled = false;
                 Player_StopButton.IsEnabled = true;
                 _recordTimer.Start();
-                ChangeHomeState(HomeState.FromSensorRecording);
+                ChangeHomeState(HomeState.FromSensorWithScene, PlayerState.Record);
             }
         }
 
@@ -690,19 +657,18 @@ namespace cl.uv.leikelen.View
         {
             _mediaController.SetFromNone();
 
-            ChangeHomeState(HomeState.Initial);
+            ChangeHomeState(HomeState.Initial, PlayerState.Wait);
         }
 
         private void SetFromSensor()
         {
-            if (_homeState == HomeState.FromSensor || _homeState == HomeState.FromSensorWithScene ||
-                _homeState == HomeState.FromSensorRecording)
+            if (_homeState == HomeState.FromSensor || _homeState == HomeState.FromSensorWithScene)
             {
                 return;
             }
             _mediaController.SetFromSensor();
 
-            ChangeHomeState(HomeState.FromSensor);
+            ChangeHomeState(HomeState.FromSensor, PlayerState.Wait);
         }
 
         private void SetFromFile()
@@ -711,7 +677,7 @@ namespace cl.uv.leikelen.View
             {
                 return;
             }
-            else if (_homeState == HomeState.FromSensorRecording)
+            else if (_homeState == HomeState.FromSensor && _playerState == PlayerState.Record)
             {
                 MessageBoxResult result = MessageBox.Show(GUI.stopReccordBeforeFromFile, GUI.Atention, MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
@@ -719,7 +685,7 @@ namespace cl.uv.leikelen.View
             {
                 //TODO: hacer from file
                 SceneInUse.Instance.Set(null);
-                ChangeHomeState(HomeState.FromFile);
+                ChangeHomeState(HomeState.FromFile, PlayerState.Wait);
             }
             
         }
@@ -859,13 +825,11 @@ namespace cl.uv.leikelen.View
         Pause
     }
 
-
     public enum HomeState
     {
         Initial,
         FromSensor,
         FromSensorWithScene,
-        FromSensorRecording,
         FromFile,
         FromFileWithScene
     }

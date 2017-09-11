@@ -24,6 +24,7 @@ namespace cl.uv.leikelen.View
     public partial class ConfigurePerson : Window
     {
         private Person _person;
+        private string _path;
 
         public ConfigurePerson()
         {
@@ -90,16 +91,26 @@ namespace cl.uv.leikelen.View
                 {
                     var person = DataAccessFacade.Instance.GetPersonAccess().Add(NameTextBox.Text, PhotoPathTextBox.Text, BirthdayPicker.SelectedDate, sex);
                     DataAccessFacade.Instance.GetPersonAccess().AddToScene(person, DataAccessFacade.Instance.GetSceneInUseAccess().GetScene());
+                    File.Copy(_path, GeneralSettings.Instance.DataDirectory.Value + "person/" + PhotoPathTextBox.Text);
                 }
                 else
                 {
+                    string oldPath = _person.Photo;
                     _person.Name = NameTextBox.Text;
                     _person.Sex = sex;
                     _person.Photo = PhotoPathTextBox.Text;
                     _person.Birthday = BirthdayPicker.SelectedDate;
                     DataAccessFacade.Instance.GetPersonAccess().Update(_person);
+                    if(_path != null)
+                    {
+                        File.Delete(GeneralSettings.Instance.DataDirectory.Value + "person/" +oldPath);
+                        File.Copy(_path, GeneralSettings.Instance.DataDirectory.Value + "person/" + PhotoPathTextBox.Text);
+                    }
+                        
                 }
+                Close();
             }
+            
         }
 
         private void PhotoBtn_Click(object sender, RoutedEventArgs e)
@@ -111,11 +122,12 @@ namespace cl.uv.leikelen.View
             if (dlg.ShowDialog().GetValueOrDefault())
             {
                 string fileName;
-                if (File.Exists(GeneralSettings.Instance.DataDirectory.Value + dlg.SafeFileName))
+                if (File.Exists(GeneralSettings.Instance.DataDirectory.Value+"person/" + dlg.SafeFileName))
                     fileName = NameTextBox.Text + dlg.SafeFileName;
                 else
                     fileName = dlg.SafeFileName;
                 PhotoPathTextBox.Text = fileName;
+                _path = dlg.FileName;
             }
         }
     }

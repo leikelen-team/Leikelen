@@ -15,5 +15,6 @@ namespace cl.uv.leikelen.API.DataAccess
         Person Update(Person person);
         PersonInScene AddToScene(Person person, Scene scene);
         bool Exists(int personId);
+        void Delete(Person person);
     }
 }

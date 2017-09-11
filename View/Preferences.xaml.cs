@@ -25,10 +25,15 @@ namespace cl.uv.leikelen.View
             InitializeComponent();
             var generalTab = new Widget.PreferencesGeneral();
             var DbTab = new Widget.PreferencesBD();
+            var colorsTab = new Widget.PreferencesColor();
+            var personColorsTab = new Widget.PreferencesPersonColors();
             Tabs.AddToSource(generalTab);
             Tabs.AddToSource(DbTab);
+            Tabs.AddToSource(colorsTab);
+            Tabs.AddToSource(personColorsTab);
 
             DbTab.CancelBtn.Click += CancelBtn_Click;
+            generalTab.CancelBtn.Click += CancelBtn_Click;
         }
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)

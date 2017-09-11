@@ -39,13 +39,7 @@ namespace cl.uv.leikelen.ProcessingModule.Kinect.Voice
                     if (subFrame.AudioBodyCorrelations == null) return;
                     foreach (var audioBodyCorrelation in subFrame.AudioBodyCorrelations)
                     {
-                        long bodyTrackingId = (long)audioBodyCorrelation.BodyTrackingId;
-                        if (!_personsId.ContainsKey(audioBodyCorrelation.BodyTrackingId))
-                        {
-                            var newPerson = DataAccessFacade.GetPersonAccess().Add("Kinect" + audioBodyCorrelation.BodyTrackingId, null, null, null);
-                            _personsId[audioBodyCorrelation.BodyTrackingId] = newPerson.PersonId;
-                            DataAccessFacade.GetPersonAccess().AddToScene(newPerson, DataAccessFacade.GetSceneInUseAccess().GetScene());
-                        }
+                        CheckIfExistsPerson(audioBodyCorrelation.BodyTrackingId);
                         var time = DataAccessFacade.GetSceneInUseAccess()?.GetLocation();
                         if (time.HasValue)
                             DataAccessFacade.GetEventAccess().Add(_personsId[audioBodyCorrelation.BodyTrackingId], "Voice", "Talked", time.Value);
@@ -57,11 +51,43 @@ namespace cl.uv.leikelen.ProcessingModule.Kinect.Voice
             }
         }
 
+        /// <summary>
+        /// Check if the person is in the dictionary, if not, check if the person
+        /// is in the scene (checking by the name), if yes, add it to the dictionary,
+        /// if not, create a new person and adds it to the scene and dictionary
+        /// </summary>
+        /// <param name="bodyTrackingId">The kinect body tracking identifier.</param>
+        private void CheckIfExistsPerson(ulong bodyTrackingId)
+        {
+            if (!_personsId.ContainsKey(bodyTrackingId))
+            {
+                bool isPersonInScene = false;
+                string personName = "Kinect" + bodyTrackingId;
+                var personsInScene = DataAccessFacade.GetSceneInUseAccess()?.GetScene()?.PersonsInScene;
+                foreach (var personInScene in personsInScene)
+                {
+                    string name = personInScene?.Person?.Name;
+                    if (!ReferenceEquals(null, name) && name.Equals(personName))
+                    {
+                        _personsId[bodyTrackingId] = personInScene.Person.PersonId;
+                        isPersonInScene = true;
+                        break;
+                    }
+                }
+                if (!isPersonInScene)
+                {
+                    var newPerson = DataAccessFacade.GetPersonAccess().Add(personName, null, null, null);
+                    _personsId[bodyTrackingId] = newPerson.PersonId;
+                    DataAccessFacade.GetPersonAccess().AddToScene(newPerson, DataAccessFacade.GetSceneInUseAccess()?.GetScene());
+                }
+            }
+        }
+
         public void StopRecording()
         {
             foreach(var personPair in _personsId)
             {
-                DataAccessFacade.GetIntervalAccess().FromEvent(personPair.Value, "Voice", "Talked", GeneralSettings.Instance.DefaultMillisecondsThreshold.Value);
+                DataAccessFacade.GetIntervalAccess().FromEvent(personPair.Value, "Voice", "Talked", DataAccessFacade.GetGeneralSettings().GetDefaultMillisecondsThreshold());
             }
             
         }

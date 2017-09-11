@@ -16,11 +16,14 @@ namespace cl.uv.leikelen.ProcessingModule.EEGEmotion2Channels
             return 0;
         }
 
-        public static void Train(List<List<double[]>> allsignalsList, TagType tagToTrain)
+        public static void Train(Dictionary<TagType, List<List<double[]>>> allsignalsList)
         {
-            foreach (var signalsList in allsignalsList)
+            foreach (var tag in allsignalsList.Keys)
             {
-                var featureVector = PreProcess(signalsList);
+                foreach(var signalList in allsignalsList[tag])
+                {
+                    var featureVector = PreProcess(signalList);
+                }
             }
         }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using cl.uv.leikelen.API.Helper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,11 +18,16 @@ namespace cl.uv.leikelen.View.Widget
     /// <summary>
     /// Lógica de interacción para TabInterval.xaml
     /// </summary>
-    public partial class TabInterval : TabItem
+    public partial class TabInterval : TabItem, ITab
     {
         public TabInterval()
         {
             InitializeComponent();
+        }
+
+        public void Fill()
+        {
+
         }
     }
 }

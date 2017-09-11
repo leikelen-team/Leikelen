@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using cl.uv.leikelen.Data.Access;
+using cl.uv.leikelen.Data.Model;
 
 namespace cl.uv.leikelen.View
 {
@@ -28,17 +29,28 @@ namespace cl.uv.leikelen.View
 
             NewBtn.Click += NewBtn_Click;
             EditBtn.Click += EditBtn_Click;
-            AssignBtn.Click += AssignBtn_Click;
+            AddBtn.Click += AddBtn_Click;
         }
 
-        private void AssignBtn_Click(object sender, RoutedEventArgs e)
+        private void AddBtn_Click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            var person = PersonDataGrid.SelectedItem as Person;
+            if (person != null)
+            {
+                DataAccessFacade.Instance.GetPersonAccess().AddToScene(person, 
+                    DataAccessFacade.Instance.GetSceneInUseAccess().GetScene());
+                Close();
+            }
         }
 
         private void EditBtn_Click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            var person = PersonDataGrid.SelectedItem as Person;
+            if(person != null)
+            {
+                var configurePersonWin = new ConfigurePerson(person);
+                configurePersonWin.Show();
+            }
         }
 
         private void NewBtn_Click(object sender, RoutedEventArgs e)

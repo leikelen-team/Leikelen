@@ -27,7 +27,9 @@ namespace cl.uv.leikelen.View.Widget
             EngineCmbx.ItemsSource = DbFacade.Instance.DbEngineList.Keys;
             EngineCmbx.SelectedItem = GeneralSettings.Instance.Database.Value;
             HostTxt.Text = GeneralSettings.Instance.DbHost.Value;
-            PortTxt.Text = GeneralSettings.Instance.DbPort.Value.ToString();
+            PortTxt.Text = GeneralSettings.Instance.DbPort.Value == -1 
+                ? DbFacade.Instance.DbEngineList[GeneralSettings.Instance.Database.Value].DefaultPort.ToString() 
+                : GeneralSettings.Instance.DbPort.Value.ToString();
             NameTxt.Text = GeneralSettings.Instance.DbName.Value;
             UserTxt.Text = GeneralSettings.Instance.DbUser.Value;
             PasswordTxt.Text = GeneralSettings.Instance.DbPassword.Value;

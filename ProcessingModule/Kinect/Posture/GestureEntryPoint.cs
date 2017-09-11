@@ -1,27 +1,26 @@
-﻿using cl.uv.leikelen.API.FrameProvider.Kinect;
+﻿using cl.uv.leikelen.API.Helper;
+using cl.uv.leikelen.API.ProcessingModule;
+using cl.uv.leikelen.API.FrameProvider.Kinect;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Kinect;
-using cl.uv.leikelen.API.Helper;
-using cl.uv.leikelen.API.ProcessingModule;
 
-namespace cl.uv.leikelen.ProcessingModule.Kinect.Distance
+namespace cl.uv.leikelen.ProcessingModule.Kinect.Posture
 {
-    public class DistanceEntryPoint : API.ProcessingModule.ProcessingModule, IKinectProcessingModule
+    public class GestureEntryPoint : API.ProcessingModule.ProcessingModule, IKinectProcessingModule
     {
-        private DistanceLogic _logic;
-
-        public DistanceEntryPoint()
+        private GestureLogic _logic;
+        protected GestureEntryPoint()
         {
+            Name = "Discrete Posture detector";
             Windows = new List<Tuple<string, WindowBuilder>>();
             IsActiveBeforeRecording = false;
-            Name = "Distance";
             Plurality = ProcessingPlurality.Scene;
-
-            _logic = new DistanceLogic();
+            
+            _logic = new GestureLogic();
         }
 
         public EventHandler<AudioBeamFrameArrivedEventArgs> AudioListener()
@@ -31,7 +30,7 @@ namespace cl.uv.leikelen.ProcessingModule.Kinect.Distance
 
         public EventHandler<BodyFrameArrivedEventArgs> BodyListener()
         {
-            return _logic._bodyReader_FrameArrived;
+            return null;
         }
 
         public EventHandler<ColorFrameArrivedEventArgs> ColorListener()
@@ -41,12 +40,12 @@ namespace cl.uv.leikelen.ProcessingModule.Kinect.Distance
 
         public override Task FunctionAfterStop()
         {
-            return null;
+            return new Task(_logic.StopRecording);
         }
 
         public EventHandler<KinectGestureFrameArrivedArgs> GestureListener()
         {
-            return null;
+            return _logic.Gesture_FrameArrived;
         }
     }
 }

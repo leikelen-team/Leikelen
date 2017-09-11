@@ -49,5 +49,10 @@ namespace cl.uv.leikelen.Data.Access.External
         {
             return DbFacade.Instance.Provider.LoadPersons();
         }
+
+        public void Delete(Person person)
+        {
+            DbFacade.Instance.Provider.DeletePerson(person);
+        }
     }
 }

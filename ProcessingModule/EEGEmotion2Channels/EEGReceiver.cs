@@ -75,12 +75,5 @@ namespace cl.uv.leikelen.ProcessingModule.EEGEmotion2Channels
                 _signaList = new List<double[]>();
             }
         }
-
-        public void Train()
-        {
-            //train signal and then empty it
-            LearningModel.Train(_allsignalsList, (TagType)EEGEmoProc2ChSettings.Instance.TagToTrain.Value);
-            _allsignalsList = new List<List<double[]>>();
-        }
     }
 }

@@ -20,6 +20,7 @@ namespace cl.uv.leikelen.Data.Access
         private ISubModalAccess _subModalAccess;
         private ITimelessAccess _timelessAccess;
         private ISceneInUseAccess _sceneInUseAccess;
+        private IGeneralSettings _generalSettings;
 
         public static DataAccessFacade Instance
         {
@@ -40,6 +41,7 @@ namespace cl.uv.leikelen.Data.Access
             _subModalAccess = new SubModalAccess();
             _timelessAccess = new TimelessAccess();
             _sceneInUseAccess = new SceneInUseAccess();
+            _generalSettings = new GeneralSettings();
         }
 
         public IEventAccess GetEventAccess()
@@ -80,6 +82,11 @@ namespace cl.uv.leikelen.Data.Access
         public ITimelessAccess GetTimelessAccess()
         {
             return _timelessAccess;
+        }
+
+        public IGeneralSettings GetGeneralSettings()
+        {
+            return _generalSettings;
         }
     }
 }

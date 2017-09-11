@@ -15,6 +15,34 @@
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
          Header="{x:Static resx:GUI.General}">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition MinHeight="55" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition MinWidth="200" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
         
+        <Label VerticalAlignment="Bottom" Content="{x:Static resx:GUI.DataDirectory}" Grid.Row="0" Grid.Column="0" />
+        <TextBox x:Name="DataDirectoryTxt" Grid.Row="0" Grid.Column="1"></TextBox>
+
+        <Label VerticalAlignment="Bottom" Content="{x:Static resx:GUI.TmpDirectory}" Grid.Row="1" Grid.Column="0" />
+        <TextBox x:Name="TmpDirectoryTxt" Grid.Row="1" Grid.Column="1"></TextBox>
+
+        <Label VerticalAlignment="Bottom" Content="{x:Static resx:GUI.CurrentScene}" Grid.Row="2" Grid.Column="0" />
+        <TextBox x:Name="CurrentSceneTxt" Grid.Row="2" Grid.Column="1"></TextBox>
+        
+        <Label VerticalAlignment="Bottom" Content="{x:Static resx:GUI.DefaultMillisecondsThreshold}" Grid.Row="3" Grid.Column="0" />
+        <TextBox x:Name="DefaultMillisecondsTxt" Grid.Row="3" Grid.Column="1"></TextBox>
+
+
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="4" Grid.ColumnSpan="2" Orientation="Horizontal">
+            <Button x:Name="AcceptBtn" Content="{x:Static resx:GUI.Accept}" Margin="5" />
+            <Button x:Name="CancelBtn" Content="{x:Static resx:GUI.Cancel}" Margin="5" />
+        </StackPanel>
     </Grid>
 </TabItem>

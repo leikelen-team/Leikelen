@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace cl.uv.leikelen.ProcessingModule.Kinect.Posture.Continuous
+namespace cl.uv.leikelen.API.Helper
 {
-    public class ContinuousPostureEntryPoint
+    public interface ITab
     {
+        void Fill();
     }
 }

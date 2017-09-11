@@ -14,15 +14,7 @@ namespace cl.uv.leikelen.Data.Access.External
     {
         public List<SubModalType> GetAll(string modalName)
         {
-            var modal = DbFacade.Instance.Provider.LoadModal(modalName);
-            if (modal == null)
-            {
-                throw new DbException(Error.ModalTypeNotExists + modalName);
-            }
-            else
-            {
-                return modal.SubModalTypes;
-            }
+            return DbFacade.Instance.Provider.LoadSubModals(modalName);
         }
 
         public SubModalType Add(string modalName, string name, string description, string file)
@@ -64,6 +56,28 @@ namespace cl.uv.leikelen.Data.Access.External
                 return submodals.Exists(sm => sm.SubModalTypeId.Equals(subModalName));
             }
             
+        }
+
+        public SubModalType Get(string modalName, string name)
+        {
+            var submodalsInModal = DbFacade.Instance.Provider.LoadSubModals(modalName);
+            foreach(var submodal in submodalsInModal)
+            {
+                if (submodal.SubModalTypeId == name)
+                    return submodal;
+            }
+            return null;
+        }
+
+        public void Delete(string modalName, string name)
+        {
+            var submodal = Get(modalName, name);
+            DbFacade.Instance.Provider.DeleteSubModal(submodal);
+        }
+
+        public SubModalType Update(SubModalType subModalType)
+        {
+            return DbFacade.Instance.Provider.UpdateSubModalType(subModalType);
         }
     }
 }

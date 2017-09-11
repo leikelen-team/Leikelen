@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using cl.uv.leikelen.Data.Access;
+using cl.uv.leikelen.Data.Model;
+using cl.uv.leikelen.Data.Access.Internal;
 
 namespace cl.uv.leikelen.View
 {
@@ -23,8 +25,8 @@ namespace cl.uv.leikelen.View
         public AllScenes()
         {
             InitializeComponent();
-            
-            PersonDataGrid.ItemsSource = DataAccessFacade.Instance.GetSceneAccess().GetAll();
+
+            ScenesDataGrid.ItemsSource = DataAccessFacade.Instance.GetSceneAccess().GetAll();
 
             OpenBtn.Click += OpenBtn_Click;
             DeleteBtn.Click += DeleteBtn_Click;
@@ -32,12 +34,22 @@ namespace cl.uv.leikelen.View
 
         private void DeleteBtn_Click(object sender, RoutedEventArgs e)
         {
-            
+            var scene = ScenesDataGrid.SelectedItem as Scene;
+            if (scene != null)
+            {
+                DataAccessFacade.Instance.GetSceneAccess().Delete(scene);
+                ScenesDataGrid.ItemsSource = DataAccessFacade.Instance.GetSceneAccess().GetAll();
+            }
         }
 
         private void OpenBtn_Click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            var scene = ScenesDataGrid.SelectedItem as Scene;
+            if(scene != null)
+            {
+                SceneInUse.Instance.Set(scene);
+                Close();
+            }
         }
     }
 }

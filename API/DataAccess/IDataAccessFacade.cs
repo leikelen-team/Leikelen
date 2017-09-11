@@ -16,5 +16,6 @@ namespace cl.uv.leikelen.API.DataAccess
         ISubModalAccess GetSubModalAccess();
         ITimelessAccess GetTimelessAccess();
         ISceneInUseAccess GetSceneInUseAccess();
+        IGeneralSettings GetGeneralSettings();
     }
 }

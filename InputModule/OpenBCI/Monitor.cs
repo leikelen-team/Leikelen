@@ -25,7 +25,7 @@ namespace cl.uv.leikelen.InputModule.OpenBCI
         private InputStatus _status;
         private Util.FileManage _filemanage;
         private readonly string[] _positions;
-        private IDataAccessFacade DataAccessFacade = new DataAccessFacade();
+        private IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
 
         private bool _isRecording;
 
@@ -77,7 +77,7 @@ namespace cl.uv.leikelen.InputModule.OpenBCI
         public async Task StartRecording()
         {
             StartStream();
-            _filemanage = new Util.FileManage(GeneralSettings.Instance.TmpDirectory.Value + GeneralSettings.Instance.CurrentSceneDirectory.Value + "openbci.csv");
+            _filemanage = new Util.FileManage(_dataAccessFacade.GetGeneralSettings().GetDataDirectory()+"scene/"+_dataAccessFacade.GetSceneInUseAccess().GetScene().SceneId + "/openbci.csv");
             _isRecording = true;
 
             foreach (var module in ProcessingLoader.Instance.ProcessingModules)
@@ -212,7 +212,7 @@ namespace cl.uv.leikelen.InputModule.OpenBCI
                         };
                         OnAccelerometerArrived(accArgs);
                     }
-                    var actualTime = DataAccessFacade.GetSceneInUseAccess().GetLocation();
+                    var actualTime = _dataAccessFacade.GetSceneInUseAccess().GetLocation();
                     if (actualTime.HasValue)
                         _filemanage?.WriteFile(actualTime.Value, data);
                 }

@@ -13,5 +13,6 @@ namespace cl.uv.leikelen.API.DataAccess
         Scene Get(int sceneId);
         bool Exists(int sceneId);
         Scene SaveOrUpdate(Scene scene);
+        void Delete(Scene scene);
     }
 }

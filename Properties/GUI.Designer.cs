@@ -70,6 +70,15 @@ namespace cl.uv.leikelen.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Add to scene.
+        /// </summary>
+        public static string AddToScene {
+            get {
+                return ResourceManager.GetString("AddToScene", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Age.
         /// </summary>
         public static string Age {
@@ -232,6 +241,15 @@ namespace cl.uv.leikelen.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Current scene directory.
+        /// </summary>
+        public static string CurrentScene {
+            get {
+                return ResourceManager.GetString("CurrentScene", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Database.
         /// </summary>
         public static string DataBase {
@@ -241,11 +259,29 @@ namespace cl.uv.leikelen.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Data directory.
+        /// </summary>
+        public static string DataDirectory {
+            get {
+                return ResourceManager.GetString("DataDirectory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Date.
         /// </summary>
         public static string Date {
             get {
                 return ResourceManager.GetString("Date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Milliseconds threshold.
+        /// </summary>
+        public static string DefaultMillisecondsThreshold {
+            get {
+                return ResourceManager.GetString("DefaultMillisecondsThreshold", resourceCulture);
             }
         }
         
@@ -561,6 +597,15 @@ namespace cl.uv.leikelen.Properties {
         public static string Title_ConfigureScene {
             get {
                 return ResourceManager.GetString("Title_ConfigureScene", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Temporal directory.
+        /// </summary>
+        public static string TmpDirectory {
+            get {
+                return ResourceManager.GetString("TmpDirectory", resourceCulture);
             }
         }
         

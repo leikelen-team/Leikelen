@@ -22,6 +22,21 @@ namespace cl.uv.leikelen.View.Widget
         public PreferencesGeneral()
         {
             InitializeComponent();
+
+            TmpDirectoryTxt.Text = GeneralSettings.Instance.TmpDirectory.Value;
+            DataDirectoryTxt.Text = GeneralSettings.Instance.DataDirectory.Value;
+            CurrentSceneTxt.Text = GeneralSettings.Instance.SceneInUseDirectory.Value;
+            DefaultMillisecondsTxt.Text = GeneralSettings.Instance.DefaultMillisecondsThreshold.Value.ToString();
+
+            AcceptBtn.Click += AcceptBtn_Click;
+        }
+
+        private void AcceptBtn_Click(object sender, RoutedEventArgs e)
+        {
+            GeneralSettings.Instance.TmpDirectory.Write(TmpDirectoryTxt.Text);
+            GeneralSettings.Instance.DataDirectory.Write(DataDirectoryTxt.Text);
+            GeneralSettings.Instance.SceneInUseDirectory.Write(CurrentSceneTxt.Text);
+            GeneralSettings.Instance.DefaultMillisecondsThreshold.Write(int.Parse(DefaultMillisecondsTxt.Text));
         }
     }
 }

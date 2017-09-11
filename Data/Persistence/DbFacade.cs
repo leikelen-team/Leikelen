@@ -45,7 +45,7 @@ namespace cl.uv.leikelen.Data.Persistence
                         Provider = DbEngineList[engineName].Provider;
                         Provider.CreateConnection(DbEngineList[engineName].CreateConnectionString.Invoke(
                             GeneralSettings.Instance.DbHost.Value,
-                            GeneralSettings.Instance.DbPort.Value != 0 ? GeneralSettings.Instance.DbPort.Value : DbEngineList[engineName].DefaultPort,
+                            GeneralSettings.Instance.DbPort.Value != -1 ? GeneralSettings.Instance.DbPort.Value : DbEngineList[engineName].DefaultPort,
                             GeneralSettings.Instance.DbName.Value,
                             GeneralSettings.Instance.DbUser.Value,
                             GeneralSettings.Instance.DbPassword.Value));

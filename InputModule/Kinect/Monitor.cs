@@ -87,6 +87,17 @@ namespace cl.uv.leikelen.InputModule.Kinect
                         {
                             _audioBeamReader.FrameArrived += kinectModule.AudioListener();
                         }
+
+                        if(kinectModule.GestureListener() != null)
+                        {
+                            foreach(var detector in GestureDetector.GestureDetectorList)
+                            {
+                                if (!detector.IsPaused)
+                                {
+                                    detector.KinectGestureFrameArrived += kinectModule.GestureListener();
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -147,9 +158,16 @@ namespace cl.uv.leikelen.InputModule.Kinect
 
                     _bodyReader = _sensor.BodyFrameSource.OpenReader();
                     _bodyReader.FrameArrived += VideoViewer._bodyReader_FrameArrived;
+                    _bodyReader.FrameArrived += GestureDetector._bodyReader_FrameArrived;
                     _colorReader = _sensor.ColorFrameSource.OpenReader();
                     _colorReader.FrameArrived += VideoViewer._colorReader_FrameArrived;
                     _audioBeamReader = _sensor.AudioSource.OpenReader();
+
+                    for (int i = 0; i < _sensor.BodyFrameSource.BodyCount; ++i)
+                    {
+                        GestureDetector detector = new GestureDetector(i, _sensor);
+                        GestureDetector.GestureDetectorList.Add(detector);
+                    }
 
                     return true;
                 } 

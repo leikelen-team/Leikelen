@@ -11,26 +11,17 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using cl.uv.leikelen.Data.Model;
 
 namespace cl.uv.leikelen.View.Widget
 {
     /// <summary>
-    /// Lógica de interacción para PersonCard.xaml
+    /// Lógica de interacción para PreferencesPersonColors.xaml
     /// </summary>
-    public partial class PersonCard : UserControl
+    public partial class PreferencesPersonColors : TabItem
     {
-        public PersonCard()
+        public PreferencesPersonColors()
         {
             InitializeComponent();
-        }
-
-        public Control GetPerson(Person person)
-        {
-            Name.Content = person.Name;
-            string photoUri = GeneralSettings.Instance.DataDirectory.Value + "person/"+ person.Photo;
-            Photo.Source = new BitmapImage(new Uri(photoUri, UriKind.Relative));
-            return Card;
         }
     }
 }

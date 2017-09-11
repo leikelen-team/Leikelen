@@ -11,9 +11,11 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.IO;
 using cl.uv.leikelen.Data.Access.Internal;
 using cl.uv.leikelen.Data.Model;
 using cl.uv.leikelen.Properties;
+using cl.uv.leikelen.Data.Access;
 
 namespace cl.uv.leikelen.View
 {
@@ -102,8 +104,9 @@ namespace cl.uv.leikelen.View
                             RealTimePicker.SelectedTime.Value.Second);
                     }
                 }
-
-                SceneInUse.Instance.Set(_scene);
+                var createdScene = DataAccessFacade.Instance.GetSceneAccess().SaveOrUpdate(_scene);
+                Directory.CreateDirectory(GeneralSettings.Instance.DataDirectory.Value + "scene/" + createdScene.SceneId);
+                SceneInUse.Instance.Set(createdScene);
                 Close();
             }
         }

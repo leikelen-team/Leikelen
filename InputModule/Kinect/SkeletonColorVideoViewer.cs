@@ -75,6 +75,8 @@ namespace cl.uv.leikelen.InputModule.Kinect
 
         public void _bodyReader_FrameArrived(object sender, BodyFrameArrivedEventArgs e)
         {
+            if (!_isSkeletonEnabled)
+                return;
             Console.WriteLine("llego body en video handler");
             IEnumerable<IBody> bodies = null; // to make the GetBitmap call a little cleaner
             using (var frame = e.FrameReference.AcquireFrame())
@@ -100,6 +102,8 @@ namespace cl.uv.leikelen.InputModule.Kinect
 
         public void _colorReader_FrameArrived(object sender, ColorFrameArrivedEventArgs e)
         {
+            if (!_isColorEnabled)
+                return;
             Console.WriteLine("llego color en video handler");
             _colorBitmap.Update(e.FrameReference);
             OnColorImageArrived(_colorBitmap.Bitmap);

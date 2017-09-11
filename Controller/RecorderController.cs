@@ -34,8 +34,7 @@ namespace cl.uv.leikelen.Controller
                 await input.Monitor.StartRecording();
             }
             DateTime now = DateTime.Now;
-            string sceneName = now.ToString("yyyy-MM-dd _ hh-mm-ss");
-            SceneInUse.Instance.Set(new Data.Model.Scene() { Name = sceneName, RecordStartedDateTime = now });
+            SceneInUse.Instance.Scene.RecordStartedDateTime = now;
             SceneInUse.Instance.IsRecording = true;
         }
     }

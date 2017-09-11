@@ -7,6 +7,7 @@ using cl.uv.leikelen.API.DataAccess;
 using cl.uv.leikelen.Data.Persistence;
 using cl.uv.leikelen.Data.Model;
 using cl.uv.leikelen.Properties;
+using System.IO;
 
 namespace cl.uv.leikelen.Data.Access.External
 {
@@ -25,6 +26,7 @@ namespace cl.uv.leikelen.Data.Access.External
             }
             else
             {
+                Directory.CreateDirectory(GeneralSettings.Instance.GetDataDirectory() + "modal/" +name);
                 return DbFacade.Instance.Provider.SaveModal(new ModalType()
                 {
                     ModalTypeId = name,

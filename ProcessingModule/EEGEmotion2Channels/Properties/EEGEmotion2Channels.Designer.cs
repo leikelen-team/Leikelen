@@ -71,6 +71,15 @@ namespace cl.uv.leikelen.ProcessingModule.EEGEmotion2Channels.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Add scenes to tag.
+        /// </summary>
+        public static string AddScenesToTag {
+            get {
+                return ResourceManager.GetString("AddScenesToTag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Are you sure this data is correct?.
         /// </summary>
         public static string AreSure {

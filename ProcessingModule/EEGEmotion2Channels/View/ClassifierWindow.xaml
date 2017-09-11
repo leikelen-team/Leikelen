@@ -13,13 +13,15 @@
         TextElement.FontSize="14"
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
         mc:Ignorable="d"
-        Title="Emotion Classifier" Height="300" Width="300">
+        Title="Emotion Classifier" Height="500" Width="400">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition MinHeight="40" Height="*"/>
+            <RowDefinition MinHeight="40" Height="*"/>
             <RowDefinition MinHeight="40" Height="*"/>
             <RowDefinition MinHeight="40" Height="*"/>
             <RowDefinition MinHeight="40" Height="*"/>
@@ -67,7 +69,17 @@
             <ComboBoxItem Content="{x:Static resx:EEGEmotion2Channels.HAHV}"></ComboBoxItem>
         </ComboBox>
 
-        <StackPanel Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom" HorizontalAlignment="Center" Orientation="Horizontal">
+        <DataGrid x:Name="ScenesDataGrid" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" SelectionMode="Extended" CanUserReorderColumns="True" CanUserResizeColumns="True" CanUserResizeRows="True" CanUserSortColumns="True">
+            
+        </DataGrid>
+
+        <Button x:Name="AddScenesToTag" Content="{x:Static resx:EEGEmotion2Channels.AddScenesToTag}" Grid.Row="6" Grid.Column="0" />
+
+        <DataGrid x:Name="ScenesAddedDataGrid" Grid.Row="6" Grid.Column="1" CanUserReorderColumns="True" CanUserResizeColumns="True" CanUserResizeRows="True" CanUserSortColumns="True">
+            
+        </DataGrid>
+
+        <StackPanel Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom" HorizontalAlignment="Center" Orientation="Horizontal">
             <Button x:Name="Accept" Margin="0,0,4,0" Content="{x:Static resx:EEGEmotion2Channels.Accept}" />
             <Button x:Name="Cancel" Margin="4,0,0,0" Content="{x:Static resx:EEGEmotion2Channels.Cancel}" />
         </StackPanel>

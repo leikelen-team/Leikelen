@@ -1,4 +1,5 @@
-﻿using System;
+﻿using cl.uv.leikelen.API.Helper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,11 +18,16 @@ namespace cl.uv.leikelen.View.Widget
     /// <summary>
     /// Lógica de interacción para TabScene.xaml
     /// </summary>
-    public partial class TabScene : TabItem
+    public partial class TabScene : TabItem, ITab
     {
         public TabScene()
         {
             InitializeComponent();
+        }
+
+        public void Fill()
+        {
+            
         }
     }
 }

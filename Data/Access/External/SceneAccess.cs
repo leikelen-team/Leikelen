@@ -33,5 +33,10 @@ namespace cl.uv.leikelen.Data.Access.External
             else
                 return DbFacade.Instance.Provider.UpdateScene(scene);
         }
+
+        public void Delete(Scene scene)
+        {
+            DbFacade.Instance.Provider.DeleteScene(scene);
+        }
     }
 }

@@ -157,4 +157,7 @@
   <data name="ClassificationModuleName" xml:space="preserve">
     <value>Clasificador de emociones con EEG</value>
   </data>
+  <data name="AddScenesToTag" xml:space="preserve">
+    <value>Añadir escenas a tag</value>
+  </data>
 </root>

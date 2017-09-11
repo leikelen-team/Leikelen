@@ -16,10 +16,12 @@ namespace cl.uv.leikelen.Data.Persistence
         Scene LoadScene(int sceneId);
         Scene SaveScene(Scene instance);
         Scene UpdateScene(Scene newScene);
+        void DeleteScene(Scene scene);
 
         List<Person> LoadPersons();
         Person SavePerson(Person person);
         Person UpdatePerson(Person newPerson);
+        void DeletePerson(Person person);
 
         PersonInScene AddPersonToScene(Person person, Scene scene);
         bool ExistsPersonInScene(Person person, Scene scene);
@@ -30,5 +32,7 @@ namespace cl.uv.leikelen.Data.Persistence
 
         List<SubModalType> LoadSubModals(string ModalTypeName);
         SubModalType SaveSubModal(SubModalType submodalType);
+        void DeleteSubModal(SubModalType submodalType);
+        SubModalType UpdateSubModalType(SubModalType subModalType);
     }
 }

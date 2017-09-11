@@ -117,5 +117,30 @@ namespace cl.uv.leikelen.Data.Persistence.Provider
         {
             return Db.PersonInScenes.ToList().Exists(pis => pis.Person == person && pis.Scene == scene);
         }
+
+        public void DeleteScene(Scene scene)
+        {
+            Db.Scenes.Remove(scene);
+            Db.SaveChanges();
+        }
+
+        public void DeletePerson(Person person)
+        {
+            Db.Persons.Remove(person);
+            Db.SaveChanges();
+        }
+
+        public void DeleteSubModal(SubModalType submodalType)
+        {
+            Db.SubModalTypes.Remove(submodalType);
+            Db.SaveChanges();
+        }
+
+        public SubModalType UpdateSubModalType(SubModalType subModalType)
+        {
+            var r = Db.SubModalTypes.Update(subModalType).Entity;
+            Db.SaveChanges();
+            return r;
+        }
     }
 }

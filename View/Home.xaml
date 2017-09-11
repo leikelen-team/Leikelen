@@ -81,6 +81,7 @@
                         <RowDefinition MinHeight="20" MaxHeight="60" Height="1*" />
                         <RowDefinition MinHeight="35" MaxHeight="100" Height="3*"/>
                     </Grid.RowDefinitions>
+                    <Rectangle Fill="Black" Grid.Row="0" />
                     <Image x:Name="Player_ImageControl_Layer2"  Grid.Row="0"/>
                     <Image x:Name="Player_ImageControl_Layer1"  Grid.Row="0"/>
                     <Slider x:Name="Player_LocationSlider" Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" Minimum="1" Maximum="100" />
