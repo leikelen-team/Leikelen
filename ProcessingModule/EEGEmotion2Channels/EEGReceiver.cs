@@ -20,6 +20,17 @@ namespace cl.uv.leikelen.ProcessingModule.EEGEmotion2Channels
 
         public EEGReceiver(ClassifierType type)
         {
+            if (!DataAccessFacade.GetModalAccess().Exists("Emotion"))
+                DataAccessFacade.GetModalAccess().Add("Emotion", "Affects or feels of a person");
+            if (!DataAccessFacade.GetSubModalAccess().Exists("Emotion", "LALV"))
+                DataAccessFacade.GetSubModalAccess().Add("Emotion", "LALV", "Low arousal Low Valence", "emotionmodel.svm");
+            if (!DataAccessFacade.GetSubModalAccess().Exists("Emotion", "LAHV"))
+                DataAccessFacade.GetSubModalAccess().Add("Emotion", "LAHV", "Low arousal High Valence", "emotionmodel.svm");
+            if (!DataAccessFacade.GetSubModalAccess().Exists("Emotion", "HALV"))
+                DataAccessFacade.GetSubModalAccess().Add("Emotion", "HALV", "High arousal Low Valence", "emotionmodel.svm");
+            if (!DataAccessFacade.GetSubModalAccess().Exists("Emotion", "HAHV"))
+                DataAccessFacade.GetSubModalAccess().Add("Emotion", "HAHV", "High arousal High Valence", "emotionmodel.svm");
+
             _type = type;
             _allsignalsList = new List<List<double[]>>();
             _signaList = new List<double[]>();

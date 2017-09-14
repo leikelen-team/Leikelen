@@ -14,5 +14,8 @@
          TextElement.FontSize="14"
          FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
          Header="{x:Static resx:GUI.Scene}">
-    
+    <Grid>
+        <DataGrid x:Name="TabSceneDataGrid" CanUserReorderColumns="True" CanUserResizeColumns="True" CanUserResizeRows="True" CanUserSortColumns="True">
+        </DataGrid>
+    </Grid>
 </TabItem>

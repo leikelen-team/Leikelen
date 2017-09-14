@@ -12,9 +12,9 @@ namespace cl.uv.leikelen.Data.Access.External
     {
         public List<Timeless> GetAll(int personId, string modalName, string subModalName)
         {
-            var personInScene = Internal.SceneInUse.Instance.Scene.PersonsInScene.Find(pis => pis.PersonId == personId);
-            var subModalPersonInScene = personInScene.SubModalType_PersonInScenes.Find(smtPis => smtPis.SubModalType.SubModalTypeId.Equals(subModalName) && smtPis.SubModalType.ModalType.ModalTypeId.Equals(modalName));
-            var timelessRepresent = subModalPersonInScene.RepresentTypes.FindAll(rt => rt.IntervalData == null && rt.EventData == null && rt.Index.HasValue);
+            var personInScene = Internal.SceneInUse.Instance.Scene?.PersonsInScene?.Find(pis => pis.PersonId == personId);
+            var subModalPersonInScene = personInScene?.SubModalType_PersonInScenes?.Find(smtPis => smtPis.SubModalType.SubModalTypeId.Equals(subModalName) && smtPis.SubModalType.ModalType.ModalTypeId.Equals(modalName));
+            var timelessRepresent = subModalPersonInScene?.RepresentTypes?.FindAll(rt => rt.IntervalData == null && rt.EventData == null && rt.Index.HasValue);
             if(timelessRepresent == null)
             {
                 return null;

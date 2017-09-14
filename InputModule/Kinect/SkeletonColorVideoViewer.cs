@@ -43,17 +43,15 @@ namespace cl.uv.leikelen.InputModule.Kinect
         {
             _isColorEnabled = true;
         }
-
-        public void EnableSkeleton()
-        {
-            _isSkeletonEnabled = false;
-        }
-
         public void DisableColor()
         {
             _isColorEnabled = false;
         }
 
+        public void EnableSkeleton()
+        {
+            _isSkeletonEnabled = true;
+        }
         public void DisableSkeleton()
         {
             _isSkeletonEnabled = false;

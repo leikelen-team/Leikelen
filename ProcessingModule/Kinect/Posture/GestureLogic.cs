@@ -21,24 +21,31 @@ namespace cl.uv.leikelen.ProcessingModule.Kinect.Posture
             CheckIfExistsPerson(e.TrackingId);
             if (e.Time.HasValue)
             {
-                using(var frame = e.VisualGestureBuilderFrameArrivedEventArgs.FrameReference.AcquireFrame())
+                if(e.Frame.DiscreteGestureResults != null)
                 {
-                    foreach(var discreteGesture in frame.DiscreteGestureResults)
+                    foreach (var discreteGesture in e.Frame.DiscreteGestureResults)
                     {
                         if (discreteGesture.Value.Detected)
                         {
                             var tuple = new Tuple<int, string>(_personsId[e.TrackingId], discreteGesture.Key.Name);
-                            if(!_discreteGestures.Exists(d => d.Equals(tuple)))
+                            if (!_discreteGestures.Exists(d => d.Equals(tuple)))
                                 _discreteGestures.Add(tuple);
+                            if (!DataAccessFacade.GetSubModalAccess().Exists("Discrete Posture", discreteGesture.Key.Name))
+                                DataAccessFacade.GetSubModalAccess().Add("Discrete Posture", discreteGesture.Key.Name, null, null);
                             DataAccessFacade.GetEventAccess().Add(_personsId[e.TrackingId], "Discrete Posture", discreteGesture.Key.Name, e.Time.Value, discreteGesture.Value.Confidence);
                         }
                     }
+                }
+                    
 
-                    foreach(var continuousGesture in frame.ContinuousGestureResults)
+                if(e.Frame.ContinuousGestureResults != null)
+                {
+                    foreach (var continuousGesture in e.Frame.ContinuousGestureResults)
                     {
                         DataAccessFacade.GetEventAccess().Add(_personsId[e.TrackingId], "Continuous Posture", continuousGesture.Key.Name, e.Time.Value, continuousGesture.Value.Progress);
                     }
                 }
+                    
                 
             }
         }

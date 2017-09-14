@@ -20,9 +20,9 @@ namespace cl.uv.leikelen.InputModule.Kinect
             Monitor = monitor;
             Player = new Player();
             Windows = new List<Tuple<string, WindowBuilder>>();
-            Windows.Add(new Tuple<string, WindowBuilder>("PostureCRUD", new WindowBuilder(new View.PostureCRUD())));
+            Windows.Add(new Tuple<string, WindowBuilder>(Properties.Kinect.PostureCRUDTitle,
+                new WindowBuilder(new View.PostureCRUD())));
             
-
             SkeletonColorVideoViewer = monitor.VideoViewer;
         }
     }

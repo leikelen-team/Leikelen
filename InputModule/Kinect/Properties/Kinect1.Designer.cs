@@ -79,6 +79,24 @@ namespace cl.uv.leikelen.InputModule.Kinect.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Add or edit posture.
+        /// </summary>
+        public static string AddOrEditTitle {
+            get {
+                return ResourceManager.GetString("AddOrEditTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Browse.
+        /// </summary>
+        public static string Browse {
+            get {
+                return ResourceManager.GetString("Browse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Cancel.
         /// </summary>
         public static string Cancel {
@@ -97,6 +115,15 @@ namespace cl.uv.leikelen.InputModule.Kinect.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Continuous Postura.
+        /// </summary>
+        public static string ContinuousPosture {
+            get {
+                return ResourceManager.GetString("ContinuousPosture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Delete.
         /// </summary>
         public static string Delete {
@@ -106,11 +133,47 @@ namespace cl.uv.leikelen.InputModule.Kinect.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Description.
+        /// </summary>
+        public static string Description {
+            get {
+                return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Discrete Posture.
+        /// </summary>
+        public static string DiscretePosture {
+            get {
+                return ResourceManager.GetString("DiscretePosture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Edit.
         /// </summary>
         public static string Edit {
             get {
                 return ResourceManager.GetString("Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a File.
+        /// </summary>
+        public static string File {
+            get {
+                return ResourceManager.GetString("File", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Name.
+        /// </summary>
+        public static string Name {
+            get {
+                return ResourceManager.GetString("Name", resourceCulture);
             }
         }
         
@@ -133,11 +196,38 @@ namespace cl.uv.leikelen.InputModule.Kinect.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Postures.
+        /// </summary>
+        public static string PostureCRUDTitle {
+            get {
+                return ResourceManager.GetString("PostureCRUDTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Save.
+        /// </summary>
+        public static string Save {
+            get {
+                return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Kinect v2.
         /// </summary>
         public static string SensorName {
             get {
                 return ResourceManager.GetString("SensorName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Type.
+        /// </summary>
+        public static string Type {
+            get {
+                return ResourceManager.GetString("Type", resourceCulture);
             }
         }
     }

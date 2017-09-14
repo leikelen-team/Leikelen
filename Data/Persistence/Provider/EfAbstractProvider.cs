@@ -34,7 +34,33 @@ namespace cl.uv.leikelen.Data.Persistence.Provider
 
         public Scene LoadScene(int sceneId)
         {
+            /*
+            var scene1 = from rt in Db.RepresentTypes
+                         join smtPis in Db.SmtPis on rt.SubModalType_PersonInSceneId equals smtPis.SubModalType_PersonInSceneId
+                         join pis in Db.PersonInScenes on smtPis.SceneId equals pis.SceneId
+                         join sc in Db.Scenes on pis.SceneId equals sc.SceneId
+                         join p in Db.Persons on pis.PersonId equals p.PersonId
+                         join ev in Db.EventDatas on rt.EventDataId equals ev.EventDataId
+                         join iv in Db.IntervalDatas on rt.IntervalDataId equals iv.IntervalDataId
+                         where sc.SceneId == sceneId
+                         select sc;
+            return scene1.First();*/
+            
             return Db.Scenes
+                .Include(sc => sc.PersonsInScene)
+                    .ThenInclude(pis => pis.Person)
+                .Include(sc => sc.PersonsInScene)
+                    .ThenInclude(pis => pis.SubModalType_PersonInScenes)
+                        .ThenInclude(smtPis => smtPis.RepresentTypes)
+                            .ThenInclude(rt => rt.EventData)
+                .Include(sc => sc.PersonsInScene)
+                    .ThenInclude(pis => pis.SubModalType_PersonInScenes)
+                        .ThenInclude(smtPis => smtPis.RepresentTypes)
+                            .ThenInclude(rt => rt.IntervalData)
+                .Include(sc => sc.PersonsInScene)
+                    .ThenInclude(pis => pis.SubModalType_PersonInScenes)
+                        .ThenInclude(smtPis => smtPis.SubModalType)
+                            .ThenInclude(sm => sm.ModalType)
                 .ToList().Find(s => s.SceneId == sceneId);
         }
 

@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:cl.uv.leikelen.InputModule.Kinect.View"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
+        xmlns:resx="clr-namespace:cl.uv.leikelen.InputModule.Kinect.Properties"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         Background="{DynamicResource MaterialDesignPaper}"
         TextElement.FontWeight="Medium"
@@ -16,20 +17,21 @@
     <Grid Margin="10">
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="25"/>
+            <RowDefinition Height="45"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal">
-            <Button Grid.Row="0" x:Name="addPostureButton" Content="Add" HorizontalAlignment="Left" Click="addPostureButton_Click" Width="Auto" Height="Auto" Margin="3,0,0,0" />
-            <Button Grid.Row="0" x:Name="editPostureButton" Content="Edit" HorizontalAlignment="Left"  Click="editPostureButton_Click" Width="Auto" Height="Auto" Margin="3,0,0,0" />
-            <Button Grid.Row="0" x:Name="removePostureButton" Content="Delete" HorizontalAlignment="Left" Click="removePostureButton_Click" Width="Auto" Height="Auto" Margin="3,0,0,0" />
+            <Button Grid.Row="0" x:Name="addPostureButton" Content="{x:Static resx:Kinect.Add}" HorizontalAlignment="Left" Click="addPostureButton_Click" Width="Auto" Height="Auto" Margin="3" />
+            <Button Grid.Row="0" x:Name="editPostureButton" Content="{x:Static resx:Kinect.Edit}" HorizontalAlignment="Left"  Click="editPostureButton_Click" Width="Auto" Height="Auto" Margin="3" />
+            <Button Grid.Row="0" x:Name="removePostureButton" Content="{x:Static resx:Kinect.Delete}" HorizontalAlignment="Left" Click="removePostureButton_Click" Width="Auto" Height="Auto" Margin="3" />
         </StackPanel>
 
         <DataGrid Grid.Row="1" x:Name="postureCrudDataGrid" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Posture" Binding="{Binding Name}" />
-                <DataGridTextColumn Header="Path" Binding="{Binding File}" />
-                <DataGridTextColumn Header="Type" Binding="{Binding GestureType}" />
+                <DataGridTextColumn Header="{x:Static resx:Kinect.Posture}" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="{x:Static resx:Kinect.Path}" Binding="{Binding File}" />
+                <DataGridTextColumn Header="{x:Static resx:Kinect.Type}" Binding="{Binding GestureType}" />
+                <DataGridTextColumn Header="{x:Static resx:Kinect.Description}" Binding="{Binding Description}" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

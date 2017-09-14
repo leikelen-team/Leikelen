@@ -11,6 +11,6 @@ namespace cl.uv.leikelen.API.FrameProvider.Kinect
     {
         public TimeSpan? Time;
         public ulong TrackingId;
-        public VisualGestureBuilderFrameArrivedEventArgs VisualGestureBuilderFrameArrivedEventArgs;
+        public VisualGestureBuilderFrame Frame;
     }
 }

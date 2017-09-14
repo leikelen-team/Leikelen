@@ -356,6 +356,12 @@
     <Compile Include="ProcessingModule\EEGEmotion2Channels\View\ClassifierWindow.xaml.cs">
       <DependentUpon>ClassifierWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ProcessingModule\EEGEmotion2Channels\View\TrainerFileSelector.xaml.cs">
+      <DependentUpon>TrainerFileSelector.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProcessingModule\EEGEmotion2Channels\View\TrainerSceneSelector.xaml.cs">
+      <DependentUpon>TrainerSceneSelector.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ProcessingModule\Kinect\Distance\DistanceEntryPoint.cs" />
     <Compile Include="ProcessingModule\Kinect\Distance\DistanceLogic.cs" />
     <Compile Include="ProcessingModule\Kinect\Posture\GestureEntryPoint.cs" />
@@ -556,6 +562,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ProcessingModule\EEGEmotion2Channels\View\DetectorWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProcessingModule\EEGEmotion2Channels\View\TrainerFileSelector.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProcessingModule\EEGEmotion2Channels\View\TrainerSceneSelector.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

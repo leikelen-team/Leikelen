@@ -9,7 +9,7 @@ namespace cl.uv.leikelen.ProcessingModule.EEGEmotion2Channels.PreProcessing
 {
     public static class SampleEntropy
     {
-        public static double CalcSampleEntropy(double[] data, int numSamples/*N*/, int wlen/*m*/, double r/*r*/, int shift=0/*0*/)
+        public static double CalcSampleEntropy(double[] data, int numSamples/*N*/, int wlen/*m*/, double r/*r*/, int shift)
         {
             int A = 0;
             int B = 0;

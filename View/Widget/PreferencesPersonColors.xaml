@@ -14,6 +14,62 @@
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
         mc:Ignorable="d">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Label x:Name="p1Label" Grid.Row="0" Grid.Column="0" />
+        <Label Content="{x:Static resx:GUI.PersonBonesColor}" Grid.Row="0" Grid.Column="1" />
+        <ComboBox x:Name="p1BonesCmbx" Grid.Row="0" Grid.Column="2"></ComboBox>
+        <Label Content="{x:Static resx:GUI.PersonDotsColor}" Grid.Row="0" Grid.Column="3" />
+        <ComboBox x:Name="p1DotsCmbx" Grid.Row="0" Grid.Column="4"></ComboBox>
+
+        <Label x:Name="p2Label" Grid.Row="1" Grid.Column="0" />
+        <Label Content="{x:Static resx:GUI.PersonBonesColor}" Grid.Row="1" Grid.Column="1" />
+        <ComboBox x:Name="p2BonesCmbx" Grid.Row="1" Grid.Column="2"></ComboBox>
+        <Label Content="{x:Static resx:GUI.PersonDotsColor}" Grid.Row="1" Grid.Column="3" />
+        <ComboBox x:Name="p2DotsCmbx" Grid.Row="1" Grid.Column="4"></ComboBox>
+
+        <Label x:Name="p3Label" Grid.Row="2" Grid.Column="0" />
+        <Label Content="{x:Static resx:GUI.PersonBonesColor}" Grid.Row="2" Grid.Column="1" />
+        <ComboBox x:Name="p3BonesCmbx" Grid.Row="2" Grid.Column="2"></ComboBox>
+        <Label Content="{x:Static resx:GUI.PersonDotsColor}" Grid.Row="2" Grid.Column="3" />
+        <ComboBox x:Name="p3DotsCmbx" Grid.Row="2" Grid.Column="4"></ComboBox>
+
+        <Label x:Name="p4Label" Grid.Row="3" Grid.Column="0" />
+        <Label Content="{x:Static resx:GUI.PersonBonesColor}" Grid.Row="3" Grid.Column="1" />
+        <ComboBox x:Name="p4BonesCmbx" Grid.Row="3" Grid.Column="2"></ComboBox>
+        <Label Content="{x:Static resx:GUI.PersonDotsColor}" Grid.Row="3" Grid.Column="3" />
+        <ComboBox x:Name="p4DotsCmbx" Grid.Row="3" Grid.Column="4"></ComboBox>
+
+        <Label x:Name="p5Label" Grid.Row="4" Grid.Column="0" />
+        <Label Content="{x:Static resx:GUI.PersonBonesColor}" Grid.Row="4" Grid.Column="1" />
+        <ComboBox x:Name="p5BonesCmbx" Grid.Row="4" Grid.Column="2"></ComboBox>
+        <Label Content="{x:Static resx:GUI.PersonDotsColor}" Grid.Row="4" Grid.Column="3" />
+        <ComboBox x:Name="p5DotsCmbx" Grid.Row="4" Grid.Column="4"></ComboBox>
+
+        <Label x:Name="p6Label" Grid.Row="5" Grid.Column="0" />
+        <Label Content="{x:Static resx:GUI.PersonBonesColor}" Grid.Row="5" Grid.Column="1" />
+        <ComboBox x:Name="p6BonesCmbx" Grid.Row="5" Grid.Column="2"></ComboBox>
+        <Label Content="{x:Static resx:GUI.PersonDotsColor}" Grid.Row="5" Grid.Column="3" />
+        <ComboBox x:Name="p6DotsCmbx" Grid.Row="5" Grid.Column="4"></ComboBox>
+
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="6" Grid.ColumnSpan="5" Orientation="Horizontal">
+            <Button x:Name="AcceptBtn" Content="{x:Static resx:GUI.Accept}" Margin="5" />
+            <Button x:Name="CancelBtn" Content="{x:Static resx:GUI.Cancel}" Margin="5" />
+        </StackPanel>
     </Grid>
 </TabItem>

@@ -29,7 +29,9 @@ namespace cl.uv.leikelen.ProcessingModule
             ProcessingModules.Add(new EEGEmotion2Channels.TrainerEntryPoint());
             ProcessingModules.Add(new EEGEmotion2Channels.DetectorEntryPoint());
 
-            ProcessingModules.Add(new Kinect.Voice.VoiceEntryPoint());;
+            ProcessingModules.Add(new Kinect.Voice.VoiceEntryPoint());
+            ProcessingModules.Add(new Kinect.Posture.GestureEntryPoint());
+            ProcessingModules.Add(new Kinect.Distance.DistanceEntryPoint());
         }
     }
 }

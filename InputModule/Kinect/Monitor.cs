@@ -24,6 +24,7 @@ namespace cl.uv.leikelen.InputModule.Kinect
 
         public SkeletonColorVideoViewer VideoViewer;
 
+
         public Monitor()
         {
             VideoViewer = new SkeletonColorVideoViewer();
@@ -92,10 +93,7 @@ namespace cl.uv.leikelen.InputModule.Kinect
                         {
                             foreach(var detector in GestureDetector.GestureDetectorList)
                             {
-                                if (!detector.IsPaused)
-                                {
-                                    detector.KinectGestureFrameArrived += kinectModule.GestureListener();
-                                }
+                                detector.KinectGestureFrameArrived += kinectModule.GestureListener();
                             }
                         }
                     }
@@ -158,25 +156,32 @@ namespace cl.uv.leikelen.InputModule.Kinect
 
                     _bodyReader = _sensor.BodyFrameSource.OpenReader();
                     _bodyReader.FrameArrived += VideoViewer._bodyReader_FrameArrived;
-                    _bodyReader.FrameArrived += GestureDetector._bodyReader_FrameArrived;
                     _colorReader = _sensor.ColorFrameSource.OpenReader();
                     _colorReader.FrameArrived += VideoViewer._colorReader_FrameArrived;
                     _audioBeamReader = _sensor.AudioSource.OpenReader();
 
+                    int detectorCount = _sensor.BodyFrameSource.BodyCount > 0 ? _sensor.BodyFrameSource.BodyCount : 6;
                     for (int i = 0; i < _sensor.BodyFrameSource.BodyCount; ++i)
                     {
                         GestureDetector detector = new GestureDetector(i, _sensor);
                         GestureDetector.GestureDetectorList.Add(detector);
                     }
-
+                    _bodyReader.FrameArrived += GestureDetector._bodyReader_FrameArrived;
+                    OnStatusChanged();
                     return true;
                 } 
-                catch(Exception ex)
+                catch(Exception)
                 {
+                    OnStatusChanged();
                     return false;
                 }
             }
         }
-        
+
+        private void OnStatusChanged()
+        {
+            StatusChanged?.Invoke(this, new EventArgs());
+        }
+
     }
 }

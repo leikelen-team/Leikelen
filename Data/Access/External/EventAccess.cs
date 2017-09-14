@@ -14,9 +14,9 @@ namespace cl.uv.leikelen.Data.Access.External
 
         public List<Event> GetAll(int personId, string modalName, string subModalName)
         {
-            var personInScene = Internal.SceneInUse.Instance.Scene.PersonsInScene.Find(pis => pis.PersonId == personId);
-            var subModalPersonInScene = personInScene.SubModalType_PersonInScenes.Find(smtPis => smtPis.SubModalType.SubModalTypeId.Equals(subModalName) && smtPis.SubModalType.ModalType.ModalTypeId.Equals(modalName));
-            var eventRepresent = subModalPersonInScene.RepresentTypes.FindAll(rt => rt.IntervalData == null && !rt.Index.HasValue && rt.EventData != null);
+            var personInScene = Internal.SceneInUse.Instance.Scene?.PersonsInScene?.Find(pis => pis.PersonId == personId);
+            var subModalPersonInScene = personInScene?.SubModalType_PersonInScenes?.Find(smtPis => smtPis.SubModalType.SubModalTypeId.Equals(subModalName) && smtPis.SubModalType.ModalType.ModalTypeId.Equals(modalName));
+            var eventRepresent = subModalPersonInScene?.RepresentTypes?.FindAll(rt => rt.IntervalData == null && !rt.Index.HasValue && rt.EventData != null);
             if(eventRepresent == null)
             {
                 return null;

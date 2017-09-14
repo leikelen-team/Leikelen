@@ -14,7 +14,7 @@ namespace cl.uv.leikelen.View
         public static void LoadTest()
         {
             var rnd = new Random();
-            var scenes = DataAccessFacade.Instance.GetSceneAccess().GetAll();
+            /*var scenes = DataAccessFacade.Instance.GetSceneAccess().GetAll();
             if (scenes != null)
             {
                 var testScene = scenes.Find(s => s.Name.Equals("Test"));
@@ -23,7 +23,7 @@ namespace cl.uv.leikelen.View
                     SceneInUse.Instance.Set(testScene);
                     return;
                 }
-            }
+            }*/
             var scene = new Scene()
             {
                 Name = "Test",
@@ -35,7 +35,7 @@ namespace cl.uv.leikelen.View
                 Duration = new TimeSpan(0, 10, 30)
             };
             SceneInUse.Instance.Set(scene);
-            var person1 = DataAccessFacade.Instance.GetPersonAccess().Add("Erick", null, null, 'M');
+            var person1 = DataAccessFacade.Instance.GetPersonAccess().Add("Erick", null, new DateTime(1992, 4,3), 'M');
             var person2 = DataAccessFacade.Instance.GetPersonAccess().Add("Dorotea", null, null, 'F');
             DataAccessFacade.Instance.GetPersonAccess().AddToScene(person1, scene);
             DataAccessFacade.Instance.GetPersonAccess().AddToScene(person2, scene);
@@ -45,16 +45,16 @@ namespace cl.uv.leikelen.View
             if (!DataAccessFacade.Instance.GetSubModalAccess().Exists("Voice", "Talked"))
                 DataAccessFacade.Instance.GetSubModalAccess().Add("Voice", "Talked", "Talked or not", null);
 
-            if (!DataAccessFacade.Instance.GetModalAccess().Exists("Posture"))
-                DataAccessFacade.Instance.GetModalAccess().Add("Posture", "Posturas de kinect");
-            if (!DataAccessFacade.Instance.GetSubModalAccess().Exists("Posture", "Seated"))
-                DataAccessFacade.Instance.GetSubModalAccess().Add("Posture", "Seated", "Is Seated", null);
-            if (!DataAccessFacade.Instance.GetSubModalAccess().Exists("Posture", "Hand On Wrist"))
-                DataAccessFacade.Instance.GetSubModalAccess().Add("Posture", "Hand On Wrist", "o<>===<", null);
-            if (!DataAccessFacade.Instance.GetSubModalAccess().Exists("Posture", "Asking Help"))
-                DataAccessFacade.Instance.GetSubModalAccess().Add("Posture", "Asking Help", "I have a question teacher plis", null);
-            if (!DataAccessFacade.Instance.GetSubModalAccess().Exists("Posture", "CrossedArms"))
-                DataAccessFacade.Instance.GetSubModalAccess().Add("Posture", "CrossedArms", "Is crossing his/her arms", null);
+            if (!DataAccessFacade.Instance.GetModalAccess().Exists("Discrete Posture"))
+                DataAccessFacade.Instance.GetModalAccess().Add("Discrete Posture", "Posturas de kinect");
+            if (!DataAccessFacade.Instance.GetSubModalAccess().Exists("Discrete Posture", "Seated"))
+                DataAccessFacade.Instance.GetSubModalAccess().Add("Discrete Posture", "Seated", "Is Seated", null);
+            if (!DataAccessFacade.Instance.GetSubModalAccess().Exists("Discrete Posture", "Hand On Wrist"))
+                DataAccessFacade.Instance.GetSubModalAccess().Add("Discrete Posture", "Hand On Wrist", "o<>===<", null);
+            if (!DataAccessFacade.Instance.GetSubModalAccess().Exists("Discrete Posture", "Asking Help"))
+                DataAccessFacade.Instance.GetSubModalAccess().Add("Discrete Posture", "Asking Help", "I have a question teacher plis", null);
+            if (!DataAccessFacade.Instance.GetSubModalAccess().Exists("Discrete Posture", "CrossedArms"))
+                DataAccessFacade.Instance.GetSubModalAccess().Add("Discrete Posture", "CrossedArms", "Is crossing his/her arms", null);
 
 
             foreach (var pis in DataAccessFacade.Instance.GetSceneInUseAccess().GetScene().PersonsInScene)

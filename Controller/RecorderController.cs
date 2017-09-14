@@ -16,13 +16,13 @@ namespace cl.uv.leikelen.Controller
             SceneInUse.Instance.IsRecording = false;
             foreach (var input in InputLoader.Instance.SceneInputModules)
             {
-                input.Monitor.StopRecording();
+                await input.Monitor.StopRecording();
             }
             foreach (var processingModule in ProcessingLoader.Instance.ProcessingModules)
             {
                 if (processingModule.FunctionAfterStop() != null)
                 {
-                    processingModule.FunctionAfterStop();
+                    await processingModule.FunctionAfterStop();
                 }
             }
         }
@@ -31,6 +31,8 @@ namespace cl.uv.leikelen.Controller
         {
             foreach (var input in InputLoader.Instance.SceneInputModules)
             {
+                if (input.Monitor.GetStatus() != API.InputModule.InputStatus.Connected)
+                    await input.Monitor.Open();
                 await input.Monitor.StartRecording();
             }
             DateTime now = DateTime.Now;

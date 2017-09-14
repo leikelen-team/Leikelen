@@ -229,8 +229,8 @@
   <data name="Confirmation" xml:space="preserve">
     <value>Confirmation</value>
   </data>
-  <data name="stopReccordBeforeFromFile" xml:space="preserve">
-    <value>Please stop the recording before set from file</value>
+  <data name="stopRecordFirst" xml:space="preserve">
+    <value>Please stop the recording first</value>
   </data>
   <data name="Atention" xml:space="preserve">
     <value>Atention</value>
@@ -291,5 +291,17 @@
   </data>
   <data name="DefaultMillisecondsThreshold" xml:space="preserve">
     <value>Milliseconds threshold</value>
+  </data>
+  <data name="PersonDotsColor" xml:space="preserve">
+    <value>Dots color</value>
+  </data>
+  <data name="PersonBonesColor" xml:space="preserve">
+    <value>Bones color</value>
+  </data>
+  <data name="Person" xml:space="preserve">
+    <value>Person</value>
+  </data>
+  <data name="seconds" xml:space="preserve">
+    <value>seconds</value>
   </data>
 </root>

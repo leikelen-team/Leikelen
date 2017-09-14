@@ -19,7 +19,6 @@ namespace cl.uv.leikelen.Data.Persistence.Provider
             var optionsBuilder = new DbContextOptionsBuilder();
             optionsBuilder.UseInMemoryDatabase();
             Db = new DbDataContext(optionsBuilder.Options);
-            Db.Database.OpenConnection();
         }
 
     }

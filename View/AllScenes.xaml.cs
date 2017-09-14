@@ -45,7 +45,8 @@ namespace cl.uv.leikelen.View
         private void OpenBtn_Click(object sender, RoutedEventArgs e)
         {
             var scene = ScenesDataGrid.SelectedItem as Scene;
-            if(scene != null)
+            scene = DataAccessFacade.Instance.GetSceneAccess().Get(scene.SceneId);
+            if (scene != null)
             {
                 SceneInUse.Instance.Set(scene);
                 Close();

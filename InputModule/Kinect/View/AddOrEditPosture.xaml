@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:cl.uv.leikelen.InputModule.Kinect.View"
+        xmlns:resx="clr-namespace:cl.uv.leikelen.InputModule.Kinect.Properties"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -26,16 +27,16 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         
-        <Label Content="Nombre: " HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="0" Grid.Column="0"/>
-        <Label Content="Archivo: " HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="1" Grid.Column="0"/>
+        <Label Content="{x:Static resx:Kinect.Name}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="0" Grid.Column="0"/>
+        <Label Content="{x:Static resx:Kinect.File}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="1" Grid.Column="0"/>
 
         <TextBox x:Name="nameTextBox" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Grid.Row="0" Grid.Column="1"/>
         <Grid ClipToBounds="True" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Grid.Row="1" Grid.Column="1">
-            <TextBox x:Name="fileNameTextBox" HorizontalAlignment="Stretch" Text="" VerticalAlignment="Bottom" IsEnabled="False"/>
-            <Button x:Name="browseButton" Content="Examinar" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="browseButton_Click"/>
+            <TextBox x:Name="FileNameTextBox" HorizontalAlignment="Stretch" Text="" VerticalAlignment="Bottom" IsEnabled="False"/>
+            <Button x:Name="browseButton" Content="{x:Static resx:Kinect.Browse}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="browseButton_Click"/>
         </Grid>
 
-        <Label Content="Descripción:" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="2" Grid.Column="0" />
+        <Label Content="{x:Static resx:Kinect.Description}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="2" Grid.Column="0" />
         <TextBox Grid.Row="2" Grid.Column="1" 
 				    x:Name="DescriptionTextBox"
                  TextWrapping="Wrap"
@@ -43,15 +44,13 @@
                  VerticalScrollBarVisibility="Auto">
         </TextBox>
 
-        <Label Content="Tipo:" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="3" Grid.Column="0" />
+        <Label Content="{x:Static resx:Kinect.Type}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="3" Grid.Column="0" />
         <ComboBox x:Name="TypeCombobox" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="3" Grid.Column="1">
-            <ComboBoxItem IsSelected="True" Content="Discrete Posture" />
-            <ComboBoxItem Content="Continuous Posture" />
         </ComboBox>
         
         <StackPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button x:Name="saveButton" Content="Guardar" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10"  Click="saveButton_Click"/>
-            <Button x:Name="cancelButton" Content="Cancelar" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10" Click="cancelButton_Click"/>
+            <Button x:Name="saveButton" Content="{x:Static resx:Kinect.Save}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10"  Click="saveButton_Click"/>
+            <Button x:Name="cancelButton" Content="{x:Static resx:Kinect.Cancel}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10" Click="cancelButton_Click"/>
         </StackPanel>
 
         

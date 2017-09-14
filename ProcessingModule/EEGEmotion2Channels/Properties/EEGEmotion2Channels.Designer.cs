@@ -89,6 +89,15 @@ namespace cl.uv.leikelen.ProcessingModule.EEGEmotion2Channels.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Browse.
+        /// </summary>
+        public static string Browse {
+            get {
+                return ResourceManager.GetString("Browse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Cancel.
         /// </summary>
         public static string Cancel {
@@ -125,11 +134,47 @@ namespace cl.uv.leikelen.ProcessingModule.EEGEmotion2Channels.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Date.
+        /// </summary>
+        public static string Date {
+            get {
+                return ResourceManager.GetString("Date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Delete scenes from tag.
+        /// </summary>
+        public static string DeleteScenesFromTag {
+            get {
+                return ResourceManager.GetString("DeleteScenesFromTag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Description.
+        /// </summary>
+        public static string Description {
+            get {
+                return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Emotion Detector with EEG.
         /// </summary>
         public static string DetectionModuleName {
             get {
                 return ResourceManager.GetString("DetectionModuleName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Duration.
+        /// </summary>
+        public static string Duration {
+            get {
+                return ResourceManager.GetString("Duration", resourceCulture);
             }
         }
         
@@ -197,6 +242,33 @@ namespace cl.uv.leikelen.ProcessingModule.EEGEmotion2Channels.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Name.
+        /// </summary>
+        public static string Name {
+            get {
+                return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Participants.
+        /// </summary>
+        public static string Participants {
+            get {
+                return ResourceManager.GetString("Participants", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Place.
+        /// </summary>
+        public static string Place {
+            get {
+                return ResourceManager.GetString("Place", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a threshold value.
         /// </summary>
         public static string rHint {
@@ -238,6 +310,33 @@ namespace cl.uv.leikelen.ProcessingModule.EEGEmotion2Channels.Properties {
         public static string TagTrain {
             get {
                 return ResourceManager.GetString("TagTrain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a File selector.
+        /// </summary>
+        public static string TrainerFileSelectorTitle {
+            get {
+                return ResourceManager.GetString("TrainerFileSelectorTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Scene selector.
+        /// </summary>
+        public static string TrainerSceneSelectorTitle {
+            get {
+                return ResourceManager.GetString("TrainerSceneSelectorTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Type.
+        /// </summary>
+        public static string Type {
+            get {
+                return ResourceManager.GetString("Type", resourceCulture);
             }
         }
         

@@ -14,7 +14,7 @@ namespace cl.uv.leikelen.InputModule.Kinect
 {
     public class GestureDetector : IDisposable
     {
-        public static List<GestureDetector> GestureDetectorList { get; set; } = new List<GestureDetector>();
+        public static List<GestureDetector> GestureDetectorList { get; set; } = new List<GestureDetector>(6);
         private static List<CustomBody> _bodies = new List<CustomBody>();
 
         /// <summary> Gesture frame reader which will handle gesture events coming from the sensor </summary>
@@ -77,14 +77,7 @@ namespace cl.uv.leikelen.InputModule.Kinect
         /// <param name="kinectSensor">Active sensor to initialize the VisualGestureBuilderFrameSource object with.</param>
         public GestureDetector(int bodyIndex, KinectSensor kinectSensor)
         {
-            if (!_dataAccessFacade.GetModalAccess().Exists("Discrete Posture"))
-                _dataAccessFacade.GetModalAccess().Add("Discrete Posture", 
-                    "Evaluates every moment and return true or false");
-            if (!_dataAccessFacade.GetModalAccess().Exists("Continuous Posture"))
-                _dataAccessFacade.GetModalAccess().Add("Continuous Posture", 
-                    "Evaluates every moment and return a number associated to the progress");
-
-            this.BodyIndex = bodyIndex;
+            BodyIndex = bodyIndex;
             if (kinectSensor == null)
             {
                 throw new ArgumentNullException("kinectSensor is null");
@@ -106,15 +99,24 @@ namespace cl.uv.leikelen.InputModule.Kinect
             
             //add all the database filenames of each posture to posturePaths list
             List<string> posturePaths = new List<string>();
-            foreach(var discrete in discretePostures)
+            foreach (var discrete in discretePostures)
             {
                 if (!ReferenceEquals(null, discrete.File))
-                    posturePaths.Add(discrete.File);
+                {
+                    string internalFilePath = $"{_dataAccessFacade.GetGeneralSettings().GetDataDirectory()}" +
+                    $"modal/Discrete Posture/{discrete.File}";
+                    posturePaths.Add(internalFilePath);
+                }
+                    
             }
             foreach (var continuous in continuousPostures)
             {
                 if (!ReferenceEquals(null, continuous.File))
-                    posturePaths.Add(continuous.File);
+                {
+                    string internalFilePath = $"{_dataAccessFacade.GetGeneralSettings().GetDataDirectory()}" +
+                    $"modal/Continuous Posture/{continuous.File}";
+                    posturePaths.Add(internalFilePath);
+                }
             }
 
             //add the database files of the postures to the detector
@@ -130,13 +132,17 @@ namespace cl.uv.leikelen.InputModule.Kinect
 
         private void VgbFrameReader_FrameArrived(object sender, VisualGestureBuilderFrameArrivedEventArgs e)
         {
-            var frame = new KinectGestureFrameArrivedArgs()
+            var kFrame = e.FrameReference.AcquireFrame();
+            if(kFrame != null)
             {
-                Time = _dataAccessFacade.GetSceneInUseAccess().GetLocation(),
-                TrackingId = this.TrackingId,
-                VisualGestureBuilderFrameArrivedEventArgs = e
-            };
-            OnKinectGestureFrameArrived(frame);
+                var frame = new KinectGestureFrameArrivedArgs()
+                {
+                    Time = _dataAccessFacade.GetSceneInUseAccess().GetLocation(),
+                    TrackingId = this.TrackingId,
+                    Frame = kFrame
+                };
+                OnKinectGestureFrameArrived(frame);
+            }
         }
 
         public static void _bodyReader_FrameArrived(object sender, BodyFrameArrivedEventArgs e)
@@ -165,6 +171,7 @@ namespace cl.uv.leikelen.InputModule.Kinect
                         // if the current body is not tracked, pause its detector so we don't
                         //waste resources trying to get invalid gesture results
                         GestureDetectorList[i].IsPaused = body.TrackingId == 0;
+                        Console.WriteLine($"gesture {i} pausado= {GestureDetectorList[i].IsPaused}");
                     }
                     i++;
                 }

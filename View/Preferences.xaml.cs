@@ -34,6 +34,7 @@ namespace cl.uv.leikelen.View
 
             DbTab.CancelBtn.Click += CancelBtn_Click;
             generalTab.CancelBtn.Click += CancelBtn_Click;
+            personColorsTab.CancelBtn.Click += CancelBtn_Click;
         }
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)

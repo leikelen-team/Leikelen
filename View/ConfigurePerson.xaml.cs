@@ -123,7 +123,7 @@ namespace cl.uv.leikelen.View
             {
                 string fileName;
                 if (File.Exists(GeneralSettings.Instance.DataDirectory.Value+"person/" + dlg.SafeFileName))
-                    fileName = NameTextBox.Text + dlg.SafeFileName;
+                    fileName = NameTextBox.Text +"/" + dlg.SafeFileName;
                 else
                     fileName = dlg.SafeFileName;
                 PhotoPathTextBox.Text = fileName;

@@ -28,13 +28,22 @@ namespace cl.uv.leikelen.View.Widget
             EngineCmbx.SelectedItem = GeneralSettings.Instance.Database.Value;
             HostTxt.Text = GeneralSettings.Instance.DbHost.Value;
             PortTxt.Text = GeneralSettings.Instance.DbPort.Value == -1 
-                ? DbFacade.Instance.DbEngineList[GeneralSettings.Instance.Database.Value].DefaultPort.ToString() 
+                ? DbFacade.Instance.DbEngineList[(string)EngineCmbx.SelectedItem].DefaultPort.ToString() 
                 : GeneralSettings.Instance.DbPort.Value.ToString();
             NameTxt.Text = GeneralSettings.Instance.DbName.Value;
             UserTxt.Text = GeneralSettings.Instance.DbUser.Value;
             PasswordTxt.Text = GeneralSettings.Instance.DbPassword.Value;
 
+            EngineCmbx.SelectionChanged += EngineCmbx_SelectionChanged;
+
             AcceptBtn.Click += AcceptBtn_Click;
+        }
+
+        private void EngineCmbx_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            PortTxt.Text = GeneralSettings.Instance.DbPort.Value == -1
+                ? DbFacade.Instance.DbEngineList[(string)EngineCmbx.SelectedItem].DefaultPort.ToString()
+                : GeneralSettings.Instance.DbPort.Value.ToString();
         }
 
         private void AcceptBtn_Click(object sender, RoutedEventArgs e)

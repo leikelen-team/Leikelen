@@ -124,4 +124,34 @@
   <data name="Posture" xml:space="preserve">
     <value>Postura</value>
   </data>
+  <data name="Name" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Descripción</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>Archivo</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Tipo</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Guardar</value>
+  </data>
+  <data name="Browse" xml:space="preserve">
+    <value>Examinar</value>
+  </data>
+  <data name="AddOrEditTitle" xml:space="preserve">
+    <value>Añadir o editar postura</value>
+  </data>
+  <data name="PostureCRUDTitle" xml:space="preserve">
+    <value>Posturas</value>
+  </data>
+  <data name="DiscretePosture" xml:space="preserve">
+    <value>Postura Discreta</value>
+  </data>
+  <data name="ContinuousPosture" xml:space="preserve">
+    <value>Postura Continua</value>
+  </data>
 </root>

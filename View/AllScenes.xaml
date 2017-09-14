@@ -23,7 +23,7 @@
             <Button x:Name="OpenBtn" Content="{x:Static resx:GUI.Open}" Margin="5" />
             <Button x:Name="DeleteBtn" Content="{x:Static resx:GUI.Delete}" Margin="5" />
         </StackPanel>
-        <DataGrid Grid.Row="1" x:Name="ScenesDataGrid" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="True" CanUserResizeColumns="True" CanUserResizeRows="True" CanUserSortColumns="True" SelectionMode="Single">
+        <DataGrid Grid.Row="1" x:Name="ScenesDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="True" CanUserResizeColumns="True" CanUserResizeRows="True" CanUserSortColumns="True" SelectionMode="Single">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="{x:Static resx:GUI.Name}" Binding="{Binding Name}"/>
                 <DataGridTextColumn Header="{x:Static resx:GUI.Participants}" Binding="{Binding NumberOfParticipants}"/>

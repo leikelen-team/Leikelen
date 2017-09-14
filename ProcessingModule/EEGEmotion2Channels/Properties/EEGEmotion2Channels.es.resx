@@ -160,4 +160,37 @@
   <data name="AddScenesToTag" xml:space="preserve">
     <value>Añadir escenas a tag</value>
   </data>
+  <data name="Duration" xml:space="preserve">
+    <value>Duración</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="Participants" xml:space="preserve">
+    <value>Participantes</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Tipo</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Descripción</value>
+  </data>
+  <data name="Place" xml:space="preserve">
+    <value>Lugar</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Fecha</value>
+  </data>
+  <data name="DeleteScenesFromTag" xml:space="preserve">
+    <value>Borrar escenas del tag</value>
+  </data>
+  <data name="Browse" xml:space="preserve">
+    <value>Examinar</value>
+  </data>
+  <data name="TrainerSceneSelectorTitle" xml:space="preserve">
+    <value>Seleccionar por escena</value>
+  </data>
+  <data name="TrainerFileSelectorTitle" xml:space="preserve">
+    <value>Seleccionar por archivo</value>
+  </data>
 </root>

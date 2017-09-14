@@ -24,92 +24,112 @@ namespace cl.uv.leikelen.InputModule.Kinect.View
     public partial class AddOrEditPosture : Window
     {
         private Posture _posture;
-        private string path;
+        private string _safeFileName;
+        
 
         private IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
 
         public AddOrEditPosture()
         {
             InitializeComponent();
+            Title = Properties.Kinect.AddOrEditTitle;
+
+            TypeCombobox.ItemsSource = new string[] { Properties.Kinect.DiscretePosture,
+                Properties.Kinect.ContinuousPosture };
+            TypeCombobox.SelectedIndex = 0;
         }
 
         public AddOrEditPosture(Posture posture)
         {
             InitializeComponent();
+            Title = Properties.Kinect.AddOrEditTitle;
 
             _posture = posture;
             nameTextBox.Text = _posture.Name;
-            fileNameTextBox.Text = _posture.File;
+            FileNameTextBox.Text = _posture.File;
+            DescriptionTextBox.Text = _posture.Description;
+
+            TypeCombobox.ItemsSource = new string[] { Properties.Kinect.DiscretePosture,
+                Properties.Kinect.ContinuousPosture };
             TypeCombobox.SelectedItem = _posture.GestureType;
         }
 
         private void browseButton_Click(object sender, RoutedEventArgs e)
         {
-            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
-            dlg.DefaultExt = ".gbd"; // Default file extension
-            dlg.Filter = "Gesture solution build " + "(*.gbd)|*.gbd|Gesture project build (*.gba)|*.gba"; // Filter files by extension
-            dlg.Title = "Importar postura";
-            bool? result = dlg.ShowDialog();
-
-            if (result == true)
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog()
             {
-                this.fileNameTextBox.Text = dlg.SafeFileName;
-                this.path = dlg.FileName;
+                DefaultExt = ".gbd",
+                Filter = "Gesture solution build " + "(*.gbd)|*.gbd|Gesture project build (*.gba)|*.gba",
+                Title = "Importar postura"
+            };
+            if (dlg.ShowDialog() == true)
+            {
+                FileNameTextBox.Text = dlg.FileName;
+                _safeFileName = dlg.SafeFileName;
             }
         }
 
         private void saveButton_Click(object sender, RoutedEventArgs e)
         {
-            if (this.path == null)
-            {
-                MessageBox.Show("Debes ingresar un archivo");
-            }
+            string error = "";
             string name = nameTextBox.Text;
-            if (_dataAccessFacade.GetSubModalAccess().Exists((string)this.TypeCombobox.SelectedItem, name))
+            if (String.IsNullOrEmpty(_safeFileName))
             {
-                if (_posture == null || _posture.Name != name)
+                error += "\nNo ingresó un archivo";
+            }
+            if (String.IsNullOrEmpty(name))
+            {
+                error += "\nNo ingresó un nombre";
+            }
+            if(_dataAccessFacade.GetSubModalAccess().Exists(PostureCRUD.PostureTypes[TypeCombobox.SelectedIndex], name))
+            {
+                if(_posture == null)
                 {
-                    MessageBox.Show("La postura '" + name + "' ya existe. Utilice otro nombre.");
-                }
-                else if (_posture.Name == name && _posture.File == path)
-                {
-                    this.Close();
+                    error += $"\nLa postura {name} ya existe. Utilice otro nombre";
                 }
             }
-            else if (!String.IsNullOrEmpty(this.path) && !String.IsNullOrEmpty(name))
+            if (!String.IsNullOrEmpty(error))
             {
-                Console.WriteLine("Saving posture: name: {0} --- path: {1}", name, this.path);
+                MessageBox.Show("Hay errores:"+error, "Error");
+            }
+            else if(_posture == null) //is adding
+            {
+                string internalFilePath = $"{_dataAccessFacade.GetGeneralSettings().GetDataDirectory()}" +
+                    $"modal/{PostureCRUD.PostureTypes[TypeCombobox.SelectedIndex]}/{_safeFileName}";
 
-
-                string internalFilePath = _dataAccessFacade.GetGeneralSettings().GetDataDirectory()+"modal/"+_posture.GestureType+"/"+ fileNameTextBox.Text;
                 if (!File.Exists(internalFilePath))
-                    File.Copy(path, internalFilePath);
-                if (_posture != null)
-                {
-                    var subModal = _dataAccessFacade.GetSubModalAccess().Get((string)this.TypeCombobox.SelectedItem, name);
-                    string oldPath = subModal.File;
+                    File.Copy(FileNameTextBox.Text, internalFilePath);
 
-                    subModal.SubModalTypeId = name;
-                    subModal.File = path;
-                    subModal.Description = DescriptionTextBox.Text;
-                    _dataAccessFacade.GetSubModalAccess().Update(subModal);
+                _dataAccessFacade.GetSubModalAccess().Add(PostureCRUD.PostureTypes[TypeCombobox.SelectedIndex],
+                    name, DescriptionTextBox.Text, _safeFileName);
+                Close();
+            }
+            else //editing
+            {
+                string internalFilePath = $"{_dataAccessFacade.GetGeneralSettings().GetDataDirectory()}" +
+                    $"modal/{PostureCRUD.PostureTypes[TypeCombobox.SelectedIndex]}/{_safeFileName}";
 
-                    if (oldPath != internalFilePath)
-                    {
-                        File.Delete(oldPath);
-                    }
-                }
-                else
+                var subModal = _dataAccessFacade.GetSubModalAccess().Get(PostureCRUD.PostureTypes[TypeCombobox.SelectedIndex], name);
+                string oldPath = subModal.File;
+
+                subModal.SubModalTypeId = name;
+                subModal.File = _safeFileName;
+                subModal.Description = DescriptionTextBox.Text;
+                _dataAccessFacade.GetSubModalAccess().Update(subModal);
+
+                if (oldPath != internalFilePath)
                 {
-                    _dataAccessFacade.GetSubModalAccess().Add((string)this.TypeCombobox.SelectedItem, name, DescriptionTextBox.Text, this.path);
+                    File.Delete(oldPath);
+                    if (!File.Exists(internalFilePath))
+                        File.Copy(FileNameTextBox.Text, internalFilePath);
                 }
-                this.Close();
+                Close();
             }
         }
 
         private void cancelButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Close();
         }
     }
 }

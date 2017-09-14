@@ -475,6 +475,33 @@ namespace cl.uv.leikelen.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Person.
+        /// </summary>
+        public static string Person {
+            get {
+                return ResourceManager.GetString("Person", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Bones color.
+        /// </summary>
+        public static string PersonBonesColor {
+            get {
+                return ResourceManager.GetString("PersonBonesColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Dots color.
+        /// </summary>
+        public static string PersonDotsColor {
+            get {
+                return ResourceManager.GetString("PersonDotsColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Photo.
         /// </summary>
         public static string Photo {
@@ -565,6 +592,15 @@ namespace cl.uv.leikelen.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a seconds.
+        /// </summary>
+        public static string seconds {
+            get {
+                return ResourceManager.GetString("seconds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Sex.
         /// </summary>
         public static string Sex {
@@ -574,11 +610,11 @@ namespace cl.uv.leikelen.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Please stop the recording before set from file.
+        ///   Busca una cadena traducida similar a Please stop the recording first.
         /// </summary>
-        public static string stopReccordBeforeFromFile {
+        public static string stopRecordFirst {
             get {
-                return ResourceManager.GetString("stopReccordBeforeFromFile", resourceCulture);
+                return ResourceManager.GetString("stopRecordFirst", resourceCulture);
             }
         }
         

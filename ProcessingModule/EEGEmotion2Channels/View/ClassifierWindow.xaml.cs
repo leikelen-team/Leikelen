@@ -33,38 +33,12 @@ namespace cl.uv.leikelen.ProcessingModule.EEGEmotion2Channels.View
             rTextBox.Text = EEGEmoProc2ChSettings.Instance.r.Value.ToString();
             SecsTextBox.Text = EEGEmoProc2ChSettings.Instance.secs.Value.ToString();
 
-            ScenesDataGrid.ItemsSource = _dataAccessFacade.GetSceneAccess().GetAll();
-
-            TagCmbx.SelectionChanged += TagCmbx_SelectionChanged;
-            AddScenesToTag.Click += AddScenesToTag_Click;
+            
             Accept.Click += AcceptBtnOnClick;
             Cancel.Click += Cancel_Click;
         }
 
-        private void TagCmbx_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var tag = (TagType)TagCmbx.SelectedIndex;
-            if (TagCmbx.SelectedIndex >= 0)
-            {
-                ScenesAddedDataGrid.ItemsSource = TrainerEntryPoint.ScenesAndTags[tag];
-            }
-        }
-
-        private void AddScenesToTag_Click(object sender, RoutedEventArgs e)
-        {
-            var scenes = ScenesAddedDataGrid.SelectedItems as List<Scene>;
-            if(TagCmbx.SelectedIndex >= 0)
-            {
-                var tag = (TagType)TagCmbx.SelectedIndex;
-                if (scenes != null)
-                {
-                    foreach (var scene in scenes)
-                    {
-                        TrainerEntryPoint.ScenesAndTags[tag].Add(scene);
-                    }
-                }
-            }
-        }
+        
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
@@ -80,14 +54,13 @@ namespace cl.uv.leikelen.ProcessingModule.EEGEmotion2Channels.View
                 int m = 0;
                 int secs = 0;
                 double r = 0;
-                if (TagCmbx.SelectedIndex != -1 && Int32.TryParse(mTextBox.Text, out m) && Double.TryParse(rTextBox.Text, out r) &&
+                if (Int32.TryParse(mTextBox.Text, out m) && Double.TryParse(rTextBox.Text, out r) &&
                     Int32.TryParse(SecsTextBox.Text, out secs))
                 {
                     EEGEmoProc2ChSettings.Instance.SamplingHz.Write((int) SamplingCmbx.SelectedItem);
                     EEGEmoProc2ChSettings.Instance.m.Write(m);
                     EEGEmoProc2ChSettings.Instance.r.Write(r);
                     EEGEmoProc2ChSettings.Instance.secs.Write(secs);
-                    EEGEmoProc2ChSettings.Instance.TagToTrain.Write(TagCmbx.SelectedIndex);
                     Close();
                 }
                 else

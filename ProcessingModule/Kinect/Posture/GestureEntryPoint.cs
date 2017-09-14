@@ -13,7 +13,7 @@ namespace cl.uv.leikelen.ProcessingModule.Kinect.Posture
     public class GestureEntryPoint : API.ProcessingModule.ProcessingModule, IKinectProcessingModule
     {
         private GestureLogic _logic;
-        protected GestureEntryPoint()
+        public GestureEntryPoint()
         {
             Name = "Discrete Posture detector";
             Windows = new List<Tuple<string, WindowBuilder>>();

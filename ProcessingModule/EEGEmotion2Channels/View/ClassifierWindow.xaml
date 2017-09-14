@@ -13,16 +13,13 @@
         TextElement.FontSize="14"
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
         mc:Ignorable="d"
-        Title="Emotion Classifier" Height="500" Width="400">
+        Title="Emotion Classifier" Height="300" Width="300">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition MinHeight="40" Height="*"/>
-            <RowDefinition MinHeight="40" Height="*"/>
-            <RowDefinition MinHeight="40" Height="*"/>
             <RowDefinition MinHeight="40" Height="*"/>
             <RowDefinition MinHeight="40" Height="*"/>
             <RowDefinition MinHeight="40" Height="*"/>
@@ -47,7 +44,7 @@
                  VerticalAlignment="Bottom" />
         <Label x:Name="SecsLabel" Grid.Row="3" Grid.Column="0" VerticalAlignment="Bottom" HorizontalAlignment="Left" Content="{x:Static resx:EEGEmotion2Channels.Window}" />
 
-        <Grid Grid.Row="3" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+        <Grid Grid.Row="3" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Stretch">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition />
@@ -55,31 +52,13 @@
             <TextBox
                 x:Name="SecsTextBox"
                 Grid.Column="0"
+                HorizontalAlignment="Stretch"
                 materialDesign:HintAssist.Hint="{x:Static resx:EEGEmotion2Channels.secsHint}" />
 
             <Label Grid.Column="1" Content="{x:Static resx:EEGEmotion2Channels.Seconds}"></Label>
         </Grid>
         
-        <Label x:Name="TagLabel" Grid.Row="4" Grid.Column="0" VerticalAlignment="Bottom" HorizontalAlignment="Left" Content="{x:Static resx:EEGEmotion2Channels.TagTrain}" />
-        
-        <ComboBox x:Name="TagCmbx" Grid.Row="4" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Left">
-            <ComboBoxItem Content="{x:Static resx:EEGEmotion2Channels.LALV}"></ComboBoxItem>
-            <ComboBoxItem Content="{x:Static resx:EEGEmotion2Channels.LAHV}"></ComboBoxItem>
-            <ComboBoxItem Content="{x:Static resx:EEGEmotion2Channels.HALV}"></ComboBoxItem>
-            <ComboBoxItem Content="{x:Static resx:EEGEmotion2Channels.HAHV}"></ComboBoxItem>
-        </ComboBox>
-
-        <DataGrid x:Name="ScenesDataGrid" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" SelectionMode="Extended" CanUserReorderColumns="True" CanUserResizeColumns="True" CanUserResizeRows="True" CanUserSortColumns="True">
-            
-        </DataGrid>
-
-        <Button x:Name="AddScenesToTag" Content="{x:Static resx:EEGEmotion2Channels.AddScenesToTag}" Grid.Row="6" Grid.Column="0" />
-
-        <DataGrid x:Name="ScenesAddedDataGrid" Grid.Row="6" Grid.Column="1" CanUserReorderColumns="True" CanUserResizeColumns="True" CanUserResizeRows="True" CanUserSortColumns="True">
-            
-        </DataGrid>
-
-        <StackPanel Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom" HorizontalAlignment="Center" Orientation="Horizontal">
+        <StackPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom" HorizontalAlignment="Center" Orientation="Horizontal">
             <Button x:Name="Accept" Margin="0,0,4,0" Content="{x:Static resx:EEGEmotion2Channels.Accept}" />
             <Button x:Name="Cancel" Margin="4,0,0,0" Content="{x:Static resx:EEGEmotion2Channels.Cancel}" />
         </StackPanel>
