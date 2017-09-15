@@ -11,11 +11,16 @@ using Accord.Statistics.Kernels;
 using Accord.MachineLearning.VectorMachines.Learning;
 using Accord.Math.Optimization.Losses;
 using Accord.IO;
+using System.IO;
+using cl.uv.leikelen.API.DataAccess;
+using cl.uv.leikelen.Data.Access;
 
 namespace cl.uv.leikelen.ProcessingModule.EEGEmotion2Channels
 {
     public class LearningModel
     {
+        private static IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
+
         public static TagType Classify(List<double[]> signalsList)
         {
             var featureVector = PreProcess(signalsList);
@@ -43,7 +48,8 @@ namespace cl.uv.leikelen.ProcessingModule.EEGEmotion2Channels
             }
             Console.WriteLine("procesado todo, ahora a buscar");
             // Instantiate a new Grid Search algorithm for Kernel Support Vector Machines
-            var gridsearch = new GridSearch<SupportVectorMachine<Gaussian>, double[], int>()
+            
+            var gridsearch = new GridSearch<MulticlassSupportVectorMachine<Gaussian>, double[], int>()
             {
                 // Here we can specify the range of the parameters to be included in the search
                 ParameterRanges = new GridSearchRangeCollection()
@@ -57,26 +63,62 @@ namespace cl.uv.leikelen.ProcessingModule.EEGEmotion2Channels
                 },
 
                 // Indicate how learning algorithms for the models should be created
-                Learner = (p) => new SequentialMinimalOptimization<Gaussian>
+                Learner = (p) => new MulticlassSupportVectorLearning<Gaussian>()
                 {
-                    Complexity = p["constant"],
-                    Kernel = new Gaussian(p["sigma"])
+                    // Configure the learning algorithm to use SMO to train the
+                    //  underlying SVMs in each of the binary class subproblems.
+                    Learner = (param) => new SequentialMinimalOptimization<Gaussian>()
+                    {
+                        // Estimate a suitable guess for the Gaussian kernel's parameters.
+                        // This estimate can serve as a starting point for a grid search.
+                        Complexity = p["constant"],
+                        Kernel = new Gaussian(p["sigma"])
+                    }
                 },
 
                 // Define how the performance of the models should be measured
-                Loss = (actual, expected, m) => new ZeroOneLoss(expected).Loss(actual)
+                Loss = (actual, expected, m) => new HammingLoss(expected).Loss(actual)
             };
-            gridsearch.ParallelOptions.MaxDegreeOfParallelism = 4;
+            gridsearch.ParallelOptions.MaxDegreeOfParallelism = 1;
 
             Console.WriteLine("y nos ponemos a aprender");
             // Search for the best model parameters
             var result = gridsearch.Learn(inputsList.ToArray(), outputsList.ToArray());
 
+
+            /*
+            // Create the multi-class learning algorithm for the machine
+            var teacher = new MulticlassSupportVectorLearning<Gaussian>()
+            {
+                // Configure the learning algorithm to use SMO to train the
+                //  underlying SVMs in each of the binary class subproblems.
+                Learner = (param) => new SequentialMinimalOptimization<Gaussian>()
+                {
+                    // Estimate a suitable guess for the Gaussian kernel's parameters.
+                    // This estimate can serve as a starting point for a grid search.
+                    UseKernelEstimation = true
+                }
+                
+            };
+            Console.WriteLine("y nos ponemos a aprender");
+
+            var result = teacher.Learn(inputsList.ToArray(), outputsList.ToArray());*/
+
+
+
+
+
+
+
+
+
             Console.WriteLine("aprendido");
             // Get the best SVM found during the parameter search
-            SupportVectorMachine<Gaussian> svm = result.BestModel;
+            MulticlassSupportVectorMachine<Gaussian> svm = result.BestModel;
             Console.WriteLine("svm obtenido!");
-            Serializer.Save<SupportVectorMachine<Gaussian>>(obj: svm, path: "mimodelo.svm");
+            string internalPath = $"{_dataAccessFacade.GetGeneralSettings().GetDataDirectory()}" +
+                    $"modal/Emotion/emotionmodel.svm";
+            Serializer.Save<MulticlassSupportVectorMachine<Gaussian>>(obj: svm, path: internalPath);
             Console.WriteLine("guardado :3");
             // Get an estimate for its error:
             double bestError = result.BestModelError;
@@ -86,7 +128,19 @@ namespace cl.uv.leikelen.ProcessingModule.EEGEmotion2Channels
             double bestConstant = result.BestParameters["constant"].Value;
 
             Console.WriteLine($"error: {bestError}, Sigma: {bestSigma}, C: {bestConstant}");
-
+            string outInternalPath = $"{_dataAccessFacade.GetGeneralSettings().GetDataDirectory()}" +
+                    $"modal/Emotion/result.txt";
+            var file_emotrain = File.CreateText(outInternalPath);
+            file_emotrain.WriteLine($"error: {result.BestModelError}\t" +
+                $"Sigma: {bestSigma}\t" +
+                $"C: {bestConstant}\t" +
+                $"Count Models: {result.Count}\t" +
+                $"Index: {result.BestModelIndex}\t" +
+                $"Inputs: {result.NumberOfInputs}\t" +
+                $"Outputs: {result.NumberOfOutputs}");
+            file_emotrain.Flush();
+            file_emotrain.Close();
+            
         }
 
         private static List<double> PreProcess(List<double[]> signalsList)

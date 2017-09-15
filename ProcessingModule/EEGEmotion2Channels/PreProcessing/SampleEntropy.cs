@@ -36,11 +36,11 @@ namespace cl.uv.leikelen.ProcessingModule.EEGEmotion2Channels.PreProcessing
                     m = 0; /* maximum so far */
                     for (k = 0; k < wlen; k++)
                         /* get max cheb. distance */
-                        m = Math.Max(m, Rational.Abs(new Rational(data[i + k * shift] - data[j + k * shift])).Value);
+                        m = Math.Max(m, DoubleAbs(data[i + k * shift] - data[j + k * shift]));
                     /* first case, distance lower in first wlen positions */
                     if (m < r) B++;
                     /* Second case, distance lower if we add the next element */
-                    if (Math.Max(m, Rational.Abs( new Rational(data[i + wlen * shift] - data[j + wlen * shift])).Value) < r) A++;
+                    if (Math.Max(m, DoubleAbs(data[i + wlen * shift] - data[j + wlen * shift])) < r) A++;
                 }
             }
             /* return -log A/B */
@@ -48,6 +48,18 @@ namespace cl.uv.leikelen.ProcessingModule.EEGEmotion2Channels.PreProcessing
                 return (-1 * Math.Log(((double)A) / ((double)B)));
             else
                 return 0;
+        }
+
+        public static double DoubleAbs(double value)
+        {
+            if(value < 0)
+            {
+                return value * -1;
+            }
+            else
+            {
+                return value;
+            }
         }
     }
 }
