@@ -60,6 +60,7 @@
                 <MenuItem x:Name="MenuItem_Scene" Header="{x:Static resx:Menu.Scene}">
                     <MenuItem x:Name="MenuItem_Scene_Configure" Header="{x:Static resx:Menu.Scene_Configure}" InputGestureText="Ctrl+C"></MenuItem>
                     <MenuItem x:Name="MenuItem_Scene_AddPerson" Header="{x:Static resx:Menu.Scene_AddPerson}"></MenuItem>
+                    <MenuItem x:Name="MenuItem_Scene_Persons" Header="{x:Static resx:Menu.Scene_Persons}"></MenuItem>
                 </MenuItem>
                 <MenuItem x:Name="MenuItem_Help" Header="{x:Static resx:Menu.Help}">
                     <MenuItem x:Name="MenuItem_Help_Manual" Header="{x:Static resx:Menu.Help_Manual}" InputGestureText="Ctrl+H"></MenuItem>

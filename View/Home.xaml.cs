@@ -97,6 +97,7 @@ namespace cl.uv.leikelen.View
             //Scene MenuItems
             MenuItem_Scene_Configure.Click += MenuItem_Scene_Configure_Click;
             MenuItem_Scene_AddPerson.Click += MenuItem_Scene_AddPerson_Click;
+            MenuItem_Scene_Persons.Click += MenuItem_Scene_Persons_Click;
 
             //Help MenuItems
             MenuItem_Help_DevDoc.Click += MenuItem_Help_DevDoc_Click;
@@ -148,8 +149,35 @@ namespace cl.uv.leikelen.View
             ChangeHomeState(HomeState.Initial, PlayerState.Wait);
             FillMenuInputModules();
             FillMenuProccessingModules();
+            FillRecentScenes();
         }
 
+        private void FillRecentScenes()
+        {
+            /*var scenes = DataAccessFacade.Instance.GetSceneAccess().GetAll();
+            List<MenuItem> recentScenes = new List<MenuItem>();
+            recentScenes.Concat(MenuItem_File_Recent.Items);
+
+            for (int i= scenes.Count-1; i>=0 && i>scenes.Count-5; i--)
+            {
+                MenuItem recentScene = new MenuItem()
+                {
+                    Header = scenes[i].Name
+                    
+                };
+                recentScene.Click += (sender, e) =>
+                {
+
+                };
+                MenuItem_File_Recent.Items.Insert();
+            }*/
+        }
+
+        private void MenuItem_Scene_Persons_Click(object sender, RoutedEventArgs e)
+        {
+            var allPersonsWin = new AllPersons();
+            allPersonsWin.Show();
+        }
 
         private void MenuItem_File_LoadTestScene_Click(object sender, RoutedEventArgs e)
         {

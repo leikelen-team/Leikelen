@@ -142,7 +142,6 @@ namespace cl.uv.leikelen.ProcessingModule.EEGEmotion2Channels.View
             int i = 0;
             foreach (var line in lines)
             {
-                if (secStart > 20) break;
                 if (first)
                 {
                     first = false;
