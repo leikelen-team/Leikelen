@@ -20,7 +20,7 @@
             <RowDefinition MinHeight="40" Height="*" />
             <RowDefinition MinHeight="40" Height="*" />
         </Grid.RowDefinitions>
-        <Image Grid.Row="0" Source="../static/logo.png" />
+        <Image Grid.Row="0" Source="../Static/logo.png" />
         <TextBlock Grid.Row="1" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{x:Static resx:GUI.Authors}"/>
         <TextBlock TextWrapping="Wrap" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Bottom" Text="{x:Static resx:GUI.Copyright}"/>
     </Grid>

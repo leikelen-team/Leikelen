@@ -24,7 +24,7 @@
                     <Image x:Name="Photo" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Center" />
                 </materialDesign:ColorZone>
                 <StackPanel Margin="4" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Label x:Name="Name" VerticalAlignment="Center" MaxWidth="120">eRICK</Label>
+                    <Label x:Name="PersonName" VerticalAlignment="Center" MaxWidth="120"></Label>
                     <materialDesign:PopupBox HorizontalAlignment="Right" Style="{StaticResource MaterialDesignToolForegroundPopupBox}" Padding="0 0 2 0">
                         <StackPanel>
                             <Button x:Name="EditButton" Content="{x:Static resx:GUI.Edit}"/>

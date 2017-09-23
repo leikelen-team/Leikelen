@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using cl.uv.leikelen.InputModule;
+using cl.uv.leikelen.Module;
 
 namespace cl.uv.leikelen.Controller
 {

@@ -241,6 +241,15 @@ namespace cl.uv.leikelen.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a General modules.
+        /// </summary>
+        public static string Tools_General {
+            get {
+                return ResourceManager.GetString("Tools_General", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Player.
         /// </summary>
         public static string Tools_Player {
@@ -291,15 +300,6 @@ namespace cl.uv.leikelen.Properties {
         public static string Tools_Processing_AddNotImplemented {
             get {
                 return ResourceManager.GetString("Tools_Processing_AddNotImplemented", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a General processing modules.
-        /// </summary>
-        public static string Tools_Processing_General {
-            get {
-                return ResourceManager.GetString("Tools_Processing_General", resourceCulture);
             }
         }
         

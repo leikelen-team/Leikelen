@@ -4,8 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using cl.uv.leikelen.Data.Access.Internal;
-using cl.uv.leikelen.InputModule;
-using cl.uv.leikelen.ProcessingModule;
+using cl.uv.leikelen.Module;
 
 namespace cl.uv.leikelen.Controller
 {
@@ -31,7 +30,7 @@ namespace cl.uv.leikelen.Controller
         {
             foreach (var input in InputLoader.Instance.SceneInputModules)
             {
-                if (input.Monitor.GetStatus() != API.InputModule.InputStatus.Connected)
+                if (input.Monitor.GetStatus() != API.Module.Input.InputStatus.Connected)
                     await input.Monitor.Open();
                 await input.Monitor.StartRecording();
             }

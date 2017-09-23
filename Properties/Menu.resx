@@ -198,8 +198,8 @@
   <data name="Tools_Processing_AddNotImplemented" xml:space="preserve">
     <value>Add processing module (not implemented)</value>
   </data>
-  <data name="Tools_Processing_General" xml:space="preserve">
-    <value>General processing modules</value>
+  <data name="Tools_General" xml:space="preserve">
+    <value>General modules</value>
   </data>
   <data name="Help_DevDocumentation" xml:space="preserve">
     <value>Developer Documentation</value>

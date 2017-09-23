@@ -315,7 +315,8 @@
     <Compile Include="API\FrameProvider\Kinect\IKinectProcessingModule.cs" />
     <Compile Include="API\FrameProvider\Kinect\KinectGestureFrameArrivedArgs.cs" />
     <Compile Include="API\Helper\ITab.cs" />
-    <Compile Include="API\ProcessingModule\ProcessingPlurality.cs" />
+    <Compile Include="API\Module\AbstractModule.cs" />
+    <Compile Include="API\Module\General\GeneralModule.cs" />
     <Compile Include="Controller\FileController.cs" />
     <Compile Include="Data\Access\DataAccessFacade.cs" />
     <Compile Include="Data\Access\External\PersonAccess.cs" />
@@ -326,48 +327,69 @@
     <Compile Include="Data\Persistence\Provider\EfAbstractProvider.cs" />
     <Compile Include="Data\Persistence\Provider\MySqlProvider.cs" />
     <Compile Include="Data\Persistence\Provider\SqliteProvider.cs" />
-    <Compile Include="InputModule\Kinect\GestureDetector.cs" />
-    <Compile Include="InputModule\Kinect\KinectInput.cs" />
-    <Compile Include="InputModule\Kinect\KinectSettings.cs" />
-    <Compile Include="InputModule\Kinect\Monitor.cs" />
-    <Compile Include="InputModule\Kinect\Player.cs" />
-    <Compile Include="InputModule\Kinect\Properties\Kinect.es.Designer.cs">
+    <Compile Include="Module\GeneralLoader.cs" />
+    <Compile Include="Module\Input\Kinect\GestureDetector.cs" />
+    <Compile Include="Module\Input\Kinect\KinectInput.cs" />
+    <Compile Include="Module\Input\Kinect\KinectSettings.cs" />
+    <Compile Include="Module\Input\Kinect\Monitor.cs" />
+    <Compile Include="Module\Input\Kinect\Player.cs" />
+    <Compile Include="Module\Input\Kinect\Properties\Kinect.es.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Kinect.es.resx</DependentUpon>
     </Compile>
-    <Compile Include="InputModule\Kinect\Properties\Kinect1.Designer.cs">
+    <Compile Include="Module\Input\Kinect\Properties\Kinect1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Kinect.resx</DependentUpon>
     </Compile>
-    <Compile Include="InputModule\Kinect\SkeletonColorVideoViewer.cs" />
-    <Compile Include="InputModule\Kinect\View\AddOrEditPosture.xaml.cs">
+    <Compile Include="Module\Input\Kinect\SkeletonColorVideoViewer.cs" />
+    <Compile Include="Module\Input\Kinect\View\AddOrEditPosture.xaml.cs">
       <DependentUpon>AddOrEditPosture.xaml</DependentUpon>
     </Compile>
-    <Compile Include="InputModule\Kinect\View\PostureCRUD.xaml.cs">
+    <Compile Include="Module\Input\Kinect\View\PostureCRUD.xaml.cs">
       <DependentUpon>PostureCRUD.xaml</DependentUpon>
     </Compile>
-    <Compile Include="InputModule\OpenBCI\OpenBCIInput.cs" />
-    <Compile Include="InputModule\OpenBCI\View\ConfigurePositions.xaml.cs">
+    <Compile Include="Module\Input\OpenBCI\OpenBCIInput.cs" />
+    <Compile Include="Module\Input\OpenBCI\Properties\OpenBCI.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OpenBCI.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Module\Input\OpenBCI\Properties\OpenBCI.es.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OpenBCI.es.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Module\Input\OpenBCI\View\ConfigurePositions.xaml.cs">
       <DependentUpon>ConfigurePositions.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ProcessingModule\EEGEmotion2Channels\TagType.cs" />
-    <Compile Include="ProcessingModule\EEGEmotion2Channels\View\ClassifierWindow.xaml.cs">
+    <Compile Include="Module\Processing\EEGEmotion2Channels\Properties\EEGEmotion2Channels.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EEGEmotion2Channels.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Module\Processing\EEGEmotion2Channels\Properties\EEGEmotion2Channels.es.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EEGEmotion2Channels.es.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Module\Processing\EEGEmotion2Channels\TagType.cs" />
+    <Compile Include="Module\Processing\EEGEmotion2Channels\View\ClassifierWindow.xaml.cs">
       <DependentUpon>ClassifierWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ProcessingModule\EEGEmotion2Channels\View\TrainerFileSelector.xaml.cs">
+    <Compile Include="Module\Processing\EEGEmotion2Channels\View\TrainerFileSelector.xaml.cs">
       <DependentUpon>TrainerFileSelector.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ProcessingModule\EEGEmotion2Channels\View\TrainerSceneSelector.xaml.cs">
+    <Compile Include="Module\Processing\EEGEmotion2Channels\View\TrainerSceneSelector.xaml.cs">
       <DependentUpon>TrainerSceneSelector.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ProcessingModule\Kinect\Distance\DistanceEntryPoint.cs" />
-    <Compile Include="ProcessingModule\Kinect\Distance\DistanceLogic.cs" />
-    <Compile Include="ProcessingModule\Kinect\Posture\GestureEntryPoint.cs" />
-    <Compile Include="ProcessingModule\Kinect\Posture\GestureLogic.cs" />
-    <Compile Include="ProcessingModule\Kinect\Voice\VoiceEntryPoint.cs" />
-    <Compile Include="ProcessingModule\Kinect\Voice\VoiceLogic.cs" />
+    <Compile Include="Module\Processing\Kinect\Distance\DistanceEntryPoint.cs" />
+    <Compile Include="Module\Processing\Kinect\Distance\DistanceLogic.cs" />
+    <Compile Include="Module\Processing\Kinect\Posture\GestureEntryPoint.cs" />
+    <Compile Include="Module\Processing\Kinect\Posture\GestureLogic.cs" />
+    <Compile Include="Module\Processing\Kinect\Voice\VoiceEntryPoint.cs" />
+    <Compile Include="Module\Processing\Kinect\Voice\VoiceLogic.cs" />
     <Compile Include="Properties\Error.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -404,13 +426,13 @@
     <Compile Include="API\DataAccess\ISubModalAccess.cs" />
     <Compile Include="API\DataAccess\ITimelessAccess.cs" />
     <Compile Include="API\DataAccess\Types.cs" />
-    <Compile Include="API\InputModule\IMonitor.cs" />
-    <Compile Include="API\InputModule\InputPlurality.cs" />
-    <Compile Include="API\InputModule\InputStatus.cs" />
-    <Compile Include="API\InputModule\InputModule.cs" />
-    <Compile Include="API\InputModule\IPlayer.cs" />
-    <Compile Include="API\InputModule\IVideo.cs" />
-    <Compile Include="API\ProcessingModule\ProcessingModule.cs" />
+    <Compile Include="API\Module\Input\IMonitor.cs" />
+    <Compile Include="API\Module\Input\InputPlurality.cs" />
+    <Compile Include="API\Module\Input\InputStatus.cs" />
+    <Compile Include="API\Module\Input\InputModule.cs" />
+    <Compile Include="API\Module\Input\IPlayer.cs" />
+    <Compile Include="API\Module\Input\IVideo.cs" />
+    <Compile Include="API\Module\Processing\ProcessingModule.cs" />
     <Compile Include="Controller\MediaController.cs" />
     <Compile Include="Controller\PlayerController.cs" />
     <Compile Include="Controller\RecorderController.cs" />
@@ -437,53 +459,32 @@
     <Compile Include="Data\Persistence\Provider\MemoryProvider.cs" />
     <Compile Include="Data\Persistence\Provider\PgSQLProvider.cs" />
     <Compile Include="Data\Persistence\RepresentTypeException.cs" />
-    <Compile Include="InputModule\InputLoader.cs" />
+    <Compile Include="Module\InputLoader.cs" />
     <Compile Include="API\FrameProvider\Accelerometer\AccelerometerFrameArrivedEventArgs.cs" />
-    <Compile Include="InputModule\OpenBCI\Util\Convert.cs" />
+    <Compile Include="Module\Input\OpenBCI\Util\Convert.cs" />
     <Compile Include="API\FrameProvider\EEG\EegFrameArrivedEventArgs.cs" />
-    <Compile Include="InputModule\OpenBCI\Util\FileManage.cs" />
-    <Compile Include="InputModule\OpenBCI\Util\Filter.cs" />
+    <Compile Include="Module\Input\OpenBCI\Util\FileManage.cs" />
+    <Compile Include="Module\Input\OpenBCI\Util\Filter.cs" />
     <Compile Include="API\FrameProvider\EEG\FilterType.cs" />
-    <Compile Include="InputModule\OpenBCI\Util\InterpretStream.cs" />
-    <Compile Include="InputModule\OpenBCI\Monitor.cs" />
+    <Compile Include="Module\Input\OpenBCI\Util\InterpretStream.cs" />
+    <Compile Include="Module\Input\OpenBCI\Monitor.cs" />
     <Compile Include="API\FrameProvider\EEG\NotchType.cs" />
-    <Compile Include="InputModule\OpenBCI\Properties\OpenBCI.es.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>OpenBCI.es.resx</DependentUpon>
-    </Compile>
-    <Compile Include="InputModule\OpenBCI\View\OpenBCIWindow.xaml.cs">
+    <Compile Include="Module\Input\OpenBCI\View\OpenBCIWindow.xaml.cs">
       <DependentUpon>OpenBCIWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="InputModule\OpenBCI\OpenBCISettings.cs" />
-    <Compile Include="InputModule\OpenBCI\Player.cs" />
-    <Compile Include="InputModule\OpenBCI\Properties\OpenBCI.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>OpenBCI.resx</DependentUpon>
-    </Compile>
-    <Compile Include="ProcessingModule\EEGEmotion2Channels\ClassifierType.cs" />
-    <Compile Include="ProcessingModule\EEGEmotion2Channels\EEGReceiver.cs" />
-    <Compile Include="ProcessingModule\EEGEmotion2Channels\DetectorEntryPoint.cs" />
-    <Compile Include="ProcessingModule\EEGEmotion2Channels\Properties\EEGEmotion2Channels.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EEGEmotion2Channels.resx</DependentUpon>
-    </Compile>
-    <Compile Include="ProcessingModule\EEGEmotion2Channels\Properties\EEGEmotion2Channels.es.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EEGEmotion2Channels.es.resx</DependentUpon>
-    </Compile>
-    <Compile Include="ProcessingModule\EEGEmotion2Channels\TrainerEntryPoint.cs" />
-    <Compile Include="ProcessingModule\EEGEmotion2Channels\View\DetectorWindow.xaml.cs">
+    <Compile Include="Module\Input\OpenBCI\OpenBCISettings.cs" />
+    <Compile Include="Module\Input\OpenBCI\Player.cs" />
+    <Compile Include="Module\Processing\EEGEmotion2Channels\EEGReceiver.cs" />
+    <Compile Include="Module\Processing\EEGEmotion2Channels\DetectorEntryPoint.cs" />
+    <Compile Include="Module\Processing\EEGEmotion2Channels\TrainerEntryPoint.cs" />
+    <Compile Include="Module\Processing\EEGEmotion2Channels\View\DetectorWindow.xaml.cs">
       <DependentUpon>DetectorWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ProcessingModule\EEGEmotion2Channels\EEGEmoProc2ChSettings.cs" />
-    <Compile Include="ProcessingModule\EEGEmotion2Channels\PreProcessing\Emd.cs" />
-    <Compile Include="ProcessingModule\EEGEmotion2Channels\PreProcessing\SampleEntropy.cs" />
-    <Compile Include="ProcessingModule\EEGEmotion2Channels\LearningModel.cs" />
-    <Compile Include="ProcessingModule\ProcessingLoader.cs" />
+    <Compile Include="Module\Processing\EEGEmotion2Channels\EEGEmoProc2ChSettings.cs" />
+    <Compile Include="Module\Processing\EEGEmotion2Channels\PreProcessing\Emd.cs" />
+    <Compile Include="Module\Processing\EEGEmotion2Channels\PreProcessing\SampleEntropy.cs" />
+    <Compile Include="Module\Processing\EEGEmotion2Channels\LearningModel.cs" />
+    <Compile Include="Module\ProcessingLoader.cs" />
     <Compile Include="GeneralSettings.cs" />
     <Compile Include="View\AboutUs.xaml.cs">
       <DependentUpon>AboutUs.xaml</DependentUpon>
@@ -517,59 +518,59 @@
     <Compile Include="View\Widget\PersonCard.xaml.cs">
       <DependentUpon>PersonCard.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Widget\PreferencesBD.xaml.cs">
+    <Compile Include="View\Widget\PreferencesTab\PreferencesBD.xaml.cs">
       <DependentUpon>PreferencesBD.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Widget\PreferencesColor.xaml.cs">
+    <Compile Include="View\Widget\PreferencesTab\PreferencesColor.xaml.cs">
       <DependentUpon>PreferencesColor.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Widget\PreferencesGeneral.xaml.cs">
+    <Compile Include="View\Widget\PreferencesTab\PreferencesGeneral.xaml.cs">
       <DependentUpon>PreferencesGeneral.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Widget\PreferencesPersonColors.xaml.cs">
+    <Compile Include="View\Widget\PreferencesTab\PreferencesPersonColors.xaml.cs">
       <DependentUpon>PreferencesPersonColors.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Widget\TabDistance.xaml.cs">
+    <Compile Include="View\Widget\HomeTab\TabDistance.xaml.cs">
       <DependentUpon>TabDistance.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Widget\TabGraph.xaml.cs">
+    <Compile Include="View\Widget\HomeTab\TabGraph.xaml.cs">
       <DependentUpon>TabGraph.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Widget\TabInterval.xaml.cs">
+    <Compile Include="View\Widget\HomeTab\TabInterval.xaml.cs">
       <DependentUpon>TabInterval.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Widget\TabScene.xaml.cs">
+    <Compile Include="View\Widget\HomeTab\TabScene.xaml.cs">
       <DependentUpon>TabScene.xaml</DependentUpon>
     </Compile>
-    <Page Include="InputModule\Kinect\View\AddOrEditPosture.xaml">
+    <Page Include="Module\Input\Kinect\View\AddOrEditPosture.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="InputModule\Kinect\View\PostureCRUD.xaml">
+    <Page Include="Module\Input\Kinect\View\PostureCRUD.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="InputModule\OpenBCI\View\ConfigurePositions.xaml">
+    <Page Include="Module\Input\OpenBCI\View\ConfigurePositions.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="InputModule\OpenBCI\View\OpenBCIWindow.xaml">
+    <Page Include="Module\Input\OpenBCI\View\OpenBCIWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ProcessingModule\EEGEmotion2Channels\View\ClassifierWindow.xaml">
+    <Page Include="Module\Processing\EEGEmotion2Channels\View\ClassifierWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ProcessingModule\EEGEmotion2Channels\View\DetectorWindow.xaml">
+    <Page Include="Module\Processing\EEGEmotion2Channels\View\DetectorWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ProcessingModule\EEGEmotion2Channels\View\TrainerFileSelector.xaml">
+    <Page Include="Module\Processing\EEGEmotion2Channels\View\TrainerFileSelector.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ProcessingModule\EEGEmotion2Channels\View\TrainerSceneSelector.xaml">
+    <Page Include="Module\Processing\EEGEmotion2Channels\View\TrainerSceneSelector.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -609,35 +610,35 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Widget\PreferencesBD.xaml">
+    <Page Include="View\Widget\PreferencesTab\PreferencesBD.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Widget\PreferencesColor.xaml">
+    <Page Include="View\Widget\PreferencesTab\PreferencesColor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Widget\PreferencesGeneral.xaml">
+    <Page Include="View\Widget\PreferencesTab\PreferencesGeneral.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Widget\PreferencesPersonColors.xaml">
+    <Page Include="View\Widget\PreferencesTab\PreferencesPersonColors.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Widget\TabDistance.xaml">
+    <Page Include="View\Widget\HomeTab\TabDistance.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Widget\TabGraph.xaml">
+    <Page Include="View\Widget\HomeTab\TabGraph.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Widget\TabInterval.xaml">
+    <Page Include="View\Widget\HomeTab\TabInterval.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Widget\TabScene.xaml">
+    <Page Include="View\Widget\HomeTab\TabScene.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -655,11 +656,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="InputModule\Kinect\Properties\Kinect.es.resx">
+    <EmbeddedResource Include="Module\Input\Kinect\Properties\Kinect.es.resx">
       <LastGenOutput>Kinect.es.Designer.cs</LastGenOutput>
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="InputModule\Kinect\Properties\Kinect.resx">
+    <EmbeddedResource Include="Module\Input\Kinect\Properties\Kinect.resx">
       <LastGenOutput>Kinect1.Designer.cs</LastGenOutput>
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
@@ -687,21 +688,21 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Menu.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="InputModule\OpenBCI\Properties\OpenBCI.es.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
+    <EmbeddedResource Include="Module\Input\OpenBCI\Properties\OpenBCI.es.resx">
       <LastGenOutput>OpenBCI.es.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="InputModule\OpenBCI\Properties\OpenBCI.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Module\Input\OpenBCI\Properties\OpenBCI.resx">
       <LastGenOutput>OpenBCI.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ProcessingModule\EEGEmotion2Channels\Properties\EEGEmotion2Channels.es.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Module\Processing\EEGEmotion2Channels\Properties\EEGEmotion2Channels.es.resx">
       <LastGenOutput>EEGEmotion2Channels.es.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ProcessingModule\EEGEmotion2Channels\Properties\EEGEmotion2Channels.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Module\Processing\EEGEmotion2Channels\Properties\EEGEmotion2Channels.resx">
       <LastGenOutput>EEGEmotion2Channels.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -712,7 +713,10 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Module\General\GestureConfiguration\" />
+    <Folder Include="View\Widget\Wizard\" />
+  </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
       <Visible>False</Visible>
@@ -726,11 +730,11 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="static\logo.png" />
+    <Resource Include="Static\logo.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="InputModule\OpenBCI\Assets\eegPosSystem_10_10.png" />
-    <Resource Include="InputModule\OpenBCI\Assets\eegPosSystem_10_20.png" />
+    <Resource Include="Module\Input\OpenBCI\Assets\eegPosSystem_10_10.png" />
+    <Resource Include="Module\Input\OpenBCI\Assets\eegPosSystem_10_20.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="vgbtechs\AdaBoostTech.dll">

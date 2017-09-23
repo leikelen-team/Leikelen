@@ -27,7 +27,7 @@ namespace cl.uv.leikelen.View.Widget
 
         public Control GetPerson(Person person)
         {
-            Name.Content = person.Name;
+            PersonName.Content = person.Name;
             string photoUri = GeneralSettings.Instance.DataDirectory.Value + "person/"+ person.Photo;
             Photo.Source = new BitmapImage(new Uri(photoUri, UriKind.Relative));
             return Card;

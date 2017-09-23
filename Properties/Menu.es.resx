@@ -196,8 +196,8 @@
   <data name="Tools_Processing_AddNotImplemented" xml:space="preserve">
     <value>Añadir módulo de procesamiento (no implementado)</value>
   </data>
-  <data name="Tools_Processing_General" xml:space="preserve">
-    <value>Módulos de procesamiento generales</value>
+  <data name="Tools_General" xml:space="preserve">
+    <value>Módulos generales</value>
   </data>
   <data name="Help_DevDocumentation" xml:space="preserve">
     <value>Documentación de desarrollador</value>

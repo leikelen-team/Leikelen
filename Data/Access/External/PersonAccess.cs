@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using cl.uv.leikelen.API.DataAccess;
 using cl.uv.leikelen.Data.Model;
 using cl.uv.leikelen.Data.Persistence;
-using cl.uv.leikelen.InputModule;
+using cl.uv.leikelen.Module;
 
 namespace cl.uv.leikelen.Data.Access.External
 {

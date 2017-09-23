@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using cl.uv.leikelen.View.Widget.PreferencesTab;
 
 namespace cl.uv.leikelen.View
 {
@@ -23,10 +24,10 @@ namespace cl.uv.leikelen.View
         public Preferences()
         {
             InitializeComponent();
-            var generalTab = new Widget.PreferencesGeneral();
-            var DbTab = new Widget.PreferencesBD();
-            var colorsTab = new Widget.PreferencesColor();
-            var personColorsTab = new Widget.PreferencesPersonColors();
+            var generalTab = new PreferencesGeneral();
+            var DbTab = new PreferencesBD();
+            var colorsTab = new PreferencesColor();
+            var personColorsTab = new PreferencesPersonColors();
             Tabs.AddToSource(generalTab);
             Tabs.AddToSource(DbTab);
             Tabs.AddToSource(colorsTab);

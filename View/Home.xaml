@@ -55,7 +55,7 @@
                     </MenuItem>
                     <MenuItem x:Name="MenuItems_Tools_Processing" Header="{x:Static resx:Menu.Tools_Processing}">
                     </MenuItem>
-                    <MenuItem x:Name="MenuItems_Tools_Processing_General" Header="{x:Static resx:Menu.Tools_Processing_General}"></MenuItem>
+                    <MenuItem x:Name="MenuItems_Tools_General" Header="{x:Static resx:Menu.Tools_General}"></MenuItem>
                 </MenuItem>
                 <MenuItem x:Name="MenuItem_Scene" Header="{x:Static resx:Menu.Scene}">
                     <MenuItem x:Name="MenuItem_Scene_Configure" Header="{x:Static resx:Menu.Scene_Configure}" InputGestureText="Ctrl+C"></MenuItem>

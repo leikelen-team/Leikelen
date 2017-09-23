@@ -13,8 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using cl.uv.leikelen.Controller;
-using cl.uv.leikelen.InputModule;
-using cl.uv.leikelen.ProcessingModule;
+using cl.uv.leikelen.Module;
 using System.Diagnostics;
 using cl.uv.leikelen.Data.Access.Internal;
 using cl.uv.leikelen.Data.Access;
@@ -124,10 +123,10 @@ namespace cl.uv.leikelen.View
             
             _tabs = new List<ITab>()
             {
-                new Widget.TabInterval(),
-                new Widget.TabGraph(),
-                new Widget.TabDistance(),
-                new Widget.TabScene()
+                new Widget.HomeTab.TabInterval(),
+                new Widget.HomeTab.TabGraph(),
+                new Widget.HomeTab.TabDistance(),
+                new Widget.HomeTab.TabScene()
             };
 
             foreach(var tab in _tabs)
@@ -149,6 +148,7 @@ namespace cl.uv.leikelen.View
             ChangeHomeState(HomeState.Initial, PlayerState.Wait);
             FillMenuInputModules();
             FillMenuProccessingModules();
+            FillMenuGeneralModules();
             FillRecentScenes();
         }
 
@@ -173,11 +173,7 @@ namespace cl.uv.leikelen.View
             }*/
         }
 
-        private void MenuItem_Scene_Persons_Click(object sender, RoutedEventArgs e)
-        {
-            var allPersonsWin = new AllPersons();
-            allPersonsWin.Show();
-        }
+        
 
         private void MenuItem_File_LoadTestScene_Click(object sender, RoutedEventArgs e)
         {
@@ -506,6 +502,15 @@ namespace cl.uv.leikelen.View
         #endregion
 
         #region Scene MenuItems
+        private void MenuItem_Scene_Configure_Click(object sender, RoutedEventArgs e)
+        {
+            if (!Object.ReferenceEquals(null, DataAccessFacade.Instance.GetSceneInUseAccess().GetScene()))
+            {
+                var configureSceneWin = new ConfigureScene(DataAccessFacade.Instance.GetSceneInUseAccess().GetScene());
+                configureSceneWin.Show();
+            }
+        }
+
         private void MenuItem_Scene_AddPerson_Click(object sender, RoutedEventArgs e)
         {
             if (!Object.ReferenceEquals(null, DataAccessFacade.Instance.GetSceneInUseAccess().GetScene()))
@@ -514,14 +519,11 @@ namespace cl.uv.leikelen.View
                 addPersonWin.Show();
             }
         }
-
-        private void MenuItem_Scene_Configure_Click(object sender, RoutedEventArgs e)
+        
+        private void MenuItem_Scene_Persons_Click(object sender, RoutedEventArgs e)
         {
-            if (!Object.ReferenceEquals(null, DataAccessFacade.Instance.GetSceneInUseAccess().GetScene()))
-            {
-                var configureSceneWin = new ConfigureScene(DataAccessFacade.Instance.GetSceneInUseAccess().GetScene());
-                configureSceneWin.Show();
-            }
+            var allPersonsWin = new AllPersons();
+            allPersonsWin.Show();
         }
         #endregion
 
@@ -716,139 +718,121 @@ namespace cl.uv.leikelen.View
                 comboBox.SelectedIndex = lastSelectedIndex;
         }
 
-        #region Fill Sensors and Processing modules
-        private void FillMenuProccessingModules()
-        {
-            foreach (var process in ProcessingLoader.Instance.ProcessingModules)
-            {
-                MenuItem processMenuItem = new MenuItem
-                {
-                    Header = process.Name
-                };
-
-                //windows of processing modules
-                List<MenuItem> windowsMenuItems = new List<MenuItem>();
-                foreach (var window in process.Windows)
-                {
-                    MenuItem processWin = new MenuItem
-                    {
-                        Header = window.Item1,
-                        IsEnabled = false
-                    };
-                    processWin.Click += (sender, e) => {
-                        window.Item2.GetWindow().Show();
-                    };
-                    windowsMenuItems.Add(processWin);
-                    processMenuItem.Items.Add(processWin);
-                }
-
-                //checkbox enable/disable
-                CheckBox processCheck = new CheckBox
-                {
-                    Content = Properties.Menu.Enable
-                };
-                processCheck.Checked += (sender, e) =>
-                {
-                    process.IsEnabled = true;
-                    foreach (var winItem in windowsMenuItems)
-                    {
-                        winItem.IsEnabled = true;
-                    }
-                };
-                processCheck.Unchecked += (sender, e) =>
-                {
-                    process.IsEnabled = false;
-                    foreach(var winItem in windowsMenuItems)
-                    {
-                        winItem.IsEnabled = false;
-                    }
-                };
-                processMenuItem.Items.Add(processCheck);
-
-                //add to GUI menu according its plurality.
-                switch (process.Plurality)
-                {
-                    case API.ProcessingModule.ProcessingPlurality.Scene:
-                        MenuItems_Tools_Processing.Items.Add(processMenuItem);
-                        break;
-                    case API.ProcessingModule.ProcessingPlurality.General:
-                        MenuItems_Tools_Processing_General.Items.Add(processMenuItem);
-                        break;
-                }
-            }
-        }
-
+        #region Fill modules
         private void FillMenuInputModules()
         {
             foreach (var input in InputLoader.Instance.SceneInputModules)
             {
-                MenuItem inputMenuItem = new MenuItem
+                FillProcessingAndGeneralModules(input, ModuleType.Input);
+            }
+        }
+
+        private void FillMenuProccessingModules()
+        {
+            foreach (var process in ProcessingLoader.Instance.ProcessingModules)
+            {
+                FillProcessingAndGeneralModules(process, ModuleType.Processing);
+            }
+        }
+
+        private void FillMenuGeneralModules()
+        {
+            foreach(var generalModule in GeneralLoader.Instance.GeneralModules)
+            {
+                FillProcessingAndGeneralModules(generalModule, ModuleType.General);
+            }
+        }
+
+        private void FillProcessingAndGeneralModules(API.Module.AbstractModule module, ModuleType moduleType)
+        {
+            MenuItem moduleMenuItem = new MenuItem
+            {
+                Header = module.Name
+            };
+            //fill the windows of inputmodules
+            List<MenuItem> windowsMenuItems = new List<MenuItem>();
+            foreach (var window in module.Windows)
+            {
+                MenuItem moduleWin = new MenuItem
                 {
-                    Header = input.Name
+                    IsEnabled = false,
+                    Header = window.Item1
                 };
-                //fill the windows of inputmodules
-                List<MenuItem> windowsMenuItems = new List<MenuItem>();
-                foreach (var window in input.Windows)
+                moduleWin.Click += (object sender, RoutedEventArgs e) => {
+                    window.Item2.GetWindow().Show();
+                };
+                windowsMenuItems.Add(moduleWin);
+                moduleMenuItem.Items.Add(moduleWin);
+            }
+
+            //fill the checkbox to enable/disable the module
+            CheckBox moduleCheck = new CheckBox
+            {
+                Content = Properties.Menu.Enable
+            };
+            moduleCheck.Checked += (object sender, RoutedEventArgs e) =>
+            {
+                try
                 {
-                    MenuItem inputWin = new MenuItem
+                    var inputModule = module as API.Module.Input.InputModule;
+                    if (inputModule != null)
+                        inputModule.Monitor.Open();
+                    module.Enable();
+                    foreach (var winItem in windowsMenuItems)
                     {
-                        IsEnabled = false,
-                        Header = window.Item1
-                    };
-                    inputWin.Click += (object sender, RoutedEventArgs e) => {
-                        window.Item2.GetWindow().Show();
-                    };
-                    windowsMenuItems.Add(inputWin);
-                    inputMenuItem.Items.Add(inputWin);
+                        winItem.IsEnabled = true;
+                    }
+                }
+                catch (Exception)
+                {
+                    var inputModule = module as API.Module.Input.InputModule;
+                    if (inputModule != null)
+                        inputModule.Monitor.Close();
+                    module.Disable();
+                    moduleCheck.IsChecked = false;
+                    foreach (var winItem in windowsMenuItems)
+                    {
+                        winItem.IsEnabled = false;
+                    }
                 }
 
-                //fill the checkbox to enable/disable the module
-                CheckBox inputCheck = new CheckBox
+            };
+            moduleCheck.Unchecked += (object sender, RoutedEventArgs e) =>
+            {
+                try
                 {
-                    Content = Properties.Menu.Enable
-                };
-                inputCheck.Checked += (object sender, RoutedEventArgs e) =>
+                    var inputModule = module as API.Module.Input.InputModule;
+                    if (inputModule != null)
+                        inputModule.Monitor.Close();
+                    module.Disable();
+                    foreach (var winItem in windowsMenuItems)
+                    {
+                        winItem.IsEnabled = false;
+                    }
+                }
+                catch (Exception)
                 {
-                    try
+                    module.Enable();
+                    moduleCheck.IsChecked = true;
+                    foreach (var winItem in windowsMenuItems)
                     {
-                        input.Monitor.Open();
-                        foreach (var winItem in windowsMenuItems)
-                        {
-                            winItem.IsEnabled = true;
-                        }
+                        winItem.IsEnabled = true;
                     }
-                    catch (Exception)
-                    {
-                        inputCheck.IsChecked = false;
-                        foreach (var winItem in windowsMenuItems)
-                        {
-                            winItem.IsEnabled = false;
-                        }
-                    }
-
-                };
-                inputCheck.Unchecked += (object sender, RoutedEventArgs e) =>
-                {
-                    try
-                    {
-                        input.Monitor.Close();
-                        foreach (var winItem in windowsMenuItems)
-                        {
-                            winItem.IsEnabled = false;
-                        }
-                    }
-                    catch (Exception)
-                    {
-                        inputCheck.IsChecked = true;
-                        foreach (var winItem in windowsMenuItems)
-                        {
-                            winItem.IsEnabled = true;
-                        }
-                    }
-                };
-                inputMenuItem.Items.Add(inputCheck);
-                //add to GUI menu
-                MenuItems_Tools_Sensors.Items.Add(inputMenuItem);
+                }
+            };
+            moduleMenuItem.Items.Add(moduleCheck);
+            //add to GUI menu according its type.
+            switch (moduleType)
+            {
+                case ModuleType.Input:
+                    MenuItems_Tools_Sensors.Items.Add(moduleMenuItem);
+                    break;
+                case ModuleType.Processing:
+                    MenuItems_Tools_Processing.Items.Add(moduleMenuItem);
+                    break;
+                case ModuleType.General:
+                    MenuItems_Tools_General.Items.Add(moduleMenuItem);
+                    break;
             }
         }
         #endregion
@@ -869,5 +853,12 @@ namespace cl.uv.leikelen.View
         FromSensorWithScene,
         FromFile,
         FromFileWithScene
+    }
+
+    public enum ModuleType
+    {
+        Input,
+        Processing,
+        General
     }
 }
