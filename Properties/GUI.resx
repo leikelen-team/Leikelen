@@ -259,10 +259,10 @@
   <data name="SceneImportedSuccesfully" xml:space="preserve">
     <value>Scene imported</value>
   </data>
-  <data name="BdWillNew" xml:space="preserve">
-    <value>The database will close the connection and will open a new with the entered parameters, ¿Are you sure?</value>
+  <data name="PrefBDWillNew" xml:space="preserve">
+    <value>The database will close the connection and will open a new with the entered parameters. Also, the processing and general modules will be restarted, please close all windows and instances of these modules</value>
   </data>
-  <data name="BdWillNewTitle" xml:space="preserve">
+  <data name="PrefBDWillNewTitle" xml:space="preserve">
     <value>New connection</value>
   </data>
   <data name="Birthday" xml:space="preserve">
@@ -303,5 +303,107 @@
   </data>
   <data name="seconds" xml:space="preserve">
     <value>seconds</value>
+  </data>
+  <data name="AllPersonsNotExistsTitle" xml:space="preserve">
+    <value>Person doesn't exists</value>
+  </data>
+  <data name="AllPersonsNotExists" xml:space="preserve">
+    <value>Hasn't selected a person or the person doesn't exists now</value>
+  </data>
+  <data name="SavedOkTitle" xml:space="preserve">
+    <value>Scene saved</value>
+  </data>
+  <data name="SavedOk" xml:space="preserve">
+    <value>The scene has been saved successfully</value>
+  </data>
+  <data name="SavedErrorTitle" xml:space="preserve">
+    <value>Save error</value>
+  </data>
+  <data name="SavedError" xml:space="preserve">
+    <value>When trying to save the scene has occurred the following error:</value>
+  </data>
+  <data name="PrefBDConnectedOk" xml:space="preserve">
+    <value>The connection to the database has done successfully</value>
+  </data>
+  <data name="PrefBDConnectedOkTitle" xml:space="preserve">
+    <value>Successfully connected</value>
+  </data>
+  <data name="SceneNotExist" xml:space="preserve">
+    <value>Doesn't exists an scene in use</value>
+  </data>
+  <data name="SceneNotExistTitle" xml:space="preserve">
+    <value>No scene</value>
+  </data>
+  <data name="PrefBDErrorPortEmpty" xml:space="preserve">
+    <value>Port field is empty or not valid</value>
+  </data>
+  <data name="PrefBDErrorEngineEmpty" xml:space="preserve">
+    <value>Engine field is empty</value>
+  </data>
+  <data name="PrefBDErrorDbNameEmpty" xml:space="preserve">
+    <value>Database name is empty</value>
+  </data>
+  <data name="PrefBDErrorEngineDoesntExists" xml:space="preserve">
+    <value>Engine doesn't exists</value>
+  </data>
+  <data name="PrefBDErrorHostEmpty" xml:space="preserve">
+    <value>Host field is empty</value>
+  </data>
+  <data name="PrefBDErrorUserEmpty" xml:space="preserve">
+    <value>User field is empty</value>
+  </data>
+  <data name="PrefBDErrorPassEmpty" xml:space="preserve">
+    <value>Password is empty</value>
+  </data>
+  <data name="PrefBDErrorSame" xml:space="preserve">
+    <value>The parameters are the same that actually exists</value>
+  </data>
+  <data name="PrefBDErrorSameTitle" xml:space="preserve">
+    <value>Parameters are equal</value>
+  </data>
+  <data name="PrefBDErrorConnect" xml:space="preserve">
+    <value>There are errors in the connection to the database</value>
+  </data>
+  <data name="PrefBDErrorConnectTitle" xml:space="preserve">
+    <value>Error in the connection</value>
+  </data>
+  <data name="PrefBDError" xml:space="preserve">
+    <value>There are some errors</value>
+  </data>
+  <data name="PrefBDErrorTitle" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="TabSceneColumnAvgTime" xml:space="preserve">
+    <value>Average time</value>
+  </data>
+  <data name="TabSceneColumnTotalDuration" xml:space="preserve">
+    <value>Total duration</value>
+  </data>
+  <data name="TabSceneColumnAvgValue" xml:space="preserve">
+    <value>Average value</value>
+  </data>
+  <data name="TabSceneColumnStdValue" xml:space="preserve">
+    <value>Standard deviation of value</value>
+  </data>
+  <data name="TabSceneColumnStdTime" xml:space="preserve">
+    <value>Standard deviation of time</value>
+  </data>
+  <data name="TabSceneColumnAvgDuration" xml:space="preserve">
+    <value>Average duration</value>
+  </data>
+  <data name="TabSceneColumnStdDuration" xml:space="preserve">
+    <value>Standard deviation of duration</value>
+  </data>
+  <data name="ModalType" xml:space="preserve">
+    <value>Modal type</value>
+  </data>
+  <data name="SubModalType" xml:space="preserve">
+    <value>Submodal type</value>
+  </data>
+  <data name="TabSceneEventLabel" xml:space="preserve">
+    <value>Summary of event submodal types</value>
+  </data>
+  <data name="TabSceneIntervalLabel" xml:space="preserve">
+    <value>Summary of interval submodal types</value>
   </data>
 </root>

@@ -22,15 +22,22 @@ namespace cl.uv.leikelen.Module
             }
         }
 
+        public static void Reset()
+        {
+            _instance = null;
+            _instance = new ProcessingLoader();
+        }
+
         private ProcessingLoader()
         {
-            ProcessingModules = new List<ProcessingModule>();
-            
-            ProcessingModules.Add(new Processing.EEGEmotion2Channels.DetectorEntryPoint());
+            ProcessingModules = new List<ProcessingModule>()
+            {
+                new Processing.EEGEmotion2Channels.DetectorEntryPoint(),
 
-            ProcessingModules.Add(new Processing.Kinect.Voice.VoiceEntryPoint());
-            ProcessingModules.Add(new Processing.Kinect.Posture.GestureEntryPoint());
-            ProcessingModules.Add(new Processing.Kinect.Distance.DistanceEntryPoint());
+                new Processing.Kinect.Voice.VoiceEntryPoint(),
+                new Processing.Kinect.Posture.GestureEntryPoint(),
+                new Processing.Kinect.Distance.DistanceEntryPoint()
+            };
         }
     }
 }

@@ -15,7 +15,7 @@ namespace cl.uv.leikelen.Data.Access.External
             var personInScene = Internal.SceneInUse.Instance.Scene?.PersonsInScene?.Find(pis => pis.PersonId == personId);
             var subModalPersonInScene = personInScene?.SubModalType_PersonInScenes?.Find(smtPis => smtPis.SubModalType.SubModalTypeId.Equals(subModalName) && smtPis.SubModalType.ModalType.ModalTypeId.Equals(modalName));
             var intervalRepresent = subModalPersonInScene?.RepresentTypes?.FindAll(rt => rt.IntervalData != null && rt.EventData == null && !rt.Index.HasValue);
-            if(intervalRepresent == null)
+            if(intervalRepresent == null || intervalRepresent.Count == 0)
             {
                 return null;
             }

@@ -14,10 +14,20 @@
         TextElement.FontSize="14"
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
         Title="Preferences" Height="500" Width="500">
-    <dragablz:TabablzControl x:Name="Tabs" Grid.Row="3" >
-        <dragablz:TabablzControl.InterTabController>
-            <dragablz:InterTabController />
-        </dragablz:TabablzControl.InterTabController>
-
-    </dragablz:TabablzControl>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition MaxHeight="60" />
+        </Grid.RowDefinitions>
+        <dragablz:TabablzControl x:Name="Tabs" Grid.Row="0" >
+            <dragablz:TabablzControl.InterTabController>
+                <dragablz:InterTabController />
+            </dragablz:TabablzControl.InterTabController>
+        </dragablz:TabablzControl>
+        <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="1" Orientation="Horizontal">
+            <Button x:Name="AcceptBtn" Content="{x:Static resx:GUI.Accept}" Margin="5" />
+            <Button x:Name="ApplytBtn" Content="{x:Static resx:GUI.Apply}" Margin="5" />
+            <Button x:Name="CancelBtn" Content="{x:Static resx:GUI.Cancel}" Margin="5" />
+        </StackPanel>
+    </Grid>
 </Window>

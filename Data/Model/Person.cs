@@ -20,7 +20,7 @@ namespace cl.uv.leikelen.Data.Model
         [Column("birthday")]
         public DateTime? Birthday { get; set; }
         [Column("sex")]
-        public char? Sex { get; set; }
+        public int? Sex { get; set; }
 
         public List<PersonInScene> PersonInScenes { get; set; }
 

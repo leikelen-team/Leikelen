@@ -11,7 +11,7 @@ namespace cl.uv.leikelen.API.FrameProvider.Kinect
     /// <summary>
     /// Provides listeners to kinect frames
     /// </summary>
-    /// <seealso cref="cl.uv.leikelen.InputModule.Kinect.KinectInput"/>
+    /// <seealso cref="cl.uv.leikelen.Module.Input.Kinect.KinectInput"/>
     public interface IKinectProcessingModule
     {
         /// <summary>

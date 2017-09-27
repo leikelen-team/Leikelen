@@ -17,7 +17,6 @@ using cl.uv.leikelen.Module;
 using System.Diagnostics;
 using cl.uv.leikelen.Data.Access.Internal;
 using cl.uv.leikelen.Data.Access;
-using cl.uv.leikelen.Properties;
 using MaterialDesignThemes.Wpf;
 
 using cl.uv.leikelen.Data.Model;
@@ -177,12 +176,12 @@ namespace cl.uv.leikelen.View
 
         private void MenuItem_File_LoadTestScene_Click(object sender, RoutedEventArgs e)
         {
-            ChangeHomeState(HomeState.FromFileWithScene, PlayerState.Wait);
             LoadTestScene.LoadTest();
             foreach (var tab in _tabs)
             {
                 tab.Fill();
             }
+            ChangeHomeState(HomeState.FromFileWithScene, PlayerState.Wait);
         }
 
         #region states
@@ -193,7 +192,8 @@ namespace cl.uv.leikelen.View
                 case HomeState.Initial:
                     if (_playerState == PlayerState.Record)
                     {
-                        MessageBoxResult result = MessageBox.Show(GUI.stopRecordFirst, GUI.Atention, MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                        MessageBoxResult result = MessageBox.Show(Properties.GUI.stopRecordFirst, 
+                            Properties.GUI.Atention, MessageBoxButton.OK, MessageBoxImage.Exclamation);
                         return false;
                     }
                     SceneInUse.Instance.Set(null);
@@ -216,7 +216,8 @@ namespace cl.uv.leikelen.View
                 case HomeState.FromFile:
                     if (_playerState == PlayerState.Record)
                     {
-                        MessageBoxResult result = MessageBox.Show(GUI.stopRecordFirst, GUI.Atention, MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                        MessageBoxResult result = MessageBox.Show(Properties.GUI.stopRecordFirst, 
+                            Properties.GUI.Atention, MessageBoxButton.OK, MessageBoxImage.Exclamation);
                         return false;
                     }
                     SceneInUse.Instance.Set(null);
@@ -420,7 +421,8 @@ namespace cl.uv.leikelen.View
 
         private void Home_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            MessageBoxResult result = MessageBox.Show(GUI.AreSureExit, GUI.Confirmation, MessageBoxButton.YesNo,
+            MessageBoxResult result = MessageBox.Show(Properties.GUI.AreSureExit, 
+                Properties.GUI.Confirmation, MessageBoxButton.YesNo,
                 MessageBoxImage.Question);
             if (result == MessageBoxResult.No)
             {
@@ -465,7 +467,22 @@ namespace cl.uv.leikelen.View
         {
             if (!Object.ReferenceEquals(null, DataAccessFacade.Instance.GetSceneInUseAccess().GetScene()))
             {
-                DataAccessFacade.Instance.GetSceneAccess().SaveOrUpdate(DataAccessFacade.Instance.GetSceneInUseAccess().GetScene());
+                try
+                {
+                    DataAccessFacade.Instance.GetSceneAccess().SaveOrUpdate(DataAccessFacade.Instance.GetSceneInUseAccess().GetScene());
+                    MessageBox.Show(Properties.GUI.SavedOk,
+                    Properties.GUI.SavedOkTitle, MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(Properties.GUI.SavedError+"\n"+ex.Message,
+                    Properties.GUI.SavedErrorTitle, MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show(Properties.GUI.SceneNotExist, 
+                    Properties.GUI.SceneNotExistTitle, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -697,7 +714,7 @@ namespace cl.uv.leikelen.View
         private void SourceComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var comboBox = sender as ComboBox;
-            if (comboBox==null) throw new ArgumentNullException(nameof(sender), Error.SourceComboboxIsNull);
+            if (comboBox==null) throw new ArgumentNullException(nameof(sender), Properties.Error.SourceComboboxIsNull);
             int lastSelectedIndex = comboBox.SelectedIndex;
             bool result = false;
             switch (comboBox.SelectedIndex)

@@ -14,7 +14,7 @@ namespace cl.uv.leikelen.Module.Input.Kinect
 {
     public class GestureDetector : IDisposable
     {
-        public static List<GestureDetector> GestureDetectorList { get; set; } = new List<GestureDetector>(6);
+        public static List<GestureDetector> GestureDetectorList { get; set; } = new List<GestureDetector>();
         private static List<CustomBody> _bodies = new List<CustomBody>();
 
         /// <summary> Gesture frame reader which will handle gesture events coming from the sensor </summary>

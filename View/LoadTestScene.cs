@@ -14,16 +14,17 @@ namespace cl.uv.leikelen.View
         public static void LoadTest()
         {
             var rnd = new Random();
-            /*var scenes = DataAccessFacade.Instance.GetSceneAccess().GetAll();
+            var scenes = DataAccessFacade.Instance.GetSceneAccess().GetAll();
             if (scenes != null)
             {
                 var testScene = scenes.Find(s => s.Name.Equals("Test"));
                 if (testScene != null)
                 {
+                    testScene = DataAccessFacade.Instance.GetSceneAccess().Get(testScene.SceneId);
                     SceneInUse.Instance.Set(testScene);
                     return;
                 }
-            }*/
+            }
             var scene = new Scene()
             {
                 Name = "Test",
@@ -73,7 +74,7 @@ namespace cl.uv.leikelen.View
                         Console.WriteLine($"Which: {which}");
                         var data = rnd.Next(1, 3);
                         Console.WriteLine($"Data: {data}");
-                        int representTypeQuantity = rnd.Next(1, 15);
+                        int representTypeQuantity = rnd.Next(5, 20);
                         int lastTickGenerated = 0;
                         for (int j = 1; j <= representTypeQuantity; j++)
                         {

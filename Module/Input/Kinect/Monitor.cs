@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using cl.uv.leikelen.API.FrameProvider.Kinect;
 using cl.uv.leikelen.API.Module.Input;
-using cl.uv.leikelen.Module;
 using Microsoft.Kinect;
 
 namespace cl.uv.leikelen.Module.Input.Kinect
@@ -67,6 +66,15 @@ namespace cl.uv.leikelen.Module.Input.Kinect
             if (!GetSensor())
                 return;
             //TODO: record
+
+            int detectorCount = _sensor.BodyFrameSource.BodyCount > 0 ? _sensor.BodyFrameSource.BodyCount : 6;
+            for (int i = 0; i < _sensor.BodyFrameSource.BodyCount; ++i)
+            {
+                GestureDetector detector = new GestureDetector(i, _sensor);
+                GestureDetector.GestureDetectorList.Add(detector);
+            }
+            _bodyReader.FrameArrived += GestureDetector._bodyReader_FrameArrived;
+
             foreach (var module in ProcessingLoader.Instance.ProcessingModules)
             {
                 if (module.IsEnabled)
@@ -159,14 +167,7 @@ namespace cl.uv.leikelen.Module.Input.Kinect
                     _colorReader = _sensor.ColorFrameSource.OpenReader();
                     _colorReader.FrameArrived += VideoViewer._colorReader_FrameArrived;
                     _audioBeamReader = _sensor.AudioSource.OpenReader();
-
-                    int detectorCount = _sensor.BodyFrameSource.BodyCount > 0 ? _sensor.BodyFrameSource.BodyCount : 6;
-                    for (int i = 0; i < _sensor.BodyFrameSource.BodyCount; ++i)
-                    {
-                        GestureDetector detector = new GestureDetector(i, _sensor);
-                        GestureDetector.GestureDetectorList.Add(detector);
-                    }
-                    _bodyReader.FrameArrived += GestureDetector._bodyReader_FrameArrived;
+                    
                     OnStatusChanged();
                     return true;
                 } 

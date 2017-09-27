@@ -11,13 +11,14 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using cl.uv.leikelen.API.Helper;
 
 namespace cl.uv.leikelen.View.Widget.PreferencesTab
 {
     /// <summary>
     /// Lógica de interacción para PreferencesGeneral.xaml
     /// </summary>
-    public partial class PreferencesGeneral : TabItem
+    public partial class PreferencesGeneral : TabItem, IPreference
     {
         public PreferencesGeneral()
         {
@@ -25,18 +26,20 @@ namespace cl.uv.leikelen.View.Widget.PreferencesTab
 
             TmpDirectoryTxt.Text = GeneralSettings.Instance.TmpDirectory.Value;
             DataDirectoryTxt.Text = GeneralSettings.Instance.DataDirectory.Value;
-            CurrentSceneTxt.Text = GeneralSettings.Instance.SceneInUseDirectory.Value;
+            TmpSceneDirectoryTxt.Text = GeneralSettings.Instance.TmpSceneDirectory.Value;
             DefaultMillisecondsTxt.Text = GeneralSettings.Instance.DefaultMillisecondsThreshold.Value.ToString();
-
-            AcceptBtn.Click += AcceptBtn_Click;
+            
         }
 
-        private void AcceptBtn_Click(object sender, RoutedEventArgs e)
+        public void Apply()
         {
             GeneralSettings.Instance.TmpDirectory.Write(TmpDirectoryTxt.Text);
             GeneralSettings.Instance.DataDirectory.Write(DataDirectoryTxt.Text);
-            GeneralSettings.Instance.SceneInUseDirectory.Write(CurrentSceneTxt.Text);
-            GeneralSettings.Instance.DefaultMillisecondsThreshold.Write(int.Parse(DefaultMillisecondsTxt.Text));
+            GeneralSettings.Instance.TmpSceneDirectory.Write(TmpSceneDirectoryTxt.Text);
+            if (int.TryParse(DefaultMillisecondsTxt.Text, out int millSec))
+            {
+                GeneralSettings.Instance.DefaultMillisecondsThreshold.Write(millSec);
+            }
         }
     }
 }

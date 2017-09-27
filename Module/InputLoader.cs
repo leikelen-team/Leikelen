@@ -26,8 +26,10 @@ namespace cl.uv.leikelen.Module
 
         public void FillPersonInputModules(Person person)
         {
-            var personInputModules = new List<InputModule>();
-            personInputModules.Add(new Input.OpenBCI.OpenBCIInput());
+            var personInputModules = new List<InputModule>()
+            {
+                new Input.OpenBCI.OpenBCIInput()
+            };
 
             PersonInputModules.Add(person, personInputModules);
 

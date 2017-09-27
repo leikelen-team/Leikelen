@@ -15,13 +15,11 @@ namespace cl.uv.leikelen.Module.Input.Kinect
         public KinectInput()
         {
             var monitor = new Monitor();
-            Name = Properties.Kinect.SensorName;
+            Name = "Kinect v2";
             Plurality = InputPlurality.Scene;
             Monitor = monitor;
             Player = new Player();
             Windows = new List<Tuple<string, WindowBuilder>>();
-            Windows.Add(new Tuple<string, WindowBuilder>(Properties.Kinect.PostureCRUDTitle,
-                new WindowBuilder(new View.PostureCRUD())));
             
             SkeletonColorVideoViewer = monitor.VideoViewer;
         }

@@ -46,11 +46,11 @@ namespace cl.uv.leikelen.View
             string sex;
             switch (_person.Sex)
             {
-                case 'F':
-                    sex = Properties.GUI.Female;
-                    break;
-                case 'M':
+                case 0:
                     sex = Properties.GUI.Male;
+                    break;
+                case 1:
+                    sex = Properties.GUI.Female;
                     break;
                 default:
                     sex = Properties.GUI.Unknown;
@@ -74,14 +74,14 @@ namespace cl.uv.leikelen.View
                 MessageBoxImage.Question);
             if(result == MessageBoxResult.Yes)
             {
-                char? sex = null;
+                int? sex = null;
                 switch (SexComboBox.SelectedIndex)
                 {
-                    case 1:
-                        sex = 'M';
+                    case 0:
+                        sex = 0;
                         break;
-                    case 2:
-                        sex = 'F';
+                    case 1:
+                        sex = 1;
                         break;
                     default:
                         sex = null;

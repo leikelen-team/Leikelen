@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using cl.uv.leikelen.View.Widget.PreferencesTab;
+using cl.uv.leikelen.API.Helper;
 
 namespace cl.uv.leikelen.View
 {
@@ -30,12 +31,28 @@ namespace cl.uv.leikelen.View
             var personColorsTab = new PreferencesPersonColors();
             Tabs.AddToSource(generalTab);
             Tabs.AddToSource(DbTab);
-            Tabs.AddToSource(colorsTab);
-            Tabs.AddToSource(personColorsTab);
+            //Tabs.AddToSource(colorsTab);
+            //Tabs.AddToSource(personColorsTab);
 
-            DbTab.CancelBtn.Click += CancelBtn_Click;
-            generalTab.CancelBtn.Click += CancelBtn_Click;
-            personColorsTab.CancelBtn.Click += CancelBtn_Click;
+            CancelBtn.Click += CancelBtn_Click;
+            AcceptBtn.Click += AcceptBtn_Click;
+            ApplytBtn.Click += ApplytBtn_Click;
+        }
+
+        private void ApplytBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var selTab = Tabs.SelectedItem as IPreference;
+            selTab?.Apply();
+        }
+
+        private void AcceptBtn_Click(object sender, RoutedEventArgs e)
+        {
+            foreach(var tab in Tabs.Items)
+            {
+                var prefTab = Tabs.SelectedItem as IPreference;
+                prefTab?.Apply();
+            }
+            Close();
         }
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)

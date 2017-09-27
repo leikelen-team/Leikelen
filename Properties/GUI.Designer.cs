@@ -88,6 +88,24 @@ namespace cl.uv.leikelen.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Hasn&apos;t selected a person or the person doesn&apos;t exists now.
+        /// </summary>
+        public static string AllPersonsNotExists {
+            get {
+                return ResourceManager.GetString("AllPersonsNotExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Person doesn&apos;t exists.
+        /// </summary>
+        public static string AllPersonsNotExistsTitle {
+            get {
+                return ResourceManager.GetString("AllPersonsNotExistsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Apply.
         /// </summary>
         public static string Apply {
@@ -165,24 +183,6 @@ namespace cl.uv.leikelen.Properties {
         public static string BD_Port {
             get {
                 return ResourceManager.GetString("BD_Port", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a The database will close the connection and will open a new with the entered parameters, ¿Are you sure?.
-        /// </summary>
-        public static string BdWillNew {
-            get {
-                return ResourceManager.GetString("BdWillNew", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a New connection.
-        /// </summary>
-        public static string BdWillNewTitle {
-            get {
-                return ResourceManager.GetString("BdWillNewTitle", resourceCulture);
             }
         }
         
@@ -421,6 +421,15 @@ namespace cl.uv.leikelen.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Modal type.
+        /// </summary>
+        public static string ModalType {
+            get {
+                return ResourceManager.GetString("ModalType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Name.
         /// </summary>
         public static string Name {
@@ -529,6 +538,159 @@ namespace cl.uv.leikelen.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a The connection to the database has done successfully.
+        /// </summary>
+        public static string PrefBDConnectedOk {
+            get {
+                return ResourceManager.GetString("PrefBDConnectedOk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Successfully connected.
+        /// </summary>
+        public static string PrefBDConnectedOkTitle {
+            get {
+                return ResourceManager.GetString("PrefBDConnectedOkTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a There are some errors.
+        /// </summary>
+        public static string PrefBDError {
+            get {
+                return ResourceManager.GetString("PrefBDError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a There are errors in the connection to the database.
+        /// </summary>
+        public static string PrefBDErrorConnect {
+            get {
+                return ResourceManager.GetString("PrefBDErrorConnect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Error in the connection.
+        /// </summary>
+        public static string PrefBDErrorConnectTitle {
+            get {
+                return ResourceManager.GetString("PrefBDErrorConnectTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Database name is empty.
+        /// </summary>
+        public static string PrefBDErrorDbNameEmpty {
+            get {
+                return ResourceManager.GetString("PrefBDErrorDbNameEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Engine doesn&apos;t exists.
+        /// </summary>
+        public static string PrefBDErrorEngineDoesntExists {
+            get {
+                return ResourceManager.GetString("PrefBDErrorEngineDoesntExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Engine field is empty.
+        /// </summary>
+        public static string PrefBDErrorEngineEmpty {
+            get {
+                return ResourceManager.GetString("PrefBDErrorEngineEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Host field is empty.
+        /// </summary>
+        public static string PrefBDErrorHostEmpty {
+            get {
+                return ResourceManager.GetString("PrefBDErrorHostEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Password is empty.
+        /// </summary>
+        public static string PrefBDErrorPassEmpty {
+            get {
+                return ResourceManager.GetString("PrefBDErrorPassEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Port field is empty or not valid.
+        /// </summary>
+        public static string PrefBDErrorPortEmpty {
+            get {
+                return ResourceManager.GetString("PrefBDErrorPortEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a The parameters are the same that actually exists.
+        /// </summary>
+        public static string PrefBDErrorSame {
+            get {
+                return ResourceManager.GetString("PrefBDErrorSame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Parameters are equal.
+        /// </summary>
+        public static string PrefBDErrorSameTitle {
+            get {
+                return ResourceManager.GetString("PrefBDErrorSameTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Error.
+        /// </summary>
+        public static string PrefBDErrorTitle {
+            get {
+                return ResourceManager.GetString("PrefBDErrorTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a User field is empty.
+        /// </summary>
+        public static string PrefBDErrorUserEmpty {
+            get {
+                return ResourceManager.GetString("PrefBDErrorUserEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a The database will close the connection and will open a new with the entered parameters. Also, the processing and general modules will be restarted, please close all windows and instances of these modules.
+        /// </summary>
+        public static string PrefBDWillNew {
+            get {
+                return ResourceManager.GetString("PrefBDWillNew", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a New connection.
+        /// </summary>
+        public static string PrefBDWillNewTitle {
+            get {
+                return ResourceManager.GetString("PrefBDWillNewTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Record date.
         /// </summary>
         public static string RecordDate {
@@ -543,6 +705,42 @@ namespace cl.uv.leikelen.Properties {
         public static string RecordTime {
             get {
                 return ResourceManager.GetString("RecordTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a When trying to save the scene has occurred the following error:.
+        /// </summary>
+        public static string SavedError {
+            get {
+                return ResourceManager.GetString("SavedError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Save error.
+        /// </summary>
+        public static string SavedErrorTitle {
+            get {
+                return ResourceManager.GetString("SavedErrorTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a The scene has been saved successfully.
+        /// </summary>
+        public static string SavedOk {
+            get {
+                return ResourceManager.GetString("SavedOk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Scene saved.
+        /// </summary>
+        public static string SavedOkTitle {
+            get {
+                return ResourceManager.GetString("SavedOkTitle", resourceCulture);
             }
         }
         
@@ -592,6 +790,24 @@ namespace cl.uv.leikelen.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Doesn&apos;t exists an scene in use.
+        /// </summary>
+        public static string SceneNotExist {
+            get {
+                return ResourceManager.GetString("SceneNotExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a No scene.
+        /// </summary>
+        public static string SceneNotExistTitle {
+            get {
+                return ResourceManager.GetString("SceneNotExistTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a seconds.
         /// </summary>
         public static string seconds {
@@ -615,6 +831,96 @@ namespace cl.uv.leikelen.Properties {
         public static string stopRecordFirst {
             get {
                 return ResourceManager.GetString("stopRecordFirst", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Submodal type.
+        /// </summary>
+        public static string SubModalType {
+            get {
+                return ResourceManager.GetString("SubModalType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Average duration.
+        /// </summary>
+        public static string TabSceneColumnAvgDuration {
+            get {
+                return ResourceManager.GetString("TabSceneColumnAvgDuration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Average time.
+        /// </summary>
+        public static string TabSceneColumnAvgTime {
+            get {
+                return ResourceManager.GetString("TabSceneColumnAvgTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Average value.
+        /// </summary>
+        public static string TabSceneColumnAvgValue {
+            get {
+                return ResourceManager.GetString("TabSceneColumnAvgValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Standard deviation of duration.
+        /// </summary>
+        public static string TabSceneColumnStdDuration {
+            get {
+                return ResourceManager.GetString("TabSceneColumnStdDuration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Standard deviation of time.
+        /// </summary>
+        public static string TabSceneColumnStdTime {
+            get {
+                return ResourceManager.GetString("TabSceneColumnStdTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Standard deviation of value.
+        /// </summary>
+        public static string TabSceneColumnStdValue {
+            get {
+                return ResourceManager.GetString("TabSceneColumnStdValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Total duration.
+        /// </summary>
+        public static string TabSceneColumnTotalDuration {
+            get {
+                return ResourceManager.GetString("TabSceneColumnTotalDuration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Summary of event submodal types.
+        /// </summary>
+        public static string TabSceneEventLabel {
+            get {
+                return ResourceManager.GetString("TabSceneEventLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Summary of interval submodal types.
+        /// </summary>
+        public static string TabSceneIntervalLabel {
+            get {
+                return ResourceManager.GetString("TabSceneIntervalLabel", resourceCulture);
             }
         }
         

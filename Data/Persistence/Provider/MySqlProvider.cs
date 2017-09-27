@@ -19,6 +19,8 @@ namespace cl.uv.leikelen.Data.Persistence.Provider
             var optionsBuilder = new DbContextOptionsBuilder();
             optionsBuilder.UseMySql(options);
             Db = new DbDataContext(optionsBuilder.Options);
+            Db.Database.EnsureCreated();
+
             Db.Database.OpenConnection();
         }
     }

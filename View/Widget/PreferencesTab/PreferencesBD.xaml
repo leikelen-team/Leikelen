@@ -20,7 +20,6 @@
             <RowDefinition />
             <RowDefinition />
             <RowDefinition />
-            <RowDefinition MinHeight="55" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition MinWidth="200" />
@@ -44,10 +43,5 @@
 
         <Label VerticalAlignment="Bottom" Content="{x:Static resx:GUI.Password}" Grid.Row="5" Grid.Column="0" />
         <TextBox x:Name="PasswordTxt" Grid.Row="5" Grid.Column="1"></TextBox>
-
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="6" Grid.ColumnSpan="2" Orientation="Horizontal">
-            <Button x:Name="AcceptBtn" Content="{x:Static resx:GUI.Accept}" Margin="5" />
-            <Button x:Name="CancelBtn" Content="{x:Static resx:GUI.Cancel}" Margin="5" />
-        </StackPanel>
     </Grid>
 </TabItem>

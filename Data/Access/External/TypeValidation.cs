@@ -18,7 +18,7 @@ namespace cl.uv.leikelen.Data.Access.External
             var subModalPersonInScene = personInScene.SubModalType_PersonInScenes.Find(smtPis => smtPis.SubModalType.SubModalTypeId.Equals(subModalName) && smtPis.SubModalType.ModalType.ModalTypeId.Equals(modalName));
 
             //if smtPis doesn't exists, then create it
-            if (subModalPersonInScene is null)
+            if (subModalPersonInScene == null)
             {
                 var modalType = DbFacade.Instance.Provider.LoadModal(modalName);
                 if (Object.ReferenceEquals(null, modalType))

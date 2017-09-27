@@ -28,15 +28,37 @@ namespace cl.uv.leikelen.Data.Access.External
 
         public Scene SaveOrUpdate(Scene scene)
         {
+            Scene sceneReturned = null;
             if (DbFacade.Instance.Provider.LoadScene(scene.SceneId) == null)
-                return DbFacade.Instance.Provider.SaveScene(scene);
+                sceneReturned = DbFacade.Instance.Provider.SaveScene(scene);
             else
-                return DbFacade.Instance.Provider.UpdateScene(scene);
+                sceneReturned = DbFacade.Instance.Provider.UpdateScene(scene);
+            if (sceneReturned != null && !System.IO.Directory.Exists(GeneralSettings.Instance.GetDataDirectory()+"scene/"+ sceneReturned.SceneId))
+            {
+                System.IO.Directory.CreateDirectory(GeneralSettings.Instance.GetDataDirectory() + "scene/" + sceneReturned.SceneId);
+            }
+            return sceneReturned;
+        }
+
+        public Scene SaveNew(Scene scene)
+        {
+            var lastSceneId = DbFacade.Instance.Provider.LoadScenes().Max(sc => sc.SceneId);
+            scene.SceneId = lastSceneId + 1;
+            var lastPersonId = DbFacade.Instance.Provider.LoadPersons().Max(p => p.PersonId);
+            foreach (var person in scene.PersonsInScene)
+            {
+
+            }
+            return SaveOrUpdate(scene);
         }
 
         public void Delete(Scene scene)
         {
             DbFacade.Instance.Provider.DeleteScene(scene);
+            if (!System.IO.Directory.Exists(GeneralSettings.Instance.GetDataDirectory() + "scene/" + scene?.SceneId))
+            {
+                System.IO.Directory.Delete(GeneralSettings.Instance.GetDataDirectory() + "scene/" + scene?.SceneId, true);
+            }
         }
     }
 }

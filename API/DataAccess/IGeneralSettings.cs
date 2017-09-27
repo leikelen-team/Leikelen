@@ -10,7 +10,7 @@ namespace cl.uv.leikelen.API.DataAccess
     {
         string GetDataDirectory();
         string GetTmpDirectory();
-        string GetSceneInUseDirectory();
+        string GetTmpSceneDirectory();
         int GetDefaultMillisecondsThreshold();
     }
 }

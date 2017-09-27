@@ -41,6 +41,11 @@ namespace cl.uv.leikelen.View
                     DataAccessFacade.Instance.GetSceneInUseAccess().GetScene());
                 Close();
             }
+            else
+            {
+                MessageBox.Show(Properties.GUI.AllPersonsNotExists, 
+                    Properties.GUI.AllPersonsNotExistsTitle, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void EditBtn_Click(object sender, RoutedEventArgs e)
@@ -50,6 +55,15 @@ namespace cl.uv.leikelen.View
             {
                 var configurePersonWin = new ConfigurePerson(person);
                 configurePersonWin.Show();
+                configurePersonWin.Closed += (confSender, confE) =>
+                {
+                    PersonDataGrid.ItemsSource = DataAccessFacade.Instance.GetPersonAccess().GetAll();
+                };
+            }
+            else
+            {
+                MessageBox.Show(Properties.GUI.AllPersonsNotExists,
+                    Properties.GUI.AllPersonsNotExistsTitle, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -57,6 +71,10 @@ namespace cl.uv.leikelen.View
         {
             var configurePersonWin = new ConfigurePerson();
             configurePersonWin.Show();
+            configurePersonWin.Closed += (confSender, confE) =>
+            {
+                PersonDataGrid.ItemsSource = DataAccessFacade.Instance.GetPersonAccess().GetAll();
+            };
         }
     }
 }

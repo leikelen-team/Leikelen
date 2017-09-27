@@ -30,6 +30,26 @@ namespace cl.uv.leikelen.Data.Persistence
             _instance = new DbFacade();
         }
 
+        public string TestError(string provider, string host, int port, string dbname, string user, string password)
+        {
+            try
+            {
+                var tmpProvider = DbEngineList[provider].Provider;
+                tmpProvider.CreateConnection(DbEngineList[provider].CreateConnectionString.Invoke(
+                    host,
+                    port != -1 ? port : DbEngineList[provider].DefaultPort,
+                    dbname,
+                    user,
+                    password));
+                tmpProvider.CloseConnection();
+                return null;
+            }
+            catch(Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+
         private DbFacade()
         {
             DbEngineList = new Dictionary<string, DatabaseEngine>();
@@ -38,24 +58,20 @@ namespace cl.uv.leikelen.Data.Persistence
             //assign the selected engine in settings, and create the connection
             try
             {
-                foreach (var engineName in DbEngineList.Keys)
-                {
-                    if (engineName.Equals(GeneralSettings.Instance.Database.Value))
-                    {
-                        Provider = DbEngineList[engineName].Provider;
-                        Provider.CreateConnection(DbEngineList[engineName].CreateConnectionString.Invoke(
-                            GeneralSettings.Instance.DbHost.Value,
-                            GeneralSettings.Instance.DbPort.Value != -1 ? GeneralSettings.Instance.DbPort.Value : DbEngineList[engineName].DefaultPort,
-                            GeneralSettings.Instance.DbName.Value,
-                            GeneralSettings.Instance.DbUser.Value,
-                            GeneralSettings.Instance.DbPassword.Value));
-                    }
-                }
+                string providerName = GeneralSettings.Instance.Database.Value;
+                Provider = DbEngineList[providerName].Provider;
+                Provider.CreateConnection(DbEngineList[providerName].CreateConnectionString.Invoke(
+                    GeneralSettings.Instance.DbHost.Value,
+                    GeneralSettings.Instance.DbPort.Value != -1 ? GeneralSettings.Instance.DbPort.Value : DbEngineList[providerName].DefaultPort,
+                    GeneralSettings.Instance.DbName.Value,
+                    GeneralSettings.Instance.DbUser.Value,
+                    GeneralSettings.Instance.DbPassword.Value));
+                    
             }
             catch(Exception ex)
             {
-                MessageBoxResult result = MessageBox.Show(Properties.Error.BdNotConnect+"\n"+ex.Message, Properties.Error.BdNotConnectTitle, MessageBoxButton.OK,
-                MessageBoxImage.Exclamation);
+                MessageBoxResult result = MessageBox.Show(Properties.Error.BdNotConnect+"\n"+ex.Message, 
+                    Properties.Error.BdNotConnectTitle, MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 Provider = DbEngineList["Memory"].Provider;
                 Provider.CreateConnection("MemoryDb");
             }

@@ -3,3 +3,6 @@ bin/*
 .vs/*
 /.project
 packages/*
+
+NUnit.Tests/obj/*
+NUnit.Tests/bin/*

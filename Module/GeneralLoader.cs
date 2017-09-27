@@ -22,11 +22,19 @@ namespace cl.uv.leikelen.Module
             }
         }
 
+        public static void Reset()
+        {
+            _instance = null;
+            _instance = new GeneralLoader();
+        }
+
         private GeneralLoader()
         {
-            GeneralModules = new List<GeneralModule>();
-
-            GeneralModules.Add(new Processing.EEGEmotion2Channels.TrainerEntryPoint());
+            GeneralModules = new List<GeneralModule>()
+            {
+                new Processing.EEGEmotion2Channels.TrainerEntryPoint(),
+                new General.GestureConfiguration.GestureConfigurationEntryPoint()
+            };
         }
     }
 }

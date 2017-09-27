@@ -11,7 +11,7 @@ namespace cl.uv.leikelen.API.DataAccess
     {
         List<Person> GetAll();
         Person Get(int personId);
-        Person Add(string name, string photo, DateTime? birthday, char? sex);
+        Person Add(string name, string photo, DateTime? birthday, int? sex);
         Person Update(Person person);
         PersonInScene AddToScene(Person person, Scene scene);
         bool Exists(int personId);

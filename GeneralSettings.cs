@@ -11,8 +11,8 @@ namespace cl.uv.leikelen
     public class GeneralSettings : SettingsContainer, IGeneralSettings
     {
         public readonly Option<string> DataDirectory = new Option<string>("DataDirectory", "data/");
-        public readonly Option<string> TmpDirectory = new Option<string>("TmpDirectory", "tmp/");
-        public readonly Option<string> SceneInUseDirectory = new Option<string>("SceneInUseDirectory", "current_scene/");
+        public readonly Option<string> TmpDirectory = new Option<string>("SceneInUseDirectory", "tmp/current_scene/");
+        public readonly Option<string> TmpSceneDirectory = new Option<string>("SceneInUseDirectory", "tmp/current_scene/");
         public readonly Option<string> Extension = new Option<string>("Extension", ".leikelen");
         public readonly Option<string> ExtensionFilter = new Option<string>("ExtensionFilter", "*.leikelen");
 
@@ -57,14 +57,14 @@ namespace cl.uv.leikelen
             return TmpDirectory.Value;
         }
 
-        public string GetSceneInUseDirectory()
-        {
-            return SceneInUseDirectory.Value;
-        }
-
         public int GetDefaultMillisecondsThreshold()
         {
             return DefaultMillisecondsThreshold.Value;
+        }
+
+        public string GetTmpSceneDirectory()
+        {
+            return TmpSceneDirectory.Value;
         }
     }
 }

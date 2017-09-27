@@ -266,6 +266,7 @@
       <HintPath>packages\System.Interactive.Async.3.1.1\lib\net45\System.Interactive.Async.dll</HintPath>
     </Reference>
     <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Numerics" />
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>packages\System.Runtime.CompilerServices.Unsafe.4.3.0\lib\netstandard1.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
@@ -280,9 +281,6 @@
       <HintPath>packages\System.Threading.Tasks.Extensions.4.3.0\lib\portable-net45+win8+wp8+wpa81\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="System.Transactions" />
-    <Reference Include="System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>packages\System.ValueTuple.4.4.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -295,7 +293,6 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.Dotnet" Version="1.0.1" />
     <Reference Include="WriteableBitmapEx.Wpf, Version=1.5.0.0, Culture=neutral, PublicKeyToken=50375ca6144f1c69, processorArchitecture=MSIL">
       <HintPath>packages\WriteableBitmapEx.1.5.1.0\lib\net40\WriteableBitmapEx.Wpf.dll</HintPath>
     </Reference>
@@ -314,6 +311,7 @@
     <Compile Include="API\FrameProvider\EEG\IEegProcessingModule.cs" />
     <Compile Include="API\FrameProvider\Kinect\IKinectProcessingModule.cs" />
     <Compile Include="API\FrameProvider\Kinect\KinectGestureFrameArrivedArgs.cs" />
+    <Compile Include="API\Helper\IPreference.cs" />
     <Compile Include="API\Helper\ITab.cs" />
     <Compile Include="API\Module\AbstractModule.cs" />
     <Compile Include="API\Module\General\GeneralModule.cs" />
@@ -328,26 +326,27 @@
     <Compile Include="Data\Persistence\Provider\MySqlProvider.cs" />
     <Compile Include="Data\Persistence\Provider\SqliteProvider.cs" />
     <Compile Include="Module\GeneralLoader.cs" />
+    <Compile Include="Module\General\GestureConfiguration\GestureConfigurationEntryPoint.cs" />
+    <Compile Include="Module\General\GestureConfiguration\Properties\GestureConfiguration.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GestureConfiguration.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Module\General\GestureConfiguration\Properties\GestureConfiguration.es.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GestureConfiguration.es.resx</DependentUpon>
+    </Compile>
     <Compile Include="Module\Input\Kinect\GestureDetector.cs" />
     <Compile Include="Module\Input\Kinect\KinectInput.cs" />
     <Compile Include="Module\Input\Kinect\KinectSettings.cs" />
     <Compile Include="Module\Input\Kinect\Monitor.cs" />
     <Compile Include="Module\Input\Kinect\Player.cs" />
-    <Compile Include="Module\Input\Kinect\Properties\Kinect.es.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Kinect.es.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Module\Input\Kinect\Properties\Kinect1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Kinect.resx</DependentUpon>
-    </Compile>
     <Compile Include="Module\Input\Kinect\SkeletonColorVideoViewer.cs" />
-    <Compile Include="Module\Input\Kinect\View\AddOrEditPosture.xaml.cs">
+    <Compile Include="Module\General\GestureConfiguration\View\AddOrEditPosture.xaml.cs">
       <DependentUpon>AddOrEditPosture.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Module\Input\Kinect\View\PostureCRUD.xaml.cs">
+    <Compile Include="Module\General\GestureConfiguration\View\PostureCRUD.xaml.cs">
       <DependentUpon>PostureCRUD.xaml</DependentUpon>
     </Compile>
     <Compile Include="Module\Input\OpenBCI\OpenBCIInput.cs" />
@@ -542,11 +541,11 @@
     <Compile Include="View\Widget\HomeTab\TabScene.xaml.cs">
       <DependentUpon>TabScene.xaml</DependentUpon>
     </Compile>
-    <Page Include="Module\Input\Kinect\View\AddOrEditPosture.xaml">
+    <Page Include="Module\General\GestureConfiguration\View\AddOrEditPosture.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Module\Input\Kinect\View\PostureCRUD.xaml">
+    <Page Include="Module\General\GestureConfiguration\View\PostureCRUD.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -656,12 +655,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Module\Input\Kinect\Properties\Kinect.es.resx">
-      <LastGenOutput>Kinect.es.Designer.cs</LastGenOutput>
+    <EmbeddedResource Include="Module\General\GestureConfiguration\Properties\GestureConfiguration.es.resx">
+      <LastGenOutput>GestureConfiguration.es.Designer.cs</LastGenOutput>
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="Module\Input\Kinect\Properties\Kinect.resx">
-      <LastGenOutput>Kinect1.Designer.cs</LastGenOutput>
+    <EmbeddedResource Include="Module\General\GestureConfiguration\Properties\GestureConfiguration.resx">
+      <LastGenOutput>GestureConfiguration.Designer.cs</LastGenOutput>
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Error.es.resx">
@@ -671,6 +670,7 @@
     <EmbeddedResource Include="Properties\Error.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Error.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\GUI.es.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -714,7 +714,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Module\General\GestureConfiguration\" />
     <Folder Include="View\Widget\Wizard\" />
   </ItemGroup>
   <ItemGroup>

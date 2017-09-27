@@ -11,13 +11,14 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using cl.uv.leikelen.API.Helper;
 
 namespace cl.uv.leikelen.View.Widget.PreferencesTab
 {
     /// <summary>
     /// Lógica de interacción para PreferencesPersonColors.xaml
     /// </summary>
-    public partial class PreferencesPersonColors : TabItem
+    public partial class PreferencesPersonColors : TabItem, IPreference
     {
         public PreferencesPersonColors()
         {
@@ -61,13 +62,10 @@ namespace cl.uv.leikelen.View.Widget.PreferencesTab
             p4DotsCmbx.ItemsSource = rectangleColors;
             p5DotsCmbx.ItemsSource = rectangleColors;
             p6DotsCmbx.ItemsSource = rectangleColors;
-
-            AcceptBtn.Click += AcceptBtn_Click;
         }
 
-        private void AcceptBtn_Click(object sender, RoutedEventArgs e)
+        public void Apply()
         {
-            throw new NotImplementedException();
         }
     }
 }

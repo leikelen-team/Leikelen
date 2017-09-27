@@ -12,7 +12,7 @@ namespace cl.uv.leikelen.Data.Access.External
 {
     public class PersonAccess : IPersonAccess
     {
-        public Person Add(string name, string photo, DateTime? birthday, char? sex)
+        public Person Add(string name, string photo, DateTime? birthday, int? sex)
         {
             var person = DbFacade.Instance.Provider.SavePerson(new Person()
             {

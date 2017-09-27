@@ -11,8 +11,32 @@
          TextElement.FontSize="14"
          FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
          Header="{x:Static resx:GUI.Scene}">
-    <Grid>
-        <DataGrid x:Name="TabSceneDataGrid" CanUserReorderColumns="True" CanUserResizeColumns="True" CanUserResizeRows="True" CanUserSortColumns="True">
-        </DataGrid>
-    </Grid>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Orientation="Vertical">
+            <Label Content="{x:Static resx:GUI.TabSceneIntervalLabel}" FontWeight="Bold" />
+            <DataGrid x:Name="IntervalDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="True" CanUserResizeColumns="True" CanUserResizeRows="True" CanUserSortColumns="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="{x:Static resx:GUI.Person}" Binding="{Binding PersonName}" />
+                    <DataGridTextColumn Header="{x:Static resx:GUI.ModalType}" Binding="{Binding ModalName}" />
+                    <DataGridTextColumn Header="{x:Static resx:GUI.SubModalType}" Binding="{Binding SubModalName}" />
+                    <DataGridTextColumn Header="{x:Static resx:GUI.TabSceneColumnTotalDuration}" Binding="{Binding TotalDuration}" />
+                    <DataGridTextColumn Header="{x:Static resx:GUI.TabSceneColumnAvgDuration}" Binding="{Binding AverageDuration}" />
+                    <DataGridTextColumn Header="{x:Static resx:GUI.TabSceneColumnStdDuration}" Binding="{Binding StdDuration}" />
+                </DataGrid.Columns>
+            </DataGrid>
+            <Label Content="" />
+            <Label Content="{x:Static resx:GUI.TabSceneEventLabel}" FontWeight="Bold" />
+            <DataGrid x:Name="EventDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="True" CanUserResizeColumns="True" CanUserResizeRows="True" CanUserSortColumns="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="{x:Static resx:GUI.Person}" Binding="{Binding PersonName}" />
+                    <DataGridTextColumn Header="{x:Static resx:GUI.ModalType}" Binding="{Binding ModalName}" />
+                    <DataGridTextColumn Header="{x:Static resx:GUI.SubModalType}" Binding="{Binding SubModalName}" />
+                    <DataGridTextColumn Header="{x:Static resx:GUI.TabSceneColumnAvgValue}" Binding="{Binding AverageValue}" />
+                    <DataGridTextColumn Header="{x:Static resx:GUI.TabSceneColumnStdValue}" Binding="{Binding StdValue}" />
+                    <DataGridTextColumn Header="{x:Static resx:GUI.TabSceneColumnAvgTime}" Binding="{Binding AverageTime}" />
+                    <DataGridTextColumn Header="{x:Static resx:GUI.TabSceneColumnStdTime}" Binding="{Binding StdTime}" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+    </ScrollViewer>
 </TabItem>
