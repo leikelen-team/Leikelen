@@ -27,8 +27,8 @@
         <DataGrid Grid.Row="1" AutoGenerateColumns="False" x:Name="PersonDataGrid" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="True" CanUserResizeColumns="True" CanUserResizeRows="True" CanUserSortColumns="True" SelectionMode="Single">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="{x:Static resx:GUI.Name}" Binding="{Binding Name}"/>
-                <DataGridTextColumn Header="{x:Static resx:GUI.Age}" Binding="{Binding Age}"/>
-                <DataGridTextColumn Header="{x:Static resx:GUI.Gender}" Binding="{Binding Sex}"/>
+                <DataGridTextColumn Header="{x:Static resx:GUI.Birthday}" Binding="{Binding Birthday}"/>
+                <DataGridTextColumn Header="{x:Static resx:GUI.Gender}" Binding="{Binding SexString}"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

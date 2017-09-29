@@ -46,5 +46,10 @@ namespace cl.uv.leikelen.Data.Model
         {
             PersonsInScene = new List<PersonInScene>();
         }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

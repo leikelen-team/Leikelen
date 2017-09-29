@@ -34,7 +34,7 @@ namespace cl.uv.leikelen.Data.Access.External
                         EventTime = eventElement.EventData.EventTime
                     });
                 }
-                return eventList;
+                return eventList.OrderBy(ed => ed.EventTime).ToList();
             }
         }
 

@@ -18,7 +18,8 @@ using System.Diagnostics;
 using cl.uv.leikelen.Data.Access.Internal;
 using cl.uv.leikelen.Data.Access;
 using MaterialDesignThemes.Wpf;
-
+using Microsoft.Win32;
+using System.IO;
 using cl.uv.leikelen.Data.Model;
 using cl.uv.leikelen.API.Helper;
 
@@ -85,7 +86,7 @@ namespace cl.uv.leikelen.View
             MenuItem_File_Import.Click += MenuItem_File_Import_Click;
             MenuItem_File_Export.Click += MenuItem_File_Export_Click;
             MenuItem_File_Save.Click += MenuItem_File_Save_Click;
-            MenuItem_File_Recent_More.Click += MenuItem_File_Recent_More_Click;
+            MenuItem_File_AllScenes.Click += MenuItem_File_AllScenes_Click;
             MenuItem_File_Quit.Click += MenuItem_File_Quit_Click;
 
             //Tools MenuItems
@@ -148,39 +149,11 @@ namespace cl.uv.leikelen.View
             FillMenuInputModules();
             FillMenuProccessingModules();
             FillMenuGeneralModules();
-            FillRecentScenes();
         }
-
-        private void FillRecentScenes()
-        {
-            /*var scenes = DataAccessFacade.Instance.GetSceneAccess().GetAll();
-            List<MenuItem> recentScenes = new List<MenuItem>();
-            recentScenes.Concat(MenuItem_File_Recent.Items);
-
-            for (int i= scenes.Count-1; i>=0 && i>scenes.Count-5; i--)
-            {
-                MenuItem recentScene = new MenuItem()
-                {
-                    Header = scenes[i].Name
-                    
-                };
-                recentScene.Click += (sender, e) =>
-                {
-
-                };
-                MenuItem_File_Recent.Items.Insert();
-            }*/
-        }
-
-        
 
         private void MenuItem_File_LoadTestScene_Click(object sender, RoutedEventArgs e)
         {
-            LoadTestScene.LoadTest();
-            foreach (var tab in _tabs)
-            {
-                tab.Fill();
-            }
+            LoadTestScene.LoadTest("Test");
             ChangeHomeState(HomeState.FromFileWithScene, PlayerState.Wait);
         }
 
@@ -246,8 +219,7 @@ namespace cl.uv.leikelen.View
         {
             MenuItem_File_NewScene.IsEnabled = false;
             MenuItem_File_Save.IsEnabled = false;
-            MenuItem_File_Recent.IsEnabled = true;
-            MenuItem_File_Recent_More.IsEnabled = true;
+            MenuItem_File_AllScenes.IsEnabled = true;
             MenuItem_File_Import.IsEnabled = true;
             MenuItem_File_Export.IsEnabled = false;
             MenuItem_File_Quit.IsEnabled = true;
@@ -274,8 +246,7 @@ namespace cl.uv.leikelen.View
         {
             MenuItem_File_NewScene.IsEnabled = false;
             MenuItem_File_Save.IsEnabled = false;
-            MenuItem_File_Recent.IsEnabled = false;
-            MenuItem_File_Recent_More.IsEnabled = false;
+            MenuItem_File_AllScenes.IsEnabled = false;
             MenuItem_File_Import.IsEnabled = false;
             MenuItem_File_Export.IsEnabled = false;
             MenuItem_File_Quit.IsEnabled = true;
@@ -302,8 +273,7 @@ namespace cl.uv.leikelen.View
         {
             MenuItem_File_NewScene.IsEnabled = true;
             MenuItem_File_Save.IsEnabled = false;
-            MenuItem_File_Recent.IsEnabled = false;
-            MenuItem_File_Recent_More.IsEnabled = false;
+            MenuItem_File_AllScenes.IsEnabled = false;
             MenuItem_File_Import.IsEnabled = false;
             MenuItem_File_Export.IsEnabled = false;
             MenuItem_File_Quit.IsEnabled = true;
@@ -342,8 +312,7 @@ namespace cl.uv.leikelen.View
             }
             MenuItem_File_NewScene.IsEnabled = false;
             MenuItem_File_Save.IsEnabled = true;
-            MenuItem_File_Recent.IsEnabled = true;
-            MenuItem_File_Recent_More.IsEnabled = true;
+            MenuItem_File_AllScenes.IsEnabled = true;
             MenuItem_File_Import.IsEnabled = true;
             MenuItem_File_Export.IsEnabled = true;
             MenuItem_File_Quit.IsEnabled = true;
@@ -396,8 +365,7 @@ namespace cl.uv.leikelen.View
                     Player_VolumeSlider.IsEnabled = true;
                     break;
             }
-            MenuItem_File_Recent.IsEnabled = false;
-            MenuItem_File_Recent_More.IsEnabled = false;
+            MenuItem_File_AllScenes.IsEnabled = false;
             MenuItem_File_Import.IsEnabled = false;
             MenuItem_File_Export.IsEnabled = true;
             MenuItem_File_Quit.IsEnabled = true;
@@ -443,20 +411,20 @@ namespace cl.uv.leikelen.View
             configureSceneWin.Show();
             configureSceneWin.Closed += (senderClosed, eClosed) =>
             {
-                if (!Object.ReferenceEquals(null, DataAccessFacade.Instance.GetSceneInUseAccess().GetScene()))
+                if (!ReferenceEquals(null, DataAccessFacade.Instance.GetSceneInUseAccess().GetScene()))
                 {
                     ChangeHomeState(HomeState.FromSensorWithScene, PlayerState.Wait);
                 }
             };
         }
 
-        private void MenuItem_File_Recent_More_Click(object sender, RoutedEventArgs e)
+        private void MenuItem_File_AllScenes_Click(object sender, RoutedEventArgs e)
         {
             var allScenesWin = new AllScenes();
             allScenesWin.Show();
             allScenesWin.Closed += (senderAllScenes, eAllScenes) =>
             {
-                if (!Object.ReferenceEquals(null, DataAccessFacade.Instance.GetSceneInUseAccess().GetScene()))
+                if (!ReferenceEquals(null, DataAccessFacade.Instance.GetSceneInUseAccess().GetScene()))
                 {
                     ChangeHomeState(HomeState.FromFileWithScene, PlayerState.Wait);
                 }
@@ -494,8 +462,41 @@ namespace cl.uv.leikelen.View
 
         private void MenuItem_File_Import_Click(object sender, RoutedEventArgs e)
         {
-            //ChangeHomeState(HomeState.FromFileWithScene);
-            throw new NotImplementedException();
+            var dlg = new OpenFileDialog()
+            {
+                Filter = GeneralSettings.Instance.ExtensionFilter,
+                DefaultExt = GeneralSettings.Instance.Extension
+            };
+            if (dlg.ShowDialog().GetValueOrDefault())
+            {
+                if (!String.IsNullOrEmpty(dlg.FileName))
+                {
+                    try
+                    {
+                        FileController.Import(dlg.FileName);
+                        MessageBox.Show(Properties.GUI.SceneImportedSuccesfully,
+                            Properties.GUI.SceneImportedSuccesfullyTitle,
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(Properties.GUI.SceneImportedError+"\n"+ex.Message,
+                            Properties.GUI.SceneImportedErrorTitle,
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Error);
+                    }
+                    
+                }
+                else
+                {
+                    MessageBox.Show(Properties.GUI.SceneImportedNoFile,
+                        Properties.GUI.SceneImportedNoFile,
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Error);
+                }
+            }
+            ChangeHomeState(HomeState.FromFileWithScene, PlayerState.Wait);
         }
 
         private void MenuItem_File_Quit_Click(object sender, RoutedEventArgs e)

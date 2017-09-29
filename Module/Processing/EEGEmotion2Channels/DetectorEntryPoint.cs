@@ -27,7 +27,7 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels
             Name = Properties.EEGEmotion2Channels.DetectionModuleName;
             IsEnabled = true;
             var configWindow = new Tuple<string, WindowBuilder>(Properties.EEGEmotion2Channels.ConfigWindowTitle,
-               new WindowBuilder(new DetectorWindow()));
+               new WindowBuilder(new ConfigurationWindow(Properties.EEGEmotion2Channels.ConfigWindowTitle)));
             Windows.Add(configWindow);
             
             _logic = new EEGReceiver();

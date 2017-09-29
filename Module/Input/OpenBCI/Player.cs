@@ -14,7 +14,7 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI
 
         public void ChangeTime(TimeSpan newTime)
         {
-            throw new NotImplementedException();
+            return;
         }
 
         public void Close()

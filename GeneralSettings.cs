@@ -14,7 +14,7 @@ namespace cl.uv.leikelen
         public readonly Option<string> TmpDirectory = new Option<string>("SceneInUseDirectory", "tmp/current_scene/");
         public readonly Option<string> TmpSceneDirectory = new Option<string>("SceneInUseDirectory", "tmp/current_scene/");
         public readonly Option<string> Extension = new Option<string>("Extension", ".leikelen");
-        public readonly Option<string> ExtensionFilter = new Option<string>("ExtensionFilter", "*.leikelen");
+        public readonly Option<string> ExtensionFilter = new Option<string>("ExtensionFilter", "Leikelen scene file (*.leikelen)|*.leikelen");
 
         public readonly Option<int> DefaultMillisecondsThreshold = new Option<int>("DefaultMilliseconds", 2000);
 
@@ -24,6 +24,9 @@ namespace cl.uv.leikelen
         public readonly Option<string> DbName = new Option<string>("DbName", "leikelen");
         public readonly Option<string> DbUser = new Option<string>("DbUser", "postgres");
         public readonly Option<string> DbPassword = new Option<string>("DbPassword", "erick1992");
+
+        public readonly Option<int> IntervalsGraphMinHeight = new Option<int>("IntervalsGraphMinHeight", 60);
+        public readonly Option<int> EventsGraphMinHeight = new Option<int>("EventsGraphMinHeight", 200);
 
 
         private static GeneralSettings _instance;

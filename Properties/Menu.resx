@@ -207,4 +207,7 @@
   <data name="Scene_Persons" xml:space="preserve">
     <value>Persons</value>
   </data>
+  <data name="File_AllScenes" xml:space="preserve">
+    <value>All scenes</value>
+  </data>
 </root>

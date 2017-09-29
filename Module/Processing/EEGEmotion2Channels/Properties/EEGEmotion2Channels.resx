@@ -193,4 +193,16 @@
   <data name="TrainerFileSelectorTitle" xml:space="preserve">
     <value>File selector</value>
   </data>
+  <data name="N" xml:space="preserve">
+    <value>N</value>
+  </data>
+  <data name="NHint" xml:space="preserve">
+    <value>Number of samples</value>
+  </data>
+  <data name="shiftHint" xml:space="preserve">
+    <value>shift of samples in sample entropy</value>
+  </data>
+  <data name="shift" xml:space="preserve">
+    <value>shift</value>
+  </data>
 </root>

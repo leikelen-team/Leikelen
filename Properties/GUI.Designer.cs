@@ -70,6 +70,15 @@ namespace cl.uv.leikelen.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Add.
+        /// </summary>
+        public static string Add {
+            get {
+                return ResourceManager.GetString("Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Add to scene.
         /// </summary>
         public static string AddToScene {
@@ -345,6 +354,24 @@ namespace cl.uv.leikelen.Properties {
         public static string File {
             get {
                 return ResourceManager.GetString("File", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a The file already exists, are you sure you want to replace it?.
+        /// </summary>
+        public static string FileExists {
+            get {
+                return ResourceManager.GetString("FileExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a File exists.
+        /// </summary>
+        public static string FileExistsTitle {
+            get {
+                return ResourceManager.GetString("FileExistsTitle", resourceCulture);
             }
         }
         
@@ -691,6 +718,24 @@ namespace cl.uv.leikelen.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Minimum height of events graphs.
+        /// </summary>
+        public static string PrefEventsGraphMinHeight {
+            get {
+                return ResourceManager.GetString("PrefEventsGraphMinHeight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Minimum height of intervals graphs.
+        /// </summary>
+        public static string PrefIntervalGraphMinHeight {
+            get {
+                return ResourceManager.GetString("PrefIntervalGraphMinHeight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Record date.
         /// </summary>
         public static string RecordDate {
@@ -705,6 +750,15 @@ namespace cl.uv.leikelen.Properties {
         public static string RecordTime {
             get {
                 return ResourceManager.GetString("RecordTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Remove last.
+        /// </summary>
+        public static string RemoveLast {
+            get {
+                return ResourceManager.GetString("RemoveLast", resourceCulture);
             }
         }
         
@@ -754,6 +808,42 @@ namespace cl.uv.leikelen.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a An error occurred when trying to export the scene.
+        /// </summary>
+        public static string SceneExportedError {
+            get {
+                return ResourceManager.GetString("SceneExportedError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Export error.
+        /// </summary>
+        public static string SceneExportedErrorTitle {
+            get {
+                return ResourceManager.GetString("SceneExportedErrorTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Haven&apos;t selected a file to export the scene.
+        /// </summary>
+        public static string SceneExportedNoFile {
+            get {
+                return ResourceManager.GetString("SceneExportedNoFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a No file selected.
+        /// </summary>
+        public static string SceneExportedNoFileTitle {
+            get {
+                return ResourceManager.GetString("SceneExportedNoFileTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a The scene has been exported succesfully.
         /// </summary>
         public static string SceneExportedSuccesfully {
@@ -768,6 +858,42 @@ namespace cl.uv.leikelen.Properties {
         public static string SceneExportedSuccesfullyTitle {
             get {
                 return ResourceManager.GetString("SceneExportedSuccesfullyTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a An error occurred when trying to import the scene.
+        /// </summary>
+        public static string SceneImportedError {
+            get {
+                return ResourceManager.GetString("SceneImportedError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Import error.
+        /// </summary>
+        public static string SceneImportedErrorTitle {
+            get {
+                return ResourceManager.GetString("SceneImportedErrorTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Haven&apos;t selected a file to import the scene.
+        /// </summary>
+        public static string SceneImportedNoFile {
+            get {
+                return ResourceManager.GetString("SceneImportedNoFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a No file selected.
+        /// </summary>
+        public static string SceneImportedNoFileTitle {
+            get {
+                return ResourceManager.GetString("SceneImportedNoFileTitle", resourceCulture);
             }
         }
         
@@ -948,6 +1074,15 @@ namespace cl.uv.leikelen.Properties {
         public static string TmpDirectory {
             get {
                 return ResourceManager.GetString("TmpDirectory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Open.
+        /// </summary>
+        public static string ToOpen {
+            get {
+                return ResourceManager.GetString("ToOpen", resourceCulture);
             }
         }
         

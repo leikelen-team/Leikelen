@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shfbBuild product="Sandcastle Help File Builder and Tools" version="2017.5.15.0" projectFile="C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\DevDocumentation\DevDocumentation.shfbproj" started="27-09-2017 1:43:03">
+<shfbBuild product="Sandcastle Help File Builder and Tools" version="2017.5.15.0" projectFile="C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\DevDocumentation\DevDocumentation.shfbproj" started="28-09-2017 7:39:38">
 <buildStep step="Initializing">
 Finding tools...
 The Sandcastle tools are located in &#39;C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\&#39;
@@ -15,9 +15,6 @@ Loading and initializing plug-ins...
 Lightweight Website Style Version 2017.5.15.0
 Copyright &#169; 2006-2017, Eric Woodruff, All Rights Reserved
 Portions Copyright &#169; 2014, Sam Harwell, All Rights Reserved
-</buildStep>
-<buildStep step="ClearWorkFolder">
-Clearing working folder...
 -------------------------------
 Clearing any prior web/markdown output...
 </buildStep>
@@ -32,18 +29,20 @@ SHFB: Warning BE0007: A project with a different or higher framework version was
 
 References to include (excluding framework assemblies):
     Accord, Version=3.7.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL
+    Accord.Audio, Version=3.7.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL
+    Accord.Audition, Version=3.7.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL
     Accord.MachineLearning, Version=3.7.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL
     Accord.Math, Version=3.7.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL
     Accord.Math.Core, Version=3.7.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL
     Accord.Statistics, Version=3.7.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL
     CodeContracts, Version=1.0.5680.18392, Culture=neutral, processorArchitecture=MSIL
     Config.Net, Version=3.0.0.0, Culture=neutral, PublicKeyToken=d836a57afd299520, processorArchitecture=MSIL
-    Dragablz, Version=0.0.3.193, Culture=neutral, processorArchitecture=MSIL
+    Dragablz, Version=0.0.3.197, Culture=neutral, processorArchitecture=MSIL
     KinectEx.x64
     LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL
     LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL
     MaterialDesignColors, Version=1.1.3.0, Culture=neutral, processorArchitecture=MSIL
-    MaterialDesignThemes.Wpf, Version=2.3.0.823, Culture=neutral, processorArchitecture=MSIL
+    MaterialDesignThemes.Wpf, Version=2.3.1.953, Culture=neutral, processorArchitecture=MSIL
     Microsoft.AspNetCore.Hosting.Abstractions, Version=1.1.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL
     Microsoft.AspNetCore.Hosting.Server.Abstractions, Version=1.1.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL
     Microsoft.AspNetCore.Http.Abstractions, Version=1.1.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL
@@ -90,21 +89,22 @@ References to include (excluding framework assemblies):
     System.Text.Encodings.Web, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL
     System.Threading.Tasks.Extensions, Version=4.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL
     WriteableBitmapEx.Wpf, Version=1.5.0.0, Culture=neutral, PublicKeyToken=50375ca6144f1c69, processorArchitecture=MSIL
+    YamlDotNet, Version=4.2.1.0, Culture=neutral, PublicKeyToken=ec19458f3c15af5e, processorArchitecture=MSIL
 SHFB: Warning BE0062: No documentation source XML comments files found.  The help file will not contain any member comments.
 </buildStep>
 <buildStep step="GenerateSharedContent">
 Generating shared content files (en-US, Ingl&#233;s (Estados Unidos))...
 <plugIn name="Lightweight Website Style" behavior="After" priority="1000">
-</plugIn>    Last step completed in 00:00:00,0310
+</plugIn>    Last step completed in 00:00:00,2040
 </buildStep>
 <buildStep step="GenerateApiFilter">
 Generating API filter for MRefBuilder...
-    Last step completed in 00:00:00,0020
+    Last step completed in 00:00:00,0050
 </buildStep>
 <buildStep step="GenerateReflectionInfo">
 Generating reflection information...
 [C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\MSBuild.exe - GenerateRefInfo.proj]
-Compilaci&#162;n iniciada a las 27-09-2017 1:43:06.
+Compilaci&#162;n iniciada a las 28-09-2017 7:40:16.
 Proyecto &quot;C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\GenerateRefInfo.proj&quot; en nodo 1 (destinos predeterminados).
 PrepareForBuild:
   Creando directorio &quot;obj\x64\Debug\&quot;.
@@ -113,11 +113,11 @@ GenerateRefInfo:
   Copyright &#184; 2006-2017, Microsoft Corporation, All Rights Reserved.
   Portions Copyright &#184; 2006-2016, Eric Woodruff, All Rights Reserved.
   No source code context base path specified.  Source context information is unavailable.
-  Loaded 1 assemblies for reflection and 110 dependency assemblies.
+  Loaded 1 assemblies for reflection and 113 dependency assemblies.
 MRefBuilder : warning : Ignoring unresolved assembly reference: Microsoft.Extensions.Logging.Abstractions (Microsoft.Extensions.Logging.Abstractions, Version=1.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60) required by Microsoft.EntityFrameworkCore [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\GenerateRefInfo.proj]
 MRefBuilder : warning : Ignoring unresolved assembly reference: Microsoft.Extensions.DependencyInjection.Abstractions (Microsoft.Extensions.DependencyInjection.Abstractions, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60) required by Microsoft.EntityFrameworkCore [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\GenerateRefInfo.proj]
 MRefBuilder : warning : Ignoring unresolved assembly reference: System.Interactive.Async (System.Interactive.Async, Version=3.0.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263) required by Microsoft.EntityFrameworkCore [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\GenerateRefInfo.proj]
-  Wrote information on 34 namespaces, 137 types, and 667 members
+  Wrote information on 34 namespaces, 138 types, and 671 members
   Copiando el archivo de &quot;reflection.org&quot; en &quot;reflection.all&quot;.
   XslTransform (v2017.5.15.0)
   Copyright &#184; 2006-2017, Microsoft Corporation, All Rights Reserved.
@@ -125,12 +125,12 @@ MRefBuilder : warning : Ignoring unresolved assembly reference: System.Interacti
   Applying XSL transformation &#39;C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\ProductionTransforms\MergeDuplicates.xsl&#39;.
   Applying XSL transformation &#39;C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\ProductionTransforms\AddXamlSyntaxData.xsl&#39;.
 Compilaci&#162;n del proyecto terminada &quot;C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\GenerateRefInfo.proj&quot; (destinos predeterminados).
-    Last step completed in 00:00:16,1839
+    Last step completed in 00:00:37,6534
 </buildStep>
 <buildStep step="TransformReflectionInfo">
 Transforming reflection output...
 [C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\MSBuild.exe - TransformManifest.proj]
-Compilaci&#162;n iniciada a las 27-09-2017 1:43:22.
+Compilaci&#162;n iniciada a las 28-09-2017 7:40:53.
 Proyecto &quot;C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\TransformManifest.proj&quot; en nodo 1 (destinos predeterminados).
 TransformManifest:
   XslTransform (v2017.5.15.0)
@@ -147,11 +147,11 @@ TransformManifest:
   Portions Copyright &#184; 2006-2016, Eric Woodruff, All Rights Reserved.
   Applying XSL transformation &#39;C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\ProductionTransforms\ReflectionToManifest.xsl&#39;.
 Compilaci&#162;n del proyecto terminada &quot;C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\TransformManifest.proj&quot; (destinos predeterminados).
-    Last step completed in 00:00:28,6710
+    Last step completed in 00:00:25,0954
 </buildStep>
 <buildStep step="GenerateNamespaceSummaries">
 Generating namespace summary information...
-    Last step completed in 00:00:03,7392
+    Last step completed in 00:00:03,8902
 </buildStep>
 <buildStep step="GenerateInheritedDocumentation">
 Generating inherited documentation...
@@ -163,6 +163,7 @@ E-Mail: Eric@EWoodruff.us
 Reflection information will be retrieved from &#39;reflection.xml&#39;
 Inherited documentation will be written to &#39;_InheritedDocs_.xml&#39;
 Indexing C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\*.xml
+Indexing C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\YamlDotNet.xml
 Indexing C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\WriteableBitmapEx.Wpf.xml
 Indexing C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\System.Threading.Tasks.Extensions.xml
 Indexing C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\System.Text.Encodings.Web.xml
@@ -208,14 +209,16 @@ Indexing C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlat
 Indexing C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\Accord.Math.Core.xml
 Indexing C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\Accord.Math.xml
 Indexing C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\Accord.MachineLearning.xml
+Indexing C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\Accord.Audition.xml
+Indexing C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\Accord.Audio.xml
 Indexing C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\Accord.xml
 Indexing C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\_ProjNS_.xml
-Indexed 206021 members in 171 file(s).  47 file(s) to scan for &lt;inheritdoc /&gt; tags.
+Indexed 207231 members in 174 file(s).  50 file(s) to scan for &lt;inheritdoc /&gt; tags.
 Merging inherited documentation...
 
 
 Documentation merged successfully
-    Last step completed in 00:00:08,4057
+    Last step completed in 00:00:12,0978
 </buildStep>
 <buildStep step="CopyConceptualContent">
 Copying conceptual content...
@@ -231,28 +234,28 @@ Generating conceptual topic files
     C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\DevDocumentation\Content\VersionHistory\VersionHistory.aml -&gt; C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\ddueXml\ed1dd38c-4898-4e30-a6e5-7febf5e82893.xml
     Parsing topic file &#39;C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\DevDocumentation\Content\VersionHistory\v1.0.0.0.aml&#39;
     C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\DevDocumentation\Content\VersionHistory\v1.0.0.0.aml -&gt; C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\ddueXml\f65a9fa1-9551-4761-96d0-069968095fc7.xml
-    Last step completed in 00:00:00,4300
+    Last step completed in 00:00:00,3806
 </buildStep>
 <buildStep step="CreateConceptualTopicConfigs">
 Creating conceptual topic configuration files...
     Companion files
     _ContentMetadata_.xml
     Merging topic IDs into manifest.xml
-    Last step completed in 00:00:00,0750
+    Last step completed in 00:00:00,0990
 </buildStep>
 <buildStep step="CopyAdditionalContent">
 Copying additional content files...
 No additional content to copy
-    Last step completed in 00:00:00,0100
+    Last step completed in 00:00:00,0090
 </buildStep>
 <buildStep step="MergeTablesOfContents">
 Merging conceptual and additional tables of contents...
-    Last step completed in 00:00:00,0200
+    Last step completed in 00:00:00,0120
 </buildStep>
 <buildStep step="GenerateIntermediateTableOfContents">
 Generating intermediate table of contents file...
 [C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\MSBuild.exe - GenerateIntermediateTOC.proj]
-Compilaci&#162;n iniciada a las 27-09-2017 1:44:04.
+Compilaci&#162;n iniciada a las 28-09-2017 7:41:35.
 Proyecto &quot;C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\GenerateIntermediateTOC.proj&quot; en nodo 1 (destinos predeterminados).
 GenerateIntermediateTOC:
   XslTransform (v2017.5.15.0)
@@ -261,12 +264,12 @@ GenerateIntermediateTOC:
   Applying XSL transformation &#39;C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\\ProductionTransforms\CreateVSToc.xsl&#39;.
 Compilaci&#162;n del proyecto terminada &quot;C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\GenerateIntermediateTOC.proj&quot; (destinos predeterminados).
 Generating conceptual content intermediate TOC file...
-    Last step completed in 00:00:02,9581
+    Last step completed in 00:00:04,5423
 </buildStep>
 <buildStep step="CreateBuildAssemblerConfigs">
 Creating Sandcastle configuration files...
     sandcastle.config
-    Last step completed in 00:00:03,1762
+    Last step completed in 00:00:02,4979
 </buildStep>
 <buildStep step="MergeCustomConfigs">
 Merging custom build component configurations
@@ -274,19 +277,18 @@ C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\docu
   Updating reference topic configurations.
   Updating conceptual topic configurations.
     Removing unused ExampleComponent.
-    Last step completed in 00:00:00,0370
+    Last step completed in 00:00:00,0270
 </buildStep>
 <buildStep step="BuildTopics">
 Building help topics...
 [C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\MSBuild.exe - BuildTopics.proj]
-Compilaci&#162;n iniciada a las 27-09-2017 1:44:10.
+Compilaci&#162;n iniciada a las 28-09-2017 7:41:42.
 Proyecto &quot;C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj&quot; en nodo 1 (destinos predeterminados).
 BuildTopics:
   BuildAssembler (v2017.5.15.0)
   Copyright &#184; 2006-2017, Microsoft Corporation, All Rights Reserved.
   Portions Copyright &#184; 2006-2016, Eric Woodruff, All Rights Reserved.
   Loading configuration...
-  ResolveReferenceLinksComponent: The MSDN content ID cache &#39;C:\Users\Erick\AppData\Local\EWSoftware\Sandcastle Help File Builder\Cache\MsdnContentId.cache&#39; does not exist yet.  All IDs will be looked up in this build which will slow it down.
   Processing topics...
 BuildAssembler : warning : ResolveConceptualLinksComponent: [ed1dd38c-4898-4e30-a6e5-7febf5e82893] Unknown conceptual link target &#39;db47048a-6cda-4936-bca6-0978b3257209&#39;. [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveConceptualLinksComponent: [ed1dd38c-4898-4e30-a6e5-7febf5e82893] Unknown conceptual link target &#39;db47048a-6cda-4936-bca6-0978b3257209&#39;. [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
@@ -1504,6 +1506,10 @@ BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Persiste
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Persistence.IDbProvider.SaveModal(cl.uv.leikelen.Data.Model.ModalType)] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Persistence.IDbProvider.SaveModal(cl.uv.leikelen.Data.Model.ModalType)] Missing &lt;returns&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Persistence.IDbProvider.SaveModal(cl.uv.leikelen.Data.Model.ModalType)] Missing &lt;param name=&quot;modalType&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Persistence.IDbProvider.SaveNewScene(cl.uv.leikelen.Data.Model.Scene)] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Persistence.IDbProvider.SaveNewScene(cl.uv.leikelen.Data.Model.Scene)] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Persistence.IDbProvider.SaveNewScene(cl.uv.leikelen.Data.Model.Scene)] Missing &lt;returns&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Persistence.IDbProvider.SaveNewScene(cl.uv.leikelen.Data.Model.Scene)] Missing &lt;param name=&quot;scene&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Persistence.IDbProvider.SavePerson(cl.uv.leikelen.Data.Model.Person)] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Persistence.IDbProvider.SavePerson(cl.uv.leikelen.Data.Model.Person)] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Persistence.IDbProvider.SavePerson(cl.uv.leikelen.Data.Model.Person)] Missing &lt;returns&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
@@ -2261,6 +2267,10 @@ BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Persiste
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Persistence.Provider.EfAbstractProvider.SaveModal(cl.uv.leikelen.Data.Model.ModalType)] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Persistence.Provider.EfAbstractProvider.SaveModal(cl.uv.leikelen.Data.Model.ModalType)] Missing &lt;returns&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Persistence.Provider.EfAbstractProvider.SaveModal(cl.uv.leikelen.Data.Model.ModalType)] Missing &lt;param name=&quot;modalType&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Persistence.Provider.EfAbstractProvider.SaveNewScene(cl.uv.leikelen.Data.Model.Scene)] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Persistence.Provider.EfAbstractProvider.SaveNewScene(cl.uv.leikelen.Data.Model.Scene)] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Persistence.Provider.EfAbstractProvider.SaveNewScene(cl.uv.leikelen.Data.Model.Scene)] Missing &lt;returns&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Persistence.Provider.EfAbstractProvider.SaveNewScene(cl.uv.leikelen.Data.Model.Scene)] Missing &lt;param name=&quot;scene&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Persistence.Provider.EfAbstractProvider.SavePerson(cl.uv.leikelen.Data.Model.Person)] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Persistence.Provider.EfAbstractProvider.SavePerson(cl.uv.leikelen.Data.Model.Person)] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Persistence.Provider.EfAbstractProvider.SavePerson(cl.uv.leikelen.Data.Model.Person)] Missing &lt;returns&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
@@ -2936,6 +2946,22 @@ BuildAssembler : warning : ShowMissingComponent: [F:cl.uv.leikelen.Module.Proces
 BuildAssembler : warning : ShowMissingComponent: [F:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing.EmdData.residue] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [F:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing.EmdData.size] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [F:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing.EmdData.size] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing.FilterButterworth] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing.FilterButterworth] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing.FilterButterworth.#ctor(System.Single,System.Int32,cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing.FilterButterworth.PassType,System.Single)] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing.FilterButterworth.#ctor(System.Single,System.Int32,cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing.FilterButterworth.PassType,System.Single)] Missing &lt;param name=&quot;frequency&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing.FilterButterworth.#ctor(System.Single,System.Int32,cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing.FilterButterworth.PassType,System.Single)] Missing &lt;param name=&quot;sampleRate&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing.FilterButterworth.#ctor(System.Single,System.Int32,cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing.FilterButterworth.PassType,System.Single)] Missing &lt;param name=&quot;passType&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing.FilterButterworth.#ctor(System.Single,System.Int32,cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing.FilterButterworth.PassType,System.Single)] Missing &lt;param name=&quot;resonance&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing.FilterButterworth.Update(System.Double)] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing.FilterButterworth.Update(System.Double)] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing.FilterButterworth.Update(System.Double)] Missing &lt;returns&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing.FilterButterworth.Update(System.Double)] Missing &lt;param name=&quot;newInput&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [P:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing.FilterButterworth.Value] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [P:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing.FilterButterworth.Value] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [P:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing.FilterButterworth.Value] Missing &lt;value&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing.FilterButterworth.PassType] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing.FilterButterworth.PassType] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing.SampleEntropy] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing.SampleEntropy] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing.SampleEntropy.CalcSampleEntropy(System.Double[],System.Int32,System.Int32,System.Double,System.Int32)] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
@@ -2951,22 +2977,15 @@ BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Proces
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing.SampleEntropy.DoubleAbs(System.Double)] Missing &lt;returns&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing.SampleEntropy.DoubleAbs(System.Double)] Missing &lt;param name=&quot;value&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [N:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View.ClassifierWindow] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View.ClassifierWindow] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View.ClassifierWindow.#ctor] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View.ClassifierWindow.Clone] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View.ClassifierWindow.Clone] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View.ClassifierWindow.Clone] Missing &lt;returns&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View.ClassifierWindow.InitializeComponent] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View.ClassifierWindow.InitializeComponent] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View.DetectorWindow] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View.DetectorWindow] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View.DetectorWindow.#ctor] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View.DetectorWindow.Clone] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View.DetectorWindow.Clone] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View.DetectorWindow.Clone] Missing &lt;returns&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View.DetectorWindow.InitializeComponent] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View.DetectorWindow.InitializeComponent] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View.ConfigurationWindow] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View.ConfigurationWindow] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View.ConfigurationWindow.#ctor(System.String)] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View.ConfigurationWindow.#ctor(System.String)] Missing &lt;param name=&quot;title&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View.ConfigurationWindow.Clone] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View.ConfigurationWindow.Clone] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View.ConfigurationWindow.Clone] Missing &lt;returns&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View.ConfigurationWindow.InitializeComponent] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View.ConfigurationWindow.InitializeComponent] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View.TrainerFileSelector] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View.TrainerFileSelector] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View.TrainerFileSelector.#ctor] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
@@ -3229,20 +3248,20 @@ BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.View.Widget.P
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.View.Widget.PreferencesTab.PreferencesPersonColors.Apply] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.View.Widget.PreferencesTab.PreferencesPersonColors.InitializeComponent] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.View.Widget.PreferencesTab.PreferencesPersonColors.InitializeComponent] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
-  Processed 1078 topic(s)
-  2941 warning(s)
+  Processed 1080 topic(s)
+  2958 warning(s)
   CopyFromIndexComponent: &quot;metadata&quot; in-memory cache entries used: 1 of 15.
   ResolveArtLinksComponent: Copying media files...
-  ResolveReferenceLinksComponent: 772 entries added to the MSDN content ID cache.  New cache size: 772 entries
+  ResolveReferenceLinksComponent: 1 entries added to the MSDN content ID cache.  New cache size: 773 entries
   ResolveArtLinksComponent: Copying media files...
   CopyFromIndexComponent: &quot;reflection&quot; in-memory cache entries used: 8 of 15.
   CopyFromIndexComponent: &quot;comments&quot; in-memory cache entries used: 6 of 30.
 Compilaci&#162;n del proyecto terminada &quot;C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\BuildTopics.proj&quot; (destinos predeterminados).
-    Last step completed in 00:12:09,0422
+    Last step completed in 00:02:26,7694
 </buildStep>
 <buildStep step="CombiningIntermediateTocFiles">
 Combining conceptual and API intermediate TOC files...
-    Last step completed in 00:00:00,0390
+    Last step completed in 00:00:00,0220
 </buildStep>
 <buildStep step="ExtractingHtmlInfo">
 Extracting HTML info for HTML Help 1 and/or website...
@@ -3254,17 +3273,17 @@ E-Mail: Eric@EWoodruff.us
 Using LCID &#39;1033&#39;, code page &#39;65001&#39;, encoding charset &#39;UTF-8&#39;.
 
 Processing Help 1 files in C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\Output\HtmlHelp1
-Processed 1078 HTML files
+Processed 1080 HTML files
 Sorting keywords and generating See Also indices
 Saving HTML Help 1 keyword index to C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\DevDocumentation.hhk
 Saving HTML Help 1 table of contents to C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\DevDocumentation.hhc
 
 Processing website files in C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\Output\Website
-Processed 1078 HTML files
+Processed 1080 HTML files
 Sorting keywords and generating See Also indices
 Saving website keyword index to C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\WebKI.xml
 Saving website table of contents to C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\WebTOC.xml
-    Last step completed in 00:00:09,1833
+    Last step completed in 00:00:19,6828
 </buildStep>
 <buildStep step="CopyStandardHelpContent">
 Copying standard help content...
@@ -3408,7 +3427,7 @@ C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\PresentationStyle
 C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\PresentationStyles\VS2013\Web\scripts\branding-Website.js -&gt; C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\Output\Website\scripts\branding-Website.js
 C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\PresentationStyles\VS2013\Web\scripts\clipboard.min.js -&gt; C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\Output\Website\scripts\clipboard.min.js
 C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\PresentationStyles\VS2013\Web\scripts\jquery-1.11.0.min.js -&gt; C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\Output\Website\scripts\jquery-1.11.0.min.js
-    Last step completed in 00:00:36,2492
+    Last step completed in 00:00:24,2427
 </buildStep>
 <buildStep step="GenerateHelpFormatTableOfContents">
 Generating HTML Help 1 table of contents file...
@@ -3416,11 +3435,11 @@ Generating HTML Help 1 table of contents file...
 </buildStep>
 <buildStep step="GenerateHelpFileIndex">
 Generating HTML Help 1 index file...
-    Last step completed in 00:00:00,0010
+    Last step completed in 00:00:00,0000
 </buildStep>
 <buildStep step="GenerateHelpProject">
 Generating HTML Help 1 project file...
-    Last step completed in 00:00:00,1040
+    Last step completed in 00:00:00,4665
 </buildStep>
 <buildStep step="CompilingHelpFile">
 Compiling HTML Help 1 file...
@@ -3435,13 +3454,13 @@ Compiling HTML Help 1 file...
   
   
   
-  Compile time: 0 minutes, 37 seconds
+  Compile time: 0 minutes, 32 seconds
   
-  1,080	Topics
+  1,082	Topics
   
-  11,562	Local links
+  11,612	Local links
   
-  64,211	Internet links
+  61,757	Internet links
   
   0	Graphics
   
@@ -3449,22 +3468,22 @@ Compiling HTML Help 1 file...
   
   
   
-  Created c:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\Output\HtmlHelp1\DevDocumentation.chm, 2,510,668 bytes
+  Created c:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis2\bin_files\anyPlatform\documentation\Working\Output\HtmlHelp1\DevDocumentation.chm, 2,465,090 bytes
   
-  Compression decreased file by 18,121,903 bytes.
+  Compression decreased file by 17,678,912 bytes.
   
-    Last step completed in 00:00:42,0055
+    Last step completed in 00:00:37,5680
 </buildStep>
 <buildStep step="GenerateHelpFormatTableOfContents">
 Generating website table of contents file...
-    Last step completed in 00:00:00,0030
+    Last step completed in 00:00:00,0010
 </buildStep>
 <buildStep step="GenerateFullTextIndex">
 Generating full-text index for the website...
 
 <plugIn name="Lightweight Website Style" behavior="After" priority="1000">
 Adding lightweight search and TOC elements to each topic...
-</plugIn>    Last step completed in 00:00:12,1327
+</plugIn>    Last step completed in 00:00:18,0260
 </buildStep>
 <buildStep step="CopyingWebsiteFiles">
 Copying website files to output folder...
@@ -3472,16 +3491,16 @@ Copying website files to output folder...
 Copied 500 files
 Copied 1000 files
 Copied 1500 files
-Copied 1516 files for the website content
-    Last step completed in 00:00:28,8918
+Copied 1519 files for the website content
+    Last step completed in 00:00:51,1461
 </buildStep>
 <buildStep step="CleanIntermediates">
 Removing intermediate files...
-    Last step completed in 00:00:12,2797
+    Last step completed in 00:00:11,8867
 </buildStep>
 <buildStep step="Completed">
 
-Build completed successfully at 27-09-2017 1:58:39.  Total time: 00:15:36,5177
+Build completed successfully at 28-09-2017 7:46:50.  Total time: 00:07:12,3150
 
 </buildStep>
 </shfbBuild>

@@ -406,4 +406,49 @@
   <data name="TabSceneIntervalLabel" xml:space="preserve">
     <value>Summary of interval submodal types</value>
   </data>
+  <data name="Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="RemoveLast" xml:space="preserve">
+    <value>Remove last</value>
+  </data>
+  <data name="FileExists" xml:space="preserve">
+    <value>The file already exists, are you sure you want to replace it?</value>
+  </data>
+  <data name="FileExistsTitle" xml:space="preserve">
+    <value>File exists</value>
+  </data>
+  <data name="SceneExportedError" xml:space="preserve">
+    <value>An error occurred when trying to export the scene</value>
+  </data>
+  <data name="SceneExportedErrorTitle" xml:space="preserve">
+    <value>Export error</value>
+  </data>
+  <data name="SceneExportedNoFile" xml:space="preserve">
+    <value>Haven't selected a file to export the scene</value>
+  </data>
+  <data name="SceneExportedNoFileTitle" xml:space="preserve">
+    <value>No file selected</value>
+  </data>
+  <data name="SceneImportedError" xml:space="preserve">
+    <value>An error occurred when trying to import the scene</value>
+  </data>
+  <data name="SceneImportedErrorTitle" xml:space="preserve">
+    <value>Import error</value>
+  </data>
+  <data name="SceneImportedNoFile" xml:space="preserve">
+    <value>Haven't selected a file to import the scene</value>
+  </data>
+  <data name="SceneImportedNoFileTitle" xml:space="preserve">
+    <value>No file selected</value>
+  </data>
+  <data name="ToOpen" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="PrefIntervalGraphMinHeight" xml:space="preserve">
+    <value>Minimum height of intervals graphs</value>
+  </data>
+  <data name="PrefEventsGraphMinHeight" xml:space="preserve">
+    <value>Minimum height of events graphs</value>
+  </data>
 </root>

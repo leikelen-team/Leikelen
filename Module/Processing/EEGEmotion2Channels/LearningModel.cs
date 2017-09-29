@@ -20,12 +20,32 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels
     public class LearningModel
     {
         private static IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
+        private static FilterButterworth _lowFilter;
+        private static FilterButterworth _highFilter;
+        private static MulticlassSupportVectorMachine<Gaussian> _svm;
 
         public static TagType Classify(List<double[]> signalsList)
         {
-            var featureVector = PreProcess(signalsList);
+            try
+            {
+                if (_svm == null)
+                {
+                    string internalPath = $"{_dataAccessFacade.GetGeneralSettings().GetDataDirectory()}" +
+                        $"modal/Emotion/emotionmodel.svm";
+                    _svm = Serializer.Load<MulticlassSupportVectorMachine<Gaussian>>(path: internalPath);
+                }
+
+                var featureVector = PreProcess(signalsList);
+                return (TagType)_svm.Decide(featureVector.ToArray());
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"error: {ex.Message}");
+                throw ex;
+            }
+            
             //TODO: esto es temporal, hay que clasificar
-            return 0;
+            //return 0;
         }
 
         public static void Train(Dictionary<TagType, List<List<double[]>>> allsignalsList)
@@ -145,16 +165,19 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels
 
         private static List<double> PreProcess(List<double[]> signalsList)
         {
+            
+                
+
             double[] f3 = new double[signalsList.Count];
             for (int i = 0; i < f3.Length;i++)
             {
-                f3[i] = signalsList[i][0];
+                f3[i] = betaBandpass(signalsList[i][0]);
             }
 
             double[] c4 = new double[signalsList.Count];
             for (int i = 0; i < c4.Length; i++)
             {
-                c4[i] = signalsList[i][1];
+                c4[i] = betaBandpass(signalsList[i][1]);
             }
 
             var emdF3 = new Emd();
@@ -181,6 +204,21 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels
             }
             Console.WriteLine(features);
             return features;
+        }
+
+        private static double betaBandpass(double signal)
+        {
+            if (_lowFilter == null || _highFilter == null)
+            {
+                _lowFilter = new FilterButterworth(30,
+                    EEGEmoProc2ChSettings.Instance.SamplingHz,
+                    FilterButterworth.PassType.Lowpass, 0.1f);
+
+                _highFilter = new FilterButterworth(12.5f,
+                    EEGEmoProc2ChSettings.Instance.SamplingHz,
+                    FilterButterworth.PassType.Highpass, 0.1f);
+            }
+            return _highFilter.Update(_lowFilter.Update(signal));
         }
     }
 }

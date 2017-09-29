@@ -7,22 +7,20 @@
          xmlns:resx="clr-namespace:cl.uv.leikelen.Properties"
          xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
          xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
+         xmlns:widget="clr-namespace:cl.uv.leikelen.View.Widget.HomeTab.Widget"
          TextElement.FontWeight="Medium"
          TextElement.FontSize="14"
          FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
          Header="{x:Static resx:GUI.Intervals}">
         
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
+        <StackPanel x:Name="MainStack" Orientation="Vertical">
+            <StackPanel x:Name="StackButtons" Visibility="Hidden" Orientation="Horizontal" HorizontalAlignment="Center" Margin="2">
+                <Button Margin="4" Click="AddBtn_Click" Content="{x:Static resx:GUI.Add}" />
+                <Button Margin="4" Click="RemoveLastBtn_Click" Content="{x:Static resx:GUI.RemoveLast}" />
+            </StackPanel>
 
-        </Grid>
+        </StackPanel>
     </ScrollViewer>
 </TabItem>
 

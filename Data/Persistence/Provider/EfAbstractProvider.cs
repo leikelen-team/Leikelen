@@ -66,6 +66,56 @@ namespace cl.uv.leikelen.Data.Persistence.Provider
             return r;
         }
 
+        public Scene SaveNewScene(Scene scene)
+        {
+            int lastSceneId = Db.Scenes.Max(sc => sc.SceneId);
+            scene.SceneId = lastSceneId + 1;
+            int lastPersonId = Db.Persons.Max(p => p.PersonId);
+            int lastRepresentTypeId = Db.RepresentTypes.Max(rt => rt.RepresentTypeId);
+            int lastSmtPisId = Db.SmtPis.Max(smtPis => smtPis.SubModalType_PersonInSceneId);
+            int lastEventId = Db.EventDatas.Max(ed => ed.EventDataId);
+            int lastIntervalId = Db.IntervalDatas.Max(id => id.IntervalDataId);
+            foreach (var person in scene.PersonsInScene)
+            {
+                lastPersonId++;
+                lastPersonId++;
+
+                person.SceneId = scene.SceneId;
+                person.Scene = scene;
+                person.PersonId = lastPersonId;
+                person.Person.PersonId = lastPersonId;
+                foreach(var smtPis in person.SubModalType_PersonInScenes)
+                {
+                    lastSmtPisId++;
+                    smtPis.SubModalType_PersonInSceneId = lastSmtPisId;
+                    smtPis.PersonInScene = person;
+                    foreach(var rt in smtPis.RepresentTypes)
+                    {
+                        lastRepresentTypeId++;
+                        rt.RepresentTypeId = lastRepresentTypeId;
+                        rt.SubModalType_PersonInScene = smtPis;
+                        if(rt.EventData != null)
+                        {
+                            lastEventId++;
+                            rt.EventDataId = lastEventId;
+                            rt.EventData.EventDataId = lastEventId;
+                            rt.RepresentTypeId = lastRepresentTypeId;
+                        }
+                        if(rt.IntervalData != null)
+                        {
+                            lastIntervalId++;
+                            rt.IntervalDataId = lastIntervalId;
+                            rt.IntervalData.IntervalDataId = lastIntervalId;
+                            rt.RepresentTypeId = lastRepresentTypeId;
+                        }
+                    }
+                }
+            }
+            var r = Db.Scenes.Add(scene).Entity;
+            Db.SaveChanges();
+            return r;
+        }
+
         public List<Person> LoadPersons()
         {
             return Db.Persons.ToList();

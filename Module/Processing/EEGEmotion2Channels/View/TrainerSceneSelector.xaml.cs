@@ -36,9 +36,9 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View
 
         private void TagCmbx_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var tag = (TagType)TagCmbx.SelectedIndex;
             if (TagCmbx.SelectedIndex >= 0)
             {
+                var tag = (TagType)TagCmbx.SelectedIndex;
                 ScenesAddedDataGrid.ItemsSource = TrainerEntryPoint.ScenesAndTags[tag];
             }
         }

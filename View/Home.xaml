@@ -31,9 +31,7 @@
                     </MenuItem>
                     <MenuItem x:Name="MenuItem_File_LoadTestScene" Header="Load test scene">
                     </MenuItem>
-                    <MenuItem x:Name="MenuItem_File_Recent" Header="{x:Static resx:Menu.File_RecentScenes}">
-                        <Separator />
-                        <MenuItem x:Name="MenuItem_File_Recent_More" Header="{x:Static resx:Menu.File_RecentScenes_More}" InputGestureText="Ctrl+M"/>
+                    <MenuItem x:Name="MenuItem_File_AllScenes" Header="{x:Static resx:Menu.File_AllScenes}">
                     </MenuItem>
                     <MenuItem x:Name="MenuItem_File_Import" Header="{x:Static resx:Menu.File_Import}"/>
                     <MenuItem x:Name="MenuItem_File_Export" Header="{x:Static resx:Menu.File_Export}"/>

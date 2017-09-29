@@ -11,13 +11,13 @@ namespace cl.uv.leikelen.View
 {
     public static class LoadTestScene
     {
-        public static void LoadTest()
+        public static void LoadTest(string sceneName)
         {
             var rnd = new Random();
             var scenes = DataAccessFacade.Instance.GetSceneAccess().GetAll();
             if (scenes != null)
             {
-                var testScene = scenes.Find(s => s.Name.Equals("Test"));
+                var testScene = scenes.Find(s => s.Name.Equals(sceneName));
                 if (testScene != null)
                 {
                     testScene = DataAccessFacade.Instance.GetSceneAccess().Get(testScene.SceneId);
@@ -27,7 +27,7 @@ namespace cl.uv.leikelen.View
             }
             var scene = new Scene()
             {
-                Name = "Test",
+                Name = sceneName,
                 NumberOfParticipants = 2,
                 Type = "Test scene",
                 Description = "This is a test scene\n only for purposes of development",
@@ -60,16 +60,14 @@ namespace cl.uv.leikelen.View
 
             foreach (var pis in DataAccessFacade.Instance.GetSceneInUseAccess().GetScene().PersonsInScene)
             {
-                var howMany = rnd.Next(1, 5);
-                int i = 0;
-                Console.WriteLine($"How many: {howMany}");
                 foreach (var m in DataAccessFacade.Instance.GetModalAccess().GetAll())
                 {
                     Console.WriteLine($"{m.ModalTypeId} tiene {m.SubModalTypes.Count} submodaltypes");
                     foreach (var s in m.SubModalTypes)
                     {
-                        i++;
-                        if (i > howMany) break;
+                        int useOrNot = rnd.Next(1, 3);
+                        Console.WriteLine($"use or not: {useOrNot}");
+                        if (useOrNot == 1) break;
                         var which = rnd.Next(1, 3);
                         Console.WriteLine($"Which: {which}");
                         var data = rnd.Next(1, 3);

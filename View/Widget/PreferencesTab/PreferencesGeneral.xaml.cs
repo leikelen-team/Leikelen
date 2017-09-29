@@ -28,7 +28,9 @@ namespace cl.uv.leikelen.View.Widget.PreferencesTab
             DataDirectoryTxt.Text = GeneralSettings.Instance.DataDirectory.Value;
             TmpSceneDirectoryTxt.Text = GeneralSettings.Instance.TmpSceneDirectory.Value;
             DefaultMillisecondsTxt.Text = GeneralSettings.Instance.DefaultMillisecondsThreshold.Value.ToString();
-            
+            IntervalMinHeightTxt.Text = GeneralSettings.Instance.IntervalsGraphMinHeight.Value.ToString();
+            EventMinHeightTxt.Text = GeneralSettings.Instance.EventsGraphMinHeight.Value.ToString();
+
         }
 
         public void Apply()
@@ -36,9 +38,13 @@ namespace cl.uv.leikelen.View.Widget.PreferencesTab
             GeneralSettings.Instance.TmpDirectory.Write(TmpDirectoryTxt.Text);
             GeneralSettings.Instance.DataDirectory.Write(DataDirectoryTxt.Text);
             GeneralSettings.Instance.TmpSceneDirectory.Write(TmpSceneDirectoryTxt.Text);
-            if (int.TryParse(DefaultMillisecondsTxt.Text, out int millSec))
+            if (int.TryParse(DefaultMillisecondsTxt.Text, out int millSec) &&
+                int.TryParse(IntervalMinHeightTxt.Text, out int intervalMinHeight) &&
+                int.TryParse(EventMinHeightTxt.Text, out int eventsMinHeight))
             {
                 GeneralSettings.Instance.DefaultMillisecondsThreshold.Write(millSec);
+                GeneralSettings.Instance.IntervalsGraphMinHeight.Write(intervalMinHeight);
+                GeneralSettings.Instance.EventsGraphMinHeight.Write(eventsMinHeight);
             }
         }
     }

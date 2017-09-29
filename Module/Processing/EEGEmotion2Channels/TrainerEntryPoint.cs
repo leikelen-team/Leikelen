@@ -16,7 +16,7 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels
 {
     public class TrainerEntryPoint : GeneralModule
     {
-        public static Dictionary<TagType, List<Scene>> ScenesAndTags;
+        public static Dictionary<TagType, List<Scene>> ScenesAndTags = new Dictionary<TagType, List<Scene>>();
         private IDataAccessFacade DataAccessFacade = new DataAccessFacade();
 
         public TrainerEntryPoint()
@@ -36,7 +36,7 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels
             Windows = new List<Tuple<string, WindowBuilder>>();
             Name = Properties.EEGEmotion2Channels.ClassificationModuleName;
             var configWindow = new Tuple<string, WindowBuilder>(Properties.EEGEmotion2Channels.ConfigWindowTitle,
-                new WindowBuilder(new ClassifierWindow()));
+                new WindowBuilder(new ConfigurationWindow(Properties.EEGEmotion2Channels.ConfigWindowTitle)));
             var sceneWindow = new Tuple<string, WindowBuilder>(Properties.EEGEmotion2Channels.TrainerSceneSelectorTitle,
                 new WindowBuilder(new TrainerSceneSelector()));
             var fileWindow = new Tuple<string, WindowBuilder>(Properties.EEGEmotion2Channels.TrainerFileSelectorTitle,

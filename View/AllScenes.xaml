@@ -20,7 +20,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Orientation="Horizontal">
-            <Button x:Name="OpenBtn" Content="{x:Static resx:GUI.Open}" Margin="5" />
+            <Button x:Name="OpenBtn" Content="{x:Static resx:GUI.ToOpen}" Margin="5" />
             <Button x:Name="DeleteBtn" Content="{x:Static resx:GUI.Delete}" Margin="5" />
         </StackPanel>
         <DataGrid Grid.Row="1" x:Name="ScenesDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="True" CanUserResizeColumns="True" CanUserResizeRows="True" CanUserSortColumns="True" SelectionMode="Single">

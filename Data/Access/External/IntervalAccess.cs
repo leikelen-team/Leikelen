@@ -33,7 +33,7 @@ namespace cl.uv.leikelen.Data.Access.External
                         EndTime = interval.IntervalData.EndTime
                     });
                 }
-                return intervalList;
+                return intervalList.OrderBy(id => id.StartTime).ToList();
             }
         }
 

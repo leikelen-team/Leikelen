@@ -22,11 +22,30 @@ namespace cl.uv.leikelen.Data.Model
         [Column("sex")]
         public int? Sex { get; set; }
 
+        [NotMapped]
+        public string SexString
+        {
+            get
+            {
+                if (Sex.Equals(0))
+                    return Properties.GUI.Male;
+                if (Sex.Equals(1))
+                    return Properties.GUI.Female;
+                else
+                    return Properties.GUI.Unknown;
+            }
+        }
+
         public List<PersonInScene> PersonInScenes { get; set; }
 
         public Person()
         {
             PersonInScenes = new List<PersonInScene>();
+        }
+
+        public override string ToString()
+        {
+            return Name;
         }
     }
 }

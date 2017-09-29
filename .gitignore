@@ -6,3 +6,6 @@ packages/*
 
 NUnit.Tests/obj/*
 NUnit.Tests/bin/*
+
+NIntegration.Tests/obj/*
+NIntegration.Tests/bin/*

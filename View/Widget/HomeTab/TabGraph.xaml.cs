@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using cl.uv.leikelen.Data.Access.Internal;
 
 namespace cl.uv.leikelen.View.Widget.HomeTab
 {
@@ -27,7 +28,30 @@ namespace cl.uv.leikelen.View.Widget.HomeTab
 
         public void Fill()
         {
+            StackButtons.Visibility = Visibility.Visible;
+            if (!ReferenceEquals(null, SceneInUse.Instance.Scene))
+            {
+                var widget = new Widget.EventGraphControl();
+                widget.MinHeight = GeneralSettings.Instance.EventsGraphMinHeight.Value;
+                MainStack.Children.Add(widget);
+            }
+                
+        }
 
+        public void AddBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (!ReferenceEquals(null, SceneInUse.Instance.Scene))
+            {
+                var widget = new Widget.EventGraphControl();
+                widget.MinHeight = GeneralSettings.Instance.EventsGraphMinHeight.Value;
+                MainStack.Children.Add(widget);
+            }
+        }
+
+        public void RemoveLastBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (!ReferenceEquals(null, SceneInUse.Instance.Scene) && MainStack.Children.Count > 1)
+                MainStack.Children.RemoveAt(MainStack.Children.Count - 1);
         }
     }
 }

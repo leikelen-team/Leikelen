@@ -17,6 +17,7 @@ namespace cl.uv.leikelen.Data.Persistence
         Scene SaveScene(Scene instance);
         Scene UpdateScene(Scene newScene);
         void DeleteScene(Scene scene);
+        Scene SaveNewScene(Scene scene);
 
         List<Person> LoadPersons();
         Person SavePerson(Person person);

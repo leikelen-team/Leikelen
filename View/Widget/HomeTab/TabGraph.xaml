@@ -12,6 +12,15 @@
     FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
     mc:Ignorable="d"
     Header="{x:Static resx:GUI.Graphs}">
-        
+    
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <StackPanel x:Name="MainStack" Orientation="Vertical">
+            <StackPanel x:Name="StackButtons" Visibility="Hidden" Orientation="Horizontal" HorizontalAlignment="Center" Margin="2">
+                <Button Margin="4" Click="AddBtn_Click" Content="{x:Static resx:GUI.Add}" />
+                <Button Margin="4" Click="RemoveLastBtn_Click" Content="{x:Static resx:GUI.RemoveLast}" />
+            </StackPanel>
+
+        </StackPanel>
+    </ScrollViewer>
 </TabItem>
 

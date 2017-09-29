@@ -1,0 +1,81 @@
+﻿<Window x:Class="cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View.ConfigurationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:resx="clr-namespace:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.Properties"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.FontWeight="Medium"
+        TextElement.FontSize="14"
+        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
+        mc:Ignorable="d"
+        Title="Emotion Classifier" Height="350" Width="300">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition MinHeight="40" Height="*"/>
+            <RowDefinition MinHeight="40" Height="*"/>
+            <RowDefinition MinHeight="40" Height="*"/>
+            <RowDefinition MinHeight="40" Height="*"/>
+            <RowDefinition MinHeight="40" Height="*"/>
+            <RowDefinition MinHeight="40" Height="*"/>
+            <RowDefinition MinHeight="40" Height="*"/>
+        </Grid.RowDefinitions>
+        <Label x:Name="SamplingLabel" Grid.Row="0" Grid.Column="0" VerticalAlignment="Bottom" HorizontalAlignment="Left" Content="{x:Static resx:EEGEmotion2Channels.Sampling}" />
+        <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Right" Orientation="Horizontal">
+            <ComboBox x:Name="SamplingCmbx">
+            </ComboBox>
+            <Label>Hz</Label>
+        </StackPanel>
+        <Label x:Name="MLabel" Grid.Row="1" Grid.Column="0" VerticalAlignment="Bottom" HorizontalAlignment="Left" Content="m" />
+        <TextBox Grid.Row="1" Grid.Column="1" 
+                 x:Name="mTextBox"
+                 materialDesign:HintAssist.Hint="{x:Static resx:EEGEmotion2Channels.mHint}"
+                 VerticalAlignment="Bottom" />
+        <Label x:Name="RLabel" Grid.Row="2" Grid.Column="0" VerticalAlignment="Bottom" HorizontalAlignment="Left" Content="r" />
+        <TextBox Grid.Row="2" Grid.Column="1"
+                 x:Name="rTextBox"
+                 materialDesign:HintAssist.Hint="{x:Static resx:EEGEmotion2Channels.rHint}"
+                 VerticalAlignment="Bottom" />
+        <Label x:Name="SecsLabel" Grid.Row="3" Grid.Column="0" VerticalAlignment="Bottom" HorizontalAlignment="Left" Content="{x:Static resx:EEGEmotion2Channels.Window}" />
+
+        <Grid Grid.Row="3" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <TextBox
+                x:Name="SecsTextBox"
+                Grid.Column="0"
+                HorizontalAlignment="Stretch"
+                materialDesign:HintAssist.Hint="{x:Static resx:EEGEmotion2Channels.secsHint}" />
+
+            <Label Grid.Column="1" Content="{x:Static resx:EEGEmotion2Channels.Seconds}"></Label>
+        </Grid>
+
+        <Label x:Name="NLabel" Grid.Row="4" Grid.Column="0" VerticalAlignment="Bottom" HorizontalAlignment="Left" Content="{x:Static resx:EEGEmotion2Channels.N}" />
+        <TextBox Grid.Row="4" Grid.Column="1"
+                 x:Name="NTextBox"
+                 materialDesign:HintAssist.Hint="{x:Static resx:EEGEmotion2Channels.NHint}"
+                 VerticalAlignment="Bottom" />
+
+        <Label x:Name="shiftLabel" Grid.Row="5" Grid.Column="0" VerticalAlignment="Bottom" HorizontalAlignment="Left" Content="{x:Static resx:EEGEmotion2Channels.shift}" />
+        <TextBox Grid.Row="5" Grid.Column="1"
+                 x:Name="shiftTextBox"
+                 materialDesign:HintAssist.Hint="{x:Static resx:EEGEmotion2Channels.shiftHint}"
+                 VerticalAlignment="Bottom" />
+        
+
+
+        <StackPanel Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom" HorizontalAlignment="Center" Orientation="Horizontal">
+            <Button x:Name="Accept" Margin="0,0,4,0" Content="{x:Static resx:EEGEmotion2Channels.Accept}" />
+            <Button x:Name="Cancel" Margin="4,0,0,0" Content="{x:Static resx:EEGEmotion2Channels.Cancel}" />
+        </StackPanel>
+    </Grid>
+</Window>

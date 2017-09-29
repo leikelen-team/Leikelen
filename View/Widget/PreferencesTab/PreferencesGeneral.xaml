@@ -17,6 +17,8 @@
             <RowDefinition />
             <RowDefinition />
             <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition MinWidth="200" />
@@ -30,9 +32,15 @@
         <TextBox x:Name="TmpDirectoryTxt" Grid.Row="1" Grid.Column="1"></TextBox>
         
         <Label VerticalAlignment="Bottom" Content="{x:Static resx:GUI.CurrentScene}" Grid.Row="2" Grid.Column="0" />
-        <TextBox x:Name="TmpSceneDirectoryTxt" Grid.Row="1" Grid.Column="1"></TextBox>
+        <TextBox x:Name="TmpSceneDirectoryTxt" Grid.Row="2" Grid.Column="1"></TextBox>
 
         <Label VerticalAlignment="Bottom" Content="{x:Static resx:GUI.DefaultMillisecondsThreshold}" Grid.Row="3" Grid.Column="0" />
         <TextBox x:Name="DefaultMillisecondsTxt" Grid.Row="3" Grid.Column="1"></TextBox>
+
+        <Label VerticalAlignment="Bottom" Content="{x:Static resx:GUI.PrefIntervalGraphMinHeight}" Grid.Row="4" Grid.Column="0" />
+        <TextBox x:Name="IntervalMinHeightTxt" Grid.Row="4" Grid.Column="1"></TextBox>
+
+        <Label VerticalAlignment="Bottom" Content="{x:Static resx:GUI.PrefEventsGraphMinHeight}" Grid.Row="5" Grid.Column="0" />
+        <TextBox x:Name="EventMinHeightTxt" Grid.Row="5" Grid.Column="1"></TextBox>
     </Grid>
 </TabItem>

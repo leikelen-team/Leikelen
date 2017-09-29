@@ -27,14 +27,14 @@
                 <ColumnDefinition Width="42"/>
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0" Content="{x:Static resx:GUI.File}" />
-            <TextBox x:Name="FilePathTextBox" Grid.Column="1"></TextBox>
-            <Button Grid.Column="2" Content="..."></Button>
+            <TextBox IsEnabled="False" x:Name="FilePathTextBox" Grid.Column="1"></TextBox>
+            <Button Click="FileSearchBtn_Click" Grid.Column="2" Content="..."></Button>
         </Grid>
-        <CheckBox VerticalAlignment="Bottom" Grid.Row="1" Content="{x:Static resx:GUI.OnlyBD}"></CheckBox>
+        <CheckBox x:Name="OnlyBdCheckbox" VerticalAlignment="Bottom" Grid.Row="1" Content="{x:Static resx:GUI.OnlyBD}"></CheckBox>
 
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" Orientation="Horizontal">
-            <Button x:Name="AcceptBtn" Content="{x:Static resx:GUI.Accept}" Margin="5" />
-            <Button x:Name="CancelBtn" Content="{x:Static resx:GUI.Cancel}" Margin="5" />
+            <Button x:Name="AcceptBtn" Click="AcceptBtn_Click" Content="{x:Static resx:GUI.Accept}" Margin="5" />
+            <Button x:Name="CancelBtn" Click="CancelBtn_Click" Content="{x:Static resx:GUI.Cancel}" Margin="5" />
         </StackPanel>
     </Grid>
 </Window>

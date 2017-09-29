@@ -242,11 +242,29 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a N.
+        /// </summary>
+        public static string N {
+            get {
+                return ResourceManager.GetString("N", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Name.
         /// </summary>
         public static string Name {
             get {
                 return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Number of samples.
+        /// </summary>
+        public static string NHint {
+            get {
+                return ResourceManager.GetString("NHint", resourceCulture);
             }
         }
         
@@ -301,6 +319,24 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.Properties {
         public static string secsHint {
             get {
                 return ResourceManager.GetString("secsHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a shift.
+        /// </summary>
+        public static string shift {
+            get {
+                return ResourceManager.GetString("shift", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a shift of samples in sample entropy.
+        /// </summary>
+        public static string shiftHint {
+            get {
+                return ResourceManager.GetString("shiftHint", resourceCulture);
             }
         }
         

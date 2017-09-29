@@ -23,5 +23,10 @@ namespace cl.uv.leikelen.Data.Model
         {
             SubModalTypes = new List<SubModalType>();
         }
+
+        public override string ToString()
+        {
+            return ModalTypeId;
+        }
     }
 }

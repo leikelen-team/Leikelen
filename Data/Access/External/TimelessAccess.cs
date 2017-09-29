@@ -31,7 +31,7 @@ namespace cl.uv.leikelen.Data.Access.External
                         Index = timeless.Index
                     });
                 }
-                return timelessList;
+                return timelessList.OrderBy(t => t.Index).ToList();
             }
         }
 

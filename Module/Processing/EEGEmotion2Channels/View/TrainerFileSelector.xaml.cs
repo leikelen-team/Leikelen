@@ -140,6 +140,7 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View
             bool first = true;
             int secStart = 0;
             int i = 0;
+            int lastTime = 0;
             foreach (var line in lines)
             {
                 if (first)
@@ -150,8 +151,17 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View
                 var fields = line.Split('\t');
                 if (fields.Length < 4)
                     break;
-                if(secStart == 0)
-                    secStart = i/256;
+                if (secStart == 0)
+                {
+                    secStart = Int32.Parse(fields[0]);
+                    lastTime = secStart;
+                } 
+                if(Int32.Parse(fields[0]) < lastTime)
+                {
+                    frame = new List<double[]>();
+                    secStart = Int32.Parse(fields[0]);
+                    Console.WriteLine($"nuevo archivo con segundo: {secStart} y el anterior: {lastTime}");
+                }
                 double[] values = new double[2];
                 bool added = false;
                 switch (EEGEmoProc2ChSettings.Instance.SamplingHz.Value)
@@ -170,7 +180,7 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View
                         added = true;
                         break;
                 }
-                if (added && i/256 < secStart + EEGEmoProc2ChSettings.Instance.secs)
+                if (added && Int32.Parse(fields[0]) < secStart + EEGEmoProc2ChSettings.Instance.secs)
                 {
                     frame.Add(values);
                 }
@@ -178,10 +188,11 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View
                 {
                     result.Add(frame);
                     frame = new List<double[]>();
-                    secStart = i / 256;
+                    secStart = Int32.Parse(fields[0]);
                     Console.WriteLine($"frame añadido en el segundo {secStart}");
                 }
                 i++;
+                lastTime = secStart;
             }
             return result;
         }

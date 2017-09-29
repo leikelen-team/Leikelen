@@ -51,7 +51,7 @@ namespace cl.uv.leikelen.Module.Input.Kinect
 
         public TimeSpan? GetTotalDuration()
         {
-            throw new NotImplementedException();
+            return null;
         }
 
         public TimeSpan? GetLocation()

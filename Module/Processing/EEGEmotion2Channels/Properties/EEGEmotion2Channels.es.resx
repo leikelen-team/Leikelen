@@ -107,7 +107,7 @@
     <value>Segundos</value>
   </data>
   <data name="ConfigWindowTitle" xml:space="preserve">
-    <value>Configuración de la detección con EEG</value>
+    <value>Configuración de la detección de emociones con EEG</value>
   </data>
   <data name="Accept" xml:space="preserve">
     <value>Aceptar</value>
@@ -192,5 +192,17 @@
   </data>
   <data name="TrainerFileSelectorTitle" xml:space="preserve">
     <value>Seleccionar por archivo</value>
+  </data>
+  <data name="shift" xml:space="preserve">
+    <value>corrimiento</value>
+  </data>
+  <data name="NHint" xml:space="preserve">
+    <value>Número de muestras</value>
+  </data>
+  <data name="N" xml:space="preserve">
+    <value>N</value>
+  </data>
+  <data name="shiftHint" xml:space="preserve">
+    <value>corrimiento de muestras en entropía muestral</value>
   </data>
 </root>

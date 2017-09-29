@@ -32,5 +32,10 @@ namespace cl.uv.leikelen.Data.Model
         {
             SubModalType_PersonInScenes = new List<SubModalType_PersonInScene>();
         }
+
+        public override string ToString()
+        {
+            return SubModalTypeId;
+        }
     }
 }

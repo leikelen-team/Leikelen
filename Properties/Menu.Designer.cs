@@ -88,6 +88,15 @@ namespace cl.uv.leikelen.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a All scenes.
+        /// </summary>
+        public static string File_AllScenes {
+            get {
+                return ResourceManager.GetString("File_AllScenes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Export.
         /// </summary>
         public static string File_Export {
