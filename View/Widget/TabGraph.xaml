@@ -4,35 +4,67 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
     xmlns:local="clr-namespace:cl.uv.leikelen.View.Widget"
     xmlns:resx="clr-namespace:cl.uv.leikelen.Properties"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
-    mc:Ignorable="d" 
-    d:DesignHeight="300" d:DesignWidth="300"
-
-    TextElement.Foreground="{DynamicResource MaterialDesignBody}"    Background="{DynamicResource MaterialDesignPaper}"
+    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+    Background="{DynamicResource MaterialDesignPaper}"
     TextElement.FontWeight="Medium"
     TextElement.FontSize="14"
     FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
+    mc:Ignorable="d"
+    xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
     Header="{x:Static resx:GUI.Graphs}">
 
 
+    <TabItem.Resources>
+        <BooleanToVisibilityConverter x:Key="bvc"></BooleanToVisibilityConverter>
+    </TabItem.Resources>
+
     <Grid>
-        <lvc:CartesianChart Series="{Binding SeriesCollection}" LegendLocation="Bottom">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <CheckBox IsChecked="{Binding SeatedSeriesVisibility}">
+                Seated
+            </CheckBox>
+            <CheckBox IsChecked="{Binding HandOpenSeriesVisibility}">
+                Hand Open
+            </CheckBox>
+            <CheckBox IsChecked="{Binding HandDownSeriesVisibility}">
+                Hand Down
+            </CheckBox>
+            <CheckBox IsChecked="{Binding PointSeriesVisibility}">
+                Point
+            </CheckBox>
+            <CheckBox IsChecked="{Binding StandedSeriesVisibility}">
+                Standed
+            </CheckBox>
+            <CheckBox IsChecked="{Binding ArmCrossSeriesVisibility}">
+                Arm Cross
+            </CheckBox>
+        </StackPanel>
+
+        <lvc:CartesianChart Grid.Row="1" Hoverable="False">
+            <lvc:CartesianChart.Series>
+                <lvc:ColumnSeries Title="Seated" Values="4,7,2,9,3,2" Visibility="{Binding SeatedSeriesVisibility, Converter={StaticResource bvc}}" MaxWidth="1000" ColumnPadding="0"/>
+                <lvc:ColumnSeries Title="Hand Open" Values="6,2,2,3,8,0" Visibility="{Binding HandOpenSeriesVisibility, Converter={StaticResource bvc}}" MaxWidth="1000" ColumnPadding="0"/>
+                <lvc:ColumnSeries Title="Hand Down" Values="3,1,2,3,0,7" Visibility="{Binding HandDownSeriesVisibility, Converter={StaticResource bvc}}" MaxWidth="1000" ColumnPadding="0"/>
+                <lvc:ColumnSeries Title="Point" Values="7,4,8,9,3,6" Visibility="{Binding PointSeriesVisibility, Converter={StaticResource bvc}}" MaxWidth="1000" ColumnPadding="0"/>
+                <lvc:ColumnSeries Title="Standed" Values="5,2,5,4,9,3" Visibility="{Binding StandedSeriesVisibility, Converter={StaticResource bvc}}" MaxWidth="1000" ColumnPadding="0"/>
+                <lvc:ColumnSeries Title="Arm Cross" Values="0,2,3,2,1,2" Visibility="{Binding ArmCrossSeriesVisibility, Converter={StaticResource bvc}}" MaxWidth="1000" ColumnPadding="0"/>
+            </lvc:CartesianChart.Series>
+
             <lvc:CartesianChart.AxisX>
-                <lvc:Axis Title="Percent time" LabelFormatter="{Binding Formatter}"></lvc:Axis>
+                <lvc:Axis Labels="Person 1, Person 2, Person 3, Person 4, Person 5, Person 6">
+                    <lvc:Axis.Separator>
+                        <lvc:Separator Step="1"></lvc:Separator>
+                    </lvc:Axis.Separator>
+                </lvc:Axis>
             </lvc:CartesianChart.AxisX>
-            <lvc:CartesianChart.AxisY>
-                 <lvc:Axis Title="Postures" 
-                          Labels="{Binding Labels}" 
-                          Separator="{x:Static lvc:DefaultAxes.CleanSeparator}" />
-            </lvc:CartesianChart.AxisY>
         </lvc:CartesianChart>
     </Grid>
-
 </TabItem>
-
-
-
