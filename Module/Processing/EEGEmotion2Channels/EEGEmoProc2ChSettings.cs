@@ -24,7 +24,7 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels
         {
             get
             {
-                if (_instance == null) _instance = new EEGEmoProc2ChSettings();
+                if (ReferenceEquals(null, _instance)) _instance = new EEGEmoProc2ChSettings();
                 return _instance;
             }
         }

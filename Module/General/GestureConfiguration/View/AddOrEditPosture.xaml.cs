@@ -83,7 +83,7 @@ namespace cl.uv.leikelen.Module.General.GestureConfiguration.View
             }
             if(_dataAccessFacade.GetSubModalAccess().Exists(PostureCRUD.PostureTypes[TypeCombobox.SelectedIndex], name))
             {
-                if(_posture == null)
+                if(ReferenceEquals(null, _posture))
                 {
                     error += $"\nLa postura {name} ya existe. Utilice otro nombre";
                 }
@@ -92,7 +92,7 @@ namespace cl.uv.leikelen.Module.General.GestureConfiguration.View
             {
                 MessageBox.Show("Hay errores:"+error, "Error");
             }
-            else if(_posture == null) //is adding
+            else if(ReferenceEquals(null, _posture)) //is adding
             {
                 string internalFilePath = $"{_dataAccessFacade.GetGeneralSettings().GetDataDirectory()}" +
                     $"modal/{PostureCRUD.PostureTypes[TypeCombobox.SelectedIndex]}/{_safeFileName}";
@@ -117,7 +117,7 @@ namespace cl.uv.leikelen.Module.General.GestureConfiguration.View
                 subModal.Description = DescriptionTextBox.Text;
                 _dataAccessFacade.GetSubModalAccess().Update(subModal);
 
-                if (oldPath != internalFilePath)
+                if (oldPath.Equals(internalFilePath))
                 {
                     File.Delete(oldPath);
                     if (!File.Exists(internalFilePath))

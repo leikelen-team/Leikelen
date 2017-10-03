@@ -37,6 +37,12 @@ namespace cl.uv.leikelen.View.Widget.HomeTab
             }
         }
 
+        public void Reset()
+        {
+            MainStack.Children.RemoveRange(1, MainStack.Children.Count - 1);
+            StackButtons.Visibility = Visibility.Hidden;
+        }
+
         public void AddBtn_Click(object sender, RoutedEventArgs e)
         {
             if (!ReferenceEquals(null, SceneInUse.Instance.Scene))

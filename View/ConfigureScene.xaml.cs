@@ -64,7 +64,7 @@ namespace cl.uv.leikelen.View
                 int numberOfParticipants = 0;
                 
 
-                if (_scene == null)
+                if (ReferenceEquals(null, _scene))
                 {
                     _scene = new Scene();
                 }

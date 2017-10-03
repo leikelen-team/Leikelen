@@ -38,14 +38,14 @@ namespace cl.uv.leikelen.Module.Input.Kinect
         {
             get
             {
-                return this._vgbFrameSource.TrackingId;
+                return _vgbFrameSource.TrackingId;
             }
 
             set
             {
-                if (this._vgbFrameSource.TrackingId != value)
+                if (_vgbFrameSource.TrackingId != value)
                 {
-                    this._vgbFrameSource.TrackingId = value;
+                    _vgbFrameSource.TrackingId = value;
                 }
             }
         }
@@ -58,14 +58,14 @@ namespace cl.uv.leikelen.Module.Input.Kinect
         {
             get
             {
-                return this.VgbFrameReader.IsPaused;
+                return VgbFrameReader.IsPaused;
             }
 
             set
             {
-                if (this.VgbFrameReader.IsPaused != value)
+                if (VgbFrameReader.IsPaused != value)
                 {
-                    this.VgbFrameReader.IsPaused = value;
+                    VgbFrameReader.IsPaused = value;
                 }
             }
         }
@@ -78,19 +78,19 @@ namespace cl.uv.leikelen.Module.Input.Kinect
         public GestureDetector(int bodyIndex, KinectSensor kinectSensor)
         {
             BodyIndex = bodyIndex;
-            if (kinectSensor == null)
+            if (ReferenceEquals(null, kinectSensor))
             {
                 throw new ArgumentNullException("kinectSensor is null");
             }
 
             // create the vgb source. The associated body tracking ID will be set when a valid body frame arrives from the sensor.
-            this._vgbFrameSource = new VisualGestureBuilderFrameSource(kinectSensor, 0);
+            _vgbFrameSource = new VisualGestureBuilderFrameSource(kinectSensor, 0);
 
-            this.VgbFrameReader = this._vgbFrameSource.OpenReader();
-            if (this.VgbFrameReader != null)
+            VgbFrameReader = _vgbFrameSource.OpenReader();
+            if (!ReferenceEquals(null, VgbFrameReader))
             {
-                this.VgbFrameReader.IsPaused = true;
-                this.VgbFrameReader.FrameArrived += VgbFrameReader_FrameArrived;
+                VgbFrameReader.IsPaused = true;
+                VgbFrameReader.FrameArrived += VgbFrameReader_FrameArrived;
             }
             
             //get all discrete and continuous postures
@@ -133,12 +133,12 @@ namespace cl.uv.leikelen.Module.Input.Kinect
         private void VgbFrameReader_FrameArrived(object sender, VisualGestureBuilderFrameArrivedEventArgs e)
         {
             var kFrame = e.FrameReference.AcquireFrame();
-            if(kFrame != null)
+            if(!ReferenceEquals(null, kFrame))
             {
                 var frame = new KinectGestureFrameArrivedArgs()
                 {
                     Time = _dataAccessFacade.GetSceneInUseAccess().GetLocation(),
-                    TrackingId = this.TrackingId,
+                    TrackingId = TrackingId,
                     Frame = kFrame
                 };
                 OnKinectGestureFrameArrived(frame);
@@ -150,14 +150,14 @@ namespace cl.uv.leikelen.Module.Input.Kinect
             IEnumerable<IBody> bodies = null; // to make the GetBitmap call a little cleaner
             using (var frame = e.FrameReference.AcquireFrame())
             {
-                if (frame != null)
+                if (!ReferenceEquals(null, frame))
                 {
                     frame.GetAndRefreshBodyData(_bodies);
                     bodies = _bodies;
                 }
             }
 
-            if (bodies != null)
+            if (!ReferenceEquals(null, bodies))
             {
                 int i = 0;
                 foreach (IBody body in bodies)
@@ -185,16 +185,16 @@ namespace cl.uv.leikelen.Module.Input.Kinect
 
         public void Dispose()
         {
-            if (this.VgbFrameReader != null)
+            if (!ReferenceEquals(null, VgbFrameReader))
             {
-                this.VgbFrameReader.Dispose();
-                this.VgbFrameReader = null;
+                VgbFrameReader.Dispose();
+                VgbFrameReader = null;
             }
 
-            if (this._vgbFrameSource != null)
+            if (!ReferenceEquals(null, _vgbFrameSource))
             {
-                this._vgbFrameSource.Dispose();
-                this._vgbFrameSource = null;
+                _vgbFrameSource.Dispose();
+                _vgbFrameSource = null;
             }
         }
     }

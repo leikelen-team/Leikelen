@@ -45,11 +45,11 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View
 
         private void AddScenesToTag_Click(object sender, RoutedEventArgs e)
         {
-            var scenes = ScenesAddedDataGrid.SelectedItems as List<Scene>;
+            
             if (TagCmbx.SelectedIndex >= 0)
             {
                 var tag = (TagType)TagCmbx.SelectedIndex;
-                if (scenes != null)
+                if (ScenesAddedDataGrid.SelectedItems is List<Scene> scenes)
                 {
                     foreach (var scene in scenes)
                     {

@@ -8,6 +8,7 @@ using System.Windows.Media.Imaging;
 using cl.uv.leikelen.API.Module.Input;
 using Microsoft.Kinect;
 using KinectEx;
+using KinectEx.DVR;
 
 namespace cl.uv.leikelen.Module.Input.Kinect
 {
@@ -79,14 +80,14 @@ namespace cl.uv.leikelen.Module.Input.Kinect
             IEnumerable<IBody> bodies = null; // to make the GetBitmap call a little cleaner
             using (var frame = e.FrameReference.AcquireFrame())
             {
-                if (frame != null)
+                if (!ReferenceEquals(null, frame))
                 {
                     frame.GetAndRefreshBodyData(_bodies);
                     bodies = _bodies;
                 }
             }
 
-            if (bodies != null)
+            if (!ReferenceEquals(null, bodies))
             {
                 bodies.MapDepthPositions();
                 _bodyBitmap = bodies.GetBitmap(Colors.LightGreen, Colors.Yellow);
@@ -103,8 +104,50 @@ namespace cl.uv.leikelen.Module.Input.Kinect
             if (!_isColorEnabled)
                 return;
             Console.WriteLine("llego color en video handler");
-            _colorBitmap.Update(e.FrameReference);
-            OnColorImageArrived(_colorBitmap.Bitmap);
+            if(!ReferenceEquals(null, e.FrameReference))
+            {
+                _colorBitmap.Update(e.FrameReference);
+                OnColorImageArrived(_colorBitmap.Bitmap);
+            }
+            
+        }
+
+        public void _replay_BodyFrameArrived(object sender, ReplayFrameArrivedEventArgs<ReplayBodyFrame> e)
+        {
+            Console.WriteLine($"llego body en video replay handler y está {_isSkeletonEnabled}");
+
+            if (!_isSkeletonEnabled)
+                return;
+
+            if(!ReferenceEquals(null, e.Frame))
+            {
+                float _width = 512;
+                float _height = 424;
+
+                Color color;
+                var bitmap = BitmapFactory.New((int)_width, (int)_height);
+                foreach (var body in e.Frame.Bodies)
+                {
+                    if (body.IsTracked)
+                    {
+                        color = Colors.Blue;
+                        body.AddToBitmap(bitmap, color, color);
+                    }
+                }
+                OnColorImageArrived(bitmap);
+            }
+        }
+
+        public void _replay_ColorFrameArrived(object sender, ReplayFrameArrivedEventArgs<ReplayColorFrame> e)
+        {
+            if (!_isColorEnabled)
+                return;
+
+            if (!ReferenceEquals(null, e.Frame))
+            {
+                var bitmap = new ColorFrameBitmap(e.Frame);
+                OnColorImageArrived(bitmap.Bitmap);
+            }  
         }
     }
 }

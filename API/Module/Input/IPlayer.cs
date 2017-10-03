@@ -14,7 +14,6 @@ namespace cl.uv.leikelen.API.Module.Input
         void Stop();
         void ChangeTime(TimeSpan newTime);
         bool IsPlaying();
-        void OpenFile(int sceneId);
         void Close();
         TimeSpan? GetTotalDuration();
         TimeSpan? GetLocation();

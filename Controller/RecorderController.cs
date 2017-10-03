@@ -19,7 +19,7 @@ namespace cl.uv.leikelen.Controller
             }
             foreach (var processingModule in ProcessingLoader.Instance.ProcessingModules)
             {
-                if (processingModule.FunctionAfterStop() != null)
+                if (!ReferenceEquals(null, processingModule.FunctionAfterStop()))
                 {
                     await processingModule.FunctionAfterStop();
                 }

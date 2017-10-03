@@ -12,7 +12,7 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.Distance
     public class DistanceLogic
     {
         private readonly Dictionary<ulong, int> _personsId = new Dictionary<ulong, int>();
-        private IDataAccessFacade DataAccessFacade = new DataAccessFacade();
+        private IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
 
 
         public void _bodyReader_FrameArrived(object sender, BodyFrameArrivedEventArgs e)
@@ -31,7 +31,7 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.Distance
             {
                 bool isPersonInScene = false;
                 string personName = "Kinect" + bodyTrackingId;
-                var personsInScene = DataAccessFacade.GetSceneInUseAccess()?.GetScene()?.PersonsInScene;
+                var personsInScene = _dataAccessFacade.GetSceneInUseAccess()?.GetScene()?.PersonsInScene;
                 foreach (var personInScene in personsInScene)
                 {
                     string name = personInScene?.Person?.Name;
@@ -44,9 +44,9 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.Distance
                 }
                 if (!isPersonInScene)
                 {
-                    var newPerson = DataAccessFacade.GetPersonAccess().Add(personName, null, null, null);
+                    var newPerson = _dataAccessFacade.GetPersonAccess().Add(personName, null, null, null);
                     _personsId[bodyTrackingId] = newPerson.PersonId;
-                    DataAccessFacade.GetPersonAccess().AddToScene(newPerson, DataAccessFacade.GetSceneInUseAccess()?.GetScene());
+                    _dataAccessFacade.GetPersonAccess().AddToScene(newPerson, _dataAccessFacade.GetSceneInUseAccess()?.GetScene());
                 }
             }
         }

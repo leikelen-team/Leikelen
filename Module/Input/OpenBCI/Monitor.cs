@@ -84,14 +84,12 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI
             {
                 if (module.IsEnabled)
                 {
-                    var eegModule = module as IEegProcessingModule;
-                    if (eegModule != null)
+                    if (module is IEegProcessingModule eegModule)
                     {
                         EegFrameArrived += eegModule.EegListener();
                     }
 
-                    var accModule = module as IAccelerometerProcessingModule;
-                    if (accModule != null)
+                    if (module is IAccelerometerProcessingModule accModule)
                     {
                         AccelerometerFrameArrived += accModule.AccelerometerListener();
                     }
@@ -105,14 +103,12 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI
 
             foreach (var module in ProcessingLoader.Instance.ProcessingModules)
             {
-                var eegModule = module as IEegProcessingModule;
-                if (eegModule != null)
+                if (module is IEegProcessingModule eegModule)
                 {
                     EegFrameArrived -= eegModule.EegListener();
                 }
 
-                var accModule = module as IAccelerometerProcessingModule;
-                if (accModule != null)
+                if (module is IAccelerometerProcessingModule accModule)
                 {
                     AccelerometerFrameArrived -= accModule.AccelerometerListener();
                 }
@@ -124,11 +120,11 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI
         {
             try
             {
-                if(_serialPort == null || _serialPort.IsOpen == false)
+                if(ReferenceEquals(null, _serialPort) || _serialPort.IsOpen == false)
                 {
                     _serialPort = new SerialPort(portName, 115200);
                     _serialPort.Open();
-                    _serialPort.DataReceived += serialPort_DataReceived;
+                    _serialPort.DataReceived += SerialPort_DataReceived;
                     _status = InputStatus.Connected;
                 }
             }
@@ -140,7 +136,7 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI
         }
         private void StartStream()
         {
-            if (_serialPort == null) return;
+            if (ReferenceEquals(null, _serialPort)) return;
 
             char[] buff = new char[1];
             buff[0] = 'b';
@@ -156,65 +152,66 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI
 
         private void StopStream()
         {
-            if (_filemanage != null)
+            if (!ReferenceEquals(null, _filemanage))
             {
                 _filemanage.CloseFile();
                 _filemanage = null;
             }
-            if (_serialPort == null) return;
+            if (ReferenceEquals(null, _serialPort)) return;
             char[] buff = new char[1];
             buff[0] = 's';
             _serialPort.Write(buff, 0, 1);
         }
 
-        private void serialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        private void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            SerialPort port = sender as SerialPort;
-            if (port == null) return;
-            byte[] buffer = new byte[port.BytesToRead];
-            port.Read(buffer, 0, buffer.Length);
-            foreach(var bufferData in buffer)
+            if (sender is SerialPort port)
             {
-                double[] data = _interpretStream.interpretBinaryStream(bufferData);
-
-                if(data != null)
+                byte[] buffer = new byte[port.BytesToRead];
+                port.Read(buffer, 0, buffer.Length);
+                foreach (var bufferData in buffer)
                 {
-                    if (data.Length >= 9)
+                    double[] data = _interpretStream.interpretBinaryStream(bufferData);
+
+                    if (!ReferenceEquals(null, data))
                     {
-                        var eegArgs = new EegFrameArrivedEventArgs()
+                        if (data.Length >= 9)
                         {
-                            //Time = ,
-                            Channels = new List<EegChannel>()
-                        };
-                        for (int j = 1; j < 9; j++)
-                        {
-                            double value = _filter.FiltersSelect((FilterType) (OpenBCISettings.Instance.Filter.Value),
-                                (NotchType) (OpenBCISettings.Instance.Notch.Value), data[j], j - 1);
-                            eegArgs.Channels.Add(new EegChannel()
+                            var eegArgs = new EegFrameArrivedEventArgs()
                             {
-                                Filter = FilterType.None,
-                                Notch = (NotchType)OpenBCISettings.Instance.Notch.Value,
-                                Position = _positions[j - 1],
-                                Value = value
-                            });
+                                //Time = ,
+                                Channels = new List<EegChannel>()
+                            };
+                            for (int j = 1; j < 9; j++)
+                            {
+                                double value = _filter.FiltersSelect((FilterType)(OpenBCISettings.Instance.Filter.Value),
+                                    (NotchType)(OpenBCISettings.Instance.Notch.Value), data[j], j - 1);
+                                eegArgs.Channels.Add(new EegChannel()
+                                {
+                                    Filter = FilterType.None,
+                                    Notch = (NotchType)OpenBCISettings.Instance.Notch.Value,
+                                    Position = _positions[j - 1],
+                                    Value = value
+                                });
+                            }
+                            OnEegFrameArrived(eegArgs);
                         }
-                        OnEegFrameArrived(eegArgs);
-                    }
-                    if (data.Length == 12 && data[9] != 0 && data[10] != 0 && data[11] != 0)
-                    {
-                        var accArgs = new AccelerometerFrameArrivedEventArgs()
+                        if (data.Length == 12 && data[9] != 0 && data[10] != 0 && data[11] != 0)
                         {
-                            Place = "Head",
-                            // Time = ,
-                            XAxis = data[9],
-                            YAxis = data[10],
-                            ZAxis = data[11]
-                        };
-                        OnAccelerometerArrived(accArgs);
+                            var accArgs = new AccelerometerFrameArrivedEventArgs()
+                            {
+                                Place = "Head",
+                                // Time = ,
+                                XAxis = data[9],
+                                YAxis = data[10],
+                                ZAxis = data[11]
+                            };
+                            OnAccelerometerArrived(accArgs);
+                        }
+                        var actualTime = _dataAccessFacade.GetSceneInUseAccess().GetLocation();
+                        if (actualTime.HasValue)
+                            _filemanage?.WriteFile(actualTime.Value, data);
                     }
-                    var actualTime = _dataAccessFacade.GetSceneInUseAccess().GetLocation();
-                    if (actualTime.HasValue)
-                        _filemanage?.WriteFile(actualTime.Value, data);
                 }
             }
         }

@@ -59,6 +59,8 @@ namespace cl.uv.leikelen.View
         /// </summary>
         private HomeState _homeState;
 
+        private readonly DispatcherTimer _playTimer;
+
         private Tuple<TimeSpan?, ImageSource> _lastColorBeforePause;
         private Tuple<TimeSpan?, ImageSource> _lastSkeletonBeforePause;
 
@@ -79,6 +81,13 @@ namespace cl.uv.leikelen.View
             _recordTimer = new DispatcherTimer();
             _recordTimer.Tick += _recordTimer_Tick;
             _recordTimer.Interval = new TimeSpan(0, 0, 0, 0, 500); //0.5 seconds
+
+            //Initialize player timer
+            _playTimer = new DispatcherTimer();
+            _playTimer.Tick += _playTimer_Tick;
+            _recordTimer.Interval = new TimeSpan(0, 0, 0, 1, 0); //1 second
+
+            _playerController.Finished += PlayerFinished;
 
             //File MenuItems
             MenuItem_File_NewScene.Click += File_NewScene_Click;
@@ -125,14 +134,13 @@ namespace cl.uv.leikelen.View
             {
                 new Widget.HomeTab.TabInterval(),
                 new Widget.HomeTab.TabGraph(),
-                new Widget.HomeTab.TabDistance(),
                 new Widget.HomeTab.TabScene()
             };
 
             foreach(var tab in _tabs)
             {
-                if(tab is TabItem)
-                    Tabs.AddToSource(tab as TabItem);
+                if(tab is TabItem tabItem)
+                    Tabs.AddToSource(tabItem);
             }
 
             SkeletonLayerCheckbox.Checked += SkeletonLayerCheckbox_Checked;
@@ -150,6 +158,7 @@ namespace cl.uv.leikelen.View
             FillMenuProccessingModules();
             FillMenuGeneralModules();
         }
+
 
         private void MenuItem_File_LoadTestScene_Click(object sender, RoutedEventArgs e)
         {
@@ -182,7 +191,7 @@ namespace cl.uv.leikelen.View
                     SetGuiFromScene();
                     break;
                 case HomeState.FromSensorWithScene:
-                    if (DataAccessFacade.Instance.GetSceneInUseAccess().GetScene() == null)
+                    if (ReferenceEquals(null, DataAccessFacade.Instance.GetSceneInUseAccess().GetScene()))
                         return false;
                     SetGuiFromSensorWithScene(newPlayerState);
                     break;
@@ -197,12 +206,9 @@ namespace cl.uv.leikelen.View
                     SetGuiFromFile();
                     break;
                 case HomeState.FromFileWithScene:
-                    if (DataAccessFacade.Instance.GetSceneInUseAccess().GetScene() == null)
+                    if (ReferenceEquals(null, DataAccessFacade.Instance.GetSceneInUseAccess().GetScene()))
                         return false;
-                    foreach(var tab in _tabs)
-                    {
-                        tab.Fill();
-                    }
+                    
                     SetGuiFromFileWithScene(newPlayerState);
                     break;
             }
@@ -302,6 +308,11 @@ namespace cl.uv.leikelen.View
             {
                 case PlayerState.Wait:
                     Player_StopButton.IsEnabled = false;
+                    foreach (var tab in _tabs)
+                    {
+                        tab.Reset();
+                        tab.Fill();
+                    }
                     break;
                 case PlayerState.Play:
                     Player_StopButton.IsEnabled = true;
@@ -456,6 +467,8 @@ namespace cl.uv.leikelen.View
 
         private void MenuItem_File_Export_Click(object sender, RoutedEventArgs e)
         {
+            _playerController.Close();
+            PlayerStop();
             var exportWin = new Export();
             exportWin.Show();
         }
@@ -474,6 +487,8 @@ namespace cl.uv.leikelen.View
                     try
                     {
                         FileController.Import(dlg.FileName);
+                        _playerController.Close();
+                        PlayerStop();
                         MessageBox.Show(Properties.GUI.SceneImportedSuccesfully,
                             Properties.GUI.SceneImportedSuccesfullyTitle,
                             MessageBoxButton.OK,
@@ -617,22 +632,25 @@ namespace cl.uv.leikelen.View
         #region Player
         private async void PlayPauseButton_Click(object sender, RoutedEventArgs e)
         {
+            Player_ActualTimeLabel.Content = "00:00:00";
+            Player_TotalTimeLabel.Content = SceneInUse.Instance.Scene.Duration.ToString(@"hh\:mm\:ss");
             switch (_playerState)
             {
                 case PlayerState.Play:
-                    await _playerController.Pause();
+                    _playerController.Pause();
+                    _playTimer.Start();
                     ChangeHomeState(HomeState.FromFileWithScene, PlayerState.Pause);
                     Player_PlayButton_Icon.Kind = PackIconKind.Play;
                     break;
 
                 case PlayerState.Pause:
-                    await _playerController.UnPause();
+                    _playerController.UnPause();
                     ChangeHomeState(HomeState.FromFileWithScene, PlayerState.Play);
                     Player_PlayButton_Icon.Kind = PackIconKind.Pause;
                     break;
 
                 case PlayerState.Wait:
-                    await _playerController.Play();
+                    _playerController.Play();
                     ChangeHomeState(HomeState.FromFileWithScene, PlayerState.Play);
                     Player_PlayButton_Icon.Kind = PackIconKind.Pause;
                     break;
@@ -643,23 +661,32 @@ namespace cl.uv.leikelen.View
         {
             if(_playerState == PlayerState.Play || _playerState == PlayerState.Pause)
             {
-                await _playerController.Stop();
-                ChangeHomeState(HomeState.FromFileWithScene, PlayerState.Wait);
-                Player_PlayButton_Icon.Kind = PackIconKind.Play;
+                PlayerStop();
             }
             else if (_playerState == PlayerState.Record){
                 _recorderController.Stop();
                 _recordTimer.Stop();
                 SceneInUse.Instance.Set(DataAccessFacade.Instance.GetSceneAccess().SaveOrUpdate(SceneInUse.Instance.Scene));
                 Player_ActualTimeLabel.Content = "--:--:--";
-                Player_TotalTimeLabel.Content = "--:--:--";
+                Player_TotalTimeLabel.Content = SceneInUse.Instance.Scene.Duration.ToString(@"hh\:mm\:ss");
                 Player_RecordButton.Background = _buttonBackground;
                 ChangeHomeState(HomeState.FromFileWithScene, PlayerState.Wait);
                 foreach (var tab in _tabs)
                 {
+                    tab.Reset();
                     tab.Fill();
                 }
             }
+        }
+
+        private void PlayerStop()
+        {
+            _playerController.Stop();
+            _playTimer.Stop();
+            Player_ActualTimeLabel.Content = "00:00:00";
+            Player_TotalTimeLabel.Content = SceneInUse.Instance.Scene.Duration.ToString(@"hh\:mm\:ss");
+            ChangeHomeState(HomeState.FromFileWithScene, PlayerState.Wait);
+            Player_PlayButton_Icon.Kind = PackIconKind.Play;
         }
 
         private async void RecordButton_Click(object sender, RoutedEventArgs e)
@@ -668,6 +695,7 @@ namespace cl.uv.leikelen.View
             {
                 await _recorderController.Record();
                 Player_ActualTimeLabel.Content = "00:00:00";
+                Player_TotalTimeLabel.Content = "--:--:--";
                 Player_RecordButton.IsEnabled = false;
                 Player_StopButton.IsEnabled = true;
                 _recordTimer.Start();
@@ -677,17 +705,19 @@ namespace cl.uv.leikelen.View
 
         private void LocationSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-
-        }
-
-        private void PlayerChangedLocation(object sender, EventArgs e)
-        {
-
+            if(_playerState != PlayerState.Record)
+            {
+                TimeSpan newTime = new TimeSpan(SceneInUse.Instance.Scene.Duration.Ticks * (long)(e.NewValue * 1000/1000));
+                _playerController.MoveTo(newTime);
+            }
         }
 
         private void PlayerFinished(object sender, EventArgs e)
         {
-
+            if (_playerState != PlayerState.Record)
+            {
+                PlayerStop();
+            }
         }
 
         private void Player_VolumeToggle_Unchecked(object sender, RoutedEventArgs e)
@@ -709,13 +739,22 @@ namespace cl.uv.leikelen.View
                 Player_RecordButton.Background = Player_RecordButton.Background == _buttonBackground ? Brushes.Red : _buttonBackground;
             }
         }
+        
+        private void _playTimer_Tick(object sender, EventArgs e)
+        {
+            var location = DataAccessFacade.Instance.GetSceneInUseAccess().GetLocation();
+            if (location.HasValue)
+            {
+                Player_ActualTimeLabel.Content = location.Value.ToString(@"hh\:mm\:ss");
+            }
+        }
 
         #endregion
-        
+
         private void SourceComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var comboBox = sender as ComboBox;
-            if (comboBox==null) throw new ArgumentNullException(nameof(sender), Properties.Error.SourceComboboxIsNull);
+            if (ReferenceEquals(null, comboBox)) throw new ArgumentNullException(nameof(sender), Properties.Error.SourceComboboxIsNull);
             int lastSelectedIndex = comboBox.SelectedIndex;
             bool result = false;
             switch (comboBox.SelectedIndex)
@@ -792,8 +831,7 @@ namespace cl.uv.leikelen.View
             {
                 try
                 {
-                    var inputModule = module as API.Module.Input.InputModule;
-                    if (inputModule != null)
+                    if (module is API.Module.Input.InputModule inputModule)
                         inputModule.Monitor.Open();
                     module.Enable();
                     foreach (var winItem in windowsMenuItems)
@@ -803,8 +841,7 @@ namespace cl.uv.leikelen.View
                 }
                 catch (Exception)
                 {
-                    var inputModule = module as API.Module.Input.InputModule;
-                    if (inputModule != null)
+                    if (module is API.Module.Input.InputModule inputModule)
                         inputModule.Monitor.Close();
                     module.Disable();
                     moduleCheck.IsChecked = false;
@@ -819,8 +856,7 @@ namespace cl.uv.leikelen.View
             {
                 try
                 {
-                    var inputModule = module as API.Module.Input.InputModule;
-                    if (inputModule != null)
+                    if (module is API.Module.Input.InputModule inputModule)
                         inputModule.Monitor.Close();
                     module.Disable();
                     foreach (var winItem in windowsMenuItems)

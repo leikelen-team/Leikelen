@@ -28,6 +28,7 @@ namespace cl.uv.leikelen.View.Widget.HomeTab
 
         public void Fill()
         {
+            ScrollWithContent.Visibility = Visibility.Visible;
             List<IntervalDataGrid> intervalData = new List<IntervalDataGrid>();
             List<EventDataGrid> eventData = new List<EventDataGrid>();
             var persons = DataAccessFacade.Instance.GetSceneInUseAccess().GetScene().PersonsInScene;
@@ -39,7 +40,7 @@ namespace cl.uv.leikelen.View.Widget.HomeTab
                     var events = DataAccessFacade.Instance.GetEventAccess().GetAll(person.PersonId, subModal.ModalTypeId, subModal.SubModalTypeId);
                     //var timelesses = DataAccessFacade.Instance.GetTimelessAccess().GetAll(person.PersonId, subModal.ModalTypeId, subModal.SubModalTypeId);
 
-                    if(intervals != null)
+                    if(!ReferenceEquals(null, intervals) && intervals.Count > 0)
                     {
                         var intervalRow = new IntervalDataGrid()
                         {
@@ -69,7 +70,7 @@ namespace cl.uv.leikelen.View.Widget.HomeTab
                         intervalData.Add(intervalRow);
                     }
 
-                    if(events != null)
+                    if(!ReferenceEquals(null, events) && events.Count > 0)
                     {
                         var eventRow = new EventDataGrid()
                         {
@@ -118,7 +119,18 @@ namespace cl.uv.leikelen.View.Widget.HomeTab
             IntervalDataGrid.ItemsSource = intervalData;
             IntervalDataGrid.Items.Refresh();
         }
+        public void Reset()
+        {
+            EventDataGrid.ItemsSource = null;
+            EventDataGrid.Items.Refresh();
+
+            IntervalDataGrid.ItemsSource = null;
+            IntervalDataGrid.Items.Refresh();
+
+            ScrollWithContent.Visibility = Visibility.Hidden;
+        }
     }
+    
 
     public class SceneTabDataGrid
     {

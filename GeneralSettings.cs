@@ -11,7 +11,7 @@ namespace cl.uv.leikelen
     public class GeneralSettings : SettingsContainer, IGeneralSettings
     {
         public readonly Option<string> DataDirectory = new Option<string>("DataDirectory", "data/");
-        public readonly Option<string> TmpDirectory = new Option<string>("SceneInUseDirectory", "tmp/current_scene/");
+        public readonly Option<string> TmpDirectory = new Option<string>("SceneInUseDirectory", "tmp/");
         public readonly Option<string> TmpSceneDirectory = new Option<string>("SceneInUseDirectory", "tmp/current_scene/");
         public readonly Option<string> Extension = new Option<string>("Extension", ".leikelen");
         public readonly Option<string> ExtensionFilter = new Option<string>("ExtensionFilter", "Leikelen scene file (*.leikelen)|*.leikelen");
@@ -35,7 +35,7 @@ namespace cl.uv.leikelen
         {
             get
             {
-                if (_instance == null) _instance = new GeneralSettings();
+                if (ReferenceEquals(null, _instance)) _instance = new GeneralSettings();
                 return _instance;
             }
         }

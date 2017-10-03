@@ -34,24 +34,22 @@ namespace cl.uv.leikelen.View
 
         private void AddBtn_Click(object sender, RoutedEventArgs e)
         {
-            var person = PersonDataGrid.SelectedItem as Person;
-            if (person != null)
+            if (PersonDataGrid.SelectedItem is Person person)
             {
-                DataAccessFacade.Instance.GetPersonAccess().AddToScene(person, 
+                DataAccessFacade.Instance.GetPersonAccess().AddToScene(person,
                     DataAccessFacade.Instance.GetSceneInUseAccess().GetScene());
                 Close();
             }
             else
             {
-                MessageBox.Show(Properties.GUI.AllPersonsNotExists, 
+                MessageBox.Show(Properties.GUI.AllPersonsNotExists,
                     Properties.GUI.AllPersonsNotExistsTitle, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
         private void EditBtn_Click(object sender, RoutedEventArgs e)
         {
-            var person = PersonDataGrid.SelectedItem as Person;
-            if(person != null)
+            if (PersonDataGrid.SelectedItem is Person person)
             {
                 var configurePersonWin = new ConfigurePerson(person);
                 configurePersonWin.Show();

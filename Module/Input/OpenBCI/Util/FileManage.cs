@@ -21,7 +21,7 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI.Util
 
         public void WriteFile(TimeSpan actualTime, double[] data)
         {
-            if (_sw == null) return;
+            if (ReferenceEquals(null, _sw)) return;
             double multiplier = (4.5 / 24 / (Math.Pow(2, 23) - 1)) * (Math.Pow(10, 6));
 
             for (int i = 0; i < 8; i++)

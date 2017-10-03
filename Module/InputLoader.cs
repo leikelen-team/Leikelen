@@ -19,7 +19,7 @@ namespace cl.uv.leikelen.Module
         {
             get
             {
-                if (_instance == null) _instance = new InputLoader();
+                if (ReferenceEquals(null, _instance)) _instance = new InputLoader();
                 return _instance;
             }
         }
@@ -47,7 +47,7 @@ namespace cl.uv.leikelen.Module
         {
             var kinectInput = new Input.Kinect.KinectInput();
             SceneInputModules.Add(kinectInput);
-            VideoHandler = kinectInput.SkeletonColorVideoViewer;
+            VideoHandler = Input.Kinect.KinectInput.SkeletonColorVideoViewer;
 
             //TODO: esto es temporal por motivos de prueba
             SceneInputModules.Add(new Input.OpenBCI.OpenBCIInput());

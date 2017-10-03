@@ -37,11 +37,6 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI
             return false;
         }
 
-        public void OpenFile(int sceneId)
-        {
-            return;
-        }
-
         public void Pause()
         {
             return;

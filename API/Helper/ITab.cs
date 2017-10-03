@@ -9,5 +9,6 @@ namespace cl.uv.leikelen.API.Helper
     public interface ITab
     {
         void Fill();
+        void Reset();
     }
 }

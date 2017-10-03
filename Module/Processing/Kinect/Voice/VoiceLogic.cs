@@ -12,16 +12,16 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.Voice
     public class VoiceLogic
     {
         private readonly Dictionary<ulong, int> _personsId = new Dictionary<ulong, int>();
-        private IDataAccessFacade DataAccessFacade = new DataAccessFacade();
+        private IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
 
         public VoiceLogic()
         {
             _personsId = new Dictionary<ulong, int>();
             
-            if (!DataAccessFacade.GetModalAccess().Exists("Voice"))
-                DataAccessFacade.GetModalAccess().Add("Voice", "When a person talks");
-            if (!DataAccessFacade.GetSubModalAccess().Exists("Voice", "Talked"))
-                DataAccessFacade.GetSubModalAccess().Add("Voice", "Talked", "a person talked", null);
+            if (!_dataAccessFacade.GetModalAccess().Exists("Voice"))
+                _dataAccessFacade.GetModalAccess().Add("Voice", "When a person talks");
+            if (!_dataAccessFacade.GetSubModalAccess().Exists("Voice", "Talked"))
+                _dataAccessFacade.GetSubModalAccess().Add("Voice", "Talked", "a person talked", null);
 
         }
 
@@ -29,20 +29,20 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.Voice
         {
             var frames = e.FrameReference.AcquireBeamFrames();
 
-            if (frames == null) return;
+            if (ReferenceEquals(null, frames)) return;
 
             foreach (var frame in frames)
             {
-                if (frame == null || frame.SubFrames == null) return;
+                if (ReferenceEquals(null, frame) || ReferenceEquals(null, frame.SubFrames)) return;
                 foreach (var subFrame in frame.SubFrames)
                 {
-                    if (subFrame.AudioBodyCorrelations == null) return;
+                    if (ReferenceEquals(null, subFrame.AudioBodyCorrelations)) return;
                     foreach (var audioBodyCorrelation in subFrame.AudioBodyCorrelations)
                     {
                         CheckIfExistsPerson(audioBodyCorrelation.BodyTrackingId);
-                        var time = DataAccessFacade.GetSceneInUseAccess()?.GetLocation();
+                        var time = _dataAccessFacade.GetSceneInUseAccess()?.GetLocation();
                         if (time.HasValue)
-                            DataAccessFacade.GetEventAccess().Add(_personsId[audioBodyCorrelation.BodyTrackingId], "Voice", "Talked", time.Value);
+                            _dataAccessFacade.GetEventAccess().Add(_personsId[audioBodyCorrelation.BodyTrackingId], "Voice", "Talked", time.Value);
                         
                         Console.WriteLine("Tiempo: {0}, Llegó Voz de {1}", DateTime.Now, audioBodyCorrelation.BodyTrackingId);
                         
@@ -63,7 +63,7 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.Voice
             {
                 bool isPersonInScene = false;
                 string personName = "Kinect" + bodyTrackingId;
-                var personsInScene = DataAccessFacade.GetSceneInUseAccess()?.GetScene()?.PersonsInScene;
+                var personsInScene = _dataAccessFacade.GetSceneInUseAccess()?.GetScene()?.PersonsInScene;
                 foreach (var personInScene in personsInScene)
                 {
                     string name = personInScene?.Person?.Name;
@@ -76,9 +76,9 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.Voice
                 }
                 if (!isPersonInScene)
                 {
-                    var newPerson = DataAccessFacade.GetPersonAccess().Add(personName, null, null, null);
+                    var newPerson = _dataAccessFacade.GetPersonAccess().Add(personName, null, null, null);
                     _personsId[bodyTrackingId] = newPerson.PersonId;
-                    DataAccessFacade.GetPersonAccess().AddToScene(newPerson, DataAccessFacade.GetSceneInUseAccess()?.GetScene());
+                    _dataAccessFacade.GetPersonAccess().AddToScene(newPerson, _dataAccessFacade.GetSceneInUseAccess()?.GetScene());
                 }
             }
         }
@@ -87,7 +87,7 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.Voice
         {
             foreach(var personPair in _personsId)
             {
-                DataAccessFacade.GetIntervalAccess().FromEvent(personPair.Value, "Voice", "Talked", DataAccessFacade.GetGeneralSettings().GetDefaultMillisecondsThreshold());
+                _dataAccessFacade.GetIntervalAccess().FromEvent(personPair.Value, "Voice", "Talked", _dataAccessFacade.GetGeneralSettings().GetDefaultMillisecondsThreshold());
             }
             
         }

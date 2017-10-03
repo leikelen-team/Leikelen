@@ -15,10 +15,10 @@ namespace cl.uv.leikelen.View
         {
             var rnd = new Random();
             var scenes = DataAccessFacade.Instance.GetSceneAccess().GetAll();
-            if (scenes != null)
+            if (!ReferenceEquals(null, scenes) || scenes.Count == 0)
             {
                 var testScene = scenes.Find(s => s.Name.Equals(sceneName));
-                if (testScene != null)
+                if (!ReferenceEquals(null, testScene))
                 {
                     testScene = DataAccessFacade.Instance.GetSceneAccess().Get(testScene.SceneId);
                     SceneInUse.Instance.Set(testScene);

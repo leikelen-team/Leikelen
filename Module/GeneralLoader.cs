@@ -17,7 +17,7 @@ namespace cl.uv.leikelen.Module
         {
             get
             {
-                if (_instance == null) _instance = new GeneralLoader();
+                if (ReferenceEquals(null, _instance)) _instance = new GeneralLoader();
                 return _instance;
             }
         }

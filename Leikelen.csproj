@@ -348,6 +348,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GestureConfiguration.es.resx</DependentUpon>
     </Compile>
+    <Compile Include="Module\Input\Kinect\DVR\Recorder.cs" />
+    <Compile Include="Module\Input\Kinect\DVR\ReplayBodyFrameCustomTime.cs" />
+    <Compile Include="Module\Input\Kinect\DVR\ReplayColorFrameCustomTime.cs" />
+    <Compile Include="Module\Input\Kinect\DVR\ReplayDepthFrameCustomTime.cs" />
+    <Compile Include="Module\Input\Kinect\DVR\ReplayInfraredFrameCustomTime.cs" />
     <Compile Include="Module\Input\Kinect\GestureDetector.cs" />
     <Compile Include="Module\Input\Kinect\KinectInput.cs" />
     <Compile Include="Module\Input\Kinect\KinectSettings.cs" />
@@ -494,6 +499,10 @@
     <Compile Include="Module\Processing\EEGEmotion2Channels\LearningModel.cs" />
     <Compile Include="Module\ProcessingLoader.cs" />
     <Compile Include="GeneralSettings.cs" />
+    <Compile Include="Util\DoubleInput.cs" />
+    <Compile Include="Util\IntegerInput.cs" />
+    <Compile Include="Util\StringLimitedInput.cs" />
+    <Compile Include="Util\StringUtil.cs" />
     <Compile Include="View\AboutUs.xaml.cs">
       <DependentUpon>AboutUs.xaml</DependentUpon>
     </Compile>
@@ -543,9 +552,6 @@
     </Compile>
     <Compile Include="View\Widget\PreferencesTab\PreferencesPersonColors.xaml.cs">
       <DependentUpon>PreferencesPersonColors.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Widget\HomeTab\TabDistance.xaml.cs">
-      <DependentUpon>TabDistance.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Widget\HomeTab\TabGraph.xaml.cs">
       <DependentUpon>TabGraph.xaml</DependentUpon>
@@ -641,10 +647,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Widget\PreferencesTab\PreferencesPersonColors.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Widget\HomeTab\TabDistance.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

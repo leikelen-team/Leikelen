@@ -19,7 +19,7 @@ namespace cl.uv.leikelen.Data.Persistence
         {
             get
             {
-                if (_instance == null) _instance = new DbFacade();
+                if (ReferenceEquals(null, _instance)) _instance = new DbFacade();
                 return _instance;
             }
         }

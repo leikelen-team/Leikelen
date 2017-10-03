@@ -9,6 +9,16 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing
 {
     public static class SampleEntropy
     {
+        /// <summary>
+        /// Calculates the sample entropy.
+        /// </summary>
+        /// <param name="data">Input sequence (double). Nx1 in matlab.</param>
+        /// <param name="numSamples">(N) Length of input.</param>
+        /// <param name="wlen">(m) Length of window (normally called m).</param>
+        /// <param name="r">Tolerance for "similarity".</param>
+        /// <param name="shift">Shift between samples (for subsampling). Shift=1 corresponds to _no_ subsampling.</param>
+        /// <returns>-log (A / B), where A is the number of |D_m(i,j) < r|, and B is |D_m+1(i,j) < r|.
+        /// See wikipedia: https://en.wikipedia.org/wiki/Sample_entropy </returns>
         public static double CalcSampleEntropy(double[] data, int numSamples/*N*/, int wlen/*m*/, double r/*r*/, int shift)
         {
             int A = 0;

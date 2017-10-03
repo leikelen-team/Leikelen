@@ -73,9 +73,7 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI.View
 
         private void PosSystemCmbx_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var comboBox = sender as ComboBox;
-            
-            if (comboBox != null)
+            if (sender is ComboBox comboBox)
             {
                 var posSystem = comboBox.SelectedIndex;
                 switch (posSystem)

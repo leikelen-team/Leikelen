@@ -32,7 +32,7 @@ namespace cl.uv.leikelen.Controller
             foreach (var input in InputLoader.Instance.SceneInputModules)
             {
                 input.Monitor.Close();
-                input.Player.OpenFile(sceneId);
+                input.Player.Play();
             }
         }
     }

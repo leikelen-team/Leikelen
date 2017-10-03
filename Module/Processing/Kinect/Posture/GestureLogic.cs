@@ -13,7 +13,7 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.Posture
     {
         private IGeneralSettings _generalSettings = new GeneralSettings();
         private readonly Dictionary<ulong, int> _personsId = new Dictionary<ulong, int>();
-        private IDataAccessFacade DataAccessFacade = new DataAccessFacade();
+        private IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
         private List<Tuple<int, string>> _discreteGestures = new List<Tuple<int, string>>();
 
         public void Gesture_FrameArrived(object sender, KinectGestureFrameArrivedArgs e)
@@ -21,7 +21,7 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.Posture
             CheckIfExistsPerson(e.TrackingId);
             if (e.Time.HasValue)
             {
-                if(e.Frame.DiscreteGestureResults != null)
+                if(!ReferenceEquals(null, e?.Frame?.DiscreteGestureResults))
                 {
                     foreach (var discreteGesture in e.Frame.DiscreteGestureResults)
                     {
@@ -30,19 +30,19 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.Posture
                             var tuple = new Tuple<int, string>(_personsId[e.TrackingId], discreteGesture.Key.Name);
                             if (!_discreteGestures.Exists(d => d.Equals(tuple)))
                                 _discreteGestures.Add(tuple);
-                            if (!DataAccessFacade.GetSubModalAccess().Exists("Discrete Posture", discreteGesture.Key.Name))
-                                DataAccessFacade.GetSubModalAccess().Add("Discrete Posture", discreteGesture.Key.Name, null, null);
-                            DataAccessFacade.GetEventAccess().Add(_personsId[e.TrackingId], "Discrete Posture", discreteGesture.Key.Name, e.Time.Value, discreteGesture.Value.Confidence);
+                            if (!_dataAccessFacade.GetSubModalAccess().Exists("Discrete Posture", discreteGesture.Key.Name))
+                                _dataAccessFacade.GetSubModalAccess().Add("Discrete Posture", discreteGesture.Key.Name, null, null);
+                            _dataAccessFacade.GetEventAccess().Add(_personsId[e.TrackingId], "Discrete Posture", discreteGesture.Key.Name, e.Time.Value, discreteGesture.Value.Confidence);
                         }
                     }
                 }
                     
 
-                if(e.Frame.ContinuousGestureResults != null)
+                if(!ReferenceEquals(null, e?.Frame?.ContinuousGestureResults))
                 {
                     foreach (var continuousGesture in e.Frame.ContinuousGestureResults)
                     {
-                        DataAccessFacade.GetEventAccess().Add(_personsId[e.TrackingId], "Continuous Posture", continuousGesture.Key.Name, e.Time.Value, continuousGesture.Value.Progress);
+                        _dataAccessFacade.GetEventAccess().Add(_personsId[e.TrackingId], "Continuous Posture", continuousGesture.Key.Name, e.Time.Value, continuousGesture.Value.Progress);
                     }
                 }
                     
@@ -54,7 +54,7 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.Posture
         {
             foreach(var postureInPerson in _discreteGestures)
             {
-                DataAccessFacade.GetIntervalAccess().FromEvent(postureInPerson.Item1, "Discrete Posture", postureInPerson.Item2, _generalSettings.GetDefaultMillisecondsThreshold());
+                _dataAccessFacade.GetIntervalAccess().FromEvent(postureInPerson.Item1, "Discrete Posture", postureInPerson.Item2, _generalSettings.GetDefaultMillisecondsThreshold());
             }
         }
 
@@ -70,7 +70,7 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.Posture
             {
                 bool isPersonInScene = false;
                 string personName = "Kinect" + bodyTrackingId;
-                var personsInScene = DataAccessFacade.GetSceneInUseAccess()?.GetScene()?.PersonsInScene;
+                var personsInScene = _dataAccessFacade.GetSceneInUseAccess()?.GetScene()?.PersonsInScene;
                 foreach (var personInScene in personsInScene)
                 {
                     string name = personInScene?.Person?.Name;
@@ -83,9 +83,9 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.Posture
                 }
                 if (!isPersonInScene)
                 {
-                    var newPerson = DataAccessFacade.GetPersonAccess().Add(personName, null, null, null);
+                    var newPerson = _dataAccessFacade.GetPersonAccess().Add(personName, null, null, null);
                     _personsId[bodyTrackingId] = newPerson.PersonId;
-                    DataAccessFacade.GetPersonAccess().AddToScene(newPerson, DataAccessFacade.GetSceneInUseAccess()?.GetScene());
+                    _dataAccessFacade.GetPersonAccess().AddToScene(newPerson, _dataAccessFacade.GetSceneInUseAccess()?.GetScene());
                 }
             }
         }

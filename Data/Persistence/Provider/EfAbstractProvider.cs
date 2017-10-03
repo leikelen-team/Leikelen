@@ -14,7 +14,7 @@ namespace cl.uv.leikelen.Data.Persistence.Provider
 
         public bool IsConnected()
         {
-            return Db != null;
+            return !ReferenceEquals(null, Db);
         }
 
         public virtual void CreateConnection(string options)
@@ -25,6 +25,12 @@ namespace cl.uv.leikelen.Data.Persistence.Provider
         {
             Db?.Dispose();
             Db = null;
+        }
+
+        public void Clear()
+        {
+            Db.Database.EnsureDeleted();
+            Db.Database.EnsureCreated();
         }
 
         public List<Scene> LoadScenes()
@@ -75,33 +81,37 @@ namespace cl.uv.leikelen.Data.Persistence.Provider
             int lastSmtPisId = Db.SmtPis.Max(smtPis => smtPis.SubModalType_PersonInSceneId);
             int lastEventId = Db.EventDatas.Max(ed => ed.EventDataId);
             int lastIntervalId = Db.IntervalDatas.Max(id => id.IntervalDataId);
-            foreach (var person in scene.PersonsInScene)
+            for (int iperson= 0; iperson < scene.PersonsInScene.Count; iperson++)
             {
-                lastPersonId++;
+                var person = scene.PersonsInScene[iperson];
                 lastPersonId++;
 
                 person.SceneId = scene.SceneId;
                 person.Scene = scene;
                 person.PersonId = lastPersonId;
                 person.Person.PersonId = lastPersonId;
-                foreach(var smtPis in person.SubModalType_PersonInScenes)
+                for(int ismtPis=0;ismtPis< person.SubModalType_PersonInScenes.Count; ismtPis++)
                 {
+                    var smtPis = person.SubModalType_PersonInScenes[ismtPis];
                     lastSmtPisId++;
                     smtPis.SubModalType_PersonInSceneId = lastSmtPisId;
                     smtPis.PersonInScene = person;
-                    foreach(var rt in smtPis.RepresentTypes)
+                    smtPis.SceneId = person.SceneId;
+                    smtPis.PersonId = person.PersonId;
+                    for(int irt=0; irt<smtPis.RepresentTypes.Count;irt++)
                     {
+                        var rt = smtPis.RepresentTypes[irt];
                         lastRepresentTypeId++;
                         rt.RepresentTypeId = lastRepresentTypeId;
                         rt.SubModalType_PersonInScene = smtPis;
-                        if(rt.EventData != null)
+                        if(!ReferenceEquals(null, rt.EventData))
                         {
                             lastEventId++;
                             rt.EventDataId = lastEventId;
                             rt.EventData.EventDataId = lastEventId;
                             rt.RepresentTypeId = lastRepresentTypeId;
                         }
-                        if(rt.IntervalData != null)
+                        if(!ReferenceEquals(null, rt.IntervalData))
                         {
                             lastIntervalId++;
                             rt.IntervalDataId = lastIntervalId;

@@ -41,10 +41,6 @@
     <Compile Include="Emotion\Train.cs" />
     <Compile Include="File\Export.cs" />
     <Compile Include="File\Import.cs" />
-    <Compile Include="ModalType\Create.cs" />
-    <Compile Include="ModalType\Delete.cs" />
-    <Compile Include="ModalType\Get.cs" />
-    <Compile Include="ModalType\Update.cs" />
     <Compile Include="Person\Create.cs" />
     <Compile Include="Person\Delete.cs" />
     <Compile Include="Person\Get.cs" />
@@ -58,6 +54,7 @@
     <Compile Include="Scene\Get.cs" />
     <Compile Include="Scene\Update.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SetupFixture1.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -71,9 +68,7 @@
       <Name>Leikelen</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="SubModalType\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

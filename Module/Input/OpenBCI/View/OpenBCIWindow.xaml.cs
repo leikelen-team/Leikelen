@@ -55,7 +55,7 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI.View
         private void NextBtn_Click(object sender, RoutedEventArgs e)
         {
             var confPosition = new ConfigurePositions(this);
-            if (PortsCmbx.SelectedItem != null)
+            if (!ReferenceEquals(null, PortsCmbx.SelectedItem))
             {
                 OpenBCISettings.Instance.Notch.Write(NotchCmbx.SelectedIndex);
                 OpenBCISettings.Instance.Filter.Write(FilterCmbx.SelectedIndex);
@@ -79,7 +79,7 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI.View
         private async void TestBtn_Click(object sender, RoutedEventArgs e)
         {
             bool isConnected = false;
-            if(PortsCmbx.SelectedItem != null)
+            if(!ReferenceEquals(null, PortsCmbx.SelectedItem))
             {
                 OpenBCISettings.Instance.Notch.Write(NotchCmbx.SelectedIndex);
                 await Monitor.OpenPort(PortsCmbx.SelectedItem as string);

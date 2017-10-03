@@ -10,7 +10,7 @@ namespace cl.uv.leikelen.Module.Input.Kinect
 {
     public class KinectInput : InputModule
     {
-        public IVideo SkeletonColorVideoViewer;
+        public static SkeletonColorVideoViewer SkeletonColorVideoViewer = new SkeletonColorVideoViewer();
 
         public KinectInput()
         {
@@ -20,8 +20,6 @@ namespace cl.uv.leikelen.Module.Input.Kinect
             Monitor = monitor;
             Player = new Player();
             Windows = new List<Tuple<string, WindowBuilder>>();
-            
-            SkeletonColorVideoViewer = monitor.VideoViewer;
         }
     }
 }

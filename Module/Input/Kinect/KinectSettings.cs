@@ -15,7 +15,7 @@ namespace cl.uv.leikelen.Module.Input.Kinect
         {
             get
             {
-                if (_instance == null) _instance = new KinectSettings();
+                if (ReferenceEquals(null, _instance)) _instance = new KinectSettings();
                 return _instance;
             }
         }

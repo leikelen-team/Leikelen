@@ -24,10 +24,15 @@ namespace cl.uv.leikelen.Controller
             var sqliteProvider = new SqliteProvider();
             sqliteProvider.CreateConnection("Filename=" + GeneralSettings.Instance.GetTmpSceneDirectory()+ "scene.sqlite3");
             var scene = sqliteProvider.LoadScene(sqliteProvider.LoadScenes()[0].SceneId);
+            int sceneIdInFile = scene.SceneId;
             SceneInUse.Instance.Set(Data.Access.DataAccessFacade.Instance.GetSceneAccess().SaveNew(scene));
 
-            if(Directory.Exists(GeneralSettings.Instance.GetTmpSceneDirectory() + "scene/" + SceneInUse.Instance.Scene.SceneId))
-                CopyContents(GeneralSettings.Instance.GetTmpSceneDirectory() + "scene/" + SceneInUse.Instance.Scene.SceneId,
+            Console.WriteLine($"in file: {sceneIdInFile}, in real: {SceneInUse.Instance.Scene.SceneId}");
+            Console.WriteLine($"{GeneralSettings.Instance.GetTmpSceneDirectory() + "scene/" + sceneIdInFile}");
+
+
+            if(Directory.Exists(GeneralSettings.Instance.GetTmpSceneDirectory() + "scene/" + 1))
+                CopyContents(GeneralSettings.Instance.GetTmpSceneDirectory() + "scene/" + 1,
                 GeneralSettings.Instance.GetDataDirectory() + "scene/" + SceneInUse.Instance.Scene.SceneId);
             foreach (var person in SceneInUse.Instance.Scene.PersonsInScene)
             {
@@ -59,12 +64,14 @@ namespace cl.uv.leikelen.Controller
                 Directory.CreateDirectory(GeneralSettings.Instance.GetTmpSceneDirectory() + "person/");
                 Directory.CreateDirectory(GeneralSettings.Instance.GetTmpSceneDirectory() + "scene/");
 
+                var _playerC = new PlayerController();
+
                 var sqlFileName = GeneralSettings.Instance.GetTmpSceneDirectory() + "scene.sqlite3";
                 CreateSqlFile(sqlFileName);
 
                 if(Directory.Exists(GeneralSettings.Instance.GetDataDirectory() + "scene/" + SceneInUse.Instance.Scene.SceneId))
                     CopyContents(GeneralSettings.Instance.GetDataDirectory() + "scene/" + SceneInUse.Instance.Scene.SceneId, 
-                    GeneralSettings.Instance.GetTmpSceneDirectory() + "scene/" + SceneInUse.Instance.Scene.SceneId);
+                    GeneralSettings.Instance.GetTmpSceneDirectory() + "scene/" + 1);
                 foreach (var person in SceneInUse.Instance.Scene.PersonsInScene)
                 {
                     if (!String.IsNullOrEmpty(person.Person.Photo))
@@ -107,9 +114,11 @@ namespace cl.uv.leikelen.Controller
             if (System.IO.Directory.Exists(sourcePath))
             {
                 string[] files = System.IO.Directory.GetFiles(sourcePath);
+                Console.WriteLine($"archivos: {files}");
 
-                foreach (string s in files)
+                for (int ifile = 0;ifile<files.Count();ifile++)
                 {
+                    var s = files[ifile];
                     // Use static Path methods to extract only the file name from the path.
                     var fileName = System.IO.Path.GetFileName(s);
                     var destFile = System.IO.Path.Combine(targetPath, fileName);

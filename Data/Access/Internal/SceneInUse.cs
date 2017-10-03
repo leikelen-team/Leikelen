@@ -17,7 +17,7 @@ namespace cl.uv.leikelen.Data.Access.Internal
         {
             get
             {
-                if (_instance == null) _instance = new SceneInUse();
+                if (ReferenceEquals(null, _instance)) _instance = new SceneInUse();
                 return _instance;
             }
         }

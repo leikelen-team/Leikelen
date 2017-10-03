@@ -28,7 +28,7 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels
         {
             try
             {
-                if (_svm == null)
+                if (ReferenceEquals(null, _svm))
                 {
                     string internalPath = $"{_dataAccessFacade.GetGeneralSettings().GetDataDirectory()}" +
                         $"modal/Emotion/emotionmodel.svm";
@@ -43,9 +43,6 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels
                 Console.WriteLine($"error: {ex.Message}");
                 throw ex;
             }
-            
-            //TODO: esto es temporal, hay que clasificar
-            //return 0;
         }
 
         public static void Train(Dictionary<TagType, List<List<double[]>>> allsignalsList)
@@ -104,37 +101,11 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels
             Console.WriteLine("y nos ponemos a aprender");
             // Search for the best model parameters
             var result = gridsearch.Learn(inputsList.ToArray(), outputsList.ToArray());
-
-
-            /*
-            // Create the multi-class learning algorithm for the machine
-            var teacher = new MulticlassSupportVectorLearning<Gaussian>()
-            {
-                // Configure the learning algorithm to use SMO to train the
-                //  underlying SVMs in each of the binary class subproblems.
-                Learner = (param) => new SequentialMinimalOptimization<Gaussian>()
-                {
-                    // Estimate a suitable guess for the Gaussian kernel's parameters.
-                    // This estimate can serve as a starting point for a grid search.
-                    UseKernelEstimation = true
-                }
-                
-            };
-            Console.WriteLine("y nos ponemos a aprender");
-
-            var result = teacher.Learn(inputsList.ToArray(), outputsList.ToArray());*/
-
-
-
-
-
-
-
-
-
+            
             Console.WriteLine("aprendido");
             // Get the best SVM found during the parameter search
             MulticlassSupportVectorMachine<Gaussian> svm = result.BestModel;
+            _svm = svm;
             Console.WriteLine("svm obtenido!");
             string internalPath = $"{_dataAccessFacade.GetGeneralSettings().GetDataDirectory()}" +
                     $"modal/Emotion/emotionmodel.svm";
@@ -169,15 +140,33 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels
                 
 
             double[] f3 = new double[signalsList.Count];
+            bool first = true;
             for (int i = 0; i < f3.Length;i++)
             {
-                f3[i] = betaBandpass(signalsList[i][0]);
+                if (first)
+                {
+                    f3[i] = BetaBandpass(signalsList[i][0], true);
+                    first = false;
+                }
+                else
+                {
+                    f3[i] = BetaBandpass(signalsList[i][0], false);
+                }
             }
 
             double[] c4 = new double[signalsList.Count];
+            first = true;
             for (int i = 0; i < c4.Length; i++)
             {
-                c4[i] = betaBandpass(signalsList[i][1]);
+                if (first)
+                {
+                    c4[i] = BetaBandpass(signalsList[i][1], true);
+                    first = false;
+                }
+                else
+                {
+                    c4[i] = BetaBandpass(signalsList[i][1], false);
+                }
             }
 
             var emdF3 = new Emd();
@@ -206,9 +195,9 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels
             return features;
         }
 
-        private static double betaBandpass(double signal)
+        private static double BetaBandpass(double signal, bool newFilters)
         {
-            if (_lowFilter == null || _highFilter == null)
+            if (newFilters || ReferenceEquals(null, _lowFilter) || ReferenceEquals(null, _highFilter))
             {
                 _lowFilter = new FilterButterworth(30,
                     EEGEmoProc2ChSettings.Instance.SamplingHz,

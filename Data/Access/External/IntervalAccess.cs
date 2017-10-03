@@ -14,8 +14,8 @@ namespace cl.uv.leikelen.Data.Access.External
         {
             var personInScene = Internal.SceneInUse.Instance.Scene?.PersonsInScene?.Find(pis => pis.PersonId == personId);
             var subModalPersonInScene = personInScene?.SubModalType_PersonInScenes?.Find(smtPis => smtPis.SubModalType.SubModalTypeId.Equals(subModalName) && smtPis.SubModalType.ModalType.ModalTypeId.Equals(modalName));
-            var intervalRepresent = subModalPersonInScene?.RepresentTypes?.FindAll(rt => rt.IntervalData != null && rt.EventData == null && !rt.Index.HasValue);
-            if(intervalRepresent == null || intervalRepresent.Count == 0)
+            var intervalRepresent = subModalPersonInScene?.RepresentTypes?.FindAll(rt => !ReferenceEquals(null,  rt.IntervalData) && ReferenceEquals(null,  rt.EventData) && !rt.Index.HasValue);
+            if(ReferenceEquals(null,  intervalRepresent) || intervalRepresent.Count == 0)
             {
                 return null;
             }
@@ -41,14 +41,14 @@ namespace cl.uv.leikelen.Data.Access.External
         {
             var eventAccess = new EventAccess();
             var events = eventAccess.GetAll(personId, modalName, subModalName);
-            if (events == null)
+            if (ReferenceEquals(null, events))
                 throw new Exception("There are no events in ModalType:" + modalName + " and subModal:" + subModalName);
             TimeSpan? start = null, end = null;
             int threshold = millisecondsThreshold;
 
             foreach (var timeEvent in events)
             {
-                if (end == null)
+                if (ReferenceEquals(null, end))
                 {
                     start = timeEvent.EventTime;
                 }
@@ -60,7 +60,7 @@ namespace cl.uv.leikelen.Data.Access.External
                 end = timeEvent.EventTime;
 
             }
-            if (start != null)
+            if (!ReferenceEquals(null, start))
             {
                 Add(personId, modalName, subModalName, start.Value, end.Value);
             }

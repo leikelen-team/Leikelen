@@ -71,7 +71,7 @@
 
         <dragablz:TabablzControl Grid.Row="1" x:Name="Tabs" Grid.RowSpan="2" >
             <dragablz:TabablzControl.InterTabController>
-                <dragablz:InterTabController />
+                <dragablz:InterTabController MoveWindowWithSolitaryTabs="True" />
             </dragablz:TabablzControl.InterTabController>
             <TabItem Header="{x:Static resx:GUI.Player}">
                 <Grid>

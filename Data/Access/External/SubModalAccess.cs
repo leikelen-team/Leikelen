@@ -20,7 +20,7 @@ namespace cl.uv.leikelen.Data.Access.External
         public SubModalType Add(string modalName, string name, string description, string file)
         {
             var modal = DbFacade.Instance.Provider.LoadModal(modalName);
-            if (modal == null)
+            if (ReferenceEquals(null, modal))
             {
                 throw new DbException(Error.ModalTypeNotExists + modalName);
             }
@@ -46,7 +46,7 @@ namespace cl.uv.leikelen.Data.Access.External
         public bool Exists(string modalName, string subModalName)
         {
             var modal = DbFacade.Instance.Provider.LoadModal(modalName);
-            if (modal == null)
+            if (ReferenceEquals(null, modal))
             {
                 throw new DbException(Error.ModalTypeNotExists  + modalName);
             }
@@ -63,7 +63,7 @@ namespace cl.uv.leikelen.Data.Access.External
             var submodalsInModal = DbFacade.Instance.Provider.LoadSubModals(modalName);
             foreach(var submodal in submodalsInModal)
             {
-                if (submodal.SubModalTypeId == name)
+                if (submodal.SubModalTypeId.Equals(name))
                     return submodal;
             }
             return null;

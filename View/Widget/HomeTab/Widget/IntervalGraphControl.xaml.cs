@@ -59,29 +59,21 @@ namespace cl.uv.leikelen.View.Widget.HomeTab.Widget
 
         private void ModalCmbx_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (e.AddedItems.Count == 1)
+            if (ModalCmbx.SelectedItem is ModalType selModal && PersonCmbx.SelectedItem is Person selPerson)
             {
-                var modal = e.AddedItems[0] as ModalType;
-                if(!ReferenceEquals(null, modal))
-                {
-                    var selPerson = PersonCmbx.SelectedItem as Person;
-                    var selModal = ModalCmbx.SelectedItem as ModalType;
-                    if (ReferenceEquals(null, selPerson) || ReferenceEquals(null, selModal))
-                        return;
-                    List<SubModalType> submodals = new List<SubModalType>();
+                List<SubModalType> submodals = new List<SubModalType>();
 
-                    foreach (var sm in modal.SubModalTypes)
+                foreach (var sm in selModal.SubModalTypes)
+                {
+                    var intervals = DataAccessFacade.Instance.GetIntervalAccess().GetAll(selPerson.PersonId,
+                        selModal?.ModalTypeId,
+                        sm?.SubModalTypeId);
+                    if (!ReferenceEquals(null, intervals) && intervals.Count > 0)
                     {
-                        var intervals = DataAccessFacade.Instance.GetIntervalAccess().GetAll(selPerson.PersonId,
-                            selModal?.ModalTypeId,
-                            sm?.SubModalTypeId);
-                        if (!ReferenceEquals(null, intervals))
-                        {
-                            submodals.Add(sm);
-                        }
+                        submodals.Add(sm);
                     }
-                    SubmodalCmbx.ItemsSource = submodals;
                 }
+                SubmodalCmbx.ItemsSource = submodals;
             }
             Refresh();
         }
@@ -99,7 +91,9 @@ namespace cl.uv.leikelen.View.Widget.HomeTab.Widget
                         var intervals = DataAccessFacade.Instance.GetIntervalAccess().GetAll(person.PersonId,
                             smPis.SubModalType.ModalTypeId,
                             smPis.SubModalTypeId);
-                        if (!ReferenceEquals(null, intervals) && !modals.Contains(smPis.SubModalType.ModalType))
+                        if (!ReferenceEquals(null, intervals)
+                            && intervals.Count > 0
+                            && !modals.Contains(smPis.SubModalType.ModalType))
                         {
                             modals.Add(smPis.SubModalType.ModalType);
                         }
@@ -122,17 +116,17 @@ namespace cl.uv.leikelen.View.Widget.HomeTab.Widget
 
         private void Refresh()
         {
-            var selPerson = PersonCmbx.SelectedItem as Person;
-            var selModal = ModalCmbx.SelectedItem as ModalType;
-            var selSubModal = SubmodalCmbx.SelectedItem as SubModalType;
-            if (ReferenceEquals(null, selPerson) || ReferenceEquals(null, selModal) || ReferenceEquals(null, selSubModal))
-                return;
-            var intervals = DataAccessFacade.Instance.GetIntervalAccess().GetAll(selPerson.PersonId,
+            if (PersonCmbx.SelectedItem is Person selPerson &&
+                ModalCmbx.SelectedItem is ModalType selModal &&
+                SubmodalCmbx.SelectedItem is SubModalType selSubModal)
+            {
+                var intervals = DataAccessFacade.Instance.GetIntervalAccess().GetAll(selPerson.PersonId,
                 selModal.ModalTypeId,
                 selSubModal.SubModalTypeId);
-            if (!ReferenceEquals(null, intervals))
-            {
-                FillGraph(intervals);
+                if (!ReferenceEquals(null, intervals) && intervals.Count > 0)
+                {
+                    FillGraph(intervals);
+                }
             }
         }
 

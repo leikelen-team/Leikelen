@@ -12,6 +12,8 @@ namespace cl.uv.leikelen.Data.Persistence
         void CreateConnection(string options);
         void CloseConnection();
 
+        void Clear();
+
         List<Scene> LoadScenes();
         Scene LoadScene(int sceneId);
         Scene SaveScene(Scene instance);

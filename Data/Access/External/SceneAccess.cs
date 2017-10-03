@@ -13,7 +13,7 @@ namespace cl.uv.leikelen.Data.Access.External
     {
         public bool Exists(int sceneId)
         {
-            return DbFacade.Instance.Provider.LoadScene(sceneId) != null;
+            return !ReferenceEquals(null, DbFacade.Instance.Provider.LoadScene(sceneId));
         }
 
         public Scene Get(int sceneId)
@@ -29,11 +29,11 @@ namespace cl.uv.leikelen.Data.Access.External
         public Scene SaveOrUpdate(Scene scene)
         {
             Scene sceneReturned = null;
-            if (DbFacade.Instance.Provider.LoadScene(scene.SceneId) == null)
+            if (ReferenceEquals(null, DbFacade.Instance.Provider.LoadScene(scene.SceneId)))
                 sceneReturned = DbFacade.Instance.Provider.SaveScene(scene);
             else
                 sceneReturned = DbFacade.Instance.Provider.UpdateScene(scene);
-            if (sceneReturned != null && !System.IO.Directory.Exists(GeneralSettings.Instance.GetDataDirectory()+"scene/"+ sceneReturned.SceneId))
+            if (!ReferenceEquals(null, sceneReturned) && !System.IO.Directory.Exists(GeneralSettings.Instance.GetDataDirectory()+"scene/"+ sceneReturned.SceneId))
             {
                 System.IO.Directory.CreateDirectory(GeneralSettings.Instance.GetDataDirectory() + "scene/" + sceneReturned.SceneId);
             }
@@ -43,7 +43,7 @@ namespace cl.uv.leikelen.Data.Access.External
         public Scene SaveNew(Scene scene)
         {
             var sceneReturned = DbFacade.Instance.Provider.SaveNewScene(scene);
-            if (sceneReturned != null && !System.IO.Directory.Exists(GeneralSettings.Instance.GetDataDirectory() + "scene/" + sceneReturned.SceneId))
+            if (!ReferenceEquals(null, sceneReturned) && !System.IO.Directory.Exists(GeneralSettings.Instance.GetDataDirectory() + "scene/" + sceneReturned.SceneId))
             {
                 System.IO.Directory.CreateDirectory(GeneralSettings.Instance.GetDataDirectory() + "scene/" + sceneReturned.SceneId);
             }
@@ -57,6 +57,11 @@ namespace cl.uv.leikelen.Data.Access.External
             {
                 System.IO.Directory.Delete(GeneralSettings.Instance.GetDataDirectory() + "scene/" + scene?.SceneId, true);
             }
+        }
+
+        public void ClearDb()
+        {
+            DbFacade.Instance.Provider.Clear();
         }
     }
 }

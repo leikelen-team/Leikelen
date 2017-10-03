@@ -11,7 +11,7 @@
          TextElement.FontSize="14"
          FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
          Header="{x:Static resx:GUI.Scene}">
-    <ScrollViewer VerticalScrollBarVisibility="Auto">
+    <ScrollViewer x:Name="ScrollWithContent" Visibility="Hidden" VerticalScrollBarVisibility="Auto">
         <StackPanel Orientation="Vertical">
             <Label Content="{x:Static resx:GUI.TabSceneIntervalLabel}" FontWeight="Bold" />
             <DataGrid x:Name="IntervalDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="True" CanUserResizeColumns="True" CanUserResizeRows="True" CanUserSortColumns="True">

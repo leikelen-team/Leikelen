@@ -14,8 +14,8 @@ namespace cl.uv.leikelen.Data.Access.External
         {
             var personInScene = Internal.SceneInUse.Instance.Scene?.PersonsInScene?.Find(pis => pis.PersonId == personId);
             var subModalPersonInScene = personInScene?.SubModalType_PersonInScenes?.Find(smtPis => smtPis.SubModalType.SubModalTypeId.Equals(subModalName) && smtPis.SubModalType.ModalType.ModalTypeId.Equals(modalName));
-            var timelessRepresent = subModalPersonInScene?.RepresentTypes?.FindAll(rt => rt.IntervalData == null && rt.EventData == null && rt.Index.HasValue);
-            if(timelessRepresent == null || timelessRepresent.Count == 0)
+            var timelessRepresent = subModalPersonInScene?.RepresentTypes?.FindAll(rt => ReferenceEquals(null, rt.IntervalData) && ReferenceEquals(null, rt.EventData) && rt.Index.HasValue);
+            if(ReferenceEquals(null, timelessRepresent) || timelessRepresent.Count == 0)
             {
                 return null;
             }

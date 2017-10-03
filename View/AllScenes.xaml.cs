@@ -34,8 +34,7 @@ namespace cl.uv.leikelen.View
 
         private void DeleteBtn_Click(object sender, RoutedEventArgs e)
         {
-            var scene = ScenesDataGrid.SelectedItem as Scene;
-            if (scene != null)
+            if (ScenesDataGrid.SelectedItem is Scene scene)
             {
                 DataAccessFacade.Instance.GetSceneAccess().Delete(scene);
                 ScenesDataGrid.ItemsSource = DataAccessFacade.Instance.GetSceneAccess().GetAll();
@@ -44,10 +43,9 @@ namespace cl.uv.leikelen.View
 
         private void OpenBtn_Click(object sender, RoutedEventArgs e)
         {
-            var scene = ScenesDataGrid.SelectedItem as Scene;
-            scene = DataAccessFacade.Instance.GetSceneAccess().Get(scene.SceneId);
-            if (scene != null)
+            if (ScenesDataGrid.SelectedItem is Scene scene)
             {
+                scene = DataAccessFacade.Instance.GetSceneAccess().Get(scene.SceneId);
                 SceneInUse.Instance.Set(scene);
                 Close();
             }

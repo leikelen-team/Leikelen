@@ -18,13 +18,13 @@ namespace cl.uv.leikelen.Data.Access.External
             var subModalPersonInScene = personInScene.SubModalType_PersonInScenes.Find(smtPis => smtPis.SubModalType.SubModalTypeId.Equals(subModalName) && smtPis.SubModalType.ModalType.ModalTypeId.Equals(modalName));
 
             //if smtPis doesn't exists, then create it
-            if (subModalPersonInScene == null)
+            if (ReferenceEquals(null, subModalPersonInScene))
             {
                 var modalType = DbFacade.Instance.Provider.LoadModal(modalName);
-                if (Object.ReferenceEquals(null, modalType))
+                if (ReferenceEquals(null, modalType))
                     throw new DbException(Properties.Error.ModalTypeNotExists + modalName);
                 var submodalType = modalType.SubModalTypes.Find(smt => smt.SubModalTypeId.Equals(subModalName));
-                if (submodalType == null)
+                if (ReferenceEquals(null, submodalType))
                     throw new DbException("SubModalType: " + subModalName + Properties.Error.inModalType + modalName + Properties.Error.AlreadyExists);
 
                 subModalPersonInScene = new SubModalType_PersonInScene()

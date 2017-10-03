@@ -67,26 +67,25 @@ namespace cl.uv.leikelen.Module.General.GestureConfiguration.View
 
         private void RemovePostureButton_Click(object sender, RoutedEventArgs e)
         {
-            Posture selectedPosture = postureCrudDataGrid.SelectedItem as Posture;
-            if (selectedPosture == null)
-                return;
-            _dataAccessFacade.GetSubModalAccess().Delete(PostureTypes[selectedPosture.Type], selectedPosture.Name);
-            RefreshList();
-
+            if(postureCrudDataGrid.SelectedItem is Posture selectedPosture)
+            {
+                _dataAccessFacade.GetSubModalAccess().Delete(PostureTypes[selectedPosture.Type], selectedPosture.Name);
+                RefreshList();
+            }
         }
 
         private void EditPostureButton_Click(object sender, RoutedEventArgs e)
         {
-            Posture selectedPosture = postureCrudDataGrid.SelectedItem as Posture;
-            if (selectedPosture == null)
-                return;
-            SubModalType subModalType = _dataAccessFacade.GetSubModalAccess().Get(PostureTypes[selectedPosture.Type], selectedPosture.Name);
-            AddOrEditPosture addPostureView = new AddOrEditPosture(selectedPosture);
-            addPostureView.Show();
-            addPostureView.Closed += (closedSender, closedE) =>
+            if (postureCrudDataGrid.SelectedItem is Posture selectedPosture)
             {
-                RefreshList();
-            };
+                SubModalType subModalType = _dataAccessFacade.GetSubModalAccess().Get(PostureTypes[selectedPosture.Type], selectedPosture.Name);
+                AddOrEditPosture addPostureView = new AddOrEditPosture(selectedPosture);
+                addPostureView.Show();
+                addPostureView.Closed += (closedSender, closedE) =>
+                {
+                    RefreshList();
+                };
+            }
         }
 
         public object Clone()

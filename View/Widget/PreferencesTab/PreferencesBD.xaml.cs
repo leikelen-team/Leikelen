@@ -45,35 +45,6 @@ namespace cl.uv.leikelen.View.Widget.PreferencesTab
                 : GeneralSettings.Instance.DbPort.Value.ToString();
         }
 
-        /*
-        private void AcceptBtn_Click(object sender, RoutedEventArgs e)
-        {
-            //comprobar campos están bien puestos
-            //comprobar campos son distintos a los guardados
-            //probar base de datos
-            //avisar que se reiniciarán módulos, y que cierre todas las ventanas de éstos
-            //avisar si hubo error o conectó bien, y que se reiniciaron los módulos
-            
-            MessageBoxResult result = MessageBox.Show(Properties.GUI.BdWillNew, Properties.GUI.BdWillNewTitle, MessageBoxButton.YesNo,
-                   MessageBoxImage.Exclamation);
-            if(result == MessageBoxResult.Yes)
-            {
-                int port = 0;
-                if (int.TryParse(PortTxt.Text, out port) && EngineCmbx != null && !String.IsNullOrEmpty(HostTxt.Text)
-                    && !String.IsNullOrEmpty(HostTxt.Text) && !String.IsNullOrEmpty(NameTxt.Text)
-                    && !String.IsNullOrEmpty(UserTxt.Text) && !String.IsNullOrEmpty(PasswordTxt.Text))
-                {
-                    GeneralSettings.Instance.Database.Write((string)EngineCmbx.SelectedItem);
-                    GeneralSettings.Instance.DbHost.Write(HostTxt.Text);
-                    GeneralSettings.Instance.DbName.Write(NameTxt.Text);
-                    GeneralSettings.Instance.DbUser.Write(UserTxt.Text);
-                    GeneralSettings.Instance.DbPassword.Write(PasswordTxt.Text);
-                    GeneralSettings.Instance.DbPort.Write(port);
-                }
-                DbFacade.Reset();
-            }
-        }*/
-
         public void Apply()
         {
             string error = "";
@@ -82,7 +53,7 @@ namespace cl.uv.leikelen.View.Widget.PreferencesTab
             {
                 error += "\n"+Properties.GUI.PrefBDErrorPortEmpty;
             }
-            if(EngineCmbx == null)
+            if(ReferenceEquals(null, EngineCmbx))
             {
                 error += "\n"+Properties.GUI.PrefBDErrorEngineEmpty;
             }

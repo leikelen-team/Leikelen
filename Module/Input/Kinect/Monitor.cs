@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 using cl.uv.leikelen.API.FrameProvider.Kinect;
 using cl.uv.leikelen.API.Module.Input;
 using Microsoft.Kinect;
+using cl.uv.leikelen.API.DataAccess;
+using cl.uv.leikelen.Data.Access;
+using System.IO;
+using KinectEx.DVR;
 
 namespace cl.uv.leikelen.Module.Input.Kinect
 {
@@ -14,19 +18,20 @@ namespace cl.uv.leikelen.Module.Input.Kinect
         public event EventHandler StatusChanged;
 
         private KinectSensor _sensor;
+        private DVR.Recorder _recorder;
 
         private BodyFrameReader _bodyReader = null;
         private ColorFrameReader _colorReader = null;
         private AudioBeamFrameReader _audioBeamReader = null;
+        private IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
 
         private bool _isRecording;
 
-        public SkeletonColorVideoViewer VideoViewer;
+        
 
 
         public Monitor()
         {
-            VideoViewer = new SkeletonColorVideoViewer();
             _isRecording = false;
         }
 
@@ -37,7 +42,7 @@ namespace cl.uv.leikelen.Module.Input.Kinect
 
         public InputStatus GetStatus()
         {
-            if (_sensor == null)
+            if (ReferenceEquals(null, _sensor))
             {
                 return InputStatus.Unconnected;
             }
@@ -55,7 +60,7 @@ namespace cl.uv.leikelen.Module.Input.Kinect
 
         public async Task Close()
         {
-            if (_sensor == null)
+            if (ReferenceEquals(null, _sensor))
                 return;
             _sensor.Close();
             _sensor = null;
@@ -65,8 +70,7 @@ namespace cl.uv.leikelen.Module.Input.Kinect
         {
             if (!GetSensor())
                 return;
-            //TODO: record
-
+            
             int detectorCount = _sensor.BodyFrameSource.BodyCount > 0 ? _sensor.BodyFrameSource.BodyCount : 6;
             for (int i = 0; i < _sensor.BodyFrameSource.BodyCount; ++i)
             {
@@ -79,27 +83,26 @@ namespace cl.uv.leikelen.Module.Input.Kinect
             {
                 if (module.IsEnabled)
                 {
-                    var kinectModule = module as IKinectProcessingModule;
-                    if (kinectModule != null)
+                    if (module is IKinectProcessingModule kinectModule)
                     {
-                        if (kinectModule.BodyListener() != null)
+                        if (!ReferenceEquals(null, kinectModule.BodyListener()))
                         {
                             _bodyReader.FrameArrived += kinectModule.BodyListener();
                         }
 
-                        if (kinectModule.ColorListener() != null)
+                        if (!ReferenceEquals(null, kinectModule.ColorListener()))
                         {
                             _colorReader.FrameArrived += kinectModule.ColorListener();
                         }
 
-                        if (kinectModule.AudioListener() != null)
+                        if (!ReferenceEquals(null, kinectModule.AudioListener()))
                         {
                             _audioBeamReader.FrameArrived += kinectModule.AudioListener();
                         }
 
-                        if(kinectModule.GestureListener() != null)
+                        if (!ReferenceEquals(null, kinectModule.GestureListener()))
                         {
-                            foreach(var detector in GestureDetector.GestureDetectorList)
+                            foreach (var detector in GestureDetector.GestureDetectorList)
                             {
                                 detector.KinectGestureFrameArrived += kinectModule.GestureListener();
                             }
@@ -108,6 +111,22 @@ namespace cl.uv.leikelen.Module.Input.Kinect
                 }
             }
 
+            if (ReferenceEquals(null, _recorder) && !ReferenceEquals(null, _dataAccessFacade.GetSceneInUseAccess().GetScene()))
+            {
+                string fileName = _dataAccessFacade.GetGeneralSettings().GetDataDirectory() + "scene/" + _dataAccessFacade.GetSceneInUseAccess().GetScene().SceneId + "/kinect.dvr";
+                _recorder = new DVR.Recorder(File.Open(fileName, FileMode.Create), _sensor)
+                {
+                    EnableBodyRecorder = true,
+                    EnableColorRecorder = true,
+                    EnableDepthRecorder = false,
+                    EnableInfraredRecorder = false,
+
+                    ColorRecorderCodec = new JpegColorCodec()
+                };
+                _recorder.ColorRecorderCodec.OutputWidth = 1280;
+                _recorder.ColorRecorderCodec.OutputHeight = 720;
+                _recorder.Start();
+            }
             _isRecording = true;
         }
 
@@ -115,30 +134,34 @@ namespace cl.uv.leikelen.Module.Input.Kinect
         {
             if (!GetSensor() || !_isRecording)
                 return;
-            //TODO: stop recording
+
+            if (!ReferenceEquals(null, _recorder))
+            {
+                await _recorder.StopAsync();
+                _recorder = null;
+            }
 
             foreach (var module in ProcessingLoader.Instance.ProcessingModules)
             {
-                var kinectModule = module as IKinectProcessingModule;
-                if (kinectModule != null)
+                if (module is IKinectProcessingModule kinectModule)
                 {
-                    if (kinectModule.BodyListener() != null)
+                    if (!ReferenceEquals(null, kinectModule.BodyListener()))
                     {
                         _bodyReader.FrameArrived -= kinectModule.BodyListener();
                     }
 
-                    if (kinectModule.ColorListener() != null)
+                    if (!ReferenceEquals(null, kinectModule.ColorListener()))
                     {
                         _colorReader.FrameArrived -= kinectModule.ColorListener();
                     }
 
-                    if (kinectModule.AudioListener() != null)
+                    if (!ReferenceEquals(null, kinectModule.AudioListener()))
                     {
                         _audioBeamReader.FrameArrived -= kinectModule.AudioListener();
                     }
                 }
             }
-
+            
             _isRecording = false;
         }
 
@@ -150,7 +173,7 @@ namespace cl.uv.leikelen.Module.Input.Kinect
 
         private bool GetSensor()
         {
-            if(_sensor != null && _sensor.IsOpen)
+            if(!ReferenceEquals(null, _sensor) && _sensor.IsOpen)
             {
                 return true;
             }
@@ -163,9 +186,9 @@ namespace cl.uv.leikelen.Module.Input.Kinect
 
 
                     _bodyReader = _sensor.BodyFrameSource.OpenReader();
-                    _bodyReader.FrameArrived += VideoViewer._bodyReader_FrameArrived;
+                    _bodyReader.FrameArrived += KinectInput.SkeletonColorVideoViewer._bodyReader_FrameArrived;
                     _colorReader = _sensor.ColorFrameSource.OpenReader();
-                    _colorReader.FrameArrived += VideoViewer._colorReader_FrameArrived;
+                    _colorReader.FrameArrived += KinectInput.SkeletonColorVideoViewer._colorReader_FrameArrived;
                     _audioBeamReader = _sensor.AudioSource.OpenReader();
                     
                     OnStatusChanged();

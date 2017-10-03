@@ -26,7 +26,7 @@ namespace cl.uv.leikelen.Data.Access
         {
             get
             {
-                if (Object.ReferenceEquals(null, _instance)) _instance = new DataAccessFacade();
+                if (ReferenceEquals(null, _instance)) _instance = new DataAccessFacade();
                 return _instance;
             }
         }

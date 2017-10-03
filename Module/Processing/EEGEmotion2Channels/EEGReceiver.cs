@@ -14,20 +14,20 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels
         private List<double[]> _signaList;
         private bool _signalGet;
         private int _lastSecond;
-        private IDataAccessFacade DataAccessFacade = new DataAccessFacade();
+        private IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
 
         public EEGReceiver()
         {
-            if (!DataAccessFacade.GetModalAccess().Exists("Emotion"))
-                DataAccessFacade.GetModalAccess().Add("Emotion", "Affects or feels of a person");
-            if (!DataAccessFacade.GetSubModalAccess().Exists("Emotion", "LALV"))
-                DataAccessFacade.GetSubModalAccess().Add("Emotion", "LALV", "Low arousal Low Valence", "emotionmodel.svm");
-            if (!DataAccessFacade.GetSubModalAccess().Exists("Emotion", "LAHV"))
-                DataAccessFacade.GetSubModalAccess().Add("Emotion", "LAHV", "Low arousal High Valence", "emotionmodel.svm");
-            if (!DataAccessFacade.GetSubModalAccess().Exists("Emotion", "HALV"))
-                DataAccessFacade.GetSubModalAccess().Add("Emotion", "HALV", "High arousal Low Valence", "emotionmodel.svm");
-            if (!DataAccessFacade.GetSubModalAccess().Exists("Emotion", "HAHV"))
-                DataAccessFacade.GetSubModalAccess().Add("Emotion", "HAHV", "High arousal High Valence", "emotionmodel.svm");
+            if (!_dataAccessFacade.GetModalAccess().Exists("Emotion"))
+                _dataAccessFacade.GetModalAccess().Add("Emotion", "Affects or feels of a person");
+            if (!_dataAccessFacade.GetSubModalAccess().Exists("Emotion", "LALV"))
+                _dataAccessFacade.GetSubModalAccess().Add("Emotion", "LALV", "Low arousal Low Valence", "emotionmodel.svm");
+            if (!_dataAccessFacade.GetSubModalAccess().Exists("Emotion", "LAHV"))
+                _dataAccessFacade.GetSubModalAccess().Add("Emotion", "LAHV", "Low arousal High Valence", "emotionmodel.svm");
+            if (!_dataAccessFacade.GetSubModalAccess().Exists("Emotion", "HALV"))
+                _dataAccessFacade.GetSubModalAccess().Add("Emotion", "HALV", "High arousal Low Valence", "emotionmodel.svm");
+            if (!_dataAccessFacade.GetSubModalAccess().Exists("Emotion", "HAHV"))
+                _dataAccessFacade.GetSubModalAccess().Add("Emotion", "HAHV", "High arousal High Valence", "emotionmodel.svm");
 
             _signaList = new List<double[]>();
             _signalGet = true;
@@ -63,7 +63,7 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels
                 _signaList.Add(values);
 
             //if the window ends, sends the signal to process
-            var sceneLocation = DataAccessFacade.GetSceneInUseAccess().GetLocation();
+            var sceneLocation = _dataAccessFacade.GetSceneInUseAccess().GetLocation();
             if (_signaList.Count >= 0 
                 && sceneLocation.HasValue 
                 && _lastSecond != (int)sceneLocation.Value.TotalSeconds 

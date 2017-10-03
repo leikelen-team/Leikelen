@@ -27,7 +27,7 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI
         {
             get
             {
-                if (_instance == null) _instance = new OpenBCISettings();
+                if (ReferenceEquals(null, _instance)) _instance = new OpenBCISettings();
                 return _instance;
             }
         }
