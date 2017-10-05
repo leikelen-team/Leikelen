@@ -8,9 +8,9 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels
 {
     public enum TagType
     {
-        LowArousalLowValence,
-        LowArousalHighValence,
-        HighArousalLowValence,
-        HighArousalHighValence
+        LALV,
+        LAHV,
+        HALV,
+        HAHV
     }
 }

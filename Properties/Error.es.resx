@@ -106,9 +106,6 @@
   <data name="inModalType" xml:space="preserve">
     <value>en el tipo modal: </value>
   </data>
-  <data name="SourceComboboxIsNull" xml:space="preserve">
-    <value>Combobox de fuente es nulo</value>
-  </data>
   <data name="BdNotConnectTitle" xml:space="preserve">
     <value>Base de datos no conectada</value>
   </data>

@@ -70,6 +70,15 @@ namespace cl.uv.leikelen.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a If you accept, you would lose all not saved in actual scene.
+        /// </summary>
+        public static string ActualSceneWillLose {
+            get {
+                return ResourceManager.GetString("ActualSceneWillLose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Add.
         /// </summary>
         public static string Add {
@@ -372,33 +381,6 @@ namespace cl.uv.leikelen.Properties {
         public static string FileExistsTitle {
             get {
                 return ResourceManager.GetString("FileExistsTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a Select.
-        /// </summary>
-        public static string FromNone {
-            get {
-                return ResourceManager.GetString("FromNone", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a From saved scene.
-        /// </summary>
-        public static string FromScene {
-            get {
-                return ResourceManager.GetString("FromScene", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a From sensor.
-        /// </summary>
-        public static string FromSensor {
-            get {
-                return ResourceManager.GetString("FromSensor", resourceCulture);
             }
         }
         

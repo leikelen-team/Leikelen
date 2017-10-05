@@ -36,13 +36,16 @@
         <Label x:Name="MLabel" Grid.Row="1" Grid.Column="0" VerticalAlignment="Bottom" HorizontalAlignment="Left" Content="m" />
         <TextBox Grid.Row="1" Grid.Column="1" 
                  x:Name="mTextBox"
+                 PreviewTextInput="Int_PreviewText"
+                 DataObject.Pasting="Int_Pasting"
                  materialDesign:HintAssist.Hint="{x:Static resx:EEGEmotion2Channels.mHint}"
                  VerticalAlignment="Bottom" />
         <Label x:Name="RLabel" Grid.Row="2" Grid.Column="0" VerticalAlignment="Bottom" HorizontalAlignment="Left" Content="r" />
         <TextBox Grid.Row="2" Grid.Column="1"
                  x:Name="rTextBox"
                  materialDesign:HintAssist.Hint="{x:Static resx:EEGEmotion2Channels.rHint}"
-                 VerticalAlignment="Bottom" />
+                 VerticalAlignment="Bottom" >
+        </TextBox>
         <Label x:Name="SecsLabel" Grid.Row="3" Grid.Column="0" VerticalAlignment="Bottom" HorizontalAlignment="Left" Content="{x:Static resx:EEGEmotion2Channels.Window}" />
 
         <Grid Grid.Row="3" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Stretch">
@@ -53,6 +56,8 @@
             <TextBox
                 x:Name="SecsTextBox"
                 Grid.Column="0"
+                PreviewTextInput="Int_PreviewText"
+                 DataObject.Pasting="Int_Pasting"
                 HorizontalAlignment="Stretch"
                 materialDesign:HintAssist.Hint="{x:Static resx:EEGEmotion2Channels.secsHint}" />
 
@@ -63,14 +68,20 @@
         <TextBox Grid.Row="4" Grid.Column="1"
                  x:Name="NTextBox"
                  materialDesign:HintAssist.Hint="{x:Static resx:EEGEmotion2Channels.NHint}"
+                 PreviewTextInput="Int_PreviewText"
+                 DataObject.Pasting="Int_Pasting"
                  VerticalAlignment="Bottom" />
 
         <Label x:Name="shiftLabel" Grid.Row="5" Grid.Column="0" VerticalAlignment="Bottom" HorizontalAlignment="Left" Content="{x:Static resx:EEGEmotion2Channels.shift}" />
         <TextBox Grid.Row="5" Grid.Column="1"
                  x:Name="shiftTextBox"
+                 PreviewTextInput="Int_PreviewText"
+                 DataObject.Pasting="Int_Pasting"
                  materialDesign:HintAssist.Hint="{x:Static resx:EEGEmotion2Channels.shiftHint}"
-                 VerticalAlignment="Bottom" />
-        
+                 VerticalAlignment="Bottom" >
+            
+        </TextBox>
+
 
 
         <StackPanel Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom" HorizontalAlignment="Center" Orientation="Horizontal">

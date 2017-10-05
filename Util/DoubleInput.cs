@@ -5,20 +5,27 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Media;
 
 namespace cl.uv.leikelen.Util
 {
     public static class DoubleInput
     {
-        private static bool IsTextAllowed(string text)
+        public static bool IsTextAllowed(string text)
         {
-            return double.TryParse(text, out double value);
+            Console.WriteLine(text);
+            bool result = double.TryParse(text, out double value);
+            if (!result)
+                SystemSounds.Beep.Play();
+            return result;
         }
 
         // Use the PreviewTextInputHandler to respond to key presses 
         public static void PreviewTextInputHandler(Object sender, TextCompositionEventArgs e)
         {
-            e.Handled = !IsTextAllowed(e.Text);
+            Console.WriteLine($"control: {e.ControlText}, text: {e.Text}, system: {e.SystemText}");
+            Console.WriteLine($"comp obj: {e.TextComposition}, comp: {e.TextComposition.CompositionText}, comp control: {e.TextComposition.ControlText}, comp text: {e.TextComposition.Text}, comp sys: {e.TextComposition.SystemText}, comp sys comp: {e.TextComposition.SystemCompositionText}");
+            e.Handled = !IsTextAllowed(e.ControlText);
         }
 
         // Use the DataObject.Pasting Handler  

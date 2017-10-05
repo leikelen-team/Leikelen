@@ -63,14 +63,15 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels
                 _signaList.Add(values);
 
             //if the window ends, sends the signal to process
-            var sceneLocation = _dataAccessFacade.GetSceneInUseAccess().GetLocation();
+            var sceneLocation = e.Time;
             if (_signaList.Count >= 0 
-                && sceneLocation.HasValue 
-                && _lastSecond != (int)sceneLocation.Value.TotalSeconds 
-                && (int)sceneLocation.Value.TotalSeconds % 9 == 0)
+                && _lastSecond != (int)sceneLocation.TotalSeconds 
+                && (int)sceneLocation.TotalSeconds % 9 == 0)
             {
-                _lastSecond = (int) sceneLocation.Value.TotalSeconds;
-                LearningModel.Classify(_signaList);
+                _lastSecond = (int) sceneLocation.TotalSeconds;
+
+                var tag = LearningModel.Classify(_signaList);
+                _dataAccessFacade.GetEventAccess().Add(e.PersonId, "Emotion", tag.ToString(), e.Time);
                 _signaList = new List<double[]>();
             }
         }

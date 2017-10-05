@@ -12,6 +12,7 @@ using cl.uv.leikelen.API.FrameProvider.EEG;
 using cl.uv.leikelen.Data.Access;
 using cl.uv.leikelen.Module;
 using cl.uv.leikelen.API.DataAccess;
+using cl.uv.leikelen.Data.Model;
 
 namespace cl.uv.leikelen.Module.Input.OpenBCI
 {
@@ -26,6 +27,7 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI
         private Util.FileManage _filemanage;
         private readonly string[] _positions;
         private IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
+        private Person _person;
 
         private bool _isRecording;
 
@@ -33,8 +35,9 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI
         private event EventHandler<EegFrameArrivedEventArgs> EegFrameArrived;
         private event EventHandler<AccelerometerFrameArrivedEventArgs> AccelerometerFrameArrived;
 
-        public Monitor()
+        public Monitor(Person person)
         {
+            _person = person;
             _interpretStream = new Util.InterpretStream();
             _filter = new Util.Filter();
             _status = InputStatus.Unconnected;
@@ -169,6 +172,8 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI
             {
                 byte[] buffer = new byte[port.BytesToRead];
                 port.Read(buffer, 0, buffer.Length);
+                var time = _dataAccessFacade.GetSceneInUseAccess().GetLocation();
+                if (!time.HasValue) return;
                 foreach (var bufferData in buffer)
                 {
                     double[] data = _interpretStream.interpretBinaryStream(bufferData);
@@ -179,7 +184,8 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI
                         {
                             var eegArgs = new EegFrameArrivedEventArgs()
                             {
-                                //Time = ,
+                                Time = time.Value,
+                                PersonId = _person.PersonId,
                                 Channels = new List<EegChannel>()
                             };
                             for (int j = 1; j < 9; j++)

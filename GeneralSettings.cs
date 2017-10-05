@@ -18,7 +18,7 @@ namespace cl.uv.leikelen
 
         public readonly Option<int> DefaultMillisecondsThreshold = new Option<int>("DefaultMilliseconds", 2000);
 
-        public readonly Option<string> Database = new Option<string>("Database", "PostgreSQL");
+        public readonly Option<string> Database = new Option<string>("Database", "Memory");
         public readonly Option<string> DbHost = new Option<string>("DbHost", "localhost");
         public readonly Option<int> DbPort = new Option<int>("DbPort", -1);
         public readonly Option<string> DbName = new Option<string>("DbName", "leikelen");

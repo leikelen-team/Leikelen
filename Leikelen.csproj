@@ -116,9 +116,6 @@
     <Reference Include="Accord.Statistics, Version=3.7.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
       <HintPath>packages\Accord.Statistics.3.7.0\lib\net45\Accord.Statistics.dll</HintPath>
     </Reference>
-    <Reference Include="CodeContracts, Version=1.0.5680.18392, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\CodeContracts.1.0.5680.18392\lib\net40\CodeContracts.dll</HintPath>
-    </Reference>
     <Reference Include="Config.Net, Version=3.0.0.0, Culture=neutral, PublicKeyToken=d836a57afd299520, processorArchitecture=MSIL">
       <HintPath>packages\Config.Net.3.3.29\lib\net452\Config.Net.dll</HintPath>
     </Reference>
@@ -217,6 +214,12 @@
       <HintPath>packages\Microsoft.Kinect.VisualGestureBuilder.x64.2.0.1410.19000\lib\net45\Microsoft.Kinect.VisualGestureBuilder.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.VisualStudio.TestPlatform.14.0.0.1\lib\net20\Microsoft.VisualStudio.TestPlatform.TestFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.VisualStudio.TestPlatform.14.0.0.1\lib\net20\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="MySqlConnector, Version=0.24.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\MySqlConnector.0.24.2\lib\net45\MySqlConnector.dll</HintPath>
     </Reference>
@@ -234,6 +237,9 @@
     </Reference>
     <Reference Include="Npgsql.EntityFrameworkCore.PostgreSQL.Design, Version=1.1.1.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
       <HintPath>packages\Npgsql.EntityFrameworkCore.PostgreSQL.Design.1.1.1\lib\net451\Npgsql.EntityFrameworkCore.PostgreSQL.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=3.8.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>packages\NUnit.3.8.1\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="Pomelo.EntityFrameworkCore.MySql, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\Pomelo.EntityFrameworkCore.MySql.1.1.2\lib\net451\Pomelo.EntityFrameworkCore.MySql.dll</HintPath>
@@ -499,6 +505,7 @@
     <Compile Include="Module\Processing\EEGEmotion2Channels\LearningModel.cs" />
     <Compile Include="Module\ProcessingLoader.cs" />
     <Compile Include="GeneralSettings.cs" />
+    <Compile Include="Test\Unit\UnitTests.cs" />
     <Compile Include="Util\DoubleInput.cs" />
     <Compile Include="Util\IntegerInput.cs" />
     <Compile Include="Util\StringLimitedInput.cs" />
@@ -735,6 +742,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Test\Integration\" />
     <Folder Include="View\Widget\Wizard\" />
   </ItemGroup>
   <ItemGroup>
@@ -763,6 +771,9 @@
     <Content Include="vgbtechs\RFRProgressTech.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

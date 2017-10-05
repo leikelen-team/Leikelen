@@ -202,10 +202,13 @@
   <data name="Help_DevDocumentation" xml:space="preserve">
     <value>Documentación de desarrollador</value>
   </data>
-  <data name="Scene_Persons" xml:space="preserve">
+  <data name="Scene_AllPersons" xml:space="preserve">
     <value>Personas</value>
   </data>
   <data name="File_AllScenes" xml:space="preserve">
     <value>Todas las escenas</value>
+  </data>
+  <data name="Scene_PersonsInScene" xml:space="preserve">
+    <value>Personas en la escena</value>
   </data>
 </root>

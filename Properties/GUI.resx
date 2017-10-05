@@ -142,15 +142,6 @@
   <data name="Title_ConfigureScene" xml:space="preserve">
     <value>Configure scene</value>
   </data>
-  <data name="FromScene" xml:space="preserve">
-    <value>From saved scene</value>
-  </data>
-  <data name="FromSensor" xml:space="preserve">
-    <value>From sensor</value>
-  </data>
-  <data name="FromNone" xml:space="preserve">
-    <value>Select</value>
-  </data>
   <data name="Edit" xml:space="preserve">
     <value>Edit</value>
   </data>
@@ -450,5 +441,8 @@
   </data>
   <data name="PrefEventsGraphMinHeight" xml:space="preserve">
     <value>Minimum height of events graphs</value>
+  </data>
+  <data name="ActualSceneWillLose" xml:space="preserve">
+    <value>If you accept, you would lose all not saved in actual scene</value>
   </data>
 </root>

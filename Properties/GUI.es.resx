@@ -162,15 +162,6 @@
   <data name="Title_ConfigureScene" xml:space="preserve">
     <value>Configurar escena</value>
   </data>
-  <data name="FromScene" xml:space="preserve">
-    <value>Desde escena guardada</value>
-  </data>
-  <data name="FromSensor" xml:space="preserve">
-    <value>Desde sensor</value>
-  </data>
-  <data name="FromNone" xml:space="preserve">
-    <value>Seleccionar</value>
-  </data>
   <data name="Edit" xml:space="preserve">
     <value>Editar</value>
   </data>
@@ -470,5 +461,8 @@
   </data>
   <data name="PrefEventsGraphMinHeight" xml:space="preserve">
     <value>Altura mínima de gráficos de eventos</value>
+  </data>
+  <data name="ActualSceneWillLose" xml:space="preserve">
+    <value>Si aceptas, podrías perder todo lo que no has guardado en la escena actual</value>
   </data>
 </root>

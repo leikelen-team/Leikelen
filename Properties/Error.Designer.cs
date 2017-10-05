@@ -122,14 +122,5 @@ namespace cl.uv.leikelen.Properties {
                 return ResourceManager.GetString("ModalTypeNotExists", resourceCulture);
             }
         }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a Source combobox is null.
-        /// </summary>
-        public static string SourceComboboxIsNull {
-            get {
-                return ResourceManager.GetString("SourceComboboxIsNull", resourceCulture);
-            }
-        }
     }
 }

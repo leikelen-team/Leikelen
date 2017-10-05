@@ -51,6 +51,8 @@
         <Label VerticalAlignment="Bottom" Grid.Row="3" Grid.Column="0" Content="{x:Static resx:GUI.Participants}" />
         <TextBox Grid.Row="3" Grid.Column="1" 
 				    x:Name="ParticipantsTextBox"
+                    PreviewTextInput="ParticipantsTextBox_PreviewTextInput"
+                    DataObject.Pasting="ParticipantsTextBox_Pasting"
 				    materialDesign:HintAssist.Hint="{x:Static resx:GUI.Participants}">
         </TextBox>
 

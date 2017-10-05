@@ -45,7 +45,7 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels
             }
         }
 
-        public static void Train(Dictionary<TagType, List<List<double[]>>> allsignalsList)
+        public static MulticlassSupportVectorMachine<Gaussian> Train(Dictionary<TagType, List<List<double[]>>> allsignalsList)
         {
             Console.WriteLine("a entrenar se ha dicho");
             List<double[]> inputsList = new List<double[]>();
@@ -131,14 +131,12 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels
                 $"Outputs: {result.NumberOfOutputs}");
             file_emotrain.Flush();
             file_emotrain.Close();
+            return svm;
             
         }
 
         private static List<double> PreProcess(List<double[]> signalsList)
         {
-            
-                
-
             double[] f3 = new double[signalsList.Count];
             bool first = true;
             for (int i = 0; i < f3.Length;i++)

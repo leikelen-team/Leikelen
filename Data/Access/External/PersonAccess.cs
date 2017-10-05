@@ -12,6 +12,8 @@ namespace cl.uv.leikelen.Data.Access.External
 {
     public class PersonAccess : IPersonAccess
     {
+        public event EventHandler<Person> PersonAdded;
+
         public Person Add(string name, string photo, DateTime? birthday, int? sex)
         {
             var person = DbFacade.Instance.Provider.SavePerson(new Person()
@@ -22,6 +24,7 @@ namespace cl.uv.leikelen.Data.Access.External
                 Sex = sex
             });
             InputLoader.Instance.FillPersonInputModules(person);
+            PersonAdded?.Invoke(this, person);
             return person;
         }
 

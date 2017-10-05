@@ -214,6 +214,15 @@ namespace cl.uv.leikelen.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Persons.
+        /// </summary>
+        public static string Scene_AllPersons {
+            get {
+                return ResourceManager.GetString("Scene_AllPersons", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Configure scene.
         /// </summary>
         public static string Scene_Configure {
@@ -223,11 +232,11 @@ namespace cl.uv.leikelen.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Persons.
+        ///   Busca una cadena traducida similar a Persons in scene.
         /// </summary>
-        public static string Scene_Persons {
+        public static string Scene_PersonsInScene {
             get {
-                return ResourceManager.GetString("Scene_Persons", resourceCulture);
+                return ResourceManager.GetString("Scene_PersonsInScene", resourceCulture);
             }
         }
         

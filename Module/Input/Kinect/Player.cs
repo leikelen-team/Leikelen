@@ -28,24 +28,31 @@ namespace cl.uv.leikelen.Module.Input.Kinect
             if (ReferenceEquals(null, _replay) &&
                 !ReferenceEquals(null, _dataAccessFacade.GetSceneInUseAccess().GetScene()))
             {
-                string fileName = _dataAccessFacade.GetGeneralSettings().GetDataDirectory() +
-                    "scene/" + _dataAccessFacade.GetSceneInUseAccess().GetScene().SceneId + "/kinect.dvr";
-                if (File.Exists(fileName))
+                try
                 {
-                    Console.WriteLine($"archivo {fileName} existe, a abrirlo");
-                    _replay = new KinectReplay(File.Open(fileName, FileMode.Open, FileAccess.Read));
-                    _replay.PropertyChanged += _replay_PropertyChanged;
-                    if (_replay.HasBodyFrames)
+                    string fileName = _dataAccessFacade.GetGeneralSettings().GetDataDirectory() +
+                    "scene/" + _dataAccessFacade.GetSceneInUseAccess().GetScene().SceneId + "/kinect.dvr";
+                    if (File.Exists(fileName))
                     {
-                        _replay.BodyFrameArrived += KinectInput.SkeletonColorVideoViewer._replay_BodyFrameArrived;
-                    }
-                    if (_replay.HasColorFrames)
-                    {
-                        _replay.ColorFrameArrived += KinectInput.SkeletonColorVideoViewer._replay_ColorFrameArrived;
-                    }
+                        Console.WriteLine($"archivo {fileName} existe, a abrirlo");
+                        _replay = new KinectReplay(File.Open(fileName, FileMode.Open, FileAccess.Read));
+                        _replay.PropertyChanged += _replay_PropertyChanged;
+                        if (_replay.HasBodyFrames)
+                        {
+                            _replay.BodyFrameArrived += KinectInput.SkeletonColorVideoViewer._replay_BodyFrameArrived;
+                        }
+                        if (_replay.HasColorFrames)
+                        {
+                            _replay.ColorFrameArrived += KinectInput.SkeletonColorVideoViewer._replay_ColorFrameArrived;
+                        }
 
-                    _replay.ScrubTo(new TimeSpan(0));
-                    _replay.Start();
+                        _replay.ScrubTo(new TimeSpan(0));
+                        _replay.Start();
+                    }
+                }
+                catch (Exception)
+                {
+                    Close();
                 }
             }
             else
@@ -67,6 +74,7 @@ namespace cl.uv.leikelen.Module.Input.Kinect
                 _replay.Stop();
                 _replay.ScrubTo(new TimeSpan(0));
             }
+            Close();
         }
 
         public void ChangeTime(TimeSpan newTime)

@@ -7,12 +7,13 @@ using cl.uv.leikelen.Data.Persistence.Provider;
 using cl.uv.leikelen.Data.Access.Internal;
 using System.IO;
 using System.IO.Compression;
+using cl.uv.leikelen.Data.Model;
 
 namespace cl.uv.leikelen.Controller
 {
     public static class FileController
     {
-        public static void Import(string fileName)
+        public static Scene Import(string fileName)
         {
             Directory.Delete(GeneralSettings.Instance.GetTmpSceneDirectory(), true);
             Directory.CreateDirectory(GeneralSettings.Instance.GetTmpSceneDirectory());
@@ -25,7 +26,8 @@ namespace cl.uv.leikelen.Controller
             sqliteProvider.CreateConnection("Filename=" + GeneralSettings.Instance.GetTmpSceneDirectory()+ "scene.sqlite3");
             var scene = sqliteProvider.LoadScene(sqliteProvider.LoadScenes()[0].SceneId);
             int sceneIdInFile = scene.SceneId;
-            SceneInUse.Instance.Set(Data.Access.DataAccessFacade.Instance.GetSceneAccess().SaveNew(scene));
+            var insertedScene = Data.Access.DataAccessFacade.Instance.GetSceneAccess().SaveNew(scene);
+            SceneInUse.Instance.Set(insertedScene);
 
             Console.WriteLine($"in file: {sceneIdInFile}, in real: {SceneInUse.Instance.Scene.SceneId}");
             Console.WriteLine($"{GeneralSettings.Instance.GetTmpSceneDirectory() + "scene/" + sceneIdInFile}");
@@ -48,6 +50,7 @@ namespace cl.uv.leikelen.Controller
                         GeneralSettings.Instance.GetDataDirectory() + "modal/" + smt_pis.SubModalType.ModalTypeId);
                 }
             }
+            return insertedScene;
         }
 
         public static void Export(bool isOnlyBd, string fileName)

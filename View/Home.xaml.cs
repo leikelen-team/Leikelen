@@ -75,7 +75,7 @@ namespace cl.uv.leikelen.View
             _playerController = new PlayerController();
             _mediaController = new MediaController();
             _playerState = PlayerState.Wait;
-            _buttonBackground = Player_VolumeToggle.Background;
+            _buttonBackground = Player_RecordButton.Background;
 
             //Initialize record button timer arguments
             _recordTimer = new DispatcherTimer();
@@ -120,15 +120,11 @@ namespace cl.uv.leikelen.View
             Player_StopButton.Click += StopButton_Click;
             Player_RecordButton.Click += RecordButton_Click;
             Player_LocationSlider.ValueChanged += LocationSlider_ValueChanged;
-            Player_VolumeToggle.Checked += Player_VolumeToggle_Checked;
-            Player_VolumeToggle.Unchecked += Player_VolumeToggle_Unchecked;
-
-            //Source related events
-            SourceComboBox.SelectionChanged += SourceComboBox_SelectionChanged;
-
+            
             InputLoader.Instance.VideoHandler.ColorImageArrived += VideoViewer_colorImageArrived;
             InputLoader.Instance.VideoHandler.SkeletonImageArrived += VideoViewer_skeletonImageArrived;
 
+            DataAccessFacade.Instance.GetPersonAccess().PersonAdded += Home_PersonAdded;
             
             _tabs = new List<ITab>()
             {
@@ -153,12 +149,11 @@ namespace cl.uv.leikelen.View
             ColorLayerCheckbox.IsChecked = true;
 
             //Actions
-            ChangeHomeState(HomeState.Initial, PlayerState.Wait);
+            ChangeHomeState(HomeState.Base, PlayerState.Wait);
             FillMenuInputModules();
             FillMenuProccessingModules();
             FillMenuGeneralModules();
         }
-
 
         private void MenuItem_File_LoadTestScene_Click(object sender, RoutedEventArgs e)
         {
@@ -171,7 +166,7 @@ namespace cl.uv.leikelen.View
         {
             switch (newHomeState)
             {
-                case HomeState.Initial:
+                case HomeState.Base:
                     if (_playerState == PlayerState.Record)
                     {
                         MessageBoxResult result = MessageBox.Show(Properties.GUI.stopRecordFirst, 
@@ -180,50 +175,31 @@ namespace cl.uv.leikelen.View
                     }
                     SceneInUse.Instance.Set(null);
                     _mediaController.SetFromNone();
-                    SetGuiInitial();
-                    break;
-                case HomeState.FromSensor:
-                    if (_homeState == HomeState.FromSensor || _homeState == HomeState.FromSensorWithScene)
-                    {
-                        return false;
-                    }
-                    _mediaController.SetFromSensor();
-                    SetGuiFromScene();
+                    SetGuiBase();
                     break;
                 case HomeState.FromSensorWithScene:
                     if (ReferenceEquals(null, DataAccessFacade.Instance.GetSceneInUseAccess().GetScene()))
                         return false;
                     SetGuiFromSensorWithScene(newPlayerState);
                     break;
-                case HomeState.FromFile:
-                    if (_playerState == PlayerState.Record)
-                    {
-                        MessageBoxResult result = MessageBox.Show(Properties.GUI.stopRecordFirst, 
-                            Properties.GUI.Atention, MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                        return false;
-                    }
-                    SceneInUse.Instance.Set(null);
-                    SetGuiFromFile();
-                    break;
                 case HomeState.FromFileWithScene:
                     if (ReferenceEquals(null, DataAccessFacade.Instance.GetSceneInUseAccess().GetScene()))
                         return false;
-                    
                     SetGuiFromFileWithScene(newPlayerState);
                     break;
             }
 
             _homeState = newHomeState;
-            if (_homeState == HomeState.Initial)
+            if (_homeState == HomeState.Base)
                 _playerState = PlayerState.Wait;
             else
                 _playerState = newPlayerState;
             return true;
         }
 
-        private void SetGuiFromFile()
+        private void SetGuiBase()
         {
-            MenuItem_File_NewScene.IsEnabled = false;
+            MenuItem_File_NewScene.IsEnabled = true;
             MenuItem_File_Save.IsEnabled = false;
             MenuItem_File_AllScenes.IsEnabled = true;
             MenuItem_File_Import.IsEnabled = true;
@@ -235,71 +211,17 @@ namespace cl.uv.leikelen.View
             MenuItem_Tools_Player.IsEnabled = false;
             MenuItems_Tools_Sensors.IsEnabled = false;
             MenuItems_Tools_Processing.IsEnabled = false;
-
-            MenuItem_Scene.IsEnabled = false;
+            MenuItems_Tools_General.IsEnabled = true;
+            
             MenuItem_Scene_Configure.IsEnabled = false;
             MenuItem_Scene_AddPerson.IsEnabled = false;
+            MenuItem_Scene_Persons.IsEnabled = false;
+            MenuItem_Scene_PersonsInScene.IsEnabled = false;
 
             Player_LocationSlider.IsEnabled = false;
             Player_RecordButton.IsEnabled = false;
             Player_PlayButton.IsEnabled = false;
             Player_StopButton.IsEnabled = false;
-            Player_VolumeToggle.IsEnabled = false;
-            Player_VolumeSlider.IsEnabled = false;
-        }
-
-        private void SetGuiInitial()
-        {
-            MenuItem_File_NewScene.IsEnabled = false;
-            MenuItem_File_Save.IsEnabled = false;
-            MenuItem_File_AllScenes.IsEnabled = false;
-            MenuItem_File_Import.IsEnabled = false;
-            MenuItem_File_Export.IsEnabled = false;
-            MenuItem_File_Quit.IsEnabled = true;
-
-            MenuItem_Tools_Preferences.IsEnabled = true;
-            MenuItem_Tools_DB.IsEnabled = true;
-            MenuItem_Tools_Player.IsEnabled = false;
-            MenuItems_Tools_Sensors.IsEnabled = false;
-            MenuItems_Tools_Processing.IsEnabled = false;
-
-            MenuItem_Scene.IsEnabled = false;
-            MenuItem_Scene_Configure.IsEnabled = false;
-            MenuItem_Scene_AddPerson.IsEnabled = false;
-
-            Player_LocationSlider.IsEnabled = false;
-            Player_RecordButton.IsEnabled = false;
-            Player_PlayButton.IsEnabled = false;
-            Player_StopButton.IsEnabled = false;
-            Player_VolumeToggle.IsEnabled = false;
-            Player_VolumeSlider.IsEnabled = false;
-        }
-
-        private void SetGuiFromScene()
-        {
-            MenuItem_File_NewScene.IsEnabled = true;
-            MenuItem_File_Save.IsEnabled = false;
-            MenuItem_File_AllScenes.IsEnabled = false;
-            MenuItem_File_Import.IsEnabled = false;
-            MenuItem_File_Export.IsEnabled = false;
-            MenuItem_File_Quit.IsEnabled = true;
-
-            MenuItem_Tools_Preferences.IsEnabled = true;
-            MenuItem_Tools_DB.IsEnabled = true;
-            MenuItem_Tools_Player.IsEnabled = true;
-            MenuItems_Tools_Sensors.IsEnabled = true;
-            MenuItems_Tools_Processing.IsEnabled = true;
-
-            MenuItem_Scene.IsEnabled = false;
-            MenuItem_Scene_Configure.IsEnabled = false;
-            MenuItem_Scene_AddPerson.IsEnabled = false;
-
-            Player_LocationSlider.IsEnabled = false;
-            Player_RecordButton.IsEnabled = false;
-            Player_PlayButton.IsEnabled = false;
-            Player_StopButton.IsEnabled = false;
-            Player_VolumeToggle.IsEnabled = false;
-            Player_VolumeSlider.IsEnabled = false;
         }
 
         private void SetGuiFromFileWithScene(PlayerState playerState)
@@ -321,77 +243,82 @@ namespace cl.uv.leikelen.View
                     Player_StopButton.IsEnabled = true;
                     break;
             }
-            MenuItem_File_NewScene.IsEnabled = false;
             MenuItem_File_Save.IsEnabled = true;
-            MenuItem_File_AllScenes.IsEnabled = true;
-            MenuItem_File_Import.IsEnabled = true;
             MenuItem_File_Export.IsEnabled = true;
-            MenuItem_File_Quit.IsEnabled = true;
-
-            MenuItem_Tools_Preferences.IsEnabled = true;
-            MenuItem_Tools_DB.IsEnabled = true;
+            
             MenuItem_Tools_Player.IsEnabled = true;
             MenuItems_Tools_Sensors.IsEnabled = false;
             MenuItems_Tools_Processing.IsEnabled = false;
-
-            MenuItem_Scene.IsEnabled = true;
+            
             MenuItem_Scene_Configure.IsEnabled = true;
             MenuItem_Scene_AddPerson.IsEnabled = false;
+            MenuItem_Scene_Persons.IsEnabled = false;
+            MenuItem_Scene_PersonsInScene.IsEnabled = false;
 
             Player_LocationSlider.IsEnabled = true;
             Player_RecordButton.IsEnabled = false;
             Player_PlayButton.IsEnabled = true;
-            Player_VolumeToggle.IsEnabled = true;
-            Player_VolumeSlider.IsEnabled = true;
         }
 
         private void SetGuiFromSensorWithScene(PlayerState playerState)
         {
+            MenuItem_File_Save.IsEnabled = true;
+            MenuItem_File_Export.IsEnabled = true;
+            MenuItem_Scene_Configure.IsEnabled = true;
+            Player_LocationSlider.IsEnabled = false;
+            Player_PlayButton.IsEnabled = false;
             switch (playerState)
             {
                 case PlayerState.Wait:
-                    MenuItem_File_NewScene.IsEnabled = true;
-                    MenuItem_File_Save.IsEnabled = true;
-
-                    MenuItem_Tools_DB.IsEnabled = true;
+                    MenuItem_Tools_Player.IsEnabled = false;
                     MenuItems_Tools_Sensors.IsEnabled = true;
                     MenuItems_Tools_Processing.IsEnabled = true;
+                    MenuItem_Scene_PersonsInScene.IsEnabled = true;
+
+                    MenuItem_Scene_AddPerson.IsEnabled = true;
+                    MenuItem_Scene_Persons.IsEnabled = true;
 
                     Player_RecordButton.IsEnabled = true;
                     Player_StopButton.IsEnabled = false;
-                    Player_VolumeToggle.IsEnabled = false;
-                    Player_VolumeSlider.IsEnabled = false;
                     break;
                 case PlayerState.Record:
-                    MenuItem_File_NewScene.IsEnabled = false;
-                    MenuItem_File_Save.IsEnabled = false;
-
-                    MenuItem_Tools_DB.IsEnabled = false;
+                    MenuItem_Tools_Player.IsEnabled = true;
                     MenuItems_Tools_Sensors.IsEnabled = false;
                     MenuItems_Tools_Processing.IsEnabled = false;
 
+                    MenuItem_Scene_AddPerson.IsEnabled = false;
+                    MenuItem_Scene_Persons.IsEnabled = false;
+
                     Player_RecordButton.IsEnabled = false;
                     Player_StopButton.IsEnabled = true;
-                    Player_VolumeToggle.IsEnabled = true;
-                    Player_VolumeSlider.IsEnabled = true;
                     break;
             }
-            MenuItem_File_AllScenes.IsEnabled = false;
-            MenuItem_File_Import.IsEnabled = false;
-            MenuItem_File_Export.IsEnabled = true;
-            MenuItem_File_Quit.IsEnabled = true;
+        }
 
-            MenuItem_Tools_Preferences.IsEnabled = true;
-            MenuItem_Tools_Player.IsEnabled = true;
+        private bool StopRecordFirstMsg()
+        {
+            if (_playerState == PlayerState.Record)
+            {
+                MessageBox.Show(Properties.GUI.stopRecordFirst,
+                    Properties.GUI.Atention, MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return false;
+            }
+            return true;
+        }
 
-
-            MenuItem_Scene.IsEnabled = true;
-            MenuItem_Scene_Configure.IsEnabled = true;
-            MenuItem_Scene_AddPerson.IsEnabled = true;
-
-            Player_LocationSlider.IsEnabled = false;
-
-            Player_PlayButton.IsEnabled = false;
+        private bool AskLoseScene()
+        {
+            if (!ReferenceEquals(null, SceneInUse.Instance.Scene))
+            {
+                MessageBoxResult result = MessageBox.Show(Properties.GUI.ActualSceneWillLose,
+                    Properties.GUI.Atention, MessageBoxButton.OKCancel, MessageBoxImage.Exclamation);
+                if (result == MessageBoxResult.OK)
+                    return true;
+                else
+                    return false;
+            }
+            else
+                return true;
         }
 
         #endregion states
@@ -418,6 +345,9 @@ namespace cl.uv.leikelen.View
         #region File MenuItems
         private void File_NewScene_Click(object sender, RoutedEventArgs e)
         {
+            if (!StopRecordFirstMsg()) return;
+            if (!AskLoseScene()) return;
+
             var configureSceneWin = new ConfigureScene();
             configureSceneWin.Show();
             configureSceneWin.Closed += (senderClosed, eClosed) =>
@@ -431,6 +361,9 @@ namespace cl.uv.leikelen.View
 
         private void MenuItem_File_AllScenes_Click(object sender, RoutedEventArgs e)
         {
+            if (!StopRecordFirstMsg()) return;
+            if (!AskLoseScene()) return;
+
             var allScenesWin = new AllScenes();
             allScenesWin.Show();
             allScenesWin.Closed += (senderAllScenes, eAllScenes) =>
@@ -475,6 +408,9 @@ namespace cl.uv.leikelen.View
 
         private void MenuItem_File_Import_Click(object sender, RoutedEventArgs e)
         {
+            if (!StopRecordFirstMsg()) return;
+            if (!AskLoseScene()) return;
+
             var dlg = new OpenFileDialog()
             {
                 Filter = GeneralSettings.Instance.ExtensionFilter,
@@ -720,16 +656,6 @@ namespace cl.uv.leikelen.View
             }
         }
 
-        private void Player_VolumeToggle_Unchecked(object sender, RoutedEventArgs e)
-        {
-            Player_VolumeSlider.IsEnabled = true;
-        }
-
-        private void Player_VolumeToggle_Checked(object sender, RoutedEventArgs e)
-        {
-            Player_VolumeSlider.IsEnabled = false;
-        }
-
         private void _recordTimer_Tick(object sender, EventArgs e)
         {
             var location = DataAccessFacade.Instance.GetSceneInUseAccess().GetLocation();
@@ -750,37 +676,13 @@ namespace cl.uv.leikelen.View
         }
 
         #endregion
-
-        private void SourceComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var comboBox = sender as ComboBox;
-            if (ReferenceEquals(null, comboBox)) throw new ArgumentNullException(nameof(sender), Properties.Error.SourceComboboxIsNull);
-            int lastSelectedIndex = comboBox.SelectedIndex;
-            bool result = false;
-            switch (comboBox.SelectedIndex)
-            {
-                case 0:
-                    result = ChangeHomeState(HomeState.Initial, PlayerState.Wait);
-                    break;
-
-                case 1:
-                    result = ChangeHomeState(HomeState.FromSensor, PlayerState.Wait);
-                    break;
-
-                case 2:
-                    result = ChangeHomeState(HomeState.FromFile, PlayerState.Wait);
-                    break;
-            }
-            if (!result)
-                comboBox.SelectedIndex = lastSelectedIndex;
-        }
-
+        
         #region Fill modules
         private void FillMenuInputModules()
         {
             foreach (var input in InputLoader.Instance.SceneInputModules)
             {
-                FillProcessingAndGeneralModules(input, ModuleType.Input);
+                FillProcessingAndGeneralModules(input, ModuleType.Input, null);
             }
         }
 
@@ -788,7 +690,7 @@ namespace cl.uv.leikelen.View
         {
             foreach (var process in ProcessingLoader.Instance.ProcessingModules)
             {
-                FillProcessingAndGeneralModules(process, ModuleType.Processing);
+                FillProcessingAndGeneralModules(process, ModuleType.Processing, null);
             }
         }
 
@@ -796,16 +698,28 @@ namespace cl.uv.leikelen.View
         {
             foreach(var generalModule in GeneralLoader.Instance.GeneralModules)
             {
-                FillProcessingAndGeneralModules(generalModule, ModuleType.General);
+                FillProcessingAndGeneralModules(generalModule, ModuleType.General, null);
             }
         }
 
-        private void FillProcessingAndGeneralModules(API.Module.AbstractModule module, ModuleType moduleType)
+
+        private void Home_PersonAdded(object sender, Person e)
+        {
+            foreach(var personModule in InputLoader.Instance.PersonInputModules[e])
+            {
+                FillProcessingAndGeneralModules(personModule, ModuleType.Person, e);
+            }
+        }
+
+
+        private void FillProcessingAndGeneralModules(API.Module.AbstractModule module, ModuleType moduleType, Person person)
         {
             MenuItem moduleMenuItem = new MenuItem
             {
                 Header = module.Name
             };
+            MenuItem personItem = new MenuItem();
+            personItem.Header = person?.Name;
             //fill the windows of inputmodules
             List<MenuItem> windowsMenuItems = new List<MenuItem>();
             foreach (var window in module.Windows)
@@ -887,7 +801,12 @@ namespace cl.uv.leikelen.View
                 case ModuleType.General:
                     MenuItems_Tools_General.Items.Add(moduleMenuItem);
                     break;
+                case ModuleType.Person:
+                    personItem.Items.Add(moduleMenuItem);
+                    break;
             }
+            if(moduleType == ModuleType.Person)
+                MenuItem_Scene_PersonsInScene.Items.Add(personItem);
         }
         #endregion
     }
@@ -902,10 +821,8 @@ namespace cl.uv.leikelen.View
 
     public enum HomeState
     {
-        Initial,
-        FromSensor,
+        Base,
         FromSensorWithScene,
-        FromFile,
         FromFileWithScene
     }
 
@@ -913,6 +830,7 @@ namespace cl.uv.leikelen.View
     {
         Input,
         Processing,
-        General
+        General,
+        Person
     }
 }

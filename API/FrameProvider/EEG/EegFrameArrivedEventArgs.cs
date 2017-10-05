@@ -9,6 +9,7 @@ namespace cl.uv.leikelen.API.FrameProvider.EEG
     public class EegFrameArrivedEventArgs
     {
         public TimeSpan Time;
+        public int PersonId;
         public List<EegChannel> Channels;
     }
 
@@ -16,7 +17,6 @@ namespace cl.uv.leikelen.API.FrameProvider.EEG
     {
         public string Position;
         public double Value;
-        public int PersonId;
         public NotchType Notch;
         public FilterType Filter;
     }

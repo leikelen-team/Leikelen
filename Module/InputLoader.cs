@@ -28,7 +28,7 @@ namespace cl.uv.leikelen.Module
         {
             var personInputModules = new List<InputModule>()
             {
-                new Input.OpenBCI.OpenBCIInput()
+                new Input.OpenBCI.OpenBCIInput(person)
             };
 
             PersonInputModules.Add(person, personInputModules);
@@ -50,7 +50,7 @@ namespace cl.uv.leikelen.Module
             VideoHandler = Input.Kinect.KinectInput.SkeletonColorVideoViewer;
 
             //TODO: esto es temporal por motivos de prueba
-            SceneInputModules.Add(new Input.OpenBCI.OpenBCIInput());
+            //SceneInputModules.Add(new Input.OpenBCI.OpenBCIInput());
         }
 
         

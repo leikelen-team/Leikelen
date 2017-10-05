@@ -58,7 +58,8 @@
                 <MenuItem x:Name="MenuItem_Scene" Header="{x:Static resx:Menu.Scene}">
                     <MenuItem x:Name="MenuItem_Scene_Configure" Header="{x:Static resx:Menu.Scene_Configure}" InputGestureText="Ctrl+C"></MenuItem>
                     <MenuItem x:Name="MenuItem_Scene_AddPerson" Header="{x:Static resx:Menu.Scene_AddPerson}"></MenuItem>
-                    <MenuItem x:Name="MenuItem_Scene_Persons" Header="{x:Static resx:Menu.Scene_Persons}"></MenuItem>
+                    <MenuItem x:Name="MenuItem_Scene_Persons" Header="{x:Static resx:Menu.Scene_AllPersons}"></MenuItem>
+                    <MenuItem x:Name="MenuItem_Scene_PersonsInScene" Header="{x:Static resx:Menu.Scene_PersonsInScene}"></MenuItem>
                 </MenuItem>
                 <MenuItem x:Name="MenuItem_Help" Header="{x:Static resx:Menu.Help}">
                     <MenuItem x:Name="MenuItem_Help_Manual" Header="{x:Static resx:Menu.Help_Manual}" InputGestureText="Ctrl+H"></MenuItem>
@@ -97,21 +98,6 @@
                         <Label VerticalAlignment="Center" x:Name="Player_ActualTimeLabel" Content="--:--:--"></Label>
                         <Label VerticalAlignment="Center" x:Name="Player_TimeSeparatorLabel" Content="/"></Label>
                         <Label VerticalAlignment="Center" x:Name="Player_TotalTimeLabel" Content="--:--:--"></Label>
-                        <ToggleButton x:Name="Player_VolumeToggle" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3,0,3,0" Style="{StaticResource MaterialDesignActionToggleButton}"
-                        ToolTip="Mute">
-                            <ToggleButton.Content>
-                                <materialDesign:PackIcon Kind="VolumeHigh" />
-                            </ToggleButton.Content>
-                            <materialDesign:ToggleButtonAssist.OnContent>
-                                <materialDesign:PackIcon Kind="VolumeOff" />
-                            </materialDesign:ToggleButtonAssist.OnContent>
-                        </ToggleButton>
-                        <Slider x:Name="Player_VolumeSlider" Orientation="Horizontal" Margin="3,0,0,0" Width="100" HorizontalAlignment="Left" VerticalAlignment="Center" Minimum="1" Maximum="100" />
-                        <ComboBox x:Name="SourceComboBox" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="3,0,3,0">
-                            <ComboBoxItem Content="{x:Static resx:GUI.FromNone}" IsSelected="True"></ComboBoxItem>
-                            <ComboBoxItem Content="{x:Static resx:GUI.FromSensor}"></ComboBoxItem>
-                            <ComboBoxItem Content="{x:Static resx:GUI.FromScene}"></ComboBoxItem>
-                        </ComboBox>
                     </StackPanel>
                 </Grid>
             </TabItem>

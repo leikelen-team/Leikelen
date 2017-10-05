@@ -37,12 +37,12 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels
             Name = Properties.EEGEmotion2Channels.ClassificationModuleName;
             var configWindow = new Tuple<string, WindowBuilder>(Properties.EEGEmotion2Channels.ConfigWindowTitle,
                 new WindowBuilder(new ConfigurationWindow(Properties.EEGEmotion2Channels.ConfigWindowTitle)));
-            var sceneWindow = new Tuple<string, WindowBuilder>(Properties.EEGEmotion2Channels.TrainerSceneSelectorTitle,
-                new WindowBuilder(new TrainerSceneSelector()));
+            //var sceneWindow = new Tuple<string, WindowBuilder>(Properties.EEGEmotion2Channels.TrainerSceneSelectorTitle,
+            //    new WindowBuilder(new TrainerSceneSelector()));
             var fileWindow = new Tuple<string, WindowBuilder>(Properties.EEGEmotion2Channels.TrainerFileSelectorTitle,
                 new WindowBuilder(new TrainerFileSelector()));
             Windows.Add(configWindow);
-            Windows.Add(sceneWindow);
+            //Windows.Add(sceneWindow);
             Windows.Add(fileWindow);
         }
     }

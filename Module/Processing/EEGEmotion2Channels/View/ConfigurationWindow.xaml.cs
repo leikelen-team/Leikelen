@@ -1,4 +1,5 @@
-﻿using System;
+﻿using cl.uv.leikelen.Util;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,6 +25,7 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View
         {
             InitializeComponent();
             Title = title;
+            
 
             SamplingCmbx.ItemsSource = new int[] { 256, 128 };
             SamplingCmbx.SelectedIndex = 0;
@@ -32,6 +34,7 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View
             SecsTextBox.Text = EEGEmoProc2ChSettings.Instance.secs.Value.ToString();
             NTextBox.Text = EEGEmoProc2ChSettings.Instance.N.Value.ToString();
             shiftTextBox.Text = EEGEmoProc2ChSettings.Instance.shift.Value.ToString();
+            
 
             Accept.Click += AcceptBtnOnClick;
             Cancel.Click += Cancel_Click;
@@ -68,6 +71,16 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View
                 }
             }
 
+        }
+
+        private void Int_Pasting(object sender, DataObjectPastingEventArgs e)
+        {
+            IntegerInput.PastingHandler(sender, e);
+        }
+
+        private void Int_PreviewText(object sender, TextCompositionEventArgs e)
+        {
+            IntegerInput.PreviewTextInputHandler(sender, e);
         }
 
         public object Clone()

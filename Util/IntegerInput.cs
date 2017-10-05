@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Media;
 
 namespace cl.uv.leikelen.Util
 {
@@ -12,7 +13,11 @@ namespace cl.uv.leikelen.Util
     {
         private static bool IsTextAllowed(string text)
         {
-            return int.TryParse(text, out int value);
+            bool result = int.TryParse(text, out int value);
+            if(!result)
+                SystemSounds.Beep.Play();
+            return result;
+
         }
 
         // Use the PreviewTextInputHandler to respond to key presses 

@@ -106,9 +106,6 @@
   <data name="inModalType" xml:space="preserve">
     <value>in ModalType: </value>
   </data>
-  <data name="SourceComboboxIsNull" xml:space="preserve">
-    <value>Source combobox is null</value>
-  </data>
   <data name="BdNotConnectTitle" xml:space="preserve">
     <value>Database not connected</value>
   </data>

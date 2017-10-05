@@ -6,15 +6,16 @@ using System.Threading.Tasks;
 using System.Windows;
 using cl.uv.leikelen.API.Module.Input;
 using cl.uv.leikelen.API.Helper;
+using cl.uv.leikelen.Data.Model;
 
 namespace cl.uv.leikelen.Module.Input.OpenBCI
 {
     public sealed class OpenBCIInput : InputModule
     {
-        public OpenBCIInput()
+        public OpenBCIInput(Person person)
         {
             Plurality = InputPlurality.Person;
-            Monitor = new Monitor();
+            Monitor = new Monitor(person);
             Name = Properties.OpenBCI.SensorName;
             Player = new Player();
             Windows = new List<Tuple<string, WindowBuilder>>();

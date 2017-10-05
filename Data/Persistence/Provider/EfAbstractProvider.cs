@@ -30,7 +30,6 @@ namespace cl.uv.leikelen.Data.Persistence.Provider
         public void Clear()
         {
             Db.Database.EnsureDeleted();
-            Db.Database.EnsureCreated();
         }
 
         public List<Scene> LoadScenes()

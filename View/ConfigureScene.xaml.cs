@@ -16,6 +16,7 @@ using cl.uv.leikelen.Data.Access.Internal;
 using cl.uv.leikelen.Data.Model;
 using cl.uv.leikelen.Properties;
 using cl.uv.leikelen.Data.Access;
+using cl.uv.leikelen.Util;
 
 namespace cl.uv.leikelen.View
 {
@@ -32,6 +33,7 @@ namespace cl.uv.leikelen.View
         public ConfigureScene()
         {
             InitializeComponent();
+
             AcceptBtn.Click += AcceptBtn_Click;
             CancelBtn.Click += CancelBtn_Click;
         }
@@ -105,6 +107,16 @@ namespace cl.uv.leikelen.View
                 SceneInUse.Instance.Set(createdScene);
                 Close();
             }
+        }
+
+        private void ParticipantsTextBox_Pasting(object sender, DataObjectPastingEventArgs e)
+        {
+            IntegerInput.PastingHandler(sender, e);
+        }
+
+        private void ParticipantsTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            IntegerInput.PreviewTextInputHandler(sender, e);
         }
     }
 }

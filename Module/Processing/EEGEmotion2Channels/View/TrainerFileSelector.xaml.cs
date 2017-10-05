@@ -52,19 +52,19 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View
 
                     var halvFile = new StreamReader(HALVfileNameTextBox.Text);
                     var halvString = halvFile.ReadToEnd();
-                    dict.Add(TagType.HighArousalLowValence, ReadTsv(halvString));
+                    dict.Add(TagType.HALV, ReadTsv(halvString));
 
                     var hahvFile = new StreamReader(HAHVfileNameTextBox.Text);
                     var hahvString = hahvFile.ReadToEnd();
-                    dict.Add(TagType.HighArousalHighValence, ReadTsv(hahvString));
+                    dict.Add(TagType.HAHV, ReadTsv(hahvString));
 
                     var lalvFile = new StreamReader(LALVfileNameTextBox.Text);
                     var lalvString = lalvFile.ReadToEnd();
-                    dict.Add(TagType.LowArousalLowValence, ReadTsv(lalvString));
+                    dict.Add(TagType.LALV, ReadTsv(lalvString));
 
                     var lahvFile = new StreamReader(LAHVfileNameTextBox.Text);
                     var lahvString = lahvFile.ReadToEnd();
-                    dict.Add(TagType.LowArousalHighValence, ReadTsv(lahvString));
+                    dict.Add(TagType.LAHV, ReadTsv(lahvString));
 
                     Console.WriteLine("procesados, ahora a entrenar");
                     LearningModel.Train(dict);
