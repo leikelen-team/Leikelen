@@ -141,6 +141,8 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View
             int secStart = 0;
             int i = 0;
             int lastTime = 0;
+            double lastF3 = 0;
+            double lastC4 = 0;
             foreach (var line in lines)
             {
                 if (first)
@@ -169,8 +171,8 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View
                     case 128:
                         if (int.Parse(fields[1]) % 2 == 0)
                         {
-                            values[0] = double.Parse(fields[2]);
-                            values[1] = double.Parse(fields[3]);
+                            values[0] = (lastF3 + double.Parse(fields[2])) /2;
+                            values[1] = (lastC4 + double.Parse(fields[3])) /2;
                             added = true;
                         }
                         break;
@@ -180,9 +182,10 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View
                         added = true;
                         break;
                 }
-                if (added && Int32.Parse(fields[0]) < secStart + EEGEmoProc2ChSettings.Instance.secs)
+                if (Int32.Parse(fields[0]) < secStart + EEGEmoProc2ChSettings.Instance.secs)
                 {
-                    frame.Add(values);
+                    if(added)
+                        frame.Add(values);
                 }
                 else
                 {
@@ -193,6 +196,8 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View
                 }
                 i++;
                 lastTime = secStart;
+                lastF3 = double.Parse(fields[2]);
+                lastC4 = double.Parse(fields[3]);
             }
             return result;
         }

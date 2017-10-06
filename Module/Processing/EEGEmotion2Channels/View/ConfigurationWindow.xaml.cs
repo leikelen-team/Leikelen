@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Media;
 
 namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View
 {
@@ -20,13 +21,14 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View
     /// </summary>
     public partial class ConfigurationWindow : Window, ICloneable
     {
+        private double lastR;
 
         public ConfigurationWindow(string title)
         {
             InitializeComponent();
             Title = title;
-            
 
+            lastR = EEGEmoProc2ChSettings.Instance.r.Value;
             SamplingCmbx.ItemsSource = new int[] { 256, 128 };
             SamplingCmbx.SelectedIndex = 0;
             mTextBox.Text = EEGEmoProc2ChSettings.Instance.m.Value.ToString();
@@ -34,10 +36,24 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View
             SecsTextBox.Text = EEGEmoProc2ChSettings.Instance.secs.Value.ToString();
             NTextBox.Text = EEGEmoProc2ChSettings.Instance.N.Value.ToString();
             shiftTextBox.Text = EEGEmoProc2ChSettings.Instance.shift.Value.ToString();
-            
+
+            rTextBox.TextChanged += RTextBox_TextChanged;
 
             Accept.Click += AcceptBtnOnClick;
             Cancel.Click += Cancel_Click;
+        }
+
+        private void RTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if(double.TryParse(rTextBox.Text, out double value))
+            {
+                lastR = value;
+            }
+            else
+            {
+                SystemSounds.Beep.Play();
+                rTextBox.Text = lastR.ToString();
+            }
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)

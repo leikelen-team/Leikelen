@@ -386,6 +386,7 @@
       <DependentUpon>ConfigurePositions.xaml</DependentUpon>
     </Compile>
     <Compile Include="Module\Processing\EEGEmotion2Channels\PreProcessing\FilterButterworth.cs" />
+    <Compile Include="Module\Processing\EEGEmotion2Channels\PreProcessing\FilterRLC.cs" />
     <Compile Include="Module\Processing\EEGEmotion2Channels\Properties\EEGEmotion2Channels.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

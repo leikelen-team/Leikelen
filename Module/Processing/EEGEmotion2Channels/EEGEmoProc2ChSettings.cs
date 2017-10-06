@@ -9,7 +9,7 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels
 {
     public class EEGEmoProc2ChSettings : SettingsContainer
     {
-        public readonly Option<int> SamplingHz = new Option<int>("SamplingHz", 256);
+        public readonly Option<int> SamplingHz = new Option<int>("SamplingHz", 128);
         public readonly Option<int> m = new Option<int>("m", 2);
         public readonly Option<double> r = new Option<double>("r", 0.15);
         public readonly Option<int> secs = new Option<int>("Seconds", 9);

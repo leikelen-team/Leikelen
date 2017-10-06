@@ -139,18 +139,25 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels
         {
             double[] f3 = new double[signalsList.Count];
             bool first = true;
+
+            
             for (int i = 0; i < f3.Length;i++)
             {
                 if (first)
                 {
-                    f3[i] = BetaBandpass(signalsList[i][0], true);
+                    //f3[i] = BetaBandpass(signalsList[i][0], true);
+                    f3[i] = signalsList[i][0];
                     first = false;
                 }
                 else
                 {
-                    f3[i] = BetaBandpass(signalsList[i][0], false);
+                    //f3[i] = BetaBandpass(signalsList[i][0], false);
+                    f3[i] = signalsList[i][0];
                 }
             }
+            f3 = FilterRLC.LCHP(f3, EEGEmoProc2ChSettings.Instance.SamplingHz.Value, 12.5, 0.7);
+            f3 = FilterRLC.LCLP(f3, EEGEmoProc2ChSettings.Instance.SamplingHz.Value, 30, 0.7);
+
 
             double[] c4 = new double[signalsList.Count];
             first = true;
@@ -158,14 +165,18 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels
             {
                 if (first)
                 {
-                    c4[i] = BetaBandpass(signalsList[i][1], true);
+                    //c4[i] = BetaBandpass(signalsList[i][1], true);
+                    c4[i] = signalsList[i][1];
                     first = false;
                 }
                 else
                 {
-                    c4[i] = BetaBandpass(signalsList[i][1], false);
+                    //c4[i] = BetaBandpass(signalsList[i][1], false);
+                    c4[i] = signalsList[i][1];
                 }
             }
+            c4 = FilterRLC.LCHP(c4, EEGEmoProc2ChSettings.Instance.SamplingHz.Value, 12.5, 0.7);
+            c4 = FilterRLC.LCLP(c4, EEGEmoProc2ChSettings.Instance.SamplingHz.Value, 30, 0.7);
 
             var emdF3 = new Emd();
             var imfsF3 = emdF3.GetImfs(f3, 4, 1, 0);

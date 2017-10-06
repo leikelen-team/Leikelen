@@ -73,50 +73,47 @@ namespace cl.uv.leikelen.Data.Persistence.Provider
 
         public Scene SaveNewScene(Scene scene)
         {
-            int lastSceneId = Db.Scenes.Max(sc => sc.SceneId);
-            scene.SceneId = lastSceneId + 1;
-            int lastPersonId = Db.Persons.Max(p => p.PersonId);
-            int lastRepresentTypeId = Db.RepresentTypes.Max(rt => rt.RepresentTypeId);
-            int lastSmtPisId = Db.SmtPis.Max(smtPis => smtPis.SubModalType_PersonInSceneId);
-            int lastEventId = Db.EventDatas.Max(ed => ed.EventDataId);
-            int lastIntervalId = Db.IntervalDatas.Max(id => id.IntervalDataId);
+            //int lastSceneId = (Db.Scenes.Count() > 0)? Db.Scenes.Max(sc => sc.SceneId) : -1;
+            scene.SceneId = 0;
+            //int lastPersonId = (Db.Persons.Count() > 0)? Db.Persons.Max(p => p.PersonId) : -1;
+            //int lastRepresentTypeId = (Db.RepresentTypes.Count() > 0) ? Db.RepresentTypes.Max(rt => rt.RepresentTypeId) : -1;
+            //int lastSmtPisId = (Db.SmtPis.Count() > 0) ? Db.SmtPis.Max(smtPis => smtPis.SubModalType_PersonInSceneId) : -1;
+            //int lastEventId = (Db.EventDatas.Count() > 0) ? Db.EventDatas.Max(ed => ed.EventDataId) : -1;
+            //int lastIntervalId = (Db.IntervalDatas.Count() > 0) ? Db.IntervalDatas.Max(id => id.IntervalDataId) : -1;
             for (int iperson= 0; iperson < scene.PersonsInScene.Count; iperson++)
             {
-                var person = scene.PersonsInScene[iperson];
-                lastPersonId++;
+                //var person = scene.PersonsInScene[iperson];
 
-                person.SceneId = scene.SceneId;
-                person.Scene = scene;
-                person.PersonId = lastPersonId;
-                person.Person.PersonId = lastPersonId;
-                for(int ismtPis=0;ismtPis< person.SubModalType_PersonInScenes.Count; ismtPis++)
+                scene.PersonsInScene[iperson].SceneId = scene.SceneId;
+                scene.PersonsInScene[iperson].Scene.SceneId = 0;
+                scene.PersonsInScene[iperson].PersonId = 0;
+                scene.PersonsInScene[iperson].Person.PersonId = 0;
+                for (int ismtPis=0;ismtPis< scene.PersonsInScene[iperson].SubModalType_PersonInScenes.Count; ismtPis++)
                 {
-                    var smtPis = person.SubModalType_PersonInScenes[ismtPis];
-                    lastSmtPisId++;
-                    smtPis.SubModalType_PersonInSceneId = lastSmtPisId;
-                    smtPis.PersonInScene = person;
-                    smtPis.SceneId = person.SceneId;
-                    smtPis.PersonId = person.PersonId;
-                    for(int irt=0; irt<smtPis.RepresentTypes.Count;irt++)
+                    //var smtPis = person.SubModalType_PersonInScenes[ismtPis];
+                    scene.PersonsInScene[iperson].SubModalType_PersonInScenes[ismtPis].SubModalType_PersonInSceneId = 0;
+                    //smtPis.PersonInScene = person;
+                    scene.PersonsInScene[iperson].SubModalType_PersonInScenes[ismtPis].SceneId = 0;
+                    scene.PersonsInScene[iperson].SubModalType_PersonInScenes[ismtPis].PersonId = 0;
+                    for(int irt=0; irt< scene.PersonsInScene[iperson].SubModalType_PersonInScenes[ismtPis].RepresentTypes.Count;irt++)
                     {
-                        var rt = smtPis.RepresentTypes[irt];
-                        lastRepresentTypeId++;
-                        rt.RepresentTypeId = lastRepresentTypeId;
-                        rt.SubModalType_PersonInScene = smtPis;
-                        if(!ReferenceEquals(null, rt.EventData))
+                        //var rt = smtPis.RepresentTypes[irt];
+                        scene.PersonsInScene[iperson].SubModalType_PersonInScenes[ismtPis].RepresentTypes[irt].RepresentTypeId = 0;
+                        scene.PersonsInScene[iperson].SubModalType_PersonInScenes[ismtPis].RepresentTypes[irt].SubModalType_PersonInScene = null;
+                        scene.PersonsInScene[iperson].SubModalType_PersonInScenes[ismtPis].RepresentTypes[irt].SubModalType_PersonInSceneId = 0;
+                        if(!ReferenceEquals(null, scene.PersonsInScene[iperson].SubModalType_PersonInScenes[ismtPis].RepresentTypes[irt].EventData))
                         {
-                            lastEventId++;
-                            rt.EventDataId = lastEventId;
-                            rt.EventData.EventDataId = lastEventId;
-                            rt.RepresentTypeId = lastRepresentTypeId;
+                            scene.PersonsInScene[iperson].SubModalType_PersonInScenes[ismtPis].RepresentTypes[irt].EventDataId = 0;
+                            scene.PersonsInScene[iperson].SubModalType_PersonInScenes[ismtPis].RepresentTypes[irt].EventData.EventDataId = 0;
+                            scene.PersonsInScene[iperson].SubModalType_PersonInScenes[ismtPis].RepresentTypes[irt].EventData.RepresentType = null;
                         }
-                        if(!ReferenceEquals(null, rt.IntervalData))
+                        if(!ReferenceEquals(null, scene.PersonsInScene[iperson].SubModalType_PersonInScenes[ismtPis].RepresentTypes[irt].IntervalData))
                         {
-                            lastIntervalId++;
-                            rt.IntervalDataId = lastIntervalId;
-                            rt.IntervalData.IntervalDataId = lastIntervalId;
-                            rt.RepresentTypeId = lastRepresentTypeId;
+                            scene.PersonsInScene[iperson].SubModalType_PersonInScenes[ismtPis].RepresentTypes[irt].IntervalDataId = 0;
+                            scene.PersonsInScene[iperson].SubModalType_PersonInScenes[ismtPis].RepresentTypes[irt].IntervalData.IntervalDataId = 0;
+                            scene.PersonsInScene[iperson].SubModalType_PersonInScenes[ismtPis].RepresentTypes[irt].IntervalData.RepresentType = null;
                         }
+                        //smtPis.RepresentTypes[irt] = rt;
                     }
                 }
             }

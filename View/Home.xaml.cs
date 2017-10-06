@@ -568,25 +568,26 @@ namespace cl.uv.leikelen.View
         #region Player
         private async void PlayPauseButton_Click(object sender, RoutedEventArgs e)
         {
-            Player_ActualTimeLabel.Content = "00:00:00";
             Player_TotalTimeLabel.Content = SceneInUse.Instance.Scene.Duration.ToString(@"hh\:mm\:ss");
             switch (_playerState)
             {
                 case PlayerState.Play:
+                    _playTimer.Stop();
                     _playerController.Pause();
-                    _playTimer.Start();
                     ChangeHomeState(HomeState.FromFileWithScene, PlayerState.Pause);
                     Player_PlayButton_Icon.Kind = PackIconKind.Play;
                     break;
 
                 case PlayerState.Pause:
                     _playerController.UnPause();
+                    _playTimer.Start();
                     ChangeHomeState(HomeState.FromFileWithScene, PlayerState.Play);
                     Player_PlayButton_Icon.Kind = PackIconKind.Pause;
                     break;
 
                 case PlayerState.Wait:
                     _playerController.Play();
+                    _playTimer.Start();
                     ChangeHomeState(HomeState.FromFileWithScene, PlayerState.Play);
                     Player_PlayButton_Icon.Kind = PackIconKind.Pause;
                     break;
@@ -619,6 +620,7 @@ namespace cl.uv.leikelen.View
         {
             _playerController.Stop();
             _playTimer.Stop();
+            //blablabla
             Player_ActualTimeLabel.Content = "00:00:00";
             Player_TotalTimeLabel.Content = SceneInUse.Instance.Scene.Duration.ToString(@"hh\:mm\:ss");
             ChangeHomeState(HomeState.FromFileWithScene, PlayerState.Wait);

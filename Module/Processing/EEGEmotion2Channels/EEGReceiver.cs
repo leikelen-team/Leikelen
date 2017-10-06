@@ -12,8 +12,10 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels
     public class EEGReceiver
     {
         private List<double[]> _signaList;
-        private bool _signalGet;
+        private bool _signalGet = false;
         private int _lastSecond;
+        private double lastF3;
+        private double lastC4;
         private IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
 
         public EEGReceiver()
@@ -41,23 +43,32 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels
                 _signalGet = true;
             else if (EEGEmoProc2ChSettings.Instance.SamplingHz == 128)
                 _signalGet = !_signalGet;
-            if (!_signalGet)
-                return;
+                
 
             double[] values = new double[2];
             var channelCounter = 0;
             foreach (var channel in e.Channels)
             {
-                    if (channel.Position.Equals("F3"))
-                    {
+                if (channel.Position.Equals("F3"))
+                {
+                    if (EEGEmoProc2ChSettings.Instance.SamplingHz == 256)
                         values[0] = channel.Value;
-                        channelCounter++;
-                    }
-                    if (channel.Position.Equals("C4"))
-                    {
+                    else if (_signalGet)
+                        values[0] = (lastF3 + channel.Value) / 2;
+                    else
+                        lastF3 = channel.Value;
+                    channelCounter++;
+                }
+                if (channel.Position.Equals("C4"))
+                {
+                    if (EEGEmoProc2ChSettings.Instance.SamplingHz == 256)
                         values[1] = channel.Value;
-                        channelCounter++;
-                    }
+                    else if (_signalGet)
+                        values[1] = (lastC4 + channel.Value) / 2;
+                    else
+                        lastC4 = channel.Value;
+                    channelCounter++;
+                }
             }
             if(channelCounter == 2)
                 _signaList.Add(values);

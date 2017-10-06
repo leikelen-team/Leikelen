@@ -12,6 +12,8 @@ namespace cl.uv.leikelen.Data.Access.Internal
         private static SceneInUse _instance;
         public Scene Scene { get; private set; }
         public bool IsRecording = false;
+        public DateTime? PlayStartTime { get; set; }
+        public DateTime? PlayPausedTime { get; set; }
 
         public static SceneInUse Instance
         {

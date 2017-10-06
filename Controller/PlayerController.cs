@@ -17,6 +17,7 @@ namespace cl.uv.leikelen.Controller
                 input.Player.Play();
                 input.Player.Finished += Player_Finished;
             }
+            SceneInUse.Instance.PlayStartTime = DateTime.Now;
         }
 
         public void Pause()
@@ -25,6 +26,7 @@ namespace cl.uv.leikelen.Controller
             {
                 input.Player.Pause();
             }
+            SceneInUse.Instance.PlayPausedTime = DateTime.Now;
         }
 
         public void UnPause()
@@ -33,6 +35,11 @@ namespace cl.uv.leikelen.Controller
             {
                 input.Player.Unpause();
             }
+            if (SceneInUse.Instance.PlayPausedTime.HasValue)
+                SceneInUse.Instance.PlayStartTime = SceneInUse.Instance.PlayStartTime.Value
+                    .Add(
+                    DateTime.Now
+                    .Subtract(SceneInUse.Instance.PlayPausedTime.Value));
         }
 
         public void Stop()
@@ -41,6 +48,7 @@ namespace cl.uv.leikelen.Controller
             {
                 input.Player.Stop();
             }
+            SceneInUse.Instance.PlayStartTime = null;
         }
 
         public void Close()
@@ -49,6 +57,7 @@ namespace cl.uv.leikelen.Controller
             {
                 input.Player.Close();
             }
+            SceneInUse.Instance.PlayStartTime = null;
         }
 
         public void MoveTo(TimeSpan time)

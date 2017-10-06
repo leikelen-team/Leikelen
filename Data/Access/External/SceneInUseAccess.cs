@@ -24,7 +24,10 @@ namespace cl.uv.leikelen.Data.Access.External
         {
             if (Internal.SceneInUse.Instance.IsRecording)
                 return DateTime.Now.Subtract(Internal.SceneInUse.Instance.Scene.RecordStartedDateTime);
-            return null;
+            else if (Internal.SceneInUse.Instance.PlayStartTime.HasValue)
+                return DateTime.Now.Subtract(Internal.SceneInUse.Instance.PlayStartTime.Value);
+            else
+                return null;
         }
     }
 }
