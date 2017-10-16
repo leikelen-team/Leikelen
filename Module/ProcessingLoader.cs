@@ -10,6 +10,7 @@ namespace cl.uv.leikelen.Module
     public class ProcessingLoader
     {
         public List<ProcessingModule> ProcessingModules { get; private set; }
+        public static event EventHandler ProcessingModulesHasReset;
 
         private static ProcessingLoader _instance;
 
@@ -26,6 +27,7 @@ namespace cl.uv.leikelen.Module
         {
             _instance = null;
             _instance = new ProcessingLoader();
+            ProcessingModulesHasReset?.Invoke(_instance, new EventArgs());
         }
 
         private ProcessingLoader()

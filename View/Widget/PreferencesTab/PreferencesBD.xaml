@@ -12,7 +12,7 @@
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
          x:Name="Tab"
          Header="{x:Static resx:GUI.DataBase}">
-    <Grid>
+    <Grid Margin="5">
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition />
@@ -36,7 +36,11 @@
         <TextBox x:Name="HostTxt" Grid.Row="2" Grid.Column="1"></TextBox>
 
         <Label VerticalAlignment="Bottom" Content="{x:Static resx:GUI.BD_Port}" Grid.Row="3" Grid.Column="0" />
-        <TextBox x:Name="PortTxt" Grid.Row="3" Grid.Column="1"></TextBox>
+        <TextBox x:Name="PortTxt"
+                 PreviewTextInput="Int_PreviewTextInput"
+                 DataObject.Pasting="Int_Pasting"
+                 Grid.Row="3"
+                 Grid.Column="1"></TextBox>
 
         <Label VerticalAlignment="Bottom" Content="{x:Static resx:GUI.User}" Grid.Row="4" Grid.Column="0" />
         <TextBox x:Name="UserTxt" Grid.Row="4" Grid.Column="1"></TextBox>

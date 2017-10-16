@@ -29,13 +29,15 @@ namespace cl.uv.leikelen.Data.Access.External
         public Scene SaveOrUpdate(Scene scene)
         {
             Scene sceneReturned = null;
+            var settings = DataAccessFacade.Instance.GetGeneralSettings();
+
             if (ReferenceEquals(null, DbFacade.Instance.Provider.LoadScene(scene.SceneId)))
                 sceneReturned = DbFacade.Instance.Provider.SaveScene(scene);
             else
                 sceneReturned = DbFacade.Instance.Provider.UpdateScene(scene);
-            if (!ReferenceEquals(null, sceneReturned) && !System.IO.Directory.Exists(GeneralSettings.Instance.GetDataDirectory()+"scene/"+ sceneReturned.SceneId))
+            if (!ReferenceEquals(null, sceneReturned) && !System.IO.Directory.Exists(settings.GetSceneDirectory(sceneReturned.SceneId)))
             {
-                System.IO.Directory.CreateDirectory(GeneralSettings.Instance.GetDataDirectory() + "scene/" + sceneReturned.SceneId);
+                System.IO.Directory.CreateDirectory(settings.GetSceneDirectory(sceneReturned.SceneId));
             }
             return sceneReturned;
         }
@@ -43,25 +45,24 @@ namespace cl.uv.leikelen.Data.Access.External
         public Scene SaveNew(Scene scene)
         {
             var sceneReturned = DbFacade.Instance.Provider.SaveNewScene(scene);
-            if (!ReferenceEquals(null, sceneReturned) && !System.IO.Directory.Exists(GeneralSettings.Instance.GetDataDirectory() + "scene/" + sceneReturned.SceneId))
+            var settings = DataAccessFacade.Instance.GetGeneralSettings();
+
+            if (!ReferenceEquals(null, sceneReturned) && !System.IO.Directory.Exists(settings.GetSceneDirectory(sceneReturned.SceneId)))
             {
-                System.IO.Directory.CreateDirectory(GeneralSettings.Instance.GetDataDirectory() + "scene/" + sceneReturned.SceneId);
+                System.IO.Directory.CreateDirectory(settings.GetSceneDirectory(sceneReturned.SceneId));
             }
             return sceneReturned;
         }
 
         public void Delete(Scene scene)
         {
-            DbFacade.Instance.Provider.DeleteScene(scene);
-            if (!System.IO.Directory.Exists(GeneralSettings.Instance.GetDataDirectory() + "scene/" + scene?.SceneId))
-            {
-                System.IO.Directory.Delete(GeneralSettings.Instance.GetDataDirectory() + "scene/" + scene?.SceneId, true);
-            }
-        }
+            var settings = DataAccessFacade.Instance.GetGeneralSettings();
 
-        public void ClearDb()
-        {
-            DbFacade.Instance.Provider.Clear();
+            if (!System.IO.Directory.Exists(settings.GetSceneDirectory(scene.SceneId)))
+            {
+                System.IO.Directory.Delete(settings.GetSceneDirectory(scene.SceneId), true);
+            }
+            DbFacade.Instance.Provider.DeleteScene(scene);
         }
     }
 }

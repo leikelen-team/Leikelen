@@ -11,7 +11,7 @@
         TextElement.FontSize="14"
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
          Header="{x:Static resx:GUI.General}">
-    <Grid>
+    <Grid Margin="5">
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition />
@@ -21,7 +21,7 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition MinWidth="200" />
+            <ColumnDefinition MinWidth="220" Width="1.5*" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         
@@ -35,12 +35,24 @@
         <TextBox x:Name="TmpSceneDirectoryTxt" Grid.Row="2" Grid.Column="1"></TextBox>
 
         <Label VerticalAlignment="Bottom" Content="{x:Static resx:GUI.DefaultMillisecondsThreshold}" Grid.Row="3" Grid.Column="0" />
-        <TextBox x:Name="DefaultMillisecondsTxt" Grid.Row="3" Grid.Column="1"></TextBox>
+        <TextBox x:Name="DefaultMillisecondsTxt"
+                 PreviewTextInput="Int_PreviewTextInput"
+                 DataObject.Pasting="Int_Pasting"
+                 Grid.Row="3"
+                 Grid.Column="1"></TextBox>
 
         <Label VerticalAlignment="Bottom" Content="{x:Static resx:GUI.PrefIntervalGraphMinHeight}" Grid.Row="4" Grid.Column="0" />
-        <TextBox x:Name="IntervalMinHeightTxt" Grid.Row="4" Grid.Column="1"></TextBox>
+        <TextBox x:Name="IntervalMinHeightTxt"
+                 PreviewTextInput="Int_PreviewTextInput"
+                 DataObject.Pasting="Int_Pasting"
+                 Grid.Row="4" 
+                 Grid.Column="1"></TextBox>
 
         <Label VerticalAlignment="Bottom" Content="{x:Static resx:GUI.PrefEventsGraphMinHeight}" Grid.Row="5" Grid.Column="0" />
-        <TextBox x:Name="EventMinHeightTxt" Grid.Row="5" Grid.Column="1"></TextBox>
+        <TextBox x:Name="EventMinHeightTxt"
+                 PreviewTextInput="Int_PreviewTextInput"
+                 DataObject.Pasting="Int_Pasting"
+                 Grid.Row="5" 
+                 Grid.Column="1"></TextBox>
     </Grid>
 </TabItem>

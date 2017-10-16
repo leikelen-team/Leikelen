@@ -14,7 +14,7 @@
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
         mc:Ignorable="d"
         Title="Configure Scene" Height="350" Width="300">
-    <Grid>
+    <Grid Margin="5">
         <Grid.RowDefinitions>
             <RowDefinition Height="25" />
             <RowDefinition Height="25" />

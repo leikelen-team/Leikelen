@@ -13,8 +13,8 @@
         TextElement.FontWeight="Medium"
         TextElement.FontSize="14"
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
-        Title="ConfigurePerson" Height="230" Width="230">
-    <Grid>
+        Title="ConfigurePerson" Height="300" Width="280">
+    <Grid Margin="5">
         <Grid.RowDefinitions>
             <RowDefinition MinHeight="30" Height="1*" />
             <RowDefinition MinHeight="30" Height="1*" />

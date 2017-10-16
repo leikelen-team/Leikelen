@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace cl.uv.leikelen.View
+namespace cl.uv.leikelen.Data.Access.External
 {
-    public static class LoadTestScene
+    public static class TestScene
     {
         public static void LoadTest(string sceneName)
         {

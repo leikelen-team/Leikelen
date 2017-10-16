@@ -154,4 +154,25 @@
   <data name="ContinuousPosture" xml:space="preserve">
     <value>Continuous Postura</value>
   </data>
+  <data name="ImportPosture" xml:space="preserve">
+    <value>Import posture</value>
+  </data>
+  <data name="Error_NoFile" xml:space="preserve">
+    <value>Please enter a file</value>
+  </data>
+  <data name="Error_NoName" xml:space="preserve">
+    <value>Please enter a name</value>
+  </data>
+  <data name="Error_ThePosture" xml:space="preserve">
+    <value>The posture</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="Error_PostureExists" xml:space="preserve">
+    <value>already exists. Please use another name</value>
+  </data>
+  <data name="Error_ThereAreErrors" xml:space="preserve">
+    <value>There are the followings errors:</value>
+  </data>
 </root>

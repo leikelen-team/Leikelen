@@ -26,7 +26,6 @@ namespace cl.uv.leikelen.Module.General.GestureConfiguration.View
         private Posture _posture;
         private string _safeFileName;
         
-
         private IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
 
         public AddOrEditPosture()
@@ -49,6 +48,7 @@ namespace cl.uv.leikelen.Module.General.GestureConfiguration.View
             FileNameTextBox.Text = _posture.File;
             DescriptionTextBox.Text = _posture.Description;
 
+            nameTextBox.IsEnabled = false;
             TypeCombobox.ItemsSource = new string[] { Properties.GestureConfiguration.DiscretePosture,
                 Properties.GestureConfiguration.ContinuousPosture };
             TypeCombobox.SelectedItem = _posture.GestureType;
@@ -60,7 +60,7 @@ namespace cl.uv.leikelen.Module.General.GestureConfiguration.View
             {
                 DefaultExt = ".gbd",
                 Filter = "Gesture solution build " + "(*.gbd)|*.gbd|Gesture project build (*.gba)|*.gba",
-                Title = "Importar postura"
+                Title = Properties.GestureConfiguration.ImportPosture
             };
             if (dlg.ShowDialog() == true)
             {
@@ -73,24 +73,22 @@ namespace cl.uv.leikelen.Module.General.GestureConfiguration.View
         {
             string error = "";
             string name = nameTextBox.Text;
-            if (String.IsNullOrEmpty(_safeFileName))
+            if (String.IsNullOrEmpty(_safeFileName) && ReferenceEquals(null, _posture))
             {
-                error += "\nNo ingresó un archivo";
+                error += "\n"+Properties.GestureConfiguration.Error_NoFile;
             }
             if (String.IsNullOrEmpty(name))
             {
-                error += "\nNo ingresó un nombre";
+                error += "\n"+Properties.GestureConfiguration.Error_NoName;
             }
-            if(_dataAccessFacade.GetSubModalAccess().Exists(PostureCRUD.PostureTypes[TypeCombobox.SelectedIndex], name))
+            if(_dataAccessFacade.GetSubModalAccess().Exists(PostureCRUD.PostureTypes[TypeCombobox.SelectedIndex], name)
+                && ReferenceEquals(null, _posture))
             {
-                if(ReferenceEquals(null, _posture))
-                {
-                    error += $"\nLa postura {name} ya existe. Utilice otro nombre";
-                }
+                error += $"\n{Properties.GestureConfiguration.Error_ThePosture} {name} {Properties.GestureConfiguration.Error_PostureExists}";
             }
             if (!String.IsNullOrEmpty(error))
             {
-                MessageBox.Show("Hay errores:"+error, "Error");
+                MessageBox.Show($"{Properties.GestureConfiguration.Error_ThereAreErrors}{error}", Properties.GestureConfiguration.Error);
             }
             else if(ReferenceEquals(null, _posture)) //is adding
             {
@@ -106,22 +104,25 @@ namespace cl.uv.leikelen.Module.General.GestureConfiguration.View
             }
             else //editing
             {
-                string internalFilePath = $"{_dataAccessFacade.GetGeneralSettings().GetDataDirectory()}" +
-                    $"modal/{PostureCRUD.PostureTypes[TypeCombobox.SelectedIndex]}/{_safeFileName}";
+                
 
                 var subModal = _dataAccessFacade.GetSubModalAccess().Get(PostureCRUD.PostureTypes[TypeCombobox.SelectedIndex], name);
                 string oldPath = subModal.File;
 
                 subModal.SubModalTypeId = name;
-                subModal.File = _safeFileName;
+                subModal.File = _safeFileName?? oldPath;
                 subModal.Description = DescriptionTextBox.Text;
                 _dataAccessFacade.GetSubModalAccess().Update(subModal);
 
-                if (oldPath.Equals(internalFilePath))
+                if (!String.IsNullOrEmpty(_safeFileName))
                 {
-                    File.Delete(oldPath);
-                    if (!File.Exists(internalFilePath))
-                        File.Copy(FileNameTextBox.Text, internalFilePath);
+                    string internalFilePath = $"{_dataAccessFacade.GetGeneralSettings().GetModalDirectory(PostureCRUD.PostureTypes[TypeCombobox.SelectedIndex])}/{_safeFileName}";
+                    if (oldPath.Equals(internalFilePath))
+                    {
+                        File.Delete(oldPath);
+                        if (!File.Exists(internalFilePath))
+                            File.Copy(FileNameTextBox.Text, internalFilePath);
+                    }
                 }
                 Close();
             }

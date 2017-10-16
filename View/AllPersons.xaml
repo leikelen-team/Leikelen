@@ -13,7 +13,7 @@
         TextElement.FontSize="14"
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
         mc:Ignorable="d"
-        Title="AllPersons" Height="300" Width="300">
+        Title="AllPersons" Height="350" Width="340">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition MaxHeight="55" />

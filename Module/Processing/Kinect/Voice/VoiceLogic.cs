@@ -18,10 +18,8 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.Voice
         {
             _personsId = new Dictionary<ulong, int>();
             
-            if (!_dataAccessFacade.GetModalAccess().Exists("Voice"))
-                _dataAccessFacade.GetModalAccess().Add("Voice", "When a person talks");
-            if (!_dataAccessFacade.GetSubModalAccess().Exists("Voice", "Talked"))
-                _dataAccessFacade.GetSubModalAccess().Add("Voice", "Talked", "a person talked", null);
+            _dataAccessFacade.GetModalAccess().AddIfNotExists("Voice", "When a person talks");
+            _dataAccessFacade.GetSubModalAccess().AddIfNotExists("Voice", "Talked", "a person talked", null);
 
         }
 

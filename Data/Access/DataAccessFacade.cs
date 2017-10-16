@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using cl.uv.leikelen.API.DataAccess;
 using cl.uv.leikelen.Data.Access.External;
+using cl.uv.leikelen.Data.Persistence;
 
 namespace cl.uv.leikelen.Data.Access
 {
@@ -41,7 +42,7 @@ namespace cl.uv.leikelen.Data.Access
             _subModalAccess = new SubModalAccess();
             _timelessAccess = new TimelessAccess();
             _sceneInUseAccess = new SceneInUseAccess();
-            _generalSettings = new GeneralSettings();
+            _generalSettings = new SettingsAccess();
         }
 
         public IEventAccess GetEventAccess()
@@ -87,6 +88,11 @@ namespace cl.uv.leikelen.Data.Access
         public IGeneralSettings GetGeneralSettings()
         {
             return _generalSettings;
+        }
+
+        public void DeleteDatabase()
+        {
+            DbFacade.Instance.Provider.Delete();
         }
     }
 }

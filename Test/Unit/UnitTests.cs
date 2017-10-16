@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using cl.uv.leikelen.Data.Access;
 using cl.uv.leikelen.Data.Model;
 using cl.uv.leikelen.Controller;
-using cl.uv.leikelen.View;
+using cl.uv.leikelen.Data.Access.External;
 using cl.uv.leikelen.Data.Access.Internal;
 using cl.uv.leikelen.Module;
 using cl.uv.leikelen.Module.Processing.EEGEmotion2Channels;
@@ -21,9 +21,9 @@ namespace cl.uv.leikelen.Test.Unit
         public static void UnitInitialize(TestContext testContext)
         {
             //DataAccessFacade.Instance.GetSceneAccess().ClearDb();
-            LoadTestScene.LoadFakeScene("sceneTest1");
-            LoadTestScene.LoadFakeScene("sceneTest2");
-            LoadTestScene.LoadFakeScene("sceneTest3");
+            TestScene.LoadFakeScene("sceneTest1");
+            TestScene.LoadFakeScene("sceneTest2");
+            TestScene.LoadFakeScene("sceneTest3");
 
             if (!DataAccessFacade.Instance.GetModalAccess().Exists("Emotion"))
                 DataAccessFacade.Instance.GetModalAccess().Add("Emotion", "Affects or feels of a person");
@@ -48,10 +48,9 @@ namespace cl.uv.leikelen.Test.Unit
             {
                 System.IO.File.Delete("data/modal/Emotion/emotionmodel.svm");
             }
-            DataAccessFacade.Instance.GetSceneAccess().ClearDb();
+            DataAccessFacade.Instance.DeleteDatabase();
         }
-
-        #region File
+        
         [TestMethod]
         public void UnitExportTest()
         {
@@ -66,7 +65,6 @@ namespace cl.uv.leikelen.Test.Unit
         {
             Assert.IsNotNull(FileController.Import("toImportFile.leikelen"));
         }
-        #endregion
 
         #region Scene
         [TestMethod]
@@ -146,102 +144,7 @@ namespace cl.uv.leikelen.Test.Unit
         private Dictionary<TagType, List<List<double[]>>> FalseTrain()
         {
             Dictionary<TagType, List<List<double[]>>> dataToTrain = new Dictionary<TagType, List<List<double[]>>>();
-            dataToTrain[TagType.HAHV] = new List<List<double[]>>()
-            {
-                new List<double[]>()
-                {
-                    new double[]{0.0,0.0},
-                    new double[]{0.0,0.0},
-                    new double[]{0.0,0.0},
-                    new double[]{0.0,0.0}
-                },
-                new List<double[]>()
-                {
-                    new double[]{0.0,0.0},
-                    new double[]{0.0,0.0},
-                    new double[]{0.0,0.0},
-                    new double[]{0.0,0.0}
-                },
-                new List<double[]>()
-                {
-                    new double[]{0.0,0.0},
-                    new double[]{0.0,0.0},
-                    new double[]{0.0,0.0},
-                    new double[]{0.0,0.0}
-                }
-            };
-            dataToTrain[TagType.HALV] = new List<List<double[]>>()
-            {
-                new List<double[]>()
-                {
-                    new double[]{1.0,1.0},
-                    new double[]{1.0,1.0},
-                    new double[]{1.0,1.0},
-                    new double[]{1.0,1.0}
-                },
-                new List<double[]>()
-                {
-                    new double[]{1.0,1.0},
-                    new double[]{1.0,1.0},
-                    new double[]{1.0,1.0},
-                    new double[]{1.0,1.0}
-                },
-                new List<double[]>()
-                {
-                    new double[]{1.0,1.0},
-                    new double[]{1.0,1.0},
-                    new double[]{1.0,1.0},
-                    new double[]{1.0,1.0}
-                }
-            };
-            dataToTrain[TagType.LAHV] = new List<List<double[]>>()
-            {
-                new List<double[]>()
-                {
-                    new double[]{10.0,10.0},
-                    new double[]{10.0,10.0},
-                    new double[]{10.0,10.0},
-                    new double[]{10.0,10.0}
-                },
-                new List<double[]>()
-                {
-                    new double[]{10.0,10.0},
-                    new double[]{10.0,10.0},
-                    new double[]{10.0,10.0},
-                    new double[]{10.0,10.0}
-                },
-                new List<double[]>()
-                {
-                    new double[]{10.0,10.0},
-                    new double[]{10.0,10.0},
-                    new double[]{10.0,10.0},
-                    new double[]{10.0,10.0}
-                }
-            };
-            dataToTrain[TagType.LALV] = new List<List<double[]>>()
-            {
-                new List<double[]>()
-                {
-                    new double[]{50.0,20.0},
-                    new double[]{50.0,20.0},
-                    new double[]{50.0,20.0},
-                    new double[]{50.0,20.0}
-                },
-                new List<double[]>()
-                {
-                    new double[]{50.0,20.0},
-                    new double[]{50.0,20.0},
-                    new double[]{50.0,20.0},
-                    new double[]{50.0,20.0}
-                },
-                new List<double[]>()
-                {
-                    new double[]{50.0,20.0},
-                    new double[]{50.0,20.0},
-                    new double[]{50.0,20.0},
-                    new double[]{50.0,20.0}
-                }
-            };
+            
             return dataToTrain;
         }
 

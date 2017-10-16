@@ -115,6 +115,15 @@ namespace cl.uv.leikelen.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Load test scene.
+        /// </summary>
+        public static string File_LoadTestScene {
+            get {
+                return ResourceManager.GetString("File_LoadTestScene", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a New scene.
         /// </summary>
         public static string File_NewScene {
@@ -214,7 +223,7 @@ namespace cl.uv.leikelen.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Persons.
+        ///   Busca una cadena traducida similar a See all persons.
         /// </summary>
         public static string Scene_AllPersons {
             get {
@@ -268,6 +277,15 @@ namespace cl.uv.leikelen.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Person sensors.
+        /// </summary>
+        public static string Tools_PersonSensors {
+            get {
+                return ResourceManager.GetString("Tools_PersonSensors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Player.
         /// </summary>
         public static string Tools_Player {
@@ -304,7 +322,7 @@ namespace cl.uv.leikelen.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Scene processing modules.
+        ///   Busca una cadena traducida similar a Processing modules.
         /// </summary>
         public static string Tools_Processing {
             get {
@@ -322,11 +340,11 @@ namespace cl.uv.leikelen.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Sensors.
+        ///   Busca una cadena traducida similar a Scene sensors.
         /// </summary>
-        public static string Tools_Sensors {
+        public static string Tools_SceneSensors {
             get {
-                return ResourceManager.GetString("Tools_Sensors", resourceCulture);
+                return ResourceManager.GetString("Tools_SceneSensors", resourceCulture);
             }
         }
         

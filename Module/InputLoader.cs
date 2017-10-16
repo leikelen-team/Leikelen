@@ -13,6 +13,7 @@ namespace cl.uv.leikelen.Module
         public List<InputModule> SceneInputModules { get; private set; }
         public Dictionary<Person, List<InputModule>> PersonInputModules { get; private set; }
         public IVideo VideoHandler { get; private set; }
+
         private static InputLoader _instance;
 
         public static InputLoader Instance
@@ -32,7 +33,6 @@ namespace cl.uv.leikelen.Module
             };
 
             PersonInputModules.Add(person, personInputModules);
-
         }
 
         private InputLoader()

@@ -13,6 +13,7 @@ using cl.uv.leikelen.Data.Access;
 using cl.uv.leikelen.Module;
 using cl.uv.leikelen.API.DataAccess;
 using cl.uv.leikelen.Data.Model;
+using cl.uv.leikelen.API.Helper;
 
 namespace cl.uv.leikelen.Module.Input.OpenBCI
 {
@@ -28,6 +29,7 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI
         private readonly string[] _positions;
         private IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
         private Person _person;
+        public View.LiveGraphTab GraphTab;
 
         private bool _isRecording;
 
@@ -41,6 +43,7 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI
             _interpretStream = new Util.InterpretStream();
             _filter = new Util.Filter();
             _status = InputStatus.Unconnected;
+            GraphTab = new View.LiveGraphTab();
             _positions = new string[8]
             {
                 OpenBCISettings.Instance.PositionChannel1.Value,
@@ -182,6 +185,8 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI
                     {
                         if (data.Length >= 9)
                         {
+                            double[] dataToGraph = new double[9];
+                            dataToGraph[0] = data[0];
                             var eegArgs = new EegFrameArrivedEventArgs()
                             {
                                 Time = time.Value,
@@ -192,6 +197,7 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI
                             {
                                 double value = _filter.FiltersSelect((FilterType)(OpenBCISettings.Instance.Filter.Value),
                                     (NotchType)(OpenBCISettings.Instance.Notch.Value), data[j], j - 1);
+                                dataToGraph[j] = value;
                                 eegArgs.Channels.Add(new EegChannel()
                                 {
                                     Filter = FilterType.None,
@@ -200,6 +206,7 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI
                                     Value = value
                                 });
                             }
+                            GraphTab.Enqueue(dataToGraph);
                             OnEegFrameArrived(eegArgs);
                         }
                         if (data.Length == 12 && data[9] != 0 && data[10] != 0 && data[11] != 0)

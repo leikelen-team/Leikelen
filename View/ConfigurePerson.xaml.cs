@@ -77,10 +77,10 @@ namespace cl.uv.leikelen.View
                 int? sex = null;
                 switch (SexComboBox.SelectedIndex)
                 {
-                    case 0:
+                    case 1:
                         sex = 0;
                         break;
-                    case 1:
+                    case 2:
                         sex = 1;
                         break;
                     default:
@@ -89,9 +89,10 @@ namespace cl.uv.leikelen.View
                 }
                 if (ReferenceEquals(null, _person))
                 {
-                    var person = DataAccessFacade.Instance.GetPersonAccess().Add(NameTextBox.Text, PhotoPathTextBox.Text, BirthdayPicker.SelectedDate, sex);
+                    var person = DataAccessFacade.Instance.GetPersonAccess().Add(NameTextBox.Text, PhotoPathTextBox?.Text, BirthdayPicker.SelectedDate, sex);
                     DataAccessFacade.Instance.GetPersonAccess().AddToScene(person, DataAccessFacade.Instance.GetSceneInUseAccess().GetScene());
-                    File.Copy(_path, GeneralSettings.Instance.DataDirectory.Value + "person/" + PhotoPathTextBox.Text);
+                    if(!ReferenceEquals(null, _path) && !ReferenceEquals(null, PhotoPathTextBox?.Text))
+                        File.Copy(_path, GeneralSettings.Instance.DataDirectory.Value + "person/" + PhotoPathTextBox.Text);
                 }
                 else
                 {

@@ -21,16 +21,11 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels
 
         public TrainerEntryPoint()
         {
-            if (!_dataAccessFacade.GetModalAccess().Exists("Emotion"))
-                _dataAccessFacade.GetModalAccess().Add("Emotion", "Affects or feels of a person");
-            if (!_dataAccessFacade.GetSubModalAccess().Exists("Emotion", "LALV"))
-                _dataAccessFacade.GetSubModalAccess().Add("Emotion", "LALV", "Low arousal Low Valence", "emotionmodel.svm");
-            if (!_dataAccessFacade.GetSubModalAccess().Exists("Emotion", "LAHV"))
-                _dataAccessFacade.GetSubModalAccess().Add("Emotion", "LAHV", "Low arousal High Valence", "emotionmodel.svm");
-            if (!_dataAccessFacade.GetSubModalAccess().Exists("Emotion", "HALV"))
-                _dataAccessFacade.GetSubModalAccess().Add("Emotion", "HALV", "High arousal Low Valence", "emotionmodel.svm");
-            if (!_dataAccessFacade.GetSubModalAccess().Exists("Emotion", "HAHV"))
-                _dataAccessFacade.GetSubModalAccess().Add("Emotion", "HAHV", "High arousal High Valence", "emotionmodel.svm");
+            _dataAccessFacade.GetModalAccess().AddIfNotExists("Emotion", "Affects or feels of a person");
+            _dataAccessFacade.GetSubModalAccess().AddIfNotExists("Emotion", "LALV", "Low arousal Low Valence", "emotionmodel.svm");
+            _dataAccessFacade.GetSubModalAccess().AddIfNotExists("Emotion", "LAHV", "Low arousal High Valence", "emotionmodel.svm");
+            _dataAccessFacade.GetSubModalAccess().AddIfNotExists("Emotion", "HALV", "High arousal Low Valence", "emotionmodel.svm");
+            _dataAccessFacade.GetSubModalAccess().AddIfNotExists("Emotion", "HAHV", "High arousal High Valence", "emotionmodel.svm");
 
 
             Windows = new List<Tuple<string, WindowBuilder>>();

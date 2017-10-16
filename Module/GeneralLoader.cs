@@ -10,6 +10,7 @@ namespace cl.uv.leikelen.Module
     public class GeneralLoader
     {
         public List<GeneralModule> GeneralModules { get; private set; }
+        public static event EventHandler GeneralModulesHasReset;
 
         private static GeneralLoader _instance;
 
@@ -26,6 +27,7 @@ namespace cl.uv.leikelen.Module
         {
             _instance = null;
             _instance = new GeneralLoader();
+            GeneralModulesHasReset?.Invoke(_instance, new EventArgs());
         }
 
         private GeneralLoader()

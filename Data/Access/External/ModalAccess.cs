@@ -13,6 +13,13 @@ namespace cl.uv.leikelen.Data.Access.External
 {
     public class ModalAccess : IModalAccess
     {
+        public static List<ModalType> TmpModals { get; private set; } = new List<ModalType>();
+
+        public static void LoadTmpModals()
+        {
+            TmpModals = DbFacade.Instance.Provider.LoadModals();
+        }
+
         public List<ModalType> GetAll()
         {
             return DbFacade.Instance.Provider.LoadModals();
@@ -20,13 +27,13 @@ namespace cl.uv.leikelen.Data.Access.External
 
         public ModalType Add(string name, string description)
         {
+            AddDirectory(name);
             if (Exists(name))
             {
                 throw new DbException("ModalType "+name+ Error.AlreadyExists);
             }
             else
             {
-                Directory.CreateDirectory(GeneralSettings.Instance.GetDataDirectory() + "modal/" +name);
                 return DbFacade.Instance.Provider.SaveModal(new ModalType()
                 {
                     ModalTypeId = name,
@@ -37,8 +44,28 @@ namespace cl.uv.leikelen.Data.Access.External
 
         public bool Exists(string name)
         {
-            var modalTypes = DbFacade.Instance.Provider.LoadModals();
-            return modalTypes.Exists(m => m.ModalTypeId.Equals(name));
+            var modalType = DbFacade.Instance.Provider.LoadModal(name);
+            return !ReferenceEquals(null, modalType);
+        }
+
+        public ModalType AddIfNotExists(string name, string description)
+        {
+            AddDirectory(name);
+            if (Exists(name))
+            {
+                return DbFacade.Instance.Provider.LoadModal(name);
+            }
+            else
+            {
+                return Add(name, description);
+            }
+        }
+
+        private void AddDirectory(string modalTypeName)
+        {
+            string modalDirectory = Path.Combine(Path.Combine(new SettingsAccess().GetDataDirectory(), "modal/"), modalTypeName);
+            if (!Directory.Exists(modalDirectory))
+                Directory.CreateDirectory(modalDirectory);
         }
     }
 }

@@ -28,6 +28,7 @@ namespace cl.uv.leikelen.Controller
 
         public async Task Record()
         {
+            Data.Access.External.ModalAccess.LoadTmpModals();
             foreach (var input in InputLoader.Instance.SceneInputModules)
             {
                 if (input.Monitor.GetStatus() != API.Module.Input.InputStatus.Connected)

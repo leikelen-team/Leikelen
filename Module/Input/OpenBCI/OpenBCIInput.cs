@@ -15,11 +15,16 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI
         public OpenBCIInput(Person person)
         {
             Plurality = InputPlurality.Person;
-            Monitor = new Monitor(person);
+            var myMonitor = new Monitor(person);
+            Tabs.Add(myMonitor.GraphTab);
+            Monitor = myMonitor as IMonitor;
             Name = Properties.OpenBCI.SensorName;
             Player = new Player();
             Windows = new List<Tuple<string, WindowBuilder>>();
-            Windows.Add(new Tuple<string, WindowBuilder>(Properties.OpenBCI.ConfigWindowTitle, new WindowBuilder(new View.OpenBCIWindow(Monitor))));
+            Windows.Add(new Tuple<string, WindowBuilder>(Properties.OpenBCI.ConfigWindowTitle, 
+                new WindowBuilder(new View.OpenBCIWindow(Monitor))));
+
+            
         }
     }
 }

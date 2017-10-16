@@ -169,8 +169,8 @@
   <data name="Tools_Player_SkeletonLayerCheckbox" xml:space="preserve">
     <value>Ver esqueleto</value>
   </data>
-  <data name="Tools_Sensors" xml:space="preserve">
-    <value>Sensores</value>
+  <data name="Tools_SceneSensors" xml:space="preserve">
+    <value>Sensores de escena</value>
   </data>
   <data name="Tools_Player_ColorLayerCheckbox" xml:space="preserve">
     <value>Ver color</value>
@@ -182,7 +182,7 @@
     <value>Deshabilitar</value>
   </data>
   <data name="Tools_Processing" xml:space="preserve">
-    <value>Módulos de procesamiento de la escena</value>
+    <value>Módulos de procesamiento</value>
   </data>
   <data name="Scene" xml:space="preserve">
     <value>Escena</value>
@@ -203,12 +203,18 @@
     <value>Documentación de desarrollador</value>
   </data>
   <data name="Scene_AllPersons" xml:space="preserve">
-    <value>Personas</value>
+    <value>Ver todas las personas</value>
   </data>
   <data name="File_AllScenes" xml:space="preserve">
     <value>Todas las escenas</value>
   </data>
   <data name="Scene_PersonsInScene" xml:space="preserve">
     <value>Personas en la escena</value>
+  </data>
+  <data name="File_LoadTestScene" xml:space="preserve">
+    <value>Cargar escena de prueba</value>
+  </data>
+  <data name="Tools_PersonSensors" xml:space="preserve">
+    <value>Sensores de personas</value>
   </data>
 </root>

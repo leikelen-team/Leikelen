@@ -17,5 +17,7 @@ namespace cl.uv.leikelen.API.DataAccess
         ITimelessAccess GetTimelessAccess();
         ISceneInUseAccess GetSceneInUseAccess();
         IGeneralSettings GetGeneralSettings();
+
+        void DeleteDatabase();
     }
 }

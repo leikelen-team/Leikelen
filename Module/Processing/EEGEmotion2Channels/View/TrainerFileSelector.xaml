@@ -12,8 +12,8 @@
         TextElement.FontSize="14"
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
         mc:Ignorable="d"
-        Title="TrainerFileSelector" Height="300" Width="300">
-    <Grid>
+        Title="TrainerFileSelector" Height="300" Width="400">
+    <Grid Margin="5">
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition />
@@ -22,8 +22,8 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition />
+            <ColumnDefinition MinWidth="190" />
+            <ColumnDefinition  Width="1.5*"/>
         </Grid.ColumnDefinitions>
 
         <Label Content="{x:Static resx:EEGEmotion2Channels.LALV}" Grid.Row="0" Grid.Column="0" VerticalAlignment="Bottom" ></Label>

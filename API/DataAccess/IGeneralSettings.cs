@@ -11,6 +11,12 @@ namespace cl.uv.leikelen.API.DataAccess
         string GetDataDirectory();
         string GetTmpDirectory();
         string GetTmpSceneDirectory();
+        string GetModalDirectory(string modalTypeName);
+        string GetDataPersonsDirectory();
+        string GetDataScenesDirectory();
+        string GetDataModalsDirectory();
+        string GetSceneInUseDirectory();
+        string GetSceneDirectory(int sceneId);
         int GetDefaultMillisecondsThreshold();
     }
 }

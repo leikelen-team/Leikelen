@@ -29,7 +29,7 @@
                             <materialDesign:PackIcon Kind="ContentSave" />
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem x:Name="MenuItem_File_LoadTestScene" Header="Load test scene">
+                    <MenuItem x:Name="MenuItem_File_LoadTestScene" Header="{x:Static resx:Menu.File_LoadTestScene}">
                     </MenuItem>
                     <MenuItem x:Name="MenuItem_File_AllScenes" Header="{x:Static resx:Menu.File_AllScenes}">
                     </MenuItem>
@@ -49,7 +49,9 @@
                     </MenuItem>
                     <MenuItem x:Name="MenuItem_Tools_DB" Header="{x:Static resx:Menu.Tools_DataBase}" InputGestureText="Ctrl+D"></MenuItem>
                     <Separator />
-                    <MenuItem x:Name="MenuItems_Tools_Sensors" Header="{x:Static resx:Menu.Tools_Sensors}">
+                    <MenuItem x:Name="MenuItems_Tools_Sensors" Header="{x:Static resx:Menu.Tools_SceneSensors}">
+                    </MenuItem>
+                    <MenuItem x:Name="MenuItems_Tools_PersonSensors" Header="{x:Static resx:Menu.Tools_PersonSensors}">
                     </MenuItem>
                     <MenuItem x:Name="MenuItems_Tools_Processing" Header="{x:Static resx:Menu.Tools_Processing}">
                     </MenuItem>

@@ -15,6 +15,5 @@ namespace cl.uv.leikelen.API.DataAccess
         Scene SaveOrUpdate(Scene scene);
         Scene SaveNew(Scene scene);
         void Delete(Scene scene);
-        void ClearDb();
     }
 }

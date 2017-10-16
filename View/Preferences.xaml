@@ -19,7 +19,7 @@
             <RowDefinition Height="*" />
             <RowDefinition MaxHeight="60" />
         </Grid.RowDefinitions>
-        <dragablz:TabablzControl x:Name="Tabs" Grid.Row="0" >
+        <dragablz:TabablzControl x:Name="Tabs" Grid.Row="0" BorderThickness="0">
             <dragablz:TabablzControl.InterTabController>
                 <dragablz:InterTabController />
             </dragablz:TabablzControl.InterTabController>

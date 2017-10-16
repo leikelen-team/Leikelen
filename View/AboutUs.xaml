@@ -13,12 +13,12 @@
         TextElement.FontWeight="Medium"
         TextElement.FontSize="14"
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
-        Title="AboutUs" Height="300" Width="300">
-    <Grid>
+        Title="AboutUs" Height="350" Width="300">
+    <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="4*" />
-            <RowDefinition MinHeight="40" Height="*" />
-            <RowDefinition MinHeight="40" Height="*" />
+            <RowDefinition MinHeight="50" Height="*" />
+            <RowDefinition MinHeight="60" Height="*" />
         </Grid.RowDefinitions>
         <Image Grid.Row="0" Source="../Static/logo.png" />
         <TextBlock Grid.Row="1" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{x:Static resx:GUI.Authors}"/>

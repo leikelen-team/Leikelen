@@ -161,11 +161,74 @@ namespace cl.uv.leikelen.Module.General.GestureConfiguration.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Error.
+        /// </summary>
+        public static string Error {
+            get {
+                return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Please enter a file.
+        /// </summary>
+        public static string Error_NoFile {
+            get {
+                return ResourceManager.GetString("Error_NoFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Please enter a name.
+        /// </summary>
+        public static string Error_NoName {
+            get {
+                return ResourceManager.GetString("Error_NoName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a already exists. Please use another name.
+        /// </summary>
+        public static string Error_PostureExists {
+            get {
+                return ResourceManager.GetString("Error_PostureExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a The posture.
+        /// </summary>
+        public static string Error_ThePosture {
+            get {
+                return ResourceManager.GetString("Error_ThePosture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a There are the followings errors:.
+        /// </summary>
+        public static string Error_ThereAreErrors {
+            get {
+                return ResourceManager.GetString("Error_ThereAreErrors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a File.
         /// </summary>
         public static string File {
             get {
                 return ResourceManager.GetString("File", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Import posture.
+        /// </summary>
+        public static string ImportPosture {
+            get {
+                return ResourceManager.GetString("ImportPosture", resourceCulture);
             }
         }
         

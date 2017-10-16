@@ -122,6 +122,9 @@
     <Reference Include="Dragablz, Version=0.0.3.197, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\Dragablz.0.0.3.197\lib\net45\Dragablz.dll</HintPath>
     </Reference>
+    <Reference Include="KinectEx" Condition="'$(Platform)' == 'AnyCPU'">
+      <HintPath>bin_files\x86\KinectEx.dll</HintPath>
+    </Reference>
     <Reference Include="KinectEx.x86" Condition="'$(Platform)' == 'x86'">
       <HintPath>bin_files\x86\KinectEx.dll</HintPath>
     </Reference>
@@ -275,6 +278,7 @@
       <HintPath>packages\System.Diagnostics.DiagnosticSource.4.4.0\lib\net45\System.Diagnostics.DiagnosticSource.dll</HintPath>
     </Reference>
     <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Interactive.Async, Version=3.0.1000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
       <HintPath>packages\System.Interactive.Async.3.1.1\lib\net45\System.Interactive.Async.dll</HintPath>
     </Reference>
@@ -295,6 +299,9 @@
     </Reference>
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Windows.Forms.DataVisualization.Design" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -307,6 +314,7 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
     <Reference Include="WriteableBitmapEx.Wpf, Version=1.5.0.0, Culture=neutral, PublicKeyToken=50375ca6144f1c69, processorArchitecture=MSIL">
       <HintPath>packages\WriteableBitmapEx.1.5.1.0\lib\net40\WriteableBitmapEx.Wpf.dll</HintPath>
     </Reference>
@@ -338,6 +346,7 @@
     <Compile Include="Data\Access\External\SceneAccess.cs" />
     <Compile Include="Data\Access\External\SceneInUseAccess.cs" />
     <Compile Include="API\Helper\WindowBuilder.cs" />
+    <Compile Include="Data\Access\External\SettingsAccess.cs" />
     <Compile Include="Data\Access\External\TypeValidation.cs" />
     <Compile Include="Data\Persistence\Provider\EfAbstractProvider.cs" />
     <Compile Include="Data\Persistence\Provider\MySqlProvider.cs" />
@@ -384,6 +393,15 @@
     </Compile>
     <Compile Include="Module\Input\OpenBCI\View\ConfigurePositions.xaml.cs">
       <DependentUpon>ConfigurePositions.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\Input\OpenBCI\View\GraphForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Module\Input\OpenBCI\View\GraphForm.Designer.cs">
+      <DependentUpon>GraphForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Module\Input\OpenBCI\View\LiveGraphTab.xaml.cs">
+      <DependentUpon>LiveGraphTab.xaml</DependentUpon>
     </Compile>
     <Compile Include="Module\Processing\EEGEmotion2Channels\PreProcessing\FilterButterworth.cs" />
     <Compile Include="Module\Processing\EEGEmotion2Channels\PreProcessing\FilterRLC.cs" />
@@ -536,7 +554,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="View\LoadTestScene.cs" />
+    <Compile Include="Data\Access\External\LoadTestScene.cs" />
     <Compile Include="View\Preferences.xaml.cs">
       <DependentUpon>Preferences.xaml</DependentUpon>
     </Compile>
@@ -579,6 +597,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Module\Input\OpenBCI\View\ConfigurePositions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Module\Input\OpenBCI\View\LiveGraphTab.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -692,6 +714,9 @@
       <LastGenOutput>GestureConfiguration.Designer.cs</LastGenOutput>
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Module\Input\OpenBCI\View\GraphForm.resx">
+      <DependentUpon>GraphForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Error.es.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Error.es.Designer.cs</LastGenOutput>
@@ -744,7 +769,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Test\Integration\" />
-    <Folder Include="View\Widget\Wizard\" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">

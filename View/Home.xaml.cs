@@ -22,11 +22,12 @@ using Microsoft.Win32;
 using System.IO;
 using cl.uv.leikelen.Data.Model;
 using cl.uv.leikelen.API.Helper;
+using cl.uv.leikelen.Data.Access.External;
 
 namespace cl.uv.leikelen.View
 {
     /// <summary>
-    /// Lógica de interacción para Home.xaml
+    /// Interaction logic for Home.xaml
     /// </summary>
     public partial class Home : Window
     {
@@ -57,7 +58,7 @@ namespace cl.uv.leikelen.View
         /// <summary>
         /// Get or Sets the state of the window
         /// </summary>
-        private HomeState _homeState;
+        private SceneState _homeState;
 
         private readonly DispatcherTimer _playTimer;
 
@@ -65,6 +66,8 @@ namespace cl.uv.leikelen.View
         private Tuple<TimeSpan?, ImageSource> _lastSkeletonBeforePause;
 
         private List<ITab> _tabs;
+        private List<ITab> _generalModuleTabs;
+        private List<ITab> _processingModuleTabs;
 
         public Home()
         {
@@ -139,6 +142,9 @@ namespace cl.uv.leikelen.View
                     Tabs.AddToSource(tabItem);
             }
 
+            GeneralLoader.GeneralModulesHasReset += RefillGeneralModuleTabs;
+            ProcessingLoader.ProcessingModulesHasReset += RefillProcessingModuleTabs;
+
             SkeletonLayerCheckbox.Checked += SkeletonLayerCheckbox_Checked;
             SkeletonLayerCheckbox.Unchecked += SkeletonLayerCheckbox_Unchecked;
 
@@ -149,24 +155,96 @@ namespace cl.uv.leikelen.View
             ColorLayerCheckbox.IsChecked = true;
 
             //Actions
-            ChangeHomeState(HomeState.Base, PlayerState.Wait);
+            ChangeHomeState(SceneState.Base, PlayerState.Wait);
             FillMenuInputModules();
             FillMenuProccessingModules();
             FillMenuGeneralModules();
         }
 
-        private void MenuItem_File_LoadTestScene_Click(object sender, RoutedEventArgs e)
+        #region Tabs
+        private void ResetTabs()
         {
-            LoadTestScene.LoadTest("Test");
-            ChangeHomeState(HomeState.FromFileWithScene, PlayerState.Wait);
+            foreach (var tab in _tabs)
+            {
+                tab.Reset();
+                tab.Fill();
+            }
         }
 
+        private void RemoveTabs(List<ITab> tabs)
+        {
+            foreach (var tab in tabs)
+            {
+                if (tab is TabItem tabItem)
+                    Tabs.RemoveFromSource(tabItem);
+            }
+        }
+        private void FillTabs(List<ITab> tabs, string personName)
+        {
+            foreach(var tab in tabs)
+            {
+                if (tab is TabItem tabItem)
+                {
+                    if (!String.IsNullOrEmpty(personName))
+                        tabItem.Header = $"{tabItem.Header} ({personName})";
+                    Tabs.AddToSource(tabItem);
+                }
+            }
+        }
+
+        private void RefillGeneralModuleTabs(object sender, EventArgs e)
+        {
+            if (!ReferenceEquals(null, _generalModuleTabs))
+            {
+                foreach (var tab in _generalModuleTabs)
+                {
+                    if (tab is TabItem tabItem)
+                        Tabs.RemoveFromSource(tabItem);
+                }
+            }
+            _generalModuleTabs = new List<ITab>();
+            foreach (var generalModule in GeneralLoader.Instance.GeneralModules)
+            {
+                if(generalModule.IsEnabled)
+                    _generalModuleTabs.AddRange(generalModule.Tabs);
+            }
+            foreach(var tab in _generalModuleTabs)
+            {
+                if (tab is TabItem tabItem)
+                    Tabs.RemoveFromSource(tabItem);
+            }
+        }
+
+        private void RefillProcessingModuleTabs(object sender, EventArgs e)
+        {
+            if (!ReferenceEquals(null, _processingModuleTabs))
+            {
+                foreach (var tab in _processingModuleTabs)
+                {
+                    if (tab is TabItem tabItem)
+                        Tabs.RemoveFromSource(tabItem);
+                }
+            }
+            _processingModuleTabs = new List<ITab>();
+            foreach (var processingModule in GeneralLoader.Instance.GeneralModules)
+            {
+                if (processingModule.IsEnabled)
+                    _processingModuleTabs.AddRange(processingModule.Tabs);
+            }
+            foreach (var tab in _processingModuleTabs)
+            {
+                if (tab is TabItem tabItem)
+                    Tabs.RemoveFromSource(tabItem);
+            }
+        }
+        #endregion
+        
         #region states
-        private bool ChangeHomeState(HomeState newHomeState, PlayerState newPlayerState)
+        private bool ChangeHomeState(SceneState newHomeState, PlayerState newPlayerState)
         {
             switch (newHomeState)
             {
-                case HomeState.Base:
+                case SceneState.Base:
                     if (_playerState == PlayerState.Record)
                     {
                         MessageBoxResult result = MessageBox.Show(Properties.GUI.stopRecordFirst, 
@@ -177,12 +255,12 @@ namespace cl.uv.leikelen.View
                     _mediaController.SetFromNone();
                     SetGuiBase();
                     break;
-                case HomeState.FromSensorWithScene:
+                case SceneState.FromSensorWithScene:
                     if (ReferenceEquals(null, DataAccessFacade.Instance.GetSceneInUseAccess().GetScene()))
                         return false;
                     SetGuiFromSensorWithScene(newPlayerState);
                     break;
-                case HomeState.FromFileWithScene:
+                case SceneState.FromFileWithScene:
                     if (ReferenceEquals(null, DataAccessFacade.Instance.GetSceneInUseAccess().GetScene()))
                         return false;
                     SetGuiFromFileWithScene(newPlayerState);
@@ -190,7 +268,7 @@ namespace cl.uv.leikelen.View
             }
 
             _homeState = newHomeState;
-            if (_homeState == HomeState.Base)
+            if (_homeState == SceneState.Base)
                 _playerState = PlayerState.Wait;
             else
                 _playerState = newPlayerState;
@@ -210,12 +288,13 @@ namespace cl.uv.leikelen.View
             MenuItem_Tools_DB.IsEnabled = true;
             MenuItem_Tools_Player.IsEnabled = false;
             MenuItems_Tools_Sensors.IsEnabled = false;
+            MenuItems_Tools_PersonSensors.IsEnabled = false;
             MenuItems_Tools_Processing.IsEnabled = false;
             MenuItems_Tools_General.IsEnabled = true;
             
             MenuItem_Scene_Configure.IsEnabled = false;
             MenuItem_Scene_AddPerson.IsEnabled = false;
-            MenuItem_Scene_Persons.IsEnabled = false;
+            MenuItem_Scene_Persons.IsEnabled = true;
             MenuItem_Scene_PersonsInScene.IsEnabled = false;
 
             Player_LocationSlider.IsEnabled = false;
@@ -230,11 +309,7 @@ namespace cl.uv.leikelen.View
             {
                 case PlayerState.Wait:
                     Player_StopButton.IsEnabled = false;
-                    foreach (var tab in _tabs)
-                    {
-                        tab.Reset();
-                        tab.Fill();
-                    }
+                    ResetTabs();
                     break;
                 case PlayerState.Play:
                     Player_StopButton.IsEnabled = true;
@@ -248,11 +323,12 @@ namespace cl.uv.leikelen.View
             
             MenuItem_Tools_Player.IsEnabled = true;
             MenuItems_Tools_Sensors.IsEnabled = false;
+            MenuItems_Tools_PersonSensors.IsEnabled = false;
             MenuItems_Tools_Processing.IsEnabled = false;
             
             MenuItem_Scene_Configure.IsEnabled = true;
             MenuItem_Scene_AddPerson.IsEnabled = false;
-            MenuItem_Scene_Persons.IsEnabled = false;
+            MenuItem_Scene_Persons.IsEnabled = true;
             MenuItem_Scene_PersonsInScene.IsEnabled = false;
 
             Player_LocationSlider.IsEnabled = true;
@@ -272,6 +348,7 @@ namespace cl.uv.leikelen.View
                 case PlayerState.Wait:
                     MenuItem_Tools_Player.IsEnabled = false;
                     MenuItems_Tools_Sensors.IsEnabled = true;
+                    MenuItems_Tools_PersonSensors.IsEnabled = true;
                     MenuItems_Tools_Processing.IsEnabled = true;
                     MenuItem_Scene_PersonsInScene.IsEnabled = true;
 
@@ -284,10 +361,11 @@ namespace cl.uv.leikelen.View
                 case PlayerState.Record:
                     MenuItem_Tools_Player.IsEnabled = true;
                     MenuItems_Tools_Sensors.IsEnabled = false;
+                    MenuItems_Tools_PersonSensors.IsEnabled = false;
                     MenuItems_Tools_Processing.IsEnabled = false;
 
                     MenuItem_Scene_AddPerson.IsEnabled = false;
-                    MenuItem_Scene_Persons.IsEnabled = false;
+                    MenuItem_Scene_Persons.IsEnabled = true;
 
                     Player_RecordButton.IsEnabled = false;
                     Player_StopButton.IsEnabled = true;
@@ -324,7 +402,6 @@ namespace cl.uv.leikelen.View
         #endregion states
 
         #region Window Events
-
         private void Home_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             MessageBoxResult result = MessageBox.Show(Properties.GUI.AreSureExit, 
@@ -354,9 +431,15 @@ namespace cl.uv.leikelen.View
             {
                 if (!ReferenceEquals(null, DataAccessFacade.Instance.GetSceneInUseAccess().GetScene()))
                 {
-                    ChangeHomeState(HomeState.FromSensorWithScene, PlayerState.Wait);
+                    ChangeHomeState(SceneState.FromSensorWithScene, PlayerState.Wait);
                 }
             };
+        }
+        
+        private void MenuItem_File_LoadTestScene_Click(object sender, RoutedEventArgs e)
+        {
+            TestScene.LoadTest("Test");
+            ChangeHomeState(SceneState.FromFileWithScene, PlayerState.Wait);
         }
 
         private void MenuItem_File_AllScenes_Click(object sender, RoutedEventArgs e)
@@ -370,7 +453,7 @@ namespace cl.uv.leikelen.View
             {
                 if (!ReferenceEquals(null, DataAccessFacade.Instance.GetSceneInUseAccess().GetScene()))
                 {
-                    ChangeHomeState(HomeState.FromFileWithScene, PlayerState.Wait);
+                    ChangeHomeState(SceneState.FromFileWithScene, PlayerState.Wait);
                 }
             };
         }
@@ -447,7 +530,7 @@ namespace cl.uv.leikelen.View
                         MessageBoxImage.Error);
                 }
             }
-            ChangeHomeState(HomeState.FromFileWithScene, PlayerState.Wait);
+            ChangeHomeState(SceneState.FromFileWithScene, PlayerState.Wait);
         }
 
         private void MenuItem_File_Quit_Click(object sender, RoutedEventArgs e)
@@ -511,7 +594,6 @@ namespace cl.uv.leikelen.View
         #endregion
 
         #region Video viewer
-
         private void VideoViewer_skeletonImageArrived(object sender, ImageSource e)
         {
             Console.WriteLine("----skeleton arrived");
@@ -574,21 +656,21 @@ namespace cl.uv.leikelen.View
                 case PlayerState.Play:
                     _playTimer.Stop();
                     _playerController.Pause();
-                    ChangeHomeState(HomeState.FromFileWithScene, PlayerState.Pause);
+                    ChangeHomeState(SceneState.FromFileWithScene, PlayerState.Pause);
                     Player_PlayButton_Icon.Kind = PackIconKind.Play;
                     break;
 
                 case PlayerState.Pause:
                     _playerController.UnPause();
                     _playTimer.Start();
-                    ChangeHomeState(HomeState.FromFileWithScene, PlayerState.Play);
+                    ChangeHomeState(SceneState.FromFileWithScene, PlayerState.Play);
                     Player_PlayButton_Icon.Kind = PackIconKind.Pause;
                     break;
 
                 case PlayerState.Wait:
                     _playerController.Play();
                     _playTimer.Start();
-                    ChangeHomeState(HomeState.FromFileWithScene, PlayerState.Play);
+                    ChangeHomeState(SceneState.FromFileWithScene, PlayerState.Play);
                     Player_PlayButton_Icon.Kind = PackIconKind.Pause;
                     break;
             }
@@ -607,12 +689,8 @@ namespace cl.uv.leikelen.View
                 Player_ActualTimeLabel.Content = "--:--:--";
                 Player_TotalTimeLabel.Content = SceneInUse.Instance.Scene.Duration.ToString(@"hh\:mm\:ss");
                 Player_RecordButton.Background = _buttonBackground;
-                ChangeHomeState(HomeState.FromFileWithScene, PlayerState.Wait);
-                foreach (var tab in _tabs)
-                {
-                    tab.Reset();
-                    tab.Fill();
-                }
+                ChangeHomeState(SceneState.FromFileWithScene, PlayerState.Wait);
+                ResetTabs();
             }
         }
 
@@ -623,7 +701,7 @@ namespace cl.uv.leikelen.View
             //blablabla
             Player_ActualTimeLabel.Content = "00:00:00";
             Player_TotalTimeLabel.Content = SceneInUse.Instance.Scene.Duration.ToString(@"hh\:mm\:ss");
-            ChangeHomeState(HomeState.FromFileWithScene, PlayerState.Wait);
+            ChangeHomeState(SceneState.FromFileWithScene, PlayerState.Wait);
             Player_PlayButton_Icon.Kind = PackIconKind.Play;
         }
 
@@ -637,7 +715,7 @@ namespace cl.uv.leikelen.View
                 Player_RecordButton.IsEnabled = false;
                 Player_StopButton.IsEnabled = true;
                 _recordTimer.Start();
-                ChangeHomeState(HomeState.FromSensorWithScene, PlayerState.Record);
+                ChangeHomeState(SceneState.FromSensorWithScene, PlayerState.Record);
             }
         }
 
@@ -684,7 +762,7 @@ namespace cl.uv.leikelen.View
         {
             foreach (var input in InputLoader.Instance.SceneInputModules)
             {
-                FillProcessingAndGeneralModules(input, ModuleType.Input, null);
+                FillProcessingAndGeneralModules(input, ModuleType.InputScene, null);
             }
         }
 
@@ -707,9 +785,19 @@ namespace cl.uv.leikelen.View
 
         private void Home_PersonAdded(object sender, Person e)
         {
-            foreach(var personModule in InputLoader.Instance.PersonInputModules[e])
+            MenuItem personItem = new MenuItem
             {
-                FillProcessingAndGeneralModules(personModule, ModuleType.Person, e);
+                Header = e.Name
+            };
+            personItem.Click += (personSender, personE) =>
+            {
+                new ConfigurePerson().Show();
+            };
+            MenuItem_Scene_PersonsInScene.Items.Add(personItem);
+
+            foreach (var personModule in InputLoader.Instance.PersonInputModules[e])
+            {
+                FillProcessingAndGeneralModules(personModule, ModuleType.InputPerson, e);
             }
         }
 
@@ -754,6 +842,11 @@ namespace cl.uv.leikelen.View
                     {
                         winItem.IsEnabled = true;
                     }
+                    if(!ReferenceEquals(null, person))
+                        FillTabs(module.Tabs, person.Name);
+                    else
+                        FillTabs(module.Tabs, null);
+
                 }
                 catch (Exception)
                 {
@@ -779,6 +872,7 @@ namespace cl.uv.leikelen.View
                     {
                         winItem.IsEnabled = false;
                     }
+                    RemoveTabs(module.Tabs);
                 }
                 catch (Exception)
                 {
@@ -794,7 +888,7 @@ namespace cl.uv.leikelen.View
             //add to GUI menu according its type.
             switch (moduleType)
             {
-                case ModuleType.Input:
+                case ModuleType.InputScene:
                     MenuItems_Tools_Sensors.Items.Add(moduleMenuItem);
                     break;
                 case ModuleType.Processing:
@@ -803,12 +897,12 @@ namespace cl.uv.leikelen.View
                 case ModuleType.General:
                     MenuItems_Tools_General.Items.Add(moduleMenuItem);
                     break;
-                case ModuleType.Person:
+                case ModuleType.InputPerson:
                     personItem.Items.Add(moduleMenuItem);
                     break;
             }
-            if(moduleType == ModuleType.Person)
-                MenuItem_Scene_PersonsInScene.Items.Add(personItem);
+            if(moduleType == ModuleType.InputPerson)
+                MenuItems_Tools_PersonSensors.Items.Add(personItem);
         }
         #endregion
     }
@@ -821,7 +915,7 @@ namespace cl.uv.leikelen.View
         Pause
     }
 
-    public enum HomeState
+    public enum SceneState
     {
         Base,
         FromSensorWithScene,
@@ -830,9 +924,9 @@ namespace cl.uv.leikelen.View
 
     public enum ModuleType
     {
-        Input,
+        InputScene,
         Processing,
         General,
-        Person
+        InputPerson
     }
 }

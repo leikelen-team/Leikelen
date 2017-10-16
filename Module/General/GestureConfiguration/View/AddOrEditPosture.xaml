@@ -13,7 +13,7 @@
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
         mc:Ignorable="d"
         Title="AddOrEditPosture" Height="300" Width="350">
-    <Grid>
+    <Grid Margin="5">
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition />
@@ -48,8 +48,8 @@
         </ComboBox>
 
         <StackPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button x:Name="saveButton" Content="{x:Static resx:GestureConfiguration.Save}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10"  Click="SaveButton_Click"/>
-            <Button x:Name="cancelButton" Content="{x:Static resx:GestureConfiguration.Cancel}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10" Click="CancelButton_Click"/>
+            <Button x:Name="saveButton" Content="{x:Static resx:GestureConfiguration.Save}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,5,0"  Click="SaveButton_Click"/>
+            <Button x:Name="cancelButton" Content="{x:Static resx:GestureConfiguration.Cancel}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="5,0,0,0" Click="CancelButton_Click"/>
         </StackPanel>
     </Grid>
 </Window>

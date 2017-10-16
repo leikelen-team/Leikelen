@@ -79,5 +79,22 @@ namespace cl.uv.leikelen.Data.Access.External
         {
             return DbFacade.Instance.Provider.UpdateSubModalType(subModalType);
         }
+
+        public SubModalType AddIfNotExists(string modalName, string name, string description, string path)
+        {
+            var modal = DbFacade.Instance.Provider.LoadModal(modalName);
+            if (ReferenceEquals(null, modal))
+            {
+                new ModalAccess().Add(modalName, null);
+            }
+            if(Exists(modalName, name))
+            {
+                return Get(modalName, name);
+            }
+            else
+            {
+                return Add(modalName, name, description, path);
+            }
+        }
     }
 }

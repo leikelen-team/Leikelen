@@ -15,7 +15,7 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.Posture
         private GestureLogic _logic;
         public GestureEntryPoint()
         {
-            Name = "Discrete Posture detector";
+            Name = "Posture detector";
             Windows = new List<Tuple<string, WindowBuilder>>();
             IsActiveBeforeRecording = false;
             

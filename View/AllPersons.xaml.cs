@@ -24,8 +24,14 @@ namespace cl.uv.leikelen.View
         public AllPersons()
         {
             InitializeComponent();
-            
+
             PersonDataGrid.ItemsSource = DataAccessFacade.Instance.GetPersonAccess().GetAll();
+
+            if (ReferenceEquals(null, DataAccessFacade.Instance.GetSceneInUseAccess().GetScene()))
+            {
+                NewBtn.IsEnabled = false;
+                AddBtn.IsEnabled = false;
+            }
 
             NewBtn.Click += NewBtn_Click;
             EditBtn.Click += EditBtn_Click;

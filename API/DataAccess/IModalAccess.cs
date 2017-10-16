@@ -11,6 +11,7 @@ namespace cl.uv.leikelen.API.DataAccess
     {
         List<ModalType> GetAll();
         ModalType Add(string name, string description);
+        ModalType AddIfNotExists(string name, string description);
         bool Exists(string name);
     }
 }

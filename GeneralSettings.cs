@@ -8,7 +8,7 @@ using cl.uv.leikelen.API.DataAccess;
 
 namespace cl.uv.leikelen
 {
-    public class GeneralSettings : SettingsContainer, IGeneralSettings
+    public class GeneralSettings : SettingsContainer
     {
         public readonly Option<string> DataDirectory = new Option<string>("DataDirectory", "data/");
         public readonly Option<string> TmpDirectory = new Option<string>("SceneInUseDirectory", "tmp/");
@@ -48,26 +48,6 @@ namespace cl.uv.leikelen
         protected override void OnConfigure(IConfigConfiguration configuration)
         {
             configuration.UseJsonFile(@"config/general.json");
-        }
-
-        public string GetDataDirectory()
-        {
-            return DataDirectory.Value;
-        }
-
-        public string GetTmpDirectory()
-        {
-            return TmpDirectory.Value;
-        }
-
-        public int GetDefaultMillisecondsThreshold()
-        {
-            return DefaultMillisecondsThreshold.Value;
-        }
-
-        public string GetTmpSceneDirectory()
-        {
-            return TmpSceneDirectory.Value;
         }
     }
 }

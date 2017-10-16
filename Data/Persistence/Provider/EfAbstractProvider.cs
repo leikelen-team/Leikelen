@@ -27,7 +27,7 @@ namespace cl.uv.leikelen.Data.Persistence.Provider
             Db = null;
         }
 
-        public void Clear()
+        public void Delete()
         {
             Db.Database.EnsureDeleted();
         }
@@ -73,31 +73,19 @@ namespace cl.uv.leikelen.Data.Persistence.Provider
 
         public Scene SaveNewScene(Scene scene)
         {
-            //int lastSceneId = (Db.Scenes.Count() > 0)? Db.Scenes.Max(sc => sc.SceneId) : -1;
-            scene.SceneId = 0;
-            //int lastPersonId = (Db.Persons.Count() > 0)? Db.Persons.Max(p => p.PersonId) : -1;
-            //int lastRepresentTypeId = (Db.RepresentTypes.Count() > 0) ? Db.RepresentTypes.Max(rt => rt.RepresentTypeId) : -1;
-            //int lastSmtPisId = (Db.SmtPis.Count() > 0) ? Db.SmtPis.Max(smtPis => smtPis.SubModalType_PersonInSceneId) : -1;
-            //int lastEventId = (Db.EventDatas.Count() > 0) ? Db.EventDatas.Max(ed => ed.EventDataId) : -1;
-            //int lastIntervalId = (Db.IntervalDatas.Count() > 0) ? Db.IntervalDatas.Max(id => id.IntervalDataId) : -1;
             for (int iperson= 0; iperson < scene.PersonsInScene.Count; iperson++)
             {
-                //var person = scene.PersonsInScene[iperson];
-
                 scene.PersonsInScene[iperson].SceneId = scene.SceneId;
                 scene.PersonsInScene[iperson].Scene.SceneId = 0;
                 scene.PersonsInScene[iperson].PersonId = 0;
                 scene.PersonsInScene[iperson].Person.PersonId = 0;
                 for (int ismtPis=0;ismtPis< scene.PersonsInScene[iperson].SubModalType_PersonInScenes.Count; ismtPis++)
                 {
-                    //var smtPis = person.SubModalType_PersonInScenes[ismtPis];
                     scene.PersonsInScene[iperson].SubModalType_PersonInScenes[ismtPis].SubModalType_PersonInSceneId = 0;
-                    //smtPis.PersonInScene = person;
                     scene.PersonsInScene[iperson].SubModalType_PersonInScenes[ismtPis].SceneId = 0;
                     scene.PersonsInScene[iperson].SubModalType_PersonInScenes[ismtPis].PersonId = 0;
                     for(int irt=0; irt< scene.PersonsInScene[iperson].SubModalType_PersonInScenes[ismtPis].RepresentTypes.Count;irt++)
                     {
-                        //var rt = smtPis.RepresentTypes[irt];
                         scene.PersonsInScene[iperson].SubModalType_PersonInScenes[ismtPis].RepresentTypes[irt].RepresentTypeId = 0;
                         scene.PersonsInScene[iperson].SubModalType_PersonInScenes[ismtPis].RepresentTypes[irt].SubModalType_PersonInScene = null;
                         scene.PersonsInScene[iperson].SubModalType_PersonInScenes[ismtPis].RepresentTypes[irt].SubModalType_PersonInSceneId = 0;
@@ -113,7 +101,6 @@ namespace cl.uv.leikelen.Data.Persistence.Provider
                             scene.PersonsInScene[iperson].SubModalType_PersonInScenes[ismtPis].RepresentTypes[irt].IntervalData.IntervalDataId = 0;
                             scene.PersonsInScene[iperson].SubModalType_PersonInScenes[ismtPis].RepresentTypes[irt].IntervalData.RepresentType = null;
                         }
-                        //smtPis.RepresentTypes[irt] = rt;
                     }
                 }
             }
@@ -143,12 +130,15 @@ namespace cl.uv.leikelen.Data.Persistence.Provider
 
         public List<ModalType> LoadModals()
         {
-            return Db.ModalTypes.ToList();
+            return Db.ModalTypes
+                .Include(mt => mt.SubModalTypes)
+                .ToList();
         }
 
         public ModalType LoadModal(string name)
         {
-            return Db.ModalTypes.ToList().Find(m => m.ModalTypeId.Equals(name));
+            return Db.ModalTypes
+                .ToList().Find(m => m.ModalTypeId.Equals(name));
         }
 
         public ModalType SaveModal(ModalType modalType)

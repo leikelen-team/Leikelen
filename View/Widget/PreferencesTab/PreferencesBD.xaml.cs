@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using cl.uv.leikelen.Data.Persistence;
 using cl.uv.leikelen.API.Helper;
+using cl.uv.leikelen.Util;
 
 namespace cl.uv.leikelen.View.Widget.PreferencesTab
 {
@@ -144,6 +145,16 @@ namespace cl.uv.leikelen.View.Widget.PreferencesTab
                 MessageBox.Show(Properties.GUI.PrefBDError+error,
                     Properties.GUI.PrefBDErrorTitle, MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void Int_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            IntegerInput.PreviewTextInputHandler(sender, e);
+        }
+
+        private void Int_Pasting(object sender, DataObjectPastingEventArgs e)
+        {
+            IntegerInput.PastingHandler(sender, e);
         }
     }
 }
