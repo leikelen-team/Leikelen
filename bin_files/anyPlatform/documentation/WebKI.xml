@@ -22,6 +22,7 @@
   <HelpKINode Title="AbstractModule.Enable method" Url="html/aeb5568b-749c-0097-4adb-49f58f8c9d50.htm" />
   <HelpKINode Title="AbstractModule.IsEnabled property" Url="html/7884a7a2-db8b-f1e0-2fc3-1c8182e6ba36.htm" />
   <HelpKINode Title="AbstractModule.Name property" Url="html/07145c68-aa0f-01b5-4528-33c087a4b0a0.htm" />
+  <HelpKINode Title="AbstractModule.Tabs property" Url="html/43010313-438e-a7a0-13d4-255050ca7035.htm" />
   <HelpKINode Title="AbstractModule.Windows property" Url="html/ee2bd59d-2eee-dc98-50a2-450b7f38ac73.htm" />
   <HelpKINode Title="AccelerometerFrameArrivedEventArgs class">
     <HelpKINode Title="AccelerometerFrameArrivedEventArgs Class" Url="html/a0a56248-0922-2ef9-e531-d51390469c4b.htm" />
@@ -53,6 +54,12 @@
   <HelpKINode Title="AddBtn_Click method">
     <HelpKINode Title="TabGraph.AddBtn_Click Method " Url="html/1931ab97-1bcd-8a09-fe65-4dd9149bb472.htm" />
     <HelpKINode Title="TabInterval.AddBtn_Click Method " Url="html/137c43b1-8e51-7936-9cfc-9229a15e1fa5.htm" />
+  </HelpKINode>
+  <HelpKINode Title="AddIfNotExists method">
+    <HelpKINode Title="IModalAccess.AddIfNotExists Method " Url="html/7e2ebc8c-e3be-961c-dc3a-1f233a91b1b3.htm" />
+    <HelpKINode Title="ISubModalAccess.AddIfNotExists Method " Url="html/694f21a5-0986-f39d-9c14-2e45af9b549e.htm" />
+    <HelpKINode Title="ModalAccess.AddIfNotExists Method " Url="html/07cd324d-aae9-0ac3-b00c-9868f237304f.htm" />
+    <HelpKINode Title="SubModalAccess.AddIfNotExists Method " Url="html/17f40900-9a51-d7ef-1996-eb7ffa3c63ae.htm" />
   </HelpKINode>
   <HelpKINode Title="AddOrEditPosture class">
     <HelpKINode Title="AddOrEditPosture Class" Url="html/24e562dc-5e41-d7b6-9285-3eb698f31c72.htm" />
@@ -123,7 +130,7 @@
   <HelpKINode Title="BandFilter1HzTo50Hz enumeration member" Url="html/ebf0829a-0bea-6789-65ab-248f905b2934.htm" />
   <HelpKINode Title="BandFilter5HzTo50Hz enumeration member" Url="html/ebf0829a-0bea-6789-65ab-248f905b2934.htm" />
   <HelpKINode Title="BandFilter7HzTo13Hz enumeration member" Url="html/ebf0829a-0bea-6789-65ab-248f905b2934.htm" />
-  <HelpKINode Title="Base enumeration member" Url="html/75189224-5804-c430-cc03-4e3dc14b44f4.htm" />
+  <HelpKINode Title="Base enumeration member" Url="html/b0a8f0bb-95c8-cea4-d36b-3b3253e1478b.htm" />
   <HelpKINode Title="Birthday property" Url="html/8706bb25-7ad2-5b23-a069-79923477eaa8.htm" />
   <HelpKINode Title="Bit16ToInt32 method" Url="html/3c85a600-bf4b-aa82-c3ac-8c55c9c8d980.htm" />
   <HelpKINode Title="Bit24ToInt32 method" Url="html/66e02b63-4abc-1dfb-7e97-f8529bb56b6b.htm" />
@@ -200,7 +207,9 @@
   <HelpKINode Title="cl.uv.leikelen.Data.Access.External.PersonAccess class" Url="html/9b96fa47-e821-3c68-1b74-626d7689c7df.htm" />
   <HelpKINode Title="cl.uv.leikelen.Data.Access.External.SceneAccess class" Url="html/f50b1d4f-e04d-f51f-4fc0-61ca6584e9a0.htm" />
   <HelpKINode Title="cl.uv.leikelen.Data.Access.External.SceneInUseAccess class" Url="html/5ef86cd3-be39-510f-a0aa-7eebd44bb649.htm" />
+  <HelpKINode Title="cl.uv.leikelen.Data.Access.External.SettingsAccess class" Url="html/b2973cf2-b838-eaf6-afca-7391a0546735.htm" />
   <HelpKINode Title="cl.uv.leikelen.Data.Access.External.SubModalAccess class" Url="html/97ad2c14-7876-0962-6f35-e8da2404e240.htm" />
+  <HelpKINode Title="cl.uv.leikelen.Data.Access.External.TestScene class" Url="html/110bb1aa-f45c-7182-2d1d-453ebd52abb6.htm" />
   <HelpKINode Title="cl.uv.leikelen.Data.Access.External.TimelessAccess class" Url="html/3d35f8f3-7b79-9859-42c0-1c5002411ec7.htm" />
   <HelpKINode Title="cl.uv.leikelen.Data.Access.External.TypeValidation class" Url="html/129cf8d4-1b5b-3925-2768-e1a19977b572.htm" />
   <HelpKINode Title="cl.uv.leikelen.Data.Access.Internal namespace" Url="html/46801089-a6da-103f-6103-483ddd6c7746.htm" />
@@ -262,6 +271,8 @@
   <HelpKINode Title="cl.uv.leikelen.Module.Input.OpenBCI.Util.InterpretStream class" Url="html/ec05316a-51a9-7c71-4d64-07823d1c8ec2.htm" />
   <HelpKINode Title="cl.uv.leikelen.Module.Input.OpenBCI.View namespace" Url="html/827e0129-adbc-67b9-1588-77660b231abc.htm" />
   <HelpKINode Title="cl.uv.leikelen.Module.Input.OpenBCI.View.ConfigurePositions class" Url="html/d8f9a6bb-0992-25ac-508a-8deec428bdb0.htm" />
+  <HelpKINode Title="cl.uv.leikelen.Module.Input.OpenBCI.View.GraphForm class" Url="html/059c7477-23a8-a21e-29a4-ea76a4853f9e.htm" />
+  <HelpKINode Title="cl.uv.leikelen.Module.Input.OpenBCI.View.LiveGraphTab class" Url="html/5d54e62c-4d04-8b54-d804-eacf4ef93bcf.htm" />
   <HelpKINode Title="cl.uv.leikelen.Module.Input.OpenBCI.View.OpenBCIWindow class" Url="html/c6ab7b0c-673c-9807-cf2d-950bf230371c.htm" />
   <HelpKINode Title="cl.uv.leikelen.Module.InputLoader class" Url="html/8fd7b394-cae8-9b1b-a135-bd8f74110065.htm" />
   <HelpKINode Title="cl.uv.leikelen.Module.Processing.EEGEmotion2Channels namespace" Url="html/f7cac47a-9854-1c18-d6f8-785469df0b68.htm" />
@@ -274,6 +285,7 @@
   <HelpKINode Title="cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing.EmdData structure" Url="html/309502e6-0cbc-ab48-6e86-95ba40ff339e.htm" />
   <HelpKINode Title="cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing.FilterButterworth class" Url="html/ab0fecd4-0346-a966-e07f-dc2b4f3fad3b.htm" />
   <HelpKINode Title="cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing.FilterButterworth.PassType enumeration" Url="html/dfdabfeb-3a4b-6d1b-95f4-b49022991fd8.htm" />
+  <HelpKINode Title="cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing.FilterRLC class" Url="html/085e52f8-ef05-ce38-d718-488c008e32e0.htm" />
   <HelpKINode Title="cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing.SampleEntropy class" Url="html/ce5cfb97-b77f-c1f9-c161-f39411cdc909.htm" />
   <HelpKINode Title="cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.TagType enumeration" Url="html/2ddb8595-61e0-7459-ac83-2ed56fdb3d87.htm" />
   <HelpKINode Title="cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.TrainerEntryPoint class" Url="html/75b3596a-ccd1-c0e2-9a11-bcd60f1ccd5f.htm" />
@@ -291,6 +303,8 @@
   <HelpKINode Title="cl.uv.leikelen.Module.Processing.Kinect.Voice.VoiceEntryPoint class" Url="html/723feb01-cbf8-65ab-3c9f-8acde7e00e9a.htm" />
   <HelpKINode Title="cl.uv.leikelen.Module.Processing.Kinect.Voice.VoiceLogic class" Url="html/e942ec32-3334-92ee-c7a1-ed632bf95723.htm" />
   <HelpKINode Title="cl.uv.leikelen.Module.ProcessingLoader class" Url="html/2f22b1d0-21bb-79d6-d052-8825eb2369ea.htm" />
+  <HelpKINode Title="cl.uv.leikelen.Test.Unit namespace" Url="html/599065a2-d242-8f3a-684a-067bc7378068.htm" />
+  <HelpKINode Title="cl.uv.leikelen.Test.Unit.UnitTests class" Url="html/69ba372a-b36c-c57a-f66d-ba3064b0bc46.htm" />
   <HelpKINode Title="cl.uv.leikelen.Util namespace" Url="html/c91ab2b1-e9b5-49fd-b93e-d8afa77c9143.htm" />
   <HelpKINode Title="cl.uv.leikelen.Util.DoubleInput class" Url="html/3923f03d-bd40-b523-a342-fb38f36f0bf2.htm" />
   <HelpKINode Title="cl.uv.leikelen.Util.IntegerInput class" Url="html/426ff975-96a4-8d3a-322e-79474e50c182.htm" />
@@ -304,11 +318,10 @@
   <HelpKINode Title="cl.uv.leikelen.View.ConfigureScene class" Url="html/cf161cdb-3974-cb7d-e053-5bfbdb5f7a64.htm" />
   <HelpKINode Title="cl.uv.leikelen.View.Export class" Url="html/be9ed4b4-5feb-20dd-70db-f669da907248.htm" />
   <HelpKINode Title="cl.uv.leikelen.View.Home class" Url="html/f23e8cd2-8862-0c2a-7711-25c8d89c09dd.htm" />
-  <HelpKINode Title="cl.uv.leikelen.View.HomeState enumeration" Url="html/75189224-5804-c430-cc03-4e3dc14b44f4.htm" />
-  <HelpKINode Title="cl.uv.leikelen.View.LoadTestScene class" Url="html/438f3c5b-b11e-7649-1ae3-39bf6cfd0365.htm" />
   <HelpKINode Title="cl.uv.leikelen.View.ModuleType enumeration" Url="html/075b7268-f85f-f993-5192-56cd8987dab5.htm" />
   <HelpKINode Title="cl.uv.leikelen.View.PlayerState enumeration" Url="html/fb0c8296-edf8-4908-eb75-c24c389aec5e.htm" />
   <HelpKINode Title="cl.uv.leikelen.View.Preferences class" Url="html/033aa199-f514-34cf-cb30-ea814a0fb429.htm" />
+  <HelpKINode Title="cl.uv.leikelen.View.SceneState enumeration" Url="html/b0a8f0bb-95c8-cea4-d36b-3b3253e1478b.htm" />
   <HelpKINode Title="cl.uv.leikelen.View.Widget namespace" Url="html/a111f19c-feff-170d-724b-7716e993cb82.htm" />
   <HelpKINode Title="cl.uv.leikelen.View.Widget.HomeTab namespace" Url="html/89b1c482-a56d-0d5e-388b-fe42a3c82b02.htm" />
   <HelpKINode Title="cl.uv.leikelen.View.Widget.HomeTab.EventDataGrid class" Url="html/f7043828-6031-c867-f5df-4d1f4e9beed3.htm" />
@@ -328,14 +341,7 @@
   <HelpKINode Title="cl.uv.leikelen.View.Widget.PreferencesTab.PreferencesGeneral class" Url="html/0f461e42-74d8-b89f-c15c-6d39615d187f.htm" />
   <HelpKINode Title="cl.uv.leikelen.View.Widget.PreferencesTab.PreferencesPersonColors class" Url="html/65371298-9d49-d9e9-9a9f-49092cdfde79.htm" />
   <HelpKINode Title="Classify method" Url="html/e8c1378f-610b-1709-b9d3-04310a8c22ed.htm" />
-  <HelpKINode Title="Clear method">
-    <HelpKINode Title="EfAbstractProvider.Clear Method " Url="html/c49d3c15-4c1c-e21f-b5c0-1e3ec70b9ff0.htm" />
-    <HelpKINode Title="IDbProvider.Clear Method " Url="html/fceac5e8-5430-6ef0-fb8a-01b94ed6e0b4.htm" />
-  </HelpKINode>
-  <HelpKINode Title="ClearDb method">
-    <HelpKINode Title="ISceneAccess.ClearDb Method " Url="html/4f4e6e51-29ad-736f-7237-c97335660724.htm" />
-    <HelpKINode Title="SceneAccess.ClearDb Method " Url="html/5623ea6d-8dbf-79ad-208d-c39d8e5615ee.htm" />
-  </HelpKINode>
+  <HelpKINode Title="Cleanup method" Url="html/8c45fd6d-7ac6-1e2f-e2aa-7e063f95132a.htm" />
   <HelpKINode Title="Clone method">
     <HelpKINode Title="ConfigurationWindow.Clone Method " Url="html/f73a7c1c-aa89-b85f-f1de-f1b1c7bfef86.htm" />
     <HelpKINode Title="OpenBCIWindow.Clone Method " Url="html/7fc8b34c-2020-3313-33a8-7622f48d0148.htm" />
@@ -346,10 +352,10 @@
   <HelpKINode Title="Close method">
     <HelpKINode Title="IMonitor.Close Method " Url="html/358297c1-9e02-a2ec-ad08-f3dc552bbca7.htm" />
     <HelpKINode Title="IPlayer.Close Method " Url="html/a9811d31-de1b-0053-ddb7-61f1388f659c.htm" />
-    <HelpKINode Title="Monitor.Close Method " Url="html/59dabf46-bfbb-dcfd-589e-11a909b7c218.htm" />
     <HelpKINode Title="Monitor.Close Method " Url="html/48ad88ee-f4bb-39e7-b727-fa0c66dc1cc5.htm" />
-    <HelpKINode Title="Player.Close Method " Url="html/36844b7c-f074-0b91-5823-8716fe55d68c.htm" />
+    <HelpKINode Title="Monitor.Close Method " Url="html/59dabf46-bfbb-dcfd-589e-11a909b7c218.htm" />
     <HelpKINode Title="Player.Close Method " Url="html/2a476984-91df-909a-ce7d-cce780f888e0.htm" />
+    <HelpKINode Title="Player.Close Method " Url="html/36844b7c-f074-0b91-5823-8716fe55d68c.htm" />
     <HelpKINode Title="PlayerController.Close Method " Url="html/e090244d-3c3a-a379-6c71-54a19e048b58.htm" />
   </HelpKINode>
   <HelpKINode Title="CloseConnection method">
@@ -433,6 +439,7 @@
     <HelpKINode Title="properties" Url="html/522bac42-9eac-c812-dab7-ec2254b0e07c.htm" />
   </HelpKINode>
   <HelpKINode Title="DataAccessFacade.DataAccessFacade constructor" Url="html/243c5770-2ba7-1c13-da72-58a43b5c3349.htm" />
+  <HelpKINode Title="DataAccessFacade.DeleteDatabase method" Url="html/b5a8719d-60f9-bfa7-57ac-38903d4a2b7e.htm" />
   <HelpKINode Title="DataAccessFacade.GetEventAccess method" Url="html/570131ff-4915-4055-6b14-687fa61da0a5.htm" />
   <HelpKINode Title="DataAccessFacade.GetGeneralSettings method" Url="html/f3796a33-fbf5-b014-08ec-715e5a5c486f.htm" />
   <HelpKINode Title="DataAccessFacade.GetIntervalAccess method" Url="html/f45f3cb3-0ba1-e260-c6e2-5a5e7dd9fe65.htm" />
@@ -505,12 +512,18 @@
   <HelpKINode Title="DefaultMillisecondsThreshold field" Url="html/0088e3c6-ad1d-344f-7b6a-7d5b42fe0039.htm" />
   <HelpKINode Title="DefaultPort property" Url="html/1c961783-4a34-784c-30fd-1a26c12dec6a.htm" />
   <HelpKINode Title="Delete method">
+    <HelpKINode Title="EfAbstractProvider.Delete Method " Url="html/f7493da5-afa3-8e41-cbab-b688a695c2c8.htm" />
+    <HelpKINode Title="IDbProvider.Delete Method " Url="html/300b515a-64a6-d973-a37d-48efb59813be.htm" />
     <HelpKINode Title="IPersonAccess.Delete Method " Url="html/d525ca3e-eede-e2f2-d1e6-a5e3039d9784.htm" />
     <HelpKINode Title="ISceneAccess.Delete Method " Url="html/f45c1ed4-f233-fb2d-cd29-5e9da11bd8e2.htm" />
     <HelpKINode Title="ISubModalAccess.Delete Method " Url="html/c49fdd70-d4de-6a20-7df3-89b3f27c4356.htm" />
     <HelpKINode Title="PersonAccess.Delete Method " Url="html/6f48db85-3d23-baea-db72-77065769db5a.htm" />
     <HelpKINode Title="SceneAccess.Delete Method " Url="html/c5e1aa20-42cc-d620-275a-2d19f735ecd0.htm" />
     <HelpKINode Title="SubModalAccess.Delete Method " Url="html/d92b262d-ec6f-ec00-feea-9f67f6fa13d6.htm" />
+  </HelpKINode>
+  <HelpKINode Title="DeleteDatabase method">
+    <HelpKINode Title="DataAccessFacade.DeleteDatabase Method " Url="html/b5a8719d-60f9-bfa7-57ac-38903d4a2b7e.htm" />
+    <HelpKINode Title="IDataAccessFacade.DeleteDatabase Method " Url="html/7248b826-b342-ee92-5a90-51ba2fba9c17.htm" />
   </HelpKINode>
   <HelpKINode Title="DeletePerson method">
     <HelpKINode Title="EfAbstractProvider.DeletePerson Method " Url="html/9cef9050-dc27-1ed2-c7e8-9d8381809d64.htm" />
@@ -549,7 +562,10 @@
     <HelpKINode Title="IVideo.DisableSkeleton Method " Url="html/cdb7a8ad-58b7-6f5e-7e73-03d220f4213d.htm" />
     <HelpKINode Title="SkeletonColorVideoViewer.DisableSkeleton Method " Url="html/630a71a8-8e61-c0f5-1770-076c0554cf04.htm" />
   </HelpKINode>
-  <HelpKINode Title="Dispose method" Url="html/88b67cad-0386-ffd7-d09e-6e4d899f6c12.htm" />
+  <HelpKINode Title="Dispose method">
+    <HelpKINode Title="GestureDetector.Dispose Method " Url="html/88b67cad-0386-ffd7-d09e-6e4d899f6c12.htm" />
+    <HelpKINode Title="GraphForm.Dispose Method " Url="html/23960614-1365-9ca7-7ac7-49805d8a2c38.htm" />
+  </HelpKINode>
   <HelpKINode Title="DistanceEntryPoint class">
     <HelpKINode Title="DistanceEntryPoint Class" Url="html/c6fed7f9-22fd-13ce-a0c6-376aa6f971d1.htm" />
     <HelpKINode Title="about DistanceEntryPoint class" Url="html/c6fed7f9-22fd-13ce-a0c6-376aa6f971d1.htm" />
@@ -580,6 +596,7 @@
   <HelpKINode Title="DoubleInput.IsTextAllowed method" Url="html/7f8a0afc-d6e3-d181-0da1-058ef9180a7f.htm" />
   <HelpKINode Title="DoubleInput.PastingHandler method" Url="html/2a3ef861-0954-1bfd-3398-5667fff064da.htm" />
   <HelpKINode Title="DoubleInput.PreviewTextInputHandler method" Url="html/590aa2ee-0b96-e892-8425-dd969afcb6db.htm" />
+  <HelpKINode Title="driver field" Url="html/6b94976e-1ccc-53f3-29ba-589bb805e596.htm" />
   <HelpKINode Title="Duration property" Url="html/5afe3902-7d5c-bb78-f4f0-00ef8b6c2eb2.htm" />
   <HelpKINode Title="EegChannel structure">
     <HelpKINode Title="EegChannel Structure" Url="html/30f068ea-d797-32d1-3449-cc6038604c4f.htm" />
@@ -640,10 +657,10 @@
     <HelpKINode Title="methods" Url="html/b8d68a2a-cd3a-e5af-8a28-bf1b363851f7.htm" />
   </HelpKINode>
   <HelpKINode Title="EfAbstractProvider.AddPersonToScene method" Url="html/d7ce1976-6eac-45ca-dc23-8b8174db372d.htm" />
-  <HelpKINode Title="EfAbstractProvider.Clear method" Url="html/c49d3c15-4c1c-e21f-b5c0-1e3ec70b9ff0.htm" />
   <HelpKINode Title="EfAbstractProvider.CloseConnection method" Url="html/72dd22e8-171d-fe4b-2f13-fecbc2fec7fc.htm" />
   <HelpKINode Title="EfAbstractProvider.CreateConnection method" Url="html/7e902149-5b3e-2d41-5fb8-b136a234da53.htm" />
   <HelpKINode Title="EfAbstractProvider.Db field" Url="html/4f581375-8736-edf0-0466-3c7f8138b4a7.htm" />
+  <HelpKINode Title="EfAbstractProvider.Delete method" Url="html/f7493da5-afa3-8e41-cbab-b688a695c2c8.htm" />
   <HelpKINode Title="EfAbstractProvider.DeletePerson method" Url="html/9cef9050-dc27-1ed2-c7e8-9d8381809d64.htm" />
   <HelpKINode Title="EfAbstractProvider.DeleteScene method" Url="html/6c497370-4e9f-7734-b401-0f4c5f7fb51e.htm" />
   <HelpKINode Title="EfAbstractProvider.DeleteSubModal method" Url="html/0c4ef411-4740-9df3-e7e4-df2a23d6585c.htm" />
@@ -702,6 +719,7 @@
   </HelpKINode>
   <HelpKINode Title="EndTime field" Url="html/24f8627b-8b9b-3581-45fb-11b2fd83dd4c.htm" />
   <HelpKINode Title="EndTime property" Url="html/f7fe956d-aacb-84b5-5c1d-376abb1060cf.htm" />
+  <HelpKINode Title="Enqueue method" Url="html/062a0e26-a207-d7b5-f506-0cf26f61d7e1.htm" />
   <HelpKINode Title="Error enumeration member" Url="html/4e97f897-be5d-497d-9c69-a14fb9f8b483.htm" />
   <HelpKINode Title="Event structure">
     <HelpKINode Title="Event Structure" Url="html/a53ffc9d-e90a-99ea-cfcd-d04ea85e30ac.htm" />
@@ -819,6 +837,7 @@
   <HelpKINode Title="FileName property" Url="html/e80cac59-bc21-ad98-ab8f-fa261db5d1e0.htm" />
   <HelpKINode Title="Fill method">
     <HelpKINode Title="ITab.Fill Method " Url="html/ff455e54-a74a-64b9-d58d-72e4f5fec8d3.htm" />
+    <HelpKINode Title="LiveGraphTab.Fill Method " Url="html/a6c250b9-c084-d761-8413-35c6ab1d6ffb.htm" />
     <HelpKINode Title="TabGraph.Fill Method " Url="html/bd199b22-2c7f-e50e-ced8-d58558da6c8c.htm" />
     <HelpKINode Title="TabInterval.Fill Method " Url="html/8c4ceb92-f4ef-b547-402a-3cb8524bd79a.htm" />
     <HelpKINode Title="TabScene.Fill Method " Url="html/6ce6dac6-b0aa-fa10-cfc9-4ee3995be086.htm" />
@@ -847,12 +866,21 @@
   <HelpKINode Title="FilterButterworth.PassType enumeration" Url="html/dfdabfeb-3a4b-6d1b-95f4-b49022991fd8.htm" />
   <HelpKINode Title="FilterButterworth.Update method" Url="html/fc08d837-f25f-f291-b1e4-434d99ed95b9.htm" />
   <HelpKINode Title="FilterButterworth.Value property" Url="html/db9825e5-1740-e989-7786-611721390054.htm" />
+  <HelpKINode Title="FilterRLC class">
+    <HelpKINode Title="FilterRLC Class" Url="html/085e52f8-ef05-ce38-d718-488c008e32e0.htm" />
+    <HelpKINode Title="about FilterRLC class" Url="html/085e52f8-ef05-ce38-d718-488c008e32e0.htm" />
+    <HelpKINode Title="constructor" Url="html/59b8063d-3910-820c-870c-11f0fc42a842.htm" />
+    <HelpKINode Title="methods" Url="html/b588fd22-98be-52f6-c07c-57badd088042.htm" />
+  </HelpKINode>
+  <HelpKINode Title="FilterRLC.FilterRLC constructor" Url="html/59b8063d-3910-820c-870c-11f0fc42a842.htm" />
+  <HelpKINode Title="FilterRLC.LCHP method" Url="html/c2c4f9e8-4c39-18a3-3cb9-acfc96e07252.htm" />
+  <HelpKINode Title="FilterRLC.LCLP method" Url="html/4b91ffa1-67b6-c23c-2766-8409009e7320.htm" />
   <HelpKINode Title="FiltersSelect method" Url="html/9bac2037-bf89-caed-1f2c-5a212e4c39f8.htm" />
   <HelpKINode Title="FilterType enumeration" Url="html/ebf0829a-0bea-6789-65ab-248f905b2934.htm" />
   <HelpKINode Title="Finished event">
     <HelpKINode Title="IPlayer.Finished Event" Url="html/d7ed08a1-d979-1114-38b0-a6055c19f405.htm" />
-    <HelpKINode Title="Player.Finished Event" Url="html/1aac4e2e-9ea6-5a71-86c2-3459fdc9fe3e.htm" />
     <HelpKINode Title="Player.Finished Event" Url="html/1e95a8ef-0326-b3f5-3724-fa32508ed43f.htm" />
+    <HelpKINode Title="Player.Finished Event" Url="html/1aac4e2e-9ea6-5a71-86c2-3459fdc9fe3e.htm" />
     <HelpKINode Title="PlayerController.Finished Event" Url="html/21b99463-5c72-2973-83c3-84cfd4a5e433.htm" />
   </HelpKINode>
   <HelpKINode Title="Formatter property">
@@ -861,8 +889,8 @@
   </HelpKINode>
   <HelpKINode Title="Frame field" Url="html/cee385cf-e3b9-562e-dcd0-a17da60613c2.htm" />
   <HelpKINode Title="FromEvent method" Url="html/bea304f7-93a1-2ae9-9d08-5057e6b30e05.htm" />
-  <HelpKINode Title="FromFileWithScene enumeration member" Url="html/75189224-5804-c430-cc03-4e3dc14b44f4.htm" />
-  <HelpKINode Title="FromSensorWithScene enumeration member" Url="html/75189224-5804-c430-cc03-4e3dc14b44f4.htm" />
+  <HelpKINode Title="FromFileWithScene enumeration member" Url="html/b0a8f0bb-95c8-cea4-d36b-3b3253e1478b.htm" />
+  <HelpKINode Title="FromSensorWithScene enumeration member" Url="html/b0a8f0bb-95c8-cea4-d36b-3b3253e1478b.htm" />
   <HelpKINode Title="FunctionAfterStop method">
     <HelpKINode Title="DetectorEntryPoint.FunctionAfterStop Method " Url="html/0e5e44dd-91ff-94e2-7f0e-af4b6794d1f8.htm" />
     <HelpKINode Title="DistanceEntryPoint.FunctionAfterStop Method " Url="html/7d0ce6a5-24c0-8ff4-48ae-d0cb972506b7.htm" />
@@ -874,10 +902,12 @@
   <HelpKINode Title="GeneralLoader class">
     <HelpKINode Title="GeneralLoader Class" Url="html/ecf52938-a878-6585-5ea9-acd2b2cfdf97.htm" />
     <HelpKINode Title="about GeneralLoader class" Url="html/ecf52938-a878-6585-5ea9-acd2b2cfdf97.htm" />
+    <HelpKINode Title="events" Url="html/70196edf-96b7-9e55-31fa-82c0b96a1541.htm" />
     <HelpKINode Title="methods" Url="html/70fa60c7-57bc-264a-84c7-d8c30f39b232.htm" />
     <HelpKINode Title="properties" Url="html/874e5a0e-48bf-4216-bea2-2798b8c9d24d.htm" />
   </HelpKINode>
   <HelpKINode Title="GeneralLoader.GeneralModules property" Url="html/bae6373f-06da-62dd-a419-f36d2a8d37fc.htm" />
+  <HelpKINode Title="GeneralLoader.GeneralModulesHasReset event" Url="html/b8227c35-ef00-b4c4-1f69-e6b4189ed526.htm" />
   <HelpKINode Title="GeneralLoader.Instance property" Url="html/d0dfc2b4-19fc-d65d-11e3-31c5206b1a25.htm" />
   <HelpKINode Title="GeneralLoader.Reset method" Url="html/40510bc2-1fb9-256b-987e-73c4531c2b3f.htm" />
   <HelpKINode Title="GeneralModule class">
@@ -889,6 +919,7 @@
   </HelpKINode>
   <HelpKINode Title="GeneralModule.GeneralModule constructor" Url="html/a5f75e76-d12a-f6ce-160e-ac0d8f238333.htm" />
   <HelpKINode Title="GeneralModules property" Url="html/bae6373f-06da-62dd-a419-f36d2a8d37fc.htm" />
+  <HelpKINode Title="GeneralModulesHasReset event" Url="html/b8227c35-ef00-b4c4-1f69-e6b4189ed526.htm" />
   <HelpKINode Title="GeneralSettings class">
     <HelpKINode Title="GeneralSettings Class" Url="html/5cee4534-ad10-0c6b-c9b2-6acc76709bf8.htm" />
     <HelpKINode Title="about GeneralSettings class" Url="html/5cee4534-ad10-0c6b-c9b2-6acc76709bf8.htm" />
@@ -909,10 +940,6 @@
   <HelpKINode Title="GeneralSettings.Extension field" Url="html/c5ee2fb0-f29b-32d0-a72b-88744cc874e2.htm" />
   <HelpKINode Title="GeneralSettings.ExtensionFilter field" Url="html/0f6e308b-fdfa-292e-d569-73f3ef76bebf.htm" />
   <HelpKINode Title="GeneralSettings.GeneralSettings constructor" Url="html/50a0b5ee-50d8-ce18-8b95-5578aaf88e21.htm" />
-  <HelpKINode Title="GeneralSettings.GetDataDirectory method" Url="html/4f6ace31-8203-f1c1-98e7-2eaae9e02939.htm" />
-  <HelpKINode Title="GeneralSettings.GetDefaultMillisecondsThreshold method" Url="html/dc22f7a5-f51c-ace5-995d-95f1358545dc.htm" />
-  <HelpKINode Title="GeneralSettings.GetTmpDirectory method" Url="html/7bb44aab-99db-5098-354b-ec02c0a8d78b.htm" />
-  <HelpKINode Title="GeneralSettings.GetTmpSceneDirectory method" Url="html/4a4ce208-03d2-5d15-ddf6-c3e58bcafe24.htm" />
   <HelpKINode Title="GeneralSettings.Instance property" Url="html/da0a1557-77dc-724e-f1ee-da6324dcff7b.htm" />
   <HelpKINode Title="GeneralSettings.IntervalsGraphMinHeight field" Url="html/1e17e23a-2633-1503-8a72-5f7fe0c438be.htm" />
   <HelpKINode Title="GeneralSettings.OnConfigure method" Url="html/95e4520f-3d6f-1584-953c-486b379571a1.htm" />
@@ -999,12 +1026,24 @@
     <HelpKINode Title="TimelessAccess.GetAll Method " Url="html/500075c3-ff92-2623-d468-43488637f790.htm" />
   </HelpKINode>
   <HelpKINode Title="GetDataDirectory method">
-    <HelpKINode Title="GeneralSettings.GetDataDirectory Method " Url="html/4f6ace31-8203-f1c1-98e7-2eaae9e02939.htm" />
     <HelpKINode Title="IGeneralSettings.GetDataDirectory Method " Url="html/bccbc9c0-96bf-3e35-b531-fbccdb0d1f7a.htm" />
+    <HelpKINode Title="SettingsAccess.GetDataDirectory Method " Url="html/3fd1e511-f755-7ada-2249-eaf8f571128e.htm" />
+  </HelpKINode>
+  <HelpKINode Title="GetDataModalsDirectory method">
+    <HelpKINode Title="IGeneralSettings.GetDataModalsDirectory Method " Url="html/74bfa897-c902-90f8-2182-c7916efd821b.htm" />
+    <HelpKINode Title="SettingsAccess.GetDataModalsDirectory Method " Url="html/7c0c8347-1d50-640c-c434-125d411e82a0.htm" />
+  </HelpKINode>
+  <HelpKINode Title="GetDataPersonsDirectory method">
+    <HelpKINode Title="IGeneralSettings.GetDataPersonsDirectory Method " Url="html/6973c9f8-5578-49db-58bc-b7f20da10c5c.htm" />
+    <HelpKINode Title="SettingsAccess.GetDataPersonsDirectory Method " Url="html/6a90ae70-d025-a738-cd33-2128d94cb25a.htm" />
+  </HelpKINode>
+  <HelpKINode Title="GetDataScenesDirectory method">
+    <HelpKINode Title="IGeneralSettings.GetDataScenesDirectory Method " Url="html/85317d99-8a06-96c0-e756-6cdd394f854d.htm" />
+    <HelpKINode Title="SettingsAccess.GetDataScenesDirectory Method " Url="html/d502205d-5113-3594-47de-e55bc35b4518.htm" />
   </HelpKINode>
   <HelpKINode Title="GetDefaultMillisecondsThreshold method">
-    <HelpKINode Title="GeneralSettings.GetDefaultMillisecondsThreshold Method " Url="html/dc22f7a5-f51c-ace5-995d-95f1358545dc.htm" />
     <HelpKINode Title="IGeneralSettings.GetDefaultMillisecondsThreshold Method " Url="html/cfd0a5c6-765c-9bd9-ccff-7f09eaa80d80.htm" />
+    <HelpKINode Title="SettingsAccess.GetDefaultMillisecondsThreshold Method " Url="html/6e628561-6a15-1a46-b223-9aa6d03a27de.htm" />
   </HelpKINode>
   <HelpKINode Title="GetEventAccess method">
     <HelpKINode Title="DataAccessFacade.GetEventAccess Method " Url="html/570131ff-4915-4055-6b14-687fa61da0a5.htm" />
@@ -1022,13 +1061,17 @@
   <HelpKINode Title="GetLocation method">
     <HelpKINode Title="IPlayer.GetLocation Method " Url="html/e4120256-c103-8a27-5c75-04400181f7e1.htm" />
     <HelpKINode Title="ISceneInUseAccess.GetLocation Method " Url="html/4bcbce5d-8838-86ae-e8e1-c1668daa9b06.htm" />
-    <HelpKINode Title="Player.GetLocation Method " Url="html/7e2604f9-2b1d-961d-3bf2-6cc36fcf2f21.htm" />
     <HelpKINode Title="Player.GetLocation Method " Url="html/6a0c6d52-2747-f82d-ce24-9adf60ad38c2.htm" />
+    <HelpKINode Title="Player.GetLocation Method " Url="html/7e2604f9-2b1d-961d-3bf2-6cc36fcf2f21.htm" />
     <HelpKINode Title="SceneInUseAccess.GetLocation Method " Url="html/7be8f45f-f34f-252b-2d11-b9504a1bd373.htm" />
   </HelpKINode>
   <HelpKINode Title="GetModalAccess method">
     <HelpKINode Title="DataAccessFacade.GetModalAccess Method " Url="html/595eebc4-7fa2-d492-1cf5-34076200ef78.htm" />
     <HelpKINode Title="IDataAccessFacade.GetModalAccess Method " Url="html/0d0ecbbe-d50f-a9fd-cc7a-372229ed1da5.htm" />
+  </HelpKINode>
+  <HelpKINode Title="GetModalDirectory method">
+    <HelpKINode Title="IGeneralSettings.GetModalDirectory Method " Url="html/7e6fd700-d049-debc-cabf-1729fa5f9e0b.htm" />
+    <HelpKINode Title="SettingsAccess.GetModalDirectory Method " Url="html/b7b0f9a3-d623-311e-9b6c-229043ab52da.htm" />
   </HelpKINode>
   <HelpKINode Title="GetPerson method" Url="html/f6e3886e-03c8-b236-bc7a-b79427d26453.htm" />
   <HelpKINode Title="GetPersonAccess method">
@@ -1043,15 +1086,23 @@
     <HelpKINode Title="DataAccessFacade.GetSceneAccess Method " Url="html/42565e3d-715e-85f9-55f7-523291f63e16.htm" />
     <HelpKINode Title="IDataAccessFacade.GetSceneAccess Method " Url="html/a183f033-2d0f-6952-b17b-fda1f001e6cc.htm" />
   </HelpKINode>
+  <HelpKINode Title="GetSceneDirectory method">
+    <HelpKINode Title="IGeneralSettings.GetSceneDirectory Method " Url="html/e636178f-5906-c408-e888-c41035f8431b.htm" />
+    <HelpKINode Title="SettingsAccess.GetSceneDirectory Method " Url="html/03131c32-2ec6-cea4-8294-541198d8be81.htm" />
+  </HelpKINode>
   <HelpKINode Title="GetSceneInUseAccess method">
     <HelpKINode Title="DataAccessFacade.GetSceneInUseAccess Method " Url="html/f30b53d8-6de5-73f2-c692-8e9ecc9b8588.htm" />
     <HelpKINode Title="IDataAccessFacade.GetSceneInUseAccess Method " Url="html/b3e65a31-a51f-8056-ed7b-898d35d24eb1.htm" />
   </HelpKINode>
+  <HelpKINode Title="GetSceneInUseDirectory method">
+    <HelpKINode Title="IGeneralSettings.GetSceneInUseDirectory Method " Url="html/5d4728b4-1c14-5b97-f606-b021281a1049.htm" />
+    <HelpKINode Title="SettingsAccess.GetSceneInUseDirectory Method " Url="html/9c776354-77c4-d202-fef7-2c133fe9b6bf.htm" />
+  </HelpKINode>
   <HelpKINode Title="GetSmtPis method" Url="html/6828ceb3-c25b-87ae-e46a-0020a68282d7.htm" />
   <HelpKINode Title="GetStatus method">
     <HelpKINode Title="IMonitor.GetStatus Method " Url="html/a656f03b-30ff-e1e8-c658-a7f0f305a4e2.htm" />
-    <HelpKINode Title="Monitor.GetStatus Method " Url="html/9ef218f4-d1b1-1683-92bf-a79ecc104055.htm" />
     <HelpKINode Title="Monitor.GetStatus Method " Url="html/e9ec103b-4196-6cf6-23e4-4a61851a0661.htm" />
+    <HelpKINode Title="Monitor.GetStatus Method " Url="html/9ef218f4-d1b1-1683-92bf-a79ecc104055.htm" />
   </HelpKINode>
   <HelpKINode Title="GetSubModalAccess method">
     <HelpKINode Title="DataAccessFacade.GetSubModalAccess Method " Url="html/8849d23e-5880-bc56-e5c0-0231b7d90841.htm" />
@@ -1062,21 +1113,34 @@
     <HelpKINode Title="IDataAccessFacade.GetTimelessAccess Method " Url="html/84b02eb9-e83b-5bf5-f300-337f88b7bdcf.htm" />
   </HelpKINode>
   <HelpKINode Title="GetTmpDirectory method">
-    <HelpKINode Title="GeneralSettings.GetTmpDirectory Method " Url="html/7bb44aab-99db-5098-354b-ec02c0a8d78b.htm" />
     <HelpKINode Title="IGeneralSettings.GetTmpDirectory Method " Url="html/459c8400-ffa4-b8a1-710c-b5770ffae2d8.htm" />
+    <HelpKINode Title="SettingsAccess.GetTmpDirectory Method " Url="html/33998c10-e064-aa5d-f21f-dcc0b1f919bd.htm" />
   </HelpKINode>
   <HelpKINode Title="GetTmpSceneDirectory method">
-    <HelpKINode Title="GeneralSettings.GetTmpSceneDirectory Method " Url="html/4a4ce208-03d2-5d15-ddf6-c3e58bcafe24.htm" />
     <HelpKINode Title="IGeneralSettings.GetTmpSceneDirectory Method " Url="html/73070382-f30d-d0c5-6a50-0be6d557db75.htm" />
+    <HelpKINode Title="SettingsAccess.GetTmpSceneDirectory Method " Url="html/cf65752c-a31f-f52e-2c12-8c62d2cf3456.htm" />
   </HelpKINode>
   <HelpKINode Title="GetTotalDuration method">
     <HelpKINode Title="IPlayer.GetTotalDuration Method " Url="html/bc3b4563-44ff-f9a5-8c1f-5f69ade6b70d.htm" />
-    <HelpKINode Title="Player.GetTotalDuration Method " Url="html/0ed7ee09-aa8b-a1eb-d548-f3044187d465.htm" />
     <HelpKINode Title="Player.GetTotalDuration Method " Url="html/d6f34ea4-d9a0-0e73-3f04-adb4f30be0b8.htm" />
+    <HelpKINode Title="Player.GetTotalDuration Method " Url="html/0ed7ee09-aa8b-a1eb-d548-f3044187d465.htm" />
   </HelpKINode>
   <HelpKINode Title="GetWindow method" Url="html/b9fff4ad-0e93-1bc6-3db1-d69850e13b5a.htm" />
-  <HelpKINode Title="HighArousalHighValence enumeration member" Url="html/2ddb8595-61e0-7459-ac83-2ed56fdb3d87.htm" />
-  <HelpKINode Title="HighArousalLowValence enumeration member" Url="html/2ddb8595-61e0-7459-ac83-2ed56fdb3d87.htm" />
+  <HelpKINode Title="GraphForm class">
+    <HelpKINode Title="GraphForm Class" Url="html/059c7477-23a8-a21e-29a4-ea76a4853f9e.htm" />
+    <HelpKINode Title="about GraphForm class" Url="html/059c7477-23a8-a21e-29a4-ea76a4853f9e.htm" />
+    <HelpKINode Title="constructor" Url="html/a3627f6a-dfa1-2c51-3b0b-c578e94f6844.htm" />
+    <HelpKINode Title="events" Url="html/94c3ad72-0b95-090d-f5d5-34b1a18cd156.htm" />
+    <HelpKINode Title="fields" Url="html/98edb213-4b49-1a0c-cc40-85af835e9f34.htm" />
+    <HelpKINode Title="methods" Url="html/745e8b9a-471b-cacb-d8dd-2a2a3b5b274d.htm" />
+    <HelpKINode Title="properties" Url="html/b8162bba-1d72-ce0a-a4a1-99a5b0e98da3.htm" />
+  </HelpKINode>
+  <HelpKINode Title="GraphForm.Dispose method" Url="html/23960614-1365-9ca7-7ac7-49805d8a2c38.htm" />
+  <HelpKINode Title="GraphForm.driver field" Url="html/6b94976e-1ccc-53f3-29ba-589bb805e596.htm" />
+  <HelpKINode Title="GraphForm.GraphForm constructor" Url="html/a3627f6a-dfa1-2c51-3b0b-c578e94f6844.htm" />
+  <HelpKINode Title="GraphTab field" Url="html/df6b46dd-8eec-cca2-28d0-032d2f6156e9.htm" />
+  <HelpKINode Title="HAHV enumeration member" Url="html/2ddb8595-61e0-7459-ac83-2ed56fdb3d87.htm" />
+  <HelpKINode Title="HALV enumeration member" Url="html/2ddb8595-61e0-7459-ac83-2ed56fdb3d87.htm" />
   <HelpKINode Title="Highpass enumeration member" Url="html/dfdabfeb-3a4b-6d1b-95f4-b49022991fd8.htm" />
   <HelpKINode Title="Home class">
     <HelpKINode Title="Home Class" Url="html/f23e8cd2-8862-0c2a-7711-25c8d89c09dd.htm" />
@@ -1088,7 +1152,6 @@
   </HelpKINode>
   <HelpKINode Title="Home.Home constructor" Url="html/9ff4e61d-f593-4095-ee58-dda63a1c60da.htm" />
   <HelpKINode Title="Home.InitializeComponent method" Url="html/82800bb1-28e1-fbf7-c227-1bc0ca73a8f0.htm" />
-  <HelpKINode Title="HomeState enumeration" Url="html/75189224-5804-c430-cc03-4e3dc14b44f4.htm" />
   <HelpKINode Title="IAccelerometerProcessingModule interface">
     <HelpKINode Title="IAccelerometerProcessingModule Interface" Url="html/42b1ca2c-cdf3-1db2-fed0-b925f3a7aa66.htm" />
     <HelpKINode Title="about IAccelerometerProcessingModule interface" Url="html/42b1ca2c-cdf3-1db2-fed0-b925f3a7aa66.htm" />
@@ -1100,6 +1163,7 @@
     <HelpKINode Title="about IDataAccessFacade interface" Url="html/b19d4a5a-7b44-0957-669d-d660553b98bb.htm" />
     <HelpKINode Title="methods" Url="html/b341ea82-878e-a2bc-fe9e-a8e073248f07.htm" />
   </HelpKINode>
+  <HelpKINode Title="IDataAccessFacade.DeleteDatabase method" Url="html/7248b826-b342-ee92-5a90-51ba2fba9c17.htm" />
   <HelpKINode Title="IDataAccessFacade.GetEventAccess method" Url="html/e7c485b5-acc4-70f1-49f1-be7d6c9e5b9a.htm" />
   <HelpKINode Title="IDataAccessFacade.GetGeneralSettings method" Url="html/4bb52899-0aef-54b8-0679-ef9cc499501b.htm" />
   <HelpKINode Title="IDataAccessFacade.GetIntervalAccess method" Url="html/402035c6-a9d2-7404-51d7-8aa1c232afe7.htm" />
@@ -1115,9 +1179,9 @@
     <HelpKINode Title="methods" Url="html/59312080-93ed-9083-081d-24e59e5310a2.htm" />
   </HelpKINode>
   <HelpKINode Title="IDbProvider.AddPersonToScene method" Url="html/ae8596f6-0d04-728a-6f6c-9cc0a3ca8b31.htm" />
-  <HelpKINode Title="IDbProvider.Clear method" Url="html/fceac5e8-5430-6ef0-fb8a-01b94ed6e0b4.htm" />
   <HelpKINode Title="IDbProvider.CloseConnection method" Url="html/c5fc75ac-1c33-caf7-7532-0eb9e9936544.htm" />
   <HelpKINode Title="IDbProvider.CreateConnection method" Url="html/c5119a63-819c-b276-cc48-ee065ac89268.htm" />
+  <HelpKINode Title="IDbProvider.Delete method" Url="html/300b515a-64a6-d973-a37d-48efb59813be.htm" />
   <HelpKINode Title="IDbProvider.DeletePerson method" Url="html/4a0a534b-3e5d-5bf4-abe9-91f16d8c8b00.htm" />
   <HelpKINode Title="IDbProvider.DeleteScene method" Url="html/c3322bba-070a-f6c3-9bfd-5c33a2d06f72.htm" />
   <HelpKINode Title="IDbProvider.DeleteSubModal method" Url="html/519ee480-3b99-c212-830b-d8f56ddb32fa.htm" />
@@ -1155,7 +1219,13 @@
     <HelpKINode Title="methods" Url="html/2b8b9f8d-11ba-dfd2-21f7-8a73b3ac78ce.htm" />
   </HelpKINode>
   <HelpKINode Title="IGeneralSettings.GetDataDirectory method" Url="html/bccbc9c0-96bf-3e35-b531-fbccdb0d1f7a.htm" />
+  <HelpKINode Title="IGeneralSettings.GetDataModalsDirectory method" Url="html/74bfa897-c902-90f8-2182-c7916efd821b.htm" />
+  <HelpKINode Title="IGeneralSettings.GetDataPersonsDirectory method" Url="html/6973c9f8-5578-49db-58bc-b7f20da10c5c.htm" />
+  <HelpKINode Title="IGeneralSettings.GetDataScenesDirectory method" Url="html/85317d99-8a06-96c0-e756-6cdd394f854d.htm" />
   <HelpKINode Title="IGeneralSettings.GetDefaultMillisecondsThreshold method" Url="html/cfd0a5c6-765c-9bd9-ccff-7f09eaa80d80.htm" />
+  <HelpKINode Title="IGeneralSettings.GetModalDirectory method" Url="html/7e6fd700-d049-debc-cabf-1729fa5f9e0b.htm" />
+  <HelpKINode Title="IGeneralSettings.GetSceneDirectory method" Url="html/e636178f-5906-c408-e888-c41035f8431b.htm" />
+  <HelpKINode Title="IGeneralSettings.GetSceneInUseDirectory method" Url="html/5d4728b4-1c14-5b97-f606-b021281a1049.htm" />
   <HelpKINode Title="IGeneralSettings.GetTmpDirectory method" Url="html/459c8400-ffa4-b8a1-710c-b5770ffae2d8.htm" />
   <HelpKINode Title="IGeneralSettings.GetTmpSceneDirectory method" Url="html/73070382-f30d-d0c5-6a50-0be6d557db75.htm" />
   <HelpKINode Title="IIntervalAccess interface">
@@ -1182,6 +1252,7 @@
     <HelpKINode Title="methods" Url="html/f8310139-9f9b-45bc-df92-2b1f5ebba212.htm" />
   </HelpKINode>
   <HelpKINode Title="IModalAccess.Add method" Url="html/832586d1-7e91-c41e-b234-de60ec3a46c1.htm" />
+  <HelpKINode Title="IModalAccess.AddIfNotExists method" Url="html/7e2ebc8c-e3be-961c-dc3a-1f233a91b1b3.htm" />
   <HelpKINode Title="IModalAccess.Exists method" Url="html/e8f76454-38f5-eb84-165a-3617cb98e58d.htm" />
   <HelpKINode Title="IModalAccess.GetAll method" Url="html/fc4a87cf-0749-1bf8-3cad-a98e50c6eb01.htm" />
   <HelpKINode Title="IMonitor interface">
@@ -1219,6 +1290,7 @@
     <HelpKINode Title="Export.InitializeComponent Method " Url="html/91030105-73b7-86e4-2295-655bc749bf3d.htm" />
     <HelpKINode Title="Home.InitializeComponent Method " Url="html/82800bb1-28e1-fbf7-c227-1bc0ca73a8f0.htm" />
     <HelpKINode Title="IntervalGraphControl.InitializeComponent Method " Url="html/e75ee57a-f0dd-d7bc-26c4-81167c775394.htm" />
+    <HelpKINode Title="LiveGraphTab.InitializeComponent Method " Url="html/fb9ab8d5-af55-9079-8f47-14e46f2c84c6.htm" />
     <HelpKINode Title="OpenBCIWindow.InitializeComponent Method " Url="html/bd44ff04-0c4f-5c97-3014-913fbab45954.htm" />
     <HelpKINode Title="PersonCard.InitializeComponent Method " Url="html/a10542f2-72fb-3296-a4e2-f759b0f4f8b0.htm" />
     <HelpKINode Title="PostureCRUD.InitializeComponent Method " Url="html/c9acec69-1740-1829-a87e-53b9a91cb2f2.htm" />
@@ -1233,7 +1305,6 @@
     <HelpKINode Title="TrainerFileSelector.InitializeComponent Method " Url="html/46776698-63b5-9e40-0339-638f969de3ac.htm" />
     <HelpKINode Title="TrainerSceneSelector.InitializeComponent Method " Url="html/c1158505-fbc7-94c1-ac2b-ae41cee1b05f.htm" />
   </HelpKINode>
-  <HelpKINode Title="Input enumeration member" Url="html/075b7268-f85f-f993-5192-56cd8987dab5.htm" />
   <HelpKINode Title="InputLoader class">
     <HelpKINode Title="InputLoader Class" Url="html/8fd7b394-cae8-9b1b-a135-bd8f74110065.htm" />
     <HelpKINode Title="about InputLoader class" Url="html/8fd7b394-cae8-9b1b-a135-bd8f74110065.htm" />
@@ -1257,7 +1328,9 @@
   <HelpKINode Title="InputModule.Monitor field" Url="html/c2413ff1-fb45-2cd5-94ab-734d0fd5de09.htm" />
   <HelpKINode Title="InputModule.Player field" Url="html/881ec62a-38b0-f548-f882-f03f70e01909.htm" />
   <HelpKINode Title="InputModule.Plurality field" Url="html/ab7b0a62-71b9-cfdd-9357-81121108e872.htm" />
+  <HelpKINode Title="InputPerson enumeration member" Url="html/075b7268-f85f-f993-5192-56cd8987dab5.htm" />
   <HelpKINode Title="InputPlurality enumeration" Url="html/673a43aa-f912-ec01-32f4-fe0507874584.htm" />
+  <HelpKINode Title="InputScene enumeration member" Url="html/075b7268-f85f-f993-5192-56cd8987dab5.htm" />
   <HelpKINode Title="InputStatus enumeration" Url="html/4e97f897-be5d-497d-9c69-a14fb9f8b483.htm" />
   <HelpKINode Title="Instance property">
     <HelpKINode Title="DataAccessFacade.Instance Property " Url="html/b30535ff-4952-fea3-fff8-1a580adfb788.htm" />
@@ -1384,7 +1457,6 @@
     <HelpKINode Title="about ISceneAccess interface" Url="html/7993de31-1d8f-a5a4-2587-d72ce824049f.htm" />
     <HelpKINode Title="methods" Url="html/e3cce3d9-5609-7542-b565-9b168c6e5804.htm" />
   </HelpKINode>
-  <HelpKINode Title="ISceneAccess.ClearDb method" Url="html/4f4e6e51-29ad-736f-7237-c97335660724.htm" />
   <HelpKINode Title="ISceneAccess.Delete method" Url="html/f45c1ed4-f233-fb2d-cd29-5e9da11bd8e2.htm" />
   <HelpKINode Title="ISceneAccess.Exists method" Url="html/bc8f3cd5-6eb5-6b07-bb7b-089a195a432b.htm" />
   <HelpKINode Title="ISceneAccess.Get method" Url="html/fe25905b-fa26-cc5f-9b1d-0c13269af7fc.htm" />
@@ -1427,6 +1499,7 @@
     <HelpKINode Title="methods" Url="html/e69594f1-0472-7d84-7ed7-b9ee47db18a6.htm" />
   </HelpKINode>
   <HelpKINode Title="ISubModalAccess.Add method" Url="html/a9234be8-7aab-84e6-3505-97aca1288a42.htm" />
+  <HelpKINode Title="ISubModalAccess.AddIfNotExists method" Url="html/694f21a5-0986-f39d-9c14-2e45af9b549e.htm" />
   <HelpKINode Title="ISubModalAccess.Delete method" Url="html/c49fdd70-d4de-6a20-7df3-89b3f27c4356.htm" />
   <HelpKINode Title="ISubModalAccess.Exists method" Url="html/944aaa4c-5901-da4f-6c1b-240d34a542b8.htm" />
   <HelpKINode Title="ISubModalAccess.Get method" Url="html/2c4b233f-273b-4ac7-a0dc-01c1ec92231f.htm" />
@@ -1494,6 +1567,10 @@
   <HelpKINode Title="KinectSettings.KinectSettings constructor" Url="html/57011092-d178-906b-08e3-48c6e7088241.htm" />
   <HelpKINode Title="KinectSettings.OnConfigure method" Url="html/19891967-39f3-9b86-283e-d38e4520fcbf.htm" />
   <HelpKINode Title="Labels property" Url="html/1e6a0563-623b-c011-ff2a-0aa612ce5214.htm" />
+  <HelpKINode Title="LAHV enumeration member" Url="html/2ddb8595-61e0-7459-ac83-2ed56fdb3d87.htm" />
+  <HelpKINode Title="LALV enumeration member" Url="html/2ddb8595-61e0-7459-ac83-2ed56fdb3d87.htm" />
+  <HelpKINode Title="LCHP method" Url="html/c2c4f9e8-4c39-18a3-3cb9-acfc96e07252.htm" />
+  <HelpKINode Title="LCLP method" Url="html/4b91ffa1-67b6-c23c-2766-8409009e7320.htm" />
   <HelpKINode Title="LearningModel class">
     <HelpKINode Title="LearningModel Class" Url="html/40bdb790-22c6-bf04-3282-d2e5e7dfbf30.htm" />
     <HelpKINode Title="about LearningModel class" Url="html/40bdb790-22c6-bf04-3282-d2e5e7dfbf30.htm" />
@@ -1503,7 +1580,20 @@
   <HelpKINode Title="LearningModel.Classify method" Url="html/e8c1378f-610b-1709-b9d3-04310a8c22ed.htm" />
   <HelpKINode Title="LearningModel.LearningModel constructor" Url="html/e870e2b8-c586-2968-a62b-c6d482a42121.htm" />
   <HelpKINode Title="LearningModel.Train method" Url="html/3b84819e-4eb8-4f6e-ee42-c438a651ca8d.htm" />
-  <HelpKINode Title="LoadFakeScene method" Url="html/4630a18a-8466-48bf-319a-edc6d3974daf.htm" />
+  <HelpKINode Title="LiveGraphTab class">
+    <HelpKINode Title="LiveGraphTab Class" Url="html/5d54e62c-4d04-8b54-d804-eacf4ef93bcf.htm" />
+    <HelpKINode Title="about LiveGraphTab class" Url="html/5d54e62c-4d04-8b54-d804-eacf4ef93bcf.htm" />
+    <HelpKINode Title="constructor" Url="html/f745fdcc-716d-bb95-8be6-da2865f93588.htm" />
+    <HelpKINode Title="events" Url="html/4eb8105d-33d8-3852-c502-344d02be4f83.htm" />
+    <HelpKINode Title="methods" Url="html/e71c6c7b-0fa7-9181-2a73-ec3756424465.htm" />
+    <HelpKINode Title="properties" Url="html/701c3dd9-2c7d-0597-c1e4-2b9b4b70f1aa.htm" />
+  </HelpKINode>
+  <HelpKINode Title="LiveGraphTab.Enqueue method" Url="html/062a0e26-a207-d7b5-f506-0cf26f61d7e1.htm" />
+  <HelpKINode Title="LiveGraphTab.Fill method" Url="html/a6c250b9-c084-d761-8413-35c6ab1d6ffb.htm" />
+  <HelpKINode Title="LiveGraphTab.InitializeComponent method" Url="html/fb9ab8d5-af55-9079-8f47-14e46f2c84c6.htm" />
+  <HelpKINode Title="LiveGraphTab.LiveGraphTab constructor" Url="html/f745fdcc-716d-bb95-8be6-da2865f93588.htm" />
+  <HelpKINode Title="LiveGraphTab.Reset method" Url="html/6e6eb345-7f7e-5a15-7c32-5f63cd09feda.htm" />
+  <HelpKINode Title="LoadFakeScene method" Url="html/f69fe0c5-178f-f7f7-ff06-1e35d2836419.htm" />
   <HelpKINode Title="LoadModal method">
     <HelpKINode Title="EfAbstractProvider.LoadModal Method " Url="html/5216f971-09bf-2b04-c19a-8fd6f9d88ab0.htm" />
     <HelpKINode Title="IDbProvider.LoadModal Method " Url="html/2cef60cc-7b14-5c4b-32e8-a161aca47510.htm" />
@@ -1528,26 +1618,18 @@
     <HelpKINode Title="EfAbstractProvider.LoadSubModals Method " Url="html/73888ce0-5ad6-7ff5-5480-cd2c51d16008.htm" />
     <HelpKINode Title="IDbProvider.LoadSubModals Method " Url="html/6c47b306-8a11-daa9-936c-f30d76da1d67.htm" />
   </HelpKINode>
-  <HelpKINode Title="LoadTest method" Url="html/3ed42e96-5d56-735e-b7b4-95c57a0cc8ce.htm" />
-  <HelpKINode Title="LoadTestScene class">
-    <HelpKINode Title="LoadTestScene Class" Url="html/438f3c5b-b11e-7649-1ae3-39bf6cfd0365.htm" />
-    <HelpKINode Title="about LoadTestScene class" Url="html/438f3c5b-b11e-7649-1ae3-39bf6cfd0365.htm" />
-    <HelpKINode Title="methods" Url="html/022c0fcc-1548-656e-ca3f-1f217ad9aa76.htm" />
-  </HelpKINode>
-  <HelpKINode Title="LoadTestScene.LoadFakeScene method" Url="html/4630a18a-8466-48bf-319a-edc6d3974daf.htm" />
-  <HelpKINode Title="LoadTestScene.LoadTest method" Url="html/3ed42e96-5d56-735e-b7b4-95c57a0cc8ce.htm" />
+  <HelpKINode Title="LoadTest method" Url="html/a29c853b-b0ab-8670-b469-0a4d2f76ee1d.htm" />
+  <HelpKINode Title="LoadTmpModals method" Url="html/ecb0b2f7-4dc3-70e8-2a6e-7839ebf7f662.htm" />
   <HelpKINode Title="locality field" Url="html/986e8db9-ce43-b6be-6ea1-f5776500da04.htm" />
   <HelpKINode Title="LocationChanged event">
     <HelpKINode Title="IPlayer.LocationChanged Event" Url="html/c29e6f4c-7150-1c25-c46e-4ad322a5f60d.htm" />
     <HelpKINode Title="Player.LocationChanged Event" Url="html/f226e385-2e18-6189-cb0d-c7842babe676.htm" />
     <HelpKINode Title="Player.LocationChanged Event" Url="html/7c87ea89-54a5-7977-ecfb-bea126ab28f5.htm" />
   </HelpKINode>
-  <HelpKINode Title="LowArousalHighValence enumeration member" Url="html/2ddb8595-61e0-7459-ac83-2ed56fdb3d87.htm" />
-  <HelpKINode Title="LowArousalLowValence enumeration member" Url="html/2ddb8595-61e0-7459-ac83-2ed56fdb3d87.htm" />
   <HelpKINode Title="Lowpass enumeration member" Url="html/dfdabfeb-3a4b-6d1b-95f4-b49022991fd8.htm" />
   <HelpKINode Title="m field" Url="html/3e850ac8-aca0-05fa-1956-68f7ba91cc11.htm" />
-  <HelpKINode Title="Main method" Url="html/2c35319c-2292-b33f-19e2-edb7504d2032.htm" />
   <HelpKINode Title="main method" Url="html/07d1617d-5ba6-09ac-fb98-2150fa5b92a5.htm" />
+  <HelpKINode Title="Main method" Url="html/2c35319c-2292-b33f-19e2-edb7504d2032.htm" />
   <HelpKINode Title="max field" Url="html/be1803bd-0c40-88e0-6d06-e75b0ddaea75.htm" />
   <HelpKINode Title="maxPoints field" Url="html/111cf646-9645-6035-d0dd-b86a52580918.htm" />
   <HelpKINode Title="maxSize field" Url="html/e4a2cd8c-9d38-da30-5ba8-d0ca5f6908e6.htm" />
@@ -1578,11 +1660,15 @@
     <HelpKINode Title="about ModalAccess class" Url="html/4e3451c0-1636-a5f6-900b-3d5e2dafd681.htm" />
     <HelpKINode Title="constructor" Url="html/d5cc0573-2757-1b33-eaa8-2abb2bae0ee3.htm" />
     <HelpKINode Title="methods" Url="html/8ac93e23-a6b1-652f-3029-faec7d28edbf.htm" />
+    <HelpKINode Title="properties" Url="html/9201da77-f104-cb33-1ca4-47eeb92b5390.htm" />
   </HelpKINode>
   <HelpKINode Title="ModalAccess.Add method" Url="html/8af5ae46-ebc0-9f01-2b10-941b43a79570.htm" />
+  <HelpKINode Title="ModalAccess.AddIfNotExists method" Url="html/07cd324d-aae9-0ac3-b00c-9868f237304f.htm" />
   <HelpKINode Title="ModalAccess.Exists method" Url="html/cc8d0035-e401-1088-c3a7-b511caeb35d5.htm" />
   <HelpKINode Title="ModalAccess.GetAll method" Url="html/e38515e9-e616-b3a1-bdf1-30494a248cad.htm" />
+  <HelpKINode Title="ModalAccess.LoadTmpModals method" Url="html/ecb0b2f7-4dc3-70e8-2a6e-7839ebf7f662.htm" />
   <HelpKINode Title="ModalAccess.ModalAccess constructor" Url="html/d5cc0573-2757-1b33-eaa8-2abb2bae0ee3.htm" />
+  <HelpKINode Title="ModalAccess.TmpModals property" Url="html/79e9ae8a-95b3-ee9f-cb57-119b2b173737.htm" />
   <HelpKINode Title="ModalName property" Url="html/be7f2253-a076-8dd5-81f0-4550ff057e35.htm" />
   <HelpKINode Title="ModalType class">
     <HelpKINode Title="ModalType Class" Url="html/74ffc2e8-ce09-f831-f005-a8474088e2ea.htm" />
@@ -1607,12 +1693,13 @@
   <HelpKINode Title="Monitor class">
     <HelpKINode Title="Monitor Class" Url="html/a400e6ef-757a-a0f3-12d0-78103c0499f2.htm" />
     <HelpKINode Title="Monitor Class" Url="html/acd17f78-2e35-2814-0618-352d0ae54354.htm" />
-    <HelpKINode Title="about Monitor class" Url="html/a400e6ef-757a-a0f3-12d0-78103c0499f2.htm" />
     <HelpKINode Title="about Monitor class" Url="html/acd17f78-2e35-2814-0618-352d0ae54354.htm" />
+    <HelpKINode Title="about Monitor class" Url="html/a400e6ef-757a-a0f3-12d0-78103c0499f2.htm" />
     <HelpKINode Title="constructor" Url="html/d10bf0cf-9fdd-53c7-5683-381d268680e9.htm" />
     <HelpKINode Title="constructor" Url="html/9261bf98-5f9e-112c-5207-7e0d5a989473.htm" />
-    <HelpKINode Title="events" Url="html/5bd63b14-dae7-f04b-7cbe-702d4fb3361e.htm" />
     <HelpKINode Title="events" Url="html/78beb064-83bc-4371-9393-bd70e043b632.htm" />
+    <HelpKINode Title="events" Url="html/5bd63b14-dae7-f04b-7cbe-702d4fb3361e.htm" />
+    <HelpKINode Title="fields" Url="html/fff0fcba-1115-15b8-bc3d-6066ab15f2c9.htm" />
     <HelpKINode Title="methods" Url="html/ae11c0d8-3fc7-6d6e-3b6a-a0cff8d8b191.htm" />
     <HelpKINode Title="methods" Url="html/8faeff1d-c479-b397-d64f-81d5c397485c.htm" />
   </HelpKINode>
@@ -1626,33 +1713,34 @@
     <HelpKINode Title="Monitor.GetStatus Method " Url="html/e9ec103b-4196-6cf6-23e4-4a61851a0661.htm" />
     <HelpKINode Title="Monitor.GetStatus Method " Url="html/9ef218f4-d1b1-1683-92bf-a79ecc104055.htm" />
   </HelpKINode>
+  <HelpKINode Title="Monitor.GraphTab field" Url="html/df6b46dd-8eec-cca2-28d0-032d2f6156e9.htm" />
   <HelpKINode Title="Monitor.IsRecording method">
-    <HelpKINode Title="Monitor.IsRecording Method " Url="html/d9724afd-330f-be97-b2b7-57c9672df519.htm" />
     <HelpKINode Title="Monitor.IsRecording Method " Url="html/ffcd1a84-fc35-ab32-e5c2-6abba77e01b7.htm" />
+    <HelpKINode Title="Monitor.IsRecording Method " Url="html/d9724afd-330f-be97-b2b7-57c9672df519.htm" />
   </HelpKINode>
   <HelpKINode Title="Monitor.Monitor constructor">
-    <HelpKINode Title="Monitor Constructor " Url="html/9261bf98-5f9e-112c-5207-7e0d5a989473.htm" />
     <HelpKINode Title="Monitor Constructor " Url="html/d10bf0cf-9fdd-53c7-5683-381d268680e9.htm" />
+    <HelpKINode Title="Monitor Constructor " Url="html/9261bf98-5f9e-112c-5207-7e0d5a989473.htm" />
   </HelpKINode>
   <HelpKINode Title="Monitor.Open method">
     <HelpKINode Title="Monitor.Open Method " Url="html/2d5a7cd6-a7bf-e607-733c-496f7c818735.htm" />
     <HelpKINode Title="Monitor.Open Method " Url="html/823cbb1a-5e5b-abca-7456-a94d1d49c834.htm" />
   </HelpKINode>
   <HelpKINode Title="Monitor.OpenPort method">
-    <HelpKINode Title="Monitor.OpenPort Method " Url="html/9b4c8ddc-a267-e9ab-b4ab-6329d3c2c2ce.htm" />
     <HelpKINode Title="Monitor.OpenPort Method " Url="html/a1de3a4d-e954-d19c-84b2-ef4f2414189f.htm" />
+    <HelpKINode Title="Monitor.OpenPort Method " Url="html/9b4c8ddc-a267-e9ab-b4ab-6329d3c2c2ce.htm" />
   </HelpKINode>
   <HelpKINode Title="Monitor.StartRecording method">
     <HelpKINode Title="Monitor.StartRecording Method " Url="html/0c9e346e-7fbb-b83c-acee-431250fadf39.htm" />
     <HelpKINode Title="Monitor.StartRecording Method " Url="html/0f4b4f86-2790-1038-9a11-49102cc5b93c.htm" />
   </HelpKINode>
   <HelpKINode Title="Monitor.StatusChanged event">
-    <HelpKINode Title="Monitor.StatusChanged Event" Url="html/8c53e57b-6df0-e7d1-3ba5-ff9a5ae59fd8.htm" />
     <HelpKINode Title="Monitor.StatusChanged Event" Url="html/632dbac7-740d-69d1-fe02-014386a4ca64.htm" />
+    <HelpKINode Title="Monitor.StatusChanged Event" Url="html/8c53e57b-6df0-e7d1-3ba5-ff9a5ae59fd8.htm" />
   </HelpKINode>
   <HelpKINode Title="Monitor.StopRecording method">
-    <HelpKINode Title="Monitor.StopRecording Method " Url="html/c6c0dea4-0340-366a-c7ed-b3b5e5f4cf89.htm" />
     <HelpKINode Title="Monitor.StopRecording Method " Url="html/a8541723-967c-2599-7c71-a6b02d414688.htm" />
+    <HelpKINode Title="Monitor.StopRecording Method " Url="html/c6c0dea4-0340-366a-c7ed-b3b5e5f4cf89.htm" />
   </HelpKINode>
   <HelpKINode Title="MoveTo method" Url="html/10519d0f-c860-f153-cd94-bc24279516c1.htm" />
   <HelpKINode Title="MySqlProvider class">
@@ -1694,8 +1782,8 @@
   <HelpKINode Title="OnSkeletonImageArrived method" Url="html/ee76f4a6-cc33-6075-0e2c-50d2b4d2a08b.htm" />
   <HelpKINode Title="Open method">
     <HelpKINode Title="IMonitor.Open Method " Url="html/8ba21593-e115-e31b-b400-146e2e209a03.htm" />
-    <HelpKINode Title="Monitor.Open Method " Url="html/2d5a7cd6-a7bf-e607-733c-496f7c818735.htm" />
     <HelpKINode Title="Monitor.Open Method " Url="html/823cbb1a-5e5b-abca-7456-a94d1d49c834.htm" />
+    <HelpKINode Title="Monitor.Open Method " Url="html/2d5a7cd6-a7bf-e607-733c-496f7c818735.htm" />
   </HelpKINode>
   <HelpKINode Title="OpenBCIInput class">
     <HelpKINode Title="OpenBCIInput Class" Url="html/769a316d-8587-a4f5-6eb6-4d21ddf7be99.htm" />
@@ -1753,8 +1841,8 @@
   <HelpKINode Title="Pause enumeration member" Url="html/fb0c8296-edf8-4908-eb75-c24c389aec5e.htm" />
   <HelpKINode Title="Pause method">
     <HelpKINode Title="IPlayer.Pause Method " Url="html/6de4ce32-c62e-3ad4-5413-ed2547b0a70c.htm" />
-    <HelpKINode Title="Player.Pause Method " Url="html/9126f1ad-d81d-8cd3-89a7-b30e5f009ef3.htm" />
     <HelpKINode Title="Player.Pause Method " Url="html/4e9c69d2-c512-996e-8749-fd8978a10674.htm" />
+    <HelpKINode Title="Player.Pause Method " Url="html/9126f1ad-d81d-8cd3-89a7-b30e5f009ef3.htm" />
     <HelpKINode Title="PlayerController.Pause Method " Url="html/119e3dd6-f26a-df22-c0e3-f67541d28681.htm" />
   </HelpKINode>
   <HelpKINode Title="Person class">
@@ -1764,10 +1852,7 @@
     <HelpKINode Title="methods" Url="html/d1de7d88-1cbf-8cdf-df64-3d2d9b7fbb42.htm" />
     <HelpKINode Title="properties" Url="html/ac22898a-9b25-f2b8-7a62-b058de5019a1.htm" />
   </HelpKINode>
-  <HelpKINode Title="Person enumeration member">
-    <HelpKINode Title="InputPlurality Enumeration" Url="html/673a43aa-f912-ec01-32f4-fe0507874584.htm" />
-    <HelpKINode Title="ModuleType Enumeration" Url="html/075b7268-f85f-f993-5192-56cd8987dab5.htm" />
-  </HelpKINode>
+  <HelpKINode Title="Person enumeration member" Url="html/673a43aa-f912-ec01-32f4-fe0507874584.htm" />
   <HelpKINode Title="Person property" Url="html/1515abb4-d08a-0582-3b2e-fbdf2c319e7e.htm" />
   <HelpKINode Title="Person.Birthday property" Url="html/8706bb25-7ad2-5b23-a069-79923477eaa8.htm" />
   <HelpKINode Title="Person.Name property" Url="html/04b957a9-b53a-96ca-7976-3d5c7a6b5956.htm" />
@@ -1852,8 +1937,8 @@
   <HelpKINode Title="Play enumeration member" Url="html/fb0c8296-edf8-4908-eb75-c24c389aec5e.htm" />
   <HelpKINode Title="Play method">
     <HelpKINode Title="IPlayer.Play Method " Url="html/fdda7eb2-64c1-31cb-16c0-4d713952e7c8.htm" />
-    <HelpKINode Title="Player.Play Method " Url="html/02985c52-9176-8af9-f989-5f000e338636.htm" />
     <HelpKINode Title="Player.Play Method " Url="html/4dc1be7e-bb62-cca8-ee82-3f5ee6cc3a7f.htm" />
+    <HelpKINode Title="Player.Play Method " Url="html/02985c52-9176-8af9-f989-5f000e338636.htm" />
     <HelpKINode Title="PlayerController.Play Method " Url="html/fe77b945-0b15-2562-307c-3f495a65bfc4.htm" />
   </HelpKINode>
   <HelpKINode Title="Player class">
@@ -1878,8 +1963,8 @@
     <HelpKINode Title="Player.Close Method " Url="html/36844b7c-f074-0b91-5823-8716fe55d68c.htm" />
   </HelpKINode>
   <HelpKINode Title="Player.Finished event">
-    <HelpKINode Title="Player.Finished Event" Url="html/1e95a8ef-0326-b3f5-3724-fa32508ed43f.htm" />
     <HelpKINode Title="Player.Finished Event" Url="html/1aac4e2e-9ea6-5a71-86c2-3459fdc9fe3e.htm" />
+    <HelpKINode Title="Player.Finished Event" Url="html/1e95a8ef-0326-b3f5-3724-fa32508ed43f.htm" />
   </HelpKINode>
   <HelpKINode Title="Player.GetLocation method">
     <HelpKINode Title="Player.GetLocation Method " Url="html/7e2604f9-2b1d-961d-3bf2-6cc36fcf2f21.htm" />
@@ -1890,24 +1975,24 @@
     <HelpKINode Title="Player.GetTotalDuration Method " Url="html/0ed7ee09-aa8b-a1eb-d548-f3044187d465.htm" />
   </HelpKINode>
   <HelpKINode Title="Player.IsPlaying method">
-    <HelpKINode Title="Player.IsPlaying Method " Url="html/c962cb54-a3ed-a96d-56af-53b7f6f0a139.htm" />
     <HelpKINode Title="Player.IsPlaying Method " Url="html/caee7892-405e-1fe4-e556-a0e2a9fcdd06.htm" />
+    <HelpKINode Title="Player.IsPlaying Method " Url="html/c962cb54-a3ed-a96d-56af-53b7f6f0a139.htm" />
   </HelpKINode>
   <HelpKINode Title="Player.LocationChanged event">
     <HelpKINode Title="Player.LocationChanged Event" Url="html/f226e385-2e18-6189-cb0d-c7842babe676.htm" />
     <HelpKINode Title="Player.LocationChanged Event" Url="html/7c87ea89-54a5-7977-ecfb-bea126ab28f5.htm" />
   </HelpKINode>
   <HelpKINode Title="Player.Pause method">
-    <HelpKINode Title="Player.Pause Method " Url="html/9126f1ad-d81d-8cd3-89a7-b30e5f009ef3.htm" />
     <HelpKINode Title="Player.Pause Method " Url="html/4e9c69d2-c512-996e-8749-fd8978a10674.htm" />
+    <HelpKINode Title="Player.Pause Method " Url="html/9126f1ad-d81d-8cd3-89a7-b30e5f009ef3.htm" />
   </HelpKINode>
   <HelpKINode Title="Player.Play method">
-    <HelpKINode Title="Player.Play Method " Url="html/4dc1be7e-bb62-cca8-ee82-3f5ee6cc3a7f.htm" />
     <HelpKINode Title="Player.Play Method " Url="html/02985c52-9176-8af9-f989-5f000e338636.htm" />
+    <HelpKINode Title="Player.Play Method " Url="html/4dc1be7e-bb62-cca8-ee82-3f5ee6cc3a7f.htm" />
   </HelpKINode>
   <HelpKINode Title="Player.Player constructor">
-    <HelpKINode Title="Player Constructor " Url="html/2d1d3063-515c-c998-99f9-6b48ee1713ff.htm" />
     <HelpKINode Title="Player Constructor " Url="html/78709170-411f-30db-9399-cd0e9c8c49e3.htm" />
+    <HelpKINode Title="Player Constructor " Url="html/2d1d3063-515c-c998-99f9-6b48ee1713ff.htm" />
   </HelpKINode>
   <HelpKINode Title="Player.Stop method">
     <HelpKINode Title="Player.Stop Method " Url="html/042dcdcc-9911-e6c3-7bb2-a634e5f46fe2.htm" />
@@ -1933,6 +2018,8 @@
   <HelpKINode Title="PlayerController.Stop method" Url="html/ab11c095-e4a6-ebd5-548e-a24fbff5bc46.htm" />
   <HelpKINode Title="PlayerController.UnPause method" Url="html/a31d85af-5a05-a7ad-3cc6-4917ab67ed2c.htm" />
   <HelpKINode Title="PlayerState enumeration" Url="html/fb0c8296-edf8-4908-eb75-c24c389aec5e.htm" />
+  <HelpKINode Title="PlayPausedTime property" Url="html/81e13eeb-7297-f98f-96bf-8ac77258ddc0.htm" />
+  <HelpKINode Title="PlayStartTime property" Url="html/97158b69-988f-4781-3c76-20d895f524ac.htm" />
   <HelpKINode Title="Plurality field" Url="html/ab7b0a62-71b9-cfdd-9357-81121108e872.htm" />
   <HelpKINode Title="Position field" Url="html/4da28653-f99e-a31c-80dc-80e7565066d4.htm" />
   <HelpKINode Title="PositionChannel1 field" Url="html/138e4cd4-aad2-344d-40fc-12f64d555413.htm" />
@@ -2034,11 +2121,13 @@
   <HelpKINode Title="ProcessingLoader class">
     <HelpKINode Title="ProcessingLoader Class" Url="html/2f22b1d0-21bb-79d6-d052-8825eb2369ea.htm" />
     <HelpKINode Title="about ProcessingLoader class" Url="html/2f22b1d0-21bb-79d6-d052-8825eb2369ea.htm" />
+    <HelpKINode Title="events" Url="html/2fdbab8a-9590-10ab-42ff-64f51734ad71.htm" />
     <HelpKINode Title="methods" Url="html/032f8e63-cdac-f69b-02bd-ac7b44a99cc9.htm" />
     <HelpKINode Title="properties" Url="html/248740c9-d143-98b4-7982-b22433522de1.htm" />
   </HelpKINode>
   <HelpKINode Title="ProcessingLoader.Instance property" Url="html/da0f1730-ec23-37dd-f92c-00955060b035.htm" />
   <HelpKINode Title="ProcessingLoader.ProcessingModules property" Url="html/6139bfa7-f6e7-c51b-d802-018bea263b38.htm" />
+  <HelpKINode Title="ProcessingLoader.ProcessingModulesHasReset event" Url="html/b3901282-de94-a579-ee51-d9c11b1c63f3.htm" />
   <HelpKINode Title="ProcessingLoader.Reset method" Url="html/5f01858e-e16d-6973-c2d5-7daaf9d4b6d8.htm" />
   <HelpKINode Title="ProcessingModule class">
     <HelpKINode Title="ProcessingModule Class" Url="html/2511dfce-910c-9082-25a1-03b10badfb7f.htm" />
@@ -2051,6 +2140,7 @@
   <HelpKINode Title="ProcessingModule.IsActiveBeforeRecording property" Url="html/10b05f07-2fa8-1825-46cc-821c7d62fe79.htm" />
   <HelpKINode Title="ProcessingModule.ProcessingModule constructor" Url="html/801bf0c1-e4a7-112e-ac8c-95dcd7332670.htm" />
   <HelpKINode Title="ProcessingModules property" Url="html/6139bfa7-f6e7-c51b-d802-018bea263b38.htm" />
+  <HelpKINode Title="ProcessingModulesHasReset event" Url="html/b3901282-de94-a579-ee51-d9c11b1c63f3.htm" />
   <HelpKINode Title="Provider property">
     <HelpKINode Title="DatabaseEngine.Provider Property " Url="html/d2111d65-5190-2df0-1b67-19e36baadcb2.htm" />
     <HelpKINode Title="DbFacade.Provider Property " Url="html/c7873031-199b-3d04-d6cf-f5d7bf5d10c6.htm" />
@@ -2161,6 +2251,7 @@
     <HelpKINode Title="DbFacade.Reset Method " Url="html/0a5d66da-8bd4-05bc-a350-b1bbc35e851c.htm" />
     <HelpKINode Title="GeneralLoader.Reset Method " Url="html/40510bc2-1fb9-256b-987e-73c4531c2b3f.htm" />
     <HelpKINode Title="ITab.Reset Method " Url="html/230f02a9-0d3a-dcda-84ed-046cbf403f94.htm" />
+    <HelpKINode Title="LiveGraphTab.Reset Method " Url="html/6e6eb345-7f7e-5a15-7c32-5f63cd09feda.htm" />
     <HelpKINode Title="ProcessingLoader.Reset Method " Url="html/5f01858e-e16d-6973-c2d5-7daaf9d4b6d8.htm" />
     <HelpKINode Title="TabGraph.Reset Method " Url="html/25dacd8d-a518-a187-a390-7f99668606f8.htm" />
     <HelpKINode Title="TabInterval.Reset Method " Url="html/90457728-2ea3-3120-6b74-4a8b5cdb5429.htm" />
@@ -2234,7 +2325,6 @@
     <HelpKINode Title="constructor" Url="html/1aad6e35-4cd7-d258-766c-603f725945c1.htm" />
     <HelpKINode Title="methods" Url="html/bc66b04c-0d7e-e7f8-21f5-35872c123bcf.htm" />
   </HelpKINode>
-  <HelpKINode Title="SceneAccess.ClearDb method" Url="html/5623ea6d-8dbf-79ad-208d-c39d8e5615ee.htm" />
   <HelpKINode Title="SceneAccess.Delete method" Url="html/c5e1aa20-42cc-d620-275a-2d19f735ecd0.htm" />
   <HelpKINode Title="SceneAccess.Exists method" Url="html/0037c8bc-101e-f6bb-28a1-bb577bc951b1.htm" />
   <HelpKINode Title="SceneAccess.Get method" Url="html/23875c3e-fdf5-6bcc-140a-b88d5fbe6466.htm" />
@@ -2257,6 +2347,8 @@
   </HelpKINode>
   <HelpKINode Title="SceneInUse.Instance property" Url="html/5e7c5e49-23ce-3a5b-ea60-0d0be34f0edb.htm" />
   <HelpKINode Title="SceneInUse.IsRecording field" Url="html/4ebe8c91-ac11-c761-0356-6fc2b01ad2ae.htm" />
+  <HelpKINode Title="SceneInUse.PlayPausedTime property" Url="html/81e13eeb-7297-f98f-96bf-8ac77258ddc0.htm" />
+  <HelpKINode Title="SceneInUse.PlayStartTime property" Url="html/97158b69-988f-4781-3c76-20d895f524ac.htm" />
   <HelpKINode Title="SceneInUse.Scene property" Url="html/0e74cea2-3b0f-ac0d-a268-31ae9e4a4382.htm" />
   <HelpKINode Title="SceneInUse.Set method" Url="html/ae2cb4e9-b029-9ea3-3ed0-0e530c2eb016.htm" />
   <HelpKINode Title="SceneInUseAccess class">
@@ -2270,6 +2362,7 @@
   <HelpKINode Title="SceneInUseAccess.SceneInUseAccess constructor" Url="html/e273ff89-477f-bd70-f9f7-e1bb45a89afd.htm" />
   <HelpKINode Title="Scenes property" Url="html/71b3d64f-687e-5681-d335-2e3bfc0f91d4.htm" />
   <HelpKINode Title="ScenesAndTags field" Url="html/9e97a9e9-2580-0005-3f46-d66b39b49dcd.htm" />
+  <HelpKINode Title="SceneState enumeration" Url="html/b0a8f0bb-95c8-cea4-d36b-3b3253e1478b.htm" />
   <HelpKINode Title="SceneTabDataGrid class">
     <HelpKINode Title="SceneTabDataGrid Class" Url="html/60e5384c-0239-1d29-ac18-9f0b134e5358.htm" />
     <HelpKINode Title="about SceneTabDataGrid class" Url="html/60e5384c-0239-1d29-ac18-9f0b134e5358.htm" />
@@ -2291,6 +2384,23 @@
   <HelpKINode Title="SetFromFile method" Url="html/9d16c840-db1e-bf8a-d7f3-1aca99bf3224.htm" />
   <HelpKINode Title="SetFromNone method" Url="html/c566a7f0-c0aa-a331-20bd-3d9c20aee6ff.htm" />
   <HelpKINode Title="SetFromSensor method" Url="html/b5284cdd-a627-03f6-5f27-2cb8aae6231b.htm" />
+  <HelpKINode Title="SettingsAccess class">
+    <HelpKINode Title="SettingsAccess Class" Url="html/b2973cf2-b838-eaf6-afca-7391a0546735.htm" />
+    <HelpKINode Title="about SettingsAccess class" Url="html/b2973cf2-b838-eaf6-afca-7391a0546735.htm" />
+    <HelpKINode Title="constructor" Url="html/6488d4eb-4cc4-8efb-afe4-be30c0ebd581.htm" />
+    <HelpKINode Title="methods" Url="html/81f11766-d1a4-edea-d487-f55e63150e4c.htm" />
+  </HelpKINode>
+  <HelpKINode Title="SettingsAccess.GetDataDirectory method" Url="html/3fd1e511-f755-7ada-2249-eaf8f571128e.htm" />
+  <HelpKINode Title="SettingsAccess.GetDataModalsDirectory method" Url="html/7c0c8347-1d50-640c-c434-125d411e82a0.htm" />
+  <HelpKINode Title="SettingsAccess.GetDataPersonsDirectory method" Url="html/6a90ae70-d025-a738-cd33-2128d94cb25a.htm" />
+  <HelpKINode Title="SettingsAccess.GetDataScenesDirectory method" Url="html/d502205d-5113-3594-47de-e55bc35b4518.htm" />
+  <HelpKINode Title="SettingsAccess.GetDefaultMillisecondsThreshold method" Url="html/6e628561-6a15-1a46-b223-9aa6d03a27de.htm" />
+  <HelpKINode Title="SettingsAccess.GetModalDirectory method" Url="html/b7b0f9a3-d623-311e-9b6c-229043ab52da.htm" />
+  <HelpKINode Title="SettingsAccess.GetSceneDirectory method" Url="html/03131c32-2ec6-cea4-8294-541198d8be81.htm" />
+  <HelpKINode Title="SettingsAccess.GetSceneInUseDirectory method" Url="html/9c776354-77c4-d202-fef7-2c133fe9b6bf.htm" />
+  <HelpKINode Title="SettingsAccess.GetTmpDirectory method" Url="html/33998c10-e064-aa5d-f21f-dcc0b1f919bd.htm" />
+  <HelpKINode Title="SettingsAccess.GetTmpSceneDirectory method" Url="html/cf65752c-a31f-f52e-2c12-8c62d2cf3456.htm" />
+  <HelpKINode Title="SettingsAccess.SettingsAccess constructor" Url="html/6488d4eb-4cc4-8efb-afe4-be30c0ebd581.htm" />
   <HelpKINode Title="Sex property" Url="html/f9669d20-ceda-77e6-0d24-916f7fb0e118.htm" />
   <HelpKINode Title="SexString property" Url="html/c699c6d5-9572-bab1-ce5b-21300e755a02.htm" />
   <HelpKINode Title="shift field" Url="html/45d20407-ed30-a44b-2343-c38010c70246.htm" />
@@ -2337,8 +2447,8 @@
   <HelpKINode Title="SqliteProvider.SqliteProvider constructor" Url="html/ceead7ec-cf4d-c67d-4ad3-aff6ff592de0.htm" />
   <HelpKINode Title="StartRecording method">
     <HelpKINode Title="IMonitor.StartRecording Method " Url="html/ac0eb9e2-b0dc-ca2d-8127-6de3c096bea7.htm" />
-    <HelpKINode Title="Monitor.StartRecording Method " Url="html/0f4b4f86-2790-1038-9a11-49102cc5b93c.htm" />
     <HelpKINode Title="Monitor.StartRecording Method " Url="html/0c9e346e-7fbb-b83c-acee-431250fadf39.htm" />
+    <HelpKINode Title="Monitor.StartRecording Method " Url="html/0f4b4f86-2790-1038-9a11-49102cc5b93c.htm" />
   </HelpKINode>
   <HelpKINode Title="StartTime field" Url="html/c758dd48-afae-eb9d-22d5-f59cfeef0e5d.htm" />
   <HelpKINode Title="StartTime property" Url="html/d703d423-781f-2509-59b7-b052549405e9.htm" />
@@ -2352,16 +2462,16 @@
   <HelpKINode Title="StdValue property" Url="html/853db1fa-d424-3fd4-a359-ac2366fa0530.htm" />
   <HelpKINode Title="Stop method">
     <HelpKINode Title="IPlayer.Stop Method " Url="html/ce27b3a6-045d-330b-9808-cfc1eabdb37d.htm" />
-    <HelpKINode Title="Player.Stop Method " Url="html/84ec02b4-a8d7-2a04-fe1b-0ad8b9bbd330.htm" />
     <HelpKINode Title="Player.Stop Method " Url="html/042dcdcc-9911-e6c3-7bb2-a634e5f46fe2.htm" />
+    <HelpKINode Title="Player.Stop Method " Url="html/84ec02b4-a8d7-2a04-fe1b-0ad8b9bbd330.htm" />
     <HelpKINode Title="PlayerController.Stop Method " Url="html/ab11c095-e4a6-ebd5-548e-a24fbff5bc46.htm" />
     <HelpKINode Title="RecorderController.Stop Method " Url="html/586ffcf2-3b3b-1560-8340-f66dd02e085f.htm" />
   </HelpKINode>
   <HelpKINode Title="StopRecording method">
     <HelpKINode Title="GestureLogic.StopRecording Method " Url="html/9199b09d-4193-f23e-e14a-b1eca48bde36.htm" />
     <HelpKINode Title="IMonitor.StopRecording Method " Url="html/469c99b5-3f22-8073-bcd6-ed508566bdf9.htm" />
-    <HelpKINode Title="Monitor.StopRecording Method " Url="html/c6c0dea4-0340-366a-c7ed-b3b5e5f4cf89.htm" />
     <HelpKINode Title="Monitor.StopRecording Method " Url="html/a8541723-967c-2599-7c71-a6b02d414688.htm" />
+    <HelpKINode Title="Monitor.StopRecording Method " Url="html/c6c0dea4-0340-366a-c7ed-b3b5e5f4cf89.htm" />
     <HelpKINode Title="VoiceLogic.StopRecording Method " Url="html/4433fb80-4603-7adc-b384-07d93c8fc163.htm" />
   </HelpKINode>
   <HelpKINode Title="StringLimitedInput class">
@@ -2386,6 +2496,7 @@
     <HelpKINode Title="methods" Url="html/50644cfc-ebb0-e08a-b47c-89bef1eb6874.htm" />
   </HelpKINode>
   <HelpKINode Title="SubModalAccess.Add method" Url="html/00df4933-2139-e29c-07fe-40c8f69562b2.htm" />
+  <HelpKINode Title="SubModalAccess.AddIfNotExists method" Url="html/17f40900-9a51-d7ef-1996-eb7ffa3c63ae.htm" />
   <HelpKINode Title="SubModalAccess.Delete method" Url="html/d92b262d-ec6f-ec00-feea-9f67f6fa13d6.htm" />
   <HelpKINode Title="SubModalAccess.Exists method" Url="html/e47611c5-ff61-8b5c-d407-15020af9d8d1.htm" />
   <HelpKINode Title="SubModalAccess.Get method" Url="html/82b0c1ea-ffc9-c90d-24a5-b8c1c1507378.htm" />
@@ -2476,6 +2587,7 @@
   <HelpKINode Title="TabInterval.RemoveLastBtn_Click method" Url="html/f83d39f5-371d-b7b7-7af4-ad9af4e911ed.htm" />
   <HelpKINode Title="TabInterval.Reset method" Url="html/90457728-2ea3-3120-6b74-4a8b5cdb5429.htm" />
   <HelpKINode Title="TabInterval.TabInterval constructor" Url="html/7f0239f4-014d-871b-79d5-79ec2bd5a48a.htm" />
+  <HelpKINode Title="Tabs property" Url="html/43010313-438e-a7a0-13d4-255050ca7035.htm" />
   <HelpKINode Title="TabScene class">
     <HelpKINode Title="TabScene Class" Url="html/667ca5fd-77ed-3349-c8fa-e2744a789810.htm" />
     <HelpKINode Title="about TabScene class" Url="html/667ca5fd-77ed-3349-c8fa-e2744a789810.htm" />
@@ -2491,6 +2603,13 @@
   <HelpKINode Title="TagToTrain field" Url="html/d998c26d-73e9-44ab-f50d-4b6cda44ae08.htm" />
   <HelpKINode Title="TagType enumeration" Url="html/2ddb8595-61e0-7459-ac83-2ed56fdb3d87.htm" />
   <HelpKINode Title="TestError method" Url="html/f376df9b-7d2c-a00d-10d9-ef33676e7a20.htm" />
+  <HelpKINode Title="TestScene class">
+    <HelpKINode Title="TestScene Class" Url="html/110bb1aa-f45c-7182-2d1d-453ebd52abb6.htm" />
+    <HelpKINode Title="about TestScene class" Url="html/110bb1aa-f45c-7182-2d1d-453ebd52abb6.htm" />
+    <HelpKINode Title="methods" Url="html/b703c0ea-21eb-e92c-d508-25f9453b7f85.htm" />
+  </HelpKINode>
+  <HelpKINode Title="TestScene.LoadFakeScene method" Url="html/f69fe0c5-178f-f7f7-ff06-1e35d2836419.htm" />
+  <HelpKINode Title="TestScene.LoadTest method" Url="html/a29c853b-b0ab-8670-b469-0a4d2f76ee1d.htm" />
   <HelpKINode Title="Time field">
     <HelpKINode Title="AccelerometerFrameArrivedEventArgs.Time Field" Url="html/088bb3f7-d5bd-b4e8-9d92-ff6c8bb2aa7c.htm" />
     <HelpKINode Title="EegFrameArrivedEventArgs.Time Field" Url="html/14cedf0e-4052-d863-e2dd-fea4d040f0fd.htm" />
@@ -2526,6 +2645,7 @@
   <HelpKINode Title="TimeModel.Value property" Url="html/bae8964c-d266-5171-6ac9-a248ba001677.htm" />
   <HelpKINode Title="TimeSpan property" Url="html/5ec248f4-205e-ea36-46f2-eb29cbdd3213.htm" />
   <HelpKINode Title="TmpDirectory field" Url="html/54b62def-e578-3c2e-e85a-40145d5875a2.htm" />
+  <HelpKINode Title="TmpModals property" Url="html/79e9ae8a-95b3-ee9f-cb57-119b2b173737.htm" />
   <HelpKINode Title="TmpSceneDirectory field" Url="html/8c514132-4e35-1edf-902b-2037589afde6.htm" />
   <HelpKINode Title="ToString method">
     <HelpKINode Title="ModalType.ToString Method " Url="html/5088611a-b5c7-9b6e-cca5-f693a9a548d7.htm" />
@@ -2580,12 +2700,54 @@
   </HelpKINode>
   <HelpKINode Title="TypeValidation.GetSmtPis method" Url="html/6828ceb3-c25b-87ae-e46a-0020a68282d7.htm" />
   <HelpKINode Title="Unconnected enumeration member" Url="html/4e97f897-be5d-497d-9c69-a14fb9f8b483.htm" />
-  <HelpKINode Title="UnPause method" Url="html/a31d85af-5a05-a7ad-3cc6-4917ab67ed2c.htm" />
+  <HelpKINode Title="UnitClassifyEmoTest method" Url="html/572be726-c5cc-07b4-44fd-e82f72f81d55.htm" />
+  <HelpKINode Title="UnitCreatePersonTest method" Url="html/2b384c79-b96f-d339-946b-115ec184cb0e.htm" />
+  <HelpKINode Title="UnitCreateSceneTest method" Url="html/1ac329bb-29c6-522f-989d-09ecb3441f2b.htm" />
+  <HelpKINode Title="UnitDeletePersonTest method" Url="html/a279562b-106a-9b50-1f5d-322debecc2c6.htm" />
+  <HelpKINode Title="UnitDeleteSceneTest method" Url="html/8f457578-702b-0ed3-32c5-8310f3d66141.htm" />
+  <HelpKINode Title="UnitExportTest method" Url="html/0638c0c8-00ea-4734-520c-68fe176be840.htm" />
+  <HelpKINode Title="UnitGetPersonsTest method" Url="html/81570432-53da-5a2b-9810-a3b58cbc845f.htm" />
+  <HelpKINode Title="UnitGetScenesTest method" Url="html/554a7632-fc97-ed25-137f-8c8c09aa4788.htm" />
+  <HelpKINode Title="UnitImportTest method" Url="html/0c2dbe5c-e0bf-721c-de1f-9dfbfe98c8ae.htm" />
+  <HelpKINode Title="UnitInitialize method" Url="html/f4525c02-5767-6c85-2e33-144645ad25c5.htm" />
+  <HelpKINode Title="UnitStartPlayTest method" Url="html/e27d4c38-c980-d812-fd4c-b1a21e4d765f.htm" />
+  <HelpKINode Title="UnitStartRecordTestAsync method" Url="html/70fc7f64-afcf-9e37-3bb0-1be6c62c6aa6.htm" />
+  <HelpKINode Title="UnitStopPlayTest method" Url="html/d7d9b239-6101-b35a-fd5d-d171d0ab0583.htm" />
+  <HelpKINode Title="UnitStopRecordTestAsync method" Url="html/e68519fb-0ce9-d525-bf81-781a67e2d276.htm" />
+  <HelpKINode Title="UnitTests class">
+    <HelpKINode Title="UnitTests Class" Url="html/69ba372a-b36c-c57a-f66d-ba3064b0bc46.htm" />
+    <HelpKINode Title="about UnitTests class" Url="html/69ba372a-b36c-c57a-f66d-ba3064b0bc46.htm" />
+    <HelpKINode Title="constructor" Url="html/a88479e7-199c-0cb8-0b65-e39db099ab50.htm" />
+    <HelpKINode Title="methods" Url="html/d7718ab4-cca2-a449-8a67-397b41a7cc09.htm" />
+  </HelpKINode>
+  <HelpKINode Title="UnitTests.Cleanup method" Url="html/8c45fd6d-7ac6-1e2f-e2aa-7e063f95132a.htm" />
+  <HelpKINode Title="UnitTests.UnitClassifyEmoTest method" Url="html/572be726-c5cc-07b4-44fd-e82f72f81d55.htm" />
+  <HelpKINode Title="UnitTests.UnitCreatePersonTest method" Url="html/2b384c79-b96f-d339-946b-115ec184cb0e.htm" />
+  <HelpKINode Title="UnitTests.UnitCreateSceneTest method" Url="html/1ac329bb-29c6-522f-989d-09ecb3441f2b.htm" />
+  <HelpKINode Title="UnitTests.UnitDeletePersonTest method" Url="html/a279562b-106a-9b50-1f5d-322debecc2c6.htm" />
+  <HelpKINode Title="UnitTests.UnitDeleteSceneTest method" Url="html/8f457578-702b-0ed3-32c5-8310f3d66141.htm" />
+  <HelpKINode Title="UnitTests.UnitExportTest method" Url="html/0638c0c8-00ea-4734-520c-68fe176be840.htm" />
+  <HelpKINode Title="UnitTests.UnitGetPersonsTest method" Url="html/81570432-53da-5a2b-9810-a3b58cbc845f.htm" />
+  <HelpKINode Title="UnitTests.UnitGetScenesTest method" Url="html/554a7632-fc97-ed25-137f-8c8c09aa4788.htm" />
+  <HelpKINode Title="UnitTests.UnitImportTest method" Url="html/0c2dbe5c-e0bf-721c-de1f-9dfbfe98c8ae.htm" />
+  <HelpKINode Title="UnitTests.UnitInitialize method" Url="html/f4525c02-5767-6c85-2e33-144645ad25c5.htm" />
+  <HelpKINode Title="UnitTests.UnitStartPlayTest method" Url="html/e27d4c38-c980-d812-fd4c-b1a21e4d765f.htm" />
+  <HelpKINode Title="UnitTests.UnitStartRecordTestAsync method" Url="html/70fc7f64-afcf-9e37-3bb0-1be6c62c6aa6.htm" />
+  <HelpKINode Title="UnitTests.UnitStopPlayTest method" Url="html/d7d9b239-6101-b35a-fd5d-d171d0ab0583.htm" />
+  <HelpKINode Title="UnitTests.UnitStopRecordTestAsync method" Url="html/e68519fb-0ce9-d525-bf81-781a67e2d276.htm" />
+  <HelpKINode Title="UnitTests.UnitTests constructor" Url="html/a88479e7-199c-0cb8-0b65-e39db099ab50.htm" />
+  <HelpKINode Title="UnitTests.UnitTrainEmoTest method" Url="html/14448f90-1445-19c7-6047-a9d729f0d890.htm" />
+  <HelpKINode Title="UnitTests.UnitUpdatePersonTest method" Url="html/bd906d5f-f8e1-3c6b-d289-7f42ebf72d43.htm" />
+  <HelpKINode Title="UnitTests.UnitUpdateSceneTest method" Url="html/d5dc1b75-f929-9475-1932-e46144ee6d47.htm" />
+  <HelpKINode Title="UnitTrainEmoTest method" Url="html/14448f90-1445-19c7-6047-a9d729f0d890.htm" />
+  <HelpKINode Title="UnitUpdatePersonTest method" Url="html/bd906d5f-f8e1-3c6b-d289-7f42ebf72d43.htm" />
+  <HelpKINode Title="UnitUpdateSceneTest method" Url="html/d5dc1b75-f929-9475-1932-e46144ee6d47.htm" />
   <HelpKINode Title="Unpause method">
     <HelpKINode Title="IPlayer.Unpause Method " Url="html/b86dfaec-73aa-290a-742e-9d4152b3f72e.htm" />
     <HelpKINode Title="Player.Unpause Method " Url="html/1cafbabe-758a-c534-35f9-568e8ae861b7.htm" />
     <HelpKINode Title="Player.Unpause Method " Url="html/5d3190d2-cd22-db5e-4543-3b7f064343e0.htm" />
   </HelpKINode>
+  <HelpKINode Title="UnPause method" Url="html/a31d85af-5a05-a7ad-3cc6-4917ab67ed2c.htm" />
   <HelpKINode Title="Update method">
     <HelpKINode Title="FilterButterworth.Update Method " Url="html/fc08d837-f25f-f291-b1e4-434d99ed95b9.htm" />
     <HelpKINode Title="IPersonAccess.Update Method " Url="html/d4f2525c-5b5a-9e1b-9acf-b1bbf9ad28eb.htm" />

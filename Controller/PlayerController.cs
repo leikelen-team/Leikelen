@@ -17,6 +17,14 @@ namespace cl.uv.leikelen.Controller
                 input.Player.Play();
                 input.Player.Finished += Player_Finished;
             }
+            foreach (var person in InputLoader.Instance.PersonInputModules.Keys)
+            {
+                foreach (var personInput in InputLoader.Instance.PersonInputModules[person])
+                {
+                    personInput.Player.Play();
+                    personInput.Player.Finished += Player_Finished;
+                }
+            }
             SceneInUse.Instance.PlayStartTime = DateTime.Now;
         }
 
@@ -26,6 +34,13 @@ namespace cl.uv.leikelen.Controller
             {
                 input.Player.Pause();
             }
+            foreach (var person in InputLoader.Instance.PersonInputModules.Keys)
+            {
+                foreach (var personInput in InputLoader.Instance.PersonInputModules[person])
+                {
+                    personInput.Player.Pause();
+                }
+            }
             SceneInUse.Instance.PlayPausedTime = DateTime.Now;
         }
 
@@ -34,6 +49,13 @@ namespace cl.uv.leikelen.Controller
             foreach (var input in InputLoader.Instance.SceneInputModules)
             {
                 input.Player.Unpause();
+            }
+            foreach (var person in InputLoader.Instance.PersonInputModules.Keys)
+            {
+                foreach (var personInput in InputLoader.Instance.PersonInputModules[person])
+                {
+                    personInput.Player.Unpause();
+                }
             }
             if (SceneInUse.Instance.PlayPausedTime.HasValue)
                 SceneInUse.Instance.PlayStartTime = SceneInUse.Instance.PlayStartTime.Value
@@ -48,6 +70,13 @@ namespace cl.uv.leikelen.Controller
             {
                 input.Player.Stop();
             }
+            foreach (var person in InputLoader.Instance.PersonInputModules.Keys)
+            {
+                foreach (var personInput in InputLoader.Instance.PersonInputModules[person])
+                {
+                    personInput.Player.Stop();
+                }
+            }
             SceneInUse.Instance.PlayStartTime = null;
         }
 
@@ -57,6 +86,13 @@ namespace cl.uv.leikelen.Controller
             {
                 input.Player.Close();
             }
+            foreach (var person in InputLoader.Instance.PersonInputModules.Keys)
+            {
+                foreach (var personInput in InputLoader.Instance.PersonInputModules[person])
+                {
+                    personInput.Player.Close();
+                }
+            }
             SceneInUse.Instance.PlayStartTime = null;
         }
 
@@ -65,6 +101,13 @@ namespace cl.uv.leikelen.Controller
             foreach (var input in InputLoader.Instance.SceneInputModules)
             {
                 input.Player.ChangeTime(time);
+            }
+            foreach (var person in InputLoader.Instance.PersonInputModules.Keys)
+            {
+                foreach (var personInput in InputLoader.Instance.PersonInputModules[person])
+                {
+                    personInput.Player.ChangeTime(time);
+                }
             }
         }
 

@@ -9,7 +9,7 @@ namespace cl.uv.leikelen.API.DataAccess
 {
     public interface IPersonAccess
     {
-        event EventHandler<Person> PersonAdded;
+        event EventHandler<Person> PersonsChanged;
         List<Person> GetAll();
         Person Get(int personId);
         Person Add(string name, string photo, DateTime? birthday, int? sex);

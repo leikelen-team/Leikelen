@@ -127,7 +127,7 @@ namespace cl.uv.leikelen.View
             InputLoader.Instance.VideoHandler.ColorImageArrived += VideoViewer_colorImageArrived;
             InputLoader.Instance.VideoHandler.SkeletonImageArrived += VideoViewer_skeletonImageArrived;
 
-            DataAccessFacade.Instance.GetPersonAccess().PersonAdded += Home_PersonAdded;
+            DataAccessFacade.Instance.GetPersonAccess().PersonsChanged += Home_PersonsChanged;
             
             _tabs = new List<ITab>()
             {
@@ -783,21 +783,31 @@ namespace cl.uv.leikelen.View
         }
 
 
-        private void Home_PersonAdded(object sender, Person e)
+        private void Home_PersonsChanged(object sender, Person e)
         {
-            MenuItem personItem = new MenuItem
+            Console.WriteLine("personas cambiaron");
+            MenuItem_Scene_PersonsInScene.Items.Clear();
+            foreach(var pis in DataAccessFacade.Instance.GetSceneInUseAccess().GetScene().PersonsInScene)
             {
-                Header = e.Name
-            };
-            personItem.Click += (personSender, personE) =>
-            {
-                new ConfigurePerson().Show();
-            };
-            MenuItem_Scene_PersonsInScene.Items.Add(personItem);
+                Console.WriteLine("persona: "+pis.Person.Name);
+                MenuItem personItem = new MenuItem
+                {
+                    Header = pis.Person.Name
+                };
+                personItem.Click += (personSender, personE) =>
+                {
+                    new ConfigurePerson(pis.Person).Show();
+                };
+                MenuItem_Scene_PersonsInScene.Items.Add(personItem);
+            }
 
-            foreach (var personModule in InputLoader.Instance.PersonInputModules[e])
+            MenuItems_Tools_PersonSensors.Items.Clear();
+            foreach(var pis in DataAccessFacade.Instance.GetSceneInUseAccess().GetScene().PersonsInScene)
             {
-                FillProcessingAndGeneralModules(personModule, ModuleType.InputPerson, e);
+                foreach (var personModule in InputLoader.Instance.PersonInputModules[pis.Person])
+                {
+                    FillProcessingAndGeneralModules(personModule, ModuleType.InputPerson, pis.Person);
+                }
             }
         }
 
@@ -884,6 +894,7 @@ namespace cl.uv.leikelen.View
                     }
                 }
             };
+            moduleCheck.IsChecked = module.IsEnabled;
             moduleMenuItem.Items.Add(moduleCheck);
             //add to GUI menu according its type.
             switch (moduleType)

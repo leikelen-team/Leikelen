@@ -36,6 +36,7 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels
                 }
 
                 var featureVector = PreProcess(signalsList);
+                Console.WriteLine("preprocesado" + featureVector.ToJsonString());
                 return (TagType)_svm.Decide(featureVector.ToArray());
             }
             catch (Exception ex)
@@ -145,14 +146,14 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels
             {
                 if (first)
                 {
-                    //f3[i] = BetaBandpass(signalsList[i][0], true);
-                    f3[i] = signalsList[i][0];
+                    f3[i] = BetaBandpass(signalsList[i][0], true);
+                    //f3[i] = signalsList[i][0];
                     first = false;
                 }
                 else
                 {
-                    //f3[i] = BetaBandpass(signalsList[i][0], false);
-                    f3[i] = signalsList[i][0];
+                    f3[i] = BetaBandpass(signalsList[i][0], false);
+                    //f3[i] = signalsList[i][0];
                 }
             }
             f3 = FilterRLC.LCHP(f3, EEGEmoProc2ChSettings.Instance.SamplingHz.Value, 12.5, 0.7);
@@ -165,14 +166,14 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels
             {
                 if (first)
                 {
-                    //c4[i] = BetaBandpass(signalsList[i][1], true);
-                    c4[i] = signalsList[i][1];
+                    c4[i] = BetaBandpass(signalsList[i][1], true);
+                    //c4[i] = signalsList[i][1];
                     first = false;
                 }
                 else
                 {
-                    //c4[i] = BetaBandpass(signalsList[i][1], false);
-                    c4[i] = signalsList[i][1];
+                    c4[i] = BetaBandpass(signalsList[i][1], false);
+                    //c4[i] = signalsList[i][1];
                 }
             }
             c4 = FilterRLC.LCHP(c4, EEGEmoProc2ChSettings.Instance.SamplingHz.Value, 12.5, 0.7);
@@ -189,14 +190,14 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels
             List<double> features = new List<double>();
             foreach (var imfF3 in imfsF3)
             {
-                features.Add(SampleEntropy.CalcSampleEntropy(imfF3, EEGEmoProc2ChSettings.Instance.N.Value,
+                features.Add(SampleEntropy.CalcSampleEntropy(imfF3, (int)(imfF3.Length*0.5) /*EEGEmoProc2ChSettings.Instance.N.Value*/,
                     EEGEmoProc2ChSettings.Instance.m.Value, EEGEmoProc2ChSettings.Instance.r.Value,
                     EEGEmoProc2ChSettings.Instance.shift.Value));
             }
 
             foreach (var imfC4 in imfsC4)
             {
-                features.Add(SampleEntropy.CalcSampleEntropy(imfC4, EEGEmoProc2ChSettings.Instance.N.Value,
+                features.Add(SampleEntropy.CalcSampleEntropy(imfC4, (int)(imfC4.Length * 0.5)/*EEGEmoProc2ChSettings.Instance.N.Value*/,
                     EEGEmoProc2ChSettings.Instance.m.Value, EEGEmoProc2ChSettings.Instance.r.Value,
                     EEGEmoProc2ChSettings.Instance.shift.Value));
             }

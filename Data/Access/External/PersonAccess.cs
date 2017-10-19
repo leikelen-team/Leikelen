@@ -12,7 +12,7 @@ namespace cl.uv.leikelen.Data.Access.External
 {
     public class PersonAccess : IPersonAccess
     {
-        public event EventHandler<Person> PersonAdded;
+        public event EventHandler<Person> PersonsChanged;
 
         public Person Add(string name, string photo, DateTime? birthday, int? sex)
         {
@@ -24,18 +24,22 @@ namespace cl.uv.leikelen.Data.Access.External
                 Sex = sex
             });
             InputLoader.Instance.FillPersonInputModules(person);
-            PersonAdded?.Invoke(this, person);
+            PersonsChanged?.Invoke(this, person);
             return person;
         }
 
         public Person Update(Person person)
         {
-            return DbFacade.Instance.Provider.UpdatePerson(person);
+            var editedPerson = DbFacade.Instance.Provider.UpdatePerson(person);
+            PersonsChanged?.Invoke(this, editedPerson);
+            return editedPerson;
         }
 
         public PersonInScene AddToScene(Person person, Scene scene)
         {
-            return DbFacade.Instance.Provider.AddPersonToScene(person, scene);
+            var pisAdded = DbFacade.Instance.Provider.AddPersonToScene(person, scene);
+            PersonsChanged?.Invoke(this, pisAdded.Person);
+            return pisAdded;
         }
 
         public bool Exists(int personId)
@@ -56,6 +60,7 @@ namespace cl.uv.leikelen.Data.Access.External
         public void Delete(Person person)
         {
             DbFacade.Instance.Provider.DeletePerson(person);
+            PersonsChanged?.Invoke(this, null);
         }
     }
 }

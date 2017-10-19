@@ -12,7 +12,7 @@
          FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
          mc:Ignorable="d" 
          d:DesignHeight="300" d:DesignWidth="300">
-    <ScrollViewer x:Name="ScrollWithContent" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+    <ScrollViewer x:Name="ScrollWithContent" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
         <WindowsFormsHost x:Name="GraphFormContainer">
         </WindowsFormsHost>
     </ScrollViewer>

@@ -17,23 +17,5 @@ namespace cl.uv.leikelen.Controller
                 input.Monitor.Close();
             }
         }
-
-        public async void SetFromSensor()
-        {
-            foreach (var input in InputLoader.Instance.SceneInputModules)
-            {
-                input.Player.Close();
-                await input.Monitor.Open();
-            }
-        }
-
-        public void SetFromFile(int sceneId)
-        {
-            foreach (var input in InputLoader.Instance.SceneInputModules)
-            {
-                input.Monitor.Close();
-                input.Player.Play();
-            }
-        }
     }
 }

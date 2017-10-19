@@ -73,9 +73,6 @@
         </DockPanel>
 
         <dragablz:TabablzControl Grid.Row="1" x:Name="Tabs" Grid.RowSpan="2" >
-            <dragablz:TabablzControl.InterTabController>
-                <dragablz:InterTabController MoveWindowWithSolitaryTabs="True" />
-            </dragablz:TabablzControl.InterTabController>
             <TabItem Header="{x:Static resx:GUI.Player}">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -84,8 +81,8 @@
                         <RowDefinition MinHeight="35" MaxHeight="100" Height="3*"/>
                     </Grid.RowDefinitions>
                     <Rectangle Fill="Black" Grid.Row="0" />
-                    <Image x:Name="Player_ImageControl_Layer2"  Grid.Row="0"/>
-                    <Image x:Name="Player_ImageControl_Layer1"  Grid.Row="0"/>
+                    <Image x:Name="Player_ImageControl_Layer2"  Grid.Row="0" Grid.Column="0"/>
+                    <Image x:Name="Player_ImageControl_Layer1"  Grid.Row="0" Grid.Column="0"/>
                     <Slider x:Name="Player_LocationSlider" Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" Minimum="1" Maximum="100" />
                     <StackPanel Grid.Row="2" Orientation="Horizontal">
                         <Button x:Name="Player_RecordButton" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3,0,3,0" Width="Auto">

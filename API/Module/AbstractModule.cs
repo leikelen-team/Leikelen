@@ -11,7 +11,7 @@ namespace cl.uv.leikelen.API.Module
     {
         public string Name { get; protected set; }
         public List<Tuple<string, WindowBuilder>> Windows { get; protected set; }
-        public bool IsEnabled { get; protected set; } = false;
+        public bool IsEnabled { get; private set; } = false;
         public List<ITab> Tabs { get; protected set; } = new List<ITab>();
 
         public void Enable()

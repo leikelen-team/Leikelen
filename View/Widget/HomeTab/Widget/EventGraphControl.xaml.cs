@@ -132,7 +132,7 @@ namespace cl.uv.leikelen.View.Widget.HomeTab.Widget
         private void FillGraph(List<Event> events)
         {
             var dayConfig = Mappers.Xy<TimeModel>()
-                .X(dayModel => (double)dayModel.TimeSpan.Ticks)
+                .X(dayModel => (double)dayModel.TimeSpan.TotalSeconds)
                 .Y(dayModel => dayModel.Value);
 
             SeriesCollection = new SeriesCollection(dayConfig);

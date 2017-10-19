@@ -134,7 +134,7 @@ namespace cl.uv.leikelen.Module.Input.Kinect
                         body.AddToBitmap(bitmap, color, color);
                     }
                 }
-                OnColorImageArrived(bitmap);
+                OnSkeletonImageArrived(bitmap);
             }
         }
 
@@ -145,8 +145,8 @@ namespace cl.uv.leikelen.Module.Input.Kinect
 
             if (!ReferenceEquals(null, e.Frame))
             {
-                var bitmap = new ColorFrameBitmap(e.Frame);
-                OnColorImageArrived(bitmap.Bitmap);
+                _colorBitmap.Update(e.Frame);
+                OnColorImageArrived(_colorBitmap.Bitmap);
             }  
         }
     }

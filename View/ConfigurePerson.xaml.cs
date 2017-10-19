@@ -24,12 +24,13 @@ namespace cl.uv.leikelen.View
     public partial class ConfigurePerson : Window
     {
         private Person _person;
-        private string _path;
+        private string _originPhotoPath;
+        private string _targetPhotoName;
 
         public ConfigurePerson()
         {
             InitializeComponent();
-
+            PutPhoto("none.png");
             PhotoBtn.Click += PhotoBtn_Click;
             AcceptBtn.Click += AcceptBtn_Click;
             CancelBtn.Click += CancelBtn_Click;
@@ -39,10 +40,13 @@ namespace cl.uv.leikelen.View
         {
             InitializeComponent();
 
+            
             _person = person;
             NameTextBox.Text = _person.Name;
             BirthdayPicker.SelectedDate = _person.Birthday;
             PhotoPathTextBox.Text = _person.Photo;
+            _targetPhotoName = _person.Photo;
+            PutPhoto(_person.Photo);
             string sex;
             switch (_person.Sex)
             {
@@ -70,7 +74,9 @@ namespace cl.uv.leikelen.View
 
         private void AcceptBtn_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult result = MessageBox.Show(Properties.GUI.confScene_SureSave, Properties.GUI.Confirmation, MessageBoxButton.YesNo,
+            MessageBoxResult result = MessageBox.Show(Properties.GUI.confScene_SureSave,
+                Properties.GUI.Confirmation, 
+                MessageBoxButton.YesNo,
                 MessageBoxImage.Question);
             if(result == MessageBoxResult.Yes)
             {
@@ -89,23 +95,32 @@ namespace cl.uv.leikelen.View
                 }
                 if (ReferenceEquals(null, _person))
                 {
-                    var person = DataAccessFacade.Instance.GetPersonAccess().Add(NameTextBox.Text, PhotoPathTextBox?.Text, BirthdayPicker.SelectedDate, sex);
+                    var person = DataAccessFacade.Instance.GetPersonAccess().Add(NameTextBox.Text, _targetPhotoName, BirthdayPicker.SelectedDate, sex);
                     DataAccessFacade.Instance.GetPersonAccess().AddToScene(person, DataAccessFacade.Instance.GetSceneInUseAccess().GetScene());
-                    if(!ReferenceEquals(null, _path) && !ReferenceEquals(null, PhotoPathTextBox?.Text))
-                        File.Copy(_path, GeneralSettings.Instance.DataDirectory.Value + "person/" + PhotoPathTextBox.Text);
+                    if(!ReferenceEquals(null, _originPhotoPath) && !ReferenceEquals(null, _targetPhotoName))
+                        File.Copy(_originPhotoPath, DataAccessFacade.Instance.GetGeneralSettings().GetDataPersonsDirectory() + _targetPhotoName);
                 }
                 else
                 {
                     string oldPath = _person.Photo;
                     _person.Name = NameTextBox.Text;
                     _person.Sex = sex;
-                    _person.Photo = PhotoPathTextBox.Text;
+                    _person.Photo = _targetPhotoName;
                     _person.Birthday = BirthdayPicker.SelectedDate;
                     DataAccessFacade.Instance.GetPersonAccess().Update(_person);
-                    if(!ReferenceEquals(null, _path))
+                    if(!String.IsNullOrEmpty(_originPhotoPath) && !String.IsNullOrEmpty(_targetPhotoName))
                     {
-                        File.Delete(GeneralSettings.Instance.DataDirectory.Value + "person/" +oldPath);
-                        File.Copy(_path, GeneralSettings.Instance.DataDirectory.Value + "person/" + PhotoPathTextBox.Text);
+                        try
+                        {
+                            var oldFullPath = DataAccessFacade.Instance.GetGeneralSettings().GetDataPersonsDirectory() + oldPath;
+                            if (File.Exists(oldFullPath))
+                                File.Delete(oldFullPath);
+                        }
+                        catch(Exception)
+                        {
+
+                        }
+                        File.Copy(_originPhotoPath, DataAccessFacade.Instance.GetGeneralSettings().GetDataPersonsDirectory() + _targetPhotoName);
                     }
                         
                 }
@@ -123,12 +138,33 @@ namespace cl.uv.leikelen.View
             if (dlg.ShowDialog().GetValueOrDefault())
             {
                 string fileName;
-                if (File.Exists(GeneralSettings.Instance.DataDirectory.Value+"person/" + dlg.SafeFileName))
-                    fileName = NameTextBox.Text +"/" + dlg.SafeFileName;
+                if (File.Exists(DataAccessFacade.Instance.GetGeneralSettings().GetDataPersonsDirectory() + dlg.SafeFileName))
+                {
+                    do
+                    {
+                        fileName = Util.StringUtil.RandomString(7) + System.IO.Path.GetExtension(dlg.SafeFileName);
+                    } while (File.Exists(DataAccessFacade.Instance.GetGeneralSettings().GetDataPersonsDirectory() + fileName));
+                }
                 else
                     fileName = dlg.SafeFileName;
-                PhotoPathTextBox.Text = fileName;
-                _path = dlg.FileName;
+                _targetPhotoName = fileName;
+                _originPhotoPath = dlg.FileName;
+                PhotoPathTextBox.Text = _originPhotoPath;
+                
+                PutPhoto(_originPhotoPath);
+            }
+        }
+
+        private void PutPhoto(string personPhoto)
+        {
+            if (!String.IsNullOrEmpty(personPhoto) &&
+                File.Exists(System.IO.Path.Combine(DataAccessFacade.Instance.GetGeneralSettings().GetDataPersonsDirectory(), personPhoto)))
+            {
+                personPhotoImage.Source = new BitmapImage(new Uri(System.IO.Path.GetFullPath(System.IO.Path.Combine(DataAccessFacade.Instance.GetGeneralSettings().GetDataPersonsDirectory(), personPhoto))));
+            }
+            else
+            {
+                personPhotoImage.Source = new BitmapImage(new Uri(System.IO.Path.GetFullPath(System.IO.Path.Combine(DataAccessFacade.Instance.GetGeneralSettings().GetDataPersonsDirectory(), "none.png"))));
             }
         }
     }

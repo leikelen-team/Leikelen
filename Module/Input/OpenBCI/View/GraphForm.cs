@@ -51,8 +51,6 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI.View
 
         private void drawPlot(double[] dane)
         {
-            dane = filtering(dane);
-
             chart1.Series[0].Points.Add(dane[0]);
             chart2.Series[0].Points.Add(dane[1]);
             chart3.Series[0].Points.Add(dane[2]);
@@ -140,52 +138,6 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI.View
             return dane;
         }
 
-        private double[] filtering(double[] dane)
-        {
-            int standard = 0;
-            int notch = 0;
-
-            if (radioButton5.Checked)
-            {
-                notch = 0;
-            }
-            else if (radioButton6.Checked)
-            {
-                notch = 1;
-            }
-            else if (radioButton7.Checked)
-            {
-                notch = 2;
-            }
-            if (radioButton8.Checked)
-            {
-                standard = 0;
-            }
-            if (radioButton9.Checked)
-            {
-                standard = 1;
-            }
-            if (radioButton10.Checked)
-            {
-                standard = 2;
-            }
-            if (radioButton11.Checked)
-            {
-                standard = 3;
-            }
-            if (radioButton12.Checked)
-            {
-                standard = 4;
-            }
-
-            for (int i = 0; i < 8; i++)
-            {
-                //dane[i + 1] = Filters.FiltersSelect(standard, notch, dane[i + 1], i);
-                //------------------------------------------------------------------------------------------------------
-            }
-
-            return dane;
-        }
         private void turnOFF_transmision()
         {
             char[] buff = new char[1];
@@ -331,6 +283,11 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI.View
 
             chart9.ChartAreas[0].AxisY.Maximum = 100;
             chart9.ChartAreas[0].AxisY.Minimum = -100;
+        }
+
+        private void chart9_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

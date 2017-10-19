@@ -40,6 +40,7 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI
         public Monitor(Person person)
         {
             _person = person;
+            Console.WriteLine(person.Name);
             _interpretStream = new Util.InterpretStream();
             _filter = new Util.Filter();
             _status = InputStatus.Unconnected;
@@ -126,6 +127,7 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI
         {
             try
             {
+                Console.WriteLine(portName);
                 if(ReferenceEquals(null, _serialPort) || _serialPort.IsOpen == false)
                 {
                     _serialPort = new SerialPort(portName, 115200);
@@ -149,6 +151,7 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI
             try
             {
                 _serialPort.Write(buff, 0, 1);
+                Console.WriteLine("started stream");
             }
             catch
             {
@@ -202,7 +205,7 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI
                                 {
                                     Filter = FilterType.None,
                                     Notch = (NotchType)OpenBCISettings.Instance.Notch.Value,
-                                    Position = _positions[j - 1],
+                                    Position = _positions[j - 1]?? "",
                                     Value = value
                                 });
                             }

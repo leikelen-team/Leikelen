@@ -33,7 +33,7 @@ namespace cl.uv.leikelen.View
         public ConfigureScene()
         {
             InitializeComponent();
-
+            
             AcceptBtn.Click += AcceptBtn_Click;
             CancelBtn.Click += CancelBtn_Click;
         }
@@ -74,9 +74,9 @@ namespace cl.uv.leikelen.View
                 _scene.Type = TypeTextBox?.Text;
                 _scene.Place = PlaceTextBox?.Text;
                 _scene.Description = DescriptionTextBox?.Text;
-                if (!int.TryParse(ParticipantsTextBox.Text, out numberOfParticipants))
+                if (int.TryParse(ParticipantsTextBox.Text, out numberOfParticipants))
                 {
-                    _scene.NumberOfParticipants = null;
+                    _scene.NumberOfParticipants = numberOfParticipants;
                 }
                 if (!String.IsNullOrEmpty(RealDatePicker.Text))
                 {
@@ -103,7 +103,7 @@ namespace cl.uv.leikelen.View
                     }
                 }
                 var createdScene = DataAccessFacade.Instance.GetSceneAccess().SaveOrUpdate(_scene);
-                Directory.CreateDirectory(GeneralSettings.Instance.DataDirectory.Value + "scene/" + createdScene.SceneId);
+                Directory.CreateDirectory(DataAccessFacade.Instance.GetGeneralSettings().GetDataScenesDirectory()+ createdScene.SceneId);
                 SceneInUse.Instance.Set(createdScene);
                 Close();
             }

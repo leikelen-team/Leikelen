@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using cl.uv.leikelen.Data.Model;
+using cl.uv.leikelen.Data.Access;
 
 namespace cl.uv.leikelen.View.Widget
 {
@@ -28,7 +29,7 @@ namespace cl.uv.leikelen.View.Widget
         public Control GetPerson(Person person)
         {
             PersonName.Content = person.Name;
-            string photoUri = GeneralSettings.Instance.DataDirectory.Value + "person/"+ person.Photo;
+            string photoUri = DataAccessFacade.Instance.GetGeneralSettings().GetDataPersonsDirectory() + person.Photo;
             Photo.Source = new BitmapImage(new Uri(photoUri, UriKind.Relative));
             return Card;
         }

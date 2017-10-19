@@ -524,7 +524,6 @@
     <Compile Include="Module\Processing\EEGEmotion2Channels\LearningModel.cs" />
     <Compile Include="Module\ProcessingLoader.cs" />
     <Compile Include="GeneralSettings.cs" />
-    <Compile Include="Test\Unit\UnitTests.cs" />
     <Compile Include="Util\DoubleInput.cs" />
     <Compile Include="Util\IntegerInput.cs" />
     <Compile Include="Util\StringLimitedInput.cs" />
@@ -767,9 +766,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Test\Integration\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
       <Visible>False</Visible>

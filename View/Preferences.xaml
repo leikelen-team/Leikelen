@@ -20,9 +20,6 @@
             <RowDefinition MaxHeight="60" />
         </Grid.RowDefinitions>
         <dragablz:TabablzControl x:Name="Tabs" Grid.Row="0" BorderThickness="0">
-            <dragablz:TabablzControl.InterTabController>
-                <dragablz:InterTabController />
-            </dragablz:TabablzControl.InterTabController>
         </dragablz:TabablzControl>
         <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="1" Orientation="Horizontal">
             <Button x:Name="AcceptBtn" Content="{x:Static resx:GUI.Accept}" Margin="5" />

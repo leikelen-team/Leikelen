@@ -17,6 +17,14 @@ namespace cl.uv.leikelen.Controller
             {
                 await input.Monitor.StopRecording();
             }
+            foreach(var person in InputLoader.Instance.PersonInputModules.Keys)
+            {
+                foreach(var personInput in InputLoader.Instance.PersonInputModules[person])
+                {
+                    await personInput.Monitor.StopRecording();
+                }
+            }
+            Data.Access.DataAccessFacade.Instance.GetSceneAccess().SaveOrUpdate(SceneInUse.Instance.Scene);
             foreach (var processingModule in ProcessingLoader.Instance.ProcessingModules)
             {
                 if (!ReferenceEquals(null, processingModule.FunctionAfterStop()))
@@ -34,6 +42,15 @@ namespace cl.uv.leikelen.Controller
                 if (input.Monitor.GetStatus() != API.Module.Input.InputStatus.Connected)
                     await input.Monitor.Open();
                 await input.Monitor.StartRecording();
+            }
+            foreach (var person in InputLoader.Instance.PersonInputModules.Keys)
+            {
+                foreach (var personInput in InputLoader.Instance.PersonInputModules[person])
+                {
+                    if (personInput.Monitor.GetStatus() != API.Module.Input.InputStatus.Connected)
+                        await personInput.Monitor.Open();
+                    await personInput.Monitor.StartRecording();
+                }
             }
             DateTime now = DateTime.Now;
             SceneInUse.Instance.Scene.RecordStartedDateTime = now;

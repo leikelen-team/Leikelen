@@ -25,7 +25,6 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels
             Windows = new List<Tuple<string, WindowBuilder>>();
             IsActiveBeforeRecording = false;
             Name = Properties.EEGEmotion2Channels.DetectionModuleName;
-            IsEnabled = true;
             var configWindow = new Tuple<string, WindowBuilder>(Properties.EEGEmotion2Channels.ConfigWindowTitle,
                new WindowBuilder(new ConfigurationWindow(Properties.EEGEmotion2Channels.ConfigWindowTitle)));
             Windows.Add(configWindow);

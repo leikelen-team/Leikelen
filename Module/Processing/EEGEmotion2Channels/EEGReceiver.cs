@@ -76,8 +76,16 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels
             {
                 _lastSecond = (int) sceneLocation.TotalSeconds;
 
-                var tag = LearningModel.Classify(_signaList);
-                _dataAccessFacade.GetEventAccess().Add(e.PersonId, "Emotion", tag.ToString(), e.Time);
+                try
+                {
+                    var tag = LearningModel.Classify(_signaList);
+                    Console.WriteLine(tag.ToString());
+                    _dataAccessFacade.GetEventAccess().Add(e.PersonId, "Emotion", tag.ToString(), e.Time);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("error: " + ex.Message);
+                }
                 _signaList = new List<double[]>();
             }
         }

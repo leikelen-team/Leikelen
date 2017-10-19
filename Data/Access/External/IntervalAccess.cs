@@ -44,7 +44,6 @@ namespace cl.uv.leikelen.Data.Access.External
             if (ReferenceEquals(null, events))
                 throw new Exception("There are no events in ModalType:" + modalName + " and subModal:" + subModalName);
             TimeSpan? start = null, end = null;
-            int threshold = millisecondsThreshold;
 
             foreach (var timeEvent in events)
             {

@@ -131,7 +131,7 @@
             legend1.Enabled = false;
             legend1.Name = "Legend1";
             this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(30, 10);
+            this.chart1.Location = new System.Drawing.Point(236, 10);
             this.chart1.Name = "chart1";
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
@@ -173,7 +173,7 @@
             legend2.Enabled = false;
             legend2.Name = "Legend1";
             this.chart2.Legends.Add(legend2);
-            this.chart2.Location = new System.Drawing.Point(30, 90);
+            this.chart2.Location = new System.Drawing.Point(236, 86);
             this.chart2.Name = "chart2";
             series2.ChartArea = "ChartArea1";
             series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
@@ -208,7 +208,7 @@
             legend3.Enabled = false;
             legend3.Name = "Legend1";
             this.chart3.Legends.Add(legend3);
-            this.chart3.Location = new System.Drawing.Point(30, 160);
+            this.chart3.Location = new System.Drawing.Point(236, 162);
             this.chart3.Name = "chart3";
             series3.ChartArea = "ChartArea1";
             series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
@@ -243,7 +243,7 @@
             legend4.Enabled = false;
             legend4.Name = "Legend1";
             this.chart4.Legends.Add(legend4);
-            this.chart4.Location = new System.Drawing.Point(30, 230);
+            this.chart4.Location = new System.Drawing.Point(236, 238);
             this.chart4.Name = "chart4";
             series4.ChartArea = "ChartArea1";
             series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
@@ -278,7 +278,7 @@
             legend5.Enabled = false;
             legend5.Name = "Legend1";
             this.chart5.Legends.Add(legend5);
-            this.chart5.Location = new System.Drawing.Point(30, 300);
+            this.chart5.Location = new System.Drawing.Point(236, 314);
             this.chart5.Name = "chart5";
             series5.ChartArea = "ChartArea1";
             series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
@@ -313,7 +313,7 @@
             legend6.Enabled = false;
             legend6.Name = "Legend1";
             this.chart6.Legends.Add(legend6);
-            this.chart6.Location = new System.Drawing.Point(30, 370);
+            this.chart6.Location = new System.Drawing.Point(236, 390);
             this.chart6.Name = "chart6";
             series6.ChartArea = "ChartArea1";
             series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
@@ -348,7 +348,7 @@
             legend7.Enabled = false;
             legend7.Name = "Legend1";
             this.chart7.Legends.Add(legend7);
-            this.chart7.Location = new System.Drawing.Point(30, 440);
+            this.chart7.Location = new System.Drawing.Point(236, 470);
             this.chart7.Name = "chart7";
             series7.ChartArea = "ChartArea1";
             series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
@@ -383,7 +383,7 @@
             legend8.Enabled = false;
             legend8.Name = "Legend1";
             this.chart8.Legends.Add(legend8);
-            this.chart8.Location = new System.Drawing.Point(30, 510);
+            this.chart8.Location = new System.Drawing.Point(236, 546);
             this.chart8.Name = "chart8";
             series8.ChartArea = "ChartArea1";
             series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
@@ -418,7 +418,7 @@
             legend9.Enabled = false;
             legend9.Name = "Legend1";
             this.chart9.Legends.Add(legend9);
-            this.chart9.Location = new System.Drawing.Point(30, 580);
+            this.chart9.Location = new System.Drawing.Point(236, 622);
             this.chart9.Name = "chart9";
             series9.ChartArea = "ChartArea1";
             series9.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
@@ -429,6 +429,7 @@
             this.chart9.Size = new System.Drawing.Size(936, 70);
             this.chart9.TabIndex = 15;
             this.chart9.Text = "chart9";
+            this.chart9.Click += new System.EventHandler(this.chart9_Click);
             // 
             // groupBox1
             // 
@@ -438,7 +439,7 @@
             this.groupBox1.Controls.Add(this.radioButton3);
             this.groupBox1.Controls.Add(this.radioButton2);
             this.groupBox1.Controls.Add(this.radioButton1);
-            this.groupBox1.Location = new System.Drawing.Point(972, 317);
+            this.groupBox1.Location = new System.Drawing.Point(9, 10);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(200, 136);
             this.groupBox1.TabIndex = 16;
@@ -511,7 +512,7 @@
             this.groupBox2.Controls.Add(this.radioButton7);
             this.groupBox2.Controls.Add(this.radioButton6);
             this.groupBox2.Controls.Add(this.radioButton5);
-            this.groupBox2.Location = new System.Drawing.Point(972, 459);
+            this.groupBox2.Location = new System.Drawing.Point(9, 152);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(200, 65);
             this.groupBox2.TabIndex = 17;
@@ -559,7 +560,7 @@
             this.groupBox3.Controls.Add(this.radioButton8);
             this.groupBox3.Controls.Add(this.radioButton9);
             this.groupBox3.Controls.Add(this.radioButton10);
-            this.groupBox3.Location = new System.Drawing.Point(972, 530);
+            this.groupBox3.Location = new System.Drawing.Point(9, 223);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(200, 120);
             this.groupBox3.TabIndex = 18;
@@ -624,7 +625,7 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(9, 120);
+            this.checkBox1.Location = new System.Drawing.Point(215, 111);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(15, 14);
             this.checkBox1.TabIndex = 5;
@@ -633,7 +634,7 @@
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(9, 190);
+            this.checkBox2.Location = new System.Drawing.Point(215, 196);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(15, 14);
             this.checkBox2.TabIndex = 20;
@@ -642,7 +643,7 @@
             // checkBox3
             // 
             this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(9, 260);
+            this.checkBox3.Location = new System.Drawing.Point(215, 268);
             this.checkBox3.Name = "checkBox3";
             this.checkBox3.Size = new System.Drawing.Size(15, 14);
             this.checkBox3.TabIndex = 21;
@@ -651,7 +652,7 @@
             // checkBox4
             // 
             this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(9, 330);
+            this.checkBox4.Location = new System.Drawing.Point(215, 347);
             this.checkBox4.Name = "checkBox4";
             this.checkBox4.Size = new System.Drawing.Size(15, 14);
             this.checkBox4.TabIndex = 22;
@@ -660,7 +661,7 @@
             // checkBox5
             // 
             this.checkBox5.AutoSize = true;
-            this.checkBox5.Location = new System.Drawing.Point(12, 400);
+            this.checkBox5.Location = new System.Drawing.Point(215, 420);
             this.checkBox5.Name = "checkBox5";
             this.checkBox5.Size = new System.Drawing.Size(15, 14);
             this.checkBox5.TabIndex = 23;
@@ -669,7 +670,7 @@
             // checkBox6
             // 
             this.checkBox6.AutoSize = true;
-            this.checkBox6.Location = new System.Drawing.Point(9, 470);
+            this.checkBox6.Location = new System.Drawing.Point(215, 502);
             this.checkBox6.Name = "checkBox6";
             this.checkBox6.Size = new System.Drawing.Size(15, 14);
             this.checkBox6.TabIndex = 24;
@@ -678,7 +679,7 @@
             // checkBox7
             // 
             this.checkBox7.AutoSize = true;
-            this.checkBox7.Location = new System.Drawing.Point(12, 540);
+            this.checkBox7.Location = new System.Drawing.Point(215, 582);
             this.checkBox7.Name = "checkBox7";
             this.checkBox7.Size = new System.Drawing.Size(15, 14);
             this.checkBox7.TabIndex = 25;
@@ -687,7 +688,7 @@
             // checkBox8
             // 
             this.checkBox8.AutoSize = true;
-            this.checkBox8.Location = new System.Drawing.Point(9, 610);
+            this.checkBox8.Location = new System.Drawing.Point(215, 649);
             this.checkBox8.Name = "checkBox8";
             this.checkBox8.Size = new System.Drawing.Size(15, 14);
             this.checkBox8.TabIndex = 26;
@@ -697,6 +698,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.checkBox8);
             this.Controls.Add(this.checkBox7);
             this.Controls.Add(this.checkBox6);
@@ -705,7 +707,6 @@
             this.Controls.Add(this.checkBox3);
             this.Controls.Add(this.checkBox2);
             this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.chart9);
@@ -718,7 +719,7 @@
             this.Controls.Add(this.chart2);
             this.Controls.Add(this.chart1);
             this.Name = "GraphForm";
-            this.Size = new System.Drawing.Size(1184, 661);
+            this.Size = new System.Drawing.Size(1184, 703);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart3)).EndInit();

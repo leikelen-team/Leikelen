@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shfbBuild product="Sandcastle Help File Builder and Tools" version="2017.5.15.0" projectFile="C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\DevDocumentation\DevDocumentation.shfbproj" started="04-10-2017 1:13:54">
+<shfbBuild product="Sandcastle Help File Builder and Tools" version="2017.5.15.0" projectFile="C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\DevDocumentation\DevDocumentation.shfbproj" started="16-10-2017 23:25:18">
 <buildStep step="Initializing">
 Finding tools...
 The Sandcastle tools are located in &#39;C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\&#39;
@@ -22,7 +22,7 @@ Source: C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\Leikelen.csproj
     Found project &#39;C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\Leikelen.csproj&#39;
 
 Parsing project files
-    Found assembly &#39;C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin\x64\Debug\Leikelen.exe&#39;
+    Found assembly &#39;C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin\x86\Debug\Leikelen.exe&#39;
 SHFB: Warning BE0007: A project with a different or higher framework version was found.  Changing project FrameworkVersion property from &#39;.NET Framework 4.5.1&#39; to &#39;.NET Framework 4.5.2&#39; for the build.
 
 References to include (excluding framework assemblies):
@@ -33,10 +33,9 @@ References to include (excluding framework assemblies):
     Accord.Math, Version=3.7.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL
     Accord.Math.Core, Version=3.7.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL
     Accord.Statistics, Version=3.7.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL
-    CodeContracts, Version=1.0.5680.18392, Culture=neutral, processorArchitecture=MSIL
     Config.Net, Version=3.0.0.0, Culture=neutral, PublicKeyToken=d836a57afd299520, processorArchitecture=MSIL
     Dragablz, Version=0.0.3.197, Culture=neutral, processorArchitecture=MSIL
-    KinectEx.x64
+    KinectEx.x86
     LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL
     LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL
     MaterialDesignColors, Version=1.1.3.0, Culture=neutral, processorArchitecture=MSIL
@@ -65,12 +64,15 @@ References to include (excluding framework assemblies):
     Microsoft.Extensions.Primitives, Version=1.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL
     Microsoft.Kinect, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL
     Microsoft.Kinect.VisualGestureBuilder, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=AMD64
+    Microsoft.VisualStudio.TestPlatform.TestFramework, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL
+    Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL
     MySqlConnector, Version=0.24.2.0, Culture=neutral, processorArchitecture=MSIL
     NetBox, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8dea52f811e261ef, processorArchitecture=MSIL
     Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL
     Npgsql, Version=3.2.5.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL
     Npgsql.EntityFrameworkCore.PostgreSQL, Version=1.1.1.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL
     Npgsql.EntityFrameworkCore.PostgreSQL.Design, Version=1.1.1.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL
+    nunit.framework, Version=3.8.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL
     Pomelo.EntityFrameworkCore.MySql, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL
     Pomelo.EntityFrameworkCore.MySql.Design, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL
     Pomelo.JsonObject, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL
@@ -93,16 +95,16 @@ SHFB: Warning BE0062: No documentation source XML comments files found.  The hel
 <buildStep step="GenerateSharedContent">
 Generating shared content files (en-US, Ingl&#233;s (Estados Unidos))...
 <plugIn name="Lightweight Website Style" behavior="After" priority="1000">
-</plugIn>    Last step completed in 00:00:00,0880
+</plugIn>    Last step completed in 00:00:00,1718
 </buildStep>
 <buildStep step="GenerateApiFilter">
 Generating API filter for MRefBuilder...
-    Last step completed in 00:00:00,0010
+    Last step completed in 00:00:00,0000
 </buildStep>
 <buildStep step="GenerateReflectionInfo">
 Generating reflection information...
 [C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\MSBuild.exe - GenerateRefInfo.proj]
-Compilaci&#162;n iniciada a las 04-10-2017 1:14:11.
+Compilaci&#162;n iniciada a las 16-10-2017 23:25:31.
 Proyecto &quot;C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\GenerateRefInfo.proj&quot; en nodo 1 (destinos predeterminados).
 PrepareForBuild:
   Creando directorio &quot;obj\x64\Debug\&quot;.
@@ -111,11 +113,11 @@ GenerateRefInfo:
   Copyright &#184; 2006-2017, Microsoft Corporation, All Rights Reserved.
   Portions Copyright &#184; 2006-2016, Eric Woodruff, All Rights Reserved.
   No source code context base path specified.  Source context information is unavailable.
-  Loaded 1 assemblies for reflection and 113 dependency assemblies.
+  Loaded 1 assemblies for reflection and 115 dependency assemblies.
 MRefBuilder : warning : Ignoring unresolved assembly reference: Microsoft.Extensions.Logging.Abstractions (Microsoft.Extensions.Logging.Abstractions, Version=1.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60) required by Microsoft.EntityFrameworkCore [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\GenerateRefInfo.proj]
 MRefBuilder : warning : Ignoring unresolved assembly reference: Microsoft.Extensions.DependencyInjection.Abstractions (Microsoft.Extensions.DependencyInjection.Abstractions, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60) required by Microsoft.EntityFrameworkCore [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\GenerateRefInfo.proj]
 MRefBuilder : warning : Ignoring unresolved assembly reference: System.Interactive.Async (System.Interactive.Async, Version=3.0.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263) required by Microsoft.EntityFrameworkCore [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\GenerateRefInfo.proj]
-  Wrote information on 37 namespaces, 149 types, and 728 members
+  Wrote information on 38 namespaces, 154 types, and 783 members
   Copiando el archivo de &quot;reflection.org&quot; en &quot;reflection.all&quot;.
   XslTransform (v2017.5.15.0)
   Copyright &#184; 2006-2017, Microsoft Corporation, All Rights Reserved.
@@ -123,12 +125,12 @@ MRefBuilder : warning : Ignoring unresolved assembly reference: System.Interacti
   Applying XSL transformation &#39;C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\ProductionTransforms\MergeDuplicates.xsl&#39;.
   Applying XSL transformation &#39;C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\ProductionTransforms\AddXamlSyntaxData.xsl&#39;.
 Compilaci&#162;n del proyecto terminada &quot;C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\GenerateRefInfo.proj&quot; (destinos predeterminados).
-    Last step completed in 00:00:57,6031
+    Last step completed in 00:00:45,1581
 </buildStep>
 <buildStep step="TransformReflectionInfo">
 Transforming reflection output...
 [C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\MSBuild.exe - TransformManifest.proj]
-Compilaci&#162;n iniciada a las 04-10-2017 1:15:09.
+Compilaci&#162;n iniciada a las 16-10-2017 23:26:16.
 Proyecto &quot;C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\TransformManifest.proj&quot; en nodo 1 (destinos predeterminados).
 TransformManifest:
   XslTransform (v2017.5.15.0)
@@ -145,11 +147,11 @@ TransformManifest:
   Portions Copyright &#184; 2006-2016, Eric Woodruff, All Rights Reserved.
   Applying XSL transformation &#39;C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\ProductionTransforms\ReflectionToManifest.xsl&#39;.
 Compilaci&#162;n del proyecto terminada &quot;C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\TransformManifest.proj&quot; (destinos predeterminados).
-    Last step completed in 00:00:20,0551
+    Last step completed in 00:00:21,1408
 </buildStep>
 <buildStep step="GenerateNamespaceSummaries">
 Generating namespace summary information...
-    Last step completed in 00:00:03,9459
+    Last step completed in 00:00:07,8662
 </buildStep>
 <buildStep step="GenerateInheritedDocumentation">
 Generating inherited documentation...
@@ -172,6 +174,7 @@ Indexing C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatf
 Indexing C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\SharpDX.Mathematics.xml
 Indexing C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\SharpDX.xml
 Indexing C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\Remotion.Linq.xml
+Indexing C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\nunit.framework.xml
 Indexing C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\Npgsql.xml
 Indexing C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\Newtonsoft.Json.xml
 Indexing C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\NetBox.xml
@@ -211,12 +214,12 @@ Indexing C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatf
 Indexing C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\Accord.Audio.xml
 Indexing C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\Accord.xml
 Indexing C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\_ProjNS_.xml
-Indexed 207234 members in 174 file(s).  50 file(s) to scan for &lt;inheritdoc /&gt; tags.
+Indexed 210247 members in 175 file(s).  51 file(s) to scan for &lt;inheritdoc /&gt; tags.
 Merging inherited documentation...
 
 
 Documentation merged successfully
-    Last step completed in 00:00:09,7984
+    Last step completed in 00:00:08,4832
 </buildStep>
 <buildStep step="CopyConceptualContent">
 Copying conceptual content...
@@ -232,19 +235,19 @@ Generating conceptual topic files
     C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\DevDocumentation\Content\VersionHistory\VersionHistory.aml -&gt; C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\ddueXml\ed1dd38c-4898-4e30-a6e5-7febf5e82893.xml
     Parsing topic file &#39;C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\DevDocumentation\Content\VersionHistory\v1.0.0.0.aml&#39;
     C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\DevDocumentation\Content\VersionHistory\v1.0.0.0.aml -&gt; C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\ddueXml\f65a9fa1-9551-4761-96d0-069968095fc7.xml
-    Last step completed in 00:00:00,2030
+    Last step completed in 00:00:00,2667
 </buildStep>
 <buildStep step="CreateConceptualTopicConfigs">
 Creating conceptual topic configuration files...
     Companion files
     _ContentMetadata_.xml
     Merging topic IDs into manifest.xml
-    Last step completed in 00:00:00,0230
+    Last step completed in 00:00:00,0990
 </buildStep>
 <buildStep step="CopyAdditionalContent">
 Copying additional content files...
 No additional content to copy
-    Last step completed in 00:00:00,0010
+    Last step completed in 00:00:00,0000
 </buildStep>
 <buildStep step="MergeTablesOfContents">
 Merging conceptual and additional tables of contents...
@@ -253,7 +256,7 @@ Merging conceptual and additional tables of contents...
 <buildStep step="GenerateIntermediateTableOfContents">
 Generating intermediate table of contents file...
 [C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\MSBuild.exe - GenerateIntermediateTOC.proj]
-Compilaci&#162;n iniciada a las 04-10-2017 1:15:42.
+Compilaci&#162;n iniciada a las 16-10-2017 23:26:53.
 Proyecto &quot;C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\GenerateIntermediateTOC.proj&quot; en nodo 1 (destinos predeterminados).
 GenerateIntermediateTOC:
   XslTransform (v2017.5.15.0)
@@ -262,12 +265,12 @@ GenerateIntermediateTOC:
   Applying XSL transformation &#39;C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\\ProductionTransforms\CreateVSToc.xsl&#39;.
 Compilaci&#162;n del proyecto terminada &quot;C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\GenerateIntermediateTOC.proj&quot; (destinos predeterminados).
 Generating conceptual content intermediate TOC file...
-    Last step completed in 00:00:01,5261
+    Last step completed in 00:00:02,2455
 </buildStep>
 <buildStep step="CreateBuildAssemblerConfigs">
 Creating Sandcastle configuration files...
     sandcastle.config
-    Last step completed in 00:00:02,1236
+    Last step completed in 00:00:02,8027
 </buildStep>
 <buildStep step="MergeCustomConfigs">
 Merging custom build component configurations
@@ -275,12 +278,12 @@ C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\docum
   Updating reference topic configurations.
   Updating conceptual topic configurations.
     Removing unused ExampleComponent.
-    Last step completed in 00:00:00,0090
+    Last step completed in 00:00:00,0230
 </buildStep>
 <buildStep step="BuildTopics">
 Building help topics...
 [C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\MSBuild.exe - BuildTopics.proj]
-Compilaci&#162;n iniciada a las 04-10-2017 1:15:46.
+Compilaci&#162;n iniciada a las 16-10-2017 23:26:59.
 Proyecto &quot;C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj&quot; en nodo 1 (destinos predeterminados).
 BuildTopics:
   BuildAssembler (v2017.5.15.0)
@@ -352,18 +355,6 @@ BuildAssembler : warning : ResolveReferenceLinksComponent: [F:cl.uv.leikelen.Gen
 BuildAssembler : warning : ShowMissingComponent: [F:cl.uv.leikelen.GeneralSettings.ExtensionFilter] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [F:cl.uv.leikelen.GeneralSettings.ExtensionFilter] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ResolveReferenceLinksComponent: [F:cl.uv.leikelen.GeneralSettings.ExtensionFilter] Unknown reference link target &#39;T:Config.Net.Option`1&#39;. [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.GeneralSettings.GetDataDirectory] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.GeneralSettings.GetDataDirectory] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.GeneralSettings.GetDataDirectory] Missing &lt;returns&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.GeneralSettings.GetDefaultMillisecondsThreshold] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.GeneralSettings.GetDefaultMillisecondsThreshold] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.GeneralSettings.GetDefaultMillisecondsThreshold] Missing &lt;returns&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.GeneralSettings.GetTmpDirectory] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.GeneralSettings.GetTmpDirectory] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.GeneralSettings.GetTmpDirectory] Missing &lt;returns&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.GeneralSettings.GetTmpSceneDirectory] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.GeneralSettings.GetTmpSceneDirectory] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.GeneralSettings.GetTmpSceneDirectory] Missing &lt;returns&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [P:cl.uv.leikelen.GeneralSettings.Instance] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [P:cl.uv.leikelen.GeneralSettings.Instance] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [P:cl.uv.leikelen.GeneralSettings.Instance] Missing &lt;value&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
@@ -393,6 +384,8 @@ BuildAssembler : warning : ShowMissingComponent: [F:cl.uv.leikelen.API.DataAcces
 BuildAssembler : warning : ShowMissingComponent: [F:cl.uv.leikelen.API.DataAccess.Event.Value] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.API.DataAccess.IDataAccessFacade] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.API.DataAccess.IDataAccessFacade] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.IDataAccessFacade.DeleteDatabase] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.IDataAccessFacade.DeleteDatabase] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.IDataAccessFacade.GetEventAccess] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.IDataAccessFacade.GetEventAccess] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.IDataAccessFacade.GetEventAccess] Missing &lt;returns&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
@@ -461,9 +454,29 @@ BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.API.DataAcces
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.IGeneralSettings.GetDataDirectory] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.IGeneralSettings.GetDataDirectory] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.IGeneralSettings.GetDataDirectory] Missing &lt;returns&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.IGeneralSettings.GetDataModalsDirectory] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.IGeneralSettings.GetDataModalsDirectory] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.IGeneralSettings.GetDataModalsDirectory] Missing &lt;returns&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.IGeneralSettings.GetDataPersonsDirectory] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.IGeneralSettings.GetDataPersonsDirectory] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.IGeneralSettings.GetDataPersonsDirectory] Missing &lt;returns&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.IGeneralSettings.GetDataScenesDirectory] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.IGeneralSettings.GetDataScenesDirectory] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.IGeneralSettings.GetDataScenesDirectory] Missing &lt;returns&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.IGeneralSettings.GetDefaultMillisecondsThreshold] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.IGeneralSettings.GetDefaultMillisecondsThreshold] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.IGeneralSettings.GetDefaultMillisecondsThreshold] Missing &lt;returns&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.IGeneralSettings.GetModalDirectory(System.String)] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.IGeneralSettings.GetModalDirectory(System.String)] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.IGeneralSettings.GetModalDirectory(System.String)] Missing &lt;returns&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.IGeneralSettings.GetModalDirectory(System.String)] Missing &lt;param name=&quot;modalTypeName&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.IGeneralSettings.GetSceneDirectory(System.Int32)] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.IGeneralSettings.GetSceneDirectory(System.Int32)] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.IGeneralSettings.GetSceneDirectory(System.Int32)] Missing &lt;returns&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.IGeneralSettings.GetSceneDirectory(System.Int32)] Missing &lt;param name=&quot;sceneId&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.IGeneralSettings.GetSceneInUseDirectory] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.IGeneralSettings.GetSceneInUseDirectory] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.IGeneralSettings.GetSceneInUseDirectory] Missing &lt;returns&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.IGeneralSettings.GetTmpDirectory] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.IGeneralSettings.GetTmpDirectory] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.IGeneralSettings.GetTmpDirectory] Missing &lt;returns&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
@@ -523,6 +536,11 @@ BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAcces
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.IModalAccess.Add(System.String,System.String)] Missing &lt;returns&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.IModalAccess.Add(System.String,System.String)] Missing &lt;param name=&quot;name&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.IModalAccess.Add(System.String,System.String)] Missing &lt;param name=&quot;description&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.IModalAccess.AddIfNotExists(System.String,System.String)] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.IModalAccess.AddIfNotExists(System.String,System.String)] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.IModalAccess.AddIfNotExists(System.String,System.String)] Missing &lt;returns&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.IModalAccess.AddIfNotExists(System.String,System.String)] Missing &lt;param name=&quot;name&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.IModalAccess.AddIfNotExists(System.String,System.String)] Missing &lt;param name=&quot;description&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.IModalAccess.Exists(System.String)] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.IModalAccess.Exists(System.String)] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.IModalAccess.Exists(System.String)] Missing &lt;returns&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
@@ -578,8 +596,6 @@ BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAcces
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.IPersonAccess.Update(cl.uv.leikelen.Data.Model.Person)] Missing &lt;param name=&quot;person&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.API.DataAccess.ISceneAccess] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.API.DataAccess.ISceneAccess] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.ISceneAccess.ClearDb] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.ISceneAccess.ClearDb] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.ISceneAccess.Delete(cl.uv.leikelen.Data.Model.Scene)] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.ISceneAccess.Delete(cl.uv.leikelen.Data.Model.Scene)] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.ISceneAccess.Delete(cl.uv.leikelen.Data.Model.Scene)] Missing &lt;param name=&quot;scene&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
@@ -619,6 +635,13 @@ BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAcces
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.ISubModalAccess.Add(System.String,System.String,System.String,System.String)] Missing &lt;param name=&quot;name&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.ISubModalAccess.Add(System.String,System.String,System.String,System.String)] Missing &lt;param name=&quot;description&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.ISubModalAccess.Add(System.String,System.String,System.String,System.String)] Missing &lt;param name=&quot;path&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.ISubModalAccess.AddIfNotExists(System.String,System.String,System.String,System.String)] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.ISubModalAccess.AddIfNotExists(System.String,System.String,System.String,System.String)] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.ISubModalAccess.AddIfNotExists(System.String,System.String,System.String,System.String)] Missing &lt;returns&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.ISubModalAccess.AddIfNotExists(System.String,System.String,System.String,System.String)] Missing &lt;param name=&quot;modalName&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.ISubModalAccess.AddIfNotExists(System.String,System.String,System.String,System.String)] Missing &lt;param name=&quot;name&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.ISubModalAccess.AddIfNotExists(System.String,System.String,System.String,System.String)] Missing &lt;param name=&quot;description&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.ISubModalAccess.AddIfNotExists(System.String,System.String,System.String,System.String)] Missing &lt;param name=&quot;path&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.ISubModalAccess.Delete(System.String,System.String)] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.ISubModalAccess.Delete(System.String,System.String)] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.API.DataAccess.ISubModalAccess.Delete(System.String,System.String)] Missing &lt;param name=&quot;modalName&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
@@ -789,6 +812,9 @@ BuildAssembler : warning : ShowMissingComponent: [P:cl.uv.leikelen.API.Module.Ab
 BuildAssembler : warning : ShowMissingComponent: [P:cl.uv.leikelen.API.Module.AbstractModule.Name] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [P:cl.uv.leikelen.API.Module.AbstractModule.Name] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [P:cl.uv.leikelen.API.Module.AbstractModule.Name] Missing &lt;value&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [P:cl.uv.leikelen.API.Module.AbstractModule.Tabs] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [P:cl.uv.leikelen.API.Module.AbstractModule.Tabs] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [P:cl.uv.leikelen.API.Module.AbstractModule.Tabs] Missing &lt;value&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [P:cl.uv.leikelen.API.Module.AbstractModule.Windows] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [P:cl.uv.leikelen.API.Module.AbstractModule.Windows] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [P:cl.uv.leikelen.API.Module.AbstractModule.Windows] Missing &lt;value&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
@@ -948,6 +974,8 @@ BuildAssembler : warning : ShowMissingComponent: [N:cl.uv.leikelen.Data.Access] 
 BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.Data.Access.DataAccessFacade] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.Data.Access.DataAccessFacade] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.DataAccessFacade.#ctor] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.DataAccessFacade.DeleteDatabase] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.DataAccessFacade.DeleteDatabase] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.DataAccessFacade.GetEventAccess] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.DataAccessFacade.GetEventAccess] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.DataAccessFacade.GetEventAccess] Missing &lt;returns&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
@@ -1024,6 +1052,11 @@ BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.E
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.ModalAccess.Add(System.String,System.String)] Missing &lt;returns&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.ModalAccess.Add(System.String,System.String)] Missing &lt;param name=&quot;name&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.ModalAccess.Add(System.String,System.String)] Missing &lt;param name=&quot;description&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.ModalAccess.AddIfNotExists(System.String,System.String)] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.ModalAccess.AddIfNotExists(System.String,System.String)] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.ModalAccess.AddIfNotExists(System.String,System.String)] Missing &lt;returns&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.ModalAccess.AddIfNotExists(System.String,System.String)] Missing &lt;param name=&quot;name&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.ModalAccess.AddIfNotExists(System.String,System.String)] Missing &lt;param name=&quot;description&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.ModalAccess.Exists(System.String)] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.ModalAccess.Exists(System.String)] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.ModalAccess.Exists(System.String)] Missing &lt;returns&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
@@ -1031,6 +1064,11 @@ BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.E
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.ModalAccess.GetAll] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.ModalAccess.GetAll] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.ModalAccess.GetAll] Missing &lt;returns&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.ModalAccess.LoadTmpModals] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.ModalAccess.LoadTmpModals] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [P:cl.uv.leikelen.Data.Access.External.ModalAccess.TmpModals] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [P:cl.uv.leikelen.Data.Access.External.ModalAccess.TmpModals] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [P:cl.uv.leikelen.Data.Access.External.ModalAccess.TmpModals] Missing &lt;value&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.Data.Access.External.PersonAccess] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.Data.Access.External.PersonAccess] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.PersonAccess.#ctor] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
@@ -1069,8 +1107,6 @@ BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.E
 BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.Data.Access.External.SceneAccess] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.Data.Access.External.SceneAccess] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.SceneAccess.#ctor] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.SceneAccess.ClearDb] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.SceneAccess.ClearDb] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.SceneAccess.Delete(cl.uv.leikelen.Data.Model.Scene)] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.SceneAccess.Delete(cl.uv.leikelen.Data.Model.Scene)] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.SceneAccess.Delete(cl.uv.leikelen.Data.Model.Scene)] Missing &lt;param name=&quot;scene&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
@@ -1102,6 +1138,41 @@ BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.E
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.SceneInUseAccess.GetScene] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.SceneInUseAccess.GetScene] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.SceneInUseAccess.GetScene] Missing &lt;returns&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.Data.Access.External.SettingsAccess] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.Data.Access.External.SettingsAccess] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.SettingsAccess.#ctor] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.SettingsAccess.GetDataDirectory] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.SettingsAccess.GetDataDirectory] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.SettingsAccess.GetDataDirectory] Missing &lt;returns&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.SettingsAccess.GetDataModalsDirectory] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.SettingsAccess.GetDataModalsDirectory] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.SettingsAccess.GetDataModalsDirectory] Missing &lt;returns&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.SettingsAccess.GetDataPersonsDirectory] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.SettingsAccess.GetDataPersonsDirectory] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.SettingsAccess.GetDataPersonsDirectory] Missing &lt;returns&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.SettingsAccess.GetDataScenesDirectory] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.SettingsAccess.GetDataScenesDirectory] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.SettingsAccess.GetDataScenesDirectory] Missing &lt;returns&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.SettingsAccess.GetDefaultMillisecondsThreshold] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.SettingsAccess.GetDefaultMillisecondsThreshold] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.SettingsAccess.GetDefaultMillisecondsThreshold] Missing &lt;returns&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.SettingsAccess.GetModalDirectory(System.String)] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.SettingsAccess.GetModalDirectory(System.String)] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.SettingsAccess.GetModalDirectory(System.String)] Missing &lt;returns&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.SettingsAccess.GetModalDirectory(System.String)] Missing &lt;param name=&quot;modalTypeName&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.SettingsAccess.GetSceneDirectory(System.Int32)] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.SettingsAccess.GetSceneDirectory(System.Int32)] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.SettingsAccess.GetSceneDirectory(System.Int32)] Missing &lt;returns&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.SettingsAccess.GetSceneDirectory(System.Int32)] Missing &lt;param name=&quot;sceneId&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.SettingsAccess.GetSceneInUseDirectory] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.SettingsAccess.GetSceneInUseDirectory] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.SettingsAccess.GetSceneInUseDirectory] Missing &lt;returns&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.SettingsAccess.GetTmpDirectory] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.SettingsAccess.GetTmpDirectory] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.SettingsAccess.GetTmpDirectory] Missing &lt;returns&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.SettingsAccess.GetTmpSceneDirectory] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.SettingsAccess.GetTmpSceneDirectory] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.SettingsAccess.GetTmpSceneDirectory] Missing &lt;returns&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.Data.Access.External.SubModalAccess] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.Data.Access.External.SubModalAccess] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.SubModalAccess.#ctor] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
@@ -1112,6 +1183,13 @@ BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.E
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.SubModalAccess.Add(System.String,System.String,System.String,System.String)] Missing &lt;param name=&quot;name&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.SubModalAccess.Add(System.String,System.String,System.String,System.String)] Missing &lt;param name=&quot;description&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.SubModalAccess.Add(System.String,System.String,System.String,System.String)] Missing &lt;param name=&quot;file&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.SubModalAccess.AddIfNotExists(System.String,System.String,System.String,System.String)] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.SubModalAccess.AddIfNotExists(System.String,System.String,System.String,System.String)] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.SubModalAccess.AddIfNotExists(System.String,System.String,System.String,System.String)] Missing &lt;returns&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.SubModalAccess.AddIfNotExists(System.String,System.String,System.String,System.String)] Missing &lt;param name=&quot;modalName&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.SubModalAccess.AddIfNotExists(System.String,System.String,System.String,System.String)] Missing &lt;param name=&quot;name&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.SubModalAccess.AddIfNotExists(System.String,System.String,System.String,System.String)] Missing &lt;param name=&quot;description&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.SubModalAccess.AddIfNotExists(System.String,System.String,System.String,System.String)] Missing &lt;param name=&quot;path&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.SubModalAccess.Delete(System.String,System.String)] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.SubModalAccess.Delete(System.String,System.String)] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.SubModalAccess.Delete(System.String,System.String)] Missing &lt;param name=&quot;modalName&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
@@ -1134,6 +1212,14 @@ BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.E
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.SubModalAccess.Update(cl.uv.leikelen.Data.Model.SubModalType)] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.SubModalAccess.Update(cl.uv.leikelen.Data.Model.SubModalType)] Missing &lt;returns&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.SubModalAccess.Update(cl.uv.leikelen.Data.Model.SubModalType)] Missing &lt;param name=&quot;subModalType&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.Data.Access.External.TestScene] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.Data.Access.External.TestScene] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.TestScene.LoadFakeScene(System.String)] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.TestScene.LoadFakeScene(System.String)] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.TestScene.LoadFakeScene(System.String)] Missing &lt;param name=&quot;sceneName&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.TestScene.LoadTest(System.String)] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.TestScene.LoadTest(System.String)] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.TestScene.LoadTest(System.String)] Missing &lt;param name=&quot;sceneName&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.Data.Access.External.TimelessAccess] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.Data.Access.External.TimelessAccess] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Access.External.TimelessAccess.#ctor] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
@@ -1187,6 +1273,12 @@ BuildAssembler : warning : ShowMissingComponent: [P:cl.uv.leikelen.Data.Access.I
 BuildAssembler : warning : ShowMissingComponent: [P:cl.uv.leikelen.Data.Access.Internal.SceneInUse.Instance] Missing &lt;value&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [F:cl.uv.leikelen.Data.Access.Internal.SceneInUse.IsRecording] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [F:cl.uv.leikelen.Data.Access.Internal.SceneInUse.IsRecording] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [P:cl.uv.leikelen.Data.Access.Internal.SceneInUse.PlayPausedTime] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [P:cl.uv.leikelen.Data.Access.Internal.SceneInUse.PlayPausedTime] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [P:cl.uv.leikelen.Data.Access.Internal.SceneInUse.PlayPausedTime] Missing &lt;value&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [P:cl.uv.leikelen.Data.Access.Internal.SceneInUse.PlayStartTime] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [P:cl.uv.leikelen.Data.Access.Internal.SceneInUse.PlayStartTime] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [P:cl.uv.leikelen.Data.Access.Internal.SceneInUse.PlayStartTime] Missing &lt;value&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [P:cl.uv.leikelen.Data.Access.Internal.SceneInUse.Scene] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [P:cl.uv.leikelen.Data.Access.Internal.SceneInUse.Scene] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [P:cl.uv.leikelen.Data.Access.Internal.SceneInUse.Scene] Missing &lt;value&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
@@ -1454,13 +1546,13 @@ BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Persiste
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Persistence.IDbProvider.AddPersonToScene(cl.uv.leikelen.Data.Model.Person,cl.uv.leikelen.Data.Model.Scene)] Missing &lt;returns&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Persistence.IDbProvider.AddPersonToScene(cl.uv.leikelen.Data.Model.Person,cl.uv.leikelen.Data.Model.Scene)] Missing &lt;param name=&quot;person&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Persistence.IDbProvider.AddPersonToScene(cl.uv.leikelen.Data.Model.Person,cl.uv.leikelen.Data.Model.Scene)] Missing &lt;param name=&quot;scene&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Persistence.IDbProvider.Clear] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Persistence.IDbProvider.Clear] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Persistence.IDbProvider.CloseConnection] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Persistence.IDbProvider.CloseConnection] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Persistence.IDbProvider.CreateConnection(System.String)] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Persistence.IDbProvider.CreateConnection(System.String)] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Persistence.IDbProvider.CreateConnection(System.String)] Missing &lt;param name=&quot;options&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Persistence.IDbProvider.Delete] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Persistence.IDbProvider.Delete] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Persistence.IDbProvider.DeletePerson(cl.uv.leikelen.Data.Model.Person)] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Persistence.IDbProvider.DeletePerson(cl.uv.leikelen.Data.Model.Person)] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Persistence.IDbProvider.DeletePerson(cl.uv.leikelen.Data.Model.Person)] Missing &lt;param name=&quot;person&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
@@ -1896,8 +1988,6 @@ BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Persiste
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Persistence.Provider.EfAbstractProvider.AddPersonToScene(cl.uv.leikelen.Data.Model.Person,cl.uv.leikelen.Data.Model.Scene)] Missing &lt;returns&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Persistence.Provider.EfAbstractProvider.AddPersonToScene(cl.uv.leikelen.Data.Model.Person,cl.uv.leikelen.Data.Model.Scene)] Missing &lt;param name=&quot;person&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Persistence.Provider.EfAbstractProvider.AddPersonToScene(cl.uv.leikelen.Data.Model.Person,cl.uv.leikelen.Data.Model.Scene)] Missing &lt;param name=&quot;scene&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Persistence.Provider.EfAbstractProvider.Clear] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Persistence.Provider.EfAbstractProvider.Clear] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Persistence.Provider.EfAbstractProvider.CloseConnection] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Persistence.Provider.EfAbstractProvider.CloseConnection] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Persistence.Provider.EfAbstractProvider.CreateConnection(System.String)] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
@@ -1905,6 +1995,8 @@ BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Persiste
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Persistence.Provider.EfAbstractProvider.CreateConnection(System.String)] Missing &lt;param name=&quot;options&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [F:cl.uv.leikelen.Data.Persistence.Provider.EfAbstractProvider.Db] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [F:cl.uv.leikelen.Data.Persistence.Provider.EfAbstractProvider.Db] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Persistence.Provider.EfAbstractProvider.Delete] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Persistence.Provider.EfAbstractProvider.Delete] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Persistence.Provider.EfAbstractProvider.DeletePerson(cl.uv.leikelen.Data.Model.Person)] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Persistence.Provider.EfAbstractProvider.DeletePerson(cl.uv.leikelen.Data.Model.Person)] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Data.Persistence.Provider.EfAbstractProvider.DeletePerson(cl.uv.leikelen.Data.Model.Person)] Missing &lt;param name=&quot;person&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
@@ -2008,6 +2100,8 @@ BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.Module.Genera
 BuildAssembler : warning : ShowMissingComponent: [P:cl.uv.leikelen.Module.GeneralLoader.GeneralModules] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [P:cl.uv.leikelen.Module.GeneralLoader.GeneralModules] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [P:cl.uv.leikelen.Module.GeneralLoader.GeneralModules] Missing &lt;value&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [E:cl.uv.leikelen.Module.GeneralLoader.GeneralModulesHasReset] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [E:cl.uv.leikelen.Module.GeneralLoader.GeneralModulesHasReset] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [P:cl.uv.leikelen.Module.GeneralLoader.Instance] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [P:cl.uv.leikelen.Module.GeneralLoader.Instance] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [P:cl.uv.leikelen.Module.GeneralLoader.Instance] Missing &lt;value&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
@@ -2038,6 +2132,8 @@ BuildAssembler : warning : ShowMissingComponent: [P:cl.uv.leikelen.Module.Proces
 BuildAssembler : warning : ShowMissingComponent: [P:cl.uv.leikelen.Module.ProcessingLoader.ProcessingModules] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [P:cl.uv.leikelen.Module.ProcessingLoader.ProcessingModules] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [P:cl.uv.leikelen.Module.ProcessingLoader.ProcessingModules] Missing &lt;value&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [E:cl.uv.leikelen.Module.ProcessingLoader.ProcessingModulesHasReset] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [E:cl.uv.leikelen.Module.ProcessingLoader.ProcessingModulesHasReset] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.ProcessingLoader.Reset] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.ProcessingLoader.Reset] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [N:cl.uv.leikelen.Module.General.GestureConfiguration] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
@@ -2716,6 +2812,8 @@ BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Input.
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Input.OpenBCI.Monitor.GetStatus] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Input.OpenBCI.Monitor.GetStatus] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Input.OpenBCI.Monitor.GetStatus] Missing &lt;returns&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [F:cl.uv.leikelen.Module.Input.OpenBCI.Monitor.GraphTab] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [F:cl.uv.leikelen.Module.Input.OpenBCI.Monitor.GraphTab] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Input.OpenBCI.Monitor.IsRecording] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Input.OpenBCI.Monitor.IsRecording] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Input.OpenBCI.Monitor.IsRecording] Missing &lt;returns&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
@@ -2874,6 +2972,24 @@ BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Input.
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Input.OpenBCI.View.ConfigurePositions.#ctor(System.Windows.Window)] Missing &lt;param name=&quot;backWindow&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Input.OpenBCI.View.ConfigurePositions.InitializeComponent] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Input.OpenBCI.View.ConfigurePositions.InitializeComponent] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.Module.Input.OpenBCI.View.GraphForm] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.Module.Input.OpenBCI.View.GraphForm] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Input.OpenBCI.View.GraphForm.#ctor] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Input.OpenBCI.View.GraphForm.Dispose(System.Boolean)] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [F:cl.uv.leikelen.Module.Input.OpenBCI.View.GraphForm.driver] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [F:cl.uv.leikelen.Module.Input.OpenBCI.View.GraphForm.driver] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.Module.Input.OpenBCI.View.LiveGraphTab] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.Module.Input.OpenBCI.View.LiveGraphTab] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Input.OpenBCI.View.LiveGraphTab.#ctor] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Input.OpenBCI.View.LiveGraphTab.Enqueue(System.Double[])] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Input.OpenBCI.View.LiveGraphTab.Enqueue(System.Double[])] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Input.OpenBCI.View.LiveGraphTab.Enqueue(System.Double[])] Missing &lt;param name=&quot;dataToGraph&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Input.OpenBCI.View.LiveGraphTab.Fill] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Input.OpenBCI.View.LiveGraphTab.Fill] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Input.OpenBCI.View.LiveGraphTab.InitializeComponent] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Input.OpenBCI.View.LiveGraphTab.InitializeComponent] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Input.OpenBCI.View.LiveGraphTab.Reset] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Input.OpenBCI.View.LiveGraphTab.Reset] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.Module.Input.OpenBCI.View.OpenBCIWindow] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.Module.Input.OpenBCI.View.OpenBCIWindow] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Input.OpenBCI.View.OpenBCIWindow.#ctor(cl.uv.leikelen.API.Module.Input.IMonitor)] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
@@ -2964,7 +3080,10 @@ BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Proces
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.LearningModel.Classify(System.Collections.Generic.List{System.Double[]})] Missing &lt;param name=&quot;signalsList&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.LearningModel.Train(System.Collections.Generic.Dictionary{cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.TagType,System.Collections.Generic.List{System.Collections.Generic.List{System.Double[]}}})] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.LearningModel.Train(System.Collections.Generic.Dictionary{cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.TagType,System.Collections.Generic.List{System.Collections.Generic.List{System.Double[]}}})] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.LearningModel.Train(System.Collections.Generic.Dictionary{cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.TagType,System.Collections.Generic.List{System.Collections.Generic.List{System.Double[]}}})] Missing &lt;returns&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.LearningModel.Train(System.Collections.Generic.Dictionary{cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.TagType,System.Collections.Generic.List{System.Collections.Generic.List{System.Double[]}}})] Missing &lt;param name=&quot;allsignalsList&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [M:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.LearningModel.Train(System.Collections.Generic.Dictionary{cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.TagType,System.Collections.Generic.List{System.Collections.Generic.List{System.Double[]}}})] Unknown reference link target &#39;T:Accord.MachineLearning.VectorMachines.MulticlassSupportVectorMachine`1&#39;. [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [M:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.LearningModel.Train(System.Collections.Generic.Dictionary{cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.TagType,System.Collections.Generic.List{System.Collections.Generic.List{System.Double[]}}})] Unknown reference link target &#39;T:Accord.Statistics.Kernels.Gaussian&#39;. [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.TagType] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.TagType] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.TrainerEntryPoint] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
@@ -3028,6 +3147,23 @@ BuildAssembler : warning : ShowMissingComponent: [P:cl.uv.leikelen.Module.Proces
 BuildAssembler : warning : ShowMissingComponent: [P:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing.FilterButterworth.Value] Missing &lt;value&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing.FilterButterworth.PassType] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing.FilterButterworth.PassType] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing.FilterRLC] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing.FilterRLC] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing.FilterRLC.#ctor] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing.FilterRLC.LCHP(System.Double[],System.Int32,System.Double,System.Double)] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing.FilterRLC.LCHP(System.Double[],System.Int32,System.Double,System.Double)] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing.FilterRLC.LCHP(System.Double[],System.Int32,System.Double,System.Double)] Missing &lt;returns&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing.FilterRLC.LCHP(System.Double[],System.Int32,System.Double,System.Double)] Missing &lt;param name=&quot;input&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing.FilterRLC.LCHP(System.Double[],System.Int32,System.Double,System.Double)] Missing &lt;param name=&quot;sampleRate&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing.FilterRLC.LCHP(System.Double[],System.Int32,System.Double,System.Double)] Missing &lt;param name=&quot;Frequency&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing.FilterRLC.LCHP(System.Double[],System.Int32,System.Double,System.Double)] Missing &lt;param name=&quot;Q&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing.FilterRLC.LCLP(System.Double[],System.Int32,System.Double,System.Double)] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing.FilterRLC.LCLP(System.Double[],System.Int32,System.Double,System.Double)] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing.FilterRLC.LCLP(System.Double[],System.Int32,System.Double,System.Double)] Missing &lt;returns&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing.FilterRLC.LCLP(System.Double[],System.Int32,System.Double,System.Double)] Missing &lt;param name=&quot;input&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing.FilterRLC.LCLP(System.Double[],System.Int32,System.Double,System.Double)] Missing &lt;param name=&quot;sampleRate&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing.FilterRLC.LCLP(System.Double[],System.Int32,System.Double,System.Double)] Missing &lt;param name=&quot;frequency&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing.FilterRLC.LCLP(System.Double[],System.Int32,System.Double,System.Double)] Missing &lt;param name=&quot;Q&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing.SampleEntropy] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing.SampleEntropy] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing.SampleEntropy.CalcSampleEntropy(System.Double[],System.Int32,System.Int32,System.Double,System.Int32)] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
@@ -3150,6 +3286,49 @@ BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Proces
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Processing.Kinect.Voice.VoiceLogic._audioBeamReader_FrameArrived(System.Object,Microsoft.Kinect.AudioBeamFrameArrivedEventArgs)] Missing &lt;param name=&quot;e&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Processing.Kinect.Voice.VoiceLogic.StopRecording] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Module.Processing.Kinect.Voice.VoiceLogic.StopRecording] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [N:cl.uv.leikelen.Test.Unit] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.Test.Unit.UnitTests] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.Test.Unit.UnitTests] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Test.Unit.UnitTests.#ctor] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Test.Unit.UnitTests.Cleanup] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Test.Unit.UnitTests.Cleanup] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Test.Unit.UnitTests.UnitClassifyEmoTest] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Test.Unit.UnitTests.UnitClassifyEmoTest] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Test.Unit.UnitTests.UnitCreatePersonTest] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Test.Unit.UnitTests.UnitCreatePersonTest] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Test.Unit.UnitTests.UnitCreateSceneTest] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Test.Unit.UnitTests.UnitCreateSceneTest] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Test.Unit.UnitTests.UnitDeletePersonTest] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Test.Unit.UnitTests.UnitDeletePersonTest] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Test.Unit.UnitTests.UnitDeleteSceneTest] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Test.Unit.UnitTests.UnitDeleteSceneTest] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Test.Unit.UnitTests.UnitExportTest] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Test.Unit.UnitTests.UnitExportTest] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Test.Unit.UnitTests.UnitGetPersonsTest] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Test.Unit.UnitTests.UnitGetPersonsTest] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Test.Unit.UnitTests.UnitGetScenesTest] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Test.Unit.UnitTests.UnitGetScenesTest] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Test.Unit.UnitTests.UnitImportTest] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Test.Unit.UnitTests.UnitImportTest] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Test.Unit.UnitTests.UnitInitialize(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext)] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Test.Unit.UnitTests.UnitInitialize(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext)] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Test.Unit.UnitTests.UnitInitialize(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext)] Missing &lt;param name=&quot;testContext&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Test.Unit.UnitTests.UnitStartPlayTest] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Test.Unit.UnitTests.UnitStartPlayTest] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Test.Unit.UnitTests.UnitStartRecordTestAsync] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Test.Unit.UnitTests.UnitStartRecordTestAsync] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Test.Unit.UnitTests.UnitStartRecordTestAsync] Missing &lt;returns&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Test.Unit.UnitTests.UnitStopPlayTest] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Test.Unit.UnitTests.UnitStopPlayTest] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Test.Unit.UnitTests.UnitStopRecordTestAsync] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Test.Unit.UnitTests.UnitStopRecordTestAsync] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Test.Unit.UnitTests.UnitStopRecordTestAsync] Missing &lt;returns&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Test.Unit.UnitTests.UnitTrainEmoTest] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Test.Unit.UnitTests.UnitTrainEmoTest] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Test.Unit.UnitTests.UnitUpdatePersonTest] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Test.Unit.UnitTests.UnitUpdatePersonTest] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Test.Unit.UnitTests.UnitUpdateSceneTest] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.Test.Unit.UnitTests.UnitUpdateSceneTest] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [N:cl.uv.leikelen.Util] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.Util.DoubleInput] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.Util.DoubleInput] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
@@ -3233,16 +3412,6 @@ BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.View.Home] Mi
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.View.Home.#ctor] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.View.Home.InitializeComponent] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.View.Home.InitializeComponent] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.View.HomeState] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.View.HomeState] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.View.LoadTestScene] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.View.LoadTestScene] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.View.LoadTestScene.LoadFakeScene(System.String)] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.View.LoadTestScene.LoadFakeScene(System.String)] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.View.LoadTestScene.LoadFakeScene(System.String)] Missing &lt;param name=&quot;sceneName&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.View.LoadTestScene.LoadTest(System.String)] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.View.LoadTestScene.LoadTest(System.String)] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.View.LoadTestScene.LoadTest(System.String)] Missing &lt;param name=&quot;sceneName&quot;/&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.View.ModuleType] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.View.ModuleType] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.View.PlayerState] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
@@ -3254,6 +3423,8 @@ BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.View.Preferen
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.View.Preferences.InitializeComponent] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.View.Preferences.ShowBd] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.View.Preferences.ShowBd] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.View.SceneState] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.View.SceneState] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [N:cl.uv.leikelen.View.Widget] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.View.Widget.PersonCard] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [T:cl.uv.leikelen.View.Widget.PersonCard] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
@@ -3413,18 +3584,20 @@ BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.View.Widget.P
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.View.Widget.PreferencesTab.PreferencesPersonColors.Apply] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.View.Widget.PreferencesTab.PreferencesPersonColors.InitializeComponent] Missing &lt;summary&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:cl.uv.leikelen.View.Widget.PreferencesTab.PreferencesPersonColors.InitializeComponent] Missing &lt;remarks&gt; documentation [C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj]
-  Processed 1183 topic(s)
-  3125 warning(s)
+  Processed 1259 topic(s)
+  3293 warning(s)
   CopyFromIndexComponent: &quot;metadata&quot; in-memory cache entries used: 1 of 15.
   ResolveArtLinksComponent: Copying media files...
+  ResolveReferenceLinksComponent: 430 entries added to the MSDN content ID cache.  New cache size: 1214 entries
   CopyFromIndexComponent: &quot;reflection&quot; in-memory cache entries used: 10 of 15.
-  CopyFromIndexComponent: &quot;comments&quot; in-memory cache entries used: 6 of 30.
+  CopyFromIndexComponent: &quot;comments&quot; in-memory cache entries used: 8 of 30.
+  SaveComponent: Waiting for the document writer task to finish (2 Website API file(s) remaining)...
 Compilaci&#162;n del proyecto terminada &quot;C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\BuildTopics.proj&quot; (destinos predeterminados).
-    Last step completed in 00:01:25,3215
+    Last step completed in 00:06:58,2508
 </buildStep>
 <buildStep step="CombiningIntermediateTocFiles">
 Combining conceptual and API intermediate TOC files...
-    Last step completed in 00:00:00,0150
+    Last step completed in 00:00:00,0470
 </buildStep>
 <buildStep step="ExtractingHtmlInfo">
 Extracting HTML info for HTML Help 1 and/or website...
@@ -3436,11 +3609,11 @@ E-Mail: Eric@EWoodruff.us
 Using LCID &#39;1033&#39;, code page &#39;65001&#39;, encoding charset &#39;UTF-8&#39;.
 
 Processing website files in C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\Output\Website
-Processed 1183 HTML files
+Processed 1259 HTML files
 Sorting keywords and generating See Also indices
 Saving website keyword index to C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\WebKI.xml
 Saving website table of contents to C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\WebTOC.xml
-    Last step completed in 00:00:02,7414
+    Last step completed in 00:00:08,5856
 </buildStep>
 <buildStep step="CopyStandardHelpContent">
 Copying standard help content...
@@ -3522,7 +3695,7 @@ C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\PresentationStyle
 C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\PresentationStyles\VS2013\Web\scripts\branding-Website.js -&gt; C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\Output\Website\scripts\branding-Website.js
 C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\PresentationStyles\VS2013\Web\scripts\clipboard.min.js -&gt; C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\Output\Website\scripts\clipboard.min.js
 C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\PresentationStyles\VS2013\Web\scripts\jquery-1.11.0.min.js -&gt; C:\Users\Erick\Datos_Personales\Tesis\leikelen_tesis\bin_files\anyPlatform\documentation\Working\Output\Website\scripts\jquery-1.11.0.min.js
-    Last step completed in 00:00:02,2467
+    Last step completed in 00:00:04,2143
 </buildStep>
 <buildStep step="GenerateHelpFormatTableOfContents">
 Generating website table of contents file...
@@ -3533,7 +3706,7 @@ Generating full-text index for the website...
 
 <plugIn name="Lightweight Website Style" behavior="After" priority="1000">
 Adding lightweight search and TOC elements to each topic...
-</plugIn>    Last step completed in 00:00:10,1944
+</plugIn>    Last step completed in 00:00:32,2747
 </buildStep>
 <buildStep step="CopyingWebsiteFiles">
 Copying website files to output folder...
@@ -3541,16 +3714,16 @@ Copying website files to output folder...
 Copied 500 files
 Copied 1000 files
 Copied 1500 files
-Copied 1656 files for the website content
-    Last step completed in 00:00:23,1305
+Copied 1749 files for the website content
+    Last step completed in 00:01:04,6852
 </buildStep>
 <buildStep step="CleanIntermediates">
 Removing intermediate files...
-    Last step completed in 00:00:03,0423
+    Last step completed in 00:00:08,5275
 </buildStep>
 <buildStep step="Completed">
 
-Build completed successfully at 04-10-2017 1:17:52.  Total time: 00:03:57,8698
+Build completed successfully at 16-10-2017 23:35:54.  Total time: 00:10:36,6077
 
 </buildStep>
 </shfbBuild>

@@ -13,10 +13,10 @@
         TextElement.FontWeight="Medium"
         TextElement.FontSize="14"
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
-        Title="ConfigurePerson" Height="300" Width="280">
+        Title="ConfigurePerson" Height="400" Width="280">
     <Grid Margin="5">
         <Grid.RowDefinitions>
-            <RowDefinition MinHeight="30" Height="1*" />
+            <RowDefinition MinHeight="100" Height="5*" />
             <RowDefinition MinHeight="30" Height="1*" />
             <RowDefinition MinHeight="30" Height="1*" />
             <RowDefinition MinHeight="30" Height="1*" />
@@ -27,8 +27,9 @@
             <ColumnDefinition MinWidth="100" Width="1*" />
             <ColumnDefinition Width="2*" />
         </Grid.ColumnDefinitions>
-        <Label VerticalAlignment="Bottom" Grid.Row="0" Grid.Column="0" Content="{x:Static resx:GUI.Name}" />
-        <TextBox VerticalAlignment="Bottom" Grid.Row="0" Grid.Column="1" x:Name="NameTextBox" materialDesign:HintAssist.Hint="{x:Static resx:GUI.Name}"></TextBox>
+        <Image x:Name="personPhotoImage" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" />
+        <Label VerticalAlignment="Bottom" Grid.Row="1" Grid.Column="0" Content="{x:Static resx:GUI.Name}" />
+        <TextBox VerticalAlignment="Bottom" Grid.Row="1" Grid.Column="1" x:Name="NameTextBox" materialDesign:HintAssist.Hint="{x:Static resx:GUI.Name}"></TextBox>
 
         <Label VerticalAlignment="Bottom" Grid.Row="2" Grid.Column="0" Content="{x:Static resx:GUI.Sex}"/>
         <ComboBox VerticalAlignment="Bottom" Grid.Row="2" Grid.Column="1" x:Name="SexComboBox">
