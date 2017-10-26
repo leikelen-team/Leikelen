@@ -88,6 +88,24 @@ namespace cl.uv.leikelen.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a An error happened:.
+        /// </summary>
+        public static string ErrorOcurred {
+            get {
+                return ResourceManager.GetString("ErrorOcurred", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Error.
+        /// </summary>
+        public static string ErrorOcurredTitle {
+            get {
+                return ResourceManager.GetString("ErrorOcurredTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a The file already exists, do you want to replace it?.
         /// </summary>
         public static string FileAlreadyExists {

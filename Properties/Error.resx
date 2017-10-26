@@ -118,4 +118,10 @@
   <data name="FileAlreadyExistsTitle" xml:space="preserve">
     <value>File already Exists</value>
   </data>
+  <data name="ErrorOcurred" xml:space="preserve">
+    <value>An error happened:</value>
+  </data>
+  <data name="ErrorOcurredTitle" xml:space="preserve">
+    <value>Error</value>
+  </data>
 </root>

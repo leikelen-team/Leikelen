@@ -27,11 +27,18 @@ namespace cl.uv.leikelen.API.FrameProvider.Kinect
         /// <returns>The event handler of the color frame</returns>
         EventHandler<ColorFrameArrivedEventArgs> ColorListener();
         /// <summary>
-        /// 
+        /// Returns the handler of the audio beam frames, that
+        /// contains which persons talked.
         /// </summary>
         /// <returns>The event handler of the audio frame</returns>
         EventHandler<AudioBeamFrameArrivedEventArgs> AudioListener();
 
+        /// <summary>
+        /// Returns the handler for the discrete and continuous
+        /// gesture frames.
+        /// </summary>
+        /// <returns>The event handler for the discrete and
+        /// continuous gesture frame</returns>
         EventHandler<KinectGestureFrameArrivedArgs> GestureListener();
     }
 }

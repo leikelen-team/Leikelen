@@ -445,4 +445,7 @@
   <data name="ActualSceneWillLose" xml:space="preserve">
     <value>If you accept, you would lose all not saved in actual scene</value>
   </data>
+  <data name="SureRestartApp" xml:space="preserve">
+    <value>Are you sure you want to restart the app?</value>
+  </data>
 </root>

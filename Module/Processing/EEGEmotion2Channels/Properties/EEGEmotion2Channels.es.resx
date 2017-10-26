@@ -205,4 +205,10 @@
   <data name="shiftHint" xml:space="preserve">
     <value>corrimiento de muestras en entropía muestral</value>
   </data>
+  <data name="UseInternalData" xml:space="preserve">
+    <value>Usar datos internos</value>
+  </data>
+  <data name="Train" xml:space="preserve">
+    <value>Entrenar</value>
+  </data>
 </root>

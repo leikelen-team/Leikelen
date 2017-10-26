@@ -13,7 +13,7 @@
     <RootNamespace>DevDocumentation</RootNamespace>
     <Name>DevDocumentation</Name>
     <!-- SHFB properties -->
-    <FrameworkVersion>.NET Framework 4.5.1</FrameworkVersion>
+    <FrameworkVersion>.NET Framework 4.6.1</FrameworkVersion>
     <OutputPath>..\bin_files\anyPlatform\documentation\</OutputPath>
     <HtmlHelpName>DevDocumentation</HtmlHelpName>
     <Language>en-US</Language>

@@ -160,6 +160,15 @@ namespace cl.uv.leikelen.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Restart app.
+        /// </summary>
+        public static string File_RestartApp {
+            get {
+                return ResourceManager.GetString("File_RestartApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Save.
         /// </summary>
         public static string File_Save {

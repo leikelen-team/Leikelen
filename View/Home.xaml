@@ -14,7 +14,9 @@
         TextElement.FontSize="14"
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
         mc:Ignorable="d"
-        Title="Leikelen" Height="500" Width="750">
+        Title="Leikelen" Height="500" Width="750"
+        Closed="Home_Closed"
+        Closing="Home_Closing">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="45" />
@@ -23,31 +25,36 @@
             <DockPanel Grid.Row="0">
             <Menu IsMainMenu="True" DockPanel.Dock="Top">
                 <MenuItem x:Name="MenuItem_File" Header="{x:Static resx:Menu.File}">
-                    <MenuItem x:Name="MenuItem_File_NewScene" Header="{x:Static resx:Menu.File_NewScene}" InputGestureText="Ctrl+N" />
-                    <MenuItem x:Name="MenuItem_File_Save" Header="{x:Static resx:Menu.File_Save}" InputGestureText="Ctrl+S">
+                    <MenuItem x:Name="MenuItem_File_NewScene" Click="File_NewScene_Click" Header="{x:Static resx:Menu.File_NewScene}" InputGestureText="Ctrl+N" />
+                    <MenuItem x:Name="MenuItem_File_Save" Click="MenuItem_File_Save_Click" Header="{x:Static resx:Menu.File_Save}" InputGestureText="Ctrl+S">
                         <MenuItem.Icon>
                             <materialDesign:PackIcon Kind="ContentSave" />
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem x:Name="MenuItem_File_LoadTestScene" Header="{x:Static resx:Menu.File_LoadTestScene}">
+                    <MenuItem x:Name="MenuItem_File_LoadTestScene" Click="MenuItem_File_LoadTestScene_Click" Header="{x:Static resx:Menu.File_LoadTestScene}">
                     </MenuItem>
-                    <MenuItem x:Name="MenuItem_File_AllScenes" Header="{x:Static resx:Menu.File_AllScenes}">
+                    <MenuItem x:Name="MenuItem_File_AllScenes" Click="MenuItem_File_AllScenes_Click" Header="{x:Static resx:Menu.File_AllScenes}">
                     </MenuItem>
-                    <MenuItem x:Name="MenuItem_File_Import" Header="{x:Static resx:Menu.File_Import}"/>
-                    <MenuItem x:Name="MenuItem_File_Export" Header="{x:Static resx:Menu.File_Export}"/>
-                    <MenuItem x:Name="MenuItem_File_Quit" Header="{x:Static resx:Menu.File_Quit}" InputGestureText="Ctrl+Q">
+                    <MenuItem x:Name="MenuItem_File_Import" Click="MenuItem_File_Import_Click" Header="{x:Static resx:Menu.File_Import}"/>
+                    <MenuItem x:Name="MenuItem_File_Export" Click="MenuItem_File_Export_Click" Header="{x:Static resx:Menu.File_Export}"/>
+                    <MenuItem x:Name="MenuItem_File_Quit" Click="MenuItem_File_Quit_Click" Header="{x:Static resx:Menu.File_Quit}" InputGestureText="Ctrl+Q">
                         <MenuItem.Icon>
                             <materialDesign:PackIcon Kind="ExitToApp" />
                         </MenuItem.Icon>
                     </MenuItem>
+                    <MenuItem x:Name="MenuItem_File_Restart" Click="MenuItem_File_Restart_Click" Header="{x:Static resx:Menu.File_RestartApp}">
+                        <MenuItem.Icon>
+                            <materialDesign:PackIcon Kind="Refresh" />
+                        </MenuItem.Icon>
+                    </MenuItem>
                 </MenuItem>
                 <MenuItem x:Name="MenuItem_Tools" Header="{x:Static resx:Menu.Tools}">
-                    <MenuItem x:Name="MenuItem_Tools_Preferences" Header="{x:Static resx:Menu.Tools_Preferences}" InputGestureText="Ctrl+P"></MenuItem>
+                    <MenuItem x:Name="MenuItem_Tools_Preferences" Click="MenuItem_Tools_Preferences_Click" Header="{x:Static resx:Menu.Tools_Preferences}" InputGestureText="Ctrl+P"></MenuItem>
                     <MenuItem x:Name="MenuItem_Tools_Player" Header="{x:Static resx:Menu.Tools_Player}">
-                        <CheckBox x:Name="SkeletonLayerCheckbox" Content="{x:Static resx:Menu.Tools_Player_SkeletonLayerCheckbox}"/>
-                        <CheckBox x:Name="ColorLayerCheckbox" Content="{x:Static resx:Menu.Tools_Player_ColorLayerCheckbox}" />
+                        <CheckBox x:Name="SkeletonLayerCheckbox" Checked="SkeletonLayerCheckbox_Checked" Unchecked="SkeletonLayerCheckbox_Unchecked" Content="{x:Static resx:Menu.Tools_Player_SkeletonLayerCheckbox}"/>
+                        <CheckBox x:Name="ColorLayerCheckbox" Checked="ColorLayerCheckbox_Checked" Unchecked="ColorLayerCheckbox_Unchecked" Content="{x:Static resx:Menu.Tools_Player_ColorLayerCheckbox}" />
                     </MenuItem>
-                    <MenuItem x:Name="MenuItem_Tools_DB" Header="{x:Static resx:Menu.Tools_DataBase}" InputGestureText="Ctrl+D"></MenuItem>
+                    <MenuItem x:Name="MenuItem_Tools_DB" Click="MenuItem_Tools_DB_Click" Header="{x:Static resx:Menu.Tools_DataBase}" InputGestureText="Ctrl+D"></MenuItem>
                     <Separator />
                     <MenuItem x:Name="MenuItems_Tools_Sensors" Header="{x:Static resx:Menu.Tools_SceneSensors}">
                     </MenuItem>
@@ -58,16 +65,16 @@
                     <MenuItem x:Name="MenuItems_Tools_General" Header="{x:Static resx:Menu.Tools_General}"></MenuItem>
                 </MenuItem>
                 <MenuItem x:Name="MenuItem_Scene" Header="{x:Static resx:Menu.Scene}">
-                    <MenuItem x:Name="MenuItem_Scene_Configure" Header="{x:Static resx:Menu.Scene_Configure}" InputGestureText="Ctrl+C"></MenuItem>
-                    <MenuItem x:Name="MenuItem_Scene_AddPerson" Header="{x:Static resx:Menu.Scene_AddPerson}"></MenuItem>
-                    <MenuItem x:Name="MenuItem_Scene_Persons" Header="{x:Static resx:Menu.Scene_AllPersons}"></MenuItem>
+                    <MenuItem x:Name="MenuItem_Scene_Configure" Click="MenuItem_Scene_Configure_Click" Header="{x:Static resx:Menu.Scene_Configure}" InputGestureText="Ctrl+C"></MenuItem>
+                    <MenuItem x:Name="MenuItem_Scene_AddPerson" Click="MenuItem_Scene_AddPerson_Click" Header="{x:Static resx:Menu.Scene_AddPerson}"></MenuItem>
+                    <MenuItem x:Name="MenuItem_Scene_Persons" Click="MenuItem_Scene_Persons_Click" Header="{x:Static resx:Menu.Scene_AllPersons}"></MenuItem>
                     <MenuItem x:Name="MenuItem_Scene_PersonsInScene" Header="{x:Static resx:Menu.Scene_PersonsInScene}"></MenuItem>
                 </MenuItem>
                 <MenuItem x:Name="MenuItem_Help" Header="{x:Static resx:Menu.Help}">
-                    <MenuItem x:Name="MenuItem_Help_Manual" Header="{x:Static resx:Menu.Help_Manual}" InputGestureText="Ctrl+H"></MenuItem>
-                    <MenuItem x:Name="MenuItem_Help_DevDoc" Header="{x:Static resx:Menu.Help_DevDocumentation}"></MenuItem>
+                    <MenuItem x:Name="MenuItem_Help_Manual" Click="MenuItem_Help_Manual_Click" Header="{x:Static resx:Menu.Help_Manual}"></MenuItem>
+                    <MenuItem x:Name="MenuItem_Help_DevDoc" Click="MenuItem_Help_DevDoc_Click" Header="{x:Static resx:Menu.Help_DevDocumentation}"></MenuItem>
                     <Separator />
-                    <MenuItem x:Name="MenuItem_Help_AboutUs" Header="{x:Static resx:Menu.Help_AboutUs}"></MenuItem>
+                    <MenuItem x:Name="MenuItem_Help_AboutUs" Click="MenuItem_Help_AboutUs_Click" Header="{x:Static resx:Menu.Help_AboutUs}"></MenuItem>
                 </MenuItem>
             </Menu>
         </DockPanel>
@@ -83,15 +90,15 @@
                     <Rectangle Fill="Black" Grid.Row="0" />
                     <Image x:Name="Player_ImageControl_Layer2"  Grid.Row="0" Grid.Column="0"/>
                     <Image x:Name="Player_ImageControl_Layer1"  Grid.Row="0" Grid.Column="0"/>
-                    <Slider x:Name="Player_LocationSlider" Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" Minimum="1" Maximum="100" />
+                    <Slider x:Name="Player_LocationSlider" ValueChanged="LocationSlider_ValueChanged" Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" Minimum="1" Maximum="100" />
                     <StackPanel Grid.Row="2" Orientation="Horizontal">
-                        <Button x:Name="Player_RecordButton" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3,0,3,0" Width="Auto">
+                        <Button x:Name="Player_RecordButton" Click="RecordButton_Click" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3,0,3,0" Width="Auto">
                             <materialDesign:PackIcon x:Name="Player_RecordButton_Icon" Kind="Record" />
                         </Button>
-                        <Button x:Name="Player_StopButton" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3,0,3,0" Width="Auto">
+                        <Button x:Name="Player_StopButton" Click="StopButton_Click" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3,0,3,0" Width="Auto">
                             <materialDesign:PackIcon Kind="Stop" />
                         </Button>
-                        <Button x:Name="Player_PlayButton" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3,0,3,0" Width="Auto">
+                        <Button x:Name="Player_PlayButton" Click="PlayPauseButton_Click" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3,0,3,0" Width="Auto">
                             <materialDesign:PackIcon x:Name="Player_PlayButton_Icon" Kind="Play" />
                         </Button>
                         <Label VerticalAlignment="Center" x:Name="Player_ActualTimeLabel" Content="--:--:--"></Label>

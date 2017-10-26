@@ -350,6 +350,15 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Train.
+        /// </summary>
+        public static string Train {
+            get {
+                return ResourceManager.GetString("Train", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a File selector.
         /// </summary>
         public static string TrainerFileSelectorTitle {
@@ -373,6 +382,15 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.Properties {
         public static string Type {
             get {
                 return ResourceManager.GetString("Type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Use internal data.
+        /// </summary>
+        public static string UseInternalData {
+            get {
+                return ResourceManager.GetString("UseInternalData", resourceCulture);
             }
         }
         

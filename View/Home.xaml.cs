@@ -88,41 +88,9 @@ namespace cl.uv.leikelen.View
             //Initialize player timer
             _playTimer = new DispatcherTimer();
             _playTimer.Tick += _playTimer_Tick;
-            _recordTimer.Interval = new TimeSpan(0, 0, 0, 1, 0); //1 second
+            _playTimer.Interval = new TimeSpan(0, 0, 0, 1, 0); //1 second
 
             _playerController.Finished += PlayerFinished;
-
-            //File MenuItems
-            MenuItem_File_NewScene.Click += File_NewScene_Click;
-            MenuItem_File_LoadTestScene.Click += MenuItem_File_LoadTestScene_Click;
-            MenuItem_File_Import.Click += MenuItem_File_Import_Click;
-            MenuItem_File_Export.Click += MenuItem_File_Export_Click;
-            MenuItem_File_Save.Click += MenuItem_File_Save_Click;
-            MenuItem_File_AllScenes.Click += MenuItem_File_AllScenes_Click;
-            MenuItem_File_Quit.Click += MenuItem_File_Quit_Click;
-
-            //Tools MenuItems
-            MenuItem_Tools_Preferences.Click += MenuItem_Tools_Preferences_Click;
-            MenuItem_Tools_DB.Click += MenuItem_Tools_DB_Click;
-
-            //Scene MenuItems
-            MenuItem_Scene_Configure.Click += MenuItem_Scene_Configure_Click;
-            MenuItem_Scene_AddPerson.Click += MenuItem_Scene_AddPerson_Click;
-            MenuItem_Scene_Persons.Click += MenuItem_Scene_Persons_Click;
-
-            //Help MenuItems
-            MenuItem_Help_DevDoc.Click += MenuItem_Help_DevDoc_Click;
-            MenuItem_Help_AboutUs.Click += MenuItem_Help_AboutUs_Click;
-
-            //Window related events
-            Closed += Home_Closed;
-            Closing += Home_Closing;
-
-            //Player related events
-            Player_PlayButton.Click += PlayPauseButton_Click;
-            Player_StopButton.Click += StopButton_Click;
-            Player_RecordButton.Click += RecordButton_Click;
-            Player_LocationSlider.ValueChanged += LocationSlider_ValueChanged;
             
             InputLoader.Instance.VideoHandler.ColorImageArrived += VideoViewer_colorImageArrived;
             InputLoader.Instance.VideoHandler.SkeletonImageArrived += VideoViewer_skeletonImageArrived;
@@ -144,13 +112,7 @@ namespace cl.uv.leikelen.View
 
             GeneralLoader.GeneralModulesHasReset += RefillGeneralModuleTabs;
             ProcessingLoader.ProcessingModulesHasReset += RefillProcessingModuleTabs;
-
-            SkeletonLayerCheckbox.Checked += SkeletonLayerCheckbox_Checked;
-            SkeletonLayerCheckbox.Unchecked += SkeletonLayerCheckbox_Unchecked;
-
-            ColorLayerCheckbox.Checked += ColorLayerCheckbox_Checked;
-            ColorLayerCheckbox.Unchecked += ColorLayerCheckbox_Unchecked;
-
+            
             SkeletonLayerCheckbox.IsChecked = true;
             ColorLayerCheckbox.IsChecked = true;
 
@@ -160,6 +122,8 @@ namespace cl.uv.leikelen.View
             FillMenuProccessingModules();
             FillMenuGeneralModules();
         }
+
+        
 
         #region Tabs
         private void ResetTabs()
@@ -537,6 +501,25 @@ namespace cl.uv.leikelen.View
         {
             Close();
         }
+
+        private void MenuItem_File_Restart_Click(object sender, RoutedEventArgs e)
+        {
+            var result = MessageBox.Show(Properties.GUI.SureRestartApp,
+                Properties.GUI.Confirmation, 
+                MessageBoxButton.OKCancel,
+                MessageBoxImage.Question);
+            if(result== MessageBoxResult.OK)
+            {
+                // Get file path of current process 
+                var filePath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+                //var filePath = Application.ExecutablePath;  // for WinForms
+
+                // Start program
+                Process.Start(filePath);
+
+                Process.GetCurrentProcess().Kill();
+            }
+        }
         #endregion
 
         #region Tools MenuItems
@@ -585,11 +568,35 @@ namespace cl.uv.leikelen.View
             var aboutWin = new AboutUs();
             aboutWin.Show();
         }
-
-
+        
         private void MenuItem_Help_DevDoc_Click(object sender, RoutedEventArgs e)
         {
-            Process.Start(@"documentation\index.html");
+            try
+            {
+                Process.Start(@"documentation\index.html");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Properties.Error.ErrorOcurred + "\n" + ex.Message,
+                    Properties.Error.ErrorOcurredTitle,
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+            }
+        }
+
+        private void MenuItem_Help_Manual_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Process.Start(@"documentation\user_manual.pdf");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Properties.Error.ErrorOcurred + "\n" + ex.Message, 
+                    Properties.Error.ErrorOcurredTitle, 
+                    MessageBoxButton.OK, 
+                    MessageBoxImage.Error);
+            }
         }
         #endregion
 
@@ -721,7 +728,7 @@ namespace cl.uv.leikelen.View
 
         private void LocationSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            if(_playerState != PlayerState.Record)
+            if(!ReferenceEquals(null, SceneInUse.Instance.Scene) && _playerState != PlayerState.Record)
             {
                 TimeSpan newTime = new TimeSpan(SceneInUse.Instance.Scene.Duration.Ticks * (long)(e.NewValue * 1000/1000));
                 _playerController.MoveTo(newTime);
@@ -916,6 +923,8 @@ namespace cl.uv.leikelen.View
                 MenuItems_Tools_PersonSensors.Items.Add(personItem);
         }
         #endregion
+
+        
     }
 
     public enum PlayerState

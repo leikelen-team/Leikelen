@@ -465,4 +465,7 @@
   <data name="ActualSceneWillLose" xml:space="preserve">
     <value>Si aceptas, podrías perder todo lo que no has guardado en la escena actual</value>
   </data>
+  <data name="SureRestartApp" xml:space="preserve">
+    <value>¿Está seguro de reiniciar la aplicación?</value>
+  </data>
 </root>

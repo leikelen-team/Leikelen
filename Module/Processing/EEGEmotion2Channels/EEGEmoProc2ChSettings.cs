@@ -13,7 +13,7 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels
         public readonly Option<int> m = new Option<int>("m", 2);
         public readonly Option<double> r = new Option<double>("r", 0.15);
         public readonly Option<int> secs = new Option<int>("Seconds", 9);
-        public readonly Option<int> N = new Option<int>("N", 1152);
+        public readonly Option<int> N = new Option<int>("N", 128);
         public readonly Option<int> shift = new Option<int>("shift", 1);
 
         public readonly Option<int> TagToTrain = new Option<int>("TagToTrain", -1);

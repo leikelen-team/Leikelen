@@ -5,3 +5,14 @@ bin/*
 packages/*
 
 TestResults/*
+
+Leikelen.Test.Unit/obj/*
+Leikelen.Test.Unit/bin/*
+
+KinectEx/obj/*
+KinectEx/bin/*
+
+DevDocumentation/obj/*
+
+EmoTrainingData/obj/*
+EmoTrainingData/bin/*

@@ -952,6 +952,15 @@ namespace cl.uv.leikelen.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Are you sure you want to restart the app?.
+        /// </summary>
+        public static string SureRestartApp {
+            get {
+                return ResourceManager.GetString("SureRestartApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Average duration.
         /// </summary>
         public static string TabSceneColumnAvgDuration {

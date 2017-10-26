@@ -43,21 +43,48 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing
                 /* compare to all following windows > i */
                 for (j = i + shift; j < numSamples - wlen * shift - shift; j += shift)
                 {
-                    m = 0; /* maximum so far */
-                    for (k = 0; k < wlen; k++)
-                        /* get max cheb. distance */
-                        m = Math.Max(m, DoubleAbs(data[i + k * shift] - data[j + k * shift]));
-                    /* first case, distance lower in first wlen positions */
-                    if (m < r) B++;
-                    /* Second case, distance lower if we add the next element */
-                    if (Math.Max(m, DoubleAbs(data[i + wlen * shift] - data[j + wlen * shift])) < r) A++;
+                    try
+                    {
+                        m = 0; /* maximum so far */
+                        for (k = 0; k < wlen; k++)
+                            /* get max cheb. distance */
+
+                            m = Math.Max(m, DoubleAbs(data[i + k * shift] - data[j + k * shift]));
+                        /* first case, distance lower in first wlen positions */
+                        if (1 / m < r)
+                        {
+                            B++;
+                        }
+                        /* Second case, distance lower if we add the next element */
+                        else if (1 / Math.Max(m, DoubleAbs(data[i + wlen * shift] - data[j + wlen * shift])) < r) A++;
+                    }
+                    catch(DivideByZeroException dbze)
+                    {
+                        Console.WriteLine("--------------------------------------------------------------------");
+                        Console.WriteLine("No dividió");
+                        Console.WriteLine("--------------------------------------------------------------------");
+                    }
+                    
                 }
             }
             /* return -log A/B */
-            if (A > 0 && B > 0)
-                return (-1 * Math.Log(((double)A) / ((double)B)));
+            Console.WriteLine($"A es: {A}, B es: {B}");
+            double B2 = B;
+            if (B2.Equals(A))
+            {
+                Console.WriteLine("sumó a B");
+                B2 += 1;
+            }
+            if (A > 0 && B2 > 0)
+            {
+                return (-1 * Math.Log(((double)A) / ((double)B2)));
+            }
             else
+            {
+                Console.WriteLine("Es ceroooooooooooooooooooooooooooooo");
                 return 0;
+            }
+                
         }
 
         public static double DoubleAbs(double value)

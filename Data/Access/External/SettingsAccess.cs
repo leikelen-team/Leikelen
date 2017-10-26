@@ -22,11 +22,7 @@ namespace cl.uv.leikelen.Data.Access.External
 
         public string GetModalDirectory(string modalTypeName)
         {
-            if(new ModalAccess().Exists(modalTypeName))
-            {
-                return Path.Combine(GeneralSettings.Instance.DataDirectory.Value, Path.Combine("modal/", modalTypeName));
-            }
-            return null;
+            return Path.Combine(GeneralSettings.Instance.DataDirectory.Value, Path.Combine("modal/", modalTypeName));
         }
 
         public string GetDataPersonsDirectory()

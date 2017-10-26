@@ -217,4 +217,7 @@
   <data name="Tools_PersonSensors" xml:space="preserve">
     <value>Sensores de personas</value>
   </data>
+  <data name="File_RestartApp" xml:space="preserve">
+    <value>Reiniciar aplicación</value>
+  </data>
 </root>

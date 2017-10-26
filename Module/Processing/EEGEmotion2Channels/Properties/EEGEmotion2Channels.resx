@@ -205,4 +205,10 @@
   <data name="shift" xml:space="preserve">
     <value>shift</value>
   </data>
+  <data name="Train" xml:space="preserve">
+    <value>Train</value>
+  </data>
+  <data name="UseInternalData" xml:space="preserve">
+    <value>Use internal data</value>
+  </data>
 </root>

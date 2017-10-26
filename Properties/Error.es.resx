@@ -118,4 +118,10 @@
   <data name="FileAlreadyExists" xml:space="preserve">
     <value>El archivo ya existe, desea usted reemplazarlo?</value>
   </data>
+  <data name="ErrorOcurred" xml:space="preserve">
+    <value>Ha ocurrido un error:</value>
+  </data>
+  <data name="ErrorOcurredTitle" xml:space="preserve">
+    <value>Error</value>
+  </data>
 </root>
