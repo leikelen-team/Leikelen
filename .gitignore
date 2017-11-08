@@ -6,13 +6,12 @@ packages/*
 
 TestResults/*
 
-Leikelen.Test.Unit/obj/*
-Leikelen.Test.Unit/bin/*
+Leikelen.Test/obj/*
+Leikelen.Test/bin/*
 
 KinectEx/obj/*
 KinectEx/bin/*
 
 DevDocumentation/obj/*
 
-EmoTrainingData/obj/*
-EmoTrainingData/bin/*
+bin_files/anyPlatform/documentation/*

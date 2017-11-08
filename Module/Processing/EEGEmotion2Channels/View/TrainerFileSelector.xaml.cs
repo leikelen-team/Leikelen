@@ -254,6 +254,7 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View
 
                         while (rdr.Read())
                         {
+                            if (i > 10000) break;
                             if (secStart == 0)
                             {
                                 secStart = rdr.GetInt32(1);

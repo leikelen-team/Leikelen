@@ -24,7 +24,7 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels
         private static FilterButterworth _highFilter;
         private static MulticlassSupportVectorMachine<Gaussian> _svm;
 
-        private static Random _xrand = new Random(DateTime.Now.Second);
+        private static Random _xrand;// = new Random(DateTime.Now.Second);
 
         public static TagType Classify(List<double[]> signalsList)
         {
@@ -37,7 +37,7 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels
                     _svm = Serializer.Load<MulticlassSupportVectorMachine<Gaussian>>(path: internalPath);
                 }
 
-                var featureVector = PreProcess(signalsList, 
+                var featureVector = PreProcess(signalsList,
                     0.7,
                     EEGEmoProc2ChSettings.Instance.m.Value,
                     EEGEmoProc2ChSettings.Instance.r.Value,
@@ -54,8 +54,19 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels
             }
         }
 
+        public struct Star2
+        {
+            public MulticlassSupportVectorMachine<Gaussian> svm;
+            public double error;
+            public double Complexity;
+            public double Gamma;
+            public List<double[]> inputsList;
+        }
+
         public static MulticlassSupportVectorMachine<Gaussian> Train(Dictionary<TagType, List<List<double[]>>> allsignalsList)
         {
+            int seed = DateTime.Now.Second;
+            _xrand = new Random(seed);
             Console.WriteLine("a entrenar se ha dicho");
             List<double[]> inputsList = new List<double[]>();
             List<int> outputsList = new List<int>();
@@ -65,14 +76,14 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels
                 int i = 0;
                 foreach (var signalList in allsignalsList[tag])
                 {
-                    double[] featureVector = PreProcess(signalList, 
-                        0.99, 
-                        EEGEmoProc2ChSettings.Instance.m.Value, 
+                    double[] featureVector = PreProcess(signalList,
+                        0.99,
+                        EEGEmoProc2ChSettings.Instance.m.Value,
                         EEGEmoProc2ChSettings.Instance.r.Value,
                         EEGEmoProc2ChSettings.Instance.N.Value,
                         1,
                         0).ToArray();
-                    
+
                     inputsList.Add(featureVector);
                     outputsList.Add(tag.GetHashCode());
                     i = i + 1;
@@ -81,53 +92,142 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels
             }
             Console.WriteLine("procesado todo, ahora a buscar");
             // Instantiate a new Grid Search algorithm for Kernel Support Vector Machines
-            int iterationsMax = 5;
+            int iterationsMax = 7;
             double minError = 0.1;
-            double maxLearningRate = 0.5;
+            int maxPopulation = 3;
             MulticlassSupportVectorMachine<Gaussian> svm = null;// Training(inputsList, outputsList).BestModel;
-            GridSearchResult<MulticlassSupportVectorMachine<Gaussian>, double[], int> result = null;// Training(inputsList, outputsList);
+            Tuple<MulticlassSupportVectorMachine<Gaussian>, double, double, double> result = null;// Training(inputsList, outputsList);
             //svm = result.BestModel;
+            string internalDirectory = _dataAccessFacade.GetGeneralSettings().GetModalDirectory("Emotion");
+            var file_all_models = File.AppendText(Path.Combine(internalDirectory, "all_models.txt"));
+            var file_all_stars = File.AppendText(Path.Combine(internalDirectory, "all_stars_all_its.txt"));
+            result = Training(inputsList, outputsList);
+            Star2[] stars = new Star2[maxPopulation];
+            Star2 best = new Star2()
+            {
+                svm = result.Item1.DeepClone(),
+                error = result.Item2,
+                Complexity = result.Item3,
+                Gamma = result.Item4,
+                inputsList = inputsList
+
+            };
+            //inicialization
+            for (int iStar = 0; iStar < maxPopulation; iStar++)
+            {
+                stars[iStar] = new Star2()
+                {
+                    svm = result.Item1.DeepClone(),
+                    error = result.Item2,
+                    Complexity = result.Item3,
+                    Gamma = result.Item4,
+                    inputsList = inputsList
+
+                };
+                try
+                {
+                    for (int iInput = 0; iInput < stars[iStar].inputsList.Count; iInput++)
+                    {
+                        for (int jinput = 0; jinput < stars[iStar].inputsList[iInput].Length; jinput++)
+                        {
+                            stars[iStar].inputsList[iInput][jinput] = stars[iStar].inputsList[iInput][jinput]
+                                + ((_xrand.NextDouble() * -1) * result.Item2 * stars[iStar].inputsList[iInput][jinput]);
+                        }
+
+                    }
+                    var res = Training(stars[iStar].inputsList, outputsList);
+                    stars[iStar].svm = res.Item1;
+                    stars[iStar].error = res.Item2;
+                    stars[iStar].Complexity = res.Item3;
+                    stars[iStar].Gamma = res.Item4;
+                }catch(Exception ex)
+                {
+                    Console.WriteLine("Error al inicializar estrella "+iStar+": "+ex.Message);
+                }
+                
+            }
+            foreach (var star in stars)
+            {
+                if (star.error < best.error)
+                {
+                    best = star;
+                }
+            }
+            //cycle
             for (int i = 0; i < iterationsMax; i++)
             {
-                result = Training(inputsList, outputsList);
-                if(result.BestModelError < minError)
+                
+                file_all_models.WriteLine($"Model: {i}, Seed: {seed}, Error: {best.error}, Gamma: {best.Gamma}, C: {best.Complexity}\n inputs: {best.inputsList.ToJsonString(true)}");
+                file_all_models.Flush();
+                
+                if (best.error < minError)
                 {
-                    svm = result.BestModel;
-                    WriteFiles(result, inputsList, outputsList);
+                    svm = best.svm;
+                    WriteFiles(best.error, best.Gamma, best.Complexity, best.inputsList, outputsList, best.svm);
                     return svm;
                 }
-                for(int iInput = 0; iInput<inputsList.Count; iInput++)
+                //each star
+                for(int iStar = 0; iStar < stars.Length; iStar++)
                 {
-                    for(int jinput = 0; jinput < inputsList[iInput].Length; jinput++)
+                    Star2 prevStar = stars[iStar];
+                    try
                     {
-                        inputsList[iInput][jinput] = inputsList[iInput][jinput] 
-                            + ((_xrand.NextDouble() * maxLearningRate)*-1 * result.BestModelError);
+                        for (int iInput = 0; iInput < stars[iStar].inputsList.Count; iInput++)
+                        {
+                            for (int jinput = 0; jinput < stars[iStar].inputsList[iInput].Length; jinput++)
+                            {
+                                stars[iStar].inputsList[iInput][jinput] = stars[iStar].inputsList[iInput][jinput]
+                                    + _xrand.NextDouble()
+                                    * (best.inputsList[iInput][jinput] - stars[iStar].inputsList[iInput][jinput]);
+                            }
+                        }
+                        var res = Training(stars[iStar].inputsList, outputsList);
+                        stars[iStar].svm = res.Item1;
+                        stars[iStar].error = res.Item2;
+                        stars[iStar].Complexity = res.Item3;
+                        stars[iStar].Gamma = res.Item4;
+                        file_all_stars.WriteLine($"Model: {i}, Seed: {seed}, Error: {stars[iStar].error}, Gamma: {stars[iStar].Gamma}, C: {stars[iStar].Complexity}\n inputs: {stars[iStar].inputsList.ToJsonString(true)}");
+                        file_all_stars.Flush();
+                    }
+                    catch(Exception ex)
+                    {
+                        Console.WriteLine("Error en it "+i+" al cambiar estrella " + iStar + ": " + ex.Message);
+                        stars[iStar] = prevStar;
                     }
                     
+
                 }
-                svm = result.BestModel;
+                foreach (var star in stars)
+                {
+                    if (star.error < best.error)
+                    {
+                        best = star;
+                    }
+                }
+                svm = best.svm;
             }
-            WriteFiles(result, inputsList, outputsList);
+            file_all_models.Close();
+            file_all_stars.Close();
+            WriteFiles(result.Item2, result.Item3, result.Item4, inputsList, outputsList, result.Item1);
             return svm;
         }
 
-        private static GridSearchResult<MulticlassSupportVectorMachine<Gaussian>, double[], int> Training(List<double[]> inputsList, List<int> outputsList)
+        private static Tuple<MulticlassSupportVectorMachine<Gaussian>, double, double, double> Training(List<double[]> inputsList, List<int> outputsList)
         {
-            var gridsearch = new GridSearch<MulticlassSupportVectorMachine<Gaussian>, double[], int>()
-            {
+            var gridsearch = GridSearch<double[], int>.CrossValidate(
                 // Here we can specify the range of the parameters to be included in the search
-                ParameterRanges = new GridSearchRangeCollection()
+                ranges: new
                 {
-                    new GridSearchRange("sigma", new double[] { Math.Pow(2,-10), Math.Pow(2, -8),
-                        Math.Pow(2, -6), Math.Pow(2,-4), Math.Pow(2,-2), Math.Pow(2,0), Math.Pow(2,2),
-                        Math.Pow(2,4), Math.Pow(2,6), Math.Pow(2,8), Math.Pow(2,10)} ),
-                    new GridSearchRange("constant",   new double[] { Math.Pow(2,-10), Math.Pow(2, -8),
-                        Math.Pow(2, -6), Math.Pow(2,-4), Math.Pow(2,-2), Math.Pow(2,0), Math.Pow(2,2),
-                        Math.Pow(2,4), Math.Pow(2,6), Math.Pow(2,8), Math.Pow(2,10) } )
+                    Complexity = GridSearch.Values( Math.Pow(2, -10), Math.Pow(2, -8),
+                        Math.Pow(2, -6), Math.Pow(2, -4), Math.Pow(2, -2), Math.Pow(2, 0), Math.Pow(2, 2),
+                        Math.Pow(2, 4), Math.Pow(2, 6), Math.Pow(2, 8), Math.Pow(2, 10)),
+                    Gamma = GridSearch.Values(Math.Pow(2, -10), Math.Pow(2, -8),
+                        Math.Pow(2, -6), Math.Pow(2, -4), Math.Pow(2, -2), Math.Pow(2, 0), Math.Pow(2, 2),
+                        Math.Pow(2, 4), Math.Pow(2, 6), Math.Pow(2, 8), Math.Pow(2, 10))
                 },
 
                 // Indicate how learning algorithms for the models should be created
-                Learner = (p) => new MulticlassSupportVectorLearning<Gaussian>()
+                learner: (p, ss) => new MulticlassSupportVectorLearning<Gaussian>()
                 {
                     // Configure the learning algorithm to use SMO to train the
                     //  underlying SVMs in each of the binary class subproblems.
@@ -135,51 +235,62 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels
                     {
                         // Estimate a suitable guess for the Gaussian kernel's parameters.
                         // This estimate can serve as a starting point for a grid search.
-                        Complexity = p["constant"],
-                        Kernel = new Gaussian(p["sigma"])
+                        //UseComplexityHeuristic = true,
+                        //UseKernelEstimation = true
+                        Complexity = p.Complexity,
+                        Kernel = new Gaussian(p.Gamma)
                     }
                 },
+                // Define how the model should be learned, if needed
+                fit: (teacher, x, y, w) => teacher.Learn(x, y, w),
 
                 // Define how the performance of the models should be measured
-                Loss = (actual, expected, m) => new HammingLoss(expected).Loss(actual)
-            };
+                loss: (actual, expected, m) => new HammingLoss(expected).Loss(actual),
+                folds: 10
+            );
+
             gridsearch.ParallelOptions.MaxDegreeOfParallelism = 1;
 
             Console.WriteLine("y nos ponemos a aprender");
             // Search for the best model parameters
             var result = gridsearch.Learn(inputsList.ToArray(), outputsList.ToArray());
+
             
-            return result;
+            return new Tuple<MulticlassSupportVectorMachine<Gaussian>, double, double, double>(CreateModel( inputsList, outputsList, result.BestParameters.Complexity, result.BestParameters.Gamma), result.BestModelError, result.BestParameters.Gamma, result.BestParameters.Complexity);
         }
 
-        private static void WriteFiles(GridSearchResult<MulticlassSupportVectorMachine<Gaussian>, double[], int> result,
-            List<double[]> inputsList, List<int> outputsList)
+        private static MulticlassSupportVectorMachine<Gaussian> CreateModel(List<double[]> inputsList,
+            List<int> outputsList, double complexity, double gamma)
+        {
+            var teacher =  new MulticlassSupportVectorLearning<Gaussian>()
+            {
+                // Configure the learning algorithm to use SMO to train the
+                //  underlying SVMs in each of the binary class subproblems.
+                Learner = (param) => new SequentialMinimalOptimization<Gaussian>()
+                {
+                    // Estimate a suitable guess for the Gaussian kernel's parameters.
+                    // This estimate can serve as a starting point for a grid search.
+
+                    Complexity = complexity,
+                    Kernel = new Gaussian(gamma)
+                }
+            };
+            return teacher.Learn(inputsList.ToArray(), outputsList.ToArray());
+        }
+
+        private static void WriteFiles(double error, double gamma, double complexity,
+            List<double[]> inputsList, List<int> outputsList, MulticlassSupportVectorMachine<Gaussian> svm)
         {
             Console.WriteLine("aprendido");
             // Get the best SVM found during the parameter search
-            MulticlassSupportVectorMachine<Gaussian> svm = result.BestModel;
             _svm = svm;
             Console.WriteLine("svm obtenido!");
             string internalDirectory = _dataAccessFacade.GetGeneralSettings().GetModalDirectory("Emotion");
+            
 
-            // Get an estimate for its error:
-            double bestError = result.BestModelError;
-
-            // Get the best values found for the model parameters:
-            double bestSigma = result.BestParameters["sigma"].Value;
-            double bestConstant = result.BestParameters["constant"].Value;
-
-            Console.WriteLine($"error: {bestError}, Sigma: {bestSigma}, C: {bestConstant}");
+            Console.WriteLine($"error: {error}, Gamma: {gamma}, C: {complexity}");
             string outInternalPath = Path.Combine(internalDirectory, "result.txt");
             var file_emotrain = File.CreateText(outInternalPath);
-            file_emotrain.WriteLine($"error: {result.BestModelError}\n" +
-                $"Sigma: {bestSigma}\n" +
-                $"C: {bestConstant}\n" +
-                $"Count Models: {result.Count}\n" +
-                $"Index: {result.BestModelIndex}\n" +
-                $"Inputs: {result.NumberOfInputs}\n" +
-                $"Outputs: {result.NumberOfOutputs}\n" +
-                $"All errors: {result.Errors.ToJsonString()}");
             file_emotrain.Flush();
             file_emotrain.Close();
 
