@@ -22,17 +22,21 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition MinWidth="220" Width="1.5*" />
-            <ColumnDefinition />
+            <ColumnDefinition Width="0.7*"/>
+            <ColumnDefinition MinWidth="20" Width="0.3*"/>
         </Grid.ColumnDefinitions>
         
         <Label VerticalAlignment="Bottom" Content="{x:Static resx:GUI.DataDirectory}" Grid.Row="0" Grid.Column="0" />
-        <TextBox x:Name="DataDirectoryTxt" Grid.Row="0" Grid.Column="1"></TextBox>
+        <TextBox x:Name="DataDirectoryTxt" Grid.Row="0" Grid.Column="1" IsEnabled="False"></TextBox>
+        <Button x:Name="DataDirectoryBtn" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Right" Content="..." Click="DataDirectoryBtn_Click" />
 
         <Label VerticalAlignment="Bottom" Content="{x:Static resx:GUI.TmpDirectory}" Grid.Row="1" Grid.Column="0" />
-        <TextBox x:Name="TmpDirectoryTxt" Grid.Row="1" Grid.Column="1"></TextBox>
+        <TextBox x:Name="TmpDirectoryTxt" Grid.Row="1" Grid.Column="1" IsEnabled="False"></TextBox>
+        <Button x:Name="TmpDirectoryBtn" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right" Content="..." Click="TmpDirectoryBtn_Click"/>
         
         <Label VerticalAlignment="Bottom" Content="{x:Static resx:GUI.CurrentScene}" Grid.Row="2" Grid.Column="0" />
-        <TextBox x:Name="TmpSceneDirectoryTxt" Grid.Row="2" Grid.Column="1"></TextBox>
+        <TextBox x:Name="TmpSceneDirectoryTxt" Grid.Row="2" Grid.Column="1" IsEnabled="False"></TextBox>
+        <Button x:Name="TmpSceneDirectoryBtn" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right" Content="..." Click="TmpSceneDirectoryBtn_Click"/>
 
         <Label VerticalAlignment="Bottom" Content="{x:Static resx:GUI.DefaultMillisecondsThreshold}" Grid.Row="3" Grid.Column="0" />
         <TextBox x:Name="DefaultMillisecondsTxt"

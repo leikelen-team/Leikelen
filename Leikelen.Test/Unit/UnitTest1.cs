@@ -22,25 +22,20 @@ namespace cl.uv.leikelen.test.Unit
             TestScene.LoadFakeScene("sceneTest1");
             TestScene.LoadFakeScene("sceneTest2");
             TestScene.LoadFakeScene("sceneTest3");
-
-            if (!DataAccessFacade.Instance.GetModalAccess().Exists("Emotion"))
-                DataAccessFacade.Instance.GetModalAccess().Add("Emotion", "Affects or feels of a person");
-            if (!DataAccessFacade.Instance.GetSubModalAccess().Exists("Emotion", "LALV"))
-                DataAccessFacade.Instance.GetSubModalAccess().Add("Emotion", "LALV", "Low arousal Low Valence", "emotionmodel.svm");
-            if (!DataAccessFacade.Instance.GetSubModalAccess().Exists("Emotion", "LAHV"))
-                DataAccessFacade.Instance.GetSubModalAccess().Add("Emotion", "LAHV", "Low arousal High Valence", "emotionmodel.svm");
-            if (!DataAccessFacade.Instance.GetSubModalAccess().Exists("Emotion", "HALV"))
-                DataAccessFacade.Instance.GetSubModalAccess().Add("Emotion", "HALV", "High arousal Low Valence", "emotionmodel.svm");
-            if (!DataAccessFacade.Instance.GetSubModalAccess().Exists("Emotion", "HAHV"))
-                DataAccessFacade.Instance.GetSubModalAccess().Add("Emotion", "HAHV", "High arousal High Valence", "emotionmodel.svm");
+            
+            DataAccessFacade.Instance.GetModalAccess().AddIfNotExists("Emotion", "Affects or feels of a person");
+            DataAccessFacade.Instance.GetSubModalAccess().AddIfNotExists("Emotion", "LALV", "Low arousal Low Valence", "emotionmodel.svm");
+            DataAccessFacade.Instance.GetSubModalAccess().AddIfNotExists("Emotion", "LAHV", "Low arousal High Valence", "emotionmodel.svm");
+            DataAccessFacade.Instance.GetSubModalAccess().AddIfNotExists("Emotion", "HALV", "High arousal Low Valence", "emotionmodel.svm");
+            DataAccessFacade.Instance.GetSubModalAccess().AddIfNotExists("Emotion", "HAHV", "High arousal High Valence", "emotionmodel.svm");
         }
 
         [ClassCleanup()]
         public static void Cleanup()
         {
-            if (System.IO.File.Exists("toExportFile.leikelen"))
+            if (System.IO.File.Exists("test/toExportFile.leikelen"))
             {
-                System.IO.File.Delete("toExportFile.leikelen");
+                System.IO.File.Delete("test/toExportFile.leikelen");
             }
             if (System.IO.File.Exists("data/modal/Emotion/emotionmodel.svm"))
             {
@@ -54,14 +49,14 @@ namespace cl.uv.leikelen.test.Unit
         {
             var scenes = DataAccessFacade.Instance.GetSceneAccess().GetAll();
             Scene sc = scenes[0];
-            FileController.Export(false, "toExportFile.leikelen");
-            Assert.IsTrue(System.IO.File.Exists("toExportFile.leikelen"));
+            FileController.Export(false, "test/toExportFile.leikelen");
+            Assert.IsTrue(System.IO.File.Exists("test/toExportFile.leikelen"));
         }
 
         [TestMethod]
         public void UnitImportTest()
         {
-            Assert.IsNotNull(FileController.Import("toImportFile.leikelen"));
+            Assert.IsNotNull(FileController.Import("test/toImportFile.leikelen"));
         }
 
         #region Scene
@@ -183,7 +178,7 @@ namespace cl.uv.leikelen.test.Unit
         [TestMethod]
         public void UnitStartPlayTest()
         {
-            FileController.Import("toImportFile.leikelen");
+            FileController.Import("test/toImportFile.leikelen");
             var pc = new PlayerController();
             pc.Play();
             bool rec = false;
@@ -201,7 +196,7 @@ namespace cl.uv.leikelen.test.Unit
         [TestMethod]
         public void UnitStopPlayTest()
         {
-            FileController.Import("toImportFile.leikelen");
+            FileController.Import("test/toImportFile.leikelen");
             var pc = new PlayerController();
             pc.Play();
             pc.Stop();
@@ -222,7 +217,7 @@ namespace cl.uv.leikelen.test.Unit
         [TestMethod]
         public async Task UnitStartRecordTestAsync()
         {
-            SceneInUse.Instance.Set(FileController.Import("toImportFile.leikelen"));
+            SceneInUse.Instance.Set(FileController.Import("test/toImportFile.leikelen"));
             var rc = new RecorderController();
             await rc.Record();
             bool rec = false;
@@ -240,7 +235,7 @@ namespace cl.uv.leikelen.test.Unit
         [TestMethod]
         public async Task UnitStopRecordTestAsync()
         {
-            SceneInUse.Instance.Set(FileController.Import("toImportFile.leikelen"));
+            SceneInUse.Instance.Set(FileController.Import("test/toImportFile.leikelen"));
             var rc = new RecorderController();
             await rc.Record();
             await rc.Stop();

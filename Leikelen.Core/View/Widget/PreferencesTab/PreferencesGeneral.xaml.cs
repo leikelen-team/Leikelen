@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using cl.uv.leikelen.API.Helper;
 using cl.uv.leikelen.Util;
+using WinForms = System.Windows.Forms;
 
 namespace cl.uv.leikelen.View.Widget.PreferencesTab
 {
@@ -57,6 +58,48 @@ namespace cl.uv.leikelen.View.Widget.PreferencesTab
         private void Int_Pasting(object sender, DataObjectPastingEventArgs e)
         {
             IntegerInput.PastingHandler(sender, e);
+        }
+
+        private void DataDirectoryBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var folderDialog = new WinForms.FolderBrowserDialog
+            {
+                ShowNewFolderButton = true,
+                Description = Properties.GUI.DataDirectory
+            };
+            WinForms.DialogResult result = folderDialog.ShowDialog();
+            if (result.Equals(WinForms.DialogResult.OK))
+            {
+                DataDirectoryTxt.Text = folderDialog.SelectedPath;
+            }
+        }
+
+        private void TmpDirectoryBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var folderDialog = new WinForms.FolderBrowserDialog
+            {
+                ShowNewFolderButton = true,
+                Description = Properties.GUI.TmpDirectory
+            };
+            WinForms.DialogResult result = folderDialog.ShowDialog();
+            if (result.Equals(WinForms.DialogResult.OK))
+            {
+                TmpDirectoryTxt.Text = folderDialog.SelectedPath;
+            }
+        }
+
+        private void TmpSceneDirectoryBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var folderDialog = new WinForms.FolderBrowserDialog
+            {
+                ShowNewFolderButton = true,
+                Description = Properties.GUI.CurrentScene
+            };
+            WinForms.DialogResult result = folderDialog.ShowDialog();
+            if (result.Equals(WinForms.DialogResult.OK))
+            {
+                TmpSceneDirectoryTxt.Text = folderDialog.SelectedPath;
+            }
         }
     }
 }

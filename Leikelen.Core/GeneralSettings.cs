@@ -39,7 +39,7 @@ namespace cl.uv.leikelen
         /// <summary>
         /// The database engine
         /// </summary>
-        public readonly Option<string> Database = new Option<string>("Database", "Memory");
+        public readonly Option<string> Database = new Option<string>("Database", "PostgreSQL");
         /// <summary>
         /// The database hostname
         /// </summary>

@@ -6,6 +6,9 @@ packages/*
 
 TestResults/*
 
+Leikelen.Core/obj/*
+Leikelen.Core/bin/*
+
 Leikelen.Test/obj/*
 Leikelen.Test/bin/*
 
@@ -14,4 +17,4 @@ KinectEx/bin/*
 
 DevDocumentation/obj/*
 
-bin_files/anyPlatform/documentation/*
+Leikelen.Core/bin_files/anyPlatform/documentation/*

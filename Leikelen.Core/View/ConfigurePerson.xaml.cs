@@ -131,19 +131,16 @@ namespace cl.uv.leikelen.View
 
         private void PhotoBtn_Click(object sender, RoutedEventArgs e)
         {
-            var dlg = new OpenFileDialog()
-            {
-                
-            };
+            var dlg = new OpenFileDialog();
             if (dlg.ShowDialog().GetValueOrDefault())
             {
                 string fileName;
-                if (File.Exists(DataAccessFacade.Instance.GetGeneralSettings().GetDataPersonsDirectory() + dlg.SafeFileName))
+                if (File.Exists(System.IO.Path.Combine(DataAccessFacade.Instance.GetGeneralSettings().GetDataPersonsDirectory(), dlg.SafeFileName)))
                 {
                     do
                     {
                         fileName = Util.StringUtil.RandomString(7) + System.IO.Path.GetExtension(dlg.SafeFileName);
-                    } while (File.Exists(DataAccessFacade.Instance.GetGeneralSettings().GetDataPersonsDirectory() + fileName));
+                    } while (File.Exists(System.IO.Path.Combine(DataAccessFacade.Instance.GetGeneralSettings().GetDataPersonsDirectory(), fileName)));
                 }
                 else
                     fileName = dlg.SafeFileName;
