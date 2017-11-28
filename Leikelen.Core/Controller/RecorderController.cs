@@ -12,6 +12,7 @@ namespace cl.uv.leikelen.Controller
     {
         public async Task Stop()
         {
+            SceneInUse.Instance.Scene.Duration = DateTime.Now.Subtract(SceneInUse.Instance.Scene.RecordStartedDateTime);
             SceneInUse.Instance.IsRecording = false;
             foreach (var input in InputLoader.Instance.SceneInputModules)
             {
@@ -29,7 +30,7 @@ namespace cl.uv.leikelen.Controller
             {
                 if (!ReferenceEquals(null, processingModule.FunctionAfterStop()))
                 {
-                    await processingModule.FunctionAfterStop();
+                    processingModule.FunctionAfterStop().Invoke();
                 }
             }
         }

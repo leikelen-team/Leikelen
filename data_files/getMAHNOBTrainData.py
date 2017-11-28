@@ -95,36 +95,36 @@ def process_session(root_dir, filename, files):
 	high_values = ['5', '6', '7', '8', '9']
 	all_values= ['1', '2', '3', '4', '5', '6', '7', '8', '9']
 	if is_integer(session_id):
-		if felt_emo in ['0', '1', '2', '3', '4', '5', '6', '11', '12']:
-			send_to_process(files, root_dir, 'Emotion'+felt_emo, session_id)
-		if felt_control in all_values:
-			send_to_process(files, root_dir, 'Control'+felt_control, session_id)
-		if felt_predictability in all_values:
-			send_to_process(files, root_dir, 'Predictability'+felt_predictability, session_id)
-		if felt_valence in all_values:
-			send_to_process(files, root_dir, 'Valence'+felt_valence, session_id)
-		if felt_arousal in all_values:
-			send_to_process(files, root_dir, 'Arousal'+felt_arousal, session_id)
+		#if felt_emo in ['0', '1', '2', '3', '4', '5', '6', '11', '12']:
+		#	send_to_process(files, root_dir, 'Emotion'+felt_emo, session_id)
+		#if felt_control in all_values:
+		#	send_to_process(files, root_dir, 'Control'+felt_control, session_id)
+		#if felt_predictability in all_values:
+		#	send_to_process(files, root_dir, 'Predictability'+felt_predictability, session_id)
+		#if felt_valence in all_values:
+		#	send_to_process(files, root_dir, 'Valence'+felt_valence, session_id)
+		#if felt_arousal in all_values:
+		#	send_to_process(files, root_dir, 'Arousal'+felt_arousal, session_id)
 			
 		if (felt_arousal in ['1', '2', '3', '4', '5'] and felt_valence in ['1', '2', '3', '4']) or (felt_arousal == '5' and felt_valence == '5'):
 			send_to_process(files, root_dir, 'SegYo-LALV', session_id)
-		if (felt_arousal in low_values) and (felt_valence in low_values):
-			send_to_process(files, root_dir, 'SegmentationPaper-LALV', session_id)
+		#if (felt_arousal in low_values) and (felt_valence in low_values):
+		#	send_to_process(files, root_dir, 'SegmentationPaper-LALV', session_id)
 			#LALV
 		if felt_arousal in ['1', '2', '3', '4'] and felt_valence in ['5', '6', '7', '8', '9']:
 			send_to_process(files, root_dir, 'SegYo-LAHV', session_id)
-		if (felt_arousal in low_values) and (felt_valence in high_values):
-			send_to_process(files, root_dir, 'SegmentationPaper-LAHV', session_id)
+		#if (felt_arousal in low_values) and (felt_valence in high_values):
+		#	send_to_process(files, root_dir, 'SegmentationPaper-LAHV', session_id)
 			#LAHV
 		if felt_arousal in ['6', '7', '8', '9'] and felt_valence in ['1', '2', '3', '4', '5']:
 			send_to_process(files, root_dir, 'SegYo-HALV', session_id)
-		if (felt_arousal in high_values) and (felt_valence in low_values):
-			send_to_process(files, root_dir, 'SegmentationPaper-HALV', session_id)
+		#if (felt_arousal in high_values) and (felt_valence in low_values):
+		#	send_to_process(files, root_dir, 'SegmentationPaper-HALV', session_id)
 			#HALV
 		if felt_arousal in ['5', '6', '7', '8', '9'] and felt_valence in ['6', '7', '8', '9']:
 			send_to_process(files, root_dir, 'SegYo-HAHV', session_id)
-		if (felt_arousal in high_values) and (felt_valence in high_values):
-			send_to_process(files, root_dir, 'SegmentationPaper-HAHV', session_id)
+		#if (felt_arousal in high_values) and (felt_valence in high_values):
+		#	send_to_process(files, root_dir, 'SegmentationPaper-HAHV', session_id)
 			#HAHV
 	#with(open('resumen.tsv', 'a')) as resumenFile:
 	#	if felt_arousal in all_values and felt_valence in all_values:

@@ -38,7 +38,7 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.Distance
             return null;
         }
 
-        public override Task FunctionAfterStop()
+        public override Action FunctionAfterStop()
         {
             return null;
         }

@@ -27,6 +27,6 @@ namespace cl.uv.leikelen.API.Module.Processing
         /// Functions called after the recorder stops.
         /// </summary>
         /// <returns></returns>
-        public abstract Task FunctionAfterStop();
+        public abstract Action FunctionAfterStop();
     }
 }

@@ -16,11 +16,10 @@ namespace cl.uv.leikelen.Data.Access.External
             //get pis and smtPis
             var personInScene = Internal.SceneInUse.Instance.Scene.PersonsInScene.Find(pis => pis.PersonId == personId);
             var subModalPersonInScene = personInScene.SubModalType_PersonInScenes.Find(smtPis => smtPis.SubModalType.SubModalTypeId.Equals(subModalName) && smtPis.SubModalType.ModalType.ModalTypeId.Equals(modalName));
-            var modals = ModalAccess.TmpModals;
             //if smtPis doesn't exists, then create it
             if (ReferenceEquals(null, subModalPersonInScene))
             {
-                var modalType = modals.Find(mt => mt.ModalTypeId.Equals(modalName));
+                var modalType = ModalAccess.TmpModals.Find(mt => mt.ModalTypeId.Equals(modalName));
                 if (ReferenceEquals(null, modalType))
                     throw new DbException(Properties.Error.ModalTypeNotExists + modalName);
                 var submodalType = modalType.SubModalTypes.Find(smt => smt.SubModalTypeId.Equals(subModalName));

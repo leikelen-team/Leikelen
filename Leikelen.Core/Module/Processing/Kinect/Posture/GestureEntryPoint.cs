@@ -37,9 +37,9 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.Posture
             return null;
         }
 
-        public override Task FunctionAfterStop()
+        public override Action FunctionAfterStop()
         {
-            return new Task(_logic.StopRecording);
+            return _logic.StopRecording;
         }
 
         public EventHandler<KinectGestureFrameArrivedArgs> GestureListener()

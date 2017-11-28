@@ -71,6 +71,15 @@ namespace cl.uv.leikelen.View
 
         public Home()
         {
+            switch (GeneralSettings.Instance.Language.Value)
+            {
+                case "es":
+                    System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("es");
+                    break;
+                case "en":
+                    System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en");
+                    break;
+            }
             InitializeComponent();
 
             //Initialize properties
@@ -573,7 +582,7 @@ namespace cl.uv.leikelen.View
         {
             try
             {
-                Process.Start(@"documentation\index.html");
+                Process.Start(@"documentation\web\index.html");
             }
             catch (Exception ex)
             {
@@ -690,7 +699,7 @@ namespace cl.uv.leikelen.View
                 PlayerStop();
             }
             else if (_playerState == PlayerState.Record){
-                _recorderController.Stop();
+                await _recorderController.Stop();
                 _recordTimer.Stop();
                 SceneInUse.Instance.Set(DataAccessFacade.Instance.GetSceneAccess().SaveOrUpdate(SceneInUse.Instance.Scene));
                 Player_ActualTimeLabel.Content = "--:--:--";

@@ -74,8 +74,15 @@ namespace cl.uv.leikelen.Module.Input.Kinect
             int detectorCount = _sensor.BodyFrameSource.BodyCount > 0 ? _sensor.BodyFrameSource.BodyCount : 6;
             for (int i = 0; i < _sensor.BodyFrameSource.BodyCount; ++i)
             {
-                GestureDetector detector = new GestureDetector(i, _sensor);
-                GestureDetector.GestureDetectorList.Add(detector);
+                try
+                {
+                    GestureDetector detector = new GestureDetector(i, _sensor);
+                    GestureDetector.GestureDetectorList.Add(detector);
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine("Error at creating the gesture detector: "+ex.Message);
+                }
             }
             _bodyReader.FrameArrived += GestureDetector._bodyReader_FrameArrived;
 

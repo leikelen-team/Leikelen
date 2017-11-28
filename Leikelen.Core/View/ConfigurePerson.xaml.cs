@@ -147,8 +147,8 @@ namespace cl.uv.leikelen.View
                 _targetPhotoName = fileName;
                 _originPhotoPath = dlg.FileName;
                 PhotoPathTextBox.Text = _originPhotoPath;
-                
-                PutPhoto(_originPhotoPath);
+
+                PutPhotoFullPath(_originPhotoPath);
             }
         }
 
@@ -158,6 +158,19 @@ namespace cl.uv.leikelen.View
                 File.Exists(System.IO.Path.Combine(DataAccessFacade.Instance.GetGeneralSettings().GetDataPersonsDirectory(), personPhoto)))
             {
                 personPhotoImage.Source = new BitmapImage(new Uri(System.IO.Path.GetFullPath(System.IO.Path.Combine(DataAccessFacade.Instance.GetGeneralSettings().GetDataPersonsDirectory(), personPhoto))));
+            }
+            else
+            {
+                personPhotoImage.Source = new BitmapImage(new Uri(System.IO.Path.GetFullPath(System.IO.Path.Combine(DataAccessFacade.Instance.GetGeneralSettings().GetDataPersonsDirectory(), "none.png"))));
+            }
+        }
+
+        private void PutPhotoFullPath(string personPhotoFullPath)
+        {
+            if (!String.IsNullOrEmpty(personPhotoFullPath) &&
+                File.Exists(personPhotoFullPath))
+            {
+                personPhotoImage.Source = new BitmapImage(new Uri(System.IO.Path.GetFullPath(personPhotoFullPath)));
             }
             else
             {

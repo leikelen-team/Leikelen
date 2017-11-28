@@ -163,7 +163,7 @@ namespace cl.uv.leikelen.Module.Input.Kinect
                 foreach (IBody body in bodies)
                 {
                     // if the current body TrackingId changed, update the corresponding gesture detector with the new value
-                    if (body.TrackingId != GestureDetectorList[i].TrackingId)
+                    if (GestureDetectorList.Count >= i+1 && body.TrackingId != GestureDetectorList[i].TrackingId)
                     {
                         GestureDetectorList[i].TrackingId = body.TrackingId;
 

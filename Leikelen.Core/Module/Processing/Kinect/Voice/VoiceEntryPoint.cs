@@ -24,9 +24,9 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.Voice
             _logic = new VoiceLogic();
         }
 
-        public override Task FunctionAfterStop()
+        public override Action FunctionAfterStop()
         {
-            return new Task(_logic.StopRecording);
+            return _logic.StopRecording;
         }
 
         public EventHandler<BodyFrameArrivedEventArgs> BodyListener()

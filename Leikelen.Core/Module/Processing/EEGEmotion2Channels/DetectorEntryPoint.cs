@@ -15,7 +15,7 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels
     {
         private readonly EEGReceiver _logic;
 
-        public override Task FunctionAfterStop()
+        public override Action FunctionAfterStop()
         {
             return null;
         }
