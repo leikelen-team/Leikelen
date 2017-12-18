@@ -10,7 +10,7 @@ namespace cl.uv.leikelen
 {
     public class GeneralSettings : SettingsContainer
     {
-        public readonly Option<string> Language = new Option<string>("Language", "en");
+        public readonly Option<string> Language = new Option<string>("Language", "auto");
         /// <summary>
         /// The data directory with scene, modal and person files
         /// </summary>

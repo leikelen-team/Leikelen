@@ -52,15 +52,17 @@ namespace cl.uv.leikelen.View
             {
                 case 0:
                     sex = Properties.GUI.Male;
+                    SexComboBox.SelectedIndex = 1;
                     break;
                 case 1:
                     sex = Properties.GUI.Female;
+                    SexComboBox.SelectedIndex = 2;
                     break;
                 default:
                     sex = Properties.GUI.Unknown;
+                    SexComboBox.SelectedIndex = 0;
                     break;
             }
-            SexComboBox.SelectedItem = sex;
 
             PhotoBtn.Click += PhotoBtn_Click;
             AcceptBtn.Click += AcceptBtn_Click;

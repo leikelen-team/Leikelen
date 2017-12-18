@@ -119,7 +119,8 @@ namespace cl.uv.leikelen.Module.General.GestureConfiguration.View
                     string internalFilePath = $"{_dataAccessFacade.GetGeneralSettings().GetModalDirectory(PostureCRUD.PostureTypes[TypeCombobox.SelectedIndex])}/{_safeFileName}";
                     if (oldPath.Equals(internalFilePath))
                     {
-                        File.Delete(oldPath);
+                        if (File.Exists(oldPath))
+                            File.Delete(oldPath);
                         if (!File.Exists(internalFilePath))
                             File.Copy(FileNameTextBox.Text, internalFilePath);
                     }

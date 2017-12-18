@@ -169,7 +169,7 @@ namespace cl.uv.leikelen.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Created by Erick Merino.
+        ///   Busca una cadena traducida similar a Developed by Erick Merino, Roberto Muñoz and Thiago Barcelos.
         /// </summary>
         public static string Authors {
             get {
@@ -205,7 +205,7 @@ namespace cl.uv.leikelen.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Birthday.
+        ///   Busca una cadena traducida similar a Date of birth.
         /// </summary>
         public static string Birthday {
             get {
@@ -435,6 +435,15 @@ namespace cl.uv.leikelen.Properties {
         public static string ModalType {
             get {
                 return ResourceManager.GetString("ModalType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a To apply changes you must to restart the application. Do you want to restart the app now?.
+        /// </summary>
+        public static string MustRestartOrNo {
+            get {
+                return ResourceManager.GetString("MustRestartOrNo", resourceCulture);
             }
         }
         
@@ -741,6 +750,15 @@ namespace cl.uv.leikelen.Properties {
         public static string RemoveLast {
             get {
                 return ResourceManager.GetString("RemoveLast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Restart the app.
+        /// </summary>
+        public static string RestartApp {
+            get {
+                return ResourceManager.GetString("RestartApp", resourceCulture);
             }
         }
         

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -226,7 +226,7 @@
     <value>Desconocido</value>
   </data>
   <data name="Authors" xml:space="preserve">
-    <value>Creado por Erick Merino</value>
+    <value>Desarrollado por Erick Merino, Roberto Muñoz y Thiago Barcelos</value>
   </data>
   <data name="Copyright" xml:space="preserve">
     <value>Copyright © 2017, Universidad de Valparaíso. Todos los derechos reservados.</value>
@@ -277,7 +277,7 @@
     <value>Nueva conexión</value>
   </data>
   <data name="Birthday" xml:space="preserve">
-    <value>Cumpleaños</value>
+    <value>Fecha de nacimiento</value>
   </data>
   <data name="Time" xml:space="preserve">
     <value>Hora</value>
@@ -467,5 +467,11 @@
   </data>
   <data name="SureRestartApp" xml:space="preserve">
     <value>¿Está seguro de reiniciar la aplicación?</value>
+  </data>
+  <data name="MustRestartOrNo" xml:space="preserve">
+    <value>Para aplicar los cambios debe reiniciar la aplicación. ¿Desea reiniciar la aplicación ahora?</value>
+  </data>
+  <data name="RestartApp" xml:space="preserve">
+    <value>Reiniciar la aplicación</value>
   </data>
 </root>

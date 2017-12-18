@@ -19,6 +19,7 @@ namespace cl.uv.leikelen.API.DataAccess
         public double? Value;
         public string Subtitle;
         public int? Index;
+        public bool toInterval;
     }
 
     public struct Interval

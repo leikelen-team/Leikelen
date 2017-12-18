@@ -84,7 +84,10 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI
         public async Task StartRecording()
         {
             StartStream();
-            _filemanage = new Util.FileManage(_dataAccessFacade.GetGeneralSettings().GetDataDirectory()+"scene/"+_dataAccessFacade.GetSceneInUseAccess().GetScene().SceneId + "/openbci.csv");
+            _filemanage = new Util.FileManage(
+                Path.Combine(
+                    _dataAccessFacade.GetGeneralSettings().GetSceneInUseDirectory(),
+                    "openbci_"+_person.PersonId+".csv"));
             _isRecording = true;
 
             foreach (var module in ProcessingLoader.Instance.ProcessingModules)

@@ -85,13 +85,13 @@ namespace cl.uv.leikelen.Data.Access.External
                                     switch (data)
                                     {
                                         case 1:
-                                            DataAccessFacade.Instance.GetEventAccess().Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, new TimeSpan(rnd.Next(0, sceneTicks)), doubleData);
+                                            DataAccessFacade.Instance.GetEventAccess().Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, new TimeSpan(rnd.Next(0, sceneTicks)), doubleData, false);
                                             break;
                                         case 2:
-                                            DataAccessFacade.Instance.GetEventAccess().Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, new TimeSpan(rnd.Next(0, sceneTicks)), subtitleData);
+                                            DataAccessFacade.Instance.GetEventAccess().Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, new TimeSpan(rnd.Next(0, sceneTicks)), subtitleData, false);
                                             break;
                                         case 3:
-                                            DataAccessFacade.Instance.GetEventAccess().Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, new TimeSpan(rnd.Next(0, sceneTicks)));
+                                            DataAccessFacade.Instance.GetEventAccess().Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, new TimeSpan(rnd.Next(0, sceneTicks)), false);
                                             break;
                                     }
                                     break;
@@ -207,7 +207,7 @@ namespace cl.uv.leikelen.Data.Access.External
                             switch (which)
                             {
                                 case 1:
-                                    DataAccessFacade.Instance.GetEventAccess().Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, new TimeSpan(maxTicks), doubleData);
+                                    DataAccessFacade.Instance.GetEventAccess().Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, new TimeSpan(maxTicks), doubleData, false);
                                     
                                     break;
                                 case 2:

@@ -209,7 +209,7 @@
     <value>Copyright © 2017, University of Valparaíso. All rights reserved.</value>
   </data>
   <data name="Authors" xml:space="preserve">
-    <value>Created by Erick Merino</value>
+    <value>Developed by Erick Merino, Roberto Muñoz and Thiago Barcelos</value>
   </data>
   <data name="confScene_SureSave" xml:space="preserve">
     <value>Are you sure you want to save this data?</value>
@@ -257,7 +257,7 @@
     <value>New connection</value>
   </data>
   <data name="Birthday" xml:space="preserve">
-    <value>Birthday</value>
+    <value>Date of birth</value>
   </data>
   <data name="Date" xml:space="preserve">
     <value>Date</value>
@@ -447,5 +447,11 @@
   </data>
   <data name="SureRestartApp" xml:space="preserve">
     <value>Are you sure you want to restart the app?</value>
+  </data>
+  <data name="MustRestartOrNo" xml:space="preserve">
+    <value>To apply changes you must to restart the application. Do you want to restart the app now?</value>
+  </data>
+  <data name="RestartApp" xml:space="preserve">
+    <value>Restart the app</value>
   </data>
 </root>

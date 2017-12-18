@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2009
+VisualStudioVersion = 15.0.27130.2003
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{7CF6DF6D-3B04-46F8-A40B-537D21BCA0B4}") = "DevDocumentation", "DevDocumentation\DevDocumentation.shfbproj", "{7C89ECFB-8C2F-426D-918E-238260CE138B}"
 	ProjectSection(ProjectDependencies) = postProject

@@ -220,4 +220,19 @@
   <data name="File_RestartApp" xml:space="preserve">
     <value>Reiniciar aplicación</value>
   </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Editar</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Idioma</value>
+  </data>
+  <data name="Auto" xml:space="preserve">
+    <value>Automático</value>
+  </data>
+  <data name="Spanish" xml:space="preserve">
+    <value>Español</value>
+  </data>
+  <data name="English" xml:space="preserve">
+    <value>Inglés</value>
+  </data>
 </root>

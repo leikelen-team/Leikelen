@@ -7,7 +7,6 @@ using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using KinectEx;
-using KinectEx.DVR;
 using Microsoft.Kinect;
 using cl.uv.leikelen.API.DataAccess;
 using cl.uv.leikelen.Data.Access;
@@ -19,7 +18,7 @@ namespace cl.uv.leikelen.Module.Input.Kinect.DVR
     /// cl.uv.leikelen.Module.Input.Kinect.DVR subsystem. Created to enable recording of frames to
     /// a <c>Stream</c>.
     /// </summary>
-    public class Recorder : KinectRecorder
+    public class Recorder : KinectEx.DVR.KinectRecorder
     {
         private IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
 
@@ -31,7 +30,7 @@ namespace cl.uv.leikelen.Module.Input.Kinect.DVR
         /// <summary>
         /// Used in "Manual" mode to record a single <c>BodyFrame</c>.
         /// </summary>
-        public new void RecordFrame(BodyFrame frame)
+        public override void RecordFrame(BodyFrame frame)
         {
             if (!_isStarted)
                 throw new InvalidOperationException("Cannot record frames unless the KinectRecorder is started.");
@@ -61,7 +60,7 @@ namespace cl.uv.leikelen.Module.Input.Kinect.DVR
         /// Used in "Manual" mode to record a single <c>BodyFrame</c> if
         /// the body frame data has already been retrieved from the frame.
         /// </summary>
-        public new void RecordFrame(BodyFrame frame, List<CustomBody> bodies)
+        public override void RecordFrame(BodyFrame frame, List<CustomBody> bodies)
         {
             if (!_isStarted)
                 throw new InvalidOperationException("Cannot record frames unless the KinectRecorder is started.");
@@ -91,7 +90,7 @@ namespace cl.uv.leikelen.Module.Input.Kinect.DVR
         /// Used in "Manual" mode to record a single <c>BodyFrame</c> if
         /// the body frame data has already been retrieved from the frame.
         /// </summary>
-        public new void RecordFrame(BodyFrame frame, Body[] bodies)
+        public override void RecordFrame(BodyFrame frame, Body[] bodies)
         {
             if (!_isStarted)
                 throw new InvalidOperationException("Cannot record frames unless the KinectRecorder is started.");
@@ -120,7 +119,7 @@ namespace cl.uv.leikelen.Module.Input.Kinect.DVR
         /// <summary>
         /// Used in "Manual" mode to record a single <c>ColorFrame</c>.
         /// </summary>
-        public new void RecordFrame(ColorFrame frame)
+        public override void RecordFrame(ColorFrame frame)
         {
             if (!_isStarted)
                 throw new InvalidOperationException("Cannot record frames unless the KinectRecorder is started.");
@@ -142,7 +141,7 @@ namespace cl.uv.leikelen.Module.Input.Kinect.DVR
         /// the color frame data has already been retrieved from the frame.
         /// Note that the frame data must have been converted to BGRA format.
         /// </summary>
-        public new void RecordFrame(ColorFrame frame, byte[] bytes)
+        public override void RecordFrame(ColorFrame frame, byte[] bytes)
         {
             if (!_isStarted)
                 throw new InvalidOperationException("Cannot record frames unless the KinectRecorder is started.");
@@ -162,7 +161,7 @@ namespace cl.uv.leikelen.Module.Input.Kinect.DVR
         /// <summary>
         /// Used in "Manual" mode to record a single <c>DepthFrame</c>.
         /// </summary>
-        public new void RecordFrame(DepthFrame frame)
+        public override void RecordFrame(DepthFrame frame)
         {
             if (!_isStarted)
                 throw new InvalidOperationException("Cannot record frames unless the KinectRecorder is started.");
@@ -183,7 +182,7 @@ namespace cl.uv.leikelen.Module.Input.Kinect.DVR
         /// Used in "Manual" mode to record a single <c>DepthFrame</c> if
         /// the depth frame data has already been retrieved from the frame.
         /// </summary>
-        public new void RecordFrame(DepthFrame frame, ushort[] frameData)
+        public override void RecordFrame(DepthFrame frame, ushort[] frameData)
         {
             if (!_isStarted)
                 throw new InvalidOperationException("Cannot record frames unless the KinectRecorder is started.");
@@ -203,7 +202,7 @@ namespace cl.uv.leikelen.Module.Input.Kinect.DVR
         /// <summary>
         /// Used in "Manual" mode to record a single <c>InfraredFrame</c>.
         /// </summary>
-        public new void RecordFrame(InfraredFrame frame)
+        public override void RecordFrame(InfraredFrame frame)
         {
             if (!_isStarted)
                 throw new InvalidOperationException("Cannot record frames unless the KinectRecorder is started.");
@@ -224,7 +223,7 @@ namespace cl.uv.leikelen.Module.Input.Kinect.DVR
         /// Used in "Manual" mode to record a single <c>InfraredFrame</c> if
         /// the infrared frame data has already been retrieved from the frame.
         /// </summary>
-        public new void RecordFrame(InfraredFrame frame, ushort[] frameData)
+        public override void RecordFrame(InfraredFrame frame, ushort[] frameData)
         {
             if (!_isStarted)
                 throw new InvalidOperationException("Cannot record frames unless the KinectRecorder is started.");

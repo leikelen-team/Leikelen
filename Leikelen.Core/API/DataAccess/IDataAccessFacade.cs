@@ -4,9 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-/// <summary>
-/// Package with interfaces to access the data
-/// </summary>
 namespace cl.uv.leikelen.API.DataAccess
 {
     /// <summary>

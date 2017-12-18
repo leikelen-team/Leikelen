@@ -40,7 +40,7 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.Voice
                         CheckIfExistsPerson(audioBodyCorrelation.BodyTrackingId);
                         var time = _dataAccessFacade.GetSceneInUseAccess()?.GetLocation();
                         if (time.HasValue)
-                            _dataAccessFacade.GetEventAccess().Add(_personsId[audioBodyCorrelation.BodyTrackingId], "Voice", "Talked", time.Value);
+                            _dataAccessFacade.GetEventAccess().Add(_personsId[audioBodyCorrelation.BodyTrackingId], "Voice", "Talked", time.Value, true);
                         
                         Console.WriteLine("Tiempo: {0}, Llegó Voz de {1}", DateTime.Now, audioBodyCorrelation.BodyTrackingId);
                         

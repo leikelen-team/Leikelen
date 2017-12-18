@@ -68,6 +68,7 @@ namespace cl.uv.leikelen.View
         private List<ITab> _tabs;
         private List<ITab> _generalModuleTabs;
         private List<ITab> _processingModuleTabs;
+        private bool _firstLanguage = true;
 
         public Home()
         {
@@ -81,6 +82,19 @@ namespace cl.uv.leikelen.View
                     break;
             }
             InitializeComponent();
+
+            switch (GeneralSettings.Instance.Language.Value)
+            {
+                case "es":
+                    SpanishLanguageRadio.IsChecked = true;
+                    break;
+                case "en":
+                    EnglishLanguageRadio.IsChecked = true;
+                    break;
+                default:
+                    AutoLanguageRadio.IsChecked = true;
+                    break;
+            }
 
             //Initialize properties
             _recorderController = new RecorderController();
@@ -132,8 +146,6 @@ namespace cl.uv.leikelen.View
             FillMenuGeneralModules();
         }
 
-        
-
         #region Tabs
         private void ResetTabs()
         {
@@ -167,6 +179,9 @@ namespace cl.uv.leikelen.View
 
         private void RefillGeneralModuleTabs(object sender, EventArgs e)
         {
+            MenuItems_Tools_General.Items.Clear();
+            FillMenuGeneralModules();
+
             if (!ReferenceEquals(null, _generalModuleTabs))
             {
                 foreach (var tab in _generalModuleTabs)
@@ -190,6 +205,9 @@ namespace cl.uv.leikelen.View
 
         private void RefillProcessingModuleTabs(object sender, EventArgs e)
         {
+            MenuItems_Tools_Processing.Items.Clear();
+            FillMenuProccessingModules();
+
             if (!ReferenceEquals(null, _processingModuleTabs))
             {
                 foreach (var tab in _processingModuleTabs)
@@ -346,6 +364,21 @@ namespace cl.uv.leikelen.View
             }
         }
 
+        private void ResetMenuesNewScene()
+        {
+            Player_ActualTimeLabel.Content = "--:--:--";
+            Player_RecordButton.Background = _buttonBackground;
+            Player_TotalTimeLabel.Content = "--:--:--";
+            foreach (var input in InputLoader.Instance.SceneInputModules)
+            {
+                input.Disable();
+            }
+            ProcessingLoader.Reset();
+            ResetTabs();
+            ResetMenuModules(false);
+            MenuItem_Scene_PersonsInScene.Items.Clear();
+        }
+
         private bool StopRecordFirstMsg()
         {
             if (_playerState == PlayerState.Record)
@@ -405,6 +438,7 @@ namespace cl.uv.leikelen.View
                 if (!ReferenceEquals(null, DataAccessFacade.Instance.GetSceneInUseAccess().GetScene()))
                 {
                     ChangeHomeState(SceneState.FromSensorWithScene, PlayerState.Wait);
+                    ResetMenuesNewScene();
                 }
             };
         }
@@ -413,6 +447,7 @@ namespace cl.uv.leikelen.View
         {
             TestScene.LoadTest("Test");
             ChangeHomeState(SceneState.FromFileWithScene, PlayerState.Wait);
+            ResetMenuesNewScene();
         }
 
         private void MenuItem_File_AllScenes_Click(object sender, RoutedEventArgs e)
@@ -427,6 +462,7 @@ namespace cl.uv.leikelen.View
                 if (!ReferenceEquals(null, DataAccessFacade.Instance.GetSceneInUseAccess().GetScene()))
                 {
                     ChangeHomeState(SceneState.FromFileWithScene, PlayerState.Wait);
+                    ResetMenuesNewScene();
                 }
             };
         }
@@ -485,6 +521,9 @@ namespace cl.uv.leikelen.View
                             Properties.GUI.SceneImportedSuccesfullyTitle,
                             MessageBoxButton.OK,
                             MessageBoxImage.Information);
+
+                        ChangeHomeState(SceneState.FromFileWithScene, PlayerState.Wait);
+                        ResetMenuesNewScene();
                     }
                     catch (Exception ex)
                     {
@@ -503,7 +542,6 @@ namespace cl.uv.leikelen.View
                         MessageBoxImage.Error);
                 }
             }
-            ChangeHomeState(SceneState.FromFileWithScene, PlayerState.Wait);
         }
 
         private void MenuItem_File_Quit_Click(object sender, RoutedEventArgs e)
@@ -519,14 +557,54 @@ namespace cl.uv.leikelen.View
                 MessageBoxImage.Question);
             if(result== MessageBoxResult.OK)
             {
-                // Get file path of current process 
-                var filePath = System.Reflection.Assembly.GetExecutingAssembly().Location;
-                //var filePath = Application.ExecutablePath;  // for WinForms
+                RestartApp();
+            }
+        }
 
-                // Start program
-                Process.Start(filePath);
+        private void RestartApp()
+        {
+            // Get file path of current process 
+            var filePath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            //var filePath = Application.ExecutablePath;  // for WinForms
 
-                Process.GetCurrentProcess().Kill();
+            // Start program
+            Process.Start(filePath);
+
+            Process.GetCurrentProcess().Kill();
+        }
+        #endregion
+
+        #region Edit MenuItems
+        private void AutoLanguage_Checked(object sender, RoutedEventArgs e)
+        {
+            ChangeLanguage("auto");
+        }
+
+        private void EnglishLanguage_Checked(object sender, RoutedEventArgs e)
+        {
+            ChangeLanguage("en");
+        }
+
+        private void SpanishLanguage_Checked(object sender, RoutedEventArgs e)
+        {
+            ChangeLanguage("es");
+        }
+
+        private void ChangeLanguage(string languageCode)
+        {
+            if (_firstLanguage)
+            {
+                _firstLanguage = false;
+                return;
+            }
+            GeneralSettings.Instance.Language.Write(languageCode);
+            MessageBoxResult result = MessageBox.Show(Properties.GUI.MustRestartOrNo,
+                Properties.GUI.RestartApp,
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+            {
+                RestartApp();
             }
         }
         #endregion
@@ -931,9 +1009,25 @@ namespace cl.uv.leikelen.View
             if(moduleType == ModuleType.InputPerson)
                 MenuItems_Tools_PersonSensors.Items.Add(personItem);
         }
+
+        private void ResetMenuModules(bool alsoGeneralModules)
+        {
+            MenuItems_Tools_Sensors.Items.Clear();
+            MenuItems_Tools_PersonSensors.Items.Clear();
+            MenuItems_Tools_Processing.Items.Clear();
+
+            FillMenuInputModules();
+            FillMenuProccessingModules();
+
+            if (alsoGeneralModules)
+            {
+                MenuItems_Tools_General.Items.Clear();
+                FillMenuGeneralModules();
+            }
+        }
+
         #endregion
 
-        
     }
 
     public enum PlayerState

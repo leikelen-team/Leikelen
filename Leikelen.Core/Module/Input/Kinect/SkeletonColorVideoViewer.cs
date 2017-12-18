@@ -67,7 +67,6 @@ namespace cl.uv.leikelen.Module.Input.Kinect
 
         public void OnSkeletonImageArrived(ImageSource e)
         {
-            Console.WriteLine("boody en on skeleton image arrived");
             SkeletonImageArrived?.Invoke(this, e);
         }
 
@@ -76,7 +75,6 @@ namespace cl.uv.leikelen.Module.Input.Kinect
         {
             if (!_isSkeletonEnabled)
                 return;
-            Console.WriteLine("llego body en video handler");
             IEnumerable<IBody> bodies = null; // to make the GetBitmap call a little cleaner
             using (var frame = e.FrameReference.AcquireFrame())
             {
@@ -103,7 +101,6 @@ namespace cl.uv.leikelen.Module.Input.Kinect
         {
             if (!_isColorEnabled)
                 return;
-            Console.WriteLine("llego color en video handler");
             if(!ReferenceEquals(null, e.FrameReference))
             {
                 _colorBitmap.Update(e.FrameReference);
@@ -114,8 +111,6 @@ namespace cl.uv.leikelen.Module.Input.Kinect
 
         public void _replay_BodyFrameArrived(object sender, ReplayFrameArrivedEventArgs<ReplayBodyFrame> e)
         {
-            Console.WriteLine($"llego body en video replay handler y está {_isSkeletonEnabled}");
-
             if (!_isSkeletonEnabled)
                 return;
 

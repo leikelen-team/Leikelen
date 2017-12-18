@@ -47,11 +47,12 @@ namespace cl.uv.leikelen.Data.Access.External
 
             foreach (var timeEvent in events)
             {
-                if (ReferenceEquals(null, end))
+                if (!start.HasValue && !end.HasValue)
                 {
                     start = timeEvent.EventTime;
+                    end = timeEvent.EventTime;
                 }
-                else if (end.Value.Subtract(start.Value).TotalMilliseconds >= millisecondsThreshold)
+                else if(end.HasValue && timeEvent.EventTime.Subtract(end.Value).TotalMilliseconds >= millisecondsThreshold)
                 {
                     Add(personId, modalName, subModalName, start.Value, end.Value);
                     start = timeEvent.EventTime;
@@ -59,7 +60,7 @@ namespace cl.uv.leikelen.Data.Access.External
                 end = timeEvent.EventTime;
 
             }
-            if (!ReferenceEquals(null, start))
+            if (start.HasValue && end.HasValue)
             {
                 Add(personId, modalName, subModalName, start.Value, end.Value);
             }

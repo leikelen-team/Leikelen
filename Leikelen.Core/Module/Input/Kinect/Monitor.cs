@@ -120,7 +120,7 @@ namespace cl.uv.leikelen.Module.Input.Kinect
 
             if (ReferenceEquals(null, _recorder) && !ReferenceEquals(null, _dataAccessFacade.GetSceneInUseAccess().GetScene()))
             {
-                string fileName = _dataAccessFacade.GetGeneralSettings().GetDataDirectory() + "scene/" + _dataAccessFacade.GetSceneInUseAccess().GetScene().SceneId + "/kinect.dvr";
+                string fileName = Path.Combine(_dataAccessFacade.GetGeneralSettings().GetSceneInUseDirectory(), "kinect.dvr");
                 _recorder = new DVR.Recorder(File.Open(fileName, FileMode.Create), _sensor)
                 {
                     EnableBodyRecorder = true,
@@ -131,8 +131,8 @@ namespace cl.uv.leikelen.Module.Input.Kinect
                     ColorRecorderCodec = new JpegColorCodec()
                 };
                 //TODO: revisar estos pixeles
-                _recorder.ColorRecorderCodec.OutputWidth = 1280;
-                _recorder.ColorRecorderCodec.OutputHeight = 720;
+                //_recorder.ColorRecorderCodec.OutputWidth = 1280;
+                //_recorder.ColorRecorderCodec.OutputHeight = 720;
                 _recorder.Start();
             }
             _isRecording = true;

@@ -80,7 +80,7 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels
                 {
                     var tag = LearningModel.Classify(_signaList);
                     Console.WriteLine(tag.ToString());
-                    _dataAccessFacade.GetEventAccess().Add(e.PersonId, "Emotion", tag.ToString(), e.Time);
+                    _dataAccessFacade.GetEventAccess().Add(e.PersonId, "Emotion", tag.ToString(), e.Time, true);
                 }
                 catch (Exception ex)
                 {

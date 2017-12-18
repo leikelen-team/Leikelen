@@ -60,13 +60,13 @@ namespace cl.uv.leikelen.View.Widget.HomeTab
                         }
                         intervalRow.TotalDuration = totalDuration.ToString(@"hh\:mm\:ss");
                         double secsAverage = totalDuration.TotalSeconds / intervals.Count;
-                        intervalRow.AverageDuration = $"{secsAverage} {Properties.GUI.seconds}";
+                        intervalRow.AverageDuration = $"{ValueAsString(secsAverage, 3)} {Properties.GUI.seconds}";
                         foreach (var interval in intervals)
                         {
                             var duration = interval.EndTime.Subtract(interval.StartTime);
                             stdDev += Math.Pow(duration.TotalSeconds - secsAverage, 2);
                         }
-                        intervalRow.StdDuration = $"{Math.Sqrt(stdDev/ (intervals.Count-1))}";
+                        intervalRow.StdDuration = $"{ValueAsString(Math.Sqrt(stdDev/ (intervals.Count-1)), 3)}";
                         intervalData.Add(intervalRow);
                     }
 
@@ -103,11 +103,11 @@ namespace cl.uv.leikelen.View.Widget.HomeTab
                         }
                         if(avgValue != 0)
                         {
-                            eventRow.AverageValue = $"{avgValue}";
-                            eventRow.StdValue = $"{Math.Sqrt(stdValue / (events.Count - 1))}";
+                            eventRow.AverageValue = $"{ValueAsString(avgValue, 3)}";
+                            eventRow.StdValue = $"{ValueAsString(Math.Sqrt(stdValue / (events.Count - 1)), 3)}";
                         }
-                        eventRow.AverageTime = $"{secsAverage} {Properties.GUI.seconds}";
-                        eventRow.StdTime = $"{Math.Sqrt(stdTime / (events.Count - 1))}";
+                        eventRow.AverageTime = $"{ValueAsString(secsAverage, 3)} {Properties.GUI.seconds}";
+                        eventRow.StdTime = $"{ValueAsString(Math.Sqrt(stdTime / (events.Count - 1)), 3)}";
                         eventData.Add(eventRow);
                     }
                 }
@@ -128,6 +128,11 @@ namespace cl.uv.leikelen.View.Widget.HomeTab
             IntervalDataGrid.Items.Refresh();
 
             ScrollWithContent.Visibility = Visibility.Hidden;
+        }
+
+        public static string ValueAsString(double value, int decimalPlaces)
+        {
+            return Math.Round(value, decimalPlaces).ToString($"F{decimalPlaces}");
         }
     }
     

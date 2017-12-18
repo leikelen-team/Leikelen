@@ -492,7 +492,7 @@ namespace KinectEx.DVR
         /// <summary>
         /// Used in "Manual" mode to record a single <c>BodyFrame</c>.
         /// </summary>
-        public void RecordFrame(BodyFrame frame)
+        public virtual void RecordFrame(BodyFrame frame)
         {
             if (!_isStarted)
                 throw new InvalidOperationException("Cannot record frames unless the KinectRecorder is started.");
@@ -521,7 +521,7 @@ namespace KinectEx.DVR
         /// Used in "Manual" mode to record a single <c>BodyFrame</c> if
         /// the body frame data has already been retrieved from the frame.
         /// </summary>
-        public void RecordFrame(BodyFrame frame, List<CustomBody> bodies)
+        public virtual void RecordFrame(BodyFrame frame, List<CustomBody> bodies)
         {
             if (!_isStarted)
                 throw new InvalidOperationException("Cannot record frames unless the KinectRecorder is started.");
@@ -550,7 +550,7 @@ namespace KinectEx.DVR
         /// Used in "Manual" mode to record a single <c>BodyFrame</c> if
         /// the body frame data has already been retrieved from the frame.
         /// </summary>
-        public void RecordFrame(BodyFrame frame, Body[] bodies)
+        public virtual void RecordFrame(BodyFrame frame, Body[] bodies)
         {
             if (!_isStarted)
                 throw new InvalidOperationException("Cannot record frames unless the KinectRecorder is started.");
@@ -578,7 +578,7 @@ namespace KinectEx.DVR
         /// <summary>
         /// Used in "Manual" mode to record a single <c>ColorFrame</c>.
         /// </summary>
-        public void RecordFrame(ColorFrame frame)
+        public virtual void RecordFrame(ColorFrame frame)
         {
             if (!_isStarted)
                 throw new InvalidOperationException("Cannot record frames unless the KinectRecorder is started.");
@@ -599,7 +599,7 @@ namespace KinectEx.DVR
         /// the color frame data has already been retrieved from the frame.
         /// Note that the frame data must have been converted to BGRA format.
         /// </summary>
-        public void RecordFrame(ColorFrame frame, byte[] bytes)
+        public virtual void RecordFrame(ColorFrame frame, byte[] bytes)
         {
             if (!_isStarted)
                 throw new InvalidOperationException("Cannot record frames unless the KinectRecorder is started.");
@@ -618,7 +618,7 @@ namespace KinectEx.DVR
         /// <summary>
         /// Used in "Manual" mode to record a single <c>DepthFrame</c>.
         /// </summary>
-        public void RecordFrame(DepthFrame frame)
+        public virtual void RecordFrame(DepthFrame frame)
         {
             if (!_isStarted)
                 throw new InvalidOperationException("Cannot record frames unless the KinectRecorder is started.");
@@ -638,7 +638,7 @@ namespace KinectEx.DVR
         /// Used in "Manual" mode to record a single <c>DepthFrame</c> if
         /// the depth frame data has already been retrieved from the frame.
         /// </summary>
-        public void RecordFrame(DepthFrame frame, ushort[] frameData)
+        public virtual void RecordFrame(DepthFrame frame, ushort[] frameData)
         {
             if (!_isStarted)
                 throw new InvalidOperationException("Cannot record frames unless the KinectRecorder is started.");
@@ -657,7 +657,7 @@ namespace KinectEx.DVR
         /// <summary>
         /// Used in "Manual" mode to record a single <c>InfraredFrame</c>.
         /// </summary>
-        public void RecordFrame(InfraredFrame frame)
+        public virtual void RecordFrame(InfraredFrame frame)
         {
             if (!_isStarted)
                 throw new InvalidOperationException("Cannot record frames unless the KinectRecorder is started.");
@@ -677,7 +677,7 @@ namespace KinectEx.DVR
         /// Used in "Manual" mode to record a single <c>InfraredFrame</c> if
         /// the infrared frame data has already been retrieved from the frame.
         /// </summary>
-        public void RecordFrame(InfraredFrame frame, ushort[] frameData)
+        public virtual void RecordFrame(InfraredFrame frame, ushort[] frameData)
         {
             if (!_isStarted)
                 throw new InvalidOperationException("Cannot record frames unless the KinectRecorder is started.");

@@ -48,6 +48,13 @@
                         </MenuItem.Icon>
                     </MenuItem>
                 </MenuItem>
+                <MenuItem x:Name="MenuItem_Edit" Header="{x:Static resx:Menu.Edit}">
+                    <MenuItem Header="{x:Static resx:Menu.Language}">
+                        <RadioButton x:Name="AutoLanguageRadio" GroupName="languageRadio" Content="{x:Static resx:Menu.Auto}" Checked="AutoLanguage_Checked"/>
+                        <RadioButton x:Name="EnglishLanguageRadio" GroupName="languageRadio" Content="{x:Static resx:Menu.English}" Checked="EnglishLanguage_Checked" />
+                        <RadioButton x:Name="SpanishLanguageRadio" GroupName="languageRadio" Content="{x:Static resx:Menu.Spanish}" Checked="SpanishLanguage_Checked" />
+                    </MenuItem>
+                </MenuItem>
                 <MenuItem x:Name="MenuItem_Tools" Header="{x:Static resx:Menu.Tools}">
                     <MenuItem x:Name="MenuItem_Tools_Preferences" Click="MenuItem_Tools_Preferences_Click" Header="{x:Static resx:Menu.Tools_Preferences}" InputGestureText="Ctrl+P"></MenuItem>
                     <MenuItem x:Name="MenuItem_Tools_Player" Header="{x:Static resx:Menu.Tools_Player}">

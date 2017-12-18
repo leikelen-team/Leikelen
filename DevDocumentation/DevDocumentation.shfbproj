@@ -48,52 +48,51 @@
     <NamingMethod>Guid</NamingMethod>
     <HelpTitle>A Sandcastle Documented Class Library</HelpTitle>
     <ContentPlacement>AboveNamespaces</ContentPlacement>
-    <MissingTags>Summary, Parameter, AutoDocumentCtors, Namespace, AutoDocumentDispose</MissingTags>
+    <MissingTags>AutoDocumentCtors, AutoDocumentDispose</MissingTags>
     <WarnOnMissingSourceContext>False</WarnOnMissingSourceContext>
     <DocumentationSources>
       <DocumentationSource sourceFile="..\Leikelen.Core\Leikelen.csproj" />
     </DocumentationSources>
     <VisibleItems>Attributes, ExplicitInterfaceImplementations, InheritedMembers, InheritedFrameworkMembers, Protected, ProtectedInternalAsProtected</VisibleItems>
     <NamespaceSummaries>
-      <NamespaceSummaryItem name="(global)" isDocumented="False" />
-      <NamespaceSummaryItem name="cl.uv.leikelen" isDocumented="False">Main namespace of the app.</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="cl.uv.leikelen.API.DataAccess" isDocumented="False">Contains the interfaces to access the data.</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="cl.uv.leikelen.API.FrameProvider.Accelerometer" isDocumented="False">Contains the frame declaration for the accelerometer sensors.</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="cl.uv.leikelen.API.FrameProvider.EEG" isDocumented="False">Contains the frame declaration for the EEG sensors.</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="cl.uv.leikelen.API.FrameProvider.Kinect" isDocumented="False">Contains the frame declaration for the Kinect sensors.</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="cl.uv.leikelen.API.Helper" isDocumented="False" />
-      <NamespaceSummaryItem name="cl.uv.leikelen.API.Module" isDocumented="False" />
-      <NamespaceSummaryItem name="cl.uv.leikelen.API.Module.General" isDocumented="False" />
-      <NamespaceSummaryItem name="cl.uv.leikelen.API.Module.Input" isDocumented="False" />
-      <NamespaceSummaryItem name="cl.uv.leikelen.API.Module.Processing" isDocumented="False" />
-      <NamespaceSummaryItem name="cl.uv.leikelen.Controller" isDocumented="False" />
-      <NamespaceSummaryItem name="cl.uv.leikelen.Data.Access" isDocumented="False" />
-      <NamespaceSummaryItem name="cl.uv.leikelen.Data.Access.External" isDocumented="False" />
-      <NamespaceSummaryItem name="cl.uv.leikelen.Data.Access.Internal" isDocumented="False" />
-      <NamespaceSummaryItem name="cl.uv.leikelen.Data.Model" isDocumented="False" />
-      <NamespaceSummaryItem name="cl.uv.leikelen.Data.Persistence" isDocumented="False" />
-      <NamespaceSummaryItem name="cl.uv.leikelen.Data.Persistence.Provider" isDocumented="False" />
-      <NamespaceSummaryItem name="cl.uv.leikelen.Module" isDocumented="False" />
-      <NamespaceSummaryItem name="cl.uv.leikelen.Module.General.GestureConfiguration" isDocumented="False" />
-      <NamespaceSummaryItem name="cl.uv.leikelen.Module.General.GestureConfiguration.View" isDocumented="False" />
-      <NamespaceSummaryItem name="cl.uv.leikelen.Module.Input.Kinect" isDocumented="False" />
-      <NamespaceSummaryItem name="cl.uv.leikelen.Module.Input.Kinect.DVR" isDocumented="False" />
-      <NamespaceSummaryItem name="cl.uv.leikelen.Module.Input.OpenBCI" isDocumented="False" />
-      <NamespaceSummaryItem name="cl.uv.leikelen.Module.Input.OpenBCI.Util" isDocumented="False" />
-      <NamespaceSummaryItem name="cl.uv.leikelen.Module.Input.OpenBCI.View" isDocumented="False" />
-      <NamespaceSummaryItem name="cl.uv.leikelen.Module.Processing.EEGEmotion2Channels" isDocumented="False" />
-      <NamespaceSummaryItem name="cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing" isDocumented="False" />
-      <NamespaceSummaryItem name="cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View" isDocumented="False" />
-      <NamespaceSummaryItem name="cl.uv.leikelen.Module.Processing.Kinect.Distance" isDocumented="False" />
-      <NamespaceSummaryItem name="cl.uv.leikelen.Module.Processing.Kinect.Posture" isDocumented="False" />
-      <NamespaceSummaryItem name="cl.uv.leikelen.Module.Processing.Kinect.Voice" isDocumented="False" />
-      <NamespaceSummaryItem name="cl.uv.leikelen.Util" isDocumented="False" />
-      <NamespaceSummaryItem name="cl.uv.leikelen.View" isDocumented="False" />
-      <NamespaceSummaryItem name="cl.uv.leikelen.View.Widget" isDocumented="False" />
-      <NamespaceSummaryItem name="cl.uv.leikelen.View.Widget.HomeTab" isDocumented="False" />
-      <NamespaceSummaryItem name="cl.uv.leikelen.View.Widget.HomeTab.Widget" isDocumented="False" />
-      <NamespaceSummaryItem name="cl.uv.leikelen.View.Widget.PreferencesTab" isDocumented="False" />
-    </NamespaceSummaries>
+      <NamespaceSummaryItem name="(global)" isDocumented="True" />
+<NamespaceSummaryItem name="cl.uv.leikelen" isDocumented="True">Main namespace of the app.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="cl.uv.leikelen.API.DataAccess" isDocumented="True">Contains the interfaces to access the data.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="cl.uv.leikelen.API.FrameProvider.Accelerometer" isDocumented="True">Contains the frame declaration for the accelerometer sensors.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="cl.uv.leikelen.API.FrameProvider.EEG" isDocumented="True">Contains the frame declaration for the EEG sensors.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="cl.uv.leikelen.API.FrameProvider.Kinect" isDocumented="True">Contains the frame declaration for the Kinect sensors.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="cl.uv.leikelen.API.Helper" isDocumented="True" />
+<NamespaceSummaryItem name="cl.uv.leikelen.API.Module" isDocumented="True" />
+<NamespaceSummaryItem name="cl.uv.leikelen.API.Module.General" isDocumented="True" />
+<NamespaceSummaryItem name="cl.uv.leikelen.API.Module.Input" isDocumented="True" />
+<NamespaceSummaryItem name="cl.uv.leikelen.API.Module.Processing" isDocumented="True" />
+<NamespaceSummaryItem name="cl.uv.leikelen.Controller" isDocumented="True" />
+<NamespaceSummaryItem name="cl.uv.leikelen.Data.Access" isDocumented="True" />
+<NamespaceSummaryItem name="cl.uv.leikelen.Data.Access.External" isDocumented="True" />
+<NamespaceSummaryItem name="cl.uv.leikelen.Data.Access.Internal" isDocumented="True" />
+<NamespaceSummaryItem name="cl.uv.leikelen.Data.Model" isDocumented="True" />
+<NamespaceSummaryItem name="cl.uv.leikelen.Data.Persistence" isDocumented="True" />
+<NamespaceSummaryItem name="cl.uv.leikelen.Data.Persistence.Provider" isDocumented="True" />
+<NamespaceSummaryItem name="cl.uv.leikelen.Module" isDocumented="True" />
+<NamespaceSummaryItem name="cl.uv.leikelen.Module.General.GestureConfiguration" isDocumented="True" />
+<NamespaceSummaryItem name="cl.uv.leikelen.Module.General.GestureConfiguration.View" isDocumented="True" />
+<NamespaceSummaryItem name="cl.uv.leikelen.Module.Input.Kinect" isDocumented="True" />
+<NamespaceSummaryItem name="cl.uv.leikelen.Module.Input.Kinect.DVR" isDocumented="True" />
+<NamespaceSummaryItem name="cl.uv.leikelen.Module.Input.OpenBCI" isDocumented="True" />
+<NamespaceSummaryItem name="cl.uv.leikelen.Module.Input.OpenBCI.Util" isDocumented="True" />
+<NamespaceSummaryItem name="cl.uv.leikelen.Module.Input.OpenBCI.View" isDocumented="True" />
+<NamespaceSummaryItem name="cl.uv.leikelen.Module.Processing.EEGEmotion2Channels" isDocumented="True" />
+<NamespaceSummaryItem name="cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing" isDocumented="True" />
+<NamespaceSummaryItem name="cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View" isDocumented="True" />
+<NamespaceSummaryItem name="cl.uv.leikelen.Module.Processing.Kinect.Distance" isDocumented="True" />
+<NamespaceSummaryItem name="cl.uv.leikelen.Module.Processing.Kinect.Posture" isDocumented="True" />
+<NamespaceSummaryItem name="cl.uv.leikelen.Module.Processing.Kinect.Voice" isDocumented="True" />
+<NamespaceSummaryItem name="cl.uv.leikelen.Util" isDocumented="True" />
+<NamespaceSummaryItem name="cl.uv.leikelen.View" isDocumented="True" />
+<NamespaceSummaryItem name="cl.uv.leikelen.View.Widget" isDocumented="True" />
+<NamespaceSummaryItem name="cl.uv.leikelen.View.Widget.HomeTab" isDocumented="True" />
+<NamespaceSummaryItem name="cl.uv.leikelen.View.Widget.HomeTab.Widget" isDocumented="True" />
+<NamespaceSummaryItem name="cl.uv.leikelen.View.Widget.PreferencesTab" isDocumented="True" /></NamespaceSummaries>
   </PropertyGroup>
   <!-- There are no properties for these groups.  AnyCPU needs to appear in order for Visual Studio to perform
 			 the build.  The others are optional common platform types that may appear. -->

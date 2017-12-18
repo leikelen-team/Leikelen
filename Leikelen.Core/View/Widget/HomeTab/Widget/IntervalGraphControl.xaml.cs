@@ -40,9 +40,7 @@ namespace cl.uv.leikelen.View.Widget.HomeTab.Widget
             PersonCmbx.SelectionChanged += PersonCmbx_SelectionChanged;
             ModalCmbx.SelectionChanged += ModalCmbx_SelectionChanged;
             SubmodalCmbx.SelectionChanged += SubmodalCmbx_SelectionChanged;
-
-            //FillGraph(intervalsTest);
-
+            
             Labels = new[] { "" };
             Formatter = val =>
             {
@@ -75,7 +73,7 @@ namespace cl.uv.leikelen.View.Widget.HomeTab.Widget
                 }
                 SubmodalCmbx.ItemsSource = submodals;
             }
-            Refresh();
+            //Refresh();
         }
 
         private void PersonCmbx_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -104,10 +102,12 @@ namespace cl.uv.leikelen.View.Widget.HomeTab.Widget
             SubmodalCmbx.SelectedIndex = -1;
             ModalCmbx.ItemsSource = modals;
 
+            //SeriesCollection = null;
+
             MyChart.Series = null;
             MyChart.Update();
             
-            Refresh();
+            //Refresh();
         }
 
         public SeriesCollection SeriesCollection { get; set; }
@@ -136,7 +136,7 @@ namespace cl.uv.leikelen.View.Widget.HomeTab.Widget
             double last = 0;
             foreach (var interval in intervals)
             {
-                if (interval.StartTime.Ticks - last > 0)
+                if (interval.StartTime.TotalSeconds - last > 0)
                 {
                     SeriesCollection.Add(new StackedRowSeries
                     {
@@ -148,25 +148,31 @@ namespace cl.uv.leikelen.View.Widget.HomeTab.Widget
                     });
                     Console.WriteLine($"Añadido white de {interval.StartTime.TotalSeconds - last}");
                 }
-                SeriesCollection.Add(new StackedRowSeries
+                if (interval.EndTime.TotalSeconds - interval.StartTime.TotalSeconds > 0)
                 {
-                    Values = new ChartValues<double> { interval.EndTime.TotalSeconds - interval.StartTime.TotalSeconds },
-                    StackMode = StackMode.Values,
-                    Fill = Brushes.Blue,
-                    DataLabels = true,
-                    LabelPoint = p => p.X.ToString("F0")
-                });
-                Console.WriteLine($"Añadido blue de {interval.EndTime.TotalSeconds - interval.StartTime.TotalSeconds}");
+                    SeriesCollection.Add(new StackedRowSeries
+                    {
+                        Values = new ChartValues<double> { interval.EndTime.TotalSeconds - interval.StartTime.TotalSeconds },
+                        StackMode = StackMode.Values,
+                        Fill = Brushes.Blue,
+                        DataLabels = true,
+                        LabelPoint = p => p.X.ToString("F0")
+                    });
+                    Console.WriteLine($"Añadido blue de {interval.EndTime.TotalSeconds - interval.StartTime.TotalSeconds}");
+                }
                 last = interval.EndTime.TotalSeconds;
             }
-            SeriesCollection.Add(new StackedRowSeries
+            if(DataAccessFacade.Instance.GetSceneInUseAccess().GetScene().Duration.TotalSeconds - last > 0)
             {
-                Values = new ChartValues<double> { DataAccessFacade.Instance.GetSceneInUseAccess().GetScene().Duration.TotalSeconds - last },
-                StackMode = StackMode.Values,
-                Fill = Brushes.White,
-                DataLabels = false,
-                LabelPoint = p => p.X.ToString()
-            });
+                SeriesCollection.Add(new StackedRowSeries
+                {
+                    Values = new ChartValues<double> { DataAccessFacade.Instance.GetSceneInUseAccess().GetScene().Duration.TotalSeconds - last },
+                    StackMode = StackMode.Values,
+                    Fill = Brushes.White,
+                    DataLabels = false,
+                    LabelPoint = p => p.X.ToString()
+                });
+            }
 
             MyChart.Series = SeriesCollection;
             MyChart.Update();

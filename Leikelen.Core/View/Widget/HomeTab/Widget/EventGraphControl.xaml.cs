@@ -41,8 +41,6 @@ namespace cl.uv.leikelen.View.Widget.HomeTab.Widget
             PersonCmbx.SelectionChanged += PersonCmbx_SelectionChanged;
             ModalCmbx.SelectionChanged += ModalCmbx_SelectionChanged;
             SubmodalCmbx.SelectionChanged += SubmodalCmbx_SelectionChanged;
-
-            //FillGraph(intervalsTest);
             
             Formatter = val =>
             {
@@ -141,14 +139,11 @@ namespace cl.uv.leikelen.View.Widget.HomeTab.Widget
             
             foreach(var event_data in events)
             {
-                if (event_data.Value.HasValue)
+                values.Add(new TimeModel()
                 {
-                    values.Add(new TimeModel()
-                    {
-                        TimeSpan = event_data.EventTime,
-                        Value = event_data.Value.Value
-                    });
-                }
+                    TimeSpan = event_data.EventTime,
+                    Value = event_data.Value ?? 1
+                });
             }
             SeriesCollection.Add(new LineSeries()
             {
