@@ -28,7 +28,7 @@ namespace cl.uv.leikelen.API.Module
         /// <value>
         /// A list of this module's windows.
         /// </value>
-        public List<Tuple<string, WindowBuilder>> Windows { get; protected set; }
+        public List<Tuple<string, WindowBuilder>> Windows { get; protected set; } = new List<Tuple<string, WindowBuilder>>();
         /// <summary>
         /// Gets a value indicating whether this instance is enabled.
         /// </summary>

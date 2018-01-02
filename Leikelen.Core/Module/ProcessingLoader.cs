@@ -38,7 +38,9 @@ namespace cl.uv.leikelen.Module
 
                 new Processing.Kinect.Voice.VoiceEntryPoint(),
                 new Processing.Kinect.Posture.GestureEntryPoint(),
-                new Processing.Kinect.Distance.DistanceEntryPoint()
+                new Processing.Kinect.Distance.DistanceEntryPoint(),
+                new Processing.Kinect.HeadAngle.HeadAngleEntryPoint(),
+                new Processing.Kinect.ShouldersAngle.ShouldersAngleEntryPoint()
             };
         }
     }

@@ -415,10 +415,16 @@
     <Compile Include="Module\Processing\EEGEmotion2Channels\View\TrainerSceneSelector.xaml.cs">
       <DependentUpon>TrainerSceneSelector.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Module\Processing\Kinect\CheckPerson.cs" />
     <Compile Include="Module\Processing\Kinect\Distance\DistanceEntryPoint.cs" />
     <Compile Include="Module\Processing\Kinect\Distance\DistanceLogic.cs" />
+    <Compile Include="Module\Processing\Kinect\HeadAngle\HeadAngleEntryPoint.cs" />
+    <Compile Include="Module\Processing\Kinect\HeadAngle\HeadAngleLogic.cs" />
+    <Compile Include="Module\Processing\Kinect\HeadAngle\JointOrientationExtensions.cs" />
     <Compile Include="Module\Processing\Kinect\Posture\GestureEntryPoint.cs" />
     <Compile Include="Module\Processing\Kinect\Posture\GestureLogic.cs" />
+    <Compile Include="Module\Processing\Kinect\ShouldersAngle\ShouldersAngleEntryPoint.cs" />
+    <Compile Include="Module\Processing\Kinect\ShouldersAngle\ShouldersAngleLogic.cs" />
     <Compile Include="Module\Processing\Kinect\Voice\VoiceEntryPoint.cs" />
     <Compile Include="Module\Processing\Kinect\Voice\VoiceLogic.cs" />
     <Compile Include="Properties\Error.Designer.cs">
@@ -791,6 +797,7 @@
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
