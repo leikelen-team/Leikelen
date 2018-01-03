@@ -29,9 +29,9 @@ namespace cl.uv.leikelen.API.DataAccess
         /// <param name="eventTime"></param>
         /// <param name="value"></param>
         /// <param name="toInterval"></param>
-        void Add(int personId, string modalName, string subModalName, TimeSpan eventTime, double value, bool toInterval);
-        void Add(int personId, string modalName, string subModalName, TimeSpan eventTime, double value, string subtitle, bool toInterval);
-        void Add(int personId, string modalName, string subModalName, TimeSpan eventTime, string subtitle, bool toInterval);
-        void Add(int personId, string modalName, string subModalName, TimeSpan eventTime, bool toInterval);
+        void Add(int personId, string modalName, string subModalName, TimeSpan eventTime, double value, int toInterval);
+        void Add(int personId, string modalName, string subModalName, TimeSpan eventTime, double value, string subtitle, int toInterval);
+        void Add(int personId, string modalName, string subModalName, TimeSpan eventTime, string subtitle, int toInterval);
+        void Add(int personId, string modalName, string subModalName, TimeSpan eventTime, int toInterval);
     }
 }

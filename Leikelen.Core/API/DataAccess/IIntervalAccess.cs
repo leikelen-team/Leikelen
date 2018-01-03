@@ -15,6 +15,6 @@ namespace cl.uv.leikelen.API.DataAccess
         void Add(int personId, string modalName, string subModalName, TimeSpan startTime, TimeSpan endTime, string subtitle);
         void Add(int personId, string modalName, string subModalName, TimeSpan startTime, TimeSpan endTime);
 
-        void FromEvent(int personId, string modalName, string subModalName, int millisecondsThreshold);
+        void FromEvent(int personId, string modalName, string subModalName, int millisecondsThreshold, int which, string intervalName);
     }
 }

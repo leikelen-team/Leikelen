@@ -40,28 +40,28 @@ namespace cl.uv.leikelen.Data.Access.External
         }
 
         #region public add methods
-        public void Add(int personId, string modalName, string subModalName, TimeSpan eventTime, double value, bool toInterval)
+        public void Add(int personId, string modalName, string subModalName, TimeSpan eventTime, double value, int toInterval)
         {
             InternalAdd(personId, modalName, subModalName, eventTime, value, null, toInterval);
         }
 
-        public void Add(int personId, string modalName, string subModalName, TimeSpan eventTime, double value, string subtitle, bool toInterval)
+        public void Add(int personId, string modalName, string subModalName, TimeSpan eventTime, double value, string subtitle, int toInterval)
         {
             InternalAdd(personId, modalName, subModalName, eventTime, value, subtitle, toInterval);
         }
 
-        public void Add(int personId, string modalName, string subModalName, TimeSpan eventTime, string subtitle, bool toInterval)
+        public void Add(int personId, string modalName, string subModalName, TimeSpan eventTime, string subtitle, int toInterval)
         {
             InternalAdd(personId, modalName, subModalName, eventTime, null, subtitle, toInterval);
         }
 
-        public void Add(int personId, string modalName, string subModalName, TimeSpan eventTime, bool toInterval)
+        public void Add(int personId, string modalName, string subModalName, TimeSpan eventTime, int toInterval)
         {
             InternalAdd(personId, modalName, subModalName, eventTime, null, null, toInterval);
         }
         #endregion
 
-        private void InternalAdd(int personId, string modalName, string subModalName, TimeSpan eventTime, double? value, string subtitle, bool toInterval)
+        private void InternalAdd(int personId, string modalName, string subModalName, TimeSpan eventTime, double? value, string subtitle, int toInterval)
         {
             var subModalPersonInScene = TypeValidation.GetSmtPis(personId, modalName, subModalName);
 

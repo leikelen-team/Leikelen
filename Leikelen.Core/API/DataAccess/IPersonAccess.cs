@@ -12,7 +12,7 @@ namespace cl.uv.leikelen.API.DataAccess
         event EventHandler<Person> PersonsChanged;
         List<Person> GetAll();
         Person Get(int personId);
-        Person Add(string name, string photo, DateTime? birthday, int? sex);
+        Person Add(string name, string photo, DateTime? birthday, int? sex, long? trackingId);
         Person Update(Person person);
         PersonInScene AddToScene(Person person, Scene scene);
         bool Exists(int personId);

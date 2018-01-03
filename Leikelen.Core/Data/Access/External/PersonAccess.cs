@@ -14,14 +14,15 @@ namespace cl.uv.leikelen.Data.Access.External
     {
         public event EventHandler<Person> PersonsChanged;
 
-        public Person Add(string name, string photo, DateTime? birthday, int? sex)
+        public Person Add(string name, string photo, DateTime? birthday, int? sex, long? trackingId)
         {
             var person = DbFacade.Instance.Provider.SavePerson(new Person()
             {
                 Name = name,
                 Photo = photo,
                 Birthday = birthday,
-                Sex = sex
+                Sex = sex,
+                TrackingId = trackingId
             });
             InputLoader.Instance.FillPersonInputModules(person);
             PersonsChanged?.Invoke(this, person);

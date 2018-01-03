@@ -21,6 +21,8 @@ namespace cl.uv.leikelen.Data.Model
         public DateTime? Birthday { get; set; }
         [Column("sex")]
         public int? Sex { get; set; }
+        [Column("tracking_id")]
+        public long? TrackingId { get; set; }
 
         [NotMapped]
         public string SexString

@@ -18,10 +18,13 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.Proxemic
         public ProxemicLogic()
         {
             _dataAccessFacade.GetModalAccess().AddIfNotExists("Proxemic", "distance between spinalmids of persons");
-            _dataAccessFacade.GetSubModalAccess().AddIfNotExists("Proxemic", "Public", "Public distance", null);
-            _dataAccessFacade.GetSubModalAccess().AddIfNotExists("Proxemic", "Social", "Stranger distance", null);
-            _dataAccessFacade.GetSubModalAccess().AddIfNotExists("Proxemic", "Personal", "Acquaintance distance", null);
-            _dataAccessFacade.GetSubModalAccess().AddIfNotExists("Proxemic", "Intimate", "Close person distance", null);
+
+
+            _dataAccessFacade.GetSubModalAccess().AddIfNotExists("Proxemic", "Intimate", "Close person distance", null);//0
+            _dataAccessFacade.GetSubModalAccess().AddIfNotExists("Proxemic", "Personal", "Acquaintance distance", null);//1
+            _dataAccessFacade.GetSubModalAccess().AddIfNotExists("Proxemic", "Social", "Stranger distance", null);//2
+            _dataAccessFacade.GetSubModalAccess().AddIfNotExists("Proxemic", "Public", "Public distance", null);//3
+
             _dataAccessFacade.GetSubModalAccess().AddIfNotExists("Proxemic", "Events", "all distances", null);
 
             _bodies = new List<CustomBody>();
@@ -60,22 +63,22 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.Proxemic
                             var time = _dataAccessFacade.GetSceneInUseAccess()?.GetLocation();
                             if (time.HasValue)
                             {
-                                _dataAccessFacade.GetEventAccess().Add(CheckPerson.Instance.PersonsId[body.TrackingId], "Proxemic", "Events", time.Value, distance, false);
+                                //_dataAccessFacade.GetEventAccess().Add(CheckPerson.Instance.PersonsId[body.TrackingId], "Proxemic", "Events", time.Value, distance, false);
                                 if(distance < 0.45)
                                 {
-                                    _dataAccessFacade.GetEventAccess().Add(CheckPerson.Instance.PersonsId[body.TrackingId], "Proxemic", "Intimate", time.Value, distance, true);
+                                    _dataAccessFacade.GetEventAccess().Add(CheckPerson.Instance.PersonsId[body.TrackingId], "Proxemic", "Events", time.Value, distance, 0);
                                 }
                                 else if(distance < 0.65)
                                 {
-                                    _dataAccessFacade.GetEventAccess().Add(CheckPerson.Instance.PersonsId[body.TrackingId], "Proxemic", "Personal", time.Value, distance, true);
+                                    _dataAccessFacade.GetEventAccess().Add(CheckPerson.Instance.PersonsId[body.TrackingId], "Proxemic", "Events", time.Value, distance, 1);
                                 }
                                 else if(distance < 0.85)
                                 {
-                                    _dataAccessFacade.GetEventAccess().Add(CheckPerson.Instance.PersonsId[body.TrackingId], "Proxemic", "Social", time.Value, distance, true);
+                                    _dataAccessFacade.GetEventAccess().Add(CheckPerson.Instance.PersonsId[body.TrackingId], "Proxemic", "Events", time.Value, distance, 2);
                                 }
                                 else
                                 {
-                                    _dataAccessFacade.GetEventAccess().Add(CheckPerson.Instance.PersonsId[body.TrackingId], "Proxemic", "Public", time.Value, distance, true);
+                                    _dataAccessFacade.GetEventAccess().Add(CheckPerson.Instance.PersonsId[body.TrackingId], "Proxemic", "Events", time.Value, distance, 3);
                                 }
                                 //Console.WriteLine($"Proxemic is: {distance}");
                             }
@@ -92,7 +95,7 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.Proxemic
             {
                 try
                 {
-                    _dataAccessFacade.GetIntervalAccess().FromEvent(personPair.Value, "Proxemic", "Intimate", _dataAccessFacade.GetGeneralSettings().GetDefaultMillisecondsThreshold());
+                    _dataAccessFacade.GetIntervalAccess().FromEvent(personPair.Value, "Proxemic", "Events", _dataAccessFacade.GetGeneralSettings().GetDefaultMillisecondsThreshold(), 0, "Intimate");
                 }
                 catch (Exception ex)
                 {
@@ -101,7 +104,7 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.Proxemic
 
                 try
                 {
-                    _dataAccessFacade.GetIntervalAccess().FromEvent(personPair.Value, "Proxemic", "Personal", _dataAccessFacade.GetGeneralSettings().GetDefaultMillisecondsThreshold());
+                    _dataAccessFacade.GetIntervalAccess().FromEvent(personPair.Value, "Proxemic", "Events", _dataAccessFacade.GetGeneralSettings().GetDefaultMillisecondsThreshold(), 1, "Personal");
                 }
                 catch (Exception ex)
                 {
@@ -110,7 +113,7 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.Proxemic
 
                 try
                 {
-                    _dataAccessFacade.GetIntervalAccess().FromEvent(personPair.Value, "Proxemic", "Social", _dataAccessFacade.GetGeneralSettings().GetDefaultMillisecondsThreshold());
+                    _dataAccessFacade.GetIntervalAccess().FromEvent(personPair.Value, "Proxemic", "Events", _dataAccessFacade.GetGeneralSettings().GetDefaultMillisecondsThreshold(), 2, "Social");
                 }
                 catch (Exception ex)
                 {
@@ -119,7 +122,7 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.Proxemic
 
                 try
                 {
-                    _dataAccessFacade.GetIntervalAccess().FromEvent(personPair.Value, "Proxemic", "Public", _dataAccessFacade.GetGeneralSettings().GetDefaultMillisecondsThreshold());
+                    _dataAccessFacade.GetIntervalAccess().FromEvent(personPair.Value, "Proxemic", "Events", _dataAccessFacade.GetGeneralSettings().GetDefaultMillisecondsThreshold(), 3, "Public");
                 }
                 catch (Exception ex)
                 {

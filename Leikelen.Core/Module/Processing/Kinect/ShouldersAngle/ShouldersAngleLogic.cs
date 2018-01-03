@@ -83,7 +83,7 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.ShouldersAngle
                             var time = _dataAccessFacade.GetSceneInUseAccess()?.GetLocation();
                             if (time.HasValue)
                             {
-                                _dataAccessFacade.GetEventAccess().Add(CheckPerson.Instance.PersonsId[body.TrackingId], "Shoulders", "Angle", time.Value, angle, false);
+                                _dataAccessFacade.GetEventAccess().Add(CheckPerson.Instance.PersonsId[body.TrackingId], "Shoulders", "Angle", time.Value, angle, -1);
                                 //Console.WriteLine($"El ángulo de los hombros es: {angle}");
                             }
                         }

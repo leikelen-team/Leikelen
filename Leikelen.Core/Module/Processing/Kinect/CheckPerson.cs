@@ -54,7 +54,7 @@ namespace cl.uv.leikelen.Module.Processing.Kinect
                 }
                 if (!isPersonInScene)
                 {
-                    var newPerson = _dataAccessFacade.GetPersonAccess().Add(personName, null, null, null);
+                    var newPerson = _dataAccessFacade.GetPersonAccess().Add(personName, null, null, null, (long)bodyTrackingId);
                     PersonsId[bodyTrackingId] = newPerson.PersonId;
                     _dataAccessFacade.GetPersonAccess().AddToScene(newPerson, _dataAccessFacade.GetSceneInUseAccess()?.GetScene());
                 }

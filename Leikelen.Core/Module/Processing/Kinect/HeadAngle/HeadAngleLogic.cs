@@ -23,15 +23,16 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.HeadAngle
             _dataAccessFacade.GetSubModalAccess().AddIfNotExists("Neck Orientation", "Yaw", "rotation in Y axis", null);
             _dataAccessFacade.GetSubModalAccess().AddIfNotExists("Neck Orientation", "Roll", "rotation in Z axis", null);
 
-            _dataAccessFacade.GetSubModalAccess().AddIfNotExists("Neck Orientation", "Watching public", "The angle of the neck is watching to the public", null);
+            _dataAccessFacade.GetSubModalAccess().AddIfNotExists("Neck Orientation", "Watching public", "The angle of the neck is watching to the public", null);//0
 
             _dataAccessFacade.GetModalAccess().AddIfNotExists("Lean", "Lean of body");
             _dataAccessFacade.GetSubModalAccess().AddIfNotExists("Lean", "X", "Lean in X axis (right or left)", null);
             _dataAccessFacade.GetSubModalAccess().AddIfNotExists("Lean", "Y", "Lean in Y axis (back and forward)", null);
 
-            _dataAccessFacade.GetSubModalAccess().AddIfNotExists("Lean", "Straight", "Lean in Y axis (back and forward) is straight", null);
-            _dataAccessFacade.GetSubModalAccess().AddIfNotExists("Lean", "Upside", "Lean in Y axis (back and forward) is to up", null);
-            _dataAccessFacade.GetSubModalAccess().AddIfNotExists("Lean", "Downside", "Lean in Y axis (back and forward) is to down", null);
+
+            _dataAccessFacade.GetSubModalAccess().AddIfNotExists("Lean", "Upside", "Lean in Y axis (back and forward) is to up", null);//0
+            _dataAccessFacade.GetSubModalAccess().AddIfNotExists("Lean", "Straight", "Lean in Y axis (back and forward) is straight", null);//1
+            _dataAccessFacade.GetSubModalAccess().AddIfNotExists("Lean", "Downside", "Lean in Y axis (back and forward) is to down", null);//2
         }
 
         public void _bodyReader_FrameArrived(object sender, BodyFrameArrivedEventArgs e)
@@ -61,26 +62,26 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.HeadAngle
                         var time = _dataAccessFacade.GetSceneInUseAccess()?.GetLocation();
                         if (time.HasValue)
                         {
-                            _dataAccessFacade.GetEventAccess().Add(CheckPerson.Instance.PersonsId[body.TrackingId], "Neck Orientation", "Pitch", time.Value, rotationX, false);
-                            _dataAccessFacade.GetEventAccess().Add(CheckPerson.Instance.PersonsId[body.TrackingId], "Neck Orientation", "Yaw", time.Value, rotationY, false);
-                            _dataAccessFacade.GetEventAccess().Add(CheckPerson.Instance.PersonsId[body.TrackingId], "Neck Orientation", "Roll", time.Value, rotationZ, false);
+                            _dataAccessFacade.GetEventAccess().Add(CheckPerson.Instance.PersonsId[body.TrackingId], "Neck Orientation", "Pitch", time.Value, rotationX, -1);
+                            //_dataAccessFacade.GetEventAccess().Add(CheckPerson.Instance.PersonsId[body.TrackingId], "Neck Orientation", "Yaw", time.Value, rotationY, false);
+                            _dataAccessFacade.GetEventAccess().Add(CheckPerson.Instance.PersonsId[body.TrackingId], "Neck Orientation", "Roll", time.Value, rotationZ, -1);
 
-                            _dataAccessFacade.GetEventAccess().Add(CheckPerson.Instance.PersonsId[body.TrackingId], "Lean", "X", time.Value, body.Lean.X, false);
-                            _dataAccessFacade.GetEventAccess().Add(CheckPerson.Instance.PersonsId[body.TrackingId], "Lean", "Y", time.Value, body.Lean.Y, false);
+                            _dataAccessFacade.GetEventAccess().Add(CheckPerson.Instance.PersonsId[body.TrackingId], "Lean", "X", time.Value, body.Lean.X, -1);
+                            //_dataAccessFacade.GetEventAccess().Add(CheckPerson.Instance.PersonsId[body.TrackingId], "Lean", "Y", time.Value, body.Lean.Y, false);
 
                             if(body.Lean.Y < (2/3) - 1) //between -1 and -0.333
                             {
-                                _dataAccessFacade.GetEventAccess().Add(CheckPerson.Instance.PersonsId[body.TrackingId], "Lean", "Upside", time.Value, body.Lean.Y, true);
+                                _dataAccessFacade.GetEventAccess().Add(CheckPerson.Instance.PersonsId[body.TrackingId], "Lean", "Y", time.Value, body.Lean.Y, 0);
 
                             }
                             else if (body.Lean.Y < 1 - (2 / 3)) //between -0.333 and 0.333
                             {
-                                _dataAccessFacade.GetEventAccess().Add(CheckPerson.Instance.PersonsId[body.TrackingId], "Lean", "Straight", time.Value, body.Lean.Y, true);
+                                _dataAccessFacade.GetEventAccess().Add(CheckPerson.Instance.PersonsId[body.TrackingId], "Lean", "Y", time.Value, body.Lean.Y, 1);
 
                             }
                             else //between 0.333 and 1
                             {
-                                _dataAccessFacade.GetEventAccess().Add(CheckPerson.Instance.PersonsId[body.TrackingId], "Lean", "Downside", time.Value, body.Lean.Y, true);
+                                _dataAccessFacade.GetEventAccess().Add(CheckPerson.Instance.PersonsId[body.TrackingId], "Lean", "Y", time.Value, body.Lean.Y, 2);
 
                             }
 
@@ -94,7 +95,9 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.HeadAngle
                             double hipoten = Math.Sqrt(distanceMaxOfBorder * distanceMaxOfBorder + 4.3 * 4.3);
                             double angle = Math.Asin(distanceMaxOfBorder / hipoten);
                             if(rotationY <= angle)
-                                _dataAccessFacade.GetEventAccess().Add(CheckPerson.Instance.PersonsId[body.TrackingId], "Neck Orientation", "Watching public", time.Value, body.Lean.Y, true);
+                                _dataAccessFacade.GetEventAccess().Add(CheckPerson.Instance.PersonsId[body.TrackingId], "Neck Orientation", "Yaw", time.Value, body.Lean.Y, 0);
+                            else
+                                _dataAccessFacade.GetEventAccess().Add(CheckPerson.Instance.PersonsId[body.TrackingId], "Neck Orientation", "Yaw", time.Value, body.Lean.Y, -1);
                         }
                     }
                 }
@@ -107,7 +110,7 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.HeadAngle
             {
                 try
                 {
-                    _dataAccessFacade.GetIntervalAccess().FromEvent(personPair.Value, "Neck Orientation", "Watching public", _dataAccessFacade.GetGeneralSettings().GetDefaultMillisecondsThreshold());
+                    _dataAccessFacade.GetIntervalAccess().FromEvent(personPair.Value, "Neck Orientation", "Yaw", _dataAccessFacade.GetGeneralSettings().GetDefaultMillisecondsThreshold(), 0, "Watching public");
                 }
                 catch (Exception ex)
                 {
@@ -116,7 +119,7 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.HeadAngle
 
                 try
                 {
-                    _dataAccessFacade.GetIntervalAccess().FromEvent(personPair.Value, "Lean", "Downside", _dataAccessFacade.GetGeneralSettings().GetDefaultMillisecondsThreshold());
+                   _dataAccessFacade.GetIntervalAccess().FromEvent(personPair.Value, "Lean", "Y" , _dataAccessFacade.GetGeneralSettings().GetDefaultMillisecondsThreshold(), 0, "Upside");
                 }
                 catch (Exception ex)
                 {
@@ -125,7 +128,7 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.HeadAngle
 
                 try
                 {
-                    _dataAccessFacade.GetIntervalAccess().FromEvent(personPair.Value, "Lean", "Straight", _dataAccessFacade.GetGeneralSettings().GetDefaultMillisecondsThreshold());
+                    _dataAccessFacade.GetIntervalAccess().FromEvent(personPair.Value, "Lean", "Y", _dataAccessFacade.GetGeneralSettings().GetDefaultMillisecondsThreshold(), 1, "Straight");
                 }
                 catch (Exception ex)
                 {
@@ -134,7 +137,8 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.HeadAngle
 
                 try
                 {
-                    _dataAccessFacade.GetIntervalAccess().FromEvent(personPair.Value, "Lean", "Upside", _dataAccessFacade.GetGeneralSettings().GetDefaultMillisecondsThreshold());
+                    _dataAccessFacade.GetIntervalAccess().FromEvent(personPair.Value, "Lean", "Y", _dataAccessFacade.GetGeneralSettings().GetDefaultMillisecondsThreshold(), 2, "Downside");
+
                 }
                 catch (Exception ex)
                 {

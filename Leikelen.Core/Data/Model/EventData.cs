@@ -19,7 +19,7 @@ namespace cl.uv.leikelen.Data.Model
         public TimeSpan EventTime { get; set; }
 
         [Column("to_interval")]
-        public bool ToInterval { get; set; }
+        public int ToInterval { get; set; }
 
         public RepresentType RepresentType { get; set; }
 

@@ -37,7 +37,7 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.Voice
                         CheckPerson.Instance.CheckIfExistsPerson(audioBodyCorrelation.BodyTrackingId);
                         var time = _dataAccessFacade.GetSceneInUseAccess()?.GetLocation();
                         if (time.HasValue)
-                            _dataAccessFacade.GetEventAccess().Add(CheckPerson.Instance.PersonsId[audioBodyCorrelation.BodyTrackingId], "Voice", "Talked", time.Value, true);
+                            _dataAccessFacade.GetEventAccess().Add(CheckPerson.Instance.PersonsId[audioBodyCorrelation.BodyTrackingId], "Voice", "Talked", time.Value, 1);
                         
                         //Console.WriteLine("Tiempo: {0}, Llegó Voz de {1}", DateTime.Now, audioBodyCorrelation.BodyTrackingId);
                         
@@ -52,7 +52,7 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.Voice
             {
                 try
                 {
-                    _dataAccessFacade.GetIntervalAccess().FromEvent(personPair.Value, "Voice", "Talked", _dataAccessFacade.GetGeneralSettings().GetDefaultMillisecondsThreshold());
+                    _dataAccessFacade.GetIntervalAccess().FromEvent(personPair.Value, "Voice", "Talked", _dataAccessFacade.GetGeneralSettings().GetDefaultMillisecondsThreshold(), 1, "Talked");
                 }
                 catch (Exception ex)
                 {

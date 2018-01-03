@@ -97,7 +97,7 @@ namespace cl.uv.leikelen.View
                 }
                 if (ReferenceEquals(null, _person))
                 {
-                    var person = DataAccessFacade.Instance.GetPersonAccess().Add(NameTextBox.Text, _targetPhotoName, BirthdayPicker.SelectedDate, sex);
+                    var person = DataAccessFacade.Instance.GetPersonAccess().Add(NameTextBox.Text, _targetPhotoName, BirthdayPicker.SelectedDate, sex, null);
                     DataAccessFacade.Instance.GetPersonAccess().AddToScene(person, DataAccessFacade.Instance.GetSceneInUseAccess().GetScene());
                     if(!ReferenceEquals(null, _originPhotoPath) && !ReferenceEquals(null, _targetPhotoName))
                         File.Copy(_originPhotoPath, DataAccessFacade.Instance.GetGeneralSettings().GetDataPersonsDirectory() + _targetPhotoName);

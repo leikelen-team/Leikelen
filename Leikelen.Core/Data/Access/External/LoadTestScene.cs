@@ -36,8 +36,8 @@ namespace cl.uv.leikelen.Data.Access.External
                 Duration = new TimeSpan(0, 10, 30)
             };
             SceneInUse.Instance.Set(scene);
-            var person1 = DataAccessFacade.Instance.GetPersonAccess().Add("Erick", null, new DateTime(1992, 4,3), 0);
-            var person2 = DataAccessFacade.Instance.GetPersonAccess().Add("Dorotea", null, null, 1);
+            var person1 = DataAccessFacade.Instance.GetPersonAccess().Add("Erick", null, new DateTime(1992, 4,3), 0, null);
+            var person2 = DataAccessFacade.Instance.GetPersonAccess().Add("Dorotea", null, null, 1, null);
             DataAccessFacade.Instance.GetPersonAccess().AddToScene(person1, scene);
             DataAccessFacade.Instance.GetPersonAccess().AddToScene(person2, scene);
 
@@ -85,13 +85,13 @@ namespace cl.uv.leikelen.Data.Access.External
                                     switch (data)
                                     {
                                         case 1:
-                                            DataAccessFacade.Instance.GetEventAccess().Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, new TimeSpan(rnd.Next(0, sceneTicks)), doubleData, false);
+                                            DataAccessFacade.Instance.GetEventAccess().Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, new TimeSpan(rnd.Next(0, sceneTicks)), doubleData, -1);
                                             break;
                                         case 2:
-                                            DataAccessFacade.Instance.GetEventAccess().Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, new TimeSpan(rnd.Next(0, sceneTicks)), subtitleData, false);
+                                            DataAccessFacade.Instance.GetEventAccess().Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, new TimeSpan(rnd.Next(0, sceneTicks)), subtitleData, -1);
                                             break;
                                         case 3:
-                                            DataAccessFacade.Instance.GetEventAccess().Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, new TimeSpan(rnd.Next(0, sceneTicks)), false);
+                                            DataAccessFacade.Instance.GetEventAccess().Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, new TimeSpan(rnd.Next(0, sceneTicks)), -1);
                                             break;
                                     }
                                     break;
@@ -160,8 +160,8 @@ namespace cl.uv.leikelen.Data.Access.External
                 Duration = new TimeSpan(0, 10, 30)
             };
             SceneInUse.Instance.Set(scene);
-            var person1 = DataAccessFacade.Instance.GetPersonAccess().Add("Erick", null, new DateTime(1992, 4, 3), 0);
-            var person2 = DataAccessFacade.Instance.GetPersonAccess().Add("Dorotea", null, null, 1);
+            var person1 = DataAccessFacade.Instance.GetPersonAccess().Add("Erick", null, new DateTime(1992, 4, 3), 0, null);
+            var person2 = DataAccessFacade.Instance.GetPersonAccess().Add("Dorotea", null, null, 1, null);
             DataAccessFacade.Instance.GetPersonAccess().AddToScene(person1, scene);
             DataAccessFacade.Instance.GetPersonAccess().AddToScene(person2, scene);
 
@@ -207,7 +207,7 @@ namespace cl.uv.leikelen.Data.Access.External
                             switch (which)
                             {
                                 case 1:
-                                    DataAccessFacade.Instance.GetEventAccess().Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, new TimeSpan(maxTicks), doubleData, false);
+                                    DataAccessFacade.Instance.GetEventAccess().Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, new TimeSpan(maxTicks), doubleData, -1);
                                     
                                     break;
                                 case 2:
