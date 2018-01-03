@@ -8,19 +8,16 @@ using cl.uv.leikelen.API.Helper;
 using cl.uv.leikelen.API.Module.Processing;
 using cl.uv.leikelen.API.FrameProvider.Kinect;
 
-namespace cl.uv.leikelen.Module.Processing.Kinect.HeadAngle
+namespace cl.uv.leikelen.Module.Processing.Kinect.Proxemic
 {
-    public class HeadAngleEntryPoint : ProcessingModule, IKinectProcessingModule
+    public class ProxemicEntryPoint : ProcessingModule, IKinectProcessingModule
     {
-        public HeadAngleLogic _logic;
-
-        public HeadAngleEntryPoint()
+        private ProxemicLogic _logic;
+        public ProxemicEntryPoint()
         {
-            Windows = new List<Tuple<string, WindowBuilder>>();
-            IsActiveBeforeRecording = false;
-            Name = "HeadAngle";
+            Name = "Proxemic";
 
-            _logic = new HeadAngleLogic();
+            _logic = new ProxemicLogic();
         }
 
         public EventHandler<AudioBeamFrameArrivedEventArgs> AudioListener()

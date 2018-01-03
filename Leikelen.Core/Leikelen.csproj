@@ -415,6 +415,8 @@
     <Compile Include="Module\Processing\EEGEmotion2Channels\View\TrainerSceneSelector.xaml.cs">
       <DependentUpon>TrainerSceneSelector.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Module\Processing\Kinect\AccurateProxemic\AccurateProxemicEntryPoint.cs" />
+    <Compile Include="Module\Processing\Kinect\AccurateProxemic\AccurateProxemicLogic.cs" />
     <Compile Include="Module\Processing\Kinect\CheckPerson.cs" />
     <Compile Include="Module\Processing\Kinect\Distance\DistanceEntryPoint.cs" />
     <Compile Include="Module\Processing\Kinect\Distance\DistanceLogic.cs" />
@@ -423,6 +425,8 @@
     <Compile Include="Module\Processing\Kinect\HeadAngle\JointOrientationExtensions.cs" />
     <Compile Include="Module\Processing\Kinect\Posture\GestureEntryPoint.cs" />
     <Compile Include="Module\Processing\Kinect\Posture\GestureLogic.cs" />
+    <Compile Include="Module\Processing\Kinect\Proxemic\ProxemicEntryPoint.cs" />
+    <Compile Include="Module\Processing\Kinect\Proxemic\ProxemicLogic.cs" />
     <Compile Include="Module\Processing\Kinect\ShouldersAngle\ShouldersAngleEntryPoint.cs" />
     <Compile Include="Module\Processing\Kinect\ShouldersAngle\ShouldersAngleLogic.cs" />
     <Compile Include="Module\Processing\Kinect\Voice\VoiceEntryPoint.cs" />
@@ -521,6 +525,8 @@
     <Compile Include="Module\ProcessingLoader.cs" />
     <Compile Include="GeneralSettings.cs" />
     <Compile Include="Util\IntegerInput.cs" />
+    <Compile Include="Util\PersonColor.cs" />
+    <Compile Include="Util\PersonColors.cs" />
     <Compile Include="Util\StringUtil.cs" />
     <Compile Include="View\AboutUs.xaml.cs">
       <DependentUpon>AboutUs.xaml</DependentUpon>

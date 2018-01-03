@@ -46,7 +46,7 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.Voice
             }
         }
 
-        public void StopRecording()
+        public async void StopRecording()
         {
             foreach(var personPair in CheckPerson.Instance.PersonsId)
             {
@@ -60,7 +60,6 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.Voice
                 }
                 
             }
-            
         }
     }
 }

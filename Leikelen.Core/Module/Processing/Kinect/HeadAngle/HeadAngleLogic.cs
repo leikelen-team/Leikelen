@@ -23,9 +23,15 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.HeadAngle
             _dataAccessFacade.GetSubModalAccess().AddIfNotExists("Neck Orientation", "Yaw", "rotation in Y axis", null);
             _dataAccessFacade.GetSubModalAccess().AddIfNotExists("Neck Orientation", "Roll", "rotation in Z axis", null);
 
+            _dataAccessFacade.GetSubModalAccess().AddIfNotExists("Neck Orientation", "Watching public", "The angle of the neck is watching to the public", null);
+
             _dataAccessFacade.GetModalAccess().AddIfNotExists("Lean", "Lean of body");
             _dataAccessFacade.GetSubModalAccess().AddIfNotExists("Lean", "X", "Lean in X axis (right or left)", null);
             _dataAccessFacade.GetSubModalAccess().AddIfNotExists("Lean", "Y", "Lean in Y axis (back and forward)", null);
+
+            _dataAccessFacade.GetSubModalAccess().AddIfNotExists("Lean", "Straight", "Lean in Y axis (back and forward) is straight", null);
+            _dataAccessFacade.GetSubModalAccess().AddIfNotExists("Lean", "Upside", "Lean in Y axis (back and forward) is to up", null);
+            _dataAccessFacade.GetSubModalAccess().AddIfNotExists("Lean", "Downside", "Lean in Y axis (back and forward) is to down", null);
         }
 
         public void _bodyReader_FrameArrived(object sender, BodyFrameArrivedEventArgs e)
@@ -62,13 +68,79 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.HeadAngle
                             _dataAccessFacade.GetEventAccess().Add(CheckPerson.Instance.PersonsId[body.TrackingId], "Lean", "X", time.Value, body.Lean.X, false);
                             _dataAccessFacade.GetEventAccess().Add(CheckPerson.Instance.PersonsId[body.TrackingId], "Lean", "Y", time.Value, body.Lean.Y, false);
 
+                            if(body.Lean.Y < (2/3) - 1) //between -1 and -0.333
+                            {
+                                _dataAccessFacade.GetEventAccess().Add(CheckPerson.Instance.PersonsId[body.TrackingId], "Lean", "Upside", time.Value, body.Lean.Y, true);
+
+                            }
+                            else if (body.Lean.Y < 1 - (2 / 3)) //between -0.333 and 0.333
+                            {
+                                _dataAccessFacade.GetEventAccess().Add(CheckPerson.Instance.PersonsId[body.TrackingId], "Lean", "Straight", time.Value, body.Lean.Y, true);
+
+                            }
+                            else //between 0.333 and 1
+                            {
+                                _dataAccessFacade.GetEventAccess().Add(CheckPerson.Instance.PersonsId[body.TrackingId], "Lean", "Downside", time.Value, body.Lean.Y, true);
+
+                            }
+
                             //Console.WriteLine($"XPitch: {rotationX}\tYYaw: {rotationY}\tZRoll: {rotationZ}");
                             //Console.WriteLine($"XLean: {body.Lean.X}\tYLean: {body.Lean.Y}");
-                        }
 
-                        
+                            //2 is because the horizontal max y 4 mts
+                            double distanceMaxOfBorder = 2 + Math.Abs(body.Joints[JointType.Neck].Position.X);
+                            //4.3 is the distance between the public and the person
+                            Console.WriteLine($"The distance between the sensor and person is: {body.Joints[JointType.Neck].Position.Z}");
+                            double hipoten = Math.Sqrt(distanceMaxOfBorder * distanceMaxOfBorder + 4.3 * 4.3);
+                            double angle = Math.Asin(distanceMaxOfBorder / hipoten);
+                            if(rotationY <= angle)
+                                _dataAccessFacade.GetEventAccess().Add(CheckPerson.Instance.PersonsId[body.TrackingId], "Neck Orientation", "Watching public", time.Value, body.Lean.Y, true);
+                        }
                     }
                 }
+            }
+        }
+
+        public async void StopRecording()
+        {
+            foreach (var personPair in CheckPerson.Instance.PersonsId)
+            {
+                try
+                {
+                    _dataAccessFacade.GetIntervalAccess().FromEvent(personPair.Value, "Neck Orientation", "Watching public", _dataAccessFacade.GetGeneralSettings().GetDefaultMillisecondsThreshold());
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(ex.Message);
+                }
+
+                try
+                {
+                    _dataAccessFacade.GetIntervalAccess().FromEvent(personPair.Value, "Lean", "Downside", _dataAccessFacade.GetGeneralSettings().GetDefaultMillisecondsThreshold());
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(ex.Message);
+                }
+
+                try
+                {
+                    _dataAccessFacade.GetIntervalAccess().FromEvent(personPair.Value, "Lean", "Straight", _dataAccessFacade.GetGeneralSettings().GetDefaultMillisecondsThreshold());
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(ex.Message);
+                }
+
+                try
+                {
+                    _dataAccessFacade.GetIntervalAccess().FromEvent(personPair.Value, "Lean", "Upside", _dataAccessFacade.GetGeneralSettings().GetDefaultMillisecondsThreshold());
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(ex.Message);
+                }
+
             }
         }
     }
