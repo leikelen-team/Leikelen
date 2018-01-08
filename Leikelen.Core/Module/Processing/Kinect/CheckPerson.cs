@@ -1,5 +1,6 @@
 ﻿using cl.uv.leikelen.API.DataAccess;
 using cl.uv.leikelen.Data.Access;
+using cl.uv.leikelen.Data.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace cl.uv.leikelen.Module.Processing.Kinect
         /// <summary>
         /// Dictionary that match the kinect tracking id with the persons identifier
         /// </summary>
-        public Dictionary<ulong, int> PersonsId { get; private set;} = new Dictionary<ulong, int>();
+        public Dictionary<ulong, Person> PersonsId { get; private set;} = new Dictionary<ulong, Person>();
         private IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
 
         private static CheckPerson _instance;
@@ -47,16 +48,34 @@ namespace cl.uv.leikelen.Module.Processing.Kinect
                     string name = personInScene?.Person?.Name;
                     if (!ReferenceEquals(null, name) && name.Equals(personName))
                     {
-                        PersonsId[bodyTrackingId] = personInScene.Person.PersonId;
+                        PersonsId[bodyTrackingId] = personInScene.Person;
                         isPersonInScene = true;
                         break;
                     }
                 }
                 if (!isPersonInScene)
                 {
+                    var newPerson = new Data.Model.Person()
+                    {
+                        Name = personName,
+                        Photo = null,
+                        Birthday = null,
+                        Sex = null,
+                        TrackingId = (long)bodyTrackingId
+                    };
+                    var pis = new Data.Model.PersonInScene()
+                    {
+                        Person = newPerson,
+                        Scene = _dataAccessFacade.GetSceneInUseAccess()?.GetScene()
+                    };
+                    _dataAccessFacade.GetSceneInUseAccess()?.GetScene().PersonsInScene.Add(pis);
+                    PersonsId[bodyTrackingId] = newPerson;
+                    /*
+                     * //this writes to the database directly
                     var newPerson = _dataAccessFacade.GetPersonAccess().Add(personName, null, null, null, (long)bodyTrackingId);
                     PersonsId[bodyTrackingId] = newPerson.PersonId;
                     _dataAccessFacade.GetPersonAccess().AddToScene(newPerson, _dataAccessFacade.GetSceneInUseAccess()?.GetScene());
+                    */
                 }
             }
         }

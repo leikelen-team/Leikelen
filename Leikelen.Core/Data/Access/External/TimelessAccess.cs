@@ -10,9 +10,9 @@ namespace cl.uv.leikelen.Data.Access.External
 {
     public class TimelessAccess : ITimelessAccess
     {
-        public List<Timeless> GetAll(int personId, string modalName, string subModalName)
+        public List<Timeless> GetAll(Person person, string modalName, string subModalName)
         {
-            var personInScene = Internal.SceneInUse.Instance.Scene?.PersonsInScene?.Find(pis => pis.PersonId == personId);
+            var personInScene = Internal.SceneInUse.Instance.Scene?.PersonsInScene?.Find(pis => pis.Person.Equals(person));
             var subModalPersonInScene = personInScene?.SubModalType_PersonInScenes?.Find(smtPis => smtPis.SubModalType.SubModalTypeId.Equals(subModalName) && smtPis.SubModalType.ModalType.ModalTypeId.Equals(modalName));
             var timelessRepresent = subModalPersonInScene?.RepresentTypes?.FindAll(rt => ReferenceEquals(null, rt.IntervalData) && ReferenceEquals(null, rt.EventData) && rt.Index.HasValue);
             if(ReferenceEquals(null, timelessRepresent) || timelessRepresent.Count == 0)
@@ -36,30 +36,30 @@ namespace cl.uv.leikelen.Data.Access.External
         }
 
         #region public add methods
-        public void Add(int personId, string modalName, string subModalName, int index, double value)
+        public void Add(Person person, string modalName, string subModalName, int index, double value)
         {
-            InternalAdd(personId, modalName, subModalName, index, value, null);
+            InternalAdd(person, modalName, subModalName, index, value, null);
         }
 
-        public void Add(int personId, string modalName, string subModalName, int index, double value, string subtitle)
+        public void Add(Person person, string modalName, string subModalName, int index, double value, string subtitle)
         {
-            InternalAdd(personId, modalName, subModalName, index, value, subtitle);
+            InternalAdd(person, modalName, subModalName, index, value, subtitle);
         }
 
-        public void Add(int personId, string modalName, string subModalName, int index, string subtitle)
+        public void Add(Person person, string modalName, string subModalName, int index, string subtitle)
         {
-            InternalAdd(personId, modalName, subModalName, index, null, subtitle);
+            InternalAdd(person, modalName, subModalName, index, null, subtitle);
         }
 
-        public void Add(int personId, string modalName, string subModalName, int index)
+        public void Add(Person person, string modalName, string subModalName, int index)
         {
-            InternalAdd(personId, modalName, subModalName, index, null, null);
+            InternalAdd(person, modalName, subModalName, index, null, null);
         }
         #endregion
 
-        private void InternalAdd(int personId, string modalName, string subModalName, int index, double? value, string subtitle)
+        private void InternalAdd(Person person, string modalName, string subModalName, int index, double? value, string subtitle)
         {
-            var subModalPersonInScene = TypeValidation.GetSmtPis(personId, modalName, subModalName);
+            var subModalPersonInScene = TypeValidation.GetSmtPis(person, modalName, subModalName);
             
             //create event and add to smtPis
             subModalPersonInScene.RepresentTypes.Add(new RepresentType()

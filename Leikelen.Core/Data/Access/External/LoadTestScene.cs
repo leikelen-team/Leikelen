@@ -85,13 +85,13 @@ namespace cl.uv.leikelen.Data.Access.External
                                     switch (data)
                                     {
                                         case 1:
-                                            DataAccessFacade.Instance.GetEventAccess().Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, new TimeSpan(rnd.Next(0, sceneTicks)), doubleData, -1);
+                                            DataAccessFacade.Instance.GetEventAccess().Add(pis.Person, m.ModalTypeId, s.SubModalTypeId, new TimeSpan(rnd.Next(0, sceneTicks)), doubleData, -1);
                                             break;
                                         case 2:
-                                            DataAccessFacade.Instance.GetEventAccess().Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, new TimeSpan(rnd.Next(0, sceneTicks)), subtitleData, -1);
+                                            DataAccessFacade.Instance.GetEventAccess().Add(pis.Person, m.ModalTypeId, s.SubModalTypeId, new TimeSpan(rnd.Next(0, sceneTicks)), subtitleData, -1);
                                             break;
                                         case 3:
-                                            DataAccessFacade.Instance.GetEventAccess().Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, new TimeSpan(rnd.Next(0, sceneTicks)), -1);
+                                            DataAccessFacade.Instance.GetEventAccess().Add(pis.Person, m.ModalTypeId, s.SubModalTypeId, new TimeSpan(rnd.Next(0, sceneTicks)), -1);
                                             break;
                                     }
                                     break;
@@ -104,13 +104,13 @@ namespace cl.uv.leikelen.Data.Access.External
                                     switch (data)
                                     {
                                         case 1:
-                                            DataAccessFacade.Instance.GetIntervalAccess().Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, min, max, doubleData);
+                                            DataAccessFacade.Instance.GetIntervalAccess().Add(pis.Person, m.ModalTypeId, s.SubModalTypeId, min, max, doubleData);
                                             break;
                                         case 2:
-                                            DataAccessFacade.Instance.GetIntervalAccess().Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, min, max, subtitleData);
+                                            DataAccessFacade.Instance.GetIntervalAccess().Add(pis.Person, m.ModalTypeId, s.SubModalTypeId, min, max, subtitleData);
                                             break;
                                         case 3:
-                                            DataAccessFacade.Instance.GetIntervalAccess().Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, min, max);
+                                            DataAccessFacade.Instance.GetIntervalAccess().Add(pis.Person, m.ModalTypeId, s.SubModalTypeId, min, max);
                                             break;
                                     }
                                     break;
@@ -118,13 +118,13 @@ namespace cl.uv.leikelen.Data.Access.External
                                     switch (data)
                                     {
                                         case 1:
-                                            DataAccessFacade.Instance.GetTimelessAccess().Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, rnd.Next(0, 24), doubleData);
+                                            DataAccessFacade.Instance.GetTimelessAccess().Add(pis.Person, m.ModalTypeId, s.SubModalTypeId, rnd.Next(0, 24), doubleData);
                                             break;
                                         case 2:
-                                            DataAccessFacade.Instance.GetTimelessAccess().Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, rnd.Next(0, 24), subtitleData);
+                                            DataAccessFacade.Instance.GetTimelessAccess().Add(pis.Person, m.ModalTypeId, s.SubModalTypeId, rnd.Next(0, 24), subtitleData);
                                             break;
                                         case 3:
-                                            DataAccessFacade.Instance.GetTimelessAccess().Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, rnd.Next(0, 24));
+                                            DataAccessFacade.Instance.GetTimelessAccess().Add(pis.Person, m.ModalTypeId, s.SubModalTypeId, rnd.Next(0, 24));
                                             break;
                                     }
                                     break;
@@ -207,7 +207,7 @@ namespace cl.uv.leikelen.Data.Access.External
                             switch (which)
                             {
                                 case 1:
-                                    DataAccessFacade.Instance.GetEventAccess().Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, new TimeSpan(maxTicks), doubleData, -1);
+                                    DataAccessFacade.Instance.GetEventAccess().Add(pis.Person, m.ModalTypeId, s.SubModalTypeId, new TimeSpan(maxTicks), doubleData, -1);
                                     
                                     break;
                                 case 2:
@@ -215,11 +215,11 @@ namespace cl.uv.leikelen.Data.Access.External
                                     lastTickGenerated = maxTicks;
                                     TimeSpan min = new TimeSpan(minTicks);
                                     TimeSpan max = new TimeSpan(maxTicks);
-                                    DataAccessFacade.Instance.GetIntervalAccess().Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, min, max, doubleData);
+                                    DataAccessFacade.Instance.GetIntervalAccess().Add(pis.Person, m.ModalTypeId, s.SubModalTypeId, min, max, doubleData);
                                     
                                     break;
                                 case 3:
-                                    DataAccessFacade.Instance.GetTimelessAccess().Add(pis.Person.PersonId, m.ModalTypeId, s.SubModalTypeId, j, doubleData);
+                                    DataAccessFacade.Instance.GetTimelessAccess().Add(pis.Person, m.ModalTypeId, s.SubModalTypeId, j, doubleData);
                                     
                                     break;
                             }

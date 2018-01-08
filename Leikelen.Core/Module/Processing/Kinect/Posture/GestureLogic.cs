@@ -1,6 +1,7 @@
 ﻿using cl.uv.leikelen.API.DataAccess;
 using cl.uv.leikelen.API.FrameProvider.Kinect;
 using cl.uv.leikelen.Data.Access;
+using cl.uv.leikelen.Data.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.Posture
         /// <summary>
         /// List of tuples of personids and its discrete gestures. Used to create the intervals from the events.
         /// </summary>
-        private List<Tuple<int, string>> _discreteGestures;
+        private List<Tuple<Person, string>> _discreteGestures;
 
         /// <summary>
         /// The processed discrete gesture names processed in the current instance.
@@ -39,7 +40,7 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.Posture
         public GestureLogic()
         {
             _dataAccessFacade = new DataAccessFacade();
-            _discreteGestures = new List<Tuple<int, string>>();
+            _discreteGestures = new List<Tuple<Person, string>>();
             _processedDiscreteGestureNames = new List<string>();
             _processedContinuousGestureNames = new List<string>();
 
@@ -66,7 +67,7 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.Posture
                     {
                         if (discreteGesture.Value.Detected)
                         {
-                            var tuple = new Tuple<int, string>(CheckPerson.Instance.PersonsId[e.TrackingId], discreteGesture.Key.Name);
+                            var tuple = new Tuple<Person, string>(CheckPerson.Instance.PersonsId[e.TrackingId], discreteGesture.Key.Name);
                             if (!_discreteGestures.Exists(d => d.Equals(tuple)))
                                 _discreteGestures.Add(tuple);
                             //check in the variable if has processed, if not, check in the database and then add it to variable

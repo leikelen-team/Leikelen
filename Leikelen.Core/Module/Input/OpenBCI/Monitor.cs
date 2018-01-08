@@ -196,7 +196,7 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI
                             var eegArgs = new EegFrameArrivedEventArgs()
                             {
                                 Time = time.Value,
-                                PersonId = _person.PersonId,
+                                Person = _person,
                                 Channels = new List<EegChannel>()
                             };
                             for (int j = 1; j < 9; j++)

@@ -91,8 +91,8 @@ namespace cl.uv.leikelen.View.Widget.PreferencesTab
                             .Equals(DbFacade.Instance.DbEngineList[NameTxt.Text].DefaultPort))))
                 {
                     //the fields are the same than actually configured
-                    MessageBox.Show(Properties.GUI.PrefBDErrorSame,
-                    Properties.GUI.PrefBDErrorSameTitle, MessageBoxButton.OK, MessageBoxImage.Error);
+                    //MessageBox.Show(Properties.GUI.PrefBDErrorSame,
+                    //Properties.GUI.PrefBDErrorSameTitle, MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 else
                 {
@@ -122,6 +122,7 @@ namespace cl.uv.leikelen.View.Widget.PreferencesTab
 
                                 MessageBox.Show(Properties.GUI.PrefBDConnectedOk,
                                 Properties.GUI.PrefBDConnectedOkTitle, MessageBoxButton.OK, MessageBoxImage.Information);
+                                return;
                             }
                             catch (Exception ex)
                             {

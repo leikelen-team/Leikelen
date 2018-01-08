@@ -1,4 +1,5 @@
-﻿using System;
+﻿using cl.uv.leikelen.Data.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,11 +9,11 @@ namespace cl.uv.leikelen.API.DataAccess
 {
     public interface ITimelessAccess
     {
-        List<Timeless> GetAll(int personId, string modalName, string subModalName);
+        List<Timeless> GetAll(Person person, string modalName, string subModalName);
 
-        void Add(int personId, string modalName, string subModalName, int index, double value);
-        void Add(int personId, string modalName, string subModalName, int index, double value, string subtitle);
-        void Add(int personId, string modalName, string subModalName, int index, string subtitle);
-        void Add(int personId, string modalName, string subModalName, int index);
+        void Add(Person person, string modalName, string subModalName, int index, double value);
+        void Add(Person person, string modalName, string subModalName, int index, double value, string subtitle);
+        void Add(Person person, string modalName, string subModalName, int index, string subtitle);
+        void Add(Person person, string modalName, string subModalName, int index);
     }
 }

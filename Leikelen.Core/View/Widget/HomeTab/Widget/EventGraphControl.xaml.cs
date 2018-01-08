@@ -63,7 +63,7 @@ namespace cl.uv.leikelen.View.Widget.HomeTab.Widget
 
                 foreach (var sm in selModal.SubModalTypes)
                 {
-                    var events = DataAccessFacade.Instance.GetEventAccess().GetAll(selPerson.PersonId,
+                    var events = DataAccessFacade.Instance.GetEventAccess().GetAll(selPerson,
                         selModal?.ModalTypeId,
                         sm?.SubModalTypeId);
                     if (!ReferenceEquals(null, events) && events.Count > 0)
@@ -80,13 +80,13 @@ namespace cl.uv.leikelen.View.Widget.HomeTab.Widget
         {
             List<ModalType> modals = new List<ModalType>();
 
-            foreach (var person in DataAccessFacade.Instance.GetSceneInUseAccess().GetScene().PersonsInScene)
+            foreach (var pis in DataAccessFacade.Instance.GetSceneInUseAccess().GetScene().PersonsInScene)
             {
-                if (e.AddedItems.Count == 1 && e.AddedItems[0].Equals(person.Person))
+                if (e.AddedItems.Count == 1 && e.AddedItems[0].Equals(pis.Person))
                 {
-                    foreach (var smPis in person.SubModalType_PersonInScenes)
+                    foreach (var smPis in pis.SubModalType_PersonInScenes)
                     {
-                        var events = DataAccessFacade.Instance.GetEventAccess().GetAll(person.PersonId,
+                        var events = DataAccessFacade.Instance.GetEventAccess().GetAll(pis.Person,
                             smPis.SubModalType.ModalTypeId,
                             smPis.SubModalTypeId);
                         if (!ReferenceEquals(null, events) 
@@ -117,7 +117,7 @@ namespace cl.uv.leikelen.View.Widget.HomeTab.Widget
                 ModalCmbx.SelectedItem is ModalType selModal &&
                 SubmodalCmbx.SelectedItem is SubModalType selSubModal)
             {
-                var events = DataAccessFacade.Instance.GetEventAccess().GetAll(selPerson.PersonId,
+                var events = DataAccessFacade.Instance.GetEventAccess().GetAll(selPerson,
                 selModal.ModalTypeId,
                 selSubModal.SubModalTypeId);
                 if (!ReferenceEquals(null, events) && events.Count > 0)

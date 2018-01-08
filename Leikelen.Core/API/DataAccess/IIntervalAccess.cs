@@ -1,4 +1,5 @@
-﻿using System;
+﻿using cl.uv.leikelen.Data.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,13 +9,13 @@ namespace cl.uv.leikelen.API.DataAccess
 {
     public interface IIntervalAccess
     {
-        List<Interval> GetAll(int personId, string modalName, string subModalName);
+        List<Interval> GetAll(Person person, string modalName, string subModalName);
 
-        void Add(int personId, string modalName, string subModalName, TimeSpan startTime, TimeSpan endTime, double value);
-        void Add(int personId, string modalName, string subModalName, TimeSpan startTime, TimeSpan endTime, double value, string subtitle);
-        void Add(int personId, string modalName, string subModalName, TimeSpan startTime, TimeSpan endTime, string subtitle);
-        void Add(int personId, string modalName, string subModalName, TimeSpan startTime, TimeSpan endTime);
+        void Add(Person person, string modalName, string subModalName, TimeSpan startTime, TimeSpan endTime, double value);
+        void Add(Person person, string modalName, string subModalName, TimeSpan startTime, TimeSpan endTime, double value, string subtitle);
+        void Add(Person person, string modalName, string subModalName, TimeSpan startTime, TimeSpan endTime, string subtitle);
+        void Add(Person person, string modalName, string subModalName, TimeSpan startTime, TimeSpan endTime);
 
-        void FromEvent(int personId, string modalName, string subModalName, int millisecondsThreshold, int which, string intervalName);
+        void FromEvent(Person person, string modalName, string subModalName, int millisecondsThreshold, int which, string intervalName);
     }
 }

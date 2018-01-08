@@ -12,9 +12,9 @@ namespace cl.uv.leikelen.Data.Access.External
     {
         
 
-        public List<Event> GetAll(int personId, string modalName, string subModalName)
+        public List<Event> GetAll(Person person, string modalName, string subModalName)
         {
-            var personInScene = Internal.SceneInUse.Instance.Scene?.PersonsInScene?.Find(pis => pis.PersonId == personId);
+            var personInScene = Internal.SceneInUse.Instance.Scene?.PersonsInScene?.Find(pis => pis.Person.Equals(person));
             var subModalPersonInScene = personInScene?.SubModalType_PersonInScenes?.Find(smtPis => smtPis.SubModalType.SubModalTypeId.Equals(subModalName) && smtPis.SubModalType.ModalType.ModalTypeId.Equals(modalName));
             var eventRepresent = subModalPersonInScene?.RepresentTypes?.FindAll(rt => ReferenceEquals(null, rt.IntervalData) && !rt.Index.HasValue && !ReferenceEquals(null,  rt.EventData));
             if(ReferenceEquals(null, eventRepresent) || eventRepresent.Count == 0)
@@ -40,45 +40,52 @@ namespace cl.uv.leikelen.Data.Access.External
         }
 
         #region public add methods
-        public void Add(int personId, string modalName, string subModalName, TimeSpan eventTime, double value, int toInterval)
+        public void Add(Person person, string modalName, string subModalName, TimeSpan eventTime, double value, int toInterval)
         {
-            InternalAdd(personId, modalName, subModalName, eventTime, value, null, toInterval);
+            InternalAdd(person, modalName, subModalName, eventTime, value, null, toInterval);
         }
 
-        public void Add(int personId, string modalName, string subModalName, TimeSpan eventTime, double value, string subtitle, int toInterval)
+        public void Add(Person person, string modalName, string subModalName, TimeSpan eventTime, double value, string subtitle, int toInterval)
         {
-            InternalAdd(personId, modalName, subModalName, eventTime, value, subtitle, toInterval);
+            InternalAdd(person, modalName, subModalName, eventTime, value, subtitle, toInterval);
         }
 
-        public void Add(int personId, string modalName, string subModalName, TimeSpan eventTime, string subtitle, int toInterval)
+        public void Add(Person person, string modalName, string subModalName, TimeSpan eventTime, string subtitle, int toInterval)
         {
-            InternalAdd(personId, modalName, subModalName, eventTime, null, subtitle, toInterval);
+            InternalAdd(person, modalName, subModalName, eventTime, null, subtitle, toInterval);
         }
 
-        public void Add(int personId, string modalName, string subModalName, TimeSpan eventTime, int toInterval)
+        public void Add(Person person, string modalName, string subModalName, TimeSpan eventTime, int toInterval)
         {
-            InternalAdd(personId, modalName, subModalName, eventTime, null, null, toInterval);
+            InternalAdd(person, modalName, subModalName, eventTime, null, null, toInterval);
         }
         #endregion
 
-        private void InternalAdd(int personId, string modalName, string subModalName, TimeSpan eventTime, double? value, string subtitle, int toInterval)
+        private void InternalAdd(Person person, string modalName, string subModalName, TimeSpan eventTime, double? value, string subtitle, int toInterval)
         {
-            var subModalPersonInScene = TypeValidation.GetSmtPis(personId, modalName, subModalName);
+            try
+            {
+                var subModalPersonInScene = TypeValidation.GetSmtPis(person, modalName, subModalName);
 
-            //create event and add to smtPis
-            EventData eventElement = new EventData()
+                //create event and add to smtPis
+                EventData eventElement = new EventData()
+                {
+                    EventTime = eventTime,
+                    ToInterval = toInterval
+                };
+                subModalPersonInScene.RepresentTypes.Add(new RepresentType()
+                {
+                    Value = value,
+                    Subtitle = subtitle,
+                    Index = null,
+                    EventData = eventElement,
+                    SubModalType_PersonInScene = subModalPersonInScene
+                });
+            }
+            catch(Exception ex)
             {
-                EventTime = eventTime,
-                ToInterval = toInterval
-            };
-            subModalPersonInScene.RepresentTypes.Add(new RepresentType()
-            {
-                Value = value,
-                Subtitle = subtitle,
-                Index = null,
-                EventData = eventElement,
-                SubModalType_PersonInScene = subModalPersonInScene
-            });
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+            }
         }
     }
 }

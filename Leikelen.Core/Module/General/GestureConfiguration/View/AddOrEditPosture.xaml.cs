@@ -59,13 +59,14 @@ namespace cl.uv.leikelen.Module.General.GestureConfiguration.View
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog()
             {
                 DefaultExt = ".gbd",
-                Filter = "Gesture solution build " + "(*.gbd)|*.gbd|Gesture project build (*.gba)|*.gba",
+                Filter = "All gesture files (*.gbd, *.gba)|*.gbd; *.gba|Gesture solution build (*.gbd)|*.gbd|Gesture project analisys (*.gba)|*.gba",
                 Title = Properties.GestureConfiguration.ImportPosture
             };
             if (dlg.ShowDialog() == true)
             {
                 FileNameTextBox.Text = dlg.FileName;
                 _safeFileName = dlg.SafeFileName;
+                nameTextBox.Text = System.IO.Path.GetFileNameWithoutExtension(dlg.SafeFileName);
             }
         }
 

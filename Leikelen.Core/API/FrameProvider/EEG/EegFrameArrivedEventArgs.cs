@@ -1,4 +1,5 @@
-﻿using System;
+﻿using cl.uv.leikelen.Data.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,7 @@ namespace cl.uv.leikelen.API.FrameProvider.EEG
     public class EegFrameArrivedEventArgs
     {
         public TimeSpan Time;
-        public int PersonId;
+        public Person Person;
         public List<EegChannel> Channels;
     }
 

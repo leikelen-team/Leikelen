@@ -31,20 +31,20 @@ namespace cl.uv.leikelen.View.Widget.HomeTab
             ScrollWithContent.Visibility = Visibility.Visible;
             List<IntervalDataGrid> intervalData = new List<IntervalDataGrid>();
             List<EventDataGrid> eventData = new List<EventDataGrid>();
-            var persons = DataAccessFacade.Instance.GetSceneInUseAccess().GetScene().PersonsInScene;
-            foreach(var person in persons)
+            var personsInScene = DataAccessFacade.Instance.GetSceneInUseAccess().GetScene().PersonsInScene;
+            foreach(var pis in personsInScene)
             {
-                foreach(var subModal in person.SubModalType_PersonInScenes)
+                foreach(var subModal in pis.SubModalType_PersonInScenes)
                 {
-                    var intervals = DataAccessFacade.Instance.GetIntervalAccess().GetAll(person.PersonId, subModal.ModalTypeId, subModal.SubModalTypeId);
-                    var events = DataAccessFacade.Instance.GetEventAccess().GetAll(person.PersonId, subModal.ModalTypeId, subModal.SubModalTypeId);
+                    var intervals = DataAccessFacade.Instance.GetIntervalAccess().GetAll(pis.Person, subModal.ModalTypeId, subModal.SubModalTypeId);
+                    var events = DataAccessFacade.Instance.GetEventAccess().GetAll(pis.Person, subModal.ModalTypeId, subModal.SubModalTypeId);
                     //var timelesses = DataAccessFacade.Instance.GetTimelessAccess().GetAll(person.PersonId, subModal.ModalTypeId, subModal.SubModalTypeId);
 
                     if(!ReferenceEquals(null, intervals) && intervals.Count > 0)
                     {
                         var intervalRow = new IntervalDataGrid()
                         {
-                            PersonName = person.Person.Name,
+                            PersonName = pis.Person.Name,
                             ModalName = subModal.ModalTypeId,
                             SubModalName = subModal.SubModalTypeId,
                             TotalDuration = "",
@@ -74,7 +74,7 @@ namespace cl.uv.leikelen.View.Widget.HomeTab
                     {
                         var eventRow = new EventDataGrid()
                         {
-                            PersonName = person.Person.Name,
+                            PersonName = pis.Person.Name,
                             ModalName = subModal.ModalTypeId,
                             SubModalName = subModal.SubModalTypeId,
                             AverageValue = "",
