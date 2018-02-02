@@ -16,41 +16,56 @@ namespace cl.uv.leikelen.Controller
     {
         public static Scene Import(string fileName)
         {
-            InitializeDirectory();
-
+            var fileExtension = Path.GetExtension(fileName).ToLower();
             var settings = DataAccessFacade.Instance.GetGeneralSettings();
+            if (fileExtension.Equals(".sqlite3") || fileExtension.Equals(".sqlite") || fileExtension.Equals(".db"))
+            {
+                return ImportSqliteFile(settings.GetIndexOfSceneInFile(), fileName);
+            }
+            else
+            {
+                InitializeDirectory();
 
-            ZipFile.ExtractToDirectory(fileName, settings.GetTmpSceneDirectory());
+                
+                ZipFile.ExtractToDirectory(fileName, settings.GetTmpSceneDirectory());
+                var insertedScene = ImportSqliteFile(settings.GetIndexOfSceneInFile(), Path.Combine(settings.GetTmpSceneDirectory(), "scene.sqlite3"));
+
+                string tmpSceneDir = Path.Combine(settings.GetTmpSceneDirectory(), "scene/") + 1;
+                if (Directory.Exists(tmpSceneDir))
+                    CopyContents(tmpSceneDir, settings.GetSceneInUseDirectory());
+                foreach (var person in SceneInUse.Instance.Scene.PersonsInScene)
+                {
+                    if (!String.IsNullOrEmpty(person.Person.Photo))
+                    {
+                        string tmpPhotoDirectory = Path.Combine(Path.Combine(settings.GetTmpSceneDirectory(), "person/"), person.Person.Photo);
+                        if (File.Exists(tmpPhotoDirectory))
+                        {
+                            File.Copy(tmpPhotoDirectory,
+                                Path.Combine(settings.GetDataPersonsDirectory(), person.Person.Photo));
+                        }
+                    }
+
+                    foreach (var smt_pis in person.SubModalType_PersonInScenes)
+                    {
+                        string tmpModalDir = Path.Combine(Path.Combine(settings.GetTmpSceneDirectory(), "modal/"), smt_pis.SubModalType.ModalTypeId);
+                        string dataModalDir = Path.Combine(settings.GetDataModalsDirectory(), smt_pis.SubModalType.ModalTypeId);
+                        if (Directory.Exists(tmpModalDir))
+                            CopyContents(tmpModalDir, dataModalDir);
+                    }
+                }
+                return insertedScene;
+            }
+        }
+
+        private static Scene ImportSqliteFile(int index, string fileName)
+        {
             var sqliteProvider = new SqliteProvider();
-            sqliteProvider.CreateConnection("Filename=" + Path.Combine(settings.GetTmpSceneDirectory(), "scene.sqlite3"));
-            var scene = sqliteProvider.LoadScene(sqliteProvider.LoadScenes()[0].SceneId);
+            sqliteProvider.CreateConnection("Filename=" + fileName);
+            var scene = sqliteProvider.LoadScene(sqliteProvider.LoadScenes()[index].SceneId);
+            sqliteProvider.CloseConnection();
             int sceneIdInFile = scene.SceneId;
             var insertedScene = DataAccessFacade.Instance.GetSceneAccess().SaveNew(scene);
             SceneInUse.Instance.Set(insertedScene);
-
-            string tmpSceneDir = Path.Combine(settings.GetTmpSceneDirectory(), "scene/") + 1;
-            if (Directory.Exists(tmpSceneDir))
-                CopyContents(tmpSceneDir, settings.GetSceneInUseDirectory());
-            foreach (var person in SceneInUse.Instance.Scene.PersonsInScene)
-            {
-                if (!String.IsNullOrEmpty(person.Person.Photo))
-                {
-                    string tmpPhotoDirectory = Path.Combine(Path.Combine(settings.GetTmpSceneDirectory(), "person/"), person.Person.Photo);
-                    if (File.Exists(tmpPhotoDirectory))
-                    {
-                        File.Copy(tmpPhotoDirectory,
-                            Path.Combine(settings.GetDataPersonsDirectory(), person.Person.Photo));
-                    }
-                }
-
-                foreach (var smt_pis in person.SubModalType_PersonInScenes)
-                {
-                    string tmpModalDir = Path.Combine(Path.Combine(settings.GetTmpSceneDirectory(), "modal/"), smt_pis.SubModalType.ModalTypeId);
-                    string dataModalDir = Path.Combine(settings.GetDataModalsDirectory(), smt_pis.SubModalType.ModalTypeId);
-                    if (Directory.Exists(tmpModalDir))
-                        CopyContents(tmpModalDir, dataModalDir);
-                }
-            }
             return insertedScene;
         }
 
@@ -99,6 +114,7 @@ namespace cl.uv.leikelen.Controller
 
         private static void CreateSqlFile(string fileName)
         {
+            File.Delete(fileName);
             var sqliteProvider = new SqliteProvider();
             sqliteProvider.CreateConnection("Filename=" + fileName);
             sqliteProvider.Save(SceneInUse.Instance.Scene);

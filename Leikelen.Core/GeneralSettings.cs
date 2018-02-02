@@ -71,6 +71,10 @@ namespace cl.uv.leikelen
         /// </summary>
         public readonly Option<int> EventsGraphMinHeight = new Option<int>("EventsGraphMinHeight", 200);
 
+        /// <summary>
+        /// The index of the scene in the file to import. By default its the first scene (index = 0)
+        /// </summary>
+        public readonly Option<int> IndexOfSceneInFile = new Option<int>("IndexOfSceneInFile", 0);
 
         /// <summary>
         /// The static private instance to make the singleton

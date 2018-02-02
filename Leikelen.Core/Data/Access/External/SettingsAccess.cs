@@ -66,5 +66,10 @@ namespace cl.uv.leikelen.Data.Access.External
                 return Path.Combine(Path.Combine(GeneralSettings.Instance.DataDirectory.Value, "scene/"), sceneId.ToString());
             return null;
         }
+
+        public int GetIndexOfSceneInFile()
+        {
+            return GeneralSettings.Instance.IndexOfSceneInFile.Value;
+        }
     }
 }

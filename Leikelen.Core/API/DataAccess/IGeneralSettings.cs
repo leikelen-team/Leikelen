@@ -18,5 +18,6 @@ namespace cl.uv.leikelen.API.DataAccess
         string GetSceneInUseDirectory();
         string GetSceneDirectory(int sceneId);
         int GetDefaultMillisecondsThreshold();
+        int GetIndexOfSceneInFile();
     }
 }
