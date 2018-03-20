@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="File" xml:space="preserve">
+    <value>_File</value>
+    <comment>Menu principal</comment>
+  </data>
+  <data name="File_Export" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="File_Import" xml:space="preserve">
+    <value>Import</value>
+  </data>
+  <data name="File_NewScene" xml:space="preserve">
+    <value>New scene</value>
+  </data>
+  <data name="File_Quit" xml:space="preserve">
+    <value>Quit</value>
+  </data>
+  <data name="File_RecentScenes" xml:space="preserve">
+    <value>Recent scenes</value>
+  </data>
+  <data name="File_RecentScenes_More" xml:space="preserve">
+    <value>More scenes...</value>
+  </data>
+  <data name="File_Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>_Help</value>
+    <comment>Menu principal</comment>
+  </data>
+  <data name="Help_AboutUs" xml:space="preserve">
+    <value>About us</value>
+  </data>
+  <data name="Help_Manual" xml:space="preserve">
+    <value>User manual</value>
+  </data>
+  <data name="Tools" xml:space="preserve">
+    <value>_Tools</value>
+    <comment>Menu principal</comment>
+  </data>
+  <data name="Scene_Configure" xml:space="preserve">
+    <value>Configure scene</value>
+  </data>
+  <data name="Tools_DataBase" xml:space="preserve">
+    <value>Configure database</value>
+  </data>
+  <data name="Tools_Preferences" xml:space="preserve">
+    <value>Preferences</value>
+  </data>
+  <data name="Tools_Player" xml:space="preserve">
+    <value>Player</value>
+  </data>
+  <data name="Tools_Player_SkeletonLayerCheckbox" xml:space="preserve">
+    <value>View skeleton</value>
+  </data>
+  <data name="Tools_Player_ColorLayerCheckbox" xml:space="preserve">
+    <value>View color</value>
+  </data>
+  <data name="Tools_SceneSensors" xml:space="preserve">
+    <value>Scene sensors</value>
+  </data>
+  <data name="Enable" xml:space="preserve">
+    <value>Enable</value>
+  </data>
+  <data name="Disable" xml:space="preserve">
+    <value>Disable</value>
+  </data>
+  <data name="Tools_Processing" xml:space="preserve">
+    <value>Processing modules</value>
+  </data>
+  <data name="Scene" xml:space="preserve">
+    <value>Scene</value>
+  </data>
+  <data name="Scene_AddPerson" xml:space="preserve">
+    <value>Add Person</value>
+  </data>
+  <data name="Tools_Sensors_AddNotImplemented" xml:space="preserve">
+    <value>Add sensor (not implemented)</value>
+  </data>
+  <data name="Tools_Processing_AddNotImplemented" xml:space="preserve">
+    <value>Add processing module (not implemented)</value>
+  </data>
+  <data name="Tools_General" xml:space="preserve">
+    <value>General modules</value>
+  </data>
+  <data name="Help_DevDocumentation" xml:space="preserve">
+    <value>Developer Documentation</value>
+  </data>
+  <data name="Scene_AllPersons" xml:space="preserve">
+    <value>See all persons</value>
+  </data>
+  <data name="File_AllScenes" xml:space="preserve">
+    <value>All scenes</value>
+  </data>
+  <data name="Scene_PersonsInScene" xml:space="preserve">
+    <value>Persons in scene</value>
+  </data>
+  <data name="File_LoadTestScene" xml:space="preserve">
+    <value>Load test scene</value>
+  </data>
+  <data name="Tools_PersonSensors" xml:space="preserve">
+    <value>Person sensors</value>
+  </data>
+  <data name="File_RestartApp" xml:space="preserve">
+    <value>Restart app</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="Auto" xml:space="preserve">
+    <value>Auto</value>
+  </data>
+  <data name="Spanish" xml:space="preserve">
+    <value>Spanish</value>
+  </data>
+  <data name="English" xml:space="preserve">
+    <value>English</value>
+  </data>
+</root>

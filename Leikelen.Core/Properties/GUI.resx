@@ -1,0 +1,457 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+		Microsoft ResX Schema
+
+		Version 1.3
+
+		The primary goals of this format is to allow a simple XML format 
+		that is mostly human readable. The generation and parsing of the 
+		various data types are done through the TypeConverter classes 
+		associated with the data types.
+
+		Example:
+
+		... ado.net/XML headers & schema ...
+		<resheader name="resmimetype">text/microsoft-resx</resheader>
+		<resheader name="version">1.3</resheader>
+		<resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+		<resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+		<data name="Name1">this is my long string</data>
+		<data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+		<data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+			[base64 mime encoded serialized .NET Framework object]
+		</data>
+		<data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+			[base64 mime encoded string representing a byte array form of the .NET Framework object]
+		</data>
+
+		There are any number of "resheader" rows that contain simple 
+		name/value pairs.
+
+		Each data row contains a name, and value. The row also contains a 
+		type or mimetype. Type corresponds to a .NET class that support 
+		text/value conversion through the TypeConverter architecture. 
+		Classes that don't support this are serialized and stored with the 
+		mimetype set.
+
+		The mimetype is used for serialized objects, and tells the 
+		ResXResourceReader how to depersist the object. This is currently not 
+		extensible. For a given mimetype the value must be set accordingly:
+
+		Note - application/x-microsoft.net.object.binary.base64 is the format 
+		that the ResXResourceWriter will generate, however the reader can 
+		read any of the formats listed below.
+
+		mimetype: application/x-microsoft.net.object.binary.base64
+		value   : The object must be serialized with 
+			: System.Serialization.Formatters.Binary.BinaryFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.soap.base64
+		value   : The object must be serialized with 
+			: System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.bytearray.base64
+		value   : The object must be serialized into a byte array 
+			: using a System.ComponentModel.TypeConverter
+			: and then encoded with base64 encoding.
+	-->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>1.3</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Intervals" xml:space="preserve">
+    <value>Intervals</value>
+  </data>
+  <data name="Graphs" xml:space="preserve">
+    <value>Graphs</value>
+  </data>
+  <data name="Distances" xml:space="preserve">
+    <value>Distances</value>
+  </data>
+  <data name="Scene" xml:space="preserve">
+    <value>Scene</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="Place" xml:space="preserve">
+    <value>Place</value>
+  </data>
+  <data name="Participants" xml:space="preserve">
+    <value>Participants</value>
+  </data>
+  <data name="RecordDate" xml:space="preserve">
+    <value>Record date</value>
+  </data>
+  <data name="RecordTime" xml:space="preserve">
+    <value>Record time</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Accept" xml:space="preserve">
+    <value>Accept</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Apply" xml:space="preserve">
+    <value>Apply</value>
+  </data>
+  <data name="Title_ConfigureScene" xml:space="preserve">
+    <value>Configure scene</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="Associate" xml:space="preserve">
+    <value>Associate</value>
+  </data>
+  <data name="AreSureExit" xml:space="preserve">
+    <value>Are you sure you want to leave?</value>
+  </data>
+  <data name="Age" xml:space="preserve">
+    <value>Age</value>
+  </data>
+  <data name="Gender" xml:space="preserve">
+    <value>Gender</value>
+  </data>
+  <data name="Male" xml:space="preserve">
+    <value>Male</value>
+  </data>
+  <data name="Female" xml:space="preserve">
+    <value>Female</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="OnlyBD" xml:space="preserve">
+    <value>Only database file</value>
+  </data>
+  <data name="BD_Engine" xml:space="preserve">
+    <value>Database engine</value>
+  </data>
+  <data name="BD_Port" xml:space="preserve">
+    <value>Port</value>
+  </data>
+  <data name="BD_Host" xml:space="preserve">
+    <value>Host</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="DataBase" xml:space="preserve">
+    <value>Database</value>
+  </data>
+  <data name="General" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="Assign" xml:space="preserve">
+    <value>Assign</value>
+  </data>
+  <data name="years" xml:space="preserve">
+    <value>years</value>
+  </data>
+  <data name="Unknown" xml:space="preserve">
+    <value>Unknown</value>
+  </data>
+  <data name="Copyright" xml:space="preserve">
+    <value>Copyright © 2017, University of Valparaíso. All rights reserved.</value>
+  </data>
+  <data name="Authors" xml:space="preserve">
+    <value>Developed by Erick Merino, Roberto Muñoz and Thiago Barcelos</value>
+  </data>
+  <data name="confScene_SureSave" xml:space="preserve">
+    <value>Are you sure you want to save this data?</value>
+  </data>
+  <data name="confScene_SureSaveTitle" xml:space="preserve">
+    <value>Save confirmation</value>
+  </data>
+  <data name="Confirmation" xml:space="preserve">
+    <value>Confirmation</value>
+  </data>
+  <data name="stopRecordFirst" xml:space="preserve">
+    <value>Please stop the recording first</value>
+  </data>
+  <data name="Atention" xml:space="preserve">
+    <value>Atention</value>
+  </data>
+  <data name="Photo" xml:space="preserve">
+    <value>Photo</value>
+  </data>
+  <data name="Player" xml:space="preserve">
+    <value>Player</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Duration" xml:space="preserve">
+    <value>Duration</value>
+  </data>
+  <data name="SceneExportedSuccesfully" xml:space="preserve">
+    <value>The scene has been exported succesfully</value>
+  </data>
+  <data name="SceneExportedSuccesfullyTitle" xml:space="preserve">
+    <value>Scene exported</value>
+  </data>
+  <data name="SceneImportedSuccesfullyTitle" xml:space="preserve">
+    <value>The scene has been imported succesfully</value>
+  </data>
+  <data name="SceneImportedSuccesfully" xml:space="preserve">
+    <value>Scene imported</value>
+  </data>
+  <data name="PrefBDWillNew" xml:space="preserve">
+    <value>The database will close the connection and will open a new with the entered parameters. Also, the processing and general modules will be restarted, please close all windows and instances of these modules</value>
+  </data>
+  <data name="PrefBDWillNewTitle" xml:space="preserve">
+    <value>New connection</value>
+  </data>
+  <data name="Birthday" xml:space="preserve">
+    <value>Date of birth</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Time</value>
+  </data>
+  <data name="Sex" xml:space="preserve">
+    <value>Sex</value>
+  </data>
+  <data name="AddToScene" xml:space="preserve">
+    <value>Add to scene</value>
+  </data>
+  <data name="DataDirectory" xml:space="preserve">
+    <value>Data directory</value>
+  </data>
+  <data name="TmpDirectory" xml:space="preserve">
+    <value>Temporal directory</value>
+  </data>
+  <data name="CurrentScene" xml:space="preserve">
+    <value>Current scene directory</value>
+  </data>
+  <data name="DefaultMillisecondsThreshold" xml:space="preserve">
+    <value>Milliseconds threshold</value>
+  </data>
+  <data name="PersonDotsColor" xml:space="preserve">
+    <value>Dots color</value>
+  </data>
+  <data name="PersonBonesColor" xml:space="preserve">
+    <value>Bones color</value>
+  </data>
+  <data name="Person" xml:space="preserve">
+    <value>Person</value>
+  </data>
+  <data name="seconds" xml:space="preserve">
+    <value>seconds</value>
+  </data>
+  <data name="AllPersonsNotExistsTitle" xml:space="preserve">
+    <value>Person doesn't exists</value>
+  </data>
+  <data name="AllPersonsNotExists" xml:space="preserve">
+    <value>Hasn't selected a person or the person doesn't exists now</value>
+  </data>
+  <data name="SavedOkTitle" xml:space="preserve">
+    <value>Scene saved</value>
+  </data>
+  <data name="SavedOk" xml:space="preserve">
+    <value>The scene has been saved successfully</value>
+  </data>
+  <data name="SavedErrorTitle" xml:space="preserve">
+    <value>Save error</value>
+  </data>
+  <data name="SavedError" xml:space="preserve">
+    <value>When trying to save the scene has occurred the following error:</value>
+  </data>
+  <data name="PrefBDConnectedOk" xml:space="preserve">
+    <value>The connection to the database has done successfully</value>
+  </data>
+  <data name="PrefBDConnectedOkTitle" xml:space="preserve">
+    <value>Successfully connected</value>
+  </data>
+  <data name="SceneNotExist" xml:space="preserve">
+    <value>Doesn't exists an scene in use</value>
+  </data>
+  <data name="SceneNotExistTitle" xml:space="preserve">
+    <value>No scene</value>
+  </data>
+  <data name="PrefBDErrorPortEmpty" xml:space="preserve">
+    <value>Port field is empty or not valid</value>
+  </data>
+  <data name="PrefBDErrorEngineEmpty" xml:space="preserve">
+    <value>Engine field is empty</value>
+  </data>
+  <data name="PrefBDErrorDbNameEmpty" xml:space="preserve">
+    <value>Database name is empty</value>
+  </data>
+  <data name="PrefBDErrorEngineDoesntExists" xml:space="preserve">
+    <value>Engine doesn't exists</value>
+  </data>
+  <data name="PrefBDErrorHostEmpty" xml:space="preserve">
+    <value>Host field is empty</value>
+  </data>
+  <data name="PrefBDErrorUserEmpty" xml:space="preserve">
+    <value>User field is empty</value>
+  </data>
+  <data name="PrefBDErrorPassEmpty" xml:space="preserve">
+    <value>Password is empty</value>
+  </data>
+  <data name="PrefBDErrorSame" xml:space="preserve">
+    <value>The parameters are the same that actually exists</value>
+  </data>
+  <data name="PrefBDErrorSameTitle" xml:space="preserve">
+    <value>Parameters are equal</value>
+  </data>
+  <data name="PrefBDErrorConnect" xml:space="preserve">
+    <value>There are errors in the connection to the database</value>
+  </data>
+  <data name="PrefBDErrorConnectTitle" xml:space="preserve">
+    <value>Error in the connection</value>
+  </data>
+  <data name="PrefBDError" xml:space="preserve">
+    <value>There are some errors</value>
+  </data>
+  <data name="PrefBDErrorTitle" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="TabSceneColumnAvgTime" xml:space="preserve">
+    <value>Average time</value>
+  </data>
+  <data name="TabSceneColumnTotalDuration" xml:space="preserve">
+    <value>Total duration</value>
+  </data>
+  <data name="TabSceneColumnAvgValue" xml:space="preserve">
+    <value>Average value</value>
+  </data>
+  <data name="TabSceneColumnStdValue" xml:space="preserve">
+    <value>Standard deviation of value</value>
+  </data>
+  <data name="TabSceneColumnStdTime" xml:space="preserve">
+    <value>Standard deviation of time</value>
+  </data>
+  <data name="TabSceneColumnAvgDuration" xml:space="preserve">
+    <value>Average duration</value>
+  </data>
+  <data name="TabSceneColumnStdDuration" xml:space="preserve">
+    <value>Standard deviation of duration</value>
+  </data>
+  <data name="ModalType" xml:space="preserve">
+    <value>Modal type</value>
+  </data>
+  <data name="SubModalType" xml:space="preserve">
+    <value>Submodal type</value>
+  </data>
+  <data name="TabSceneEventLabel" xml:space="preserve">
+    <value>Summary of event submodal types</value>
+  </data>
+  <data name="TabSceneIntervalLabel" xml:space="preserve">
+    <value>Summary of interval submodal types</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="RemoveLast" xml:space="preserve">
+    <value>Remove last</value>
+  </data>
+  <data name="FileExists" xml:space="preserve">
+    <value>The file already exists, are you sure you want to replace it?</value>
+  </data>
+  <data name="FileExistsTitle" xml:space="preserve">
+    <value>File exists</value>
+  </data>
+  <data name="SceneExportedError" xml:space="preserve">
+    <value>An error occurred when trying to export the scene</value>
+  </data>
+  <data name="SceneExportedErrorTitle" xml:space="preserve">
+    <value>Export error</value>
+  </data>
+  <data name="SceneExportedNoFile" xml:space="preserve">
+    <value>Haven't selected a file to export the scene</value>
+  </data>
+  <data name="SceneExportedNoFileTitle" xml:space="preserve">
+    <value>No file selected</value>
+  </data>
+  <data name="SceneImportedError" xml:space="preserve">
+    <value>An error occurred when trying to import the scene</value>
+  </data>
+  <data name="SceneImportedErrorTitle" xml:space="preserve">
+    <value>Import error</value>
+  </data>
+  <data name="SceneImportedNoFile" xml:space="preserve">
+    <value>Haven't selected a file to import the scene</value>
+  </data>
+  <data name="SceneImportedNoFileTitle" xml:space="preserve">
+    <value>No file selected</value>
+  </data>
+  <data name="ToOpen" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="PrefIntervalGraphMinHeight" xml:space="preserve">
+    <value>Minimum height of intervals graphs</value>
+  </data>
+  <data name="PrefEventsGraphMinHeight" xml:space="preserve">
+    <value>Minimum height of events graphs</value>
+  </data>
+  <data name="ActualSceneWillLose" xml:space="preserve">
+    <value>If you accept, you would lose all not saved in actual scene</value>
+  </data>
+  <data name="SureRestartApp" xml:space="preserve">
+    <value>Are you sure you want to restart the app?</value>
+  </data>
+  <data name="MustRestartOrNo" xml:space="preserve">
+    <value>To apply changes you must to restart the application. Do you want to restart the app now?</value>
+  </data>
+  <data name="RestartApp" xml:space="preserve">
+    <value>Restart the app</value>
+  </data>
+</root>

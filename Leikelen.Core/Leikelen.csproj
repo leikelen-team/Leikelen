@@ -1,0 +1,819 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\SQLite.3.13.0\build\net45\SQLite.props" Condition="Exists('..\packages\SQLite.3.13.0\build\net45\SQLite.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E3372940-9DC4-4F37-8FF2-3970B3111049}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>cl.uv.leikelen</RootNamespace>
+    <AssemblyName>Leikelen</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Leikelen.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\Leikelen.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>cl.uv.leikelen.App</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+    <DocumentationFile>bin\x64\Debug\Leikelen.xml</DocumentationFile>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+    <DocumentationFile>bin\x64\Release\Leikelen.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+    <DocumentationFile>bin\x86\Debug\Leikelen.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+    <DocumentationFile>bin\x86\Release\Leikelen.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Accord, Version=3.8.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Accord.3.8.0\lib\net46\Accord.dll</HintPath>
+    </Reference>
+    <Reference Include="Accord.MachineLearning, Version=3.8.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Accord.MachineLearning.3.8.0\lib\net46\Accord.MachineLearning.dll</HintPath>
+    </Reference>
+    <Reference Include="Accord.Math, Version=3.8.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Accord.Math.3.8.0\lib\net46\Accord.Math.dll</HintPath>
+    </Reference>
+    <Reference Include="Accord.Math.Core, Version=3.8.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Accord.Math.3.8.0\lib\net46\Accord.Math.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Accord.Statistics, Version=3.8.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Accord.Statistics.3.8.0\lib\net46\Accord.Statistics.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Core.4.2.1\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Config.Net, Version=3.0.0.0, Culture=neutral, PublicKeyToken=d836a57afd299520, processorArchitecture=MSIL">
+      <HintPath>..\packages\Config.Net.3.3.37\lib\net452\Config.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="Dragablz, Version=0.0.3.197, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dragablz.0.0.3.197\lib\net45\Dragablz.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts, Version=0.9.5.0, Culture=neutral, PublicKeyToken=c5935629d38af058, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.0.9.5\lib\net45\LiveCharts.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts.Wpf, Version=0.9.5.0, Culture=neutral, PublicKeyToken=3b585c2a5f1a92c1, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.Wpf.0.9.5\lib\net45\LiveCharts.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignColors, Version=1.1.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignColors.1.1.3\lib\net45\MaterialDesignColors.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf, Version=2.3.1.953, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignThemes.2.3.1.953\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Hosting.Abstractions, Version=1.1.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Hosting.Abstractions.1.1.2\lib\net451\Microsoft.AspNetCore.Hosting.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Hosting.Server.Abstractions, Version=1.1.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Hosting.Server.Abstractions.1.1.2\lib\net451\Microsoft.AspNetCore.Hosting.Server.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Http.Abstractions, Version=1.1.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Http.Abstractions.1.1.2\lib\net451\Microsoft.AspNetCore.Http.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Http.Features, Version=1.1.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Http.Features.1.1.2\lib\net451\Microsoft.AspNetCore.Http.Features.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Sqlite, Version=1.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.Sqlite.1.1.1\lib\net451\Microsoft.Data.Sqlite.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EntityFrameworkCore, Version=1.1.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.EntityFrameworkCore.1.1.2\lib\net451\Microsoft.EntityFrameworkCore.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EntityFrameworkCore.Design, Version=1.0.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.EntityFrameworkCore.Design.1.0.1\lib\net451\Microsoft.EntityFrameworkCore.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EntityFrameworkCore.InMemory, Version=1.1.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.EntityFrameworkCore.InMemory.1.1.2\lib\net451\Microsoft.EntityFrameworkCore.InMemory.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EntityFrameworkCore.Relational, Version=1.1.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.EntityFrameworkCore.Relational.1.1.2\lib\net451\Microsoft.EntityFrameworkCore.Relational.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EntityFrameworkCore.Relational.Design, Version=1.1.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.EntityFrameworkCore.Relational.Design.1.1.2\lib\net451\Microsoft.EntityFrameworkCore.Relational.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EntityFrameworkCore.Sqlite, Version=1.1.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.EntityFrameworkCore.Sqlite.1.1.2\lib\net451\Microsoft.EntityFrameworkCore.Sqlite.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Caching.Abstractions, Version=1.1.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Caching.Abstractions.1.1.2\lib\netstandard1.0\Microsoft.Extensions.Caching.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Caching.Memory, Version=1.1.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Caching.Memory.1.1.2\lib\net451\Microsoft.Extensions.Caching.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Abstractions, Version=1.1.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.Abstractions.1.1.2\lib\netstandard1.0\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=1.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.1.1.1\lib\netstandard1.1\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=1.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.1.1.1\lib\netstandard1.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.FileProviders.Abstractions, Version=1.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.FileProviders.Abstractions.1.1.1\lib\netstandard1.0\Microsoft.Extensions.FileProviders.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging, Version=1.1.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.1.1.2\lib\netstandard1.1\Microsoft.Extensions.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=1.1.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.1.1.2\lib\netstandard1.1\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Console, Version=1.1.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Console.1.1.2\lib\net451\Microsoft.Extensions.Logging.Console.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options, Version=1.1.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Options.1.1.2\lib\netstandard1.0\Microsoft.Extensions.Options.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=1.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Primitives.1.1.1\lib\netstandard1.0\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Kinect, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Kinect.2.0.1410.19000\lib\net45\Microsoft.Kinect.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Kinect.VisualGestureBuilder, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=AMD64">
+      <HintPath>..\packages\Microsoft.Kinect.VisualGestureBuilder.x64.2.0.1410.19000\lib\net45\Microsoft.Kinect.VisualGestureBuilder.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.VisualStudio.TestPlatform.14.0.0.1\lib\net20\Microsoft.VisualStudio.TestPlatform.TestFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.VisualStudio.TestPlatform.14.0.0.1\lib\net20\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="MySqlConnector, Version=0.24.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySqlConnector.0.24.2\lib\net45\MySqlConnector.dll</HintPath>
+    </Reference>
+    <Reference Include="NetBox, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8dea52f811e261ef, processorArchitecture=MSIL">
+      <HintPath>..\packages\NetBox.1.4.25\lib\net45\NetBox.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Npgsql, Version=3.2.5.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Npgsql.3.2.5\lib\net451\Npgsql.dll</HintPath>
+    </Reference>
+    <Reference Include="Npgsql.EntityFrameworkCore.PostgreSQL, Version=1.1.1.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Npgsql.EntityFrameworkCore.PostgreSQL.1.1.1\lib\net451\Npgsql.EntityFrameworkCore.PostgreSQL.dll</HintPath>
+    </Reference>
+    <Reference Include="Npgsql.EntityFrameworkCore.PostgreSQL.Design, Version=1.1.1.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Npgsql.EntityFrameworkCore.PostgreSQL.Design.1.1.1\lib\net451\Npgsql.EntityFrameworkCore.PostgreSQL.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Pomelo.EntityFrameworkCore.MySql, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Pomelo.EntityFrameworkCore.MySql.1.1.2\lib\net451\Pomelo.EntityFrameworkCore.MySql.dll</HintPath>
+    </Reference>
+    <Reference Include="Pomelo.EntityFrameworkCore.MySql.Design, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Pomelo.EntityFrameworkCore.MySql.Design.1.1.2\lib\net451\Pomelo.EntityFrameworkCore.MySql.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Pomelo.JsonObject, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Pomelo.JsonObject.1.1.1\lib\net451\Pomelo.JsonObject.dll</HintPath>
+    </Reference>
+    <Reference Include="Remotion.Linq, Version=2.1.0.0, Culture=neutral, PublicKeyToken=fee00910d6e5f53b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Remotion.Linq.2.1.2\lib\net45\Remotion.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.3.0\lib\netstandard1.1\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections" />
+    <Reference Include="System.Collections.Immutable, Version=1.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Collections.Immutable.1.3.1\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.4.0\lib\net45\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Interactive.Async, Version=3.0.1000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Interactive.Async.3.1.1\lib\net45\System.Interactive.Async.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.3.0\lib\netstandard1.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encodings.Web, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.4.3.1\lib\netstandard1.0\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.3.0\lib\portable-net45+win8+wp8+wpa81\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Windows.Forms.DataVisualization.Design" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
+    <Reference Include="WriteableBitmapEx.Wpf, Version=1.5.0.0, Culture=neutral, PublicKeyToken=50375ca6144f1c69, processorArchitecture=MSIL">
+      <HintPath>..\packages\WriteableBitmapEx.1.5.1.0\lib\net40\WriteableBitmapEx.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="YamlDotNet, Version=4.2.2.0, Culture=neutral, PublicKeyToken=ec19458f3c15af5e, processorArchitecture=MSIL">
+      <HintPath>..\packages\YamlDotNet.Signed.4.2.2\lib\net35\YamlDotNet.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="API\DataAccess\IDataAccessFacade.cs" />
+    <Compile Include="API\DataAccess\IGeneralSettings.cs" />
+    <Compile Include="API\DataAccess\IPersonAccess.cs" />
+    <Compile Include="API\DataAccess\ISceneAccess.cs" />
+    <Compile Include="API\DataAccess\ISceneInUseAccess.cs" />
+    <Compile Include="API\FrameProvider\Accelerometer\IAccelerometerProcessingModule.cs" />
+    <Compile Include="API\FrameProvider\EEG\IEegProcessingModule.cs" />
+    <Compile Include="API\FrameProvider\Kinect\IKinectProcessingModule.cs" />
+    <Compile Include="API\FrameProvider\Kinect\KinectGestureFrameArrivedArgs.cs" />
+    <Compile Include="API\Helper\IPreference.cs" />
+    <Compile Include="API\Helper\ITab.cs" />
+    <Compile Include="API\Module\AbstractModule.cs" />
+    <Compile Include="API\Module\General\GeneralModule.cs" />
+    <Compile Include="Controller\FileController.cs" />
+    <Compile Include="Data\Access\DataAccessFacade.cs" />
+    <Compile Include="Data\Access\External\PersonAccess.cs" />
+    <Compile Include="Data\Access\External\SceneAccess.cs" />
+    <Compile Include="Data\Access\External\SceneInUseAccess.cs" />
+    <Compile Include="API\Helper\WindowBuilder.cs" />
+    <Compile Include="Data\Access\External\SettingsAccess.cs" />
+    <Compile Include="Data\Access\External\TypeValidation.cs" />
+    <Compile Include="Data\Persistence\Provider\EfAbstractProvider.cs" />
+    <Compile Include="Data\Persistence\Provider\MySqlProvider.cs" />
+    <Compile Include="Data\Persistence\Provider\SqliteProvider.cs" />
+    <Compile Include="Module\GeneralLoader.cs" />
+    <Compile Include="Module\General\GestureConfiguration\GestureConfigurationEntryPoint.cs" />
+    <Compile Include="Module\General\GestureConfiguration\Properties\GestureConfiguration.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GestureConfiguration.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Module\General\GestureConfiguration\Properties\GestureConfiguration.es.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GestureConfiguration.es.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Module\Input\Kinect\DVR\Recorder.cs" />
+    <Compile Include="Module\Input\Kinect\DVR\ReplayBodyFrameCustomTime.cs" />
+    <Compile Include="Module\Input\Kinect\DVR\ReplayColorFrameCustomTime.cs" />
+    <Compile Include="Module\Input\Kinect\DVR\ReplayDepthFrameCustomTime.cs" />
+    <Compile Include="Module\Input\Kinect\DVR\ReplayInfraredFrameCustomTime.cs" />
+    <Compile Include="Module\Input\Kinect\GestureDetector.cs" />
+    <Compile Include="Module\Input\Kinect\KinectInput.cs" />
+    <Compile Include="Module\Input\Kinect\KinectSettings.cs" />
+    <Compile Include="Module\Input\Kinect\Monitor.cs" />
+    <Compile Include="Module\Input\Kinect\Player.cs" />
+    <Compile Include="Module\Input\Kinect\SkeletonColorVideoViewer.cs" />
+    <Compile Include="Module\General\GestureConfiguration\View\AddOrEditPosture.xaml.cs">
+      <DependentUpon>AddOrEditPosture.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\General\GestureConfiguration\View\PostureCRUD.xaml.cs">
+      <DependentUpon>PostureCRUD.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\Input\OpenBCI\OpenBCIInput.cs" />
+    <Compile Include="Module\Input\OpenBCI\Properties\OpenBCI.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OpenBCI.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Module\Input\OpenBCI\Properties\OpenBCI.es.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OpenBCI.es.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Module\Input\OpenBCI\View\ConfigurePositions.xaml.cs">
+      <DependentUpon>ConfigurePositions.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\Input\OpenBCI\View\GraphForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Module\Input\OpenBCI\View\GraphForm.Designer.cs">
+      <DependentUpon>GraphForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Module\Input\OpenBCI\View\LiveGraphTab.xaml.cs">
+      <DependentUpon>LiveGraphTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\Processing\EEGEmotion2Channels\PreProcessing\FilterButterworth.cs" />
+    <Compile Include="Module\Processing\EEGEmotion2Channels\PreProcessing\FilterRLC.cs" />
+    <Compile Include="Module\Processing\EEGEmotion2Channels\Properties\EEGEmotion2Channels.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EEGEmotion2Channels.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Module\Processing\EEGEmotion2Channels\Properties\EEGEmotion2Channels.es.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EEGEmotion2Channels.es.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Module\Processing\EEGEmotion2Channels\TagType.cs" />
+    <Compile Include="Module\Processing\EEGEmotion2Channels\View\ConfigurationWindow.xaml.cs">
+      <DependentUpon>ConfigurationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\Processing\EEGEmotion2Channels\View\TrainerFileSelector.xaml.cs">
+      <DependentUpon>TrainerFileSelector.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\Processing\EEGEmotion2Channels\View\TrainerSceneSelector.xaml.cs">
+      <DependentUpon>TrainerSceneSelector.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\Processing\Kinect\AccurateProxemic\AccurateProxemicEntryPoint.cs" />
+    <Compile Include="Module\Processing\Kinect\AccurateProxemic\AccurateProxemicLogic.cs" />
+    <Compile Include="Module\Processing\Kinect\CheckPerson.cs" />
+    <Compile Include="Module\Processing\Kinect\Distance\DistanceEntryPoint.cs" />
+    <Compile Include="Module\Processing\Kinect\Distance\DistanceLogic.cs" />
+    <Compile Include="Module\Processing\Kinect\HeadAngle\HeadAngleEntryPoint.cs" />
+    <Compile Include="Module\Processing\Kinect\HeadAngle\HeadAngleLogic.cs" />
+    <Compile Include="Module\Processing\Kinect\HeadAngle\JointOrientationExtensions.cs" />
+    <Compile Include="Module\Processing\Kinect\Posture\GestureEntryPoint.cs" />
+    <Compile Include="Module\Processing\Kinect\Posture\GestureLogic.cs" />
+    <Compile Include="Module\Processing\Kinect\Proxemic\ProxemicEntryPoint.cs" />
+    <Compile Include="Module\Processing\Kinect\Proxemic\ProxemicLogic.cs" />
+    <Compile Include="Module\Processing\Kinect\ShouldersAngle\ShouldersAngleEntryPoint.cs" />
+    <Compile Include="Module\Processing\Kinect\ShouldersAngle\ShouldersAngleLogic.cs" />
+    <Compile Include="Module\Processing\Kinect\Voice\VoiceEntryPoint.cs" />
+    <Compile Include="Module\Processing\Kinect\Voice\VoiceLogic.cs" />
+    <Compile Include="Properties\Error.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Error.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Error.es.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Error.es.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\GUI.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GUI.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\GUI.es.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GUI.es.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Menu.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Menu.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Menu.es.Designer.cs">
+      <DependentUpon>Menu.es.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="API\DataAccess\IEventAccess.cs" />
+    <Compile Include="API\DataAccess\IIntervalAccess.cs" />
+    <Compile Include="API\DataAccess\IModalAccess.cs" />
+    <Compile Include="API\DataAccess\ISubModalAccess.cs" />
+    <Compile Include="API\DataAccess\ITimelessAccess.cs" />
+    <Compile Include="API\DataAccess\Types.cs" />
+    <Compile Include="API\Module\Input\IMonitor.cs" />
+    <Compile Include="API\Module\Input\InputPlurality.cs" />
+    <Compile Include="API\Module\Input\InputStatus.cs" />
+    <Compile Include="API\Module\Input\InputModule.cs" />
+    <Compile Include="API\Module\Input\IPlayer.cs" />
+    <Compile Include="API\Module\Input\IVideo.cs" />
+    <Compile Include="API\Module\Processing\ProcessingModule.cs" />
+    <Compile Include="Controller\MediaController.cs" />
+    <Compile Include="Controller\PlayerController.cs" />
+    <Compile Include="Controller\RecorderController.cs" />
+    <Compile Include="Controller\SourceType.cs" />
+    <Compile Include="Data\Access\External\EventAccess.cs" />
+    <Compile Include="Data\Access\External\IntervalAccess.cs" />
+    <Compile Include="Data\Access\External\ModalAccess.cs" />
+    <Compile Include="Data\Access\Internal\SceneInUse.cs" />
+    <Compile Include="Data\Access\External\SubModalAccess.cs" />
+    <Compile Include="Data\Access\External\TimelessAccess.cs" />
+    <Compile Include="Data\Model\EventData.cs" />
+    <Compile Include="Data\Model\IntervalData.cs" />
+    <Compile Include="Data\Model\ModalType.cs" />
+    <Compile Include="Data\Model\Person.cs" />
+    <Compile Include="Data\Model\PersonInScene.cs" />
+    <Compile Include="Data\Model\RepresentType.cs" />
+    <Compile Include="Data\Model\Scene.cs" />
+    <Compile Include="Data\Model\SubModalType.cs" />
+    <Compile Include="Data\Model\SubModalType_PersonInScene.cs" />
+    <Compile Include="Data\Persistence\Provider\DbDataContext.cs" />
+    <Compile Include="Data\Persistence\DbException.cs" />
+    <Compile Include="Data\Persistence\DbFacade.cs" />
+    <Compile Include="Data\Persistence\IDbProvider.cs" />
+    <Compile Include="Data\Persistence\Provider\MemoryProvider.cs" />
+    <Compile Include="Data\Persistence\Provider\PgSQLProvider.cs" />
+    <Compile Include="Data\Persistence\RepresentTypeException.cs" />
+    <Compile Include="Module\InputLoader.cs" />
+    <Compile Include="API\FrameProvider\Accelerometer\AccelerometerFrameArrivedEventArgs.cs" />
+    <Compile Include="Module\Input\OpenBCI\Util\Convert.cs" />
+    <Compile Include="API\FrameProvider\EEG\EegFrameArrivedEventArgs.cs" />
+    <Compile Include="Module\Input\OpenBCI\Util\FileManage.cs" />
+    <Compile Include="Module\Input\OpenBCI\Util\Filter.cs" />
+    <Compile Include="API\FrameProvider\EEG\FilterType.cs" />
+    <Compile Include="Module\Input\OpenBCI\Util\InterpretStream.cs" />
+    <Compile Include="Module\Input\OpenBCI\Monitor.cs" />
+    <Compile Include="API\FrameProvider\EEG\NotchType.cs" />
+    <Compile Include="Module\Input\OpenBCI\View\OpenBCIWindow.xaml.cs">
+      <DependentUpon>OpenBCIWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module\Input\OpenBCI\OpenBCISettings.cs" />
+    <Compile Include="Module\Input\OpenBCI\Player.cs" />
+    <Compile Include="Module\Processing\EEGEmotion2Channels\EEGReceiver.cs" />
+    <Compile Include="Module\Processing\EEGEmotion2Channels\DetectorEntryPoint.cs" />
+    <Compile Include="Module\Processing\EEGEmotion2Channels\TrainerEntryPoint.cs" />
+    <Compile Include="Module\Processing\EEGEmotion2Channels\EEGEmoProc2ChSettings.cs" />
+    <Compile Include="Module\Processing\EEGEmotion2Channels\PreProcessing\Emd.cs" />
+    <Compile Include="Module\Processing\EEGEmotion2Channels\PreProcessing\SampleEntropy.cs" />
+    <Compile Include="Module\Processing\EEGEmotion2Channels\LearningModel.cs" />
+    <Compile Include="Module\ProcessingLoader.cs" />
+    <Compile Include="GeneralSettings.cs" />
+    <Compile Include="Util\IntegerInput.cs" />
+    <Compile Include="Util\PersonColor.cs" />
+    <Compile Include="Util\PersonColors.cs" />
+    <Compile Include="Util\StringUtil.cs" />
+    <Compile Include="View\AboutUs.xaml.cs">
+      <DependentUpon>AboutUs.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AllPersons.xaml.cs">
+      <DependentUpon>AllPersons.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AllScenes.xaml.cs">
+      <DependentUpon>AllScenes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ConfigurePerson.xaml.cs">
+      <DependentUpon>ConfigurePerson.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ConfigureScene.xaml.cs">
+      <DependentUpon>ConfigureScene.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Export.xaml.cs">
+      <DependentUpon>Export.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Home.xaml.cs">
+      <DependentUpon>Home.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\Access\External\LoadTestScene.cs" />
+    <Compile Include="View\Preferences.xaml.cs">
+      <DependentUpon>Preferences.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Widget\HomeTab\Widget\EventGraphControl.xaml.cs">
+      <DependentUpon>EventGraphControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Widget\HomeTab\Widget\IntervalGraphControl.xaml.cs">
+      <DependentUpon>IntervalGraphControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Widget\PersonCard.xaml.cs">
+      <DependentUpon>PersonCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Widget\PreferencesTab\PreferencesBD.xaml.cs">
+      <DependentUpon>PreferencesBD.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Widget\PreferencesTab\PreferencesColor.xaml.cs">
+      <DependentUpon>PreferencesColor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Widget\PreferencesTab\PreferencesGeneral.xaml.cs">
+      <DependentUpon>PreferencesGeneral.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Widget\PreferencesTab\PreferencesPersonColors.xaml.cs">
+      <DependentUpon>PreferencesPersonColors.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Widget\HomeTab\TabGraph.xaml.cs">
+      <DependentUpon>TabGraph.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Widget\HomeTab\TabInterval.xaml.cs">
+      <DependentUpon>TabInterval.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Widget\HomeTab\TabScene.xaml.cs">
+      <DependentUpon>TabScene.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Module\General\GestureConfiguration\View\AddOrEditPosture.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Module\General\GestureConfiguration\View\PostureCRUD.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Module\Input\OpenBCI\View\ConfigurePositions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Module\Input\OpenBCI\View\LiveGraphTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Module\Input\OpenBCI\View\OpenBCIWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Module\Processing\EEGEmotion2Channels\View\ConfigurationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Module\Processing\EEGEmotion2Channels\View\TrainerFileSelector.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Module\Processing\EEGEmotion2Channels\View\TrainerSceneSelector.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AboutUs.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AllPersons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AllScenes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ConfigurePerson.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ConfigureScene.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Export.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Home.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Preferences.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Widget\HomeTab\Widget\EventGraphControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Widget\HomeTab\Widget\IntervalGraphControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Widget\PersonCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Widget\PreferencesTab\PreferencesBD.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Widget\PreferencesTab\PreferencesColor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Widget\PreferencesTab\PreferencesGeneral.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Widget\PreferencesTab\PreferencesPersonColors.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Widget\HomeTab\TabGraph.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Widget\HomeTab\TabInterval.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Widget\HomeTab\TabScene.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Module\General\GestureConfiguration\Properties\GestureConfiguration.es.resx">
+      <LastGenOutput>GestureConfiguration.es.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Module\General\GestureConfiguration\Properties\GestureConfiguration.resx">
+      <LastGenOutput>GestureConfiguration.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Module\Input\OpenBCI\View\GraphForm.resx">
+      <DependentUpon>GraphForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Error.es.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Error.es.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Error.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Error.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\GUI.es.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>GUI.es.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\GUI.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>GUI.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Menu.es.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Menu.es.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Menu.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Menu.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Module\Input\OpenBCI\Properties\OpenBCI.es.resx">
+      <LastGenOutput>OpenBCI.es.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Module\Input\OpenBCI\Properties\OpenBCI.resx">
+      <LastGenOutput>OpenBCI.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Module\Processing\EEGEmotion2Channels\Properties\EEGEmotion2Channels.es.resx">
+      <LastGenOutput>EEGEmotion2Channels.es.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Module\Processing\EEGEmotion2Channels\Properties\EEGEmotion2Channels.resx">
+      <LastGenOutput>EEGEmotion2Channels.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <None Include="app.manifest" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\KinectEx\KinectEx.csproj">
+      <Project>{b7429d12-b30b-4ada-a23c-6376afb54b80}</Project>
+      <Name>KinectEx</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 y x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Static\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Module\Input\OpenBCI\Assets\eegPosSystem_10_10.png" />
+    <Resource Include="Module\Input\OpenBCI\Assets\eegPosSystem_10_20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\vgbtechs\AdaBoostTech.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\vgbtechs\RFRProgressTech.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\SQLite.3.13.0\build\net45\SQLite.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SQLite.3.13.0\build\net45\SQLite.props'))" />
+    <Error Condition="!Exists('..\packages\Accord.3.8.0\build\Accord.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Accord.3.8.0\build\Accord.targets'))" />
+  </Target>
+  <PropertyGroup>
+    <PreBuildEvent>xcopy "$(ProjectDir)bin_files\anyPlatform" . /Y /E</PreBuildEvent>
+  </PropertyGroup>
+  <Import Project="..\packages\Accord.3.8.0\build\Accord.targets" Condition="Exists('..\packages\Accord.3.8.0\build\Accord.targets')" />
+</Project>

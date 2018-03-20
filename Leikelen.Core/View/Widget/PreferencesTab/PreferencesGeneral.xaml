@@ -1,0 +1,62 @@
+﻿<TabItem x:Class="cl.uv.leikelen.View.Widget.PreferencesTab.PreferencesGeneral"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        xmlns:resx="clr-namespace:cl.uv.leikelen.Properties"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
+        TextElement.FontWeight="Medium"
+        TextElement.FontSize="14"
+        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
+         Header="{x:Static resx:GUI.General}">
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition MinWidth="220" Width="1.5*" />
+            <ColumnDefinition Width="0.7*"/>
+            <ColumnDefinition MinWidth="20" Width="0.3*"/>
+        </Grid.ColumnDefinitions>
+        
+        <Label VerticalAlignment="Bottom" Content="{x:Static resx:GUI.DataDirectory}" Grid.Row="0" Grid.Column="0" />
+        <TextBox x:Name="DataDirectoryTxt" Grid.Row="0" Grid.Column="1" IsEnabled="False"></TextBox>
+        <Button x:Name="DataDirectoryBtn" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Right" Content="..." Click="DataDirectoryBtn_Click" />
+
+        <Label VerticalAlignment="Bottom" Content="{x:Static resx:GUI.TmpDirectory}" Grid.Row="1" Grid.Column="0" />
+        <TextBox x:Name="TmpDirectoryTxt" Grid.Row="1" Grid.Column="1" IsEnabled="False"></TextBox>
+        <Button x:Name="TmpDirectoryBtn" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right" Content="..." Click="TmpDirectoryBtn_Click"/>
+        
+        <Label VerticalAlignment="Bottom" Content="{x:Static resx:GUI.CurrentScene}" Grid.Row="2" Grid.Column="0" />
+        <TextBox x:Name="TmpSceneDirectoryTxt" Grid.Row="2" Grid.Column="1" IsEnabled="False"></TextBox>
+        <Button x:Name="TmpSceneDirectoryBtn" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right" Content="..." Click="TmpSceneDirectoryBtn_Click"/>
+
+        <Label VerticalAlignment="Bottom" Content="{x:Static resx:GUI.DefaultMillisecondsThreshold}" Grid.Row="3" Grid.Column="0" />
+        <TextBox x:Name="DefaultMillisecondsTxt"
+                 PreviewTextInput="Int_PreviewTextInput"
+                 DataObject.Pasting="Int_Pasting"
+                 Grid.Row="3"
+                 Grid.Column="1"></TextBox>
+
+        <Label VerticalAlignment="Bottom" Content="{x:Static resx:GUI.PrefIntervalGraphMinHeight}" Grid.Row="4" Grid.Column="0" />
+        <TextBox x:Name="IntervalMinHeightTxt"
+                 PreviewTextInput="Int_PreviewTextInput"
+                 DataObject.Pasting="Int_Pasting"
+                 Grid.Row="4" 
+                 Grid.Column="1"></TextBox>
+
+        <Label VerticalAlignment="Bottom" Content="{x:Static resx:GUI.PrefEventsGraphMinHeight}" Grid.Row="5" Grid.Column="0" />
+        <TextBox x:Name="EventMinHeightTxt"
+                 PreviewTextInput="Int_PreviewTextInput"
+                 DataObject.Pasting="Int_Pasting"
+                 Grid.Row="5" 
+                 Grid.Column="1"></TextBox>
+    </Grid>
+</TabItem>

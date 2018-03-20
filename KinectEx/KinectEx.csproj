@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B7429D12-B30B-4ADA-A23C-6376AFB54B80}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>KinectEx</RootNamespace>
+    <AssemblyName>KinectEx</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <DocumentationFile>bin\x64\Debug\KinectEx.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Kinect, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Kinect.2.0.1410.19000\lib\net45\Microsoft.Kinect.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="SharpDX, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.4.0.1\lib\net45\SharpDX.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.Mathematics, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.Mathematics.4.0.1\lib\net45\SharpDX.Mathematics.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WriteableBitmapEx.Wpf, Version=1.5.0.0, Culture=neutral, PublicKeyToken=50375ca6144f1c69, processorArchitecture=MSIL">
+      <HintPath>..\packages\WriteableBitmapEx.1.5.1.0\lib\net40\WriteableBitmapEx.Wpf.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Bone.cs" />
+    <Compile Include="CustomJointOrientation.cs" />
+    <Compile Include="DVR\InfraredRecorder.cs" />
+    <Compile Include="InfraredFrameBitmap.cs" />
+    <Compile Include="DepthFrameBitmap.cs" />
+    <Compile Include="ColorFrameBitmap.cs" />
+    <Compile Include="DVR\ReplayInfraredFrame.cs" />
+    <Compile Include="DVR\ReplayInfraredSystem.cs" />
+    <Compile Include="IJointOrientation.cs" />
+    <Compile Include="KinectJointOrientation.cs" />
+    <Compile Include="KinectSDK\CameraIntrinsics.cs" />
+    <Compile Include="KinectSDK\ColorSpacePoint.cs" />
+    <Compile Include="KinectSDK\DepthSpacePoint.cs" />
+    <Compile Include="Smoothing\ExponentialJointOrientation.cs" />
+    <Compile Include="Smoothing\ISmootherParameters.cs" />
+    <Compile Include="Smoothing\KalmanJointOrientation.cs" />
+    <Compile Include="Smoothing\SmoothedBodyList.cs" />
+    <Compile Include="Smoothing\ExponentialJoint.cs" />
+    <Compile Include="Smoothing\ExponentialSmoother.cs" />
+    <Compile Include="Smoothing\ExponentialSmoothingParameters.cs" />
+    <Compile Include="Smoothing\ISmoother.cs" />
+    <Compile Include="JointTypeEx.cs" />
+    <Compile Include="BodyExtensions.cs" />
+    <Compile Include="BodyFrameExtensions.cs" />
+    <Compile Include="BodyImageExtension.cs" />
+    <Compile Include="BoneTypeEx.cs" />
+    <Compile Include="CustomBody.cs" />
+    <Compile Include="Smoothing\SmoothedBody.cs" />
+    <Compile Include="CustomJoint.cs" />
+    <Compile Include="DVR\ColorRecorder.cs" />
+    <Compile Include="DVR\DepthRecorder.cs" />
+    <Compile Include="DVR\FileMetadata.cs" />
+    <Compile Include="DVR\FrameTypes.cs" />
+    <Compile Include="DVR\IColorCodec.cs" />
+    <Compile Include="DVR\JpegColorCodec.cs" />
+    <Compile Include="DVR\ColorCodecs.cs" />
+    <Compile Include="DVR\KinectRecorder.cs" />
+    <Compile Include="DVR\BodyRecorder.cs" />
+    <Compile Include="DVR\RawColorCodec.cs" />
+    <Compile Include="DVR\ReplayColorFrame.cs" />
+    <Compile Include="DVR\ReplayDepthFrame.cs" />
+    <Compile Include="DVR\ReplayFrameArrivedEventArgs.cs" />
+    <Compile Include="DVR\KinectReplay.cs" />
+    <Compile Include="DVR\ReplayColorSystem.cs" />
+    <Compile Include="DVR\ReplayBodySystem.cs" />
+    <Compile Include="DVR\ReplayDepthSystem.cs" />
+    <Compile Include="DVR\ReplayFrame.cs" />
+    <Compile Include="DVR\ReplaySystem.cs" />
+    <Compile Include="DVR\ReplayBodyFrame.cs" />
+    <Compile Include="IBody.cs" />
+    <Compile Include="IJoint.cs" />
+    <Compile Include="Json\BoneTypeExConverter.cs" />
+    <Compile Include="Json\JointTypeExConverter.cs" />
+    <Compile Include="Json\KinectTypeBinder.cs" />
+    <Compile Include="Smoothing\KalmanJoint.cs" />
+    <Compile Include="Smoothing\KalmanSmoother.cs" />
+    <Compile Include="Smoothing\KalmanSmoothingParameters.cs" />
+    <Compile Include="KinectBody.cs" />
+    <Compile Include="KinectJoint.cs" />
+    <Compile Include="KinectSDK\Activity.cs" />
+    <Compile Include="KinectSDK\Appearance.cs" />
+    <Compile Include="KinectSDK\CameraSpacePoint.cs" />
+    <Compile Include="KinectSDK\DetectionResult.cs" />
+    <Compile Include="KinectSDK\Expression.cs" />
+    <Compile Include="KinectSDK\FrameEdges.cs" />
+    <Compile Include="KinectSDK\HandState.cs" />
+    <Compile Include="KinectSDK\JointOrientation.cs" />
+    <Compile Include="KinectSDK\JointType.cs" />
+    <Compile Include="KinectSDK\PointF.cs" />
+    <Compile Include="KinectSDK\TrackingConfidence.cs" />
+    <Compile Include="KinectSDK\TrackingState.cs" />
+    <Compile Include="KinectSDK\Vector4.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
