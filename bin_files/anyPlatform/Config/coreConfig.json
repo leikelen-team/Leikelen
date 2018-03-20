@@ -1,0 +1,12 @@
+{
+	"maxIntervalGroupsInViewPerPerson": 3,
+	"pixelsPerSecond": 5,
+	"fileExtension": ".mvs",
+	"fileFilter": "Multimodal Visualizer Scene (*.mvs)|*.mvs",
+	"appDataFile": "app_sqlite.db",
+	"tmpDirectory": "tmp",
+	"currentDataFile": "tmp/current_scene/scene_data.db",
+	"recordedZipFile": "tmp/recorded_scene.mvs",
+	"currentKdvrFile": "tmp/current_scene/frames.kdvr",
+	"currentSceneDirectory": "tmp/current_scene"
+}

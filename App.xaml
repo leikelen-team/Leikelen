@@ -1,7 +1,7 @@
-﻿<Application x:Class="cl.uv.multimodalvisualizer.App"
+﻿<Application x:Class="cl.uv.leikelen.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             StartupUri="MainWindow.xaml">
+             StartupUri="src/View/CoreWindow/MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <!-- WPF 4.0 workaround -->
