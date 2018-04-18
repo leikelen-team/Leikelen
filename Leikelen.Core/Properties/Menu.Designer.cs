@@ -106,6 +106,60 @@ namespace cl.uv.leikelen.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Export.
+        /// </summary>
+        public static string Export {
+            get {
+                return ResourceManager.GetString("Export", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a To CSV File.
+        /// </summary>
+        public static string Export_ToCSV {
+            get {
+                return ResourceManager.GetString("Export_ToCSV", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a All events.
+        /// </summary>
+        public static string Export_ToCSV_Events {
+            get {
+                return ResourceManager.GetString("Export_ToCSV_Events", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a All intervals.
+        /// </summary>
+        public static string Export_ToCSV_IntervalsAll {
+            get {
+                return ResourceManager.GetString("Export_ToCSV_IntervalsAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Intervals resume.
+        /// </summary>
+        public static string Export_ToCSV_IntervalsResume {
+            get {
+                return ResourceManager.GetString("Export_ToCSV_IntervalsResume", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a To File.
+        /// </summary>
+        public static string Export_ToFile {
+            get {
+                return ResourceManager.GetString("Export_ToFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a _File.
         /// </summary>
         public static string File {
@@ -120,15 +174,6 @@ namespace cl.uv.leikelen.Properties {
         public static string File_AllScenes {
             get {
                 return ResourceManager.GetString("File_AllScenes", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a Export.
-        /// </summary>
-        public static string File_Export {
-            get {
-                return ResourceManager.GetString("File_Export", resourceCulture);
             }
         }
         

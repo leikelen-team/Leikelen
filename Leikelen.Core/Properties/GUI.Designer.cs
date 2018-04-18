@@ -385,6 +385,24 @@ namespace cl.uv.leikelen.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a The file has been saved succesfully.
+        /// </summary>
+        public static string FileSavedOK {
+            get {
+                return ResourceManager.GetString("FileSavedOK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a File saved.
+        /// </summary>
+        public static string FileSavedOKTitle {
+            get {
+                return ResourceManager.GetString("FileSavedOKTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Gender.
         /// </summary>
         public static string Gender {
@@ -462,6 +480,24 @@ namespace cl.uv.leikelen.Properties {
         public static string New {
             get {
                 return ResourceManager.GetString("New", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Doesn&apos;t selected any submodal type.
+        /// </summary>
+        public static string NoSubmodalsSelected {
+            get {
+                return ResourceManager.GetString("NoSubmodalsSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Can&apos;t make file.
+        /// </summary>
+        public static string NoSubmodalsSelectedTitle {
+            get {
+                return ResourceManager.GetString("NoSubmodalsSelectedTitle", resourceCulture);
             }
         }
         
@@ -939,6 +975,15 @@ namespace cl.uv.leikelen.Properties {
         public static string seconds {
             get {
                 return ResourceManager.GetString("seconds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Select.
+        /// </summary>
+        public static string Select {
+            get {
+                return ResourceManager.GetString("Select", resourceCulture);
             }
         }
         

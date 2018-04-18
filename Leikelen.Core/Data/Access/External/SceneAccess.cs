@@ -58,7 +58,7 @@ namespace cl.uv.leikelen.Data.Access.External
         {
             var settings = DataAccessFacade.Instance.GetGeneralSettings();
 
-            if (!System.IO.Directory.Exists(settings.GetSceneDirectory(scene.SceneId)))
+            if (System.IO.Directory.Exists(settings.GetSceneDirectory(scene.SceneId)))
             {
                 System.IO.Directory.Delete(settings.GetSceneDirectory(scene.SceneId), true);
             }

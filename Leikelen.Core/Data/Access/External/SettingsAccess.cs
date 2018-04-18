@@ -62,7 +62,7 @@ namespace cl.uv.leikelen.Data.Access.External
 
         public string GetSceneDirectory(int sceneId)
         {
-            if(!ReferenceEquals(null, new SceneAccess().Get(sceneId)))
+            if(new SceneAccess()?.Get(sceneId) != null)
                 return Path.Combine(Path.Combine(GeneralSettings.Instance.DataDirectory.Value, "scene/"), sceneId.ToString());
             return null;
         }

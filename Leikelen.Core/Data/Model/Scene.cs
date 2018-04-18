@@ -11,6 +11,9 @@ namespace cl.uv.leikelen.Data.Model
     [Table("scene")]
     public class Scene
     {
+        [NotMapped]
+        public bool Selected { get; set; } = false;
+
         [Column("scene_id")]
         public int SceneId { get; set; }
 

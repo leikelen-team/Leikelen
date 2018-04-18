@@ -36,7 +36,6 @@
                     <MenuItem x:Name="MenuItem_File_AllScenes" Click="MenuItem_File_AllScenes_Click" Header="{x:Static resx:Menu.File_AllScenes}">
                     </MenuItem>
                     <MenuItem x:Name="MenuItem_File_Import" Click="MenuItem_File_Import_Click" Header="{x:Static resx:Menu.File_Import}"/>
-                    <MenuItem x:Name="MenuItem_File_Export" Click="MenuItem_File_Export_Click" Header="{x:Static resx:Menu.File_Export}"/>
                     <MenuItem x:Name="MenuItem_File_Quit" Click="MenuItem_File_Quit_Click" Header="{x:Static resx:Menu.File_Quit}" InputGestureText="Ctrl+Q">
                         <MenuItem.Icon>
                             <materialDesign:PackIcon Kind="ExitToApp" />
@@ -76,6 +75,14 @@
                     <MenuItem x:Name="MenuItem_Scene_AddPerson" Click="MenuItem_Scene_AddPerson_Click" Header="{x:Static resx:Menu.Scene_AddPerson}"></MenuItem>
                     <MenuItem x:Name="MenuItem_Scene_Persons" Click="MenuItem_Scene_Persons_Click" Header="{x:Static resx:Menu.Scene_AllPersons}"></MenuItem>
                     <MenuItem x:Name="MenuItem_Scene_PersonsInScene" Header="{x:Static resx:Menu.Scene_PersonsInScene}"></MenuItem>
+                </MenuItem>
+                <MenuItem x:Name="MenuItem_Export" Header="{x:Static resx:Menu.Export}">
+                    <MenuItem x:Name="MenuItem_Export_ToFile" Click="MenuItem_Export_ToFile_Click" Header="{x:Static resx:Menu.Export_ToFile}" />
+                    <MenuItem x:Name="MenuItem_Export_ToCSV" Header="{x:Static resx:Menu.Export_ToCSV}">
+                        <MenuItem x:Name="MenuItem_Export_ToCSV_IntervalsAll" Click="MenuItem_Export_ToCSV_IntervalsAll_Click" Header="{x:Static resx:Menu.Export_ToCSV_IntervalsAll}" />
+                        <MenuItem x:Name="MenuItem_Export_ToCSV_IntervalsResume" Click="MenuItem_Export_ToCSV_IntervalsResume_Click" Header="{x:Static resx:Menu.Export_ToCSV_IntervalsResume}"/>
+                        <MenuItem x:Name="MenuItem_Export_ToCSV_Events" Click="MenuItem_Export_ToCSV_Events_Click" Header="{x:Static resx:Menu.Export_ToCSV_Events}" />
+                    </MenuItem>
                 </MenuItem>
                 <MenuItem x:Name="MenuItem_Help" Header="{x:Static resx:Menu.Help}">
                     <MenuItem x:Name="MenuItem_Help_Manual" Click="MenuItem_Help_Manual_Click" Header="{x:Static resx:Menu.Help_Manual}"></MenuItem>

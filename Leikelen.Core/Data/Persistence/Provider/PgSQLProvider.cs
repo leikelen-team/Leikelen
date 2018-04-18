@@ -18,7 +18,7 @@ namespace cl.uv.leikelen.Data.Persistence.Provider
         public override void CreateConnection(string options)
         {
             var optionsBuilder = new DbContextOptionsBuilder();
-            optionsBuilder.UseNpgsql(options);
+            optionsBuilder.UseNpgsql(options);//+ ";Timeout=1000;CommandTimeout=1000");
             Db = new DbDataContext(optionsBuilder.Options);
 
             Db.Database.EnsureCreated();

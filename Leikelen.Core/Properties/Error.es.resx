@@ -124,4 +124,7 @@
   <data name="ErrorOcurredTitle" xml:space="preserve">
     <value>Error</value>
   </data>
+  <data name="SelectOneScene" xml:space="preserve">
+    <value>Por favor selecciona una escena (y sólo una)</value>
+  </data>
 </root>

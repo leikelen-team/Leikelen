@@ -140,5 +140,14 @@ namespace cl.uv.leikelen.Properties {
                 return ResourceManager.GetString("ModalTypeNotExists", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Please select 1 scene (and only one).
+        /// </summary>
+        public static string SelectOneScene {
+            get {
+                return ResourceManager.GetString("SelectOneScene", resourceCulture);
+            }
+        }
     }
 }

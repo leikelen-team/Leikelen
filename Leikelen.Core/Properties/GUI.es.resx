@@ -474,4 +474,19 @@
   <data name="RestartApp" xml:space="preserve">
     <value>Reiniciar la aplicación</value>
   </data>
+  <data name="FileSavedOKTitle" xml:space="preserve">
+    <value>Archivo guardado</value>
+  </data>
+  <data name="FileSavedOK" xml:space="preserve">
+    <value>El archivo ha sido guardado exitosamente</value>
+  </data>
+  <data name="NoSubmodalsSelected" xml:space="preserve">
+    <value>No seleccionó ningún tipo submodal</value>
+  </data>
+  <data name="NoSubmodalsSelectedTitle" xml:space="preserve">
+    <value>No se puede crear el archivo</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>Seleccionar</value>
+  </data>
 </root>

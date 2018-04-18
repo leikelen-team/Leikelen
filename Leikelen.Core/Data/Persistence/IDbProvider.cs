@@ -37,5 +37,9 @@ namespace cl.uv.leikelen.Data.Persistence
         SubModalType SaveSubModal(SubModalType submodalType);
         void DeleteSubModal(SubModalType submodalType);
         SubModalType UpdateSubModalType(SubModalType subModalType);
+
+        dynamic GetEventsQuery(string[] submodal_names);
+        dynamic GetIntervalsResumeQuery(string[] submodal_names);
+        dynamic GetIntervalsAllQuery(string[] submodal_names);
     }
 }

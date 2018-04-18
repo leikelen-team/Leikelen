@@ -454,4 +454,19 @@
   <data name="RestartApp" xml:space="preserve">
     <value>Restart the app</value>
   </data>
+  <data name="FileSavedOK" xml:space="preserve">
+    <value>The file has been saved succesfully</value>
+  </data>
+  <data name="FileSavedOKTitle" xml:space="preserve">
+    <value>File saved</value>
+  </data>
+  <data name="NoSubmodalsSelected" xml:space="preserve">
+    <value>Doesn't selected any submodal type</value>
+  </data>
+  <data name="NoSubmodalsSelectedTitle" xml:space="preserve">
+    <value>Can't make file</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>Select</value>
+  </data>
 </root>

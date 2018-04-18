@@ -124,7 +124,7 @@
   <data name="Tools" xml:space="preserve">
     <value>_Herramientas</value>
   </data>
-  <data name="File_Export" xml:space="preserve">
+  <data name="Export" xml:space="preserve">
     <value>Exportar</value>
   </data>
   <data name="File_Import" xml:space="preserve">
@@ -234,5 +234,20 @@
   </data>
   <data name="English" xml:space="preserve">
     <value>Inglés</value>
+  </data>
+  <data name="Export_ToFile" xml:space="preserve">
+    <value>A Archivo</value>
+  </data>
+  <data name="Export_ToCSV" xml:space="preserve">
+    <value>A un archivo CSV</value>
+  </data>
+  <data name="Export_ToCSV_IntervalsResume" xml:space="preserve">
+    <value>Resumen de los intervalos</value>
+  </data>
+  <data name="Export_ToCSV_IntervalsAll" xml:space="preserve">
+    <value>Todos los intervalos</value>
+  </data>
+  <data name="Export_ToCSV_Events" xml:space="preserve">
+    <value>Todos los eventos</value>
   </data>
 </root>

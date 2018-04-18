@@ -54,6 +54,7 @@ namespace cl.uv.leikelen.Data.Persistence.Provider
                     .ThenInclude(pis => pis.SubModalType_PersonInScenes)
                         .ThenInclude(smtPis => smtPis.SubModalType)
                             .ThenInclude(sm => sm.ModalType)
+                .Where(s => s.SceneId == sceneId)
                 .ToList().Find(s => s.SceneId == sceneId);
         }
 
@@ -201,6 +202,80 @@ namespace cl.uv.leikelen.Data.Persistence.Provider
             var r = Db.SubModalTypes.Update(subModalType).Entity;
             Db.SaveChanges();
             return r;
+        }
+
+
+        public dynamic GetEventsQuery(string[] submodal_names)
+        {
+            var scs = from scene in Db.Scenes
+                      join sp in Db.SmtPis on scene.SceneId equals sp.SceneId
+                      join p in Db.Persons on sp.PersonId equals p.PersonId
+                      join rt in Db.RepresentTypes on sp.SubModalType_PersonInSceneId equals rt.SubModalType_PersonInSceneId
+                      join ed in Db.EventDatas on rt.EventDataId equals ed.EventDataId
+                      where submodal_names.Contains(sp.SubModalTypeId)
+                      //orderby new { scene_group.Key.Type, scene_group.Key.Name, scene_group.Key.ModalTypeId, scene_group.Key.SubModalTypeId }
+                      select new
+                      {
+                          scene.Name,
+                          scene.Duration,
+                          scene.Type,
+                          p.PersonId,
+                          p.TrackingId,
+                          sp.ModalTypeId,
+                          sp.SubModalTypeId,
+                          ed.EventTime,
+                          ed.ToInterval,
+                          rt.Value
+                      };
+
+            return scs.ToArray();
+        }
+        public dynamic GetIntervalsResumeQuery(string[] submodal_names)
+        {
+            var scs = from scene in Db.Scenes
+                      join sp in Db.SmtPis on scene.SceneId equals sp.SceneId
+                      join p in Db.Persons on sp.PersonId equals p.PersonId
+                      join rt in Db.RepresentTypes on sp.SubModalType_PersonInSceneId equals rt.SubModalType_PersonInSceneId
+                      join ind in Db.IntervalDatas on rt.IntervalDataId equals ind.IntervalDataId
+                      where submodal_names.Contains(sp.SubModalTypeId)
+                      group ind by new { scene.Name, scene.Duration, scene.Type, p.PersonId, p.TrackingId, sp.ModalTypeId, sp.SubModalTypeId } into scene_group
+                      //orderby new { scene_group.Key.Type, scene_group.Key.Name, scene_group.Key.ModalTypeId, scene_group.Key.SubModalTypeId }
+                      select new {
+                          scene_group.Key.Name,
+                          scene_group.Key.Duration,
+                          scene_group.Key.Type,
+                          scene_group.Key.PersonId,
+                          scene_group.Key.TrackingId,
+                          scene_group.Key.ModalTypeId,
+                          scene_group.Key.SubModalTypeId,
+                          interval_duration = scene_group.Sum(s => s.EndTime.Subtract(s.StartTime).TotalSeconds),
+                          interval_percetage_duration = scene_group.Sum(s => s.EndTime.Subtract(s.StartTime).TotalMilliseconds) / (scene_group.Key.Duration.TotalMilliseconds) };
+
+            return scs.ToArray();
+        }
+        public dynamic GetIntervalsAllQuery(string[] submodal_names)
+        {
+            var scs = from scene in Db.Scenes
+                      join sp in Db.SmtPis on scene.SceneId equals sp.SceneId
+                      join p in Db.Persons on sp.PersonId equals p.PersonId
+                      join rt in Db.RepresentTypes on sp.SubModalType_PersonInSceneId equals rt.SubModalType_PersonInSceneId
+                      join ind in Db.IntervalDatas on rt.IntervalDataId equals ind.IntervalDataId
+                      where submodal_names.Contains(sp.SubModalTypeId)
+                      //orderby new { scene_group.Key.Type, scene_group.Key.Name, scene_group.Key.ModalTypeId, scene_group.Key.SubModalTypeId }
+                      select new
+                      {
+                          scene.Name,
+                          scene.Duration,
+                          scene.Type,
+                          p.PersonId,
+                          p.TrackingId,
+                          sp.ModalTypeId,
+                          sp.SubModalTypeId,
+                          interval_duration = ind.EndTime.Subtract(ind.StartTime).TotalSeconds,
+                          interval_percentage_duration = (ind.EndTime.Subtract(ind.StartTime).TotalMilliseconds) / (scene.Duration.TotalMilliseconds)
+                      };
+
+            return scs.ToArray();
         }
     }
 }

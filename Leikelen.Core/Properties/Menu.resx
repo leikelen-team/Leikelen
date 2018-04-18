@@ -121,7 +121,7 @@
     <value>_File</value>
     <comment>Menu principal</comment>
   </data>
-  <data name="File_Export" xml:space="preserve">
+  <data name="Export" xml:space="preserve">
     <value>Export</value>
   </data>
   <data name="File_Import" xml:space="preserve">
@@ -236,5 +236,20 @@
   </data>
   <data name="English" xml:space="preserve">
     <value>English</value>
+  </data>
+  <data name="Export_ToFile" xml:space="preserve">
+    <value>To File</value>
+  </data>
+  <data name="Export_ToCSV" xml:space="preserve">
+    <value>To CSV File</value>
+  </data>
+  <data name="Export_ToCSV_IntervalsResume" xml:space="preserve">
+    <value>Intervals resume</value>
+  </data>
+  <data name="Export_ToCSV_IntervalsAll" xml:space="preserve">
+    <value>All intervals</value>
+  </data>
+  <data name="Export_ToCSV_Events" xml:space="preserve">
+    <value>All events</value>
   </data>
 </root>

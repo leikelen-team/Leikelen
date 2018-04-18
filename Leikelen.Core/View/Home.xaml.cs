@@ -272,7 +272,7 @@ namespace cl.uv.leikelen.View
             MenuItem_File_Save.IsEnabled = false;
             MenuItem_File_AllScenes.IsEnabled = true;
             MenuItem_File_Import.IsEnabled = true;
-            MenuItem_File_Export.IsEnabled = false;
+            MenuItem_Export_ToFile.IsEnabled = false;
             MenuItem_File_Quit.IsEnabled = true;
 
             MenuItem_Tools_Preferences.IsEnabled = true;
@@ -310,7 +310,7 @@ namespace cl.uv.leikelen.View
                     break;
             }
             MenuItem_File_Save.IsEnabled = true;
-            MenuItem_File_Export.IsEnabled = true;
+            MenuItem_Export_ToFile.IsEnabled = true;
             
             MenuItem_Tools_Player.IsEnabled = true;
             MenuItems_Tools_Sensors.IsEnabled = false;
@@ -330,7 +330,7 @@ namespace cl.uv.leikelen.View
         private void SetGuiFromSensorWithScene(PlayerState playerState)
         {
             MenuItem_File_Save.IsEnabled = true;
-            MenuItem_File_Export.IsEnabled = true;
+            MenuItem_Export_ToFile.IsEnabled = true;
             MenuItem_Scene_Configure.IsEnabled = true;
             Player_LocationSlider.IsEnabled = false;
             Player_PlayButton.IsEnabled = false;
@@ -488,14 +488,6 @@ namespace cl.uv.leikelen.View
                 MessageBox.Show(Properties.GUI.SceneNotExist, 
                     Properties.GUI.SceneNotExistTitle, MessageBoxButton.OK, MessageBoxImage.Error);
             }
-        }
-
-        private void MenuItem_File_Export_Click(object sender, RoutedEventArgs e)
-        {
-            _playerController.Close();
-            PlayerStop();
-            var exportWin = new Export();
-            exportWin.Show();
         }
 
         private void MenuItem_File_Import_Click(object sender, RoutedEventArgs e)
@@ -914,7 +906,7 @@ namespace cl.uv.leikelen.View
             };
             MenuItem personItem = new MenuItem();
             personItem.Header = person?.Name;
-            //fill the windows of inputmodules
+            //fill the windows of input modules
             List<MenuItem> windowsMenuItems = new List<MenuItem>();
             foreach (var window in module.Windows)
             {
@@ -930,7 +922,7 @@ namespace cl.uv.leikelen.View
                 moduleMenuItem.Items.Add(moduleWin);
             }
 
-            //fill the checkbox to enable/disable the module
+            //fill the check-box to enable/disable the module
             CheckBox moduleCheck = new CheckBox
             {
                 Content = Properties.Menu.Enable
@@ -1028,6 +1020,156 @@ namespace cl.uv.leikelen.View
 
         #endregion
 
+        #region Export MenuItems
+        private void MenuItem_Export_ToFile_Click(object sender, RoutedEventArgs e)
+        {
+            _playerController.Close();
+            PlayerStop();
+            var exportWin = new Export();
+            exportWin.Show();
+        }
+
+        private void MenuItem_Export_ToCSV_IntervalsAll_Click(object sender, RoutedEventArgs e)
+        {
+            List<string> sub_names = new List<string>();
+            foreach (ModalType mt in Data.Persistence.DbFacade.Instance.Provider.LoadModals())
+            {
+                foreach (SubModalType smt in Data.Persistence.DbFacade.Instance.Provider.LoadSubModals(mt.ModalTypeId))
+                {
+                    sub_names.Add(smt.SubModalTypeId);
+                }
+            }
+
+            if (sub_names.Count > 0)
+            {
+
+                var scences = Data.Persistence.DbFacade.Instance.Provider.GetIntervalsAllQuery(sub_names.ToArray());
+                SaveCSV(scences);
+            }
+            else
+            {
+                MessageBox.Show(Properties.GUI.NoSubmodalsSelected,
+                                Properties.GUI.NoSubmodalsSelectedTitle,
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Warning);
+            }
+        }
+
+        private void MenuItem_Export_ToCSV_IntervalsResume_Click(object sender, RoutedEventArgs e)
+        {
+            List<string> sub_names = new List<string>();
+            foreach(ModalType mt in Data.Persistence.DbFacade.Instance.Provider.LoadModals())
+            {
+                foreach(SubModalType smt in Data.Persistence.DbFacade.Instance.Provider.LoadSubModals(mt.ModalTypeId))
+                {
+                    sub_names.Add(smt.SubModalTypeId);
+                }
+            }
+
+            if(sub_names.Count > 0)
+            {
+
+                var scences = Data.Persistence.DbFacade.Instance.Provider.GetIntervalsResumeQuery(sub_names.ToArray());
+                SaveCSV(scences);
+            }
+            else
+            {
+                MessageBox.Show(Properties.GUI.NoSubmodalsSelected,
+                                Properties.GUI.NoSubmodalsSelectedTitle,
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Warning);
+            }
+        }
+
+        private void MenuItem_Export_ToCSV_Events_Click(object sender, RoutedEventArgs e)
+        {
+            List<string> sub_names = new List<string>();
+            foreach (ModalType mt in Data.Persistence.DbFacade.Instance.Provider.LoadModals())
+            {
+                foreach (SubModalType smt in Data.Persistence.DbFacade.Instance.Provider.LoadSubModals(mt.ModalTypeId))
+                {
+                    sub_names.Add(smt.SubModalTypeId);
+                }
+            }
+
+            MenuItem_Export_ToCSV_Events_Process(sub_names);
+
+
+
+        }
+
+        private async Task MenuItem_Export_ToCSV_Events_Process(List<string> sub_names)
+        {
+            if (sub_names.Count > 0)
+            {
+
+                var scences = Data.Persistence.DbFacade.Instance.Provider.GetEventsQuery(sub_names.ToArray());
+                SaveCSV(scences);
+            }
+            else
+            {
+                MessageBox.Show(Properties.GUI.NoSubmodalsSelected,
+                                Properties.GUI.NoSubmodalsSelectedTitle,
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Warning);
+            }
+        }
+
+        private void SaveCSV(dynamic scences)
+        {
+            var csvStr = ServiceStack.Text.CsvSerializer.SerializeToCsv(scences);
+            //Console.WriteLine(csvStr);
+
+            var dlg = new SaveFileDialog()
+            {
+                Filter = "Comma Separated Values(*.csv) | *.csv",
+                DefaultExt = ".csv",
+            };
+            try
+            {
+                if (dlg.ShowDialog().GetValueOrDefault())
+                {
+                    if (File.Exists(dlg.FileName))
+                    {
+                        var result = MessageBox.Show(Properties.GUI.FileExists,
+                            Properties.GUI.FileExistsTitle,
+                            MessageBoxButton.YesNo,
+                            MessageBoxImage.Exclamation);
+                        if (result == MessageBoxResult.Yes)
+                        {
+                            File.Delete(dlg.FileName);
+                            var f = File.CreateText(dlg.FileName);
+                            f.Write(csvStr);
+                            f.Close();
+
+                            MessageBox.Show(Properties.GUI.FileSavedOK,
+                            Properties.GUI.FileSavedOKTitle,
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Information);
+                        }
+                    }
+                    else
+                    {
+                        var f = File.CreateText(dlg.FileName);
+                        f.Write(csvStr);
+                        f.Close();
+
+                        MessageBox.Show(Properties.GUI.FileSavedOK,
+                            Properties.GUI.FileSavedOKTitle,
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Information);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Properties.Error.ErrorOcurred + "\n" + ex.Message,
+                            Properties.Error.ErrorOcurredTitle,
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Warning);
+            }
+        }
+        #endregion
     }
 
     public enum PlayerState
