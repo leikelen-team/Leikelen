@@ -9,8 +9,15 @@ using System.Threading.Tasks;
 
 namespace cl.uv.leikelen.Data.Access.External
 {
+    /// <summary>
+    /// Class to load test scenes (used in unitary tests)
+    /// </summary>
     public static class TestScene
     {
+        /// <summary>
+        /// Creates, save and load (as scene in use) a new scene with the name provided.
+        /// </summary>
+        /// <param name="sceneName">Name of the scene.</param>
         public static void LoadTest(string sceneName)
         {
             var rnd = new Random();
@@ -135,7 +142,10 @@ namespace cl.uv.leikelen.Data.Access.External
             }
         }
 
-
+        /// <summary>
+        /// Loads a random fake scene.
+        /// </summary>
+        /// <param name="sceneName">Name of the scene.</param>
         public static void LoadFakeScene(string sceneName)
         {
             var scenes = DataAccessFacade.Instance.GetSceneAccess().GetAll();

@@ -8,8 +8,14 @@ using cl.uv.leikelen.Module;
 
 namespace cl.uv.leikelen.Controller
 {
+    /// <summary>
+    /// Controller for play a recorded scene
+    /// </summary>
     public class PlayerController
     {
+        /// <summary>
+        /// Plays the scene in use.
+        /// </summary>
         public void Play()
         {
             foreach (var input in InputLoader.Instance.SceneInputModules)
@@ -28,6 +34,9 @@ namespace cl.uv.leikelen.Controller
             SceneInUse.Instance.PlayStartTime = DateTime.Now;
         }
 
+        /// <summary>
+        /// Pauses the scene in use.
+        /// </summary>
         public void Pause()
         {
             foreach (var input in InputLoader.Instance.SceneInputModules)
@@ -44,6 +53,9 @@ namespace cl.uv.leikelen.Controller
             SceneInUse.Instance.PlayPausedTime = DateTime.Now;
         }
 
+        /// <summary>
+        /// Resume the scene in use.
+        /// </summary>
         public void UnPause()
         {
             foreach (var input in InputLoader.Instance.SceneInputModules)
@@ -64,6 +76,9 @@ namespace cl.uv.leikelen.Controller
                     .Subtract(SceneInUse.Instance.PlayPausedTime.Value));
         }
 
+        /// <summary>
+        /// Stops the scene in use.
+        /// </summary>
         public void Stop()
         {
             foreach (var input in InputLoader.Instance.SceneInputModules)
@@ -80,6 +95,9 @@ namespace cl.uv.leikelen.Controller
             SceneInUse.Instance.PlayStartTime = null;
         }
 
+        /// <summary>
+        /// Closes the scene in use and all sensor players.
+        /// </summary>
         public void Close()
         {
             foreach (var input in InputLoader.Instance.SceneInputModules)
@@ -96,6 +114,10 @@ namespace cl.uv.leikelen.Controller
             SceneInUse.Instance.PlayStartTime = null;
         }
 
+        /// <summary>
+        /// Moves the player controllers of the scene in use to the specified time.
+        /// </summary>
+        /// <param name="time">The time to move the scene in use.</param>
         public void MoveTo(TimeSpan time)
         {
             foreach (var input in InputLoader.Instance.SceneInputModules)
@@ -116,6 +138,9 @@ namespace cl.uv.leikelen.Controller
             Finished?.Invoke(this, new EventArgs());
         }
 
+        /// <summary>
+        /// Occurs when the playing is [finished].
+        /// </summary>
         public event EventHandler Finished;
     }
 }

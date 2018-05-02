@@ -19,7 +19,7 @@ using cl.uv.leikelen.Data.Access;
 namespace cl.uv.leikelen.Module.General.GestureConfiguration.View
 {
     /// <summary>
-    /// Lógica de interacción para AddOrEditPosture.xaml
+    /// Interaction logic for AddOrEditPosture.xaml
     /// </summary>
     public partial class AddOrEditPosture : Window
     {
@@ -28,6 +28,10 @@ namespace cl.uv.leikelen.Module.General.GestureConfiguration.View
         
         private IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
 
+        /// <summary>
+        /// Initializes a new instance of the 
+        /// <see cref="AddOrEditPosture"/> class to add a new posture.
+        /// </summary>
         public AddOrEditPosture()
         {
             InitializeComponent();
@@ -38,6 +42,11 @@ namespace cl.uv.leikelen.Module.General.GestureConfiguration.View
             TypeCombobox.SelectedIndex = 0;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the 
+        /// <see cref="AddOrEditPosture"/> class to edit a posture.
+        /// </summary>
+        /// <param name="posture">The posture.</param>
         public AddOrEditPosture(Posture posture)
         {
             InitializeComponent();
@@ -59,7 +68,7 @@ namespace cl.uv.leikelen.Module.General.GestureConfiguration.View
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog()
             {
                 DefaultExt = ".gbd",
-                Filter = "All gesture files (*.gbd, *.gba)|*.gbd; *.gba|Gesture solution build (*.gbd)|*.gbd|Gesture project analisys (*.gba)|*.gba",
+                Filter = "All gesture files (*.gbd, *.gba)|*.gbd; *.gba|Gesture solution build (*.gbd)|*.gbd|Gesture project analysis (*.gba)|*.gba",
                 Title = Properties.GestureConfiguration.ImportPosture
             };
             if (dlg.ShowDialog() == true)

@@ -8,8 +8,16 @@ using cl.uv.leikelen.Module;
 
 namespace cl.uv.leikelen.Controller
 {
+    /// <summary>
+    /// Controller for the recording sensor modules
+    /// </summary>
     public class RecorderController
     {
+        /// <summary>
+        /// Stops the recording of all modules (scene and person sensor modules), 
+        /// and starts the processing modules.
+        /// </summary>
+        /// <returns>Asynchronous operation</returns>
         public async Task Stop()
         {
             SceneInUse.Instance.Scene.Duration = DateTime.Now.Subtract(SceneInUse.Instance.Scene.RecordStartedDateTime);
@@ -38,6 +46,10 @@ namespace cl.uv.leikelen.Controller
             }
         }
 
+        /// <summary>
+        /// Starts the recording (all scene and person sensor modules).
+        /// </summary>
+        /// <returns>Asynchronous operation</returns>
         public async Task Record()
         {
             Data.Access.External.ModalAccess.LoadTmpModals();

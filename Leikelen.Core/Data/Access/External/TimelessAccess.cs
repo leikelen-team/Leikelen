@@ -8,8 +8,19 @@ using cl.uv.leikelen.Data.Model;
 
 namespace cl.uv.leikelen.Data.Access.External
 {
+    /// <summary>
+    /// Class to access the timeless data
+    /// </summary>
+    /// <seealso cref="cl.uv.leikelen.API.DataAccess.ITimelessAccess" />
     public class TimelessAccess : ITimelessAccess
     {
+        /// <summary>
+        /// Gets all.
+        /// </summary>
+        /// <param name="person">The person.</param>
+        /// <param name="modalName">Name of the modal.</param>
+        /// <param name="subModalName">Name of the sub modal.</param>
+        /// <returns>The list of timeless</returns>
         public List<Timeless> GetAll(Person person, string modalName, string subModalName)
         {
             var personInScene = Internal.SceneInUse.Instance.Scene?.PersonsInScene?.Find(pis => pis.Person.Equals(person));
@@ -35,22 +46,54 @@ namespace cl.uv.leikelen.Data.Access.External
             }
         }
 
-        #region public add methods
+        #region public add methods        
+        /// <summary>
+        /// Adds the timeless data.
+        /// </summary>
+        /// <param name="person">The person.</param>
+        /// <param name="modalName">Name of the modal.</param>
+        /// <param name="subModalName">Name of the sub modal.</param>
+        /// <param name="index">The index.</param>
+        /// <param name="value">The value.</param>
         public void Add(Person person, string modalName, string subModalName, int index, double value)
         {
             InternalAdd(person, modalName, subModalName, index, value, null);
         }
 
+        /// <summary>
+        /// Adds the timeless data.
+        /// </summary>
+        /// <param name="person">The person.</param>
+        /// <param name="modalName">Name of the modal.</param>
+        /// <param name="subModalName">Name of the sub modal.</param>
+        /// <param name="index">The index.</param>
+        /// <param name="value">The value.</param>
+        /// <param name="subtitle">The subtitle.</param>
         public void Add(Person person, string modalName, string subModalName, int index, double value, string subtitle)
         {
             InternalAdd(person, modalName, subModalName, index, value, subtitle);
         }
 
+        /// <summary>
+        /// Adds the timeless data.
+        /// </summary>
+        /// <param name="person">The person.</param>
+        /// <param name="modalName">Name of the modal.</param>
+        /// <param name="subModalName">Name of the sub modal.</param>
+        /// <param name="index">The index.</param>
+        /// <param name="subtitle">The subtitle.</param>
         public void Add(Person person, string modalName, string subModalName, int index, string subtitle)
         {
             InternalAdd(person, modalName, subModalName, index, null, subtitle);
         }
 
+        /// <summary>
+        /// Adds the timeless data.
+        /// </summary>
+        /// <param name="person">The person.</param>
+        /// <param name="modalName">Name of the modal.</param>
+        /// <param name="subModalName">Name of the sub modal.</param>
+        /// <param name="index">The index.</param>
         public void Add(Person person, string modalName, string subModalName, int index)
         {
             InternalAdd(person, modalName, subModalName, index, null, null);

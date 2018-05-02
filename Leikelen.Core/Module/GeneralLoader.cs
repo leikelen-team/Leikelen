@@ -7,13 +7,32 @@ using System.Threading.Tasks;
 
 namespace cl.uv.leikelen.Module
 {
+    /// <summary>
+    /// Gets the general modules, that are active all the time
+    /// </summary>
     public class GeneralLoader
     {
+        /// <summary>
+        /// Gets the general modules.
+        /// </summary>
+        /// <value>
+        /// The general modules.
+        /// </value>
         public List<GeneralModule> GeneralModules { get; private set; }
+
+        /// <summary>
+        /// Occurs when [general modules has reset].
+        /// </summary>
         public static event EventHandler GeneralModulesHasReset;
 
         private static GeneralLoader _instance;
 
+        /// <summary>
+        /// Gets the instance.
+        /// </summary>
+        /// <value>
+        /// The instance.
+        /// </value>
         public static GeneralLoader Instance
         {
             get
@@ -23,6 +42,9 @@ namespace cl.uv.leikelen.Module
             }
         }
 
+        /// <summary>
+        /// Resets this instance.
+        /// </summary>
         public static void Reset()
         {
             _instance = null;

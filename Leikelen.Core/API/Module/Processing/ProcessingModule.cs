@@ -9,7 +9,7 @@ using cl.uv.leikelen.API.Helper;
 namespace cl.uv.leikelen.API.Module.Processing
 {
     /// <summary>
-    /// Interface for the processing modules, that recieve data from sensors,
+    /// Interface for the processing modules, that receive data from sensors,
     /// and can insert/update data to the scene.
     /// </summary>
     /// <seealso cref="cl.uv.leikelen.API.Module.AbstractModule" />

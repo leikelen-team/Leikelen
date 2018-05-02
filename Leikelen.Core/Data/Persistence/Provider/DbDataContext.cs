@@ -8,28 +8,112 @@ using Microsoft.EntityFrameworkCore;
 
 namespace cl.uv.leikelen.Data.Persistence.Provider
 {
+    /// <summary>
+    /// Database context class
+    /// </summary>
+    /// <seealso cref="Microsoft.EntityFrameworkCore.DbContext" />
     public class DbDataContext : DbContext
     {
-        
+        /// <summary>
+        /// Gets or sets the scenes.
+        /// </summary>
+        /// <value>
+        /// The scenes.
+        /// </value>
         public DbSet<Scene> Scenes { get; set; }
+
+        /// <summary>
+        /// Gets or sets the persons.
+        /// </summary>
+        /// <value>
+        /// The persons.
+        /// </value>
         public DbSet<Person> Persons { get; set; }
+
+        /// <summary>
+        /// Gets or sets the person in scenes.
+        /// </summary>
+        /// <value>
+        /// The person in scenes.
+        /// </value>
         public DbSet<PersonInScene> PersonInScenes { get; set; }
+
+        /// <summary>
+        /// Gets or sets the modal types.
+        /// </summary>
+        /// <value>
+        /// The modal types.
+        /// </value>
         public DbSet<ModalType> ModalTypes { get; set; }
+
+        /// <summary>
+        /// Gets or sets the sub modal types.
+        /// </summary>
+        /// <value>
+        /// The sub modal types.
+        /// </value>
         public DbSet<SubModalType> SubModalTypes { get; set; }
+
+        /// <summary>
+        /// Gets or sets the SMT pis.
+        /// </summary>
+        /// <value>
+        /// The SMT pis.
+        /// </value>
         public DbSet<SubModalType_PersonInScene> SmtPis { get; set; }
+
+        /// <summary>
+        /// Gets or sets the represent types.
+        /// </summary>
+        /// <value>
+        /// The represent types.
+        /// </value>
         public DbSet<RepresentType> RepresentTypes { get; set; }
+
+        /// <summary>
+        /// Gets or sets the events data.
+        /// </summary>
+        /// <value>
+        /// The events data.
+        /// </value>
         public DbSet<EventData> EventDatas { get; set; }
+
+        /// <summary>
+        /// Gets or sets the intervals data.
+        /// </summary>
+        /// <value>
+        /// The intervals data.
+        /// </value>
         public DbSet<IntervalData> IntervalDatas { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DbDataContext"/> class.
+        /// </summary>
         public DbDataContext()
         {
             
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DbDataContext"/> class.
+        /// </summary>
+        /// <param name="options">The options for this context.</param>
         public DbDataContext(DbContextOptions options)
             : base(options)
         { }
 
+        /// <summary>
+        /// Override this method to further configure the model that was discovered by convention from the entity types
+        /// exposed in <see cref="T:Microsoft.EntityFrameworkCore.DbSet`1" /> properties on your derived context. The resulting model may be cached
+        /// and re-used for subsequent instances of your derived context.
+        /// </summary>
+        /// <param name="modelBuilder">The builder being used to construct the model for this context. Databases (and other extensions) typically
+        /// define extension methods on this object that allow you to configure aspects of the model that are specific
+        /// to a given database.</param>
+        /// <remarks>
+        /// If a model is explicitly set on the options for this context (via <see cref="M:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.UseModel(Microsoft.EntityFrameworkCore.Metadata.IModel)" />)
+        /// then this method will not be run.
+        /// </remarks>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Scene>()

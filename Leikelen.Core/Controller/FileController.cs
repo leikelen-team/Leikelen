@@ -12,8 +12,16 @@ using cl.uv.leikelen.Data.Access;
 
 namespace cl.uv.leikelen.Controller
 {
+    /// <summary>
+    /// The controller to import and export from files
+    /// </summary>
     public static class FileController
     {
+        /// <summary>
+        /// Imports the specified file name.
+        /// </summary>
+        /// <param name="fileName">Name of the file.</param>
+        /// <returns>The scene imported</returns>
         public static Scene Import(string fileName)
         {
             var fileExtension = Path.GetExtension(fileName).ToLower();
@@ -57,6 +65,12 @@ namespace cl.uv.leikelen.Controller
             }
         }
 
+        /// <summary>
+        /// Imports from a sqlite file.
+        /// </summary>
+        /// <param name="index">The index of the scene to import.</param>
+        /// <param name="fileName">Name of the file.</param>
+        /// <returns>The scene imported</returns>
         private static Scene ImportSqliteFile(int index, string fileName)
         {
             var sqliteProvider = new SqliteProvider();
@@ -69,6 +83,11 @@ namespace cl.uv.leikelen.Controller
             return insertedScene;
         }
 
+        /// <summary>
+        /// Exports the scene in use.
+        /// </summary>
+        /// <param name="isOnlyBd">if set to <c>true</c> [is only bd].</param>
+        /// <param name="fileName">Name of the file.</param>
         public static void Export(bool isOnlyBd, string fileName)
         {
             if (isOnlyBd)

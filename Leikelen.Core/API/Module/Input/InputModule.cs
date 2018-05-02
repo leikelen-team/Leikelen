@@ -22,12 +22,12 @@ namespace cl.uv.leikelen.API.Module.Input
         public InputPlurality Plurality;
         /// <summary>
         /// The monitor of this sensor, that captures the data directly of the device, 
-        /// and allows to record and feed data to the differents <see cref="Processing.ProcessingModule"/>
+        /// and allows to record and feed data to the different <see cref="Processing.ProcessingModule"/>
         /// </summary>
         public IMonitor Monitor;
         /// <summary>
         /// The player of this sensor, that reads the saved data (if exists), 
-        /// and allow to reproduce it offline at any moment.
+        /// and allow to reproduce it off-line at any moment.
         /// </summary>
         public IPlayer Player;
     }

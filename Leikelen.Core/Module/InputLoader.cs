@@ -8,14 +8,43 @@ using cl.uv.leikelen.Data.Model;
 
 namespace cl.uv.leikelen.Module
 {
+    /// <summary>
+    /// Gets the input modules/sensors (scene and person)
+    /// </summary>
     public class InputLoader
     {
+        /// <summary>
+        /// Gets the scene input modules.
+        /// </summary>
+        /// <value>
+        /// The scene input modules.
+        /// </value>
         public List<InputModule> SceneInputModules { get; private set; }
+
+        /// <summary>
+        /// Gets the person input modules.
+        /// </summary>
+        /// <value>
+        /// The person input modules.
+        /// </value>
         public Dictionary<Person, List<InputModule>> PersonInputModules { get; private set; }
+
+        /// <summary>
+        /// Gets the video handler to see in the player.
+        /// </summary>
+        /// <value>
+        /// The video handler to see in the player.
+        /// </value>
         public IVideo VideoHandler { get; private set; }
 
         private static InputLoader _instance;
 
+        /// <summary>
+        /// Gets the instance.
+        /// </summary>
+        /// <value>
+        /// The instance.
+        /// </value>
         public static InputLoader Instance
         {
             get
@@ -25,6 +54,10 @@ namespace cl.uv.leikelen.Module
             }
         }
 
+        /// <summary>
+        /// Fills the person input modules.
+        /// </summary>
+        /// <param name="person">The person.</param>
         public void FillPersonInputModules(Person person)
         {
             var personInputModules = new List<InputModule>()
@@ -48,9 +81,6 @@ namespace cl.uv.leikelen.Module
             var kinectInput = new Input.Kinect.KinectInput();
             SceneInputModules.Add(kinectInput);
             VideoHandler = Input.Kinect.KinectInput.SkeletonColorVideoViewer;
-
-            //TODO: esto es temporal por motivos de prueba
-            //SceneInputModules.Add(new Input.OpenBCI.OpenBCIInput());
         }
 
         

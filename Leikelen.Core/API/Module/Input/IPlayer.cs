@@ -12,7 +12,7 @@ namespace cl.uv.leikelen.API.Module.Input
     public interface IPlayer
     {
         /// <summary>
-        /// Unpauses the playback.
+        /// Resume the playback.
         /// </summary>
         void Unpause();
         /// <summary>

@@ -8,8 +8,15 @@ using cl.uv.leikelen.API.DataAccess;
 
 namespace cl.uv.leikelen
 {
+    /// <summary>
+    /// Class with the general settings
+    /// </summary>
+    /// <seealso cref="Config.Net.SettingsContainer" />
     public class GeneralSettings : SettingsContainer
     {
+        /// <summary>
+        /// The language of the application
+        /// </summary>
         public readonly Option<string> Language = new Option<string>("Language", "auto");
         /// <summary>
         /// The data directory with scene, modal and person files
@@ -96,6 +103,9 @@ namespace cl.uv.leikelen
             }
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GeneralSettings"/> class.
+        /// </summary>
         public GeneralSettings()
         {
 

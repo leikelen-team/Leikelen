@@ -21,7 +21,7 @@ namespace cl.uv.leikelen.API.Helper
         /// <summary>
         /// Initializes a new instance of the <see cref="WindowBuilder"/> class.
         /// </summary>
-        /// <param name="window">The clonable window, 
+        /// <param name="window">The cloneable window, 
         /// must be an instance of <see cref="System.Windows.Window"/>.</param>
         public WindowBuilder(ICloneable window)
         {

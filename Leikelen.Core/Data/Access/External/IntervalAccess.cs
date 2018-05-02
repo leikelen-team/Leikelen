@@ -8,8 +8,19 @@ using cl.uv.leikelen.Data.Model;
 
 namespace cl.uv.leikelen.Data.Access.External
 {
-    class IntervalAccess : IIntervalAccess
+    /// <summary>
+    /// Interface to get or add intervals to a person
+    /// </summary>
+    /// <seealso cref="cl.uv.leikelen.API.DataAccess.IIntervalAccess" />
+    public class IntervalAccess : IIntervalAccess
     {
+        /// <summary>
+        /// Gets all intervals of a person, modal and submodal type.
+        /// </summary>
+        /// <param name="person">The person object.</param>
+        /// <param name="modalName">Name of the modal type.</param>
+        /// <param name="subModalName">Name of the sub modal type.</param>
+        /// <returns>List of Intervals</returns>
         public List<Interval> GetAll(Person person, string modalName, string subModalName)
         {
             var personInScene = Internal.SceneInUse.Instance.Scene?.PersonsInScene?.Find(pis => pis.Person.Equals(person));
@@ -37,6 +48,16 @@ namespace cl.uv.leikelen.Data.Access.External
             }
         }
 
+        /// <summary>
+        /// Create intervals From a list of events.
+        /// </summary>
+        /// <param name="person">The person object.</param>
+        /// <param name="modalName">Name of the modal type.</param>
+        /// <param name="subModalName">Name of the sub modal type.</param>
+        /// <param name="millisecondsThreshold">The milliseconds threshold
+        /// When an event and the next are separated by this threshold or more, a new interval is created.</param>
+        /// <param name="which">The parameter "ToInterval" of the event, which list of events to take in account.</param>
+        /// <param name="intervalName">Name of the interval (new submodal type in the given modal type).</param>
         public void FromEvent(Person person, string modalName, string subModalName, int millisecondsThreshold, int which, string intervalName)
         {
             var eventAccess = new EventAccess();
@@ -70,21 +91,57 @@ namespace cl.uv.leikelen.Data.Access.External
         }
 
         #region public add methods
+        /// <summary>
+        /// Adds an interval to the specified person.
+        /// </summary>
+        /// <param name="person">The person object.</param>
+        /// <param name="modalName">Name of the modal type.</param>
+        /// <param name="subModalName">Name of the sub modal type.</param>
+        /// <param name="startTime">The start time.</param>
+        /// <param name="endTime">The end time.</param>
+        /// <param name="value">The value.</param>
         public void Add(Person person, string modalName, string subModalName, TimeSpan startTime, TimeSpan endTime, double value)
         {
             InternalAdd(person, modalName, subModalName, startTime, endTime, value, null);
         }
 
+        /// <summary>
+        /// Adds an interval to the specified person.
+        /// </summary>
+        /// <param name="person">The person.</param>
+        /// <param name="modalName">Name of the modal.</param>
+        /// <param name="subModalName">Name of the sub modal.</param>
+        /// <param name="startTime">The start time.</param>
+        /// <param name="endTime">The end time.</param>
+        /// <param name="value">The value.</param>
+        /// <param name="subtitle">The text content in the interval.</param>
         public void Add(Person person, string modalName, string subModalName, TimeSpan startTime, TimeSpan endTime, double value, string subtitle)
         {
             InternalAdd(person, modalName, subModalName, startTime, endTime, value, subtitle);
         }
 
+        /// <summary>
+        /// Adds an interval to the specified person.
+        /// </summary>
+        /// <param name="person">The person.</param>
+        /// <param name="modalName">Name of the modal.</param>
+        /// <param name="subModalName">Name of the sub modal.</param>
+        /// <param name="startTime">The start time.</param>
+        /// <param name="endTime">The end time.</param>
+        /// <param name="subtitle">The text content in the interval.</param>
         public void Add(Person person, string modalName, string subModalName, TimeSpan startTime, TimeSpan endTime, string subtitle)
         {
             InternalAdd(person, modalName, subModalName, startTime, endTime, null, subtitle);
         }
 
+        /// <summary>
+        /// Adds an interval to the specified person.
+        /// </summary>
+        /// <param name="person">The person.</param>
+        /// <param name="modalName">Name of the modal.</param>
+        /// <param name="subModalName">Name of the sub modal.</param>
+        /// <param name="startTime">The start time.</param>
+        /// <param name="endTime">The end time.</param>
         public void Add(Person person, string modalName, string subModalName, TimeSpan startTime, TimeSpan endTime)
         {
             InternalAdd(person, modalName, subModalName, startTime, endTime, null, null);

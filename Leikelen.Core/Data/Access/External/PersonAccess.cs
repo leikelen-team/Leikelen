@@ -10,6 +10,10 @@ using cl.uv.leikelen.Module;
 
 namespace cl.uv.leikelen.Data.Access.External
 {
+    /// <summary>
+    /// Class that implements the interface to access the person
+    /// </summary>
+    /// <seealso cref="cl.uv.leikelen.API.DataAccess.IPersonAccess" />
     public class PersonAccess : IPersonAccess
     {
         public event EventHandler<Person> PersonsChanged;

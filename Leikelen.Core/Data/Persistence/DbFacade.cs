@@ -8,13 +8,35 @@ using System.Windows;
 
 namespace cl.uv.leikelen.Data.Persistence
 {
+    /// <summary>
+    /// Database facade of different engines
+    /// </summary>
     public class DbFacade
     {
+        /// <summary>
+        /// Gets the data provider.
+        /// </summary>
+        /// <value>
+        /// The data provider.
+        /// </value>
         public IDbProvider Provider { get; private set; }
+
+        /// <summary>
+        /// Gets the database engine list.
+        /// </summary>
+        /// <value>
+        /// The database engine list.
+        /// </value>
         public Dictionary<string, DatabaseEngine> DbEngineList { get; private set; }
 
         private static DbFacade _instance;
 
+        /// <summary>
+        /// Gets the instance.
+        /// </summary>
+        /// <value>
+        /// The instance.
+        /// </value>
         public static DbFacade Instance
         {
             get
@@ -24,12 +46,25 @@ namespace cl.uv.leikelen.Data.Persistence
             }
         }
 
+        /// <summary>
+        /// Resets this instance.
+        /// </summary>
         public static void Reset()
         {
             _instance.Provider.CloseConnection();
             _instance = new DbFacade();
         }
 
+        /// <summary>
+        /// Test the connection to see if an error ocurr.
+        /// </summary>
+        /// <param name="provider">The provider.</param>
+        /// <param name="host">The host.</param>
+        /// <param name="port">The port.</param>
+        /// <param name="dbname">The database name.</param>
+        /// <param name="user">The user.</param>
+        /// <param name="password">The password.</param>
+        /// <returns></returns>
         public string TestError(string provider, string host, int port, string dbname, string user, string password)
         {
             try
@@ -104,12 +139,41 @@ namespace cl.uv.leikelen.Data.Persistence
         }
     }
 
+    /// <summary>
+    /// Class that represent a database engine
+    /// </summary>
     public class DatabaseEngine
     {
+        /// <summary>
+        /// Gets the data provider.
+        /// </summary>
+        /// <value>
+        /// The data provider.
+        /// </value>
         public IDbProvider Provider { get; }
+
+        /// <summary>
+        /// Gets the default port.
+        /// </summary>
+        /// <value>
+        /// The default port.
+        /// </value>
         public int DefaultPort { get; }
+
+        /// <summary>
+        /// Gets the function to create connection string.
+        /// </summary>
+        /// <value>
+        /// The function to create the connection string.
+        /// </value>
         public Func<string, int, string, string, string, string> CreateConnectionString { get; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DatabaseEngine"/> class.
+        /// </summary>
+        /// <param name="provider">The provider.</param>
+        /// <param name="defaultPort">The default port.</param>
+        /// <param name="createConnectionString">The function to create the connection string.</param>
         public DatabaseEngine(IDbProvider provider, int defaultPort, 
             Func<string, int, string, string, string, string> createConnectionString)
         {

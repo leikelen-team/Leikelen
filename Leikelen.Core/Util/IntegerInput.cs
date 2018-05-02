@@ -9,6 +9,9 @@ using System.Media;
 
 namespace cl.uv.leikelen.Util
 {
+    /// <summary>
+    /// Static class to test that inputs are integer
+    /// </summary>
     public static class IntegerInput
     {
         /// <summary>

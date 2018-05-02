@@ -10,10 +10,17 @@ using cl.uv.leikelen.Data.Access;
 
 namespace cl.uv.leikelen.Module.General.GestureConfiguration
 {
+    /// <summary>
+    /// General module to manage the postures
+    /// </summary>
+    /// <seealso cref="cl.uv.leikelen.API.Module.General.GeneralModule" />
     public class GestureConfigurationEntryPoint : GeneralModule
     {
         private IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GestureConfigurationEntryPoint"/> class.
+        /// </summary>
         public GestureConfigurationEntryPoint()
         {
             _dataAccessFacade.GetModalAccess().AddIfNotExists("Discrete Posture",

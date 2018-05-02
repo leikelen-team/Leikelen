@@ -18,15 +18,21 @@ using System.Windows.Shapes;
 namespace cl.uv.leikelen.Module.General.GestureConfiguration.View
 {
     /// <summary>
-    /// Lógica de interacción para PostureCRUD.xaml
+    /// Interaction logic for PostureCRUD.xaml
     /// </summary>
     public partial class PostureCRUD : Window, ICloneable
     {
 
         private IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
 
+        /// <summary>
+        /// The posture types
+        /// </summary>
         public static readonly string[] PostureTypes = new string[] { "Discrete Posture", "Continuous Posture" };
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PostureCRUD"/> class.
+        /// </summary>
         public PostureCRUD()
         {
             InitializeComponent();
@@ -88,20 +94,71 @@ namespace cl.uv.leikelen.Module.General.GestureConfiguration.View
             }
         }
 
+        /// <summary>
+        /// Creates a new object copied of this instance.
+        /// </summary>
+        /// <returns>
+        /// New object copied of this instance.
+        /// </returns>
         public object Clone()
         {
             return new PostureCRUD();
         }
     }
 
+    /// <summary>
+    /// Class of posture to add to the grid of the view
+    /// </summary>
+    /// <seealso cref="PostureCRUD"/>
     public class Posture
     {
+        /// <summary>
+        /// Gets or sets the name of the posture.
+        /// </summary>
+        /// <value>
+        /// The name of the posture.
+        /// </value>
         public string Name { get; set; }
+
+        /// <summary>
+        /// Gets or sets the file of the learning model.
+        /// </summary>
+        /// <value>
+        /// The file of the learning model.
+        /// </value>
         public string File { get; set; }
+
+        /// <summary>
+        /// Gets or sets the description.
+        /// </summary>
+        /// <value>
+        /// The description.
+        /// </value>
         public string Description { get; set; }
+
+        /// <summary>
+        /// Gets or sets the type as a string.
+        /// </summary>
+        /// <value>
+        /// The type as a string.
+        /// </value>
         public string GestureType { get; set; }
+
+        /// <summary>
+        /// Gets or sets the type (0: discrete, 1: continuous).
+        /// </summary>
+        /// <value>
+        /// The type.
+        /// </value>
         public int Type { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Posture"/> class.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <param name="fileName">Name of the file with the model of the posture.</param>
+        /// <param name="description">The description.</param>
+        /// <param name="type">The type.</param>
         public Posture(string name, string fileName, string description, int type)
         {
             Name = name;

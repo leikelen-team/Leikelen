@@ -12,7 +12,7 @@ namespace cl.uv.leikelen.API.Module.Input
     public enum InputStatus
     {
         /// <summary>
-        /// The sensor is connected succesfully
+        /// The sensor is connected successfully
         /// </summary>
         Connected,
         /// <summary>
