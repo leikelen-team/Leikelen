@@ -83,6 +83,9 @@
                         <MenuItem x:Name="MenuItem_Export_ToCSV_IntervalsResume" Click="MenuItem_Export_ToCSV_IntervalsResume_Click" Header="{x:Static resx:Menu.Export_ToCSV_IntervalsResume}"/>
                         <MenuItem x:Name="MenuItem_Export_ToCSV_Events" Click="MenuItem_Export_ToCSV_Events_Click" Header="{x:Static resx:Menu.Export_ToCSV_Events}" />
                     </MenuItem>
+                    <MenuItem x:Name="Export_ToPDFReport" Header="{x:Static resx:Menu.Export_ToPDFReport}">
+                        <MenuItem x:Name="Export_ToPDFReport_Scene" Header="{x:Static resx:Menu.Export_ToPDFReport_Scene}" Click="Export_ToPDFReport_Scene_Click"/>
+                    </MenuItem>
                 </MenuItem>
                 <MenuItem x:Name="MenuItem_Help" Header="{x:Static resx:Menu.Help}">
                     <MenuItem x:Name="MenuItem_Help_Manual" Click="MenuItem_Help_Manual_Click" Header="{x:Static resx:Menu.Help_Manual}"></MenuItem>

@@ -13,11 +13,12 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using cl.uv.leikelen.Data.Access;
+using cl.uv.leikelen.Util;
 
 namespace cl.uv.leikelen.View.Widget.HomeTab
 {
     /// <summary>
-    /// Lógica de interacción para TabScene.xaml
+    /// Interaction logic for TabScene.xaml
     /// </summary>
     public partial class TabScene : TabItem, ITab
     {
@@ -29,18 +30,44 @@ namespace cl.uv.leikelen.View.Widget.HomeTab
         public void Fill()
         {
             ScrollWithContent.Visibility = Visibility.Visible;
+
+            var datas = GetEventsAndIntervals();
+            
+            IntervalDataGrid.ItemsSource = datas.Item1;
+            IntervalDataGrid.Items.Refresh();
+
+            EventDataGrid.ItemsSource = datas.Item2;
+            EventDataGrid.Items.Refresh();
+        }
+        public void Reset()
+        {
+            EventDataGrid.ItemsSource = null;
+            EventDataGrid.Items.Refresh();
+
+            IntervalDataGrid.ItemsSource = null;
+            IntervalDataGrid.Items.Refresh();
+
+            ScrollWithContent.Visibility = Visibility.Hidden;
+        }
+
+        public static Tuple<List<IntervalDataGrid>, List<EventDataGrid>> GetEventsAndIntervals(bool makeIntervals = true, bool makeEvents = true)
+        {
             List<IntervalDataGrid> intervalData = new List<IntervalDataGrid>();
             List<EventDataGrid> eventData = new List<EventDataGrid>();
             var personsInScene = DataAccessFacade.Instance.GetSceneInUseAccess().GetScene().PersonsInScene;
-            foreach(var pis in personsInScene)
+            foreach (var pis in personsInScene)
             {
-                foreach(var subModal in pis.SubModalType_PersonInScenes)
+                foreach (var subModal in pis.SubModalType_PersonInScenes)
                 {
-                    var intervals = DataAccessFacade.Instance.GetIntervalAccess().GetAll(pis.Person, subModal.ModalTypeId, subModal.SubModalTypeId);
-                    var events = DataAccessFacade.Instance.GetEventAccess().GetAll(pis.Person, subModal.ModalTypeId, subModal.SubModalTypeId);
+                    List<API.DataAccess.Interval> intervals = null;
+                    List<API.DataAccess.Event> events = null;
+                    if(makeIntervals)
+                        intervals = DataAccessFacade.Instance.GetIntervalAccess().GetAll(pis.Person, subModal.ModalTypeId, subModal.SubModalTypeId);
+                    if(makeEvents)
+                        events = DataAccessFacade.Instance.GetEventAccess().GetAll(pis.Person, subModal.ModalTypeId, subModal.SubModalTypeId);
                     //var timelesses = DataAccessFacade.Instance.GetTimelessAccess().GetAll(person.PersonId, subModal.ModalTypeId, subModal.SubModalTypeId);
 
-                    if(!ReferenceEquals(null, intervals) && intervals.Count > 0)
+                    if (makeIntervals && !ReferenceEquals(null, intervals) && intervals.Count > 0)
                     {
                         var intervalRow = new IntervalDataGrid()
                         {
@@ -53,24 +80,24 @@ namespace cl.uv.leikelen.View.Widget.HomeTab
                         };
                         TimeSpan totalDuration = new TimeSpan(0);
                         double stdDev = 0;
-                        foreach(var interval in intervals)
+                        foreach (var interval in intervals)
                         {
                             var duration = interval.EndTime.Subtract(interval.StartTime);
                             totalDuration = totalDuration.Add(duration);
                         }
                         intervalRow.TotalDuration = totalDuration.ToString(@"hh\:mm\:ss");
                         double secsAverage = totalDuration.TotalSeconds / intervals.Count;
-                        intervalRow.AverageDuration = $"{ValueAsString(secsAverage, 3)} {Properties.GUI.seconds}";
+                        intervalRow.AverageDuration = $"{StringUtil.DoubleAsString(secsAverage, 3)} {Properties.GUI.seconds}";
                         foreach (var interval in intervals)
                         {
                             var duration = interval.EndTime.Subtract(interval.StartTime);
                             stdDev += Math.Pow(duration.TotalSeconds - secsAverage, 2);
                         }
-                        intervalRow.StdDuration = $"{ValueAsString(Math.Sqrt(stdDev/ (intervals.Count-1)), 3)}";
+                        intervalRow.StdDuration = $"{StringUtil.DoubleAsString(Math.Sqrt(stdDev / (intervals.Count - 1)), 3)}";
                         intervalData.Add(intervalRow);
                     }
 
-                    if(!ReferenceEquals(null, events) && events.Count > 0)
+                    if (makeEvents && !ReferenceEquals(null, events) && events.Count > 0)
                     {
                         var eventRow = new EventDataGrid()
                         {
@@ -93,7 +120,7 @@ namespace cl.uv.leikelen.View.Widget.HomeTab
                                 totalValue += event_data.Value.Value;
                         }
                         double avgValue = totalValue / events.Count;
-                        
+
                         double secsAverage = totalTime.TotalSeconds / events.Count;
                         foreach (var event_data in events)
                         {
@@ -101,38 +128,18 @@ namespace cl.uv.leikelen.View.Widget.HomeTab
                             if (event_data.Value.HasValue)
                                 stdValue += Math.Pow(event_data.Value.Value - avgValue, 2);
                         }
-                        if(avgValue != 0)
+                        if (avgValue != 0)
                         {
-                            eventRow.AverageValue = $"{ValueAsString(avgValue, 3)}";
-                            eventRow.StdValue = $"{ValueAsString(Math.Sqrt(stdValue / (events.Count - 1)), 3)}";
+                            eventRow.AverageValue = $"{StringUtil.DoubleAsString(avgValue, 3)}";
+                            eventRow.StdValue = $"{StringUtil.DoubleAsString(Math.Sqrt(stdValue / (events.Count - 1)), 3)}";
                         }
-                        eventRow.AverageTime = $"{ValueAsString(secsAverage, 3)} {Properties.GUI.seconds}";
-                        eventRow.StdTime = $"{ValueAsString(Math.Sqrt(stdTime / (events.Count - 1)), 3)}";
+                        eventRow.AverageTime = $"{StringUtil.DoubleAsString(secsAverage, 3)} {Properties.GUI.seconds}";
+                        eventRow.StdTime = $"{StringUtil.DoubleAsString(Math.Sqrt(stdTime / (events.Count - 1)), 3)}";
                         eventData.Add(eventRow);
                     }
                 }
             }
-
-            EventDataGrid.ItemsSource = eventData;
-            EventDataGrid.Items.Refresh();
-
-            IntervalDataGrid.ItemsSource = intervalData;
-            IntervalDataGrid.Items.Refresh();
-        }
-        public void Reset()
-        {
-            EventDataGrid.ItemsSource = null;
-            EventDataGrid.Items.Refresh();
-
-            IntervalDataGrid.ItemsSource = null;
-            IntervalDataGrid.Items.Refresh();
-
-            ScrollWithContent.Visibility = Visibility.Hidden;
-        }
-
-        public static string ValueAsString(double value, int decimalPlaces)
-        {
-            return Math.Round(value, decimalPlaces).ToString($"F{decimalPlaces}");
+            return new Tuple<List<IntervalDataGrid>, List<EventDataGrid>>(intervalData, eventData);
         }
     }
     

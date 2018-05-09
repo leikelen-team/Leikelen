@@ -23,7 +23,7 @@ namespace cl.uv.leikelen.Data.Access.External
         /// <value>
         /// The temporary modal types meanwhile is recording.
         /// </value>
-        public static List<ModalType> TmpModals { get; private set; } = new List<ModalType>();
+        public static List<ModalType> TmpModals { get; private set; }// = new List<ModalType>();
 
         /// <summary>
         /// Loads the temporary modal types before recording.

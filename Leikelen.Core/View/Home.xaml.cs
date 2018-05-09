@@ -31,6 +31,7 @@ namespace cl.uv.leikelen.View
     /// </summary>
     public partial class Home : Window
     {
+        private ReportController reportC;
         /// <summary>
         /// Actual state of the player/recorder
         /// </summary>
@@ -1170,6 +1171,16 @@ namespace cl.uv.leikelen.View
             }
         }
         #endregion
+
+        private async void Export_ToPDFReport_Scene_Click(object sender, RoutedEventArgs e)
+        {
+            reportC = new ReportController();
+            Console.WriteLine("iniciando......");
+            //await reportC.StartServer();
+            //Console.WriteLine("COOOOOOOOOOOOOOOOOOOOOOOOOOOONECTÓOOOOOOOOOOOOOO");
+            await reportC.GenerateSceneReport();
+            MessageBox.Show("termino de generar pdf de escena");
+        }
     }
 
     public enum PlayerState

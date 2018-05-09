@@ -4,6 +4,8 @@ bin/*
 /.project
 packages/*
 
+**/Thumbs.db
+
 TestResults/*
 
 Leikelen.Core/obj/*

@@ -202,6 +202,7 @@ namespace cl.uv.leikelen.Data.Access.External
             {
                 foreach (var m in DataAccessFacade.Instance.GetModalAccess().GetAll())
                 {
+                    DataAccessFacade.Instance.GetModalAccess().AddIfNotExists(m.ModalTypeId, null);
                     Console.WriteLine($"{m.ModalTypeId} tiene {m.SubModalTypes.Count} submodaltypes");
                     foreach (var s in m.SubModalTypes)
                     {

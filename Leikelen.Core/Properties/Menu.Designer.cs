@@ -160,6 +160,33 @@ namespace cl.uv.leikelen.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a To report in PDF.
+        /// </summary>
+        public static string Export_ToPDFReport {
+            get {
+                return ResourceManager.GetString("Export_ToPDFReport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Report of the person.
+        /// </summary>
+        public static string Export_ToPDFReport_Person {
+            get {
+                return ResourceManager.GetString("Export_ToPDFReport_Person", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Report of the scene.
+        /// </summary>
+        public static string Export_ToPDFReport_Scene {
+            get {
+                return ResourceManager.GetString("Export_ToPDFReport_Scene", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a _File.
         /// </summary>
         public static string File {

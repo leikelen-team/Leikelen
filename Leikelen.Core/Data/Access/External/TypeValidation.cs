@@ -28,6 +28,8 @@ namespace cl.uv.leikelen.Data.Access.External
         {
             try
             {
+                if (ModalAccess.TmpModals == null)
+                    ModalAccess.LoadTmpModals();
                 //get pis and smtPis
                 var personInScene = Internal.SceneInUse.Instance.Scene.PersonsInScene.Find(pis => pis.Person.Equals(person));
                 var subModalPersonInScene = personInScene.SubModalType_PersonInScenes.Find(smtPis => smtPis.SubModalType.SubModalTypeId.Equals(subModalName) && smtPis.SubModalType.ModalType.ModalTypeId.Equals(modalName));

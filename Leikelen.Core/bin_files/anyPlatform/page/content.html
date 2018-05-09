@@ -1,0 +1,144 @@
+
+<html>
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <script>
+     Function.prototype.bind = Function.prototype.bind || function (thisp) {
+        var fn = this;
+        return function () {
+            return fn.apply(thisp, arguments);
+        };
+    };
+    </script>
+    <script src="jquery-1.11.0.min.js"></script>
+    <script src="Chart.bundle.min.js"></script>
+    <script src="helpers.js"></script>
+</head>
+<body>
+    <div style="width:800px;height:600;">
+        <canvas id="discretes" style="width:800px;height:600px"></canvas>
+    </div>
+    <div style="width:800px;height:600;">
+        <canvas id="others" style="width:800px;height:600px"></canvas>
+    </div>
+    <div style="width:800px;height:600;">
+        <canvas id="proxemics" style="width:800px;height:600px"></canvas>
+    </div>
+</body>
+<script>
+    var colors = [
+        'rgba(255, 0, 0, 0.5)',
+        'rgba(0, 255, 0, 0.5)',
+        'rgba(0, 0, 255, 0.5)',
+        'rgba(126, 126, 126, 0.5)',
+        'rgba(0, 126, 126, 0.5)',
+        'rgba(126, 126, 0, 0.5)',
+        'rgba(126, 0, 126, 0.5)',
+        'rgba(55, 126, 55, 0.5)'
+    ];
+    function getLabels(data, modalNames, prefix=false){
+        var labels = [];
+        data.map(function(b) {
+            if (modalNames.has(b["ModalName"])){
+                if(prefix){
+                    if(!labels.has(b["ModalName"]+" - "+b["SubModalName"]))
+                        labels.push(b["ModalName"]+" - "+b["SubModalName"]);
+                }
+                else{
+                    if(!labels.has(b["SubModalName"]))
+                        labels.push(b["SubModalName"]);
+                }
+            }
+        });
+        return labels;
+    }
+    function getPersonData(data, modalNames, prefix=false){
+        var persons = {};
+        data.map(function(b) {
+            if (modalNames.has(b["ModalName"])){
+                var d = Date.parse("1970-01-01T" + b["TotalDuration"] + "Z");
+                var c = new Date(d);
+                var s = c.getUTCHours()*60*60+c.getUTCMinutes()*60+c.getUTCSeconds()+c.getUTCMilliseconds()/1000.0;
+                if(! (b["PersonName"] in persons))
+                    persons[b["PersonName"]] = {}
+                if(prefix)
+                    persons[b["PersonName"]][b["ModalName"]+" - "+b["SubModalName"]] = s;
+                else
+                    persons[b["PersonName"]][b["SubModalName"]] = s;
+            }
+        });
+        return persons;
+    }
+    function createBarChartData(persons, labels){
+        var barChartData={};
+        barChartData.labels = labels;
+        barChartData.datasets = [];
+        Object.keys(persons).map(function(p, i){
+            d = {};
+            d.label = p;
+            d.borderWidth = 1;
+            d.backgroundColor = colors[i]
+            d.data = [];
+            labels.map(function(l){
+                if(l in persons[p]){
+                    d.data.push(persons[p][l]);
+                }else{
+                    d.data.push(0);
+                }
+            });
+            barChartData.datasets.push(d);
+        });
+        return barChartData;
+    }
+  $(function () {
+    $.getJSON("dataJson.json")
+        .done(function(data){
+            /*Discrete postures*/
+            var labels = getLabels(data["intervals"], ["Discrete Posture"]);
+            var persons = getPersonData(data["intervals"], ["Discrete Posture"]);
+            var barChartData = createBarChartData(persons, labels);
+            
+
+            new Chart(document.getElementById('discretes').getContext('2d'), {
+                type: 'bar',
+                data: barChartData,
+                options: {
+                    animation: {
+                        duration: 0
+                    }
+                }
+            })
+            /*Voice, Neck Orientation, Lean, AccProxemic, Proxemic*/
+            labels = getLabels(data["intervals"], ["Voice", "Neck Orientation", "Lean"], true);
+            persons = getPersonData(data["intervals"], ["Voice", "Neck Orientation", "Lean"], true);
+            barChartData = createBarChartData(persons, labels);
+
+            new Chart(document.getElementById('others').getContext('2d'), {
+                type: 'bar',
+                data: barChartData,
+                options: {
+                    animation: {
+                        duration: 0
+                    }
+                }
+            })
+
+            /*Proxemic*/
+            labels = getLabels(data["intervals"], ["AccProxemic", "Proxemic"], true);
+            persons = getPersonData(data["intervals"], ["AccProxemic", "Proxemic"], true);
+            barChartData = createBarChartData(persons, labels);
+
+            new Chart(document.getElementById('proxemics').getContext('2d'), {
+                type: 'bar',
+                data: barChartData,
+                options: {
+                    animation: {
+                        duration: 0
+                    }
+                }
+            })
+
+        });
+  });
+</script>
+</html>

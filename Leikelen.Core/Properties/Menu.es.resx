@@ -250,4 +250,13 @@
   <data name="Export_ToCSV_Events" xml:space="preserve">
     <value>Todos los eventos</value>
   </data>
+  <data name="Export_ToPDFReport" xml:space="preserve">
+    <value>A un reporte en PDF</value>
+  </data>
+  <data name="Export_ToPDFReport_Scene" xml:space="preserve">
+    <value>Reporte de la escena</value>
+  </data>
+  <data name="Export_ToPDFReport_Person" xml:space="preserve">
+    <value>Reporte de la persona</value>
+  </data>
 </root>
