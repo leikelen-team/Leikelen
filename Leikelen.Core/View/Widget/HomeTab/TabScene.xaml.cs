@@ -50,13 +50,15 @@ namespace cl.uv.leikelen.View.Widget.HomeTab
             ScrollWithContent.Visibility = Visibility.Hidden;
         }
 
-        public static Tuple<List<IntervalDataGrid>, List<EventDataGrid>> GetEventsAndIntervals(bool makeIntervals = true, bool makeEvents = true)
+        public static Tuple<List<IntervalDataGrid>, List<EventDataGrid>> GetEventsAndIntervals(bool makeIntervals = true, bool makeEvents = true, List<Data.Model.Person> persons = null)
         {
             List<IntervalDataGrid> intervalData = new List<IntervalDataGrid>();
             List<EventDataGrid> eventData = new List<EventDataGrid>();
             var personsInScene = DataAccessFacade.Instance.GetSceneInUseAccess().GetScene().PersonsInScene;
             foreach (var pis in personsInScene)
             {
+                if (persons != null && !persons.Contains(pis.Person))
+                    continue;
                 foreach (var subModal in pis.SubModalType_PersonInScenes)
                 {
                     List<API.DataAccess.Interval> intervals = null;

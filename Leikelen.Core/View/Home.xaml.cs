@@ -31,7 +31,7 @@ namespace cl.uv.leikelen.View
     /// </summary>
     public partial class Home : Window
     {
-        private ReportController reportC;
+        private ReportController _reportC;
         /// <summary>
         /// Actual state of the player/recorder
         /// </summary>
@@ -101,6 +101,7 @@ namespace cl.uv.leikelen.View
             _recorderController = new RecorderController();
             _playerController = new PlayerController();
             _mediaController = new MediaController();
+            _reportC = new ReportController();
             _playerState = PlayerState.Wait;
             _buttonBackground = Player_RecordButton.Background;
 
@@ -273,8 +274,10 @@ namespace cl.uv.leikelen.View
             MenuItem_File_Save.IsEnabled = false;
             MenuItem_File_AllScenes.IsEnabled = true;
             MenuItem_File_Import.IsEnabled = true;
-            MenuItem_Export_ToFile.IsEnabled = false;
             MenuItem_File_Quit.IsEnabled = true;
+            MenuItem_Export_ToFile.IsEnabled = false;
+            MenuItem_Export_ToPDFReport_Scene.IsEnabled = false;
+            MenuItem_Export_ToPDFReport_Person.IsEnabled = false;
 
             MenuItem_Tools_Preferences.IsEnabled = true;
             MenuItem_Tools_DB.IsEnabled = true;
@@ -312,7 +315,9 @@ namespace cl.uv.leikelen.View
             }
             MenuItem_File_Save.IsEnabled = true;
             MenuItem_Export_ToFile.IsEnabled = true;
-            
+            MenuItem_Export_ToPDFReport_Scene.IsEnabled = true;
+            MenuItem_Export_ToPDFReport_Person.IsEnabled = true;
+
             MenuItem_Tools_Player.IsEnabled = true;
             MenuItems_Tools_Sensors.IsEnabled = false;
             MenuItems_Tools_PersonSensors.IsEnabled = false;
@@ -326,12 +331,29 @@ namespace cl.uv.leikelen.View
             Player_LocationSlider.IsEnabled = true;
             Player_RecordButton.IsEnabled = false;
             Player_PlayButton.IsEnabled = true;
+
+            MenuItem_Scene_PersonsInScene.Items.Clear();
+            MenuItem_Export_ToPDFReport_Person.Items.Clear();
+            foreach (var pis in DataAccessFacade.Instance?.GetSceneInUseAccess()?.GetScene()?.PersonsInScene)
+            {
+                MenuItem reportPersonItem = new MenuItem
+                {
+                    Header = pis.Person.Name
+                };
+                reportPersonItem.Click += (repPersonSender, repPersonE) =>
+                {
+                    MenuItem_Export_ToPDFReport_Person_Clicked(pis.Person);
+                };
+                MenuItem_Export_ToPDFReport_Person.Items.Add(reportPersonItem);
+            }
         }
 
         private void SetGuiFromSensorWithScene(PlayerState playerState)
         {
             MenuItem_File_Save.IsEnabled = true;
             MenuItem_Export_ToFile.IsEnabled = true;
+            MenuItem_Export_ToPDFReport_Scene.IsEnabled = false;
+            MenuItem_Export_ToPDFReport_Person.IsEnabled = false;
             MenuItem_Scene_Configure.IsEnabled = true;
             Player_LocationSlider.IsEnabled = false;
             Player_PlayButton.IsEnabled = false;
@@ -377,7 +399,6 @@ namespace cl.uv.leikelen.View
             ProcessingLoader.Reset();
             ResetTabs();
             ResetMenuModules(false);
-            MenuItem_Scene_PersonsInScene.Items.Clear();
         }
 
         private bool StopRecordFirstMsg()
@@ -872,11 +893,10 @@ namespace cl.uv.leikelen.View
 
         private void Home_PersonsChanged(object sender, Person e)
         {
-            Console.WriteLine("personas cambiaron");
             MenuItem_Scene_PersonsInScene.Items.Clear();
-            foreach(var pis in DataAccessFacade.Instance.GetSceneInUseAccess().GetScene().PersonsInScene)
+            foreach (var pis in DataAccessFacade.Instance.GetSceneInUseAccess().GetScene().PersonsInScene)
             {
-                Console.WriteLine("persona: "+pis.Person.Name);
+                Console.WriteLine("person: "+pis.Person.Name);
                 MenuItem personItem = new MenuItem
                 {
                     Header = pis.Person.Name
@@ -1029,7 +1049,7 @@ namespace cl.uv.leikelen.View
             var exportWin = new Export();
             exportWin.Show();
         }
-
+        #region ToCSV
         private void MenuItem_Export_ToCSV_IntervalsAll_Click(object sender, RoutedEventArgs e)
         {
             List<string> sub_names = new List<string>();
@@ -1099,7 +1119,7 @@ namespace cl.uv.leikelen.View
 
         }
 
-        private async Task MenuItem_Export_ToCSV_Events_Process(List<string> sub_names)
+        private void MenuItem_Export_ToCSV_Events_Process(List<string> sub_names)
         {
             if (sub_names.Count > 0)
             {
@@ -1119,7 +1139,6 @@ namespace cl.uv.leikelen.View
         private void SaveCSV(dynamic scences)
         {
             var csvStr = ServiceStack.Text.CsvSerializer.SerializeToCsv(scences);
-            //Console.WriteLine(csvStr);
 
             var dlg = new SaveFileDialog()
             {
@@ -1172,15 +1191,107 @@ namespace cl.uv.leikelen.View
         }
         #endregion
 
+        #region ToPDF
         private async void Export_ToPDFReport_Scene_Click(object sender, RoutedEventArgs e)
         {
-            reportC = new ReportController();
-            Console.WriteLine("iniciando......");
-            //await reportC.StartServer();
-            //Console.WriteLine("COOOOOOOOOOOOOOOOOOOOOOOOOOOONECTÓOOOOOOOOOOOOOO");
-            await reportC.GenerateSceneReport();
-            MessageBox.Show("termino de generar pdf de escena");
+            var dlg = new SaveFileDialog()
+            {
+                Filter = "PDF File(*.pdf) | *.pdf",
+                DefaultExt = ".pdf",
+            };
+            try
+            {
+                if (dlg.ShowDialog().GetValueOrDefault())
+                {
+                    if (File.Exists(dlg.FileName))
+                    {
+                        var result = MessageBox.Show(Properties.GUI.FileExists,
+                            Properties.GUI.FileExistsTitle,
+                            MessageBoxButton.YesNo,
+                            MessageBoxImage.Exclamation);
+                        if (result == MessageBoxResult.Yes)
+                        {
+                            File.Delete(dlg.FileName);
+                            await _reportC.GenerateSceneReport(dlg.FileName);
+
+                            MessageBox.Show(Properties.GUI.FileSavedOK,
+                            Properties.GUI.FileSavedOKTitle,
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Information);
+                        }
+                    }
+                    else
+                    {
+                        await _reportC.GenerateSceneReport(dlg.FileName);
+
+                        MessageBox.Show(Properties.GUI.FileSavedOK,
+                            Properties.GUI.FileSavedOKTitle,
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Information);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Properties.Error.ErrorOcurred + "\n" + ex.Message,
+                            Properties.Error.ErrorOcurredTitle,
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Warning);
+            }//</try catch>
         }
+        
+        private async void MenuItem_Export_ToPDFReport_Person_Clicked(Person person)
+        {
+            var dlg = new SaveFileDialog()
+            {
+                Filter = "PDF File(*.pdf) | *.pdf",
+                DefaultExt = ".pdf",
+            };
+            try
+            {
+                if (dlg.ShowDialog().GetValueOrDefault())
+                {
+                    if (File.Exists(dlg.FileName))
+                    {
+                        var result = MessageBox.Show(Properties.GUI.FileExists,
+                            Properties.GUI.FileExistsTitle,
+                            MessageBoxButton.YesNo,
+                            MessageBoxImage.Exclamation);
+                        if (result == MessageBoxResult.Yes)
+                        {
+                            File.Delete(dlg.FileName);
+
+                            await _reportC.GeneratePersonReport(person, dlg.FileName);
+
+                            MessageBox.Show(Properties.GUI.FileSavedOK,
+                            Properties.GUI.FileSavedOKTitle,
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Information);
+                        }
+                    }
+                    else
+                    {
+                        await _reportC.GeneratePersonReport(person, dlg.FileName);
+
+                        MessageBox.Show(Properties.GUI.FileSavedOK,
+                            Properties.GUI.FileSavedOKTitle,
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Information);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Properties.Error.ErrorOcurred + "\n" + ex.Message,
+                            Properties.Error.ErrorOcurredTitle,
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Warning);
+            }//</try catch>
+        }
+        #endregion
+
+        #endregion
+
     }
 
     public enum PlayerState

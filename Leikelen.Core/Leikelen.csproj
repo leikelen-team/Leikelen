@@ -800,47 +800,6 @@
     <None Include=".bin\node.cmd" />
     <None Include=".bin\npm.cmd" />
     <None Include="app.manifest" />
-    <None Include="jsreport\app\dev.config.json" />
-    <None Include="jsreport\app\package.json" />
-    <None Include="jsreport\app\prod.config.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="jsreport\install.cmd" />
-    <None Include="jsreport\jsreport.zip">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="jsreport\reports\data\Sample data\config.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="jsreport\reports\data\Sample data\dataJson.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="jsreport\reports\templates\Sample report\config.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="jsreport\reports\templates\Sample report\content.handlebars">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="jsreport\reports\templates\Sample report\footer.handlebars">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="jsreport\reports\templates\Sample report\header.handlebars">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="jsreport\reports\templates\SceneReport\config.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="jsreport\reports\templates\SceneReport\content.handlebars">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="jsreport\reports\templates\SceneReport\footer.handlebars">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="jsreport\reports\templates\SceneReport\header.handlebars">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="jsreport\studio.cmd" />
-    <None Include="jsreport\update.cmd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -882,16 +841,6 @@
     <Content Include="..\vgbtechs\RFRProgressTech.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="jsreport\app\server.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="jsreport\reports\templates\Sample report\helpers.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="jsreport\reports\templates\SceneReport\helpers.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Resource Include="jsreport\install-log.txt" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
@@ -907,7 +856,8 @@
     <Error Condition="!Exists('..\packages\NETStandard.Library.2.0.0\build\netstandard2.0\NETStandard.Library.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NETStandard.Library.2.0.0\build\netstandard2.0\NETStandard.Library.targets'))" />
   </Target>
   <PropertyGroup>
-    <PreBuildEvent>xcopy "$(ProjectDir)bin_files\anyPlatform" . /Y /E</PreBuildEvent>
+    <PreBuildEvent>xcopy "$(ProjectDir)bin_files\anyPlatform" . /Y /E
+xcopy "$(ProjectDir)bin_files\$(PlatformName)" . /Y /E</PreBuildEvent>
   </PropertyGroup>
   <Import Project="..\packages\Accord.3.8.0\build\Accord.targets" Condition="Exists('..\packages\Accord.3.8.0\build\Accord.targets')" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
