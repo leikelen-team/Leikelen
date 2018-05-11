@@ -33,6 +33,18 @@
     <div style="width:900px;height:600;">
         <canvas id="proxemics" style="width:900px;height:600px"></canvas>
     </div>
+
+    <div id="ModalIntervalsDiv"></div>
+
+    <hr/><hr/><hr/><hr/><hr/><hr/><hr/><hr/>
+    <div id="SubmodalIntervalsDiv"></div>
+
+        <hr/><hr/><hr/><hr/><hr/><hr/><hr/><hr/>
+    <h1>Eventos</h1>
+    <p>A continuación se muestran los gráficos de eventos por cada tipo y subtipo. 
+    Los gráficos contienen 100 o menos puntos (en caso de tener menos de 100) por un tema de visualización y rendimiento, 
+    para esto se aplicó un proceso de decimación</p>
+    <div id="SubmodalEventsDiv"></div>
 </body>
 <script>
     var colors = [
@@ -101,13 +113,167 @@
         });
         return barChartData;
     }
+    function createModalIntervalsGraph(intervals, durationScene, name, i){
+        var intervalsData={};
+        intervalsData.type = 'line';
+        intervalsData.data = {};
+        intervalsData.data.datasets = [];
+        intervalsData.options = {
+            animation: {
+                duration: 0
+            },
+            legend : {
+                display : false
+            },
+            scales: {
+                xAxes: [{
+                    type: 'linear',
+                    position: 'bottom',
+                    ticks : {
+                        beginAtzero :true,
+                        min: 0,
+                        max: durationScene,
+                        callback: function(value, index, values){
+                            return Math.trunc(value/60)+":"+Math.round(((value/60)-Math.trunc(value/60))*60)
+                        }
+                        
+                    },
+                    /*time: {
+                        min: 0,
+                        max: durationScene,
+                        unit: 'second',
+                        displayFormats: {
+                            second: 'mm:ss'
+                        }
+                    }*/
+                }],
+                yAxes : [{
+                    display: false
+                    /*scaleLabel : {
+                        display : false
+                    }*/,
+                    ticks : {
+                        beginAtZero :true,
+                        max : 1
+                    }
+                }]
+            }
+        };
+        Object.keys(intervals).map(function(submodal, iSubmodal){
+            
+            if(intervals[submodal] != null){
+                for(var iInterval in intervals[submodal]){
+                    d = {};
+                    d.backgroundColor = colors[iSubmodal%colors.length];
+                    d.fill = true;
+                    d.borderWidth = 0;
+                    d.pointRadius = 0;
+                    d.labels = [submodal];
+                    var dStart = Date.parse("1970-01-01T" + intervals[submodal][iInterval]["StartTime"] + "Z");
+                    var cStart = new Date(dStart);
+                    var sStart = cStart.getUTCHours()*60*60+cStart.getUTCMinutes()*60+cStart.getUTCSeconds()+cStart.getUTCMilliseconds()/1000.0;
+                    var dEnd = Date.parse("1970-01-01T" + intervals[submodal][iInterval]["EndTime"] + "Z");
+                    var cEnd = new Date(dEnd);
+                    var sEnd = cEnd.getUTCHours()*60*60+cEnd.getUTCMinutes()*60+cEnd.getUTCSeconds()+cEnd.getUTCMilliseconds()/1000.0;
+
+                    d.data = [{
+                        x: sStart,
+                        y: 1
+                    },{
+                        x: sEnd,
+                        y: 1
+                    }];
+                    intervalsData.data.datasets.push(d);
+                }
+            }
+            
+        })
+        
+        return intervalsData;
+    }
+    function createSubModalIntervalsGraph(intervals, durationScene, name, i){
+        var intervalsData={};
+        intervalsData.type = 'line';
+        intervalsData.data = {};
+        intervalsData.data.datasets = [];
+        intervalsData.options = {
+            animation: {
+                duration: 0
+            },
+            legend : {
+                display : false
+            },
+            scales: {
+                xAxes: [{
+                    type: 'linear',
+                    position: 'bottom',
+                    ticks : {
+                        beginAtzero :true,
+                        min: 0,
+                        max: durationScene,
+                        callback: function(value, index, values){
+                            return Math.trunc(value/60)+":"+Math.round(((value/60)-Math.trunc(value/60))*60)
+                        }
+                        
+                    },
+                    /*time: {
+                        min: 0,
+                        max: durationScene,
+                        unit: 'second',
+                        displayFormats: {
+                            second: 'mm:ss'
+                        }
+                    }*/
+                }],
+                yAxes : [{
+                    display: false
+                    /*scaleLabel : {
+                        display : false
+                    }*/,
+                    ticks : {
+                        beginAtZero :true,
+                        max : 1
+                    }
+                }]
+            }
+        };
+        //console.log(name);
+        //console.log();
+        for(var iInterval in intervals){
+            d = {};
+            d.backgroundColor = colors[i%colors.length];
+            d.fill = true;
+            d.borderWidth = 0;
+            d.pointRadius = 0;
+            var dStart = Date.parse("1970-01-01T" + intervals[iInterval]["StartTime"] + "Z");
+            var cStart = new Date(dStart);
+            var sStart = cStart.getUTCHours()*60*60+cStart.getUTCMinutes()*60+cStart.getUTCSeconds()+cStart.getUTCMilliseconds()/1000.0;
+            var dEnd = Date.parse("1970-01-01T" + intervals[iInterval]["EndTime"] + "Z");
+            var cEnd = new Date(dEnd);
+            var sEnd = cEnd.getUTCHours()*60*60+cEnd.getUTCMinutes()*60+cEnd.getUTCSeconds()+cEnd.getUTCMilliseconds()/1000.0;
+
+            d.data = [{
+                x: sStart,
+                y: 1
+            },{
+                x: sEnd,
+                y: 1
+            }];
+            intervalsData.data.datasets.push(d);
+        }
+        
+        return intervalsData;
+    }
   $(function () {
     $.getJSON("dataJson.json")
         .done(function(data){
 
             var dScene = Date.parse("1970-01-01T" + data["scene"]["Duration"] + "Z");
-            var c = new Date(dScene);
-            var sScene = c.getUTCHours()*60*60+c.getUTCMinutes()*60+c.getUTCSeconds()+c.getUTCMilliseconds()/1000.0;
+            var cScene = new Date(dScene);
+            //var sScene = c;
+            var sScene = cScene.getUTCHours()*60*60+cScene.getUTCMinutes()*60+cScene.getUTCSeconds()+cScene.getUTCMilliseconds()/1000.0;
+
+
             /*Discrete postures*/
             var labels = getLabels(data["intervals"], ["Discrete Posture"], false);
             var persons = getPersonData(data["intervals"], ["Discrete Posture"], false, sScene);
@@ -152,6 +318,140 @@
                     }
                 }
             })
+
+
+            /*Graficos intervalos*/
+            var numInterval = 0;
+            var styleStr = "style='width:900px;height:100px;'"
+            Object.keys(data["intervalList"]).map(function(modal, iModal){
+                $("#ModalIntervalsDiv").append("<br/><br/><h2>Tipo modal: "+modal+"</h2>");
+                
+                
+                Object.keys(data["intervalList"][modal]).map(function(submodal, iSubmodal){
+                    if(data["intervalList"][modal][submodal] != null){
+                        //console.log("no es null");
+                        $("#ModalIntervalsDiv").append("<div><span style='width:20px;height20px;background:"+colors[iSubmodal%colors.length]+"'>[ ]</span>"+submodal+"<br/></div>");
+                    }
+                });
+                $("#ModalIntervalsDiv").append("<br/><div id='divinter"+numInterval+"' "+styleStr+"></div>"); //<h3>"+submodal+"</h3>
+                $("#divinter"+numInterval).append("<canvas id='canvasinter"+numInterval+"' "+styleStr+"></canvas>");
+
+                var dataOfChart = createModalIntervalsGraph(data["intervalList"][modal],
+                        sScene,
+                        modal,
+                        iModal);
+                //console.log(dataOfChart);
+                new Chart(document.getElementById("canvasinter"+numInterval).getContext('2d'), dataOfChart);
+                numInterval++;
+            });
+
+
+            var numInterval = 0;
+                Object.keys(data["intervalList"]).map(function(modal, iModal){
+                    $("#SubmodalIntervalsDiv").append("<br/><br/><h2>Tipo modal: "+modal+"</h2>");
+                    Object.keys(data["intervalList"][modal]).map(function(submodal, iSubmodal){
+                        if(data["intervalList"][modal][submodal] != null){
+                            //console.log("no es null");
+                            $("#SubmodalIntervalsDiv").append("<br/><div id='subdivinter"+numInterval+"' "+styleStr+"><h3>"+submodal+"</h3></div>"); //
+                            $("#subdivinter"+numInterval).append("<canvas id='subcanvasinter"+numInterval+"' "+styleStr+"></canvas>");
+
+                            var dataOfChart = createSubModalIntervalsGraph(data["intervalList"][modal][submodal],
+                                    sScene,
+                                    submodal,
+                                    iSubmodal);
+                            //console.log(dataOfChart);
+                            new Chart(document.getElementById("subcanvasinter"+numInterval).getContext('2d'), dataOfChart);
+                            numInterval++;
+                        }
+                    })
+                });
+
+
+
+
+                /*Eventos*/
+                var numEvents = 0;
+                Object.keys(data["eventList"]).map(function(modal, iModal){
+                    $("#SubmodalEventsDiv").append("<br/><br/><h2>Tipo modal: "+modal+"</h2>");
+                    Object.keys(data["eventList"][modal]).map(function(submodal, iSubmodal){
+                        if(data["eventList"][modal][submodal] != null){
+                            //console.log("no es null");
+                            $("#SubmodalEventsDiv").append("<br/><div id='subdivev"+numEvents+"' "+styleStr+"><h3>"+submodal+"</h3></div>"); //
+                            $("#subdivev"+numEvents).append("<canvas id='subcanvasev"+numEvents+"' "+styleStr+"></canvas>");
+                            
+                            chartData = [];
+                            var decimationFactor = Math.trunc(data["eventList"][modal][submodal].length/100);
+                            var decimationActual = 0;
+                            var decimationArray = [];
+
+                            for(var iEv in data["eventList"][modal][submodal]){
+                                var myx = 1;
+                                if(typeof(data["eventList"][modal][submodal][iEv]["Value"]) != typeof(undefined)){
+                                    myx = data["eventList"][modal][submodal][iEv]["Value"];
+                                }
+                                decimationArray.push(myx);
+                                if(decimationActual == decimationFactor || decimationActual == data["eventList"][modal][submodal].length -1 ){
+                                    var realX = 0;
+                                    for(var i in decimationArray){
+                                        realX = realX + decimationArray[i];
+                                    }
+                                    realX = realX/decimationArray.length;
+                                    
+                                    var timeEvent = data["eventList"][modal][submodal][iEv]["EventTime"];
+                                    var dEvent = Date.parse("1970-01-01T" + timeEvent + "Z");
+                                    var cEvent = new Date(dEvent);
+                                    var sEvent = cEvent.getUTCHours()*60*60+cEvent.getUTCMinutes()*60+cEvent.getUTCSeconds()+cEvent.getUTCMilliseconds()/1000.0;
+
+
+                                    chartData.push({y: realX, x: sEvent});
+
+                                    decimationActual = 0;
+                                    decimationArray = [];
+                                }
+                                decimationActual++;
+                                
+                            }
+                            //console.log(chartData);
+                            //console.log(dataOfChart);
+                            new Chart(document.getElementById("subcanvasev"+numEvents).getContext('2d'), {
+                                type: 'line',
+                                data: {
+                                    datasets: [{
+                                        data: chartData
+                                    }]
+                                },
+                                options: {
+                                    animation: {
+                                        duration: 0
+                                    },
+                                    legend : {
+                                        display : false
+                                    },
+                                    scales: {
+                                        xAxes: [{
+                                            type: 'linear',
+                                            position: 'bottom',
+                                            ticks : {
+                                                beginAtzero :true,
+                                                max: sScene,
+                                                min: 0, 
+                                                callback: function(value, index, values){
+                                                    return Math.trunc(value/60)+":"+Math.round(((value/60)-Math.trunc(value/60))*60)
+                                                }
+                                            }
+                                        }],
+                                        yAxes: [{
+                                            type: 'linear',
+                                        }]
+                                    }
+                                }
+                            });
+                            numEvents++;
+                        }
+                    })
+            });
+
+
 
         });
   });

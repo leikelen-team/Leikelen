@@ -7,20 +7,42 @@ using System.IO;
 using System.Diagnostics;
 using cl.uv.leikelen.Data.Access;
 using cl.uv.leikelen.Data.Model;
+using cl.uv.leikelen.API.DataAccess;
 
 namespace cl.uv.leikelen.Controller
 {
     public class ReportController
     {
-        public ReportController()
-        {
-
-        }
-
         public async Task GenerateSceneReport(string outputFilePath)
         {
             //get data
-            var datas = View.Widget.HomeTab.TabScene.GetEventsAndIntervals(makeEvents: false);
+            var datas = View.Widget.HomeTab.TabScene.GetEventsAndIntervals();
+
+            //get all events and intervals
+            var intervalList = new Dictionary<string, Dictionary<string, Dictionary<string, List<Interval>>>>();
+            var eventList = new Dictionary<string, Dictionary<string, Dictionary<string, List<Event>>>>();
+            
+            foreach (var pis in DataAccessFacade.Instance.GetSceneInUseAccess().GetScene().PersonsInScene)
+            {
+                if (!intervalList.ContainsKey(pis.Person.Name))
+                    intervalList[pis.Person.Name] = new Dictionary<string, Dictionary<string, List<Interval>>>();
+                if(!eventList.ContainsKey(pis.Person.Name))
+                    eventList[pis.Person.Name] = new Dictionary<string, Dictionary<string, List<Event>>>();
+                foreach (var subModal in pis.SubModalType_PersonInScenes)
+                {
+                    var intervals = DataAccessFacade.Instance.GetIntervalAccess().GetAll(pis.Person, subModal.ModalTypeId, subModal.SubModalTypeId);
+                    if (!intervalList[pis.Person.Name].ContainsKey(subModal.ModalTypeId))
+                        intervalList[pis.Person.Name][subModal.ModalTypeId] = new Dictionary<string, List<Interval>>();
+                    if (!intervalList[pis.Person.Name][subModal.ModalTypeId].ContainsKey(subModal.SubModalTypeId))
+                        intervalList[pis.Person.Name][subModal.ModalTypeId][subModal.SubModalTypeId] = intervals;
+
+                    var events = DataAccessFacade.Instance.GetEventAccess().GetAll(pis.Person, subModal.ModalTypeId, subModal.SubModalTypeId);
+                    if (!eventList[pis.Person.Name].ContainsKey(subModal.ModalTypeId))
+                        eventList[pis.Person.Name][subModal.ModalTypeId] = new Dictionary<string, List<Event>>();
+                    if (!eventList[pis.Person.Name][subModal.ModalTypeId].ContainsKey(subModal.SubModalTypeId))
+                        eventList[pis.Person.Name][subModal.ModalTypeId][subModal.SubModalTypeId] = events;
+                }
+            }
 
             //path definitions
             string assemblyPath = Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
@@ -29,17 +51,6 @@ namespace cl.uv.leikelen.Controller
             string htmlFile = @"report_templates\scene\content.html";
 
             var scene = DataAccessFacade.Instance.GetSceneInUseAccess().GetScene();
-            Scene sc = new Scene
-            {
-                Name = scene.Name,
-                Duration = scene.Duration,
-                Place = scene.Place,
-                RecordRealDateTime = scene.RecordRealDateTime,
-                RecordStartedDateTime = scene.RecordStartedDateTime,
-                Description = scene.Description,
-                Type = scene.Type,
-                NumberOfParticipants = scene.NumberOfParticipants
-            };
 
             //create the json file with the data
             using (var fileStream2 = File.CreateText(jsonFile))
@@ -47,10 +58,19 @@ namespace cl.uv.leikelen.Controller
                 var d = new
                 {
                     scene = new {
-                        Duration = sc.Duration.ToString(@"hh\:mm\:ss")
+                        scene.Duration,
+                        scene.Name,
+                        scene.Place,
+                        scene.Type,
+                        scene.Description,
+                        scene.RecordRealDateTime,
+                        scene.RecordStartedDateTime,
+                        scene.NumberOfParticipants
                     },
                     intervals = datas.Item1,
-                    events = datas.Item2
+                    events = datas.Item2,
+                    intervalList,
+                    eventList
                 };
                 fileStream2.WriteLine(d.ToJsonString());
             }
@@ -65,7 +85,7 @@ namespace cl.uv.leikelen.Controller
             p.Exited += (sender, e) =>
             {
                 Console.WriteLine("Exited with code: "+p.ExitCode);
-                File.Delete(jsonFile);
+                //File.Delete(jsonFile);
                 if (p.ExitCode != 0) //Exit code error
                 {
                     throw new Exception(p.StandardError.ReadToEnd());
@@ -73,12 +93,40 @@ namespace cl.uv.leikelen.Controller
             };
         }
 
-        public async Task GeneratePersonReport(Data.Model.Person person, string outputFilePath)
+        public async Task GeneratePersonReport(Person person, string outputFilePath)
         {
             //get data
-            var ps = new List<Data.Model.Person>();
-            ps.Add(person);
+            var ps = new List<Person>
+            {
+                person
+            };
             var datas = View.Widget.HomeTab.TabScene.GetEventsAndIntervals(persons: ps);
+
+            //get all events and intervals
+            var intervalList = new Dictionary<string, Dictionary<string, List<Interval>>>();
+            var eventList = new Dictionary<string, Dictionary<string, List<Event>>>();
+            foreach (var pis in person.PersonInScenes)
+            {
+                if(ReferenceEquals(pis.Scene, DataAccessFacade.Instance.GetSceneInUseAccess().GetScene()))
+                {
+                    foreach(var subModal in pis.SubModalType_PersonInScenes)
+                    {
+                        var intervals = DataAccessFacade.Instance.GetIntervalAccess().GetAll(pis.Person, subModal.ModalTypeId, subModal.SubModalTypeId);
+                        if (!intervalList.ContainsKey(subModal.ModalTypeId))
+                            intervalList[subModal.ModalTypeId] = new Dictionary<string, List<Interval>>();
+                        if (!intervalList[subModal.ModalTypeId].ContainsKey(subModal.SubModalTypeId))
+                            intervalList[subModal.ModalTypeId][subModal.SubModalTypeId] = intervals;
+                        
+                        var events = DataAccessFacade.Instance.GetEventAccess().GetAll(pis.Person, subModal.ModalTypeId, subModal.SubModalTypeId);
+                        if (!eventList.ContainsKey(subModal.ModalTypeId))
+                            eventList[subModal.ModalTypeId] = new Dictionary<string, List<Event>>();
+                        if (!eventList[subModal.ModalTypeId].ContainsKey(subModal.SubModalTypeId))
+                            eventList[subModal.ModalTypeId][subModal.SubModalTypeId] = events;
+                        
+                    }
+                }
+            }
+
 
             //path definitions
             string assemblyPath = Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
@@ -87,17 +135,6 @@ namespace cl.uv.leikelen.Controller
             string htmlFile = @"report_templates\person\content.html";
 
             var scene = DataAccessFacade.Instance.GetSceneInUseAccess().GetScene();
-            Scene sc = new Scene
-            {
-                Name = scene.Name,
-                Duration = scene.Duration,
-                Place = scene.Place,
-                RecordRealDateTime = scene.RecordRealDateTime,
-                RecordStartedDateTime = scene.RecordStartedDateTime,
-                Description = scene.Description,
-                Type = scene.Type,
-                NumberOfParticipants = scene.NumberOfParticipants
-            };
 
             //create the json file with the data
             using (var fileStream2 = File.CreateText(jsonFile))
@@ -106,10 +143,19 @@ namespace cl.uv.leikelen.Controller
                 {
                     scene = new
                     {
-                        Duration = sc.Duration.ToString(@"hh\:mm\:ss")
+                        scene.Duration,
+                        scene.Name,
+                        scene.Place,
+                        scene.Type,
+                        scene.Description,
+                        scene.RecordRealDateTime,
+                        scene.RecordStartedDateTime,
+                        scene.NumberOfParticipants
                     },
                     intervals = datas.Item1,
-                    events = datas.Item2
+                    events = datas.Item2,
+                    intervalList,
+                    eventList
                 };
                 fileStream2.WriteLine(d.ToJsonString());
             }
@@ -124,7 +170,7 @@ namespace cl.uv.leikelen.Controller
             p.Exited += (sender, e) =>
             {
                 Console.WriteLine("Exited with code: " + p.ExitCode);
-                File.Delete(jsonFile);
+                //File.Delete(jsonFile);
                 if (p.ExitCode != 0) //Exit code error
                 {
                     throw new Exception(p.StandardError.ReadToEnd());
