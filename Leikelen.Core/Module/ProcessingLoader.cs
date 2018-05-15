@@ -64,7 +64,8 @@ namespace cl.uv.leikelen.Module
                 new Processing.Kinect.HeadAngle.HeadAngleEntryPoint(),
                 new Processing.Kinect.ShouldersAngle.ShouldersAngleEntryPoint(),
                 new Processing.Kinect.Proxemic.ProxemicEntryPoint(),
-                new Processing.Kinect.AccurateProxemic.AccurateProxemicEntryPoint()
+                new Processing.Kinect.AccurateProxemic.AccurateProxemicEntryPoint(),
+                new Processing.EEGPrint.EegPrintEntryPoint()
             };
         }
     }

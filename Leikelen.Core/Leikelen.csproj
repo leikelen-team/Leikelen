@@ -409,6 +409,9 @@
     <Compile Include="Module\General\GestureConfiguration\View\PostureCRUD.xaml.cs">
       <DependentUpon>PostureCRUD.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Module\Input\MindwaveTGC\MindwaveTGCInput.cs" />
+    <Compile Include="Module\Input\MindwaveTGC\Monitor.cs" />
+    <Compile Include="Module\Input\MindwaveTGC\Player.cs" />
     <Compile Include="Module\Input\OpenBCI\OpenBCIInput.cs" />
     <Compile Include="Module\Input\OpenBCI\Properties\OpenBCI.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -454,6 +457,7 @@
     <Compile Include="Module\Processing\EEGEmotion2Channels\View\TrainerSceneSelector.xaml.cs">
       <DependentUpon>TrainerSceneSelector.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Module\Processing\EEGPrint\EegPrintEntryPoint.cs" />
     <Compile Include="Module\Processing\Kinect\AccurateProxemic\AccurateProxemicEntryPoint.cs" />
     <Compile Include="Module\Processing\Kinect\AccurateProxemic\AccurateProxemicLogic.cs" />
     <Compile Include="Module\Processing\Kinect\CheckPerson.cs" />

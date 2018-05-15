@@ -62,7 +62,8 @@ namespace cl.uv.leikelen.Module
         {
             var personInputModules = new List<InputModule>()
             {
-                new Input.OpenBCI.OpenBCIInput(person)
+                new Input.OpenBCI.OpenBCIInput(person),
+                new Input.MindwaveTGC.MindwaveTGCInput(person)
             };
 
             PersonInputModules.Add(person, personInputModules);
