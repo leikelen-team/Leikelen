@@ -3,16 +3,20 @@
 <head>
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
     <script>
+        //console.log("el inicio");
      Function.prototype.bind = Function.prototype.bind || function (thisp) {
         var fn = this;
         return function () {
             return fn.apply(thisp, arguments);
         };
     };
+    //console.log("el fin del inicio");
     </script>
-    <script src="jquery-1.11.0.min.js"></script>
-    <script src="Chart.bundle.min.js"></script>
-    <script src="helpers.js"></script>
+    <script src="jquery-1.11.0.min.js" type="text/javascript"></script>
+    <script src="Chart.bundle.min.js" type="text/javascript"></script>
+    <script src="d3.min.js" type="text/javascript"></script>
+    <script src="helpers.js" type="text/javascript"></script>
+    <script src="functions.js" type="text/javascript"></script>
 </head>
 <body>
     <h1>Reporte de la Presentacion</h1>
@@ -46,226 +50,13 @@
     Los gráficos contienen 100 o menos puntos (en caso de tener menos de 100) por un tema de visualización y rendimiento, 
     para esto se aplicó un proceso de decimación</p>
     <div id="SubmodalEventsDiv"></div>
+    <br/><br/>
+    <hr/><hr/><hr/><hr/><hr/><hr/><hr/><hr/>
+    <h1>Treemaps</h1>
+    <div id="treemaps"></div>
 </body>
 <script>
-    var colors = [
-        'rgba(255, 0, 0, 0.5)',
-        'rgba(0, 255, 0, 0.5)',
-        'rgba(0, 0, 255, 0.5)',
-        'rgba(126, 126, 126, 0.5)',
-        'rgba(0, 126, 126, 0.5)',
-        'rgba(126, 126, 0, 0.5)',
-        'rgba(126, 0, 126, 0.5)',
-        'rgba(55, 126, 55, 0.5)'
-    ]
-    function getLabels(data, modalNames, prefix){
-        var labels = [];
-        data.map(function(b) {
-            if (modalNames.has(b["ModalName"])){
-                if(prefix){
-                    if(!labels.has(b["ModalName"]+" - "+b["SubModalName"]))
-                        labels.push(b["ModalName"]+" - "+b["SubModalName"]);
-                }
-                else{
-                    if(!labels.has(b["SubModalName"]))
-                        labels.push(b["SubModalName"]);
-                }
-            }
-        });
-        return labels;
-    }
-    function getPersonData(data, modalNames, prefix, durationScene){
-        var persons = {};
-        data.map(function(b) {
-            if (modalNames.has(b["ModalName"])){
-                var d = Date.parse("1970-01-01T" + b["TotalDuration"] + "Z");
-                var c = new Date(d);
-                var s = c;
-                //var s = c.getUTCHours()*60*60+c.getUTCMinutes()*60+c.getUTCSeconds()+c.getUTCMilliseconds()/1000.0;
-                if(! (b["PersonName"] in persons))
-                    persons[b["PersonName"]] = {}
-                if(durationScene != 0)
-                    s = s/durationScene;
-                if(prefix)
-                    persons[b["PersonName"]][b["ModalName"]+" - "+b["SubModalName"]] = s;
-                else
-                    persons[b["PersonName"]][b["SubModalName"]] = s;
-            }
-        });
-        return persons;
-    }
-    function createBarChartData(persons, labels){
-        var barChartData={};
-        barChartData.labels = labels;
-        barChartData.datasets = [];
-        Object.keys(persons).map(function(p, i){
-            d = {};
-            d.label = p;
-            d.borderWidth = 1;
-            d.backgroundColor = colors[i]
-            d.data = [];
-            labels.map(function(l){
-                if(l in persons[p]){
-                    d.data.push(persons[p][l]);
-                }else{
-                    d.data.push(0);
-                }
-            });
-            barChartData.datasets.push(d);
-        });
-        return barChartData;
-    }
-    function createModalIntervalsGraph(intervals, durationScene, name, i){
-        var intervalsData={};
-        intervalsData.type = 'line';
-        intervalsData.data = {};
-        intervalsData.data.datasets = [];
-        intervalsData.options = {
-            animation: {
-                duration: 0
-            },
-            legend : {
-                display : false
-            },
-            scales: {
-                xAxes: [{
-                    type: 'linear',
-                    position: 'bottom',
-                    ticks : {
-                        beginAtzero :true,
-                        min: 0,
-                        max: durationScene,
-                        callback: function(value, index, values){
-                            return Math.trunc(value/60)+":"+Math.round(((value/60)-Math.trunc(value/60))*60)
-                        }
-                        
-                    },
-                    /*time: {
-                        min: 0,
-                        max: durationScene,
-                        unit: 'second',
-                        displayFormats: {
-                            second: 'mm:ss'
-                        }
-                    }*/
-                }],
-                yAxes : [{
-                    display: false
-                    /*scaleLabel : {
-                        display : false
-                    }*/,
-                    ticks : {
-                        beginAtZero :true,
-                        max : 1
-                    }
-                }]
-            }
-        };
-        Object.keys(intervals).map(function(submodal, iSubmodal){
-            
-            if(intervals[submodal] != null){
-                for(var iInterval in intervals[submodal]){
-                    d = {};
-                    d.backgroundColor = colors[iSubmodal%colors.length];
-                    d.fill = true;
-                    d.borderWidth = 0;
-                    d.pointRadius = 0;
-                    d.labels = [submodal];
-                    var dStart = Date.parse("1970-01-01T" + intervals[submodal][iInterval]["StartTime"] + "Z");
-                    var cStart = new Date(dStart);
-                    var sStart = cStart.getUTCHours()*60*60+cStart.getUTCMinutes()*60+cStart.getUTCSeconds()+cStart.getUTCMilliseconds()/1000.0;
-                    var dEnd = Date.parse("1970-01-01T" + intervals[submodal][iInterval]["EndTime"] + "Z");
-                    var cEnd = new Date(dEnd);
-                    var sEnd = cEnd.getUTCHours()*60*60+cEnd.getUTCMinutes()*60+cEnd.getUTCSeconds()+cEnd.getUTCMilliseconds()/1000.0;
-
-                    d.data = [{
-                        x: sStart,
-                        y: 1
-                    },{
-                        x: sEnd,
-                        y: 1
-                    }];
-                    intervalsData.data.datasets.push(d);
-                }
-            }
-            
-        })
-        
-        return intervalsData;
-    }
-    function createSubModalIntervalsGraph(intervals, durationScene, name, i){
-        var intervalsData={};
-        intervalsData.type = 'line';
-        intervalsData.data = {};
-        intervalsData.data.datasets = [];
-        intervalsData.options = {
-            animation: {
-                duration: 0
-            },
-            legend : {
-                display : false
-            },
-            scales: {
-                xAxes: [{
-                    type: 'linear',
-                    position: 'bottom',
-                    ticks : {
-                        beginAtzero :true,
-                        min: 0,
-                        max: durationScene,
-                        callback: function(value, index, values){
-                            return Math.trunc(value/60)+":"+Math.round(((value/60)-Math.trunc(value/60))*60)
-                        }
-                        
-                    }
-                    /*time: {
-                        min: 0,
-                        max: durationScene,
-                        unit: 'second',
-                        displayFormats: {
-                            second: 'mm:ss'
-                        }
-                    }*/
-                }],
-                yAxes : [{
-                    display: false
-                    /*scaleLabel : {
-                        display : false
-                    }*/,
-                    ticks : {
-                        beginAtZero :true,
-                        max : 1
-                    }
-                }]
-            }
-        };
-        //console.log(name);
-        //console.log();
-        for(var iInterval in intervals){
-            d = {};
-            d.backgroundColor = colors[i%colors.length];
-            d.fill = true;
-            d.borderWidth = 0;
-            d.pointRadius = 0;
-            var dStart = Date.parse("1970-01-01T" + intervals[iInterval]["StartTime"] + "Z");
-            var cStart = new Date(dStart);
-            var sStart = cStart.getUTCHours()*60*60+cStart.getUTCMinutes()*60+cStart.getUTCSeconds()+cStart.getUTCMilliseconds()/1000.0;
-            var dEnd = Date.parse("1970-01-01T" + intervals[iInterval]["EndTime"] + "Z");
-            var cEnd = new Date(dEnd);
-            var sEnd = cEnd.getUTCHours()*60*60+cEnd.getUTCMinutes()*60+cEnd.getUTCSeconds()+cEnd.getUTCMilliseconds()/1000.0;
-
-            d.data = [{
-                x: sStart,
-                y: 1
-            },{
-                x: sEnd,
-                y: 1
-            }];
-            intervalsData.data.datasets.push(d);
-        }
-        
-        return intervalsData;
-    }
+    //console.log("what paso");
   $(function () {
     $.getJSON("dataJson.json")
         .done(function(data){
@@ -274,7 +65,7 @@
             //var sScene = c;
             var sScene = cScene.getUTCHours()*60*60+cScene.getUTCMinutes()*60+cScene.getUTCSeconds()+cScene.getUTCMilliseconds()/1000.0;
 
-            var optionsPercentage = {
+            /*var optionsPercentage = {
                 animation: {
                         duration: 0
                     }
@@ -291,9 +82,9 @@
                         }
                     }]
                 }
-            };
+            };*/
 
-
+            //console.log("holi a crear discrete");
             /*Discrete postures*/
             var labels = getLabels(data["intervals"], ["Discrete Posture"], false);
             var persons = getPersonData(data["intervals"], ["Discrete Posture"], false, sScene);
@@ -309,6 +100,7 @@
                     }
                 }
             })
+            //console.log("a crear voice");
             /*Voice, Neck Orientation, Lean, AccProxemic, Proxemic*/
             labels = getLabels(data["intervals"], ["Voice", "Neck Orientation", "Lean"], true);
             persons = getPersonData(data["intervals"], ["Voice", "Neck Orientation", "Lean"], true, sScene);
@@ -324,6 +116,7 @@
                 }
             })
 
+            //console.log("proxemics");
             /*Proxemic*/
             labels = getLabels(data["intervals"], ["AccProxemic", "Proxemic"], true);
             persons = getPersonData(data["intervals"], ["AccProxemic", "Proxemic"], true, sScene);
@@ -338,10 +131,12 @@
                     }
                 }
             })
+var styleStr = "style='width:900px;height:100px;'"
+            
 
-
+            try{            //console.log("bar charts creados");
             var numInterval = 0;
-            var styleStr = "style='width:900px;height:100px;'"
+            
             Object.keys(data["intervalList"]).map(function(person, iPerson){
                 $("#ModalIntervalsDiv").append("<br/><br/><hr/><hr/><h1>Persona: "+person+"</h1><br/>")
                 Object.keys(data["intervalList"][person]).map(function(modal, iModal){
@@ -355,11 +150,12 @@
                     });
                     $("#ModalIntervalsDiv").append("<br/><div id='divinter"+numInterval+"' "+styleStr+"></div>"); //<h3>"+submodal+"</h3>
                     $("#divinter"+numInterval).append("<canvas id='canvasinter"+numInterval+"' "+styleStr+"></canvas>");
-
+                    //console.log("vamos a crear los datos");
                     var dataOfChart = createModalIntervalsGraph(data["intervalList"][person][modal],
                             sScene,
                             modal,
                             iModal);
+                    //console.log("datos creados, a graficar");
                     //console.log(dataOfChart);
                     new Chart(document.getElementById("canvasinter"+numInterval).getContext('2d'), dataOfChart);
                     numInterval++;
@@ -367,7 +163,11 @@
                 })
             });
 
+                
+            } catch(ex){console.log("error: "+ex.message);}
 
+            try{
+            //console.log("aaa crear los otros intervalos de submodal separados");
             var numInterval = 0;
             Object.keys(data["intervalList"]).map(function(person, iPerson){
                 $("#SubmodalIntervalsDiv").append("<br/><br/><hr/><hr/><h1>Persona: "+person+"</h1><br/>")
@@ -379,6 +179,7 @@
                             $("#SubmodalIntervalsDiv").append("<br/><div id='subdivinter"+numInterval+"' "+styleStr+"><h3>"+submodal+"</h3></div>"); //
                             $("#subdivinter"+numInterval).append("<canvas id='subcanvasinter"+numInterval+"' "+styleStr+"></canvas>");
 
+                            //console.log("a crear datos");
                             var dataOfChart = createSubModalIntervalsGraph(data["intervalList"][person][modal][submodal],
                                     sScene,
                                     submodal,
@@ -390,13 +191,17 @@
                     })
                 })
             });
+            } catch(ex){console.log("error: "+ex.message);}
+
+            
 
             //console.log("termino intervalos");
-
+            try{
             /*Eventssss*/
             var numEvents = 0;
             Object.keys(data["eventList"]).map(function(person, iPerson){
                 $("#SubmodalEventsDiv").append("<br/><br/><hr/><hr/><h1>Persona: "+person+"</h1><br/>")
+                //console.log("holi");
                 Object.keys(data["eventList"][person]).map(function(modal, iModal){
                     $("#SubmodalEventsDiv").append("<br/><br/><h2>Tipo modal: "+modal+"</h2>");
                     Object.keys(data["eventList"][person][modal]).map(function(submodal, iSubmodal){
@@ -404,15 +209,18 @@
                             //console.log("no es null");
                             $("#SubmodalEventsDiv").append("<br/><div id='subdivev"+numEvents+"' "+styleStr+"><h3>"+submodal+"</h3></div>"); //
                             $("#subdivev"+numEvents).append("<canvas id='subcanvasev"+numEvents+"' "+styleStr+"></canvas>");
-                            
+                            //console.log("holi2");
                             chartData = [];
-                            var decimationFactor = Math.trunc(data["eventList"][person][modal][submodal].length/100);
+                            var decimationFactor = parseInt(String((data["eventList"][person][modal][submodal].length/100)));
                             var decimationActual = 0;
                             var decimationArray = [];
+                            //console.log("holi3");
 
                             for(var iEv in data["eventList"][person][modal][submodal]){
                                 var myx = 1;
+                                //console.log("holi in for");
                                 if(typeof(data["eventList"][person][modal][submodal][iEv]["Value"]) != typeof(undefined)){
+                                    //console.log("es undefined?");
                                     myx = data["eventList"][person][modal][submodal][iEv]["Value"];
                                 }
                                 decimationArray.push(myx);
@@ -439,6 +247,7 @@
                             }
                             //console.log(chartData);
                             //console.log(dataOfChart);
+                            //console.log("a crear chart eve");
                             new Chart(document.getElementById("subcanvasev"+numEvents).getContext('2d'), {
                                 type: 'line',
                                 data: {
@@ -462,7 +271,7 @@
                                                 max: sScene,
                                                 min: 0, 
                                                 callback: function(value, index, values){
-                                                    return Math.trunc(value/60)+":"+Math.round(((value/60)-Math.trunc(value/60))*60)
+                                                    return parseInt(String(value/60)+":"+parseInt(String(((value/60)-parseInt(String(value/60)))*60)))
                                                 }
                                             }
                                         }],
@@ -477,8 +286,56 @@
                     })
                 })
             });
+                } catch(ex){console.log("error events: "+ex.message);}
             
             //console.log("termino");
+            
+            var treeData = {};
+            for(var inter in data["intervals"]){
+                var interval = data["intervals"][inter];
+                if(interval["ModalName"] != "Discrete Posture")
+                    continue;
+                if(!(interval["PersonName"] in treeData)){
+                    treeData[interval["PersonName"]] = {
+                        "name": interval["PersonName"],
+                        "children": []
+                    };
+                }
+                /*var ModalItIs = false;
+                var childNumber = 0;
+                for(var child in treeData[interval["PersonName"]]["children"]){
+                    if(treeData[interval["PersonName"]]["children"][child]["name"] == interval["ModalName"]){
+                        ModalItIs = true;
+                        childNumber = child;
+                    }
+                }
+                if(!ModalItIs){
+                    childNumber = treeData[interval["PersonName"]]["children"].push({
+                        "name": interval["ModalName"],
+                        "children": []
+                    });
+                    childNumber = childNumber -1;
+                }*/
+                //console.log(childNumber);
+                //console.log(interval["ModalName"]);
+                //console.log(treeData[interval["PersonName"]]["children"]);
+                var dInter = Date.parse("1970-01-01T" + interval["TotalDuration"] + "Z");
+                var cInter = new Date(dInter);
+                var sInter = parseInt(String(cInter.getUTCHours()*60*60+cInter.getUTCMinutes()*60+cInter.getUTCSeconds()+cInter.getUTCMilliseconds()/1000.0));
+                treeData[interval["PersonName"]]["children"]/*[childNumber]["children"]*/.push({
+                    "name": interval["SubModalName"],
+                    /*"size": sInter*/
+                    "children": [{
+                        "name": interval["SubModalName"],
+                        "size": sInter
+                    }]
+                });
+            }
+            for(var p in treeData){
+                $("#treemaps").append("<h2>Para persona: "+p+"</h2><svg id='treemap"+p+"' width='900' height='900'></svg>")
+                createTreeMap("treemap"+p, treeData[p]);
+            }
+
 
         });
   });

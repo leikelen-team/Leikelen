@@ -137,6 +137,7 @@ namespace cl.uv.leikelen.View
 
             GeneralLoader.GeneralModulesHasReset += RefillGeneralModuleTabs;
             ProcessingLoader.ProcessingModulesHasReset += RefillProcessingModuleTabs;
+            InputLoader.InputModulesHasReset += InputLoader_InputModulesHasReset;
             
             SkeletonLayerCheckbox.IsChecked = true;
             ColorLayerCheckbox.IsChecked = true;
@@ -146,6 +147,11 @@ namespace cl.uv.leikelen.View
             FillMenuInputModules();
             FillMenuProccessingModules();
             FillMenuGeneralModules();
+        }
+
+        private void InputLoader_InputModulesHasReset(object sender, EventArgs e)
+        {
+            FillMenuInputModules();
         }
 
         #region Tabs
@@ -392,10 +398,11 @@ namespace cl.uv.leikelen.View
             Player_ActualTimeLabel.Content = "--:--:--";
             Player_RecordButton.Background = _buttonBackground;
             Player_TotalTimeLabel.Content = "--:--:--";
-            foreach (var input in InputLoader.Instance.SceneInputModules)
+            InputLoader.Reset();
+            /*foreach (var input in InputLoader.Instance.SceneInputModules)
             {
                 input.Disable();
-            }
+            }*/
             ProcessingLoader.Reset();
             ResetTabs();
             ResetMenuModules(false);
@@ -925,8 +932,30 @@ namespace cl.uv.leikelen.View
             {
                 Header = module.Name
             };
-            MenuItem personItem = new MenuItem();
-            personItem.Header = person?.Name;
+            MenuItem personItem = null;
+            bool personItemRepeated = false;
+            if (moduleType == ModuleType.InputPerson)
+            {
+                foreach (var personMenuItem in MenuItems_Tools_PersonSensors.Items)
+                {
+                    if (personMenuItem is MenuItem menuItem)
+                    {
+                        if (menuItem != null && menuItem.Header.Equals(person?.Name))
+                        {
+                            personItem = menuItem;
+                            personItemRepeated = true;
+                        }
+                    }
+                }
+                if (personItem == null)
+                {
+                    personItem = new MenuItem
+                    {
+                        Header = person?.Name
+                    };
+                    personItemRepeated = false;
+                }
+            }
             //fill the windows of input modules
             List<MenuItem> windowsMenuItems = new List<MenuItem>();
             foreach (var window in module.Windows)
@@ -1016,10 +1045,10 @@ namespace cl.uv.leikelen.View
                     MenuItems_Tools_General.Items.Add(moduleMenuItem);
                     break;
                 case ModuleType.InputPerson:
-                    personItem.Items.Add(moduleMenuItem);
+                    personItem?.Items?.Add(moduleMenuItem);
                     break;
             }
-            if(moduleType == ModuleType.InputPerson)
+            if(moduleType == ModuleType.InputPerson && !personItemRepeated)
                 MenuItems_Tools_PersonSensors.Items.Add(personItem);
         }
 

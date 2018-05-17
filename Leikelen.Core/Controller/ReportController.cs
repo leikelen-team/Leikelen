@@ -78,7 +78,7 @@ namespace cl.uv.leikelen.Controller
             //Make and start process
             ProcessStartInfo startInfo = new ProcessStartInfo(Path.Combine(assemblyPath, executableName))
             {
-                Arguments = Path.Combine(assemblyPath, htmlFile) + " " + outputFilePath,
+                Arguments = Path.Combine(assemblyPath, htmlFile) + " --javascript-delay "+ (GeneralSettings.Instance.SecsWaitPdfReport*1000) + " " + outputFilePath,
                 UseShellExecute = false
             };
             var p = Process.Start(startInfo);
@@ -163,7 +163,7 @@ namespace cl.uv.leikelen.Controller
             //Make and start process
             ProcessStartInfo startInfo = new ProcessStartInfo(Path.Combine(assemblyPath, executableName))
             {
-                Arguments = Path.Combine(assemblyPath, htmlFile) + " " + outputFilePath,
+                Arguments = Path.Combine(assemblyPath, htmlFile) + "  --debug-javascript --no-stop-slow-scripts --javascript-delay " + (GeneralSettings.Instance.SecsWaitPdfReport * 1000) + " " + outputFilePath,
                 UseShellExecute = false
             };
             var p = Process.Start(startInfo);

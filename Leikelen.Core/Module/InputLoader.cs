@@ -37,6 +37,8 @@ namespace cl.uv.leikelen.Module
         /// </value>
         public IVideo VideoHandler { get; private set; }
 
+        public static event EventHandler InputModulesHasReset;
+
         private static InputLoader _instance;
 
         /// <summary>
@@ -77,6 +79,41 @@ namespace cl.uv.leikelen.Module
             FillSceneInputModules();
         }
 
+        public static void Reset()
+        {
+            foreach(var scIn in _instance.SceneInputModules)
+            {
+                try
+                {
+                    scIn.Disable();
+                    scIn.Monitor.Close();
+                    scIn.Player.Close();
+                }
+                catch(Exception ex)
+                {
+
+                }
+            }
+            foreach(var ps in _instance.PersonInputModules.Keys)
+            {
+                foreach(var psIn in _instance.PersonInputModules[ps])
+                {
+                    try
+                    {
+                        psIn.Disable();
+                        psIn.Monitor.Close();
+                        psIn.Player.Close();
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+                }
+            }
+            _instance = null;
+            _instance = new InputLoader();
+            InputModulesHasReset?.Invoke(_instance, new EventArgs());
+        }
         private void FillSceneInputModules()
         {
             var kinectInput = new Input.Kinect.KinectInput();

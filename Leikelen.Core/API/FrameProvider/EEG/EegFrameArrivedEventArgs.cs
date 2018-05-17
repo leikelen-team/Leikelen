@@ -22,6 +22,8 @@ namespace cl.uv.leikelen.API.FrameProvider.EEG
         /// </summary>
         public Person Person;
 
+        public int Quality;
+
         /// <summary>
         /// The channel list
         /// </summary>
@@ -30,8 +32,6 @@ namespace cl.uv.leikelen.API.FrameProvider.EEG
         public Dictionary<FrequencyBand, double> BandPower;
 
         public Dictionary<string, double> CalculatedAttributes;
-
-        public int Quality;
     }
 
     /// <summary>

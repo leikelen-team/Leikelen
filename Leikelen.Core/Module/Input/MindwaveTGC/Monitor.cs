@@ -9,6 +9,7 @@ using System.IO;
 using Newtonsoft.Json;
 using cl.uv.leikelen.Data.Model;
 using cl.uv.leikelen.API.FrameProvider.EEG;
+using System.Windows;
 
 namespace cl.uv.leikelen.Module.Input.MindwaveTGC
 {
@@ -17,15 +18,19 @@ namespace cl.uv.leikelen.Module.Input.MindwaveTGC
         private API.DataAccess.IDataAccessFacade _dataAccessFacade = new Data.Access.DataAccessFacade();
         private TcpClient _client;
         public event EventHandler StatusChanged;
+        private StreamWriter _sw;
         bool _isRecording = false;
         InputStatus _status;
         private Person _person;
         private event EventHandler<EegFrameArrivedEventArgs> EegFrameArrived;
+        System.Threading.Thread _readThread;
+        private bool _waitingStoppped = false;
 
         public Monitor(Person person)
         {
             _person = person;
             _isRecording = false;
+            _waitingStoppped = false;
             _status = InputStatus.Unconnected;
         }
 
@@ -36,6 +41,24 @@ namespace cl.uv.leikelen.Module.Input.MindwaveTGC
                 _isRecording = false;
                 if (_client != null)
                     _client.Close();
+                if (_readThread != null)
+                {
+                    try
+                    {
+                        _readThread.Interrupt();
+                        _readThread.Abort();
+                    }
+                    /*catch(Exception ex)
+                    {
+
+                    }*/
+                    finally
+                    {
+                        _readThread = null;
+                    }
+                    
+                }
+                    
             }
             catch (SocketException se)
             {
@@ -57,23 +80,32 @@ namespace cl.uv.leikelen.Module.Input.MindwaveTGC
         {
             try
             {
-                _client = new TcpClient("127.0.0.1", 13854);
+                if(_client == null)
+                    _client = new TcpClient("127.0.0.1", 13854);
                 var stream = _client.GetStream();
                 // Building command to enable JSON output from ThinkGear Connector (TGC)
                 byte[] myWriteBuffer = Encoding.ASCII
                     .GetBytes(@"{ 'enableRawOutput' : true, 'format': 'Json'}");
 
+                //var hash = System.Security.Cryptography.HashAlgorithm.Create("SHA1");
+
+                //hash.Initialize();
+                //hash.ComputeHash("Lelikelen".Base64DecodeAsBytes());
+                
+                byte[] myWriteBufferApp = Encoding.ASCII
+                    .GetBytes(@"{ 'appName' : 'Lelikelen', 'appKey': '"+ Util.SHA1Util.SHA1HashStringForUTF8String("Lelikelen") + "'}");
                 // Sending configuration packet to TGC
                 if (stream.CanWrite)
                 {
                     stream.Write(myWriteBuffer, 0, myWriteBuffer.Length);
+                    stream.Write(myWriteBufferApp, 0, myWriteBufferApp.Length);
                 }
                 if (stream.CanRead)
                 {
                     _status = InputStatus.Connected;
 
-                    System.Threading.Thread mithread = new System.Threading.Thread(ReadDataFrames);
-                    mithread.Start(stream);
+                    _readThread = new System.Threading.Thread(ReadDataFrames);
+                    _readThread.Start(stream);
                     //ReadDataFrames(stream);
                     
                 }
@@ -81,6 +113,7 @@ namespace cl.uv.leikelen.Module.Input.MindwaveTGC
             catch (SocketException se)
             {
                 _status = InputStatus.Error;
+                Console.WriteLine("exeption at opening mindwave: " + se.Message);
             }
         }
 
@@ -95,6 +128,8 @@ namespace cl.uv.leikelen.Module.Input.MindwaveTGC
             while (true)
             {
                 bytesRead = stream2.Read(buffer, 0, 2048);
+                if (bytesRead == 0)
+                    continue;
                 string[] packets = Encoding.UTF8.GetString(buffer, 0,
                     bytesRead).Split('\r');
                 double? rawEEg = null;
@@ -112,23 +147,34 @@ namespace cl.uv.leikelen.Module.Input.MindwaveTGC
                 double? powerHighBeta = null;
                 double? powerLowGamma = null;
                 double? powerHighGama = null;
+                string path = null;
 
 
                 foreach (string s in packets)
                 {
                     //ParseJSON(s.Trim());
                     Console.WriteLine(s.Trim());
-                    if (_isRecording)
+                    if (_isRecording || _waitingStoppped)
                     {
                         try
                         {
-                            var jsonObj = JsonConvert.DeserializeObject<dynamic>(s.Trim());
+                            bool stopped = false;
+                            var jsonObj = JsonConvert.DeserializeObject<dynamic>(s);
                             if (jsonObj != null)
                             {
                                 foreach (Newtonsoft.Json.Linq.JProperty item in jsonObj)
                                 {
                                     switch (item.Name)
                                     {
+                                        case "status":
+                                            if(jsonObj.status == "recordingStopped")
+                                            {
+                                                stopped = true;
+                                            }
+                                            break;
+                                        case "filePath":
+                                            path = jsonObj.filePath;
+                                            break;
                                         case "rawEeg":
                                             rawEEg = jsonObj.rawEeg;
                                             break;
@@ -152,7 +198,7 @@ namespace cl.uv.leikelen.Module.Input.MindwaveTGC
                                                     if (item2.Name.Equals("attention"))
                                                         attention = jsonObj.eSense.attention;
                                                     if (item2.Name.Equals("meditation"))
-                                                        meditation = jsonObj.eSense.medidation;
+                                                        meditation = jsonObj.eSense.meditation;
                                                 }
                                             }
                                             break;
@@ -193,50 +239,84 @@ namespace cl.uv.leikelen.Module.Input.MindwaveTGC
                                             break;
                                     }
                                 }
-                                var frame = new API.FrameProvider.EEG.EegFrameArrivedEventArgs();
-                                frame.Person = _person;
-                                var miTime = _dataAccessFacade.GetSceneInUseAccess().GetLocation();
-                                if (miTime.HasValue)
-                                    frame.Time = miTime.Value;
-                                if (quality.HasValue)
-                                    frame.Quality = quality.Value;
-                                if (rawEEg.HasValue)
-                                    frame.Channels = new List<API.FrameProvider.EEG.EegChannel>()
+                                if(_waitingStoppped && stopped && !String.IsNullOrEmpty(path))
+                                {
+                                    //TODO: show messagebox
+                                    MessageBox.Show("path: "+path,"Titulo", MessageBoxButton.OKCancel, MessageBoxImage.Exclamation);
+                                }
+                                if(_isRecording && (rawEEg.HasValue || quality.HasValue ||
+                                    attention.HasValue || meditation.HasValue || powerDelta.HasValue
+                                    || powerTheta.HasValue || powerHighAlpha.HasValue || powerLowAlpha.HasValue
+                                    || powerLowBeta.HasValue || powerHighBeta.HasValue || powerLowGamma.HasValue
+                                    || powerHighGama.HasValue || powerHighAlpha.HasValue || familiarity.HasValue
+                                    || mentalEffort.HasValue || blinkStrength.HasValue ))
+                                {
+                                    var frame = new API.FrameProvider.EEG.EegFrameArrivedEventArgs();
+                                    frame.Person = _person;
+                                    var miTime = _dataAccessFacade.GetSceneInUseAccess().GetLocation();
+                                    if (miTime.HasValue)
+                                        frame.Time = miTime.Value;
+                                    if (quality.HasValue)
+                                        frame.Quality = quality.Value;
+                                    if (rawEEg.HasValue)
+                                        frame.Channels = new List<API.FrameProvider.EEG.EegChannel>()
                                             {
                                                 new API.FrameProvider.EEG.EegChannel()
                                                 {
                                                     Value = rawEEg.Value
                                                 }
                                             };
-                                frame.CalculatedAttributes = new Dictionary<string, double>();
-                                if (attention.HasValue)
-                                    frame.CalculatedAttributes["attention"] = attention.Value;
-                                if (meditation.HasValue)
-                                    frame.CalculatedAttributes["meditation"] = meditation.Value;
-                                frame.BandPower = new Dictionary<FrequencyBand, double>();
-                                if (powerDelta.HasValue)
-                                    frame.BandPower[FrequencyBand.Delta] = powerDelta.Value;
-                                if (powerTheta.HasValue)
-                                    frame.BandPower[FrequencyBand.Theta] = powerTheta.Value;
-                                if (powerHighAlpha.HasValue)
-                                    frame.BandPower[FrequencyBand.HighAlpha] = powerHighAlpha.Value;
-                                if (powerLowAlpha.HasValue)
-                                    frame.BandPower[FrequencyBand.LowAlpha] = powerLowAlpha.Value;
-                                if (powerLowBeta.HasValue)
-                                    frame.BandPower[FrequencyBand.LowBeta] = powerLowBeta.Value;
-                                if (powerHighBeta.HasValue)
-                                    frame.BandPower[FrequencyBand.HighBeta] = powerHighBeta.Value;
-                                if (powerLowGamma.HasValue)
-                                    frame.BandPower[FrequencyBand.LowGamma] = powerLowGamma.Value;
-                                if (powerHighGama.HasValue)
-                                    frame.BandPower[FrequencyBand.HighGamma] = powerHighGama.Value;
-                                EegFrameArrived.Invoke(this, frame);
+                                    frame.CalculatedAttributes = new Dictionary<string, double>();
+                                    if (attention.HasValue)
+                                        frame.CalculatedAttributes["attention"] = attention.Value;
+                                    if (meditation.HasValue)
+                                        frame.CalculatedAttributes["meditation"] = meditation.Value;
+                                    if (familiarity.HasValue)
+                                        frame.CalculatedAttributes["familiarity"] = meditation.Value;
+                                    if (mentalEffort.HasValue)
+                                        frame.CalculatedAttributes["mentalEffort"] = meditation.Value;
+                                    if (blinkStrength.HasValue)
+                                        frame.CalculatedAttributes["blinkStrength"] = meditation.Value;
+                                    frame.BandPower = new Dictionary<FrequencyBand, double>();
+                                    if (powerDelta.HasValue)
+                                        frame.BandPower[FrequencyBand.Delta] = powerDelta.Value;
+                                    if (powerTheta.HasValue)
+                                        frame.BandPower[FrequencyBand.Theta] = powerTheta.Value;
+                                    if (powerHighAlpha.HasValue)
+                                        frame.BandPower[FrequencyBand.HighAlpha] = powerHighAlpha.Value;
+                                    if (powerLowAlpha.HasValue)
+                                        frame.BandPower[FrequencyBand.LowAlpha] = powerLowAlpha.Value;
+                                    if (powerLowBeta.HasValue)
+                                        frame.BandPower[FrequencyBand.LowBeta] = powerLowBeta.Value;
+                                    if (powerHighBeta.HasValue)
+                                        frame.BandPower[FrequencyBand.HighBeta] = powerHighBeta.Value;
+                                    if (powerLowGamma.HasValue)
+                                        frame.BandPower[FrequencyBand.LowGamma] = powerLowGamma.Value;
+                                    if (powerHighGama.HasValue)
+                                        frame.BandPower[FrequencyBand.HighGamma] = powerHighGama.Value;
+                                    
+                                    EegFrameArrived?.Invoke(this, frame);
+                                    var myPerson = new Person
+                                    {
+                                        Name = _person.Name,
+                                        PersonId = _person.PersonId,
+                                        TrackingId = _person.TrackingId,
+                                        Sex = _person.Sex,
+                                        Photo = _person.Photo,
+                                        Birthday = _person.Birthday,
+                                        PersonInScenes = null
+                                    };
+                                    frame.Person = myPerson;
+                                    _sw.Write(frame.ToJsonString(compress: true, enumsAsStrings: true));
+                                    _sw.WriteLine(",");
+                                    _sw.Flush();
+                                }
                             }
 
                         }
                         catch (Exception ex)
                         {
-
+                            Console.WriteLine("Error mindwave: "+ex.Message);
                         }
 
                     }
@@ -251,7 +331,25 @@ namespace cl.uv.leikelen.Module.Input.MindwaveTGC
 
         async Task IMonitor.StartRecording()
         {
+            if(_client != null)
+            {
+                _sw = new StreamWriter(Path.Combine(
+                    _dataAccessFacade.GetGeneralSettings().GetSceneInUseDirectory(),
+                    "mindwave_pId_" + _person.PersonId + "_pName_"+_person.Name+ ".json"));
+                _sw.WriteLine("[");
+                var stream = _client.GetStream();
+                // Building command to enable JSON output from ThinkGear Connector (TGC)
+                byte[] myWriteBuffer = Encoding.ASCII
+                    .GetBytes(@"{ 'startRecording' : {'rawEeg' : true, 'poorSignalLevel': true, 'eSense': true, 'eegPower': true, 'blinkStrength': true}, 'applicationName': 'Lelikelen'}");
+
+                // Sending configuration packet to TGC
+                if (stream.CanWrite)
+                {
+                    stream.Write(myWriteBuffer, 0, myWriteBuffer.Length);
+                }
+            }
             _isRecording = true;
+            _waitingStoppped = false;
             foreach (var module in ProcessingLoader.Instance.ProcessingModules)
             {
                 if (module.IsEnabled)
@@ -266,6 +364,31 @@ namespace cl.uv.leikelen.Module.Input.MindwaveTGC
 
         async Task IMonitor.StopRecording()
         {
+            if (_client != null)
+            {
+                if(_sw != null)
+                {
+                    _sw.WriteLine("]");
+                    _sw.Flush();
+                    _sw.Close();
+                    _sw = null;
+                }
+                var stream = _client.GetStream();
+                // Building command to enable JSON output from ThinkGear Connector (TGC)
+                byte[] myWriteBuffer = Encoding.ASCII
+                    .GetBytes(@"{ 'stopRecording' : 'Lelikelen'}");
+
+                // Sending configuration packet to TGC
+                if (stream.CanWrite)
+                {
+                    stream.Write(myWriteBuffer, 0, myWriteBuffer.Length);
+                }
+                if (stream.CanRead)
+                {
+                    _waitingStoppped = true;
+
+                }
+            }
             _isRecording = false;
             foreach (var module in ProcessingLoader.Instance.ProcessingModules)
             {
