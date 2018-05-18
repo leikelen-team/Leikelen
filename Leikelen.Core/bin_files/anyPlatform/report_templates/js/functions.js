@@ -86,24 +86,13 @@ function createModalIntervalsGraph(intervals, durationScene, name, i){
                     min: 0,
                     max: durationScene,
                     callback: function(value, index, values){
-                        return parseInt(String(value/60))+":"+parseInt(String(value/60))-parseInt(String(value/60)*60)
+                        return parseInt(String(value/60))+":"+parseInt(String((value/60-parseInt(String(value/60)))*60))
                     }
                     
-                },
-                /*time: {
-                    min: 0,
-                    max: durationScene,
-                    unit: 'second',
-                    displayFormats: {
-                        second: 'mm:ss'
-                    }
-                }*/
+                }
             }],
             yAxes : [{
-                display: false
-                /*scaleLabel : {
-                    display : false
-                }*/,
+                display: false,
                 ticks : {
                     beginAtZero :true,
                     max : 1
@@ -164,7 +153,7 @@ function createSubModalIntervalsGraph(intervals, durationScene, name, i){
                     min: 0,
                     max: durationScene,
                     callback: function(value, index, values){
-                        return parseInt(String(value/60))+":"+parseInt(String((value/60)))-parseInt(String((value/60)*60))
+                        return parseInt(String(value/60))+":"+parseInt(String((value/60-parseInt(String(value/60)))*60))
                     }
                     
                 }

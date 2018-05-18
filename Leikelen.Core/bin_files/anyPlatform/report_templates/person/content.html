@@ -1,68 +1,123 @@
 
-<html>
+<html lang="es">
 <head>
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
     <script>
+        //console.log("el inicio");
      Function.prototype.bind = Function.prototype.bind || function (thisp) {
         var fn = this;
         return function () {
             return fn.apply(thisp, arguments);
         };
     };
+    //console.log("el fin del inicio");
     </script>
-    <script src="jquery-1.11.0.min.js"></script>
-    <script src="Chart.bundle.min.js"></script>
-    <script src="d3.min.js"></script>
-    <script src="helpers.js"></script>
-    <script src="functions.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/legend.css">
+    <link rel="stylesheet" href="../css/personal.css">
+    <script src="../js/jquery-1.11.0.min.js" type="text/javascript"></script>
+    <script src="../js/popper.min.js" type="text/javascript"></script>
+    <script src="../js/bootstrap.bundle.min.js" type="text/javascript"></script>
+    <script src="../js/Chart.bundle.min.js" type="text/javascript"></script>
+    <script src="../js/d3.min.js" type="text/javascript"></script>
+    <script src="../js/helpers.js" type="text/javascript"></script>
+    <script src="../js/functions.js" type="text/javascript"></script>
+    <script src="../js/traducciones.js" type="text/javascript"></script>
 </head>
 <body>
-    <h1>Reporte de la Presentacion</h1>
-    <h3>Posturas por estudiante</h3>
-    <p>A continuación se muestra la cantidad de tiempo (porcentualmente) de cada postura</p>
-    <div style="width:900px;height:600;">
-        <canvas id="discretes" style="width:900px;height:600px"></canvas>
+    <div class="jumbotron">
+      <div class="container">
+        <h1 class="display-4"  id="section_Main_Title"></h1>
+        <p class="lead" id="section_Main_Explanation"></p>
+      </div>
+    </div>
+    <div>
+        <h3 id="section_studentPostures_Title"></h3>
+        <p id="section_studentPostures_Explanation"></p>
+        <div style="width:900px;height:600;">
+            <canvas id="discretes" style="width:900px;height:600px"></canvas>
+        </div>
     </div>
 
-    <h3>Voz, Inclinación del cuerpo y orientación del cuello</h3>
-    <p>A continuación se muestra el tiempo que estuvo hablando, la inclinación de su cuerpo y si estuvo mirando al público</p>
-    <div style="width:900px;height:600;">
-        <canvas id="others" style="width:900px;height:600px"></canvas>
+    <div>
+        <h3 id="section_voiceLeanNeck_Title"></h3>
+        <p id="section_voiceLeanNeck_Explanation"></p>
+        <div style="width:900px;height:600;">
+            <canvas id="others" style="width:900px;height:600px"></canvas>
+        </div>
     </div>
 
-    <h3>Distancias entre los participantes</h3>
-    <p>A continuación se muestran los tipos de distancias entre los distintos participantes</p>
-    <div style="width:900px;height:600;">
-        <canvas id="proxemics" style="width:900px;height:600px"></canvas>
+    <div>
+        <h3 id="section_proxemic_Title"></h3>
+        <p id="section_proxemic_Explanation"></p>
+        <div style="width:900px;height:600;">
+            <canvas id="proxemics" style="width:900px;height:600px"></canvas>
+        </div>
     </div>
 
-    <div id="ModalIntervalsDiv"></div>
+    <div>
+        <h3 id="section_accproxemic_Title"></h3>
+        <p id="section_accproxemic_Explanation"></p>
+        <div style="width:900px;height:600;">
+            <canvas id="accproxemics" style="width:900px;height:600px"></canvas>
+        </div>
+    </div>
 
-    <hr/><hr/><hr/><hr/><hr/><hr/><hr/><hr/>
-    <div id="SubmodalIntervalsDiv"></div>
+    <div id="ModalIntervalsDiv">
+        <h3 id="section_modalInt_Title"></h3>
+        <p id="section_modalInt_Explanation"></p>
+    </div>
 
-        <hr/><hr/><hr/><hr/><hr/><hr/><hr/><hr/>
-    <h1>Eventos</h1>
-    <p>A continuación se muestran los gráficos de eventos por cada tipo y subtipo. 
-    Los gráficos contienen 100 o menos puntos (en caso de tener menos de 100) por un tema de visualización y rendimiento, 
-    para esto se aplicó un proceso de decimación</p>
-    <div id="SubmodalEventsDiv"></div>
-    <br/><br/>
-    <hr/><hr/><hr/><hr/><hr/><hr/><hr/><hr/>
-    <h1>Treemap</h1>
-    <svg id='treemap' width='900' height='900'></svg>
+    <div id="SubmodalIntervalsDiv">
+        <h3 id="section_submodalInt_Title"></h3>
+        <p id="section_submodalInt_Explanation"></p>
+    </div>
+
+    <div>
+        <h1 id="section_submodalEvents_Title"></h1>
+        <p id="section_submodalEvents_Explanation"></p>
+        <div id="SubmodalEventsDiv"></div>
+    </div>
+
+    <div>
+        <h1 id="section_treemap_Title"></h1>
+        <p id="section_treemap_Explanation"></p>
+        <div id="treemaps">
+            <svg id='treemap' width='900' height='900'></svg>
+        </div>
+    </div>
 </body>
 <script>
+    //console.log("what paso");
   $(function () {
     $.getJSON("dataJson.json")
         .done(function(data){
+            var lang = "es";
+
+            $("#section_Main_Title").html(getSectionTextTranslated("mainPerson", lang, "name")+data["intervals"][0]["PersonName"]);
+            $("#section_Main_Explanation").html(getSectionTextTranslated("mainPerson", lang, "explanation"));
+            $("#section_studentPostures_Title").html(getSectionTextTranslated("studentPostures", lang, "name"));
+            $("#section_studentPostures_Explanation").html(getSectionTextTranslated("studentPostures", lang, "explanation"));
+            $("#section_voiceLeanNeck_Title").html(getSectionTextTranslated("voiceLeanNeck", lang, "name"));
+            $("#section_voiceLeanNeck_Explanation").html(getSectionTextTranslated("voiceLeanNeck", lang, "explanation"));
+            $("#section_proxemic_Title").html(getSectionTextTranslated("proxemic", lang, "name"));
+            $("#section_proxemic_Explanation").html(getSectionTextTranslated("proxemic", lang, "explanation"));
+            $("#section_accproxemic_Title").html(getSectionTextTranslated("accproxemic", lang, "name"));
+            $("#section_accproxemic_Explanation").html(getSectionTextTranslated("accproxemic", lang, "explanation"));
+            $("#section_modalInt_Title").html(getSectionTextTranslated("modalInt", lang, "name"));
+            $("#section_modalInt_Explanation").html(getSectionTextTranslated("modalInt", lang, "explanation"));
+            $("#section_submodalInt_Title").html(getSectionTextTranslated("submodalInt", lang, "name"));
+            $("#section_submodalInt_Explanation").html(getSectionTextTranslated("submodalInt", lang, "explanation"));
+            $("#section_submodalEvents_Title").html(getSectionTextTranslated("submodalEvents", lang, "name"));
+            $("#section_submodalEvents_Explanation").html(getSectionTextTranslated("submodalEvents", lang, "explanation"));
+            $("#section_treemap_Title").html(getSectionTextTranslated("treemap", lang, "name"));
+            $("#section_treemap_Explanation").html(getSectionTextTranslated("treemap", lang, "explanation"));
 
             var dScene = Date.parse("1970-01-01T" + data["scene"]["Duration"] + "Z");
             var cScene = new Date(dScene);
-            //var sScene = c;
             var sScene = cScene.getUTCHours()*60*60+cScene.getUTCMinutes()*60+cScene.getUTCSeconds()+cScene.getUTCMilliseconds()/1000.0;
 
-
+            //console.log("holi a crear discrete");
             /*Discrete postures*/
             var labels = getLabels(data["intervals"], ["Discrete Posture"], false);
             var persons = getPersonData(data["intervals"], ["Discrete Posture"], false, sScene);
@@ -78,6 +133,7 @@
                     }
                 }
             })
+            //console.log("a crear voice");
             /*Voice, Neck Orientation, Lean, AccProxemic, Proxemic*/
             labels = getLabels(data["intervals"], ["Voice", "Neck Orientation", "Lean"], true);
             persons = getPersonData(data["intervals"], ["Voice", "Neck Orientation", "Lean"], true, sScene);
@@ -93,9 +149,10 @@
                 }
             })
 
+            //console.log("proxemics");
             /*Proxemic*/
-            labels = getLabels(data["intervals"], ["AccProxemic", "Proxemic"], true);
-            persons = getPersonData(data["intervals"], ["AccProxemic", "Proxemic"], true, sScene);
+            labels = getLabels(data["intervals"], ["Proxemic"], true);
+            persons = getPersonData(data["intervals"], ["Proxemic"], true, sScene);
             barChartData = createBarChartData(persons, labels);
 
             new Chart(document.getElementById('proxemics').getContext('2d'), {
@@ -108,74 +165,108 @@
                 }
             })
 
+            labels = getLabels(data["intervals"], ["AccProxemic"], true);
+            persons = getPersonData(data["intervals"], ["AccProxemic"], true, sScene);
+            barChartData = createBarChartData(persons, labels);
 
-            /*Graficos intervalos*/
-            var numInterval = 0;
-            var styleStr = "style='width:900px;height:100px;'"
-            Object.keys(data["intervalList"]).map(function(modal, iModal){
-                $("#ModalIntervalsDiv").append("<br/><br/><h2>Tipo modal: "+modal+"</h2>");
-                
-                
-                Object.keys(data["intervalList"][modal]).map(function(submodal, iSubmodal){
-                    if(data["intervalList"][modal][submodal] != null){
-                        //console.log("no es null");
-                        $("#ModalIntervalsDiv").append("<div><span style='width:20px;height20px;background:"+colors[iSubmodal%colors.length]+"'>[ ]</span>"+submodal+"<br/></div>");
+            new Chart(document.getElementById('accproxemics').getContext('2d'), {
+                type: 'bar',
+                data: barChartData,
+                options: {
+                    animation: {
+                        duration: 0
                     }
-                });
-                $("#ModalIntervalsDiv").append("<br/><div id='divinter"+numInterval+"' "+styleStr+"></div>"); //<h3>"+submodal+"</h3>
-                $("#divinter"+numInterval).append("<canvas id='canvasinter"+numInterval+"' "+styleStr+"></canvas>");
+                }
+            })
 
-                var dataOfChart = createModalIntervalsGraph(data["intervalList"][modal],
-                        sScene,
-                        modal,
-                        iModal);
-                //console.log(dataOfChart);
-                new Chart(document.getElementById("canvasinter"+numInterval).getContext('2d'), dataOfChart);
-                numInterval++;
-            });
-
-
+            var styleStr = "style='width:900px;height:100px;'"
+            //try{
             var numInterval = 0;
+            //Object.keys(data["intervalList"]).map(function(person, iPerson){
+                //$("#ModalIntervalsDiv").append("<div id='modalIntPersonDiv"+person+"'><h1 class='personName'>Persona: "+person+"</h1>");
                 Object.keys(data["intervalList"]).map(function(modal, iModal){
-                    $("#SubmodalIntervalsDiv").append("<br/><br/><h2>Tipo modal: "+modal+"</h2>");
+                    if(modal == "Shoulders")
+                        return;
+                    $("#ModalIntervalsDiv").append("<div class='borderedContent' id='modalIntDiv"+numInterval+"'><h2 class='modaltype-title'>"+getModalSubmodalTextTranslated(modal, null, lang, "name")+"</h2><p class='modaltype-explanation'>"+getModalSubmodalTextTranslated(modal, null, lang, "explanation")+"</p></div>");
+                    $("#modalIntDiv"+numInterval).append("<div class='legend' id='modalIntLegendDiv"+numInterval+"'>");
+                    var legendList = $("#modalIntLegendDiv"+numInterval).append("<ul></ul>").find('ul');
                     Object.keys(data["intervalList"][modal]).map(function(submodal, iSubmodal){
                         if(data["intervalList"][modal][submodal] != null){
-                            //console.log("no es null");
-                            $("#SubmodalIntervalsDiv").append("<br/><div id='subdivinter"+numInterval+"' "+styleStr+"><h3>"+submodal+"</h3></div>"); //
-                            $("#subdivinter"+numInterval).append("<canvas id='subcanvasinter"+numInterval+"' "+styleStr+"></canvas>");
+                            legendList.append("<li><span style='background-color:"+colors[iSubmodal%colors.length]+"'></span>"+getModalSubmodalTextTranslated(modal, submodal, lang, "name")+"</li>");
+                        }
+                    });
+                    $("#modalIntDiv"+numInterval).append("<div id='divinter"+numInterval+"' "+styleStr+"></div>");
+                    $("#divinter"+numInterval).append("<canvas id='canvasinter"+numInterval+"' "+styleStr+"></canvas>");
+
+                    var dataOfChart = createModalIntervalsGraph(data["intervalList"][modal],
+                            sScene,
+                            modal,
+                            iModal);
+                    new Chart(document.getElementById("canvasinter"+numInterval).getContext('2d'), dataOfChart);
+                    numInterval++;
+                })
+            //});
+
+                
+            //} catch(ex){console.log("error: "+ex.message);}
+
+            //try{
+            var numInterval = 0;
+            var numModal = 0;
+            //Object.keys(data["intervalList"]).map(function(person, iPerson){
+                //$("#SubmodalIntervalsDiv").append("<br/><br/><hr/><hr/><h1>Persona: "+person+"</h1><br/>")
+                //$("#SubmodalIntervalsDiv").append("<div id='submodalIntPersonDiv"+person+"'><h1 class='personName'>Persona: "+person+"</h1></div>");
+                Object.keys(data["intervalList"]).map(function(modal, iModal){
+                    if(modal == "Shoulders")
+                        return;
+                    //$("#SubmodalIntervalsDiv").append("<br/><br/><h2>Tipo modal: "+getModalSubmodalTextTranslated(modal, null, lang, "name")+"</h2>");
+                    $("#SubmodalIntervalsDiv").append("<div class='borderedContent' id='submodalIntDiv"+numModal+"'><h2 class='modaltype-title'>"+getModalSubmodalTextTranslated(modal, null, lang, "name")+"</h2><p class='modaltype-explanation'>"+getModalSubmodalTextTranslated(modal, null, lang, "explanation")+"</p></div>");
+                    Object.keys(data["intervalList"][modal]).map(function(submodal, iSubmodal){
+                        if(data["intervalList"][modal][submodal] != null){
+                            $("#submodalIntDiv"+numModal).append("<div id='subdivinter"+numInterval+"'><h3 class='submodaltype-title'>"+getModalSubmodalTextTranslated(modal, submodal, lang, "name")+"</h3><p class='submodaltype-explanation'>"+getModalSubmodalTextTranslated(modal, submodal, lang, "explanation")+"</p></div>"); //
+                            $("#subdivinter"+numInterval).append("<div "+styleStr+"><canvas id='subcanvasinter"+numInterval+"' "+styleStr+"></canvas></div>");
 
                             var dataOfChart = createSubModalIntervalsGraph(data["intervalList"][modal][submodal],
                                     sScene,
                                     submodal,
                                     iSubmodal);
-                            //console.log(dataOfChart);
+
                             new Chart(document.getElementById("subcanvasinter"+numInterval).getContext('2d'), dataOfChart);
                             numInterval++;
                         }
                     })
-                });
+                    numModal++;
+                })
+            //});
+            //} catch(ex){console.log("error: "+ex.message);}
 
-
-
-
-                /*Eventos*/
-                var numEvents = 0;
+            
+            //try{
+            /*Eventssss*/
+            var numEvents = 0;
+            var numModal = 0;
+            //Object.keys(data["eventList"]).map(function(person, iPerson){
+                //$("#SubmodalEventsDiv").append("<br/><br/><hr/><hr/><h1>Persona: "+person+"</h1><br/>");
+                //$("#SubmodalEventsDiv").append("<div id='submodalEvPersonDiv"+person+"'><h1 class='personName'>Persona: "+person+"</h1></div>");
+                //console.log("holi");
                 Object.keys(data["eventList"]).map(function(modal, iModal){
-                    $("#SubmodalEventsDiv").append("<br/><br/><h2>Tipo modal: "+modal+"</h2>");
+                    //$("#SubmodalEventsDiv").append("<br/><br/><h2>Tipo modal: "+modal+"</h2>");
+                    $("#SubmodalEventsDiv").append("<div class='borderedContent' id='submodalEvDiv"+numModal+"'><h2 class='modaltype-title'>"+getModalSubmodalTextTranslated(modal, null, lang, "name")+"</h2><p class='modaltype-explanation'>"+getModalSubmodalTextTranslated(modal, null, lang, "explanation")+"</p></div>");
                     Object.keys(data["eventList"][modal]).map(function(submodal, iSubmodal){
                         if(data["eventList"][modal][submodal] != null){
                             //console.log("no es null");
-                            $("#SubmodalEventsDiv").append("<br/><div id='subdivev"+numEvents+"' "+styleStr+"><h3>"+submodal+"</h3></div>"); //
-                            $("#subdivev"+numEvents).append("<canvas id='subcanvasev"+numEvents+"' "+styleStr+"></canvas>");
-                            
+                            $("#submodalEvDiv"+numModal).append("<div id='subdivev"+numEvents+"'><h3 class='submodaltype-title'>"+getModalSubmodalTextTranslated(modal, submodal, lang, "name")+"</h3><p class='submodaltype-explanation'>"+getModalSubmodalTextTranslated(modal, submodal, lang, "explanation")+"</p></div>"); //
+                            $("#subdivev"+numEvents).append("<div "+styleStr+"><canvas id='subcanvasev"+numEvents+"' "+styleStr+"></canvas></div>");
                             chartData = [];
-                            var decimationFactor = parseInt(String(data["eventList"][modal][submodal].length/100));
+                            var decimationFactor = parseInt(String((data["eventList"][modal][submodal].length/100)));
                             var decimationActual = 0;
                             var decimationArray = [];
 
                             for(var iEv in data["eventList"][modal][submodal]){
                                 var myx = 1;
+                                //console.log("holi in for");
                                 if(typeof(data["eventList"][modal][submodal][iEv]["Value"]) != typeof(undefined)){
+                                    //console.log("es undefined?");
                                     myx = data["eventList"][modal][submodal][iEv]["Value"];
                                 }
                                 decimationArray.push(myx);
@@ -202,6 +293,7 @@
                             }
                             //console.log(chartData);
                             //console.log(dataOfChart);
+                            //console.log("a crear chart eve");
                             new Chart(document.getElementById("subcanvasev"+numEvents).getContext('2d'), {
                                 type: 'line',
                                 data: {
@@ -225,7 +317,7 @@
                                                 max: sScene,
                                                 min: 0, 
                                                 callback: function(value, index, values){
-                                                    return parseInt(String(value/60))+":"+parseInt(String(((value/60)-parseInt(String(value/60)))*60))
+                                                    return parseInt(String(value/60))+":"+parseInt(String((value/60-parseInt(String(value/60)))*60))
                                                 }
                                             }
                                         }],
@@ -238,9 +330,13 @@
                             numEvents++;
                         }
                     })
-            });
-
-
+                    numModal++;
+                })
+            //});
+                //} catch(ex){console.log("error events: "+ex.message);}
+            
+            //console.log("termino");
+            
             var treeData = {};
             for(var inter in data["intervals"]){
                 var interval = data["intervals"][inter];
@@ -252,6 +348,7 @@
                         "children": []
                     };
                 }
+                //console.log(interval["PersonName"]);
                 /*var ModalItIs = false;
                 var childNumber = 0;
                 for(var child in treeData[interval["PersonName"]]["children"]){
@@ -273,16 +370,20 @@
                 var dInter = Date.parse("1970-01-01T" + interval["TotalDuration"] + "Z");
                 var cInter = new Date(dInter);
                 var sInter = parseInt(String(cInter.getUTCHours()*60*60+cInter.getUTCMinutes()*60+cInter.getUTCSeconds()+cInter.getUTCMilliseconds()/1000.0));
+                //console.log(sInter);
+                if(sInter == 0) continue;
                 treeData[interval["PersonName"]]["children"]/*[childNumber]["children"]*/.push({
                     "name": interval["SubModalName"],
                     /*"size": sInter*/
                     "children": [{
-                        "name": interval["SubModalName"],
+                        "name": getModalSubmodalTextTranslated(interval["ModalName"], interval["SubModalName"], lang, "name"),
                         "size": sInter
                     }]
                 });
             }
+            //console.log(treeData)
             for(var p in treeData){
+                //$("#treemaps").append("<h2>Para persona: "+p+"</h2><svg id='treemap"+p+"' width='900' height='900'></svg>")
                 createTreeMap("treemap", treeData[p]);
             }
 

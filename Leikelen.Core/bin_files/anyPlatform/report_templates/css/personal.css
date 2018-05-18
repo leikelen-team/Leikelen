@@ -1,0 +1,32 @@
+.borderedContent {
+	/*border: 1px dashed;*/
+	border-top: 1px double;
+	border-bottom: 1px double;
+	/*margin-top: 2px;
+	margin-bottom: 2px;*/
+	margin: 5px;
+	padding: 2px;
+}
+.bordlessContent {
+	border: 0px;
+	/*margin-top: 2px;
+	margin-bottom: 2px;*/
+	margin: 5px;
+	padding: 2px;
+}
+
+.modaltype-title{
+
+}
+
+.modaltype-explanation{
+
+}
+
+.submodaltype-title{
+	
+}
+
+.submodaltype-explanation{
+
+}
