@@ -21,9 +21,20 @@ namespace cl.uv.leikelen.Controller
             //get all events and intervals
             var intervalList = new Dictionary<string, Dictionary<string, Dictionary<string, List<Interval>>>>();
             var eventList = new Dictionary<string, Dictionary<string, Dictionary<string, List<Event>>>>();
-            
+            List<Person> personList = new List<Person>();
+
             foreach (var pis in DataAccessFacade.Instance.GetSceneInUseAccess().GetScene().PersonsInScene)
             {
+                personList.Add(new Person
+                {
+                    Name = pis.Person.Name,
+                    TrackingId = pis.Person.TrackingId,
+                    PersonId = pis.Person.PersonId,
+                    Birthday = pis.Person.Birthday,
+                    Sex = pis.Person.Sex,
+                    Photo = pis.Person.Photo,
+                    PersonInScenes = null
+                });
                 if (!intervalList.ContainsKey(pis.Person.Name))
                     intervalList[pis.Person.Name] = new Dictionary<string, Dictionary<string, List<Interval>>>();
                 if(!eventList.ContainsKey(pis.Person.Name))
@@ -51,12 +62,13 @@ namespace cl.uv.leikelen.Controller
             string htmlFile = @"report_templates\scene\content.html";
 
             var scene = DataAccessFacade.Instance.GetSceneInUseAccess().GetScene();
-
+            
             //create the json file with the data
             using (var fileStream2 = File.CreateText(jsonFile))
             {
                 var d = new
                 {
+                    persons = personList,
                     scene = new {
                         scene.Duration,
                         scene.Name,
@@ -141,6 +153,14 @@ namespace cl.uv.leikelen.Controller
             {
                 var d = new
                 {
+                    person = new {
+                        person.Name,
+                        person.TrackingId,
+                        person.PersonId,
+                        person.Birthday,
+                        person.Sex,
+                        person.Photo
+                    },
                     scene = new
                     {
                         scene.Duration,

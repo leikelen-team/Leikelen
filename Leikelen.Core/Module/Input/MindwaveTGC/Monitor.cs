@@ -86,11 +86,6 @@ namespace cl.uv.leikelen.Module.Input.MindwaveTGC
                 // Building command to enable JSON output from ThinkGear Connector (TGC)
                 byte[] myWriteBuffer = Encoding.ASCII
                     .GetBytes(@"{ 'enableRawOutput' : true, 'format': 'Json'}");
-
-                //var hash = System.Security.Cryptography.HashAlgorithm.Create("SHA1");
-
-                //hash.Initialize();
-                //hash.ComputeHash("Lelikelen".Base64DecodeAsBytes());
                 
                 byte[] myWriteBufferApp = Encoding.ASCII
                     .GetBytes(@"{ 'appName' : 'Lelikelen', 'appKey': '"+ Util.SHA1Util.SHA1HashStringForUTF8String("Lelikelen") + "'}");
@@ -106,7 +101,6 @@ namespace cl.uv.leikelen.Module.Input.MindwaveTGC
 
                     _readThread = new System.Threading.Thread(ReadDataFrames);
                     _readThread.Start(stream);
-                    //ReadDataFrames(stream);
                     
                 }
             }
@@ -122,8 +116,7 @@ namespace cl.uv.leikelen.Module.Input.MindwaveTGC
             var stream2 = (NetworkStream)stream;
             byte[] buffer = new byte[2048];
             int bytesRead;
-
-            //Console.WriteLine("reading bytes");
+            
             // This should really be in it's own thread
             while (true)
             {
@@ -152,8 +145,7 @@ namespace cl.uv.leikelen.Module.Input.MindwaveTGC
 
                 foreach (string s in packets)
                 {
-                    //ParseJSON(s.Trim());
-                    Console.WriteLine(s.Trim());
+                    //Console.WriteLine(s.Trim());
                     if (_isRecording || _waitingStoppped)
                     {
                         try
@@ -241,8 +233,19 @@ namespace cl.uv.leikelen.Module.Input.MindwaveTGC
                                 }
                                 if(_waitingStoppped && stopped && !String.IsNullOrEmpty(path))
                                 {
-                                    //TODO: show messagebox
+                                    //TODO: translate
                                     MessageBox.Show("path: "+path,"Titulo", MessageBoxButton.OKCancel, MessageBoxImage.Exclamation);
+                                    try
+                                    {
+                                        File.Copy(path, Path.Combine(
+                                        _dataAccessFacade.GetGeneralSettings().GetSceneInUseDirectory(),
+                                        "mindwaveAutoTGC_pId_" + _person.PersonId + "_pName_" + _person.Name + ".json"));
+                                    }
+                                    catch(Exception ex)
+                                    {
+                                        Console.WriteLine("error in monitor when copy the file: " + ex.Message);
+                                    }
+                                    
                                 }
                                 if(_isRecording && (rawEEg.HasValue || quality.HasValue ||
                                     attention.HasValue || meditation.HasValue || powerDelta.HasValue
