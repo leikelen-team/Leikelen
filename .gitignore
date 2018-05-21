@@ -21,4 +21,7 @@ DevDocumentation/obj/*
 
 Leikelen.Core/bin_files/anyPlatform/documentation/*
 
+Leikelen.Core/bin_files/anyPlatform/report_templates/person/dataJson.json
+Leikelen.Core/bin_files/anyPlatform/report_templates/scene/dataJson.json
+
 UpgradeLog.htm
