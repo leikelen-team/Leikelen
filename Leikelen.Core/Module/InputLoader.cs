@@ -37,6 +37,9 @@ namespace cl.uv.leikelen.Module
         /// </value>
         public IVideo VideoHandler { get; private set; }
 
+        /// <summary>
+        /// Occurs when [input modules loader has reset].
+        /// </summary>
         public static event EventHandler InputModulesHasReset;
 
         private static InputLoader _instance;
@@ -79,6 +82,9 @@ namespace cl.uv.leikelen.Module
             FillSceneInputModules();
         }
 
+        /// <summary>
+        /// Resets this instance. Disable and closes every scene and person sensor
+        /// </summary>
         public static void Reset()
         {
             foreach(var scIn in _instance.SceneInputModules)

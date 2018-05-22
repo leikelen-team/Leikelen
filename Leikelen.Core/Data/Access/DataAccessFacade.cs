@@ -17,15 +17,15 @@ namespace cl.uv.leikelen.Data.Access
     {
         private static DataAccessFacade _instance;
 
-        private IEventAccess _eventAccess;
-        private IIntervalAccess _intervalAccess;
-        private IModalAccess _modalAccess;
-        private IPersonAccess _personAccess;
-        private ISceneAccess _sceneAccess;
-        private ISubModalAccess _subModalAccess;
-        private ITimelessAccess _timelessAccess;
-        private ISceneInUseAccess _sceneInUseAccess;
-        private IGeneralSettings _generalSettings;
+        private readonly IEventAccess _eventAccess;
+        private readonly IIntervalAccess _intervalAccess;
+        private readonly IModalAccess _modalAccess;
+        private readonly IPersonAccess _personAccess;
+        private readonly ISceneAccess _sceneAccess;
+        private readonly ISubModalAccess _subModalAccess;
+        private readonly ITimelessAccess _timelessAccess;
+        private readonly ISceneInUseAccess _sceneInUseAccess;
+        private readonly IGeneralSettings _generalSettings;
 
         /// <summary>
         /// Gets the instance.
@@ -37,7 +37,7 @@ namespace cl.uv.leikelen.Data.Access
         {
             get
             {
-                if (ReferenceEquals(null, _instance)) _instance = new DataAccessFacade();
+                if (_instance is null) _instance = new DataAccessFacade();
                 return _instance;
             }
         }
@@ -133,7 +133,7 @@ namespace cl.uv.leikelen.Data.Access
         /// <summary>
         /// Gets the general settings.
         /// </summary>
-        /// <returns>The object to get the general settings of the app</returns>
+        /// <returns>The object to get the general settings</returns>
         public IGeneralSettings GetGeneralSettings()
         {
             return _generalSettings;

@@ -21,7 +21,7 @@ using cl.uv.leikelen.Data.Model;
 namespace cl.uv.leikelen.View.Widget.HomeTab.Widget
 {
     /// <summary>
-    /// Lógica de interacción para IntervalGraphControl.xaml
+    /// Interaction logic for IntervalGraphControl.xaml
     /// </summary>
     public partial class IntervalGraphControl : UserControl
     {

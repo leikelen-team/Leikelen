@@ -7,6 +7,9 @@ using cl.uv.leikelen.API.FrameProvider.EEG;
 
 namespace cl.uv.leikelen.Module.Input.OpenBCI.Util
 {
+    /// <summary>
+    /// Filter the data of signal of OpenBCI input sensor.
+    /// </summary>
     public class Filter
     {
         double[,] prev_x_notch = new double[8, 5];
@@ -14,6 +17,14 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI.Util
         double[,] prev_x_standard = new double[8, 5];
         double[,] prev_y_standard = new double[8, 5];
 
+        /// <summary>
+        /// Filters the a given data input.
+        /// </summary>
+        /// <param name="filter">The filter type.</param>
+        /// <param name="notch">The notch type.</param>
+        /// <param name="data">The data input.</param>
+        /// <param name="channelNumber">The channel number.</param>
+        /// <returns>The filtered data of the signal.</returns>
         public double FiltersSelect(FilterType filter, NotchType notch, double data, int channelNumber)
         {
             double[] filterB;

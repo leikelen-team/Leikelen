@@ -6,8 +6,16 @@ using System.Threading.Tasks;
 
 namespace cl.uv.leikelen.Module.Input.OpenBCI.Util
 {
+    /// <summary>
+    /// Convert byre arrays between different formats.
+    /// </summary>
     public static class Convert
     {
+        /// <summary>
+        /// Transform a byte array in 16 bit to 32bit integer format.
+        /// </summary>
+        /// <param name="byteArray">The byte array.</param>
+        /// <returns>array in 32 bit integer</returns>
         public static int Bit16ToInt32(byte[] byteArray)
         {
             int result = (
@@ -26,6 +34,11 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI.Util
             return result;
         }
 
+        /// <summary>
+        /// Transform a byte array in 24 bit to 32bit integer format.
+        /// </summary>
+        /// <param name="byteArray">The byte array.</param>
+        /// <returns>array in 32 bit integer</returns>
         public static int Bit24ToInt32(byte[] byteArray)
         {
             int result = (

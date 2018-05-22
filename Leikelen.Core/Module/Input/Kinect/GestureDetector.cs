@@ -12,8 +12,18 @@ using cl.uv.leikelen.API.FrameProvider.Kinect;
 
 namespace cl.uv.leikelen.Module.Input.Kinect
 {
+    /// <summary>
+    /// Detector of postures and sender to the processing modules
+    /// </summary>
+    /// <seealso cref="System.IDisposable" />
     public class GestureDetector : IDisposable
     {
+        /// <summary>
+        /// Gets or sets the gesture detector list for each person.
+        /// </summary>
+        /// <value>
+        /// The gesture detector list.
+        /// </value>
         public static List<GestureDetector> GestureDetectorList { get; set; } = new List<GestureDetector>();
         private static List<CustomBody> _bodies = new List<CustomBody>();
 
@@ -26,6 +36,9 @@ namespace cl.uv.leikelen.Module.Input.Kinect
         /// <summary> The body index (0-5) associated with the current gesture detector </summary>
         public int BodyIndex { get; private set; }
 
+        /// <summary>
+        /// Occurs when [kinect gesture frame arrived].
+        /// </summary>
         public event EventHandler<KinectGestureFrameArrivedArgs> KinectGestureFrameArrived;
 
         private IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
@@ -171,7 +184,7 @@ namespace cl.uv.leikelen.Module.Input.Kinect
                         // if the current body is not tracked, pause its detector so we don't
                         //waste resources trying to get invalid gesture results
                         GestureDetectorList[i].IsPaused = body.TrackingId == 0;
-                        Console.WriteLine($"gesture {i} pausado= {GestureDetectorList[i].IsPaused}");
+                        Console.WriteLine($"gesture {i} paused= {GestureDetectorList[i].IsPaused}");
                     }
                     i++;
                 }
@@ -183,6 +196,9 @@ namespace cl.uv.leikelen.Module.Input.Kinect
             KinectGestureFrameArrived?.Invoke(this, e);
         }
 
+        /// <summary>
+        /// Clean all resources of this instance.
+        /// </summary>
         public void Dispose()
         {
             if (!ReferenceEquals(null, VgbFrameReader))

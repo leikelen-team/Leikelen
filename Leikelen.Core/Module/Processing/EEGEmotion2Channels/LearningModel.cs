@@ -251,7 +251,7 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels
 
             gridsearch.ParallelOptions.MaxDegreeOfParallelism = 1;
 
-            Console.WriteLine("y nos ponemos a aprender");
+            Console.WriteLine("to learn");
             // Search for the best model parameters
             var result = gridsearch.Learn(inputsList.ToArray(), outputsList.ToArray());
 
@@ -281,10 +281,10 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels
         private static void WriteFiles(double error, double gamma, double complexity,
             List<double[]> inputsList, List<int> outputsList, MulticlassSupportVectorMachine<Gaussian> svm)
         {
-            Console.WriteLine("aprendido");
+            Console.WriteLine("learned");
             // Get the best SVM found during the parameter search
             _svm = svm;
-            Console.WriteLine("svm obtenido!");
+            Console.WriteLine("SVM obtained!");
             string internalDirectory = _dataAccessFacade.GetGeneralSettings().GetModalDirectory("Emotion");
             
 
@@ -296,7 +296,7 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels
 
             string internalPath = Path.Combine(internalDirectory, "emotionmodel.svm");
             Serializer.Save<MulticlassSupportVectorMachine<Gaussian>>(obj: svm, path: internalPath);
-            Console.WriteLine("guardado :3");
+            Console.WriteLine("saved :3");
 
             var file_features = File.CreateText(Path.Combine(internalDirectory, "features.json"));
             file_features.WriteLine(inputsList.ToJsonString());
@@ -308,109 +308,7 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels
             file_outputs.Flush();
             file_outputs.Close();
         }
-
-        private static List<double> MH(double[][] imfsF3, double[][] imfsC4)
-        {
-            List<double> features = new List<double>();
-            int n = 20;
-            int d = 8;
-            int T = 500;
-            double[][] x = new double[n][], v = new double[n][];
-
-            foreach(var imfSignal in imfsF3)
-            {
-                features.Add(MHEntropy(imfSignal));
-            }
-            foreach(var imfSignal in imfsC4)
-            {
-                features.Add(MHEntropy(imfSignal));
-            }
-            return features;
-        }
-
-        class Star
-        {
-            public double position;
-        };
-
-        private static double MHEntropy(double[] signal)
-        {
-            int starNumber = 30;
-            int iterations = 30;
-            double realEntropy = RealEntropy(signal);
-
-            Star[] stars = new Star[starNumber];
-            for(int i = 0; i < starNumber; i++)
-            {
-                stars[i] = new Star
-                {
-                    position = _xrand.NextDouble() * 8
-                };
-            }
-
-            for(int i = 0; i < iterations; i++)
-            {
-                for(int iStar = 0; iStar<stars.Length;iStar++)
-                {
-                    stars[iStar].position = stars[iStar].position + _xrand.NextDouble() * (BestStar(stars, realEntropy).position - stars[iStar].position);
-                }
-            }
-            
-            double entropyResult = BestStar(stars, realEntropy).position;
-            Console.WriteLine("entropy: " + entropyResult);
-            return entropyResult;
-        }
-
-        private static Star BestStar(Star[] stars, double realEntropy)
-        {
-            double bestDiference = double.PositiveInfinity;
-            Star bestStar = null;
-            foreach(var star in stars)
-            {
-                if (ReferenceEquals(null, bestStar))
-                {
-                    bestStar = star;
-                }
-                else
-                {
-                    double diference = Math.Abs(star.position - realEntropy);
-                    if (diference < bestDiference)
-                    {
-                        bestStar = star;
-                    }
-                }
-            }
-            return bestStar;
-        }
-
-        private static double RealEntropy(double[] signal)
-        {
-            double[] integerSignal = new double[signal.Length];
-            Dictionary<double, int> histogram = new Dictionary<double, int>();
-            double entropy = 0;
-            for (int i = 0; i < signal.Length;i++)
-            {
-                integerSignal[i] = Math.Abs(signal[i]);
-            }
-
-            foreach(var val in integerSignal)
-            {
-                if (histogram.ContainsKey(val))
-                {
-                    histogram[val]++;
-                }
-                else
-                {
-                    histogram.Add(val, 0);
-                }
-            }
-            foreach(var key in histogram.Keys)
-            {
-                double p = histogram[key] / histogram.Keys.Count;
-                entropy += p * (Math.Log10(p) / Math.Log10(2));
-            }
-            return entropy;
-        }
+        
 
         private static List<double> PreProcess(List<double[]> signalsList, double Q, int m, double r, int N, int iterations, int locality)
         {

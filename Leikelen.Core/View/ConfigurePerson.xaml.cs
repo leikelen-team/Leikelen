@@ -19,7 +19,7 @@ using cl.uv.leikelen.Data.Model;
 namespace cl.uv.leikelen.View
 {
     /// <summary>
-    /// Lógica de interacción para ConfigurePerson.xaml
+    /// Interaction logic for ConfigurePerson.xaml
     /// </summary>
     public partial class ConfigurePerson : Window
     {
@@ -27,6 +27,10 @@ namespace cl.uv.leikelen.View
         private string _originPhotoPath;
         private string _targetPhotoName;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConfigurePerson"/> class
+        /// to add a new person.
+        /// </summary>
         public ConfigurePerson()
         {
             InitializeComponent();
@@ -36,6 +40,11 @@ namespace cl.uv.leikelen.View
             CancelBtn.Click += CancelBtn_Click;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConfigurePerson"/> class
+        /// to edit a person.
+        /// </summary>
+        /// <param name="person">The person.</param>
         public ConfigurePerson(Person person)
         {
             InitializeComponent();

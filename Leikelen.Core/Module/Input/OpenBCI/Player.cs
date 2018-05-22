@@ -7,52 +7,62 @@ using cl.uv.leikelen.API.Module.Input;
 
 namespace cl.uv.leikelen.Module.Input.OpenBCI
 {
+    /// <summary>
+    /// Player for the OpenBCI input sensor.
+    /// </summary>
+    /// <seealso cref="cl.uv.leikelen.API.Module.Input.IPlayer" />
     public class Player : IPlayer
     {
+        /// <summary>
+        /// Occurs when playback [finished].
+        /// </summary>
         public event EventHandler Finished;
+        /// <summary>
+        /// Occurs when playback's [location changed].
+        /// </summary>
         public event EventHandler LocationChanged;
 
-        public void ChangeTime(TimeSpan newTime)
+        void IPlayer.ChangeTime(TimeSpan newTime)
         {
             return;
         }
 
-        public void Close()
+        void IPlayer.Close()
         {
             return;
         }
 
-        public TimeSpan? GetLocation()
+        TimeSpan? IPlayer.GetLocation()
         {
             return null;
         }
 
-        public TimeSpan? GetTotalDuration()
+        TimeSpan? IPlayer.GetTotalDuration()
         {
             return null;
         }
 
-        public bool IsPlaying()
+        bool IPlayer.IsPlaying()
         {
             return false;
         }
 
-        public void Pause()
+        void IPlayer.Pause()
         {
             return;
         }
 
-        public void Play()
+        void IPlayer.Play()
         {
             return;
         }
 
-        public void Stop()
+        void IPlayer.Stop()
         {
             return;
         }
 
-        public void Unpause()
+        void IPlayer.Unpause()
         {
             return;
         }

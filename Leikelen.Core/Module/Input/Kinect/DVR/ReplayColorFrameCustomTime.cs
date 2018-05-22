@@ -9,6 +9,11 @@ using KinectEx.DVR;
 
 namespace cl.uv.leikelen.Module.Input.Kinect.DVR
 {
+    /// <summary>
+    /// Modified version of the <see cref="KinectEx.DVR.ReplayColorFrame" />
+    /// to accept relative time of the scene/>
+    /// </summary>
+    /// <seealso cref="KinectEx.DVR.ReplayColorFrame" />
     public class ReplayColorFrameCustomTime : ReplayColorFrame
     {
         /// <summary>
@@ -16,6 +21,7 @@ namespace cl.uv.leikelen.Module.Input.Kinect.DVR
         /// based on the specified <c>ColorFrame</c>.
         /// </summary>
         /// <param name="frame">The frame.</param>
+        /// <param name="relativeTime">time relative to the start of the scene</param>
         public ReplayColorFrameCustomTime(ColorFrame frame, TimeSpan relativeTime)
         {
             this.Codec = ColorCodecs.Raw;
@@ -45,6 +51,7 @@ namespace cl.uv.leikelen.Module.Input.Kinect.DVR
         /// </summary>
         /// <param name="frame">The frame.</param>
         /// <param name="bytes">The bytes.</param>
+        /// <param name="relativeTime">time relative to the start of the scene</param>
         public ReplayColorFrameCustomTime(ColorFrame frame, byte[] bytes, TimeSpan relativeTime)
         {
             this.Codec = ColorCodecs.Raw;

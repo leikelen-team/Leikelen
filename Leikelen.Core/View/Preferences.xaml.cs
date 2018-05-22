@@ -18,10 +18,13 @@ using cl.uv.leikelen.API.Helper;
 namespace cl.uv.leikelen.View
 {
     /// <summary>
-    /// Lógica de interacción para Preferences.xaml
+    /// Interaction logic for Preferences.xaml
     /// </summary>
     public partial class Preferences : Window
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Preferences"/> class.
+        /// </summary>
         public Preferences()
         {
             InitializeComponent();
@@ -60,6 +63,9 @@ namespace cl.uv.leikelen.View
             Close();
         }
 
+        /// <summary>
+        /// Shows the window in the database tab.
+        /// </summary>
         public void ShowBd()
         {
             Tabs.SelectedIndex = 1;

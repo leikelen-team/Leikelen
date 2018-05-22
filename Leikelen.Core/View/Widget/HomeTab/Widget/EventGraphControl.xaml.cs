@@ -22,10 +22,13 @@ using cl.uv.leikelen.Data.Model;
 namespace cl.uv.leikelen.View.Widget.HomeTab.Widget
 {
     /// <summary>
-    /// Lógica de interacción para EventGraphControl.xaml
+    /// Interaction logic for EventGraphControl.xaml
     /// </summary>
     public partial class EventGraphControl : UserControl
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EventGraphControl"/> class.
+        /// </summary>
         public EventGraphControl()
         {
             InitializeComponent();
@@ -136,15 +139,54 @@ namespace cl.uv.leikelen.View.Widget.HomeTab.Widget
             SeriesCollection = new SeriesCollection(dayConfig);
 
             var values = new ChartValues<TimeModel>();
+
+            int decimationFactor = events.Count / GeneralSettings.Instance.MaxNumberPointsInEventGraph.Value;
+            int decimationActual = 0;
+            var decimationArray = new TimeModel[decimationFactor];
             
-            foreach(var event_data in events)
+            foreach (var event_data in events)
+            {
+                decimationArray[decimationActual] = new TimeModel()
+                {
+                    TimeSpan = event_data.EventTime,
+                    Value = event_data.Value ?? 1
+                };
+                decimationActual++;
+                if (decimationActual == decimationFactor || decimationActual == events.Count - 1)
+                {
+                    //Add to values
+                    double valueMean = 0;
+                    foreach(var tModelDecimation in decimationArray)
+                    {
+                        if(decimationActual == decimationFactor)
+                        {
+                            valueMean += tModelDecimation.Value;
+                        }
+                        else
+                        {
+                            if (tModelDecimation != null)
+                                valueMean += tModelDecimation.Value;
+                        }
+                    }
+                    valueMean = valueMean / decimationArray.Count();
+                    values.Add(new TimeModel()
+                    {
+                        TimeSpan = event_data.EventTime,
+                        Value = valueMean
+                    });
+                    decimationActual = 0;
+                    decimationArray = new TimeModel[decimationFactor];
+                }
+            }
+
+            /*foreach (var event_data in events)
             {
                 values.Add(new TimeModel()
                 {
                     TimeSpan = event_data.EventTime,
                     Value = event_data.Value ?? 1
                 });
-            }
+            }*/
             SeriesCollection.Add(new LineSeries()
             {
                 Values = values,

@@ -13,8 +13,15 @@ using KinectEx.DVR;
 
 namespace cl.uv.leikelen.Module.Input.Kinect
 {
+    /// <summary>
+    /// Monitor class of Kinect sensor
+    /// </summary>
+    /// <seealso cref="cl.uv.leikelen.API.Module.Input.IMonitor" />
     public class Monitor : IMonitor
     {
+        /// <summary>
+        /// Occurs when current sensor's [status changed].
+        /// </summary>
         public event EventHandler StatusChanged;
 
         private KinectSensor _sensor;
@@ -27,19 +34,31 @@ namespace cl.uv.leikelen.Module.Input.Kinect
 
         private bool _isRecording;
 
-        
-
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Monitor"/> class.
+        /// </summary>
         public Monitor()
         {
             _isRecording = false;
         }
 
+        /// <summary>
+        /// Determines whether this instance is recording.
+        /// </summary>
+        /// <returns>
+        ///   <c>true</c> if this instance is recording; otherwise, <c>false</c>.
+        /// </returns>
         public bool IsRecording()
         {
             return _isRecording;
         }
 
+        /// <summary>
+        /// Gets the current sensor status.
+        /// </summary>
+        /// <returns>
+        /// Current sensor status
+        /// </returns>
         public InputStatus GetStatus()
         {
             if (ReferenceEquals(null, _sensor))
@@ -53,11 +72,19 @@ namespace cl.uv.leikelen.Module.Input.Kinect
             return InputStatus.Error;
         }
 
+        /// <summary>
+        /// Opens the sensor for start monitoring and get data.
+        /// </summary>
+        /// <returns></returns>
         public async Task Open()
         {
             GetSensor();
         }
 
+        /// <summary>
+        /// Closes the sensor.
+        /// </summary>
+        /// <returns></returns>
         public async Task Close()
         {
             if (ReferenceEquals(null, _sensor))
@@ -66,6 +93,12 @@ namespace cl.uv.leikelen.Module.Input.Kinect
             _sensor = null;
         }
 
+        /// <summary>
+        /// Starts the recording.
+        /// Start feeding data to associated <see cref="API.Module.Processing.ProcessingModule" />,
+        /// and save the data to a file in current scene's directory.
+        /// </summary>
+        /// <returns></returns>
         public async Task StartRecording()
         {
             if (!GetSensor())
@@ -138,6 +171,12 @@ namespace cl.uv.leikelen.Module.Input.Kinect
             _isRecording = true;
         }
 
+        /// <summary>
+        /// Stops the recording.
+        /// Stop feeding data to associated <see cref="API.Module.Processing.ProcessingModule" />
+        /// Stop and closes the data file.
+        /// </summary>
+        /// <returns></returns>
         public async Task StopRecording()
         {
             if (!GetSensor() || !_isRecording)
@@ -173,6 +212,11 @@ namespace cl.uv.leikelen.Module.Input.Kinect
             _isRecording = false;
         }
 
+        /// <summary>
+        /// Opens the port if its needed.
+        /// </summary>
+        /// <param name="portName">Name of the COM port.</param>
+        /// <returns></returns>
         public Task OpenPort(string portName)
         {
             return null;

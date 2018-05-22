@@ -17,10 +17,13 @@ using cl.uv.leikelen.Data.Model;
 namespace cl.uv.leikelen.View
 {
     /// <summary>
-    /// Lógica de interacción para AllPersons.xaml
+    /// Interaction logic for AllPersons.xaml
     /// </summary>
     public partial class AllPersons : Window
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AllPersons"/> class.
+        /// </summary>
         public AllPersons()
         {
             InitializeComponent();

@@ -18,10 +18,13 @@ using cl.uv.leikelen.Controller;
 namespace cl.uv.leikelen.View
 {
     /// <summary>
-    /// Lógica de interacción para Export.xaml
+    /// Interaction logic for Export.xaml
     /// </summary>
     public partial class Export : Window
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Export"/> class.
+        /// </summary>
         public Export()
         {
             InitializeComponent();

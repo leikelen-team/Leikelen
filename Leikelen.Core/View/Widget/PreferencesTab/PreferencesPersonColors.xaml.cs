@@ -16,10 +16,13 @@ using cl.uv.leikelen.API.Helper;
 namespace cl.uv.leikelen.View.Widget.PreferencesTab
 {
     /// <summary>
-    /// Lógica de interacción para PreferencesPersonColors.xaml
+    /// Interaction logic for PreferencesPersonColors.xaml
     /// </summary>
     public partial class PreferencesPersonColors : TabItem, IPreference
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PreferencesPersonColors"/> class.
+        /// </summary>
         public PreferencesPersonColors()
         {
             InitializeComponent();
@@ -63,8 +66,9 @@ namespace cl.uv.leikelen.View.Widget.PreferencesTab
             p5DotsCmbx.ItemsSource = rectangleColors;
             p6DotsCmbx.ItemsSource = rectangleColors;
         }
+        
 
-        public void Apply()
+        void IPreference.Apply()
         {
         }
     }

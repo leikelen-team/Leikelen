@@ -86,7 +86,7 @@ namespace cl.uv.leikelen.Controller
         /// <summary>
         /// Exports the scene in use.
         /// </summary>
-        /// <param name="isOnlyBd">if set to <c>true</c> [is only bd].</param>
+        /// <param name="isOnlyBd">if set to <c>true</c> [is only database].</param>
         /// <param name="fileName">Name of the file.</param>
         public static void Export(bool isOnlyBd, string fileName)
         {
@@ -161,7 +161,6 @@ namespace cl.uv.leikelen.Controller
             if (System.IO.Directory.Exists(sourcePath))
             {
                 string[] files = System.IO.Directory.GetFiles(sourcePath);
-                Console.WriteLine($"archivos: {files}");
 
                 for (int ifile = 0;ifile<files.Count();ifile++)
                 {

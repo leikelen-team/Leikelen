@@ -15,10 +15,13 @@ using System.Windows.Shapes;
 namespace cl.uv.leikelen.View
 {
     /// <summary>
-    /// Lógica de interacción para AboutUs.xaml
+    /// Interaction logic for AboutUs.xaml
     /// </summary>
     public partial class AboutUs : Window
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AboutUs"/> class.
+        /// </summary>
         public AboutUs()
         {
             InitializeComponent();

@@ -18,10 +18,13 @@ using cl.uv.leikelen.Util;
 namespace cl.uv.leikelen.View.Widget.PreferencesTab
 {
     /// <summary>
-    /// Lógica de interacción para PreferencesBD.xaml
+    /// Interaction logic for PreferencesBD.xaml
     /// </summary>
     public partial class PreferencesBD : TabItem, IPreference
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PreferencesBD"/> class.
+        /// </summary>
         public PreferencesBD()
         {
             InitializeComponent();
@@ -46,7 +49,7 @@ namespace cl.uv.leikelen.View.Widget.PreferencesTab
                 : GeneralSettings.Instance.DbPort.Value.ToString();
         }
 
-        public void Apply()
+        void IPreference.Apply()
         {
             string error = "";
             int port = 0;

@@ -8,8 +8,16 @@ using System.Threading.Tasks;
 
 namespace cl.uv.leikelen.Module.Input.MindwaveTGC
 {
+    /// <summary>
+    /// Entry point for the Mindwave Eeg input sensor using the ThinkGear Connector API
+    /// </summary>
+    /// <seealso cref="cl.uv.leikelen.API.Module.Input.InputModule" />
     public class MindwaveTGCInput : InputModule
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MindwaveTGCInput"/> class.
+        /// </summary>
+        /// <param name="person">The person.</param>
         public MindwaveTGCInput(Person person)
         {
             Plurality = InputPlurality.Person;

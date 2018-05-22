@@ -10,33 +10,47 @@ using Accord.IO;
 
 namespace cl.uv.leikelen.Module.Processing.EEGPrint
 {
+    /// <summary>
+    /// Entry point for a processing module just 
+    /// for printing as a json in console the events of EEG
+    /// </summary>
+    /// <seealso cref="cl.uv.leikelen.API.Module.Processing.ProcessingModule" />
+    /// <seealso cref="cl.uv.leikelen.API.FrameProvider.EEG.IEegProcessingModule" />
     public class EegPrintEntryPoint : ProcessingModule, IEegProcessingModule
     {
-        //private StreamWriter _myfile;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EegPrintEntryPoint"/> class.
+        /// </summary>
         public EegPrintEntryPoint()
         {
-            //var r = new Random();
-            //_myfile = new StreamWriter("salidaEEG"+r.Next()+"12.json");
             Name = "print EEG";
-            //_myfile.WriteLine("[");
-            //Enable();
         }
 
+        /// <summary>
+        /// Functions called after the recorder stops.
+        /// </summary>
+        /// <returns></returns>
         public override Action FunctionAfterStop()
         {
-            return null;/*() =>
-            {
-                _myfile.WriteLine("]");
-                _myfile.Flush();
-                _myfile.Close();
-            };*/
+            return null;
         }
 
+        /// <summary>
+        /// Gets the handler for the EEG frame events.
+        /// </summary>
+        /// <returns>
+        /// the handler for the EEG frame events
+        /// </returns>
         public EventHandler<EegFrameArrivedEventArgs> EegListener()
         {
             return this.myListener;
         }
 
+        /// <summary>
+        /// A listener for EEG frame events that just prints as a Json the data received.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EegFrameArrivedEventArgs"/> instance containing the event data.</param>
         public void myListener(object sender, EegFrameArrivedEventArgs e)
         {
             e.Person = new Data.Model.Person
@@ -49,13 +63,7 @@ namespace cl.uv.leikelen.Module.Processing.EEGPrint
                 Birthday = e.Person.Birthday,
                 PersonInScenes = null
             };
-            //e.Person.PersonInScenes = null;
             Console.WriteLine(e.ToJsonString(compress: true, enumsAsStrings: true));
-            //_myfile.Write(e.ToJsonString(compress: true, enumsAsStrings: true));
-            //_myfile.WriteLine(",");
-            //_myfile.Flush();
-            //Console.WriteLine(e.Quality);
-
         }
     }
 }

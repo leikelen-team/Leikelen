@@ -17,10 +17,13 @@ using cl.uv.leikelen.Data.Access;
 namespace cl.uv.leikelen.View.Widget
 {
     /// <summary>
-    /// Lógica de interacción para PersonCard.xaml
+    /// Interaction logic for PersonCard.xaml
     /// </summary>
     public partial class PersonCard : UserControl
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PersonCard"/> class.
+        /// </summary>
         public PersonCard()
         {
             InitializeComponent();

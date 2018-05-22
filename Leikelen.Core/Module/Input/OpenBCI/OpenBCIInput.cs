@@ -10,8 +10,16 @@ using cl.uv.leikelen.Data.Model;
 
 namespace cl.uv.leikelen.Module.Input.OpenBCI
 {
+    /// <summary>
+    /// Entry point for OpenBCI sensor input for a person.
+    /// </summary>
+    /// <seealso cref="cl.uv.leikelen.API.Module.Input.InputModule" />
     public sealed class OpenBCIInput : InputModule
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OpenBCIInput"/> class.
+        /// </summary>
+        /// <param name="person">The person.</param>
         public OpenBCIInput(Person person)
         {
             Plurality = InputPlurality.Person;

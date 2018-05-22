@@ -9,6 +9,11 @@ using KinectEx.DVR;
 
 namespace cl.uv.leikelen.Module.Input.Kinect.DVR
 {
+    /// <summary>
+    /// Modified version of the <see cref="KinectEx.DVR.ReplayBodyFrame" />
+    /// to accept relative time of the scene/>
+    /// </summary>
+    /// <seealso cref="KinectEx.DVR.ReplayBodyFrame" />
     public class ReplayBodyFrameCustomTime : ReplayBodyFrame
     {
         /// <summary>
@@ -16,6 +21,7 @@ namespace cl.uv.leikelen.Module.Input.Kinect.DVR
         /// based on the specified <c>BodyFrame</c>.
         /// </summary>
         /// <param name="frame">The frame.</param>
+        /// <param name="relativeTime">time relative to the start of the scene</param>
         public ReplayBodyFrameCustomTime(BodyFrame frame, TimeSpan relativeTime)
         {
             this.FrameType = FrameTypes.Body;

@@ -23,13 +23,14 @@ namespace cl.uv.leikelen.View
     /// <summary>
     /// Interaction logic for ConfigureScene.xaml
     /// </summary>
-    /// <summary xml:lang="es">
-    /// Lógica de interacción para ConfigureScene.xaml
-    /// </summary>
     public partial class ConfigureScene : Window
     {
         private Scene _scene;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConfigureScene"/> class
+        /// to create a new scene.
+        /// </summary>
         public ConfigureScene()
         {
             InitializeComponent();
@@ -38,6 +39,11 @@ namespace cl.uv.leikelen.View
             CancelBtn.Click += CancelBtn_Click;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConfigureScene"/> class
+        /// with a scene to edit.
+        /// </summary>
+        /// <param name="scene">The scene.</param>
         public ConfigureScene(Scene scene)
         {
             InitializeComponent();

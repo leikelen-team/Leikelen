@@ -8,13 +8,24 @@ using Microsoft.EntityFrameworkCore.Storage;
 
 namespace cl.uv.leikelen.Data.Persistence.Provider
 {
+    /// <summary>
+    /// A database provider for PostgreSql databases
+    /// </summary>
+    /// <seealso cref="cl.uv.leikelen.Data.Persistence.Provider.EfAbstractProvider" />
     public class PgSqlProvider : EfAbstractProvider
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PgSqlProvider"/> class.
+        /// </summary>
         public PgSqlProvider()
         {
             
         }
 
+        /// <summary>
+        /// Creates the connection with the database.
+        /// </summary>
+        /// <param name="options">The options.</param>
         public override void CreateConnection(string options)
         {
             var optionsBuilder = new DbContextOptionsBuilder();

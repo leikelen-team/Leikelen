@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace cl.uv.leikelen.Module.Input.OpenBCI.Util
 {
+    /// <summary>
+    /// Interpret a stream of data for OpenBCI input sensor.
+    /// </summary>
     public class InterpretStream
     {
         double[] ConvertedData = new double[12];
@@ -15,6 +18,11 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI.Util
         private byte[] localAdsByteBuffer = { 0, 0, 0 };
         private byte[] localAccelByteBuffer = { 0, 0 };
 
+        /// <summary>
+        /// Interprets the binary stream.
+        /// </summary>
+        /// <param name="actbyte">The actual byte input.</param>
+        /// <returns>Array of signals data</returns>
         public double[] interpretBinaryStream(byte actbyte)
         {
             bool flag_copyRawDataToFullData = false;

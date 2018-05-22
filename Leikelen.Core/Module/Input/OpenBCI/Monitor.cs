@@ -17,8 +17,15 @@ using cl.uv.leikelen.API.Helper;
 
 namespace cl.uv.leikelen.Module.Input.OpenBCI
 {
+    /// <summary>
+    /// Monitor for the OpenBCI sensor
+    /// </summary>
+    /// <seealso cref="cl.uv.leikelen.API.Module.Input.IMonitor" />
     public class Monitor : IMonitor
     {
+        /// <summary>
+        /// Occurs when current sensor's [status changed].
+        /// </summary>
         public event EventHandler StatusChanged;
 
         private readonly Util.InterpretStream _interpretStream;
@@ -37,6 +44,10 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI
         private event EventHandler<EegFrameArrivedEventArgs> EegFrameArrived;
         private event EventHandler<AccelerometerFrameArrivedEventArgs> AccelerometerFrameArrived;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Monitor"/> class.
+        /// </summary>
+        /// <param name="person">The person.</param>
         public Monitor(Person person)
         {
             _person = person;
@@ -60,28 +71,28 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI
         }
 
         #region IMonitor methods
-        public async Task Close()
+        async Task IMonitor.Close()
         {
             StopStream();
             _serialPort?.Close();
         }
 
-        public InputStatus GetStatus()
+        InputStatus IMonitor.GetStatus()
         {
             return _status;
         }
 
-        public bool IsRecording()
+        bool IMonitor.IsRecording()
         {
             return _isRecording;
         }
 
-        public async Task Open()
+        async Task IMonitor.Open()
         {
             StartStream();
         }
 
-        public async Task StartRecording()
+        async Task IMonitor.StartRecording()
         {
             StartStream();
             _filemanage = new Util.FileManage(
@@ -107,7 +118,7 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI
             }
         }
 
-        public async Task StopRecording()
+        async Task IMonitor.StopRecording()
         {
             StopStream();
 
@@ -126,7 +137,7 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI
         }
         #endregion
 
-        public async Task OpenPort(string portName)
+        async Task IMonitor.OpenPort(string portName)
         {
             try
             {

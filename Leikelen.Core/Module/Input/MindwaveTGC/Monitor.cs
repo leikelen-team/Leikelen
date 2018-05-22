@@ -13,11 +13,18 @@ using System.Windows;
 
 namespace cl.uv.leikelen.Module.Input.MindwaveTGC
 {
+    /// <summary>
+    /// Monitor for the Mindwave Eeg sensor
+    /// </summary>
+    /// <seealso cref="cl.uv.leikelen.API.Module.Input.IMonitor" />
     public class Monitor : IMonitor
     {
+        /// <summary>
+        /// Occurs when current sensor's [status changed].
+        /// </summary>
+        public event EventHandler StatusChanged;
         private API.DataAccess.IDataAccessFacade _dataAccessFacade = new Data.Access.DataAccessFacade();
         private TcpClient _client;
-        public event EventHandler StatusChanged;
         private StreamWriter _sw;
         bool _isRecording = false;
         InputStatus _status;
@@ -26,6 +33,7 @@ namespace cl.uv.leikelen.Module.Input.MindwaveTGC
         System.Threading.Thread _readThread;
         private bool _waitingStoppped = false;
 
+        //
         public Monitor(Person person)
         {
             _person = person;

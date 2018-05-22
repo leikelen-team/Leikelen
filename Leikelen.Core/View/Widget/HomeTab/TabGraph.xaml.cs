@@ -17,16 +17,19 @@ using cl.uv.leikelen.Data.Access.Internal;
 namespace cl.uv.leikelen.View.Widget.HomeTab
 {
     /// <summary>
-    /// Lógica de interacción para TabGraph.xaml
+    /// Interaction logic for TabGraph.xaml
     /// </summary>
     public partial class TabGraph : TabItem, ITab
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TabGraph"/> class.
+        /// </summary>
         public TabGraph()
         {
             InitializeComponent();
         }
 
-        public void Fill()
+        void ITab.Fill()
         {
             StackButtons.Visibility = Visibility.Visible;
             if (!ReferenceEquals(null, SceneInUse.Instance.Scene))
@@ -38,13 +41,13 @@ namespace cl.uv.leikelen.View.Widget.HomeTab
                 
         }
 
-        public void Reset()
+        void ITab.Reset()
         {
             MainStack.Children.RemoveRange(1, MainStack.Children.Count - 1);
             StackButtons.Visibility = Visibility.Hidden;
         }
 
-        public void AddBtn_Click(object sender, RoutedEventArgs e)
+        private void AddBtn_Click(object sender, RoutedEventArgs e)
         {
             if (!ReferenceEquals(null, SceneInUse.Instance.Scene))
             {
@@ -54,7 +57,7 @@ namespace cl.uv.leikelen.View.Widget.HomeTab
             }
         }
 
-        public void RemoveLastBtn_Click(object sender, RoutedEventArgs e)
+        private void RemoveLastBtn_Click(object sender, RoutedEventArgs e)
         {
             if (!ReferenceEquals(null, SceneInUse.Instance.Scene) && MainStack.Children.Count > 1)
                 MainStack.Children.RemoveAt(MainStack.Children.Count - 1);

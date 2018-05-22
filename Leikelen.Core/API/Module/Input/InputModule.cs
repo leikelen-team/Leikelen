@@ -10,7 +10,7 @@ namespace cl.uv.leikelen.API.Module.Input
 {
     /// <summary>
     /// Module that represent a sensor or input device who save 
-    /// and feed data to the differents <see cref="Processing.ProcessingModule"/>
+    /// and feed data to the different <see cref="Processing.ProcessingModule"/>
     /// </summary>
     /// <seealso cref="cl.uv.leikelen.API.Module.AbstractModule" />
     public abstract class InputModule : AbstractModule

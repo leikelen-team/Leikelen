@@ -11,8 +11,16 @@ using cl.uv.leikelen.API.DataAccess;
 
 namespace cl.uv.leikelen.Controller
 {
+    /// <summary>
+    /// Controller to create the reports in PDF
+    /// </summary>
     public class ReportController
     {
+        /// <summary>
+        /// Generates the scene report and saves to the output file path.
+        /// </summary>
+        /// <param name="outputFilePath">The output file path.</param>
+        /// <returns>Asynchronous Task associated</returns>
         public async Task GenerateSceneReport(string outputFilePath)
         {
             //get data
@@ -105,6 +113,12 @@ namespace cl.uv.leikelen.Controller
             };
         }
 
+        /// <summary>
+        /// Generates the person report.
+        /// </summary>
+        /// <param name="person">The person.</param>
+        /// <param name="outputFilePath">The output file path.</param>
+        /// <returns>Asynchronous Task associated</returns>
         public async Task GeneratePersonReport(Person person, string outputFilePath)
         {
             //get data

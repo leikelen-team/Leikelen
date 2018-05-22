@@ -18,10 +18,13 @@ using WinForms = System.Windows.Forms;
 namespace cl.uv.leikelen.View.Widget.PreferencesTab
 {
     /// <summary>
-    /// Lógica de interacción para PreferencesGeneral.xaml
+    /// Interaction logic for PreferencesGeneral.xaml
     /// </summary>
     public partial class PreferencesGeneral : TabItem, IPreference
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PreferencesGeneral"/> class.
+        /// </summary>
         public PreferencesGeneral()
         {
             InitializeComponent();
@@ -35,7 +38,7 @@ namespace cl.uv.leikelen.View.Widget.PreferencesTab
 
         }
 
-        public void Apply()
+        void IPreference.Apply()
         {
             GeneralSettings.Instance.TmpDirectory.Write(TmpDirectoryTxt.Text);
             GeneralSettings.Instance.DataDirectory.Write(DataDirectoryTxt.Text);

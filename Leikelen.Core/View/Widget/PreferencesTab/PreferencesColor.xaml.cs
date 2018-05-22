@@ -16,16 +16,19 @@ using cl.uv.leikelen.API.Helper;
 namespace cl.uv.leikelen.View.Widget.PreferencesTab
 {
     /// <summary>
-    /// Lógica de interacción para PreferencesColor.xaml
+    /// Interaction logic for PreferencesColor.xaml
     /// </summary>
     public partial class PreferencesColor : TabItem, IPreference
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PreferencesColor"/> class.
+        /// </summary>
         public PreferencesColor()
         {
             InitializeComponent();
         }
 
-        public void Apply()
+        void IPreference.Apply()
         {
         }
     }

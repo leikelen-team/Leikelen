@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace cl.uv.leikelen.Module.Processing.Kinect
 {
+    /// <summary>
+    /// Check if the person detected by the kinect already has detected and saved
+    /// </summary>
     public class CheckPerson
     {
         /// <summary>
@@ -19,6 +22,12 @@ namespace cl.uv.leikelen.Module.Processing.Kinect
 
         private static CheckPerson _instance;
 
+        /// <summary>
+        /// Gets the instance.
+        /// </summary>
+        /// <value>
+        /// The instance.
+        /// </value>
         public static CheckPerson Instance
         {
             get

@@ -12,9 +12,20 @@ using KinectEx.DVR;
 
 namespace cl.uv.leikelen.Module.Input.Kinect
 {
+    /// <summary>
+    /// Class to send the video of skeletons and color of the kinect sensor
+    /// </summary>
+    /// <seealso cref="cl.uv.leikelen.API.Module.Input.IVideo" />
     public class SkeletonColorVideoViewer : IVideo
     {
+        /// <summary>
+        /// Occurs when [color image arrived].
+        /// </summary>
         public event EventHandler<ImageSource> ColorImageArrived;
+
+        /// <summary>
+        /// Occurs when [skeleton image arrived].
+        /// </summary>
         public event EventHandler<ImageSource> SkeletonImageArrived;
 
         private bool _isColorEnabled;
@@ -24,53 +35,92 @@ namespace cl.uv.leikelen.Module.Input.Kinect
         private WriteableBitmap _bodyBitmap;
         private readonly List<CustomBody> _bodies;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SkeletonColorVideoViewer"/> class.
+        /// </summary>
         public SkeletonColorVideoViewer()
         {
             _colorBitmap = new ColorFrameBitmap();
             _bodies = new List<CustomBody>();
         }
 
+        /// <summary>
+        /// Determines whether [is color enabled].
+        /// </summary>
+        /// <returns>
+        ///   <c>true</c> if [is color enabled]; otherwise, <c>false</c>.
+        /// </returns>
         public bool IsColorEnabled()
         {
             return _isColorEnabled;
         }
 
+        /// <summary>
+        /// Determines whether [is skeleton enabled].
+        /// </summary>
+        /// <returns>
+        ///   <c>true</c> if [is skeleton enabled]; otherwise, <c>false</c>.
+        /// </returns>
         public bool IsSkeletonEnabled()
         {
             return _isSkeletonEnabled;
         }
 
+        /// <summary>
+        /// Enables the color layer.
+        /// </summary>
         public void EnableColor()
         {
             _isColorEnabled = true;
         }
+
+        /// <summary>
+        /// Disables the color layer.
+        /// </summary>
         public void DisableColor()
         {
             _isColorEnabled = false;
         }
 
+        /// <summary>
+        /// Enables the skeleton layer.
+        /// </summary>
         public void EnableSkeleton()
         {
             _isSkeletonEnabled = true;
         }
+        /// <summary>
+        /// Disables the skeleton layer.
+        /// </summary>
         public void DisableSkeleton()
         {
             _isSkeletonEnabled = false;
         }
 
 
-
+        /// <summary>
+        /// Called when [color image arrived].
+        /// </summary>
+        /// <param name="e">The e.</param>
         public void OnColorImageArrived(ImageSource e)
         {
             ColorImageArrived?.Invoke(this, e);
         }
 
+        /// <summary>
+        /// Called when [skeleton image arrived].
+        /// </summary>
+        /// <param name="e">The e.</param>
         public void OnSkeletonImageArrived(ImageSource e)
         {
             SkeletonImageArrived?.Invoke(this, e);
         }
 
-
+        /// <summary>
+        /// Handles the FrameArrived event of the _bodyReader control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="BodyFrameArrivedEventArgs"/> instance containing the event data.</param>
         public void _bodyReader_FrameArrived(object sender, BodyFrameArrivedEventArgs e)
         {
             if (!_isSkeletonEnabled)
@@ -97,6 +147,11 @@ namespace cl.uv.leikelen.Module.Input.Kinect
             }
         }
 
+        /// <summary>
+        /// Handles the FrameArrived event of the _colorReader control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="ColorFrameArrivedEventArgs"/> instance containing the event data.</param>
         public void _colorReader_FrameArrived(object sender, ColorFrameArrivedEventArgs e)
         {
             if (!_isColorEnabled)
@@ -109,6 +164,11 @@ namespace cl.uv.leikelen.Module.Input.Kinect
             
         }
 
+        /// <summary>
+        /// Handles the BodyFrameArrived event of the _replay control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="ReplayFrameArrivedEventArgs{ReplayBodyFrame}"/> instance containing the event data.</param>
         public void _replay_BodyFrameArrived(object sender, ReplayFrameArrivedEventArgs<ReplayBodyFrame> e)
         {
             if (!_isSkeletonEnabled)
@@ -133,6 +193,11 @@ namespace cl.uv.leikelen.Module.Input.Kinect
             }
         }
 
+        /// <summary>
+        /// Handles the ColorFrameArrived event of the _replay control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="ReplayFrameArrivedEventArgs{ReplayColorFrame}"/> instance containing the event data.</param>
         public void _replay_ColorFrameArrived(object sender, ReplayFrameArrivedEventArgs<ReplayColorFrame> e)
         {
             if (!_isColorEnabled)

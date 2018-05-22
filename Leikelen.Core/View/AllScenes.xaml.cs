@@ -18,10 +18,13 @@ using cl.uv.leikelen.Data.Access.Internal;
 namespace cl.uv.leikelen.View
 {
     /// <summary>
-    /// Lógica de interacción para AllScenes.xaml
+    /// Interaction logic for AllScenes.xaml
     /// </summary>
     public partial class AllScenes : Window
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AllScenes"/> class.
+        /// </summary>
         public AllScenes()
         {
             InitializeComponent();

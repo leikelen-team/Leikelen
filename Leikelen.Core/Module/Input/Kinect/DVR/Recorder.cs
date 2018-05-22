@@ -22,6 +22,12 @@ namespace cl.uv.leikelen.Module.Input.Kinect.DVR
     {
         private IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Recorder"/> class.
+        /// </summary>
+        /// <param name="stream">The stream to which frames will be stored.</param>
+        /// <param name="sensor">If supplied, the <c>KinectSensor</c> from which frames will be automatically
+        /// retrieved for recording.</param>
         public Recorder(Stream stream, KinectSensor sensor = null) : base(stream, sensor)
         {
 

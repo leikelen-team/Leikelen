@@ -71,6 +71,9 @@ namespace cl.uv.leikelen.View
         private List<ITab> _processingModuleTabs;
         private bool _firstLanguage = true;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Home"/> class.
+        /// </summary>
         public Home()
         {
             switch (GeneralSettings.Instance.Language.Value)

@@ -28,7 +28,7 @@ namespace cl.uv.leikelen.Data.Model
         /// Gets or sets the event time.
         /// </summary>
         /// <value>
-        /// The time at event ocurred.
+        /// The time at event occurred.
         /// </value>
         [Column("event_time")]
         public TimeSpan EventTime { get; set; }

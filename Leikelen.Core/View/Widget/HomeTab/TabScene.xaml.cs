@@ -22,12 +22,15 @@ namespace cl.uv.leikelen.View.Widget.HomeTab
     /// </summary>
     public partial class TabScene : TabItem, ITab
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TabScene"/> class.
+        /// </summary>
         public TabScene()
         {
             InitializeComponent();
         }
 
-        public void Fill()
+        void ITab.Fill()
         {
             ScrollWithContent.Visibility = Visibility.Visible;
 
@@ -39,7 +42,7 @@ namespace cl.uv.leikelen.View.Widget.HomeTab
             EventDataGrid.ItemsSource = datas.Item2;
             EventDataGrid.Items.Refresh();
         }
-        public void Reset()
+        void ITab.Reset()
         {
             EventDataGrid.ItemsSource = null;
             EventDataGrid.Items.Refresh();
@@ -50,6 +53,13 @@ namespace cl.uv.leikelen.View.Widget.HomeTab
             ScrollWithContent.Visibility = Visibility.Hidden;
         }
 
+        /// <summary>
+        /// Gets the data of events and intervals in the scene in use.
+        /// </summary>
+        /// <param name="makeIntervals">if set to <c>true</c> [make intervals].</param>
+        /// <param name="makeEvents">if set to <c>true</c> [make events].</param>
+        /// <param name="persons">The persons.</param>
+        /// <returns>A tuple with the intervals and events</returns>
         public static Tuple<List<IntervalDataGrid>, List<EventDataGrid>> GetEventsAndIntervals(bool makeIntervals = true, bool makeEvents = true, List<Data.Model.Person> persons = null)
         {
             List<IntervalDataGrid> intervalData = new List<IntervalDataGrid>();
@@ -144,8 +154,10 @@ namespace cl.uv.leikelen.View.Widget.HomeTab
             return new Tuple<List<IntervalDataGrid>, List<EventDataGrid>>(intervalData, eventData);
         }
     }
-    
 
+    /// <summary>
+    /// Base class for data grid
+    /// </summary>
     public class SceneTabDataGrid
     {
         public string PersonName { get; set; }

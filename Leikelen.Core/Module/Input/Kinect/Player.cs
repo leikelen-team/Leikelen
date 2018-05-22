@@ -12,17 +12,27 @@ using System.IO;
 
 namespace cl.uv.leikelen.Module.Input.Kinect
 {
+    /// <summary>
+    /// Player class of kinect sensor
+    /// </summary>
+    /// <seealso cref="cl.uv.leikelen.API.Module.Input.IPlayer" />
     public class Player : IPlayer
     {
         private KinectReplay _replay;
         private IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
 
+        /// <summary>
+        /// Resume the playback.
+        /// </summary>
         public void Unpause()
         {
             if (!ReferenceEquals(null, _replay))
                 _replay.Start();
         }
 
+        /// <summary>
+        /// Opens the data file and plays the playback from the beginning.
+        /// </summary>
         public void Play()
         {
             if (ReferenceEquals(null, _replay) &&
@@ -61,12 +71,17 @@ namespace cl.uv.leikelen.Module.Input.Kinect
             }
         }
 
+        /// <summary>
+        /// Pauses the playback.
+        /// </summary>
         public void Pause()
         {
             if (!ReferenceEquals(null, _replay))
                 _replay.Stop();
         }
-
+        /// <summary>
+        /// Stops the playback.
+        /// </summary>
         public void Stop()
         {
             if (!ReferenceEquals(null, _replay))
@@ -76,18 +91,30 @@ namespace cl.uv.leikelen.Module.Input.Kinect
             }
             Close();
         }
-
+        /// <summary>
+        /// Sends the playback to a specific time.
+        /// </summary>
+        /// <param name="newTime">The new time.</param>
         public void ChangeTime(TimeSpan newTime)
         {
             if (!ReferenceEquals(null, _replay))
                 _replay.ScrubTo(newTime);
         }
 
+        /// <summary>
+        /// Determines whether this instance is playing.
+        /// </summary>
+        /// <returns>
+        ///   <c>true</c> if this instance is playing; otherwise, <c>false</c>.
+        /// </returns>
         public bool IsPlaying()
         {
             return !ReferenceEquals(null, _replay);
         }
 
+        /// <summary>
+        /// Closes the data file.
+        /// </summary>
         public void Close()
         {
             if (!ReferenceEquals(null, _replay))
@@ -98,6 +125,12 @@ namespace cl.uv.leikelen.Module.Input.Kinect
             }
         }
 
+        /// <summary>
+        /// Gets the total duration.
+        /// </summary>
+        /// <returns>
+        /// The total duration of the recorded data file, if exists
+        /// </returns>
         public TimeSpan? GetTotalDuration()
         {
             if(!ReferenceEquals(null, _replay))
@@ -105,6 +138,12 @@ namespace cl.uv.leikelen.Module.Input.Kinect
             return null;
         }
 
+        /// <summary>
+        /// Gets the location.
+        /// </summary>
+        /// <returns>
+        /// The actual location of the playback, if its playing or paused
+        /// </returns>
         public TimeSpan? GetLocation()
         {
             if (!ReferenceEquals(null, _replay))
@@ -120,7 +159,13 @@ namespace cl.uv.leikelen.Module.Input.Kinect
             }
         }
 
+        /// <summary>
+        /// Occurs when playback [finished].
+        /// </summary>
         public event EventHandler Finished;
+        /// <summary>
+        /// Occurs when playback's [location changed].
+        /// </summary>
         public event EventHandler LocationChanged;
     }
 }

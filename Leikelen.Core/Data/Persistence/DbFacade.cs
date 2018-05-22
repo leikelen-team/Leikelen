@@ -56,7 +56,7 @@ namespace cl.uv.leikelen.Data.Persistence
         }
 
         /// <summary>
-        /// Test the connection to see if an error ocurr.
+        /// Test the connection to see if an error occur.
         /// </summary>
         /// <param name="provider">The provider.</param>
         /// <param name="host">The host.</param>
