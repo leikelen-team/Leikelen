@@ -17,7 +17,7 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing
         /// <param name="wlen">(m) Length of window (normally called m).</param>
         /// <param name="r">Tolerance for "similarity".</param>
         /// <param name="shift">Shift between samples (for subsampling). Shift=1 corresponds to _no_ subsampling.</param>
-        /// <returns>-log (A / B), where A is the number of |D_m(i,j) < r|, and B is |D_m+1(i,j) < r|.
+        /// <returns>-log (A / B), where A is the number of |D_m(i,j) lt r|, and B is |D_m+1(i,j) lt r|.
         /// See wikipedia: https://en.wikipedia.org/wiki/Sample_entropy </returns>
         public static double CalcSampleEntropy(double[] data, int numSamples/*N*/, int wlen/*m*/, double r/*r*/, int shift)
         {

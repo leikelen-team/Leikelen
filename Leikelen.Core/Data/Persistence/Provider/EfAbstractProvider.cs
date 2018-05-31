@@ -129,14 +129,25 @@ namespace cl.uv.leikelen.Data.Persistence.Provider
         /// </returns>
         public Scene SaveNewScene(Scene scene)
         {
+            scene.SceneId = 0;
             for (int iperson= 0; iperson < scene.PersonsInScene.Count; iperson++)
             {
-                scene.PersonsInScene[iperson].SceneId = scene.SceneId;
-                scene.PersonsInScene[iperson].Scene.SceneId = 0;
+                scene.PersonsInScene[iperson].Scene = null;
+                scene.PersonsInScene[iperson].SceneId = 0;
+                //scene.PersonsInScene[iperson].Scene.SceneId = 0;
                 scene.PersonsInScene[iperson].PersonId = 0;
                 scene.PersonsInScene[iperson].Person.PersonId = 0;
                 for (int ismtPis=0;ismtPis< scene.PersonsInScene[iperson].SubModalType_PersonInScenes.Count; ismtPis++)
                 {
+                    var smt = Db.SubModalTypes.Find(scene.PersonsInScene[iperson].SubModalType_PersonInScenes[ismtPis].ModalTypeId, scene.PersonsInScene[iperson].SubModalType_PersonInScenes[ismtPis].SubModalTypeId);
+                    if(smt != null)
+                    {
+                        scene.PersonsInScene[iperson].SubModalType_PersonInScenes[ismtPis].SubModalTypeId = null;
+                        scene.PersonsInScene[iperson].SubModalType_PersonInScenes[ismtPis].SubModalType = smt;
+                        scene.PersonsInScene[iperson].SubModalType_PersonInScenes[ismtPis].ModalTypeId = null;
+                    //scene.PersonsInScene[iperson].SubModalType_PersonInScenes[ismtPis].SubModalType.ModalTypeId = null;
+                    //scene.PersonsInScene[iperson].SubModalType_PersonInScenes[ismtPis].SubModalType.SubModalType_PersonInScenes = null;
+                    }
                     scene.PersonsInScene[iperson].SubModalType_PersonInScenes[ismtPis].SubModalType_PersonInSceneId = 0;
                     scene.PersonsInScene[iperson].SubModalType_PersonInScenes[ismtPis].SceneId = 0;
                     scene.PersonsInScene[iperson].SubModalType_PersonInScenes[ismtPis].PersonId = 0;

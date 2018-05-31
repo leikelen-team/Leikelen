@@ -105,7 +105,7 @@ namespace cl.uv.leikelen.Data.Persistence
             }
             catch(Exception ex)
             {
-                MessageBoxResult result = MessageBox.Show(Properties.Error.BdNotConnect+"\n"+ex.Message, 
+                Util.MessageBoxAsync.ShowMessageBoxAsync(Properties.Error.BdNotConnect+"\n"+ex.Message, 
                     Properties.Error.BdNotConnectTitle, MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 Provider = DbEngineList["Memory"].Provider;
                 Provider.CreateConnection("MemoryDb");
