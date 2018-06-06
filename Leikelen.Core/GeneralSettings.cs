@@ -15,7 +15,7 @@ namespace cl.uv.leikelen
     public class GeneralSettings : SettingsContainer
     {
         public readonly Option<int> MaxNumberPointsInEventGraph = new Option<int>("MaxNumberPointsInEventGraph", 100);
-        public readonly Option<int> SecsWaitPdfReport = new Option<int>("SecsWaitPdfReport", 60);
+        public readonly Option<int> SecsWaitPdfReport = new Option<int>("SecsWaitPdfReport", 0);
         /// <summary>
         /// The language of the application
         /// </summary>

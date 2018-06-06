@@ -19,6 +19,8 @@
             <RowDefinition />
             <RowDefinition />
             <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition MinWidth="220" Width="1.5*" />
@@ -57,6 +59,20 @@
                  PreviewTextInput="Int_PreviewTextInput"
                  DataObject.Pasting="Int_Pasting"
                  Grid.Row="5" 
+                 Grid.Column="1"></TextBox>
+
+        <Label VerticalAlignment="Bottom" Content="{x:Static resx:GUI.PrefSecondshresholdPdf}" Grid.Row="6" Grid.Column="0" />
+        <TextBox x:Name="SecondshresholdPdfTxt"
+                 PreviewTextInput="Int_PreviewTextInput"
+                 DataObject.Pasting="Int_Pasting"
+                 Grid.Row="6" 
+                 Grid.Column="1"></TextBox>
+
+        <Label VerticalAlignment="Bottom" Content="{x:Static resx:GUI.PrefMaxNumberin2D}" Grid.Row="7" Grid.Column="0" />
+        <TextBox x:Name="MaxNumberin2DTxt"
+                 PreviewTextInput="Int_PreviewTextInput"
+                 DataObject.Pasting="Int_Pasting"
+                 Grid.Row="7" 
                  Grid.Column="1"></TextBox>
     </Grid>
 </TabItem>

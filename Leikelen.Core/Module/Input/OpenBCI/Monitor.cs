@@ -89,6 +89,30 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI
 
         async Task IMonitor.Open()
         {
+            //TODO: delete this
+            /*var mr = new Random();
+            var recordTimer = new DispatcherTimer();
+            recordTimer.Interval = new TimeSpan(0, 0, 0, 0, 200); //0.5 seconds
+            recordTimer.Tick += (sender, e) =>
+            {
+                double[] data = new double[]{
+                    mr.NextDouble(),
+                    mr.NextDouble(),
+                    mr.NextDouble(),
+                    mr.NextDouble(),
+                    mr.NextDouble(),
+                    mr.NextDouble(),
+                    mr.NextDouble(),
+                    mr.NextDouble(),
+                    mr.NextDouble(),
+                    mr.NextDouble(),
+                    mr.NextDouble(),
+                    mr.NextDouble()
+                };
+                GraphTab.Enqueue(data);
+            };
+            recordTimer.Start();*/
+            //to here
             StartStream();
         }
 
@@ -202,8 +226,9 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI
                     {
                         if (data.Length >= 9)
                         {
-                            double[] dataToGraph = new double[9];
-                            dataToGraph[0] = data[0];
+                            GraphTab.Enqueue(data);
+                            //double[] dataToGraph = new double[9];
+                            //dataToGraph[0] = data[0];
                             var eegArgs = new EegFrameArrivedEventArgs()
                             {
                                 Time = time.Value,
@@ -214,7 +239,7 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI
                             {
                                 double value = _filter.FiltersSelect((FilterType)(OpenBCISettings.Instance.Filter.Value),
                                     (NotchType)(OpenBCISettings.Instance.Notch.Value), data[j], j - 1);
-                                dataToGraph[j] = value;
+                                //dataToGraph[j] = value;
                                 eegArgs.Channels.Add(new EegChannel()
                                 {
                                     Filter = FilterType.None,
@@ -223,7 +248,6 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI
                                     Value = value
                                 });
                             }
-                            GraphTab.Enqueue(dataToGraph);
                             OnEegFrameArrived(eegArgs);
                         }
                         if (data.Length == 12 && data[9] != 0 && data[10] != 0 && data[11] != 0)

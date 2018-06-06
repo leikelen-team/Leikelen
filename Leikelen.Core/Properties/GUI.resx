@@ -469,4 +469,10 @@
   <data name="Select" xml:space="preserve">
     <value>Select</value>
   </data>
+  <data name="PrefSecondshresholdPdf" xml:space="preserve">
+    <value>Threshold seconds to generate pdf</value>
+  </data>
+  <data name="PrefMaxNumberin2D" xml:space="preserve">
+    <value>Max number of points in 2d graphs</value>
+  </data>
 </root>

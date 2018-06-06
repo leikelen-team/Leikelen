@@ -763,6 +763,24 @@ namespace cl.uv.leikelen.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Max number of points in 2d graphs.
+        /// </summary>
+        public static string PrefMaxNumberin2D {
+            get {
+                return ResourceManager.GetString("PrefMaxNumberin2D", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Threshold seconds to generate pdf.
+        /// </summary>
+        public static string PrefSecondshresholdPdf {
+            get {
+                return ResourceManager.GetString("PrefSecondshresholdPdf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Record date.
         /// </summary>
         public static string RecordDate {

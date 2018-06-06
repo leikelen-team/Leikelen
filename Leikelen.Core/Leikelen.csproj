@@ -441,6 +441,9 @@
     <Compile Include="Module\Input\OpenBCI\View\ConfigurePositions.xaml.cs">
       <DependentUpon>ConfigurePositions.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Module\Input\OpenBCI\View\GraphControl.xaml.cs">
+      <DependentUpon>GraphControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Module\Input\OpenBCI\View\GraphForm.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -658,6 +661,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Module\Input\OpenBCI\View\ConfigurePositions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Module\Input\OpenBCI\View\GraphControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

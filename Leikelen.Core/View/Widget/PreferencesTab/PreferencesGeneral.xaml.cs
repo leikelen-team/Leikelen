@@ -35,7 +35,8 @@ namespace cl.uv.leikelen.View.Widget.PreferencesTab
             DefaultMillisecondsTxt.Text = GeneralSettings.Instance.DefaultMillisecondsThreshold.Value.ToString();
             IntervalMinHeightTxt.Text = GeneralSettings.Instance.IntervalsGraphMinHeight.Value.ToString();
             EventMinHeightTxt.Text = GeneralSettings.Instance.EventsGraphMinHeight.Value.ToString();
-
+            SecondshresholdPdfTxt.Text = GeneralSettings.Instance.SecsWaitPdfReport.Value.ToString();
+            MaxNumberin2DTxt.Text = GeneralSettings.Instance.MaxNumberPointsInEventGraph.Value.ToString();
         }
 
         void IPreference.Apply()
@@ -45,11 +46,15 @@ namespace cl.uv.leikelen.View.Widget.PreferencesTab
             GeneralSettings.Instance.TmpSceneDirectory.Write(TmpSceneDirectoryTxt.Text);
             if (int.TryParse(DefaultMillisecondsTxt.Text, out int millSec) &&
                 int.TryParse(IntervalMinHeightTxt.Text, out int intervalMinHeight) &&
-                int.TryParse(EventMinHeightTxt.Text, out int eventsMinHeight))
+                int.TryParse(EventMinHeightTxt.Text, out int eventsMinHeight) &&
+                int.TryParse(SecondshresholdPdfTxt.Text, out int secondsWaitPdf) &&
+                int.TryParse(MaxNumberin2DTxt.Text, out int maxNumberIn2d))
             {
                 GeneralSettings.Instance.DefaultMillisecondsThreshold.Write(millSec);
                 GeneralSettings.Instance.IntervalsGraphMinHeight.Write(intervalMinHeight);
                 GeneralSettings.Instance.EventsGraphMinHeight.Write(eventsMinHeight);
+                GeneralSettings.Instance.SecsWaitPdfReport.Write(secondsWaitPdf);
+                GeneralSettings.Instance.MaxNumberPointsInEventGraph.Write(maxNumberIn2d);
             }
         }
 
