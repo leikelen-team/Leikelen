@@ -19,7 +19,7 @@
         <!--Here we disable tool-tips and hovering to get a better performance-->
         <Label VerticalAlignment="Center" x:Name="NameLabel" Grid.Column="0" />
         <CheckBox x:Name="ActivateCheckbox" Grid.Column="1" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" />
-        <lvc:CartesianChart Grid.Row="0" Grid.Column="2" DisableAnimations="True" Hoverable="False" DataTooltip="{x:Null}">
+        <lvc:CartesianChart Grid.Row="0" Grid.Column="2" DisableAnimations="True" Hoverable="False" DataTooltip="{x:Null}" SeriesColors="{Binding SeriesColors}">
             <lvc:CartesianChart.Series>
                 <lvc:LineSeries Values="{Binding ChartValues}" 
                                 PointGeometry="{x:Null}" 

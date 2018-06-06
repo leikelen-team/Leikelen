@@ -125,12 +125,12 @@ namespace cl.uv.leikelen.View.Widget.HomeTab.Widget
                 selSubModal.SubModalTypeId);
                 if (!ReferenceEquals(null, intervals) && intervals.Count > 0)
                 {
-                    FillGraph(intervals);
+                    FillGraph(intervals, selPerson.MainColor);
                 }
             }
         }
 
-        private void FillGraph(List<Interval> intervals)
+        private void FillGraph(List<Interval> intervals, Color color)
         {
             SeriesCollection = new SeriesCollection();
             double last = 0;
@@ -154,7 +154,7 @@ namespace cl.uv.leikelen.View.Widget.HomeTab.Widget
                     {
                         Values = new ChartValues<double> { interval.EndTime.TotalSeconds - interval.StartTime.TotalSeconds },
                         StackMode = StackMode.Values,
-                        Fill = Brushes.Blue,
+                        Fill = new SolidColorBrush(color),
                         DataLabels = true,
                         LabelPoint = p => p.X.ToString("F0")
                     });

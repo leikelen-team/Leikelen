@@ -28,7 +28,7 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI.View
         private FilterType _filterType;
         GraphControl[] graphs;
 
-        public LiveGraphTab()
+        public LiveGraphTab(Color color)
         {
             InitializeComponent();
             Header = Properties.OpenBCI.SensorName;
@@ -53,6 +53,7 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI.View
             for (int i = 0; i < 12; i++)
             {
                 graphs[i].ActivateCheckbox.IsChecked = true;
+                graphs[i].AddColor(color);
             }
         }
 

@@ -125,12 +125,12 @@ namespace cl.uv.leikelen.View.Widget.HomeTab.Widget
                 selSubModal.SubModalTypeId);
                 if (!ReferenceEquals(null, events) && events.Count > 0)
                 {
-                    FillGraph(events);
+                    FillGraph(events, selPerson.MainColor);
                 }
             }
         }
 
-        private void FillGraph(List<Event> events)
+        private void FillGraph(List<Event> events, Color color)
         {
             var dayConfig = Mappers.Xy<TimeModel>()
                 .X(dayModel => (double)dayModel.TimeSpan.TotalSeconds)
@@ -194,6 +194,9 @@ namespace cl.uv.leikelen.View.Widget.HomeTab.Widget
             });
 
             MyChart.Series = SeriesCollection;
+            var myCC = new ColorsCollection();
+            myCC.Add(color);
+            MyChart.SeriesColors = myCC;
             MyChart.Update();
         }
     }

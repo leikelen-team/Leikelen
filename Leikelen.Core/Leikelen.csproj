@@ -589,7 +589,6 @@
     <Compile Include="Util\IntegerInput.cs" />
     <Compile Include="Util\MessageBoxAsync.cs" />
     <Compile Include="Util\PersonColor.cs" />
-    <Compile Include="Util\PersonColors.cs" />
     <Compile Include="Util\SHA1Util.cs" />
     <Compile Include="Util\StringUtil.cs" />
     <Compile Include="Util\ThreadsUtil.cs" />

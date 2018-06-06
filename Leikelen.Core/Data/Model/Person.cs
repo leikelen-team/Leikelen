@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Windows.Media;
 
 namespace cl.uv.leikelen.Data.Model
 {
@@ -75,6 +76,11 @@ namespace cl.uv.leikelen.Data.Model
         /// </summary>
         public List<PersonInScene> PersonInScenes { get; set; }
 
+        [NotMapped]
+        public Color MainColor { get; set; }
+
+        [NotMapped]
+        public Color SecondaryColor { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Person"/> class.
@@ -82,6 +88,10 @@ namespace cl.uv.leikelen.Data.Model
         public Person()
         {
             PersonInScenes = new List<PersonInScene>();
+
+            var colors = Util.PersonColor.GetNewColors();
+            MainColor = colors.Item1;
+            SecondaryColor = colors.Item2;
         }
 
         /// <summary>

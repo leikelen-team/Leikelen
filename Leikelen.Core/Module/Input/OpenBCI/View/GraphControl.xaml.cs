@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using LiveCharts;
 using LiveCharts.Configurations;
+using LiveCharts.Wpf;
 
 namespace cl.uv.leikelen.Module.Input.OpenBCI.View
 {
@@ -36,6 +37,7 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI.View
         public Func<double, string> DateTimeFormatter { get; set; }
         public double AxisStep { get; set; }
         public double AxisUnit { get; set; }
+        public ColorsCollection SeriesColors { get; set; } = new ColorsCollection { Colors.Black };
 
         DateTime _startTime;
 
@@ -130,6 +132,12 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI.View
 
             DataContext = this;
 
+        }
+
+        public void AddColor(Color color)
+        {
+            SeriesColors = new ColorsCollection();
+            SeriesColors.Add(color);
         }
 
         public void Activate()

@@ -55,7 +55,7 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI
             _interpretStream = new Util.InterpretStream();
             _filter = new Util.Filter();
             _status = InputStatus.Unconnected;
-            GraphTab = new View.LiveGraphTab();
+            GraphTab = new View.LiveGraphTab(person.MainColor);
             _positions = new string[8]
             {
                 OpenBCISettings.Instance.PositionChannel1.Value,
@@ -90,7 +90,7 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI
         async Task IMonitor.Open()
         {
             //TODO: delete this
-            /*var mr = new Random();
+            var mr = new Random();
             var recordTimer = new DispatcherTimer();
             recordTimer.Interval = new TimeSpan(0, 0, 0, 0, 200); //0.5 seconds
             recordTimer.Tick += (sender, e) =>
@@ -111,7 +111,7 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI
                 };
                 GraphTab.Enqueue(data);
             };
-            recordTimer.Start();*/
+            recordTimer.Start();
             //to here
             StartStream();
         }

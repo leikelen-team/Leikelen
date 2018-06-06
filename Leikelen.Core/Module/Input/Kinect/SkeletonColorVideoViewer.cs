@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using cl.uv.leikelen.API.Module.Input;
+using cl.uv.leikelen.API.DataAccess;
+using cl.uv.leikelen.Data.Access;
 using Microsoft.Kinect;
 using KinectEx;
 using KinectEx.DVR;
@@ -18,6 +20,7 @@ namespace cl.uv.leikelen.Module.Input.Kinect
     /// <seealso cref="cl.uv.leikelen.API.Module.Input.IVideo" />
     public class SkeletonColorVideoViewer : IVideo
     {
+        private IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
         /// <summary>
         /// Occurs when [color image arrived].
         /// </summary>
@@ -32,7 +35,6 @@ namespace cl.uv.leikelen.Module.Input.Kinect
         private bool _isSkeletonEnabled;
 
         private readonly ColorFrameBitmap _colorBitmap;
-        private WriteableBitmap _bodyBitmap;
         private readonly List<CustomBody> _bodies;
 
         /// <summary>
@@ -42,6 +44,8 @@ namespace cl.uv.leikelen.Module.Input.Kinect
         {
             _colorBitmap = new ColorFrameBitmap();
             _bodies = new List<CustomBody>();
+
+            _colors = new Dictionary<long, Tuple<Color, Color>>();
         }
 
         /// <summary>
@@ -97,7 +101,6 @@ namespace cl.uv.leikelen.Module.Input.Kinect
             _isSkeletonEnabled = false;
         }
 
-
         /// <summary>
         /// Called when [color image arrived].
         /// </summary>
@@ -115,6 +118,8 @@ namespace cl.uv.leikelen.Module.Input.Kinect
         {
             SkeletonImageArrived?.Invoke(this, e);
         }
+
+        private Dictionary<long, Tuple<Color, Color>> _colors;
 
         /// <summary>
         /// Handles the FrameArrived event of the _bodyReader control.
@@ -138,12 +143,22 @@ namespace cl.uv.leikelen.Module.Input.Kinect
             if (!ReferenceEquals(null, bodies))
             {
                 bodies.MapDepthPositions();
-                _bodyBitmap = bodies.GetBitmap(Colors.LightGreen, Colors.Yellow);
-                OnSkeletonImageArrived(_bodyBitmap);
-            }
-            else
-            {
-                _bodyBitmap = null;
+                float _width = 512;
+                float _height = 424;
+                var bodyBitmap = BitmapFactory.New((int)_width, (int)_height);// bodies.GetBitmap(Colors.LightGreen, Colors.Yellow);
+                foreach(var body in bodies)
+                {
+                    if (body.IsTracked && !_colors.ContainsKey((long)body.TrackingId))
+                    {
+                        var pis = _dataAccessFacade.GetSceneInUseAccess()?.GetScene().PersonsInScene.Find(pisInFind => pisInFind?.Person?.TrackingId == (long)body.TrackingId);
+                        _colors[(long)body.TrackingId] = new Tuple<Color, Color>(pis.Person.MainColor, pis.Person.SecondaryColor);
+                    }
+                    if(_colors.ContainsKey((long)body.TrackingId))
+                        body.AddToBitmap(bodyBitmap, _colors[(long)body.TrackingId].Item1, _colors[(long)body.TrackingId].Item2);
+                    else
+                        body.AddToBitmap(bodyBitmap, Colors.LightGreen, Colors.Yellow);
+                }
+                OnSkeletonImageArrived(bodyBitmap);
             }
         }
 
@@ -183,11 +198,21 @@ namespace cl.uv.leikelen.Module.Input.Kinect
                 var bitmap = BitmapFactory.New((int)_width, (int)_height);
                 foreach (var body in e.Frame.Bodies)
                 {
-                    if (body.IsTracked)
+                    /*if (body.IsTracked)
                     {
                         color = Colors.Blue;
                         body.AddToBitmap(bitmap, color, color);
+                    }*/
+                    if (body.IsTracked && !_colors.ContainsKey((long)body.TrackingId))
+                    {
+                        var pis = _dataAccessFacade.GetSceneInUseAccess()?.GetScene().PersonsInScene.Find(pisInFind => pisInFind?.Person?.TrackingId == (long)body.TrackingId);
+                        if(pis != null && pis.Person != null)
+                            _colors[(long)body.TrackingId] = new Tuple<Color, Color>(pis.Person.MainColor, pis.Person.SecondaryColor);
                     }
+                    if (_colors.ContainsKey((long)body.TrackingId))
+                        body.AddToBitmap(bitmap, _colors[(long)body.TrackingId].Item1, _colors[(long)body.TrackingId].Item2);
+                    else
+                        body.AddToBitmap(bitmap, Colors.LightGreen, Colors.Yellow);
                 }
                 OnSkeletonImageArrived(bitmap);
             }

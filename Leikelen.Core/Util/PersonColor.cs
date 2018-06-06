@@ -8,22 +8,9 @@ using System.Windows.Media.Imaging;
 
 namespace cl.uv.leikelen.Util
 {
-    public class PersonColor
+    public static class PersonColor
     {
-        public Color MainColor { get; private set; }
-        public Color SecondaryColor { get; private set; }
-
-        public int PersonId { get; private set; }
-        public ulong TrackingId { get; private set; }
-
-        public PersonColor(int personId, ulong trackingId, int indexColor)
-        {
-            PersonId = personId;
-            TrackingId = trackingId;
-
-            MainColor = _mainColors[indexColor % _mainColors.Length];
-            SecondaryColor = _secColors[indexColor % _secColors.Length];
-        }
+        private static int _index = -1;
 
         private readonly static Color[] _mainColors = new Color[]
         {
@@ -74,6 +61,17 @@ namespace cl.uv.leikelen.Util
             Colors.DarkMagenta,
             Colors.DarkCyan
         };
+
+        public static Tuple<Color, Color> GetNewColors()
+        {
+            _index++;
+            return new Tuple<Color, Color>(_mainColors[_index % _mainColors.Length], _secColors[_index % _secColors.Length]);
+        }
+
+        public static void Reset()
+        {
+            _index = -1;
+        }
 
     }
 }

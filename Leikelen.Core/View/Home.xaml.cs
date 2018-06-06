@@ -407,6 +407,7 @@ namespace cl.uv.leikelen.View
                 input.Disable();
             }*/
             ProcessingLoader.Reset();
+            Util.PersonColor.Reset();
             ResetTabs();
             ResetMenuModules(false);
         }
@@ -631,9 +632,7 @@ namespace cl.uv.leikelen.View
                 RestartApp();
             }
         }
-        #endregion
 
-        #region Tools MenuItems
         private void MenuItem_Tools_DB_Click(object sender, RoutedEventArgs e)
         {
             var preferencesWin = new Preferences();
