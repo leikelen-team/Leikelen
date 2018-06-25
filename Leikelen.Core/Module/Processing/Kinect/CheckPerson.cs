@@ -7,15 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/// <summary>
+/// All processing modules that use Kinect v2 input sensor.
+/// </summary>
 namespace cl.uv.leikelen.Module.Processing.Kinect
 {
     /// <summary>
-    /// Check if the person detected by the kinect already has detected and saved
+    /// Check if the person detected by the kinect already has detected and saved.
     /// </summary>
     public class CheckPerson
     {
         /// <summary>
-        /// Dictionary that match the kinect tracking id with the persons identifier
+        /// Dictionary that match the kinect tracking id with the persons identifier.
         /// </summary>
         public Dictionary<ulong, Person> PersonsId { get; private set;} = new Dictionary<ulong, Person>();
         private IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
@@ -42,7 +45,7 @@ namespace cl.uv.leikelen.Module.Processing.Kinect
         /// <summary>
         /// Check if the person is in the dictionary, if not, check if the person
         /// is in the scene (checking by the name), if yes, add it to the dictionary,
-        /// if not, create a new person and adds it to the scene and dictionary
+        /// if not, create a new person and adds it to the scene and dictionary.
         /// </summary>
         /// <param name="bodyTrackingId">The kinect body tracking identifier.</param>
         public void CheckIfExistsPerson(ulong bodyTrackingId)

@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using cl.uv.leikelen.Data.Model;
 
+/// <summary>
+/// Access classes that are not visible to the modules
+/// </summary>
 namespace cl.uv.leikelen.Data.Access.Internal
 {
     /// <summary>

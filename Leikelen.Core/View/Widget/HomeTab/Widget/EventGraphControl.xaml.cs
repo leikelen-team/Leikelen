@@ -19,6 +19,9 @@ using cl.uv.leikelen.API.DataAccess;
 using cl.uv.leikelen.Data.Access;
 using cl.uv.leikelen.Data.Model;
 
+/// <summary>
+/// Widgets for the hometabs.
+/// </summary>
 namespace cl.uv.leikelen.View.Widget.HomeTab.Widget
 {
     /// <summary>
@@ -111,7 +114,19 @@ namespace cl.uv.leikelen.View.Widget.HomeTab.Widget
             Refresh();
         }
 
+        /// <summary>
+        /// Gets or sets the series collection of the graph.
+        /// </summary>
+        /// <value>
+        /// The series collection of the graph.
+        /// </value>
         public SeriesCollection SeriesCollection { get; set; }
+        /// <summary>
+        /// Gets or sets the formatter that maps from milliseconds to time string.
+        /// </summary>
+        /// <value>
+        /// The formatter that maps from milliseconds to time string.
+        /// </value>
         public Func<double, string> Formatter { get; set; }
 
         private void Refresh()
@@ -179,14 +194,6 @@ namespace cl.uv.leikelen.View.Widget.HomeTab.Widget
                 }
             }
 
-            /*foreach (var event_data in events)
-            {
-                values.Add(new TimeModel()
-                {
-                    TimeSpan = event_data.EventTime,
-                    Value = event_data.Value ?? 1
-                });
-            }*/
             SeriesCollection.Add(new LineSeries()
             {
                 Values = values,
@@ -201,9 +208,24 @@ namespace cl.uv.leikelen.View.Widget.HomeTab.Widget
         }
     }
 
+    /// <summary>
+    /// Class for a model of data for graph with time of events and its value.
+    /// </summary>
     public class TimeModel
     {
+        /// <summary>
+        /// Gets or sets the time of the event.
+        /// </summary>
+        /// <value>
+        /// The time of the event.
+        /// </value>
         public TimeSpan TimeSpan { get; set; }
+        /// <summary>
+        /// Gets or sets the value.
+        /// </summary>
+        /// <value>
+        /// The value.
+        /// </value>
         public double Value { get; set; }
     }
 }

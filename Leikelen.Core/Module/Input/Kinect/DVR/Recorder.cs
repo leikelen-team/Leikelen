@@ -11,6 +11,9 @@ using Microsoft.Kinect;
 using cl.uv.leikelen.API.DataAccess;
 using cl.uv.leikelen.Data.Access;
 
+/// <summary>
+/// Derived classes of KinectEx library.
+/// </summary>
 namespace cl.uv.leikelen.Module.Input.Kinect.DVR
 {
     /// <summary>

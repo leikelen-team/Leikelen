@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/// <summary>
+/// Frame to access the data of accelerometer sensors.
+/// </summary>
 namespace cl.uv.leikelen.API.FrameProvider.Accelerometer
 {
     /// <summary>

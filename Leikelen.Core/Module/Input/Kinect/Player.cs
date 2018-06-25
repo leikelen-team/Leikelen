@@ -20,20 +20,14 @@ namespace cl.uv.leikelen.Module.Input.Kinect
     {
         private KinectReplay _replay;
         private IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
-
-        /// <summary>
-        /// Resume the playback.
-        /// </summary>
-        public void Unpause()
+        
+        void IPlayer.Unpause()
         {
             if (!ReferenceEquals(null, _replay))
                 _replay.Start();
         }
-
-        /// <summary>
-        /// Opens the data file and plays the playback from the beginning.
-        /// </summary>
-        public void Play()
+        
+        void IPlayer.Play()
         {
             if (ReferenceEquals(null, _replay) &&
                 !ReferenceEquals(null, _dataAccessFacade.GetSceneInUseAccess().GetScene()))
@@ -70,19 +64,14 @@ namespace cl.uv.leikelen.Module.Input.Kinect
                 _replay.Start();
             }
         }
-
-        /// <summary>
-        /// Pauses the playback.
-        /// </summary>
-        public void Pause()
+        
+        void IPlayer.Pause()
         {
             if (!ReferenceEquals(null, _replay))
                 _replay.Stop();
         }
-        /// <summary>
-        /// Stops the playback.
-        /// </summary>
-        public void Stop()
+
+        void IPlayer.Stop()
         {
             if (!ReferenceEquals(null, _replay))
             {
@@ -91,23 +80,14 @@ namespace cl.uv.leikelen.Module.Input.Kinect
             }
             Close();
         }
-        /// <summary>
-        /// Sends the playback to a specific time.
-        /// </summary>
-        /// <param name="newTime">The new time.</param>
-        public void ChangeTime(TimeSpan newTime)
+
+        void IPlayer.ChangeTime(TimeSpan newTime)
         {
             if (!ReferenceEquals(null, _replay))
                 _replay.ScrubTo(newTime);
         }
-
-        /// <summary>
-        /// Determines whether this instance is playing.
-        /// </summary>
-        /// <returns>
-        ///   <c>true</c> if this instance is playing; otherwise, <c>false</c>.
-        /// </returns>
-        public bool IsPlaying()
+        
+        bool IPlayer.IsPlaying()
         {
             return !ReferenceEquals(null, _replay);
         }
@@ -125,26 +105,15 @@ namespace cl.uv.leikelen.Module.Input.Kinect
             }
         }
 
-        /// <summary>
-        /// Gets the total duration.
-        /// </summary>
-        /// <returns>
-        /// The total duration of the recorded data file, if exists
-        /// </returns>
-        public TimeSpan? GetTotalDuration()
+
+        TimeSpan? IPlayer.GetTotalDuration()
         {
             if(!ReferenceEquals(null, _replay))
                 return _replay.Duration;
             return null;
         }
-
-        /// <summary>
-        /// Gets the location.
-        /// </summary>
-        /// <returns>
-        /// The actual location of the playback, if its playing or paused
-        /// </returns>
-        public TimeSpan? GetLocation()
+        
+        TimeSpan? IPlayer.GetLocation()
         {
             if (!ReferenceEquals(null, _replay))
                 return _replay.Location;

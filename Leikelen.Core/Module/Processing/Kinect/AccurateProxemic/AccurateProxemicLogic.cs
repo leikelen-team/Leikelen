@@ -10,11 +10,17 @@ using Microsoft.Kinect;
 
 namespace cl.uv.leikelen.Module.Processing.Kinect.AccurateProxemic
 {
+    /// <summary>
+    /// Logic for processing module that calculates the accurate proxemic.
+    /// </summary>
     public class AccurateProxemicLogic
     {
-        public List<CustomBody> _bodies;
+        private List<CustomBody> _bodies;
         private IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AccurateProxemicLogic"/> class.
+        /// </summary>
         public AccurateProxemicLogic()
         {
             _dataAccessFacade.GetModalAccess().AddIfNotExists("AccProxemic", "distance between spinalmids of persons");
@@ -29,6 +35,11 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.AccurateProxemic
             _bodies = new List<CustomBody>();
         }
 
+        /// <summary>
+        /// Handles the FrameArrived event of the _bodyReader control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="BodyFrameArrivedEventArgs"/> instance containing the event data.</param>
         public void _bodyReader_FrameArrived(object sender, BodyFrameArrivedEventArgs e)
         {
             IEnumerable<IBody> bodies = null; // to make the GetBitmap call a little cleaner
@@ -92,13 +103,15 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.AccurateProxemic
                             {
                                 _dataAccessFacade.GetEventAccess().Add(CheckPerson.Instance.PersonsId[body.TrackingId], "AccProxemic", "Events", time.Value, minDistance, 3);
                             }
-                            //Console.WriteLine($"Proxemic real min is: {minDistance}");
                         }
                     }  
                 }
             }
         }
 
+        /// <summary>
+        /// Function to create the intervals from created events.
+        /// </summary>
         public void StopRecording()
         {
             foreach (var personPair in CheckPerson.Instance.PersonsId)

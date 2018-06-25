@@ -14,15 +14,22 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Media;
 
+/// <summary>
+/// Windows for the classification of emotions in EEG sensors.
+/// </summary>
 namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View
 {
     /// <summary>
-    /// Lógica de interacción para ClassifierWindow.xaml
+    /// Interaction logic for ClassifierWindow.xaml
     /// </summary>
     public partial class ConfigurationWindow : Window, ICloneable
     {
         private double lastR;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConfigurationWindow"/> class.
+        /// </summary>
+        /// <param name="title">The title.</param>
         public ConfigurationWindow(string title)
         {
             InitializeComponent();
@@ -99,7 +106,7 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View
             IntegerInput.PreviewTextInputHandler(sender, e);
         }
 
-        public object Clone()
+        object ICloneable.Clone()
         {
             return new ConfigurationWindow(Title);
         }

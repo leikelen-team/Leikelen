@@ -5,10 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/// <summary>
+/// The different modules.
+/// </summary>
 namespace cl.uv.leikelen.Module
 {
     /// <summary>
-    /// Gets the general modules, that are active all the time
+    /// Gets the general modules, that are active all the time.
     /// </summary>
     public class GeneralLoader
     {

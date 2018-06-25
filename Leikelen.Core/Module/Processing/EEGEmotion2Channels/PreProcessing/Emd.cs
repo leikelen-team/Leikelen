@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/// <summary>
+/// Preprocessing classes for classification of emotions of EEG.
+/// </summary>
 namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing
 {
     public struct EmdData

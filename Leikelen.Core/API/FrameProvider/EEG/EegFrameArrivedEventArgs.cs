@@ -5,6 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/// <summary>
+/// Frame to access the EEG data.
+/// </summary>
 namespace cl.uv.leikelen.API.FrameProvider.EEG
 {
     /// <summary>

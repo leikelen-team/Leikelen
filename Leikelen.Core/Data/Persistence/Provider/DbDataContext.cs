@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using cl.uv.leikelen.Data.Model;
 using Microsoft.EntityFrameworkCore;
 
+/// <summary>
+/// The providers for the different database engines.
+/// </summary>
 namespace cl.uv.leikelen.Data.Persistence.Provider
 {
     /// <summary>

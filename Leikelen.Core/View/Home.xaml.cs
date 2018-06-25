@@ -1325,26 +1325,68 @@ namespace cl.uv.leikelen.View
 
     }
 
+    /// <summary>
+    /// State of the player in the main window
+    /// </summary>
     public enum PlayerState
     {
+        /// <summary>
+        /// The player is waiting (without scene or stopped)
+        /// </summary>
         Wait,
+        /// <summary>
+        /// The player is recording from sensors
+        /// </summary>
         Record,
+        /// <summary>
+        /// The player is playing a previously recorded scene
+        /// </summary>
         Play,
+        /// <summary>
+        /// The player is paused (with an scene previously recorded)
+        /// </summary>
         Pause
     }
 
+    /// <summary>
+    /// State of the scene in use
+    /// </summary>
     public enum SceneState
     {
+        /// <summary>
+        /// There is no scene in use set
+        /// </summary>
         Base,
+        /// <summary>
+        /// The scene in use is in mode live with sensors connected
+        /// </summary>
         FromSensorWithScene,
+        /// <summary>
+        /// The scene in use is set with a previously recorded scene
+        /// </summary>
         FromFileWithScene
     }
 
+    /// <summary>
+    /// Types of the modules
+    /// </summary>
     public enum ModuleType
     {
+        /// <summary>
+        /// Module of a sensor that records all scene at a time (all persons)
+        /// </summary>
         InputScene,
+        /// <summary>
+        /// Module for processing the data retrieved from sensors
+        /// </summary>
         Processing,
+        /// <summary>
+        /// Module that adds a functionality to the application
+        /// </summary>
         General,
+        /// <summary>
+        /// Module of a sensor that records data of only one person in the scene
+        /// </summary>
         InputPerson
     }
 }

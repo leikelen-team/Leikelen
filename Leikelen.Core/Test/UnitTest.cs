@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using Xunit;
 using System.IO;
 
+/// <summary>
+/// Test for the application.
+/// </summary>
 namespace cl.uv.leikelen.Test
 {
     public class UnitTest : IDisposable

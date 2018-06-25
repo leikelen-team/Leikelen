@@ -10,11 +10,17 @@ using KinectEx;
 
 namespace cl.uv.leikelen.Module.Processing.Kinect.Proxemic
 {
+    /// <summary>
+    /// Logic for processing module that calculates the proxemic.
+    /// </summary>
     public class ProxemicLogic
     {
-        public List<CustomBody> _bodies;
+        private List<CustomBody> _bodies;
         private IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProxemicLogic"/> class.
+        /// </summary>
         public ProxemicLogic()
         {
             _dataAccessFacade.GetModalAccess().AddIfNotExists("Proxemic", "distance between spinalmids of persons");
@@ -30,6 +36,11 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.Proxemic
             _bodies = new List<CustomBody>();
         }
 
+        /// <summary>
+        /// Handles the FrameArrived event of the _bodyReader control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="BodyFrameArrivedEventArgs"/> instance containing the event data.</param>
         public void _bodyReader_FrameArrived(object sender, BodyFrameArrivedEventArgs e)
         {
             IEnumerable<IBody> bodies = null; // to make the GetBitmap call a little cleaner
@@ -63,7 +74,6 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.Proxemic
                             var time = _dataAccessFacade.GetSceneInUseAccess()?.GetLocation();
                             if (time.HasValue)
                             {
-                                //_dataAccessFacade.GetEventAccess().Add(CheckPerson.Instance.PersonsId[body.TrackingId], "Proxemic", "Events", time.Value, distance, false);
                                 if(distance < 0.45)
                                 {
                                     _dataAccessFacade.GetEventAccess().Add(CheckPerson.Instance.PersonsId[body.TrackingId], "Proxemic", "Events", time.Value, distance, 0);
@@ -80,7 +90,6 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.Proxemic
                                 {
                                     _dataAccessFacade.GetEventAccess().Add(CheckPerson.Instance.PersonsId[body.TrackingId], "Proxemic", "Events", time.Value, distance, 3);
                                 }
-                                //Console.WriteLine($"Proxemic is: {distance}");
                             }
                         }
                         lastCentralPoint = centralPoint;
@@ -89,6 +98,9 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.Proxemic
             }
         }
 
+        /// <summary>
+        /// Function to create the intervals from created events.
+        /// </summary>
         public async void StopRecording()
         {
             foreach (var personPair in CheckPerson.Instance.PersonsId)

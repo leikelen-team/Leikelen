@@ -38,6 +38,7 @@ namespace cl.uv.leikelen.Module.Input.Kinect.DVR
         /// </summary>
         /// <param name="frame">The frame.</param>
         /// <param name="bodies">The bodies.</param>
+        /// <param name="relativeTime">time relative to the start of the scene</param>
         public ReplayBodyFrameCustomTime(BodyFrame frame, List<CustomBody> bodies, TimeSpan relativeTime)
         {
             this.FrameType = FrameTypes.Body;
@@ -53,6 +54,7 @@ namespace cl.uv.leikelen.Module.Input.Kinect.DVR
         /// </summary>
         /// <param name="frame">The frame.</param>
         /// <param name="bodies">The bodies.</param>
+        /// <param name="relativeTime">time relative to the start of the scene</param>
         public ReplayBodyFrameCustomTime(BodyFrame frame, Body[] bodies, TimeSpan relativeTime)
         {
             this.FrameType = FrameTypes.Body;

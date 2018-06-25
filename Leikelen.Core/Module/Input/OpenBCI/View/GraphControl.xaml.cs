@@ -33,14 +33,47 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI.View
 
         private Queue<Tuple<DateTime, double>> _dataQueue;
 
+        /// <summary>
+        /// Gets or sets the chart values.
+        /// </summary>
+        /// <value>
+        /// The chart values.
+        /// </value>
         public ChartValues<MeasureModel> ChartValues { get; set; }
+        /// <summary>
+        /// Gets or sets the date time formatter.
+        /// </summary>
+        /// <value>
+        /// The date time formatter.
+        /// </value>
         public Func<double, string> DateTimeFormatter { get; set; }
+        /// <summary>
+        /// Gets or sets the axis step.
+        /// </summary>
+        /// <value>
+        /// The axis step.
+        /// </value>
         public double AxisStep { get; set; }
+        /// <summary>
+        /// Gets or sets the axis unit.
+        /// </summary>
+        /// <value>
+        /// The axis unit.
+        /// </value>
         public double AxisUnit { get; set; }
+        /// <summary>
+        /// Gets or sets the series colors.
+        /// </summary>
+        /// <value>
+        /// The series colors.
+        /// </value>
         public ColorsCollection SeriesColors { get; set; } = new ColorsCollection { Colors.Black };
 
         DateTime _startTime;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GraphControl"/> class.
+        /// </summary>
         public GraphControl()
         {
             InitializeComponent();
@@ -87,6 +120,14 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI.View
             DataContext = this;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GraphControl"/> class.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <param name="frequency">The frequency.</param>
+        /// <param name="secondsToGraph">The seconds to graph.</param>
+        /// <param name="secondsStep">The seconds step.</param>
+        /// <param name="delayInMilliseconds">The delay in milliseconds.</param>
         public GraphControl(string name, int frequency, int secondsToGraph, int secondsStep, int delayInMilliseconds)
         {
             InitializeComponent();
@@ -134,12 +175,21 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI.View
 
         }
 
+        /// <summary>
+        /// Adds the color of the graph.
+        /// </summary>
+        /// <param name="color">The color.</param>
         public void AddColor(Color color)
         {
-            SeriesColors = new ColorsCollection();
-            SeriesColors.Add(color);
+            SeriesColors = new ColorsCollection
+            {
+                color
+            };
         }
 
+        /// <summary>
+        /// Activates this instance.
+        /// </summary>
         public void Activate()
         {
             if (!_isActive)
@@ -149,6 +199,9 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI.View
             }
         }
 
+        /// <summary>
+        /// Deactivates this instance.
+        /// </summary>
         public void Deactivate()
         {
             if (_isActive)
@@ -158,12 +211,21 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI.View
             }
         }
 
+        /// <summary>
+        /// Enqueues the data to graph at the proper time.
+        /// </summary>
+        /// <param name="data">The data.</param>
         public void EnqueueData(double data)
         {
             _dataQueue.Enqueue(new Tuple<DateTime, double>(new DateTime(DateTime.Now.Ticks - _startTime.Ticks), data));
         }
 
-
+        /// <summary>
+        /// Gets or sets the axis maximum.
+        /// </summary>
+        /// <value>
+        /// The axis maximum.
+        /// </value>
         public double AxisMax
         {
             get { return _axisMax; }
@@ -173,6 +235,13 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI.View
                 OnPropertyChanged("AxisMax");
             }
         }
+
+        /// <summary>
+        /// Gets or sets the axis minimum.
+        /// </summary>
+        /// <value>
+        /// The axis minimum.
+        /// </value>
         public double AxisMin
         {
             get { return _axisMin; }
@@ -191,15 +260,27 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI.View
 
         #region INotifyPropertyChanged implementation
 
+        /// <summary>
+        /// Raise when a property is changed on a component.
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
+        /// <summary>
+        /// Called when [property changed].
+        /// </summary>
+        /// <param name="propertyName">Name of the property.</param>
         protected virtual void OnPropertyChanged(string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        #endregion
-
+        #endregion        
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance is active.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is active; otherwise, <c>false</c>.
+        /// </value>
         public bool _isActive { get; set; }
 
         private void Read()
@@ -251,9 +332,24 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI.View
         }
     }
 
+    /// <summary>
+    /// Class for a model of data for graph with time of events and its value
+    /// </summary>
     public class MeasureModel
     {
+        /// <summary>
+        /// Gets or sets the date time.
+        /// </summary>
+        /// <value>
+        /// The date time.
+        /// </value>
         public DateTime DateTime { get; set; }
+        /// <summary>
+        /// Gets or sets the value.
+        /// </summary>
+        /// <value>
+        /// The value.
+        /// </value>
         public double Value { get; set; }
     }
 }

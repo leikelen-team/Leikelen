@@ -10,11 +10,17 @@ using KinectEx;
 
 namespace cl.uv.leikelen.Module.Processing.Kinect.HeadAngle
 {
+    /// <summary>
+    /// Logic for processing module to calculate angle of head.
+    /// </summary>
     public class HeadAngleLogic
     {
-        public List<CustomBody> _bodies;
+        private List<CustomBody> _bodies;
         private IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HeadAngleLogic"/> class.
+        /// </summary>
         public HeadAngleLogic()
         {
             _bodies = new List<CustomBody>();
@@ -35,6 +41,11 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.HeadAngle
             _dataAccessFacade.GetSubModalAccess().AddIfNotExists("Lean", "Downside", "Lean in Y axis (back and forward) is to down", null);//2
         }
 
+        /// <summary>
+        /// Handles the FrameArrived event of the _bodyReader control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="BodyFrameArrivedEventArgs"/> instance containing the event data.</param>
         public void _bodyReader_FrameArrived(object sender, BodyFrameArrivedEventArgs e)
         {
             IEnumerable<IBody> bodies = null; // to make the GetBitmap call a little cleaner
@@ -104,6 +115,9 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.HeadAngle
             }
         }
 
+        /// <summary>
+        /// Function to create the intervals from created events.
+        /// </summary>
         public async void StopRecording()
         {
             foreach (var personPair in CheckPerson.Instance.PersonsId)

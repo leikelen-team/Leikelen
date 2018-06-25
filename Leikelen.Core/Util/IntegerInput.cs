@@ -7,6 +7,9 @@ using System.Windows;
 using System.Windows.Input;
 using System.Media;
 
+/// <summary>
+/// Utilitarian classes.
+/// </summary>
 namespace cl.uv.leikelen.Util
 {
     /// <summary>

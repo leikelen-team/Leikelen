@@ -25,6 +25,9 @@ namespace cl.uv.leikelen.View.Widget.HomeTab.Widget
     /// </summary>
     public partial class IntervalGraphControl : UserControl
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="IntervalGraphControl"/> class.
+        /// </summary>
         public IntervalGraphControl()
         {
             InitializeComponent();
@@ -110,8 +113,26 @@ namespace cl.uv.leikelen.View.Widget.HomeTab.Widget
             //Refresh();
         }
 
+        /// <summary>
+        /// Gets or sets the series collection of the graph.
+        /// </summary>
+        /// <value>
+        /// The series collection of the graph.
+        /// </value>
         public SeriesCollection SeriesCollection { get; set; }
+        /// <summary>
+        /// Gets or sets the labels.
+        /// </summary>
+        /// <value>
+        /// The labels.
+        /// </value>
         public string[] Labels { get; set; }
+        /// <summary>
+        /// Gets or sets the formatter that maps from milliseconds to time string.
+        /// </summary>
+        /// <value>
+        /// The formatter that maps from milliseconds to time string.
+        /// </value>
         public Func<double, string> Formatter { get; set; }
 
         private void Refresh()

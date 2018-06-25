@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/// <summary>
+/// Utilitarian classes for the openbci sensor.
+/// </summary>
 namespace cl.uv.leikelen.Module.Input.OpenBCI.Util
 {
     /// <summary>

@@ -16,6 +16,9 @@ using System.Windows.Shapes;
 using cl.uv.leikelen.API.DataAccess;
 using cl.uv.leikelen.Data.Access;
 
+/// <summary>
+/// Graphic interface for the general module to manage postures.
+/// </summary>
 namespace cl.uv.leikelen.Module.General.GestureConfiguration.View
 {
     /// <summary>

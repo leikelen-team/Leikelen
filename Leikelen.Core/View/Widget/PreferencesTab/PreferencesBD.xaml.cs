@@ -15,6 +15,9 @@ using cl.uv.leikelen.Data.Persistence;
 using cl.uv.leikelen.API.Helper;
 using cl.uv.leikelen.Util;
 
+/// <summary>
+/// Tabs of the preference window.
+/// </summary>
 namespace cl.uv.leikelen.View.Widget.PreferencesTab
 {
     /// <summary>

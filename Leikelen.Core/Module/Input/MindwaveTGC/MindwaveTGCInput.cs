@@ -6,6 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/// <summary>
+/// Mindwave EEG input sensor.
+/// </summary>
 namespace cl.uv.leikelen.Module.Input.MindwaveTGC
 {
     /// <summary>

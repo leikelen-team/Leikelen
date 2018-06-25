@@ -193,16 +193,10 @@ namespace cl.uv.leikelen.Module.Input.Kinect
             {
                 float _width = 512;
                 float _height = 424;
-
-                Color color;
+                
                 var bitmap = BitmapFactory.New((int)_width, (int)_height);
                 foreach (var body in e.Frame.Bodies)
                 {
-                    /*if (body.IsTracked)
-                    {
-                        color = Colors.Blue;
-                        body.AddToBitmap(bitmap, color, color);
-                    }*/
                     if (body.IsTracked && !_colors.ContainsKey((long)body.TrackingId))
                     {
                         var pis = _dataAccessFacade.GetSceneInUseAccess()?.GetScene().PersonsInScene.Find(pisInFind => pisInFind?.Person?.TrackingId == (long)body.TrackingId);

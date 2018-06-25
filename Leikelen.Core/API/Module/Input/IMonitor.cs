@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/// <summary>
+/// API for Input modules.
+/// </summary>
 namespace cl.uv.leikelen.API.Module.Input
 {
     /// <summary>

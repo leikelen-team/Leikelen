@@ -33,7 +33,10 @@ namespace cl.uv.leikelen.Module.Input.MindwaveTGC
         System.Threading.Thread _readThread;
         private bool _waitingStoppped = false;
 
-        //
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Monitor"/> class.
+        /// </summary>
+        /// <param name="person">The person.</param>
         public Monitor(Person person)
         {
             _person = person;

@@ -8,6 +8,9 @@ using System.Windows.Media.Imaging;
 
 namespace cl.uv.leikelen.Util
 {
+    /// <summary>
+    /// Static class with colors for the persons.
+    /// </summary>
     public static class PersonColor
     {
         private static int _index = -1;
@@ -62,12 +65,19 @@ namespace cl.uv.leikelen.Util
             Colors.DarkCyan
         };
 
+        /// <summary>
+        /// Gets new colors for a person.
+        /// </summary>
+        /// <returns></returns>
         public static Tuple<Color, Color> GetNewColors()
         {
             _index++;
             return new Tuple<Color, Color>(_mainColors[_index % _mainColors.Length], _secColors[_index % _secColors.Length]);
         }
 
+        /// <summary>
+        /// Resets the colors used and start from the beginning.
+        /// </summary>
         public static void Reset()
         {
             _index = -1;

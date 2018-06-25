@@ -28,6 +28,10 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI.View
         private FilterType _filterType;
         GraphControl[] graphs;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LiveGraphTab"/> class.
+        /// </summary>
+        /// <param name="color">The color of the graph.</param>
         public LiveGraphTab(Color color)
         {
             InitializeComponent();
@@ -57,16 +61,20 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI.View
             }
         }
 
-        public void Fill()
+        void ITab.Fill()
         {
 
         }
 
-        public void Reset()
+        void ITab.Reset()
         {
 
         }
 
+        /// <summary>
+        /// Sets the position names for each graph.
+        /// </summary>
+        /// <param name="positions">The positions names.</param>
         public void SetPositions(string[] positions)
         {
             _positions = positions;
@@ -79,6 +87,10 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI.View
             }
         }
 
+        /// <summary>
+        /// Enqueues the specified data to graph.
+        /// </summary>
+        /// <param name="dataToGraph">The data to graph.</param>
         public void Enqueue(double[] dataToGraph)
         {
             if ((_notchType != NotchType.None || _filterType != FilterType.None) && dataToGraph?.Length >= 9)

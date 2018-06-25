@@ -15,6 +15,9 @@ using cl.uv.leikelen.API.DataAccess;
 using cl.uv.leikelen.Data.Model;
 using cl.uv.leikelen.API.Helper;
 
+/// <summary>
+/// OpenBCI EEG input sensor.
+/// </summary>
 namespace cl.uv.leikelen.Module.Input.OpenBCI
 {
     /// <summary>
@@ -27,6 +30,10 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI
         /// Occurs when current sensor's [status changed].
         /// </summary>
         public event EventHandler StatusChanged;
+        /// <summary>
+        /// The graph tab of actual signals in real time.
+        /// </summary>
+        public View.LiveGraphTab GraphTab;
 
         private readonly Util.InterpretStream _interpretStream;
         private Util.Filter _filter;
@@ -36,7 +43,6 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI
         private readonly string[] _positions;
         private IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
         private Person _person;
-        public View.LiveGraphTab GraphTab;
 
         private bool _isRecording;
 

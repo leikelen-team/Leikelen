@@ -17,11 +17,21 @@ using cl.uv.leikelen.API.Module.Input;
 namespace cl.uv.leikelen.Module.Input.OpenBCI.View
 {
     /// <summary>
-    /// Lógica de interacción para OpenBCIWindow.xaml
+    /// Interaction logic OpenBCIWindow.xaml
     /// </summary>
     public partial class OpenBCIWindow : Window, ICloneable
     {
+        /// <summary>
+        /// Gets the monitor.
+        /// </summary>
+        /// <value>
+        /// The monitor.
+        /// </value>
         public IMonitor Monitor { get; }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OpenBCIWindow"/> class.
+        /// </summary>
+        /// <param name="monitor">The monitor.</param>
         public OpenBCIWindow(IMonitor monitor)
         {
             InitializeComponent();
@@ -35,6 +45,10 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI.View
 
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OpenBCIWindow"/> class.
+        /// </summary>
+        /// <param name="openBCIwindow">The open bci window.</param>
         public OpenBCIWindow(OpenBCIWindow openBCIwindow)
         {
             InitializeComponent();
@@ -118,7 +132,7 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI.View
             }
         }
 
-        public object Clone()
+        object ICloneable.Clone()
         {
             return new OpenBCIWindow(this);
         }

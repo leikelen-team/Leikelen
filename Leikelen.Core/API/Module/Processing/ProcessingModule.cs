@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using System.Windows;
 using cl.uv.leikelen.API.Helper;
 
+/// <summary>
+/// API for processing modules.
+/// </summary>
 namespace cl.uv.leikelen.API.Module.Processing
 {
     /// <summary>
@@ -26,7 +29,7 @@ namespace cl.uv.leikelen.API.Module.Processing
         /// <summary>
         /// Functions called after the recorder stops.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The function to be executed at stop recording</returns>
         public abstract Action FunctionAfterStop();
     }
 }

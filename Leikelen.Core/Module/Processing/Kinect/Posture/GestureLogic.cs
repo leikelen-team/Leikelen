@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace cl.uv.leikelen.Module.Processing.Kinect.Posture
 {
+    /// <summary>
+    /// Logic for processing module to calculates the postures.
+    /// </summary>
     public class GestureLogic
     {
         
@@ -18,7 +21,7 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.Posture
         /// </summary>
         private IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
         /// <summary>
-        /// List of tuples of personids and its discrete gestures. Used to create the intervals from the events.
+        /// List of tuples of person ids and its discrete gestures. Used to create the intervals from the events.
         /// </summary>
         private List<Tuple<Person, string>> _discreteGestures;
 
@@ -35,7 +38,7 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.Posture
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GestureLogic"/> class.
-        /// Initialize the attributes, and check if exists the discrete and continuous modals.
+        /// Initialize the attributes, and check if exists the discrete and continuous modal types.
         /// </summary>
         public GestureLogic()
         {

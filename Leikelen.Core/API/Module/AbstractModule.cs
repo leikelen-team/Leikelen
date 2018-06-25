@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using cl.uv.leikelen.API.Helper;
 
+/// <summary>
+/// API for modules.
+/// </summary>
 namespace cl.uv.leikelen.API.Module
 {
     /// <summary>

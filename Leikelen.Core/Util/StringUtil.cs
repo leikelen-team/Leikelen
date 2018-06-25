@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace cl.uv.leikelen.Util
 {
     /// <summary>
-    /// Class with string utilities
+    /// Utility class with functions related to strings.
     /// </summary>
     public static class StringUtil
     {

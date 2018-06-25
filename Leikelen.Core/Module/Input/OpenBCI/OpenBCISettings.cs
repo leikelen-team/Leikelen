@@ -7,6 +7,10 @@ using Config.Net;
 
 namespace cl.uv.leikelen.Module.Input.OpenBCI
 {
+    /// <summary>
+    /// Settings of the openbci sensor.
+    /// </summary>
+    /// <seealso cref="Config.Net.SettingsContainer" />
     public class OpenBCISettings : SettingsContainer
     {
         /// <summary>

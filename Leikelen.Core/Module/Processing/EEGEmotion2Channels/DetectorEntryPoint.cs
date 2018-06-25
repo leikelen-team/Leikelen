@@ -9,6 +9,9 @@ using cl.uv.leikelen.API.Helper;
 using cl.uv.leikelen.API.Module.Processing;
 using cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View;
 
+/// <summary>
+/// Processing module for classification emotions from EEG input sensors.
+/// </summary>
 namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels
 {
     public sealed class DetectorEntryPoint : ProcessingModule, IEegProcessingModule

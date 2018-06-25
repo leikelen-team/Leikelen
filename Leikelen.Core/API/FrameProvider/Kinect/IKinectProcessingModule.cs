@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using Microsoft.Kinect;
 using Microsoft.Kinect.VisualGestureBuilder;
 
+/// <summary>
+/// Frame to access the Kinect data.
+/// </summary>
 namespace cl.uv.leikelen.API.FrameProvider.Kinect
 {
     /// <summary>

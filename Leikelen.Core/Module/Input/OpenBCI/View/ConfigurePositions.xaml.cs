@@ -14,10 +14,13 @@ using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 using cl.uv.leikelen.Module.Input.OpenBCI.Properties;
 
+/// <summary>
+/// The windows and tabs for the openbci EEG input sensor.
+/// </summary>
 namespace cl.uv.leikelen.Module.Input.OpenBCI.View
 {
     /// <summary>
-    /// Lógica de interacción para ConfigurePositions.xaml
+    /// Interaction logic for ConfigurePositions.xaml
     /// </summary>
     public partial class ConfigurePositions : Window
     {
@@ -26,6 +29,10 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI.View
         private ReadOnlyCollection<string> _positions1020 = new ReadOnlyCollection<string>( new string[]{"Fpz", "Fp1", "Fp2", "Fz", "F3", "F4", "F7", "F8", "Cz", "C3", "C4", "T3", "T4", "T5", "T6", "Pz", "P3", "P4", "Oz", "O1", "O2"});
         private ReadOnlyCollection<string> _positions1010 = new ReadOnlyCollection<string>(new string[] { "Fpz", "Fp1", "Fp2", "AFz","AF3", "AF4", "AF7", "AF8", "Fz", "F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "F10", "FCz", "FC1", "FC2", "FC3", "FC4", "FC5", "FC6", "FT7", "FT8", "FT9", "FT10", "Cz", "C1", "C2", "C3", "C4", "C5", "C6", "T3", "T4", "T5", "T6", "T9", "T10", "CPz", "CP1", "CP2", "CP3", "CP4", "CP5", "CP6", "TP7", "TP8", "TP9", "TP10", "Pz", "P1", "P2", "P3", "P4", "P5", "P6", "P9", "P10", "POz", "PO3", "PO4", "PO7", "PO8", "Oz", "O1", "O2" });
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConfigurePositions"/> class.
+        /// </summary>
+        /// <param name="backWindow">The back window.</param>
         public ConfigurePositions(Window backWindow)
         {
             InitializeComponent();

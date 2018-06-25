@@ -627,9 +627,6 @@
     <Compile Include="View\Widget\HomeTab\Widget\IntervalGraphControl.xaml.cs">
       <DependentUpon>IntervalGraphControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Widget\PersonCard.xaml.cs">
-      <DependentUpon>PersonCard.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\Widget\PreferencesTab\PreferencesBD.xaml.cs">
       <DependentUpon>PreferencesBD.xaml</DependentUpon>
     </Compile>
@@ -724,10 +721,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Widget\HomeTab\Widget\IntervalGraphControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Widget\PersonCard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

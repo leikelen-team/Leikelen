@@ -10,14 +10,20 @@ using KinectEx;
 
 namespace cl.uv.leikelen.Module.Processing.Kinect.ShouldersAngle
 {
+    /// <summary>
+    /// Logic for processing module that calculate angle of shoulders.
+    /// </summary>
     public class ShouldersAngleLogic
     {
-        public List<CustomBody> _bodies;
+        private List<CustomBody> _bodies;
         private const double _movementToPositive = 0;
 
         private readonly Dictionary<ulong, int> _personsId = new Dictionary<ulong, int>();
         private IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ShouldersAngleLogic"/> class.
+        /// </summary>
         public ShouldersAngleLogic()
         {
             _bodies = new List<CustomBody>();
@@ -26,6 +32,11 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.ShouldersAngle
             _dataAccessFacade.GetSubModalAccess().AddIfNotExists("Shoulders", "Angle", "angle between the shoulders", null);
         }
 
+        /// <summary>
+        /// Handles the FrameArrived event of the _bodyReader control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="BodyFrameArrivedEventArgs"/> instance containing the event data.</param>
         public void _bodyReader_FrameArrived(object sender, BodyFrameArrivedEventArgs e)
         {
             IEnumerable<IBody> bodies = null; // to make the GetBitmap call a little cleaner
@@ -84,7 +95,6 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.ShouldersAngle
                             if (time.HasValue)
                             {
                                 _dataAccessFacade.GetEventAccess().Add(CheckPerson.Instance.PersonsId[body.TrackingId], "Shoulders", "Angle", time.Value, angle, -1);
-                                //Console.WriteLine($"El ángulo de los hombros es: {angle}");
                             }
                         }
                     }

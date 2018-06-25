@@ -30,6 +30,10 @@ namespace cl.uv.leikelen.Module.Input.Kinect
             }
         }
 
+        /// <summary>
+        /// Called when [configure].
+        /// </summary>
+        /// <param name="configuration">The configuration.</param>
         protected override void OnConfigure(IConfigConfiguration configuration)
         {
             configuration.UseJsonFile(@"config/input/kinect.json");

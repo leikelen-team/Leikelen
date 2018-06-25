@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/// <summary>
+/// Classes to communicate to the database.
+/// </summary>
 namespace cl.uv.leikelen.Data.Persistence
 {
     /// <summary>

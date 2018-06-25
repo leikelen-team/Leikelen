@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using cl.uv.leikelen.API.DataAccess;
 using cl.uv.leikelen.Data.Model;
 
+/// <summary>
+/// Access classes that are visible to the modules.
+/// </summary>
 namespace cl.uv.leikelen.Data.Access.External
 {
     /// <summary>

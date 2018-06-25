@@ -14,6 +14,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using cl.uv.leikelen.Data.Access.Internal;
 
+/// <summary>
+/// Tabs of the main window.
+/// </summary>
 namespace cl.uv.leikelen.View.Widget.HomeTab
 {
     /// <summary>

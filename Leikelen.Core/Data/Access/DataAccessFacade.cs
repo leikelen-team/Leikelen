@@ -7,6 +7,9 @@ using cl.uv.leikelen.API.DataAccess;
 using cl.uv.leikelen.Data.Access.External;
 using cl.uv.leikelen.Data.Persistence;
 
+/// <summary>
+/// Classes to access the data.
+/// </summary>
 namespace cl.uv.leikelen.Data.Access
 {
     /// <summary>

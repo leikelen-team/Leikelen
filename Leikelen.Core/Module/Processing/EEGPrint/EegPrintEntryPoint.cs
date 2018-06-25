@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 using System.IO;
 using Accord.IO;
 
+/// <summary>
+/// Processing module for print the EEG data.
+/// </summary>
 namespace cl.uv.leikelen.Module.Processing.EEGPrint
 {
     /// <summary>

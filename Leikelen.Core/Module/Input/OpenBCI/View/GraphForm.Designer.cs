@@ -1,5 +1,9 @@
 ﻿namespace cl.uv.leikelen.Module.Input.OpenBCI.View
 {
+    /// <summary>
+    /// Windows Form version of live graph.
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.UserControl" />
     partial class GraphForm
     {
         /// <summary>

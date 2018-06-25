@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using Config.Net;
 using cl.uv.leikelen.API.DataAccess;
 
+/// <summary>
+/// Main namespace of application.
+/// </summary>
 namespace cl.uv.leikelen
 {
     /// <summary>
@@ -14,7 +17,13 @@ namespace cl.uv.leikelen
     /// <seealso cref="Config.Net.SettingsContainer" />
     public class GeneralSettings : SettingsContainer
     {
+        /// <summary>
+        /// The maximum number of points in event graphs (to make decimation)
+        /// </summary>
         public readonly Option<int> MaxNumberPointsInEventGraph = new Option<int>("MaxNumberPointsInEventGraph", 100);
+        /// <summary>
+        /// The seconds to wait for the PDF generation
+        /// </summary>
         public readonly Option<int> SecsWaitPdfReport = new Option<int>("SecsWaitPdfReport", 0);
         /// <summary>
         /// The language of the application

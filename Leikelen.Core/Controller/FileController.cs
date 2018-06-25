@@ -10,6 +10,9 @@ using System.IO.Compression;
 using cl.uv.leikelen.Data.Model;
 using cl.uv.leikelen.Data.Access;
 
+/// <summary>
+/// Controllers to manage the communication with modules and export classes.
+/// </summary>
 namespace cl.uv.leikelen.Controller
 {
     /// <summary>

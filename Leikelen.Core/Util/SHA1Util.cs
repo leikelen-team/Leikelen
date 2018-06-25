@@ -7,6 +7,9 @@ using System.Security.Cryptography;
 
 namespace cl.uv.leikelen.Util
 {
+    /// <summary>
+    /// Utility class with functions related to Hashing in SHA1.
+    /// </summary>
     public static class SHA1Util
     {
         /// <summary>

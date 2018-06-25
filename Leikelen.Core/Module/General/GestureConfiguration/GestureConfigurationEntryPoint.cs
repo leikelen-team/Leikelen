@@ -8,10 +8,13 @@ using cl.uv.leikelen.API.Helper;
 using cl.uv.leikelen.API.DataAccess;
 using cl.uv.leikelen.Data.Access;
 
+/// <summary>
+/// General module to manage the postures.
+/// </summary>
 namespace cl.uv.leikelen.Module.General.GestureConfiguration
 {
     /// <summary>
-    /// General module to manage the postures
+    /// Entry point of general module to manage the postures
     /// </summary>
     /// <seealso cref="cl.uv.leikelen.API.Module.General.GeneralModule" />
     public class GestureConfigurationEntryPoint : GeneralModule

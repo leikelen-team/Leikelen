@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
+/// <summary>
+/// The data model of the application.
+/// </summary>
 namespace cl.uv.leikelen.Data.Model
 {
     /// <summary>

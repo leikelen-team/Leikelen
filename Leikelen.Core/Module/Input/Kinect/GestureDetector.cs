@@ -10,6 +10,9 @@ using cl.uv.leikelen.Data.Access;
 using KinectEx;
 using cl.uv.leikelen.API.FrameProvider.Kinect;
 
+/// <summary>
+/// Input module for kinect sensor.
+/// </summary>
 namespace cl.uv.leikelen.Module.Input.Kinect
 {
     /// <summary>
@@ -158,6 +161,11 @@ namespace cl.uv.leikelen.Module.Input.Kinect
             }
         }
 
+        /// <summary>
+        /// Handles the FrameArrived event of the _bodyReader control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="BodyFrameArrivedEventArgs"/> instance containing the event data.</param>
         public static void _bodyReader_FrameArrived(object sender, BodyFrameArrivedEventArgs e)
         {
             IEnumerable<IBody> bodies = null; // to make the GetBitmap call a little cleaner

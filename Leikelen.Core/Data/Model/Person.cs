@@ -76,9 +76,21 @@ namespace cl.uv.leikelen.Data.Model
         /// </summary>
         public List<PersonInScene> PersonInScenes { get; set; }
 
+        /// <summary>
+        /// Gets or sets the main color.
+        /// </summary>
+        /// <value>
+        /// The main color.
+        /// </value>
         [NotMapped]
         public Color MainColor { get; set; }
 
+        /// <summary>
+        /// Gets or sets the secondary color .
+        /// </summary>
+        /// <value>
+        /// The secondary color.
+        /// </value>
         [NotMapped]
         public Color SecondaryColor { get; set; }
 

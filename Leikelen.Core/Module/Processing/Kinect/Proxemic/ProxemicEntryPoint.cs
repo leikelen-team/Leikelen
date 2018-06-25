@@ -8,11 +8,22 @@ using cl.uv.leikelen.API.Helper;
 using cl.uv.leikelen.API.Module.Processing;
 using cl.uv.leikelen.API.FrameProvider.Kinect;
 
+/// <summary>
+/// Processing module that calculates the proxemic.
+/// </summary>
 namespace cl.uv.leikelen.Module.Processing.Kinect.Proxemic
 {
+    /// <summary>
+    /// Entry point for processing module that calculates the proxemic.
+    /// </summary>
+    /// <seealso cref="cl.uv.leikelen.API.Module.Processing.ProcessingModule" />
+    /// <seealso cref="cl.uv.leikelen.API.FrameProvider.Kinect.IKinectProcessingModule" />
     public class ProxemicEntryPoint : ProcessingModule, IKinectProcessingModule
     {
         private ProxemicLogic _logic;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProxemicEntryPoint"/> class.
+        /// </summary>
         public ProxemicEntryPoint()
         {
             Name = "Proxemic";
@@ -20,27 +31,31 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.Proxemic
             _logic = new ProxemicLogic();
         }
 
-        public EventHandler<AudioBeamFrameArrivedEventArgs> AudioListener()
+        EventHandler<AudioBeamFrameArrivedEventArgs> IKinectProcessingModule.AudioListener()
         {
             return null;
         }
 
-        public EventHandler<BodyFrameArrivedEventArgs> BodyListener()
+        EventHandler<BodyFrameArrivedEventArgs> IKinectProcessingModule.BodyListener()
         {
             return _logic._bodyReader_FrameArrived;
         }
 
-        public EventHandler<ColorFrameArrivedEventArgs> ColorListener()
+        EventHandler<ColorFrameArrivedEventArgs> IKinectProcessingModule.ColorListener()
         {
             return null;
         }
 
+        /// <summary>
+        /// Functions called after the recorder stops.
+        /// </summary>
+        /// <returns>The function to be executed at stop recording</returns>
         public override Action FunctionAfterStop()
         {
             return _logic.StopRecording;
         }
 
-        public EventHandler<KinectGestureFrameArrivedArgs> GestureListener()
+        EventHandler<KinectGestureFrameArrivedArgs> IKinectProcessingModule.GestureListener()
         {
             return null;
         }
