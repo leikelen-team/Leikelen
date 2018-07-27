@@ -148,15 +148,22 @@ namespace cl.uv.leikelen.Module.Input.Kinect
                 var bodyBitmap = BitmapFactory.New((int)_width, (int)_height);// bodies.GetBitmap(Colors.LightGreen, Colors.Yellow);
                 foreach(var body in bodies)
                 {
-                    if (body.IsTracked && !_colors.ContainsKey((long)body.TrackingId))
+                    if (_colors.ContainsKey((long)body.TrackingId))
+                        body.AddToBitmap(bodyBitmap, _colors[(long)body.TrackingId].Item1, _colors[(long)body.TrackingId].Item2);
+                    else if(body.IsTracked)
                     {
                         var pis = _dataAccessFacade.GetSceneInUseAccess()?.GetScene().PersonsInScene.Find(pisInFind => pisInFind?.Person?.TrackingId == (long)body.TrackingId);
-                        _colors[(long)body.TrackingId] = new Tuple<Color, Color>(pis.Person.MainColor, pis.Person.SecondaryColor);
+                        if(pis is null)
+                        {
+                            body.AddToBitmap(bodyBitmap, Colors.LightGreen, Colors.Yellow);
+                        }
+                        else
+                        {
+                            _colors[(long)body.TrackingId] = new Tuple<Color, Color>(pis.Person.MainColor, pis.Person.SecondaryColor);
+                            body.AddToBitmap(bodyBitmap, pis.Person.MainColor, pis.Person.SecondaryColor);
+                        }
                     }
-                    if(_colors.ContainsKey((long)body.TrackingId))
-                        body.AddToBitmap(bodyBitmap, _colors[(long)body.TrackingId].Item1, _colors[(long)body.TrackingId].Item2);
-                    else
-                        body.AddToBitmap(bodyBitmap, Colors.LightGreen, Colors.Yellow);
+                        
                 }
                 OnSkeletonImageArrived(bodyBitmap);
             }
