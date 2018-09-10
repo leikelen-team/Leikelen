@@ -153,7 +153,7 @@
     <value>User manual</value>
   </data>
   <data name="Tools" xml:space="preserve">
-    <value>_Tools</value>
+    <value>_Modules</value>
     <comment>Menu principal</comment>
   </data>
   <data name="Scene_Configure" xml:space="preserve">

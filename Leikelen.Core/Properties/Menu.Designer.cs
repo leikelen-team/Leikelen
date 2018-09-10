@@ -376,7 +376,7 @@ namespace cl.uv.leikelen.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a _Tools.
+        ///   Busca una cadena traducida similar a _Modules.
         /// </summary>
         public static string Tools {
             get {

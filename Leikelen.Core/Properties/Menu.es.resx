@@ -122,7 +122,7 @@
     <comment>Menu principal</comment>
   </data>
   <data name="Tools" xml:space="preserve">
-    <value>_Herramientas</value>
+    <value>_Módulos</value>
   </data>
   <data name="Export" xml:space="preserve">
     <value>Exportar</value>

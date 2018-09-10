@@ -396,6 +396,10 @@
     <Compile Include="Data\Persistence\Provider\MySqlProvider.cs" />
     <Compile Include="Data\Persistence\Provider\SqliteProvider.cs" />
     <Compile Include="Module\GeneralLoader.cs" />
+    <Compile Include="Module\General\AddMicrophoneScene\AddMicrophoneSceneEntryPoint.cs" />
+    <Compile Include="Module\General\AddMicrophoneScene\View\AddMicrophoneData.xaml.cs">
+      <DependentUpon>AddMicrophoneData.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Module\General\GestureConfiguration\GestureConfigurationEntryPoint.cs" />
     <Compile Include="Module\General\GestureConfiguration\Properties\GestureConfiguration.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -648,6 +652,10 @@
     <Compile Include="View\Widget\HomeTab\TabScene.xaml.cs">
       <DependentUpon>TabScene.xaml</DependentUpon>
     </Compile>
+    <Page Include="Module\General\AddMicrophoneScene\View\AddMicrophoneData.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Module\General\GestureConfiguration\View\AddOrEditPosture.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -18,7 +18,7 @@ using Microsoft.Data.Sqlite;
 namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View
 {
     /// <summary>
-    /// Lógica de interacción para TrainerFileSelector.xaml
+    /// Interaction logic for TrainerFileSelector.xaml
     /// </summary>
     public partial class TrainerFileSelector : Window, ICloneable
     {
