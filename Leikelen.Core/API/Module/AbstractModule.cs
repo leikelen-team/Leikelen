@@ -31,7 +31,7 @@ namespace cl.uv.leikelen.API.Module
         /// <value>
         /// A list of this module's windows.
         /// </value>
-        public List<Tuple<string, WindowBuilder>> Windows { get; protected set; } = new List<Tuple<string, WindowBuilder>>();
+        public List<Tuple<string, API.Helper.WindowBuilder>> Windows { get; protected set; } = new List<Tuple<string, API.Helper.WindowBuilder>>();
         /// <summary>
         /// Gets a value indicating whether this instance is enabled.
         /// </summary>
@@ -45,7 +45,7 @@ namespace cl.uv.leikelen.API.Module
         /// <value>
         /// A list of this module's tabs.
         /// </value>
-        public List<ITab> Tabs { get; protected set; } = new List<ITab>();
+        public List<API.Helper.ITab> Tabs { get; protected set; } = new List<API.Helper.ITab>();
 
         /// <summary>
         /// Enables this instance.

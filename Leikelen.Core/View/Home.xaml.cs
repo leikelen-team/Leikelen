@@ -31,23 +31,23 @@ namespace cl.uv.leikelen.View
     /// </summary>
     public partial class Home : Window
     {
-        private ReportController _reportC;
+        private Controller.ReportController _reportC;
         /// <summary>
         /// Actual state of the player/recorder
         /// </summary>
-        private PlayerState _playerState;
+        private View.PlayerState _playerState;
         /// <summary>
         /// Controller associated with the recorder
         /// </summary>
-        private readonly RecorderController _recorderController;
+        private readonly Controller.RecorderController _recorderController;
         /// <summary>
         /// Controller associated with the player
         /// </summary>
-        private readonly PlayerController _playerController;
+        private readonly Controller.PlayerController _playerController;
         /// <summary>
         /// Controller that manage the change between the sensor (monitor/recorder) or file (player) mode
         /// </summary>
-        private readonly MediaController _mediaController;
+        private readonly Controller.MediaController _mediaController;
         /// <summary>
         /// Color of a disabled button background
         /// </summary>
@@ -59,16 +59,16 @@ namespace cl.uv.leikelen.View
         /// <summary>
         /// Get or Sets the state of the window
         /// </summary>
-        private SceneState _homeState;
+        private View.SceneState _homeState;
 
         private readonly DispatcherTimer _playTimer;
 
         private Tuple<TimeSpan?, ImageSource> _lastColorBeforePause;
         private Tuple<TimeSpan?, ImageSource> _lastSkeletonBeforePause;
 
-        private List<ITab> _tabs;
-        private List<ITab> _generalModuleTabs;
-        private List<ITab> _processingModuleTabs;
+        private List<API.Helper.ITab> _tabs;
+        private List<API.Helper.ITab> _generalModuleTabs;
+        private List<API.Helper.ITab> _processingModuleTabs;
         private bool _firstLanguage = true;
 
         /// <summary>
@@ -167,7 +167,7 @@ namespace cl.uv.leikelen.View
             }
         }
 
-        private void RemoveTabs(List<ITab> tabs)
+        private void RemoveTabs(List<API.Helper.ITab> tabs)
         {
             foreach (var tab in tabs)
             {
@@ -175,7 +175,7 @@ namespace cl.uv.leikelen.View
                     Tabs.RemoveFromSource(tabItem);
             }
         }
-        private void FillTabs(List<ITab> tabs, string personName)
+        private void FillTabs(List<API.Helper.ITab> tabs, string personName)
         {
             foreach(var tab in tabs)
             {
@@ -242,7 +242,7 @@ namespace cl.uv.leikelen.View
         #endregion
         
         #region states
-        private bool ChangeHomeState(SceneState newHomeState, PlayerState newPlayerState)
+        private bool ChangeHomeState(View.SceneState newHomeState, View.PlayerState newPlayerState)
         {
             switch (newHomeState)
             {
@@ -307,7 +307,7 @@ namespace cl.uv.leikelen.View
             Player_StopButton.IsEnabled = false;
         }
 
-        private void SetGuiFromFileWithScene(PlayerState playerState)
+        private void SetGuiFromFileWithScene(View.PlayerState playerState)
         {
             switch (playerState)
             {
@@ -357,7 +357,7 @@ namespace cl.uv.leikelen.View
             }
         }
 
-        private void SetGuiFromSensorWithScene(PlayerState playerState)
+        private void SetGuiFromSensorWithScene(View.PlayerState playerState)
         {
             MenuItem_File_Save.IsEnabled = true;
             MenuItem_Export_ToFile.IsEnabled = true;
@@ -900,7 +900,7 @@ namespace cl.uv.leikelen.View
         }
 
 
-        private void Home_PersonsChanged(object sender, Person e)
+        private void Home_PersonsChanged(object sender, Data.Model.Person e)
         {
             MenuItem_Scene_PersonsInScene.Items.Clear();
             foreach (var pis in DataAccessFacade.Instance.GetSceneInUseAccess().GetScene().PersonsInScene)
@@ -928,7 +928,7 @@ namespace cl.uv.leikelen.View
         }
 
 
-        private void FillProcessingAndGeneralModules(API.Module.AbstractModule module, ModuleType moduleType, Person person)
+        private void FillProcessingAndGeneralModules(API.Module.AbstractModule module, Data.Model.ModuleType moduleType, Data.Model.Person person)
         {
             MenuItem moduleMenuItem = new MenuItem
             {
@@ -1271,7 +1271,7 @@ namespace cl.uv.leikelen.View
             }//</try catch>
         }
         
-        private async void MenuItem_Export_ToPDFReport_Person_Clicked(Person person)
+        private async void MenuItem_Export_ToPDFReport_Person_Clicked(Data.Model.Person person)
         {
             var dlg = new SaveFileDialog()
             {

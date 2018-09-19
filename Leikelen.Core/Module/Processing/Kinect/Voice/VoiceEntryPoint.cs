@@ -21,7 +21,7 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.Voice
     /// <seealso cref="cl.uv.leikelen.API.FrameProvider.Kinect.IKinectProcessingModule" />
     public class VoiceEntryPoint : ProcessingModule, IKinectProcessingModule
     {
-        private readonly VoiceLogic _logic;
+        private readonly Module.Processing.Kinect.Voice.VoiceLogic _logic;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="VoiceEntryPoint"/> class.
@@ -59,7 +59,7 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.Voice
             return _logic._audioBeamReader_FrameArrived;
         }
 
-        EventHandler<KinectGestureFrameArrivedArgs> IKinectProcessingModule.GestureListener()
+        EventHandler<API.FrameProvider.Kinect.KinectGestureFrameArrivedArgs> IKinectProcessingModule.GestureListener()
         {
             return null;
         }

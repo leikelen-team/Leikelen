@@ -20,7 +20,7 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.HeadAngle
     /// <seealso cref="cl.uv.leikelen.API.FrameProvider.Kinect.IKinectProcessingModule" />
     public class HeadAngleEntryPoint : ProcessingModule, IKinectProcessingModule
     {
-        private HeadAngleLogic _logic;
+        private Module.Processing.Kinect.HeadAngle.HeadAngleLogic _logic;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="HeadAngleEntryPoint"/> class.
@@ -60,7 +60,7 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.HeadAngle
             return _logic.StopRecording;
         }
 
-        EventHandler<KinectGestureFrameArrivedArgs> IKinectProcessingModule.GestureListener()
+        EventHandler<API.FrameProvider.Kinect.KinectGestureFrameArrivedArgs> IKinectProcessingModule.GestureListener()
         {
             return null;
         }

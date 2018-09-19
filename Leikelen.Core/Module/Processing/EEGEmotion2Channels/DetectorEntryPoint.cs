@@ -16,8 +16,14 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels
 {
     public sealed class DetectorEntryPoint : ProcessingModule, IEegProcessingModule
     {
-        private readonly EEGReceiver _logic;
+        private readonly Module.Processing.EEGEmotion2Channels.EEGReceiver _logic;
 
+        /// <summary>
+        /// Functions called after the recorder stops.
+        /// </summary>
+        /// <returns>
+        /// The function to be executed at stop recording
+        /// </returns>
         public override Action FunctionAfterStop()
         {
             return null;
@@ -35,7 +41,13 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels
             _logic = new EEGReceiver();
         }
 
-        public EventHandler<EegFrameArrivedEventArgs> EegListener()
+        /// <summary>
+        /// Gets the handler for the EEG frame events.
+        /// </summary>
+        /// <returns>
+        /// the handler for the EEG frame events
+        /// </returns>
+        public EventHandler<API.FrameProvider.EEG.EegFrameArrivedEventArgs> EegListener()
         {
             return _logic.DataReceiver;
         }

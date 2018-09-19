@@ -68,7 +68,7 @@ namespace cl.uv.leikelen.View.Widget.PreferencesTab
         }
         
 
-        void IPreference.Apply()
+        void API.Helper.IPreference.Apply()
         {
         }
     }

@@ -44,7 +44,7 @@ namespace cl.uv.leikelen.Module.Processing.EEGPrint
         /// <returns>
         /// the handler for the EEG frame events
         /// </returns>
-        public EventHandler<EegFrameArrivedEventArgs> EegListener()
+        public EventHandler<API.FrameProvider.EEG.EegFrameArrivedEventArgs> EegListener()
         {
             return this.myListener;
         }
@@ -53,8 +53,8 @@ namespace cl.uv.leikelen.Module.Processing.EEGPrint
         /// A listener for EEG frame events that just prints as a Json the data received.
         /// </summary>
         /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="EegFrameArrivedEventArgs"/> instance containing the event data.</param>
-        public void myListener(object sender, EegFrameArrivedEventArgs e)
+        /// <param name="e">The <see cref="API.FrameProvider.EEG.EegFrameArrivedEventArgs"/> instance containing the event data.</param>
+        public void myListener(object sender, API.FrameProvider.EEG.EegFrameArrivedEventArgs e)
         {
             e.Person = new Data.Model.Person
             {

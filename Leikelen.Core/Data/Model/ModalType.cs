@@ -39,14 +39,14 @@ namespace cl.uv.leikelen.Data.Model
         /// <value>
         /// The sub modal types.
         /// </value>
-        public List<SubModalType> SubModalTypes { get; set; }
+        public List<Data.Model.SubModalType> SubModalTypes { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ModalType"/> class.
+        /// Initializes a new instance of the <see cref="Data.Model.ModalType"/> class.
         /// </summary>
         public ModalType()
         {
-            SubModalTypes = new List<SubModalType>();
+            SubModalTypes = new List<Data.Model.SubModalType>();
         }
 
         /// <summary>

@@ -16,7 +16,7 @@ namespace cl.uv.leikelen.Data.Persistence
     public class DbException : Exception
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="DbException"/> class.
+        /// Initializes a new instance of the <see cref="Data.Persistence.DbException"/> class.
         /// </summary>
         public DbException() : base()
         {
@@ -24,7 +24,7 @@ namespace cl.uv.leikelen.Data.Persistence
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DbException"/> class with message.
+        /// Initializes a new instance of the <see cref="Data.Persistence.DbException"/> class with message.
         /// </summary>
         /// <param name="message">Message that describe the error.</param>
         public DbException(string message) : base(message)
@@ -33,7 +33,7 @@ namespace cl.uv.leikelen.Data.Persistence
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DbException"/> class.
+        /// Initializes a new instance of the <see cref="Data.Persistence.DbException"/> class.
         /// </summary>
         /// <param name="message">Message that describe the error.</param>
         /// <param name="innerException">The exception that causes this exception or null (<see langword="Nothing" /> in Visual Basic).</param>

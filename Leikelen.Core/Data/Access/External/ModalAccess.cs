@@ -23,7 +23,7 @@ namespace cl.uv.leikelen.Data.Access.External
         /// <value>
         /// The temporary modal types meanwhile is recording.
         /// </value>
-        public static List<ModalType> TmpModals { get; private set; }// = new List<ModalType>();
+        public static List<Data.Model.ModalType> TmpModals { get; private set; }// = new List<ModalType>();
 
         /// <summary>
         /// Loads the temporary modal types before recording.
@@ -37,7 +37,7 @@ namespace cl.uv.leikelen.Data.Access.External
         /// Gets all modal types in the database.
         /// </summary>
         /// <returns>A list of all modal types (without joins)</returns>
-        public List<ModalType> GetAll()
+        public List<Data.Model.ModalType> GetAll()
         {
             return DbFacade.Instance.Provider.LoadModals();
         }
@@ -48,7 +48,7 @@ namespace cl.uv.leikelen.Data.Access.External
         /// <param name="name">The name of the modal type (its the id, and must to be not null and unique).</param>
         /// <param name="description">The description (optional, may be null).</param>
         /// <returns>The new modal type</returns>
-        public ModalType Add(string name, string description)
+        public Data.Model.ModalType Add(string name, string description)
         {
             AddDirectory(name);
             if (Exists(name))
@@ -82,7 +82,7 @@ namespace cl.uv.leikelen.Data.Access.External
         /// <param name="name">The name of the modal type (its the id, and must to be not null and unique).</param>
         /// <param name="description">The description (optional, may be null).</param>
         /// <returns>The new modal type, if exists, the actual modal type with same name</returns>
-        public ModalType AddIfNotExists(string name, string description)
+        public Data.Model.ModalType AddIfNotExists(string name, string description)
         {
             AddDirectory(name);
             if (Exists(name))

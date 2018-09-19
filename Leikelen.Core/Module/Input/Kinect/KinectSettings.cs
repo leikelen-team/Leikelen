@@ -13,7 +13,7 @@ namespace cl.uv.leikelen.Module.Input.Kinect
     /// <seealso cref="Config.Net.SettingsContainer" />
     public class KinectSettings : SettingsContainer
     {
-        private static KinectSettings _instance;
+        private static Module.Input.Kinect.KinectSettings _instance;
 
         /// <summary>
         /// Gets the instance.
@@ -21,7 +21,7 @@ namespace cl.uv.leikelen.Module.Input.Kinect
         /// <value>
         /// The instance.
         /// </value>
-        public static KinectSettings Instance
+        public static Module.Input.Kinect.KinectSettings Instance
         {
             get
             {

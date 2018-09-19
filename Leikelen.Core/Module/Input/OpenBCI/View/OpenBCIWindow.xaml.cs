@@ -27,12 +27,12 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI.View
         /// <value>
         /// The monitor.
         /// </value>
-        public IMonitor Monitor { get; }
+        public API.Module.Input.IMonitor Monitor { get; }
         /// <summary>
         /// Initializes a new instance of the <see cref="OpenBCIWindow"/> class.
         /// </summary>
         /// <param name="monitor">The monitor.</param>
-        public OpenBCIWindow(IMonitor monitor)
+        public OpenBCIWindow(API.Module.Input.IMonitor monitor)
         {
             InitializeComponent();
             Monitor = monitor;
@@ -49,7 +49,7 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI.View
         /// Initializes a new instance of the <see cref="OpenBCIWindow"/> class.
         /// </summary>
         /// <param name="openBCIwindow">The open bci window.</param>
-        public OpenBCIWindow(OpenBCIWindow openBCIwindow)
+        public OpenBCIWindow(Module.Input.OpenBCI.View.OpenBCIWindow openBCIwindow)
         {
             InitializeComponent();
             Monitor = openBCIwindow.Monitor;

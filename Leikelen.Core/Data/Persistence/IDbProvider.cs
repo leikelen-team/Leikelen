@@ -32,59 +32,59 @@ namespace cl.uv.leikelen.Data.Persistence
         /// Loads the scenes.
         /// </summary>
         /// <returns></returns>
-        List<Scene> LoadScenes();
+        List<Data.Model.Scene> LoadScenes();
         /// <summary>
         /// Loads a single scene.
         /// </summary>
         /// <param name="sceneId">The scene identifier.</param>
         /// <returns>The scene with the id or null</returns>
-        Scene LoadScene(int sceneId);
+        Data.Model.Scene LoadScene(int sceneId);
         /// <summary>
         /// Saves the scene.
         /// </summary>
         /// <param name="instance">The scene to be saved.</param>
         /// <returns>The new scene saved returned by the database</returns>
-        Scene SaveScene(Scene instance);
+        Data.Model.Scene SaveScene(Data.Model.Scene instance);
         /// <summary>
         /// Updates the scene.
         /// </summary>
         /// <param name="newScene">The modified scene.</param>
         /// <returns>The new scene returned by the database</returns>
-        Scene UpdateScene(Scene newScene);
+        Data.Model.Scene UpdateScene(Data.Model.Scene newScene);
         /// <summary>
         /// Deletes a scene.
         /// </summary>
         /// <param name="scene">The scene.</param>
-        void DeleteScene(Scene scene);
+        void DeleteScene(Data.Model.Scene scene);
         /// <summary>
         /// Saves a new scene changing all ids recursively according to last data in database.
         /// </summary>
         /// <param name="scene">The scene.</param>
         /// <returns>The new scene returned by the database</returns>
-        Scene SaveNewScene(Scene scene);
+        Data.Model.Scene SaveNewScene(Data.Model.Scene scene);
 
         /// <summary>
         /// Loads the persons.
         /// </summary>
         /// <returns>All persons (without any associated entity)</returns>
-        List<Person> LoadPersons();
+        List<Data.Model.Person> LoadPersons();
         /// <summary>
         /// Saves a person.
         /// </summary>
         /// <param name="person">The person.</param>
         /// <returns>The person returned by the database</returns>
-        Person SavePerson(Person person);
+        Data.Model.Person SavePerson(Data.Model.Person person);
         /// <summary>
         /// Updates a person.
         /// </summary>
         /// <param name="newPerson">The new person.</param>
         /// <returns>The person returned by the database</returns>
-        Person UpdatePerson(Person newPerson);
+        Data.Model.Person UpdatePerson(Data.Model.Person newPerson);
         /// <summary>
         /// Deletes a person.
         /// </summary>
         /// <param name="person">The person to be deleted.</param>
-        void DeletePerson(Person person);
+        void DeletePerson(Data.Model.Person person);
 
         /// <summary>
         /// Adds the person to a scene.
@@ -92,56 +92,56 @@ namespace cl.uv.leikelen.Data.Persistence
         /// <param name="person">The person.</param>
         /// <param name="scene">The scene.</param>
         /// <returns>The entity that associates both entities</returns>
-        PersonInScene AddPersonToScene(Person person, Scene scene);
+        Data.Model.PersonInScene AddPersonToScene(Data.Model.Person person, Data.Model.Scene scene);
         /// <summary>
         /// Verify if the person is in the scene.
         /// </summary>
         /// <param name="person">The person.</param>
         /// <param name="scene">The scene.</param>
         /// <returns>True if the person in is the scene, false otherwise</returns>
-        bool ExistsPersonInScene(Person person, Scene scene);
+        bool ExistsPersonInScene(Data.Model.Person person, Data.Model.Scene scene);
 
         /// <summary>
         /// Loads the modal types.
         /// </summary>
         /// <returns>All modal types (without any associated entity)</returns>
-        List<ModalType> LoadModals();
+        List<Data.Model.ModalType> LoadModals();
         /// <summary>
         /// Loads the modal type.
         /// </summary>
         /// <param name="name">The name.</param>
         /// <returns>The modal type</returns>
-        ModalType LoadModal(string name);
+        Data.Model.ModalType LoadModal(string name);
         /// <summary>
         /// Saves the modal type.
         /// </summary>
         /// <param name="modalType">Type of the modal.</param>
         /// <returns>The modal type returned by the database</returns>
-        ModalType SaveModal(ModalType modalType);
+        Data.Model.ModalType SaveModal(Data.Model.ModalType modalType);
 
         /// <summary>
         /// Loads the sub modal of a given modal type.
         /// </summary>
         /// <param name="ModalTypeName">Name of the modal type.</param>
         /// <returns>All submodal types of the given modal type name(without any associated entity)</returns>
-        List<SubModalType> LoadSubModals(string ModalTypeName);
+        List<Data.Model.SubModalType> LoadSubModals(string ModalTypeName);
         /// <summary>
         /// Saves the sub modal.
         /// </summary>
         /// <param name="submodalType">Type of the submodal.</param>
         /// <returns>The submodal returned by the database</returns>
-        SubModalType SaveSubModal(SubModalType submodalType);
+        Data.Model.SubModalType SaveSubModal(Data.Model.SubModalType submodalType);
         /// <summary>
         /// Deletes the sub modal.
         /// </summary>
         /// <param name="submodalType">Type of the submodal.</param>
-        void DeleteSubModal(SubModalType submodalType);
+        void DeleteSubModal(Data.Model.SubModalType submodalType);
         /// <summary>
         /// Updates the sub modal type.
         /// </summary>
         /// <param name="subModalType">Type of the sub modal.</param>
         /// <returns>The submodal returned by the database</returns>
-        SubModalType UpdateSubModalType(SubModalType subModalType);
+        Data.Model.SubModalType UpdateSubModalType(Data.Model.SubModalType subModalType);
 
         /// <summary>
         /// Gets an objects with all events of all scenes given the submodal type names.

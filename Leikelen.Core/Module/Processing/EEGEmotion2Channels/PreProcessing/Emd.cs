@@ -9,18 +9,32 @@ using System.Threading.Tasks;
 /// </summary>
 namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing
 {
+    /// <summary>
+    /// Data structure of one Empirical Mode Decomposition analysis
+    /// </summary>
     public struct EmdData
     {
-        public int iterations, order, locality;
-        public int[] minPoints, maxPoints;
-        public double[] min, max, residue;
+        public int iterations;
+        public int order;
+        public int locality;
+        public int[] minPoints;
+        public int[] maxPoints;
+        public double[] min;
+        public double[] max;
+        public double[] residue;
         public double[][] imfs;
-        public int size, minSize, maxSize;
+        public int size;
+        public int minSize;
+        public int maxSize;
     }
 
+    /// <summary>
+    /// Class to make Empirical Mode Decomposition Analysis and obtain The
+    /// Intrinsic mode function components
+    /// </summary>
     public class Emd
     {
-        private EmdData emdSetup(int order, int iterations, int locality)
+        private Module.Processing.EEGEmotion2Channels.PreProcessing.EmdData emdSetup(int order, int iterations, int locality)
         {
             EmdData emd = new EmdData();
             emd.iterations = iterations;
@@ -36,7 +50,7 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing
             return emd;
         }
 
-        private void emdResize(ref EmdData emd, int size)
+        private void emdResize(ref Module.Processing.EEGEmotion2Channels.PreProcessing.EmdData emd, int size)
         {
             int i;
             // emdClear(emd);
@@ -51,7 +65,7 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing
             emd.max = new double[size]; // cnew(double, size);
         }
 
-        private EmdData emdCreate(int size, int order, int iterations, int locality)
+        private Module.Processing.EEGEmotion2Channels.PreProcessing.EmdData emdCreate(int size, int order, int iterations, int locality)
         {
             EmdData emd = emdSetup(order, iterations, locality);
             emdResize(ref emd, size);
@@ -88,7 +102,7 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing
         // A better algorithm might be to collect all the extrema, and then assume
         // that extrema near the boundaries are valid, working toward the center.
 
-        private void emdMakeExtrema(ref EmdData emd, double[] curImf)
+        private void emdMakeExtrema(ref Module.Processing.EEGEmotion2Channels.PreProcessing.EmdData emd, double[] curImf)
         {
             int i, lastMin = 0, lastMax = 0;
             emd.minSize = 0;
@@ -115,7 +129,7 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing
             }
         }
 
-        private void emdInterpolate(EmdData emd, double[] input, ref double[] out_variable, int[] points, int pointsSize)
+        private void emdInterpolate(Module.Processing.EEGEmotion2Channels.PreProcessing.EmdData emd, double[] input, ref double[] out_variable, int[] points, int pointsSize)
         {
             int size = emd.size;
             int i, j, i0, i1, i2, i3, start, end;
@@ -160,14 +174,14 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing
             }
         }
 
-        private void emdUpdateImf(EmdData emd, ref double[] imf)
+        private void emdUpdateImf(Module.Processing.EEGEmotion2Channels.PreProcessing.EmdData emd, ref double[] imf)
         {
             int i;
             for (i = 0; i < emd.size; i++)
                 imf[i] -= (emd.min[i] + emd.max[i]) * .5f;
         }
 
-        private void emdMakeResidue(ref EmdData emd, double[] cur)
+        private void emdMakeResidue(ref Module.Processing.EEGEmotion2Channels.PreProcessing.EmdData emd, double[] cur)
         {
             int i;
             for (i = 0; i < emd.size; i++)
@@ -194,7 +208,7 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing
             return emdData.imfs;
         }
 
-        public static void main(String[] args)
+        /*public static void main(String[] args)
         {
             /*
             This code implements empirical mode decomposition in C.
@@ -221,6 +235,6 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing
                 for (int j = 0; j < order; j++) Console.Write(emdData.imfs[j][i] + ";");
                 Console.WriteLine();
             }
-        }
+        }*/
     }
 }

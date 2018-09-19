@@ -39,7 +39,7 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI.View
         /// <value>
         /// The chart values.
         /// </value>
-        public ChartValues<MeasureModel> ChartValues { get; set; }
+        public ChartValues<Module.Input.OpenBCI.View.MeasureModel> ChartValues { get; set; }
         /// <summary>
         /// Gets or sets the date time formatter.
         /// </summary>

@@ -20,7 +20,7 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI
         /// Initializes a new instance of the <see cref="OpenBCIInput"/> class.
         /// </summary>
         /// <param name="person">The person.</param>
-        public OpenBCIInput(Person person)
+        public OpenBCIInput(Data.Model.Person person)
         {
             Plurality = InputPlurality.Person;
             var myMonitor = new Monitor(person);

@@ -9,7 +9,7 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.PreProcessing
     public class FilterButterworth
     {
         /// <summary>
-        /// rez amount, from sqrt(2) to ~ 0.1
+        /// resonance amount, from sqrt(2) to ~ 0.1
         /// </summary>
         private readonly float resonance;
 

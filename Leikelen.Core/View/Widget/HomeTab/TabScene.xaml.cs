@@ -30,7 +30,7 @@ namespace cl.uv.leikelen.View.Widget.HomeTab
             InitializeComponent();
         }
 
-        void ITab.Fill()
+        void API.Helper.ITab.Fill()
         {
             ScrollWithContent.Visibility = Visibility.Visible;
 
@@ -42,7 +42,7 @@ namespace cl.uv.leikelen.View.Widget.HomeTab
             EventDataGrid.ItemsSource = datas.Item2;
             EventDataGrid.Items.Refresh();
         }
-        void ITab.Reset()
+        void API.Helper.ITab.Reset()
         {
             EventDataGrid.ItemsSource = null;
             EventDataGrid.Items.Refresh();
@@ -60,7 +60,7 @@ namespace cl.uv.leikelen.View.Widget.HomeTab
         /// <param name="makeEvents">if set to <c>true</c> [make events].</param>
         /// <param name="persons">The persons.</param>
         /// <returns>A tuple with the intervals and events.</returns>
-        public static Tuple<List<IntervalDataGrid>, List<EventDataGrid>> GetEventsAndIntervals(bool makeIntervals = true, bool makeEvents = true, List<Data.Model.Person> persons = null)
+        public static Tuple<List<View.Widget.HomeTab.IntervalDataGrid>, List<View.Widget.HomeTab.EventDataGrid>> GetEventsAndIntervals(bool makeIntervals = true, bool makeEvents = true, List<Data.Model.Person> persons = null)
         {
             List<IntervalDataGrid> intervalData = new List<IntervalDataGrid>();
             List<EventDataGrid> eventData = new List<EventDataGrid>();

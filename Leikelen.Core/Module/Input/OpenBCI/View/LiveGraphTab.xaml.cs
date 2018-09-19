@@ -23,10 +23,10 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI.View
     public partial class LiveGraphTab : TabItem, ITab
     {
         private string[] _positions;
-        private Util.Filter _filter;
-        private NotchType _notchType;
-        private FilterType _filterType;
-        GraphControl[] graphs;
+        private Module.Input.OpenBCI.Util.Filter _filter;
+        private API.FrameProvider.EEG.NotchType _notchType;
+        private API.FrameProvider.EEG.FilterType _filterType;
+        Module.Input.OpenBCI.View.GraphControl[] graphs;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LiveGraphTab"/> class.
@@ -61,12 +61,12 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI.View
             }
         }
 
-        void ITab.Fill()
+        void API.Helper.ITab.Fill()
         {
 
         }
 
-        void ITab.Reset()
+        void API.Helper.ITab.Reset()
         {
 
         }

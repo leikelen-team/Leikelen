@@ -24,7 +24,7 @@ namespace cl.uv.leikelen.Data.Access.External
         /// <param name="modalName">Name of the modal type</param>
         /// <param name="subModalName">Name of a submodal type inside a modal type</param>
         /// <returns>List of events</returns>
-        public List<Event> GetAll(Person person, string modalName, string subModalName)
+        public List<API.DataAccess.Event> GetAll(Data.Model.Person person, string modalName, string subModalName)
         {
             var personInScene = Internal.SceneInUse.Instance.Scene?.PersonsInScene?.Find(pis => pis.Person.Equals(person));
             var subModalPersonInScene = personInScene?.SubModalType_PersonInScenes?.Find(smtPis => smtPis.SubModalType.SubModalTypeId.Equals(subModalName) && smtPis.SubModalType.ModalType.ModalTypeId.Equals(modalName));
@@ -61,7 +61,7 @@ namespace cl.uv.leikelen.Data.Access.External
         /// <param name="eventTime">time in what event occurred</param>
         /// <param name="value">value number</param>
         /// <param name="toInterval">interval type to add</param>
-        public void Add(Person person, string modalName, string subModalName, TimeSpan eventTime, double value, int toInterval)
+        public void Add(Data.Model.Person person, string modalName, string subModalName, TimeSpan eventTime, double value, int toInterval)
         {
             InternalAdd(person, modalName, subModalName, eventTime, value, null, toInterval);
         }
@@ -76,7 +76,7 @@ namespace cl.uv.leikelen.Data.Access.External
         /// <param name="value">value number</param>
         /// <param name="subtitle">text content in the event</param>
         /// <param name="toInterval">interval type to add</param>
-        public void Add(Person person, string modalName, string subModalName, TimeSpan eventTime, double value, string subtitle, int toInterval)
+        public void Add(Data.Model.Person person, string modalName, string subModalName, TimeSpan eventTime, double value, string subtitle, int toInterval)
         {
             InternalAdd(person, modalName, subModalName, eventTime, value, subtitle, toInterval);
         }
@@ -90,7 +90,7 @@ namespace cl.uv.leikelen.Data.Access.External
         /// <param name="eventTime">time in what event occurred</param>
         /// <param name="subtitle">text content in the event</param>
         /// <param name="toInterval">interval type to add</param>
-        public void Add(Person person, string modalName, string subModalName, TimeSpan eventTime, string subtitle, int toInterval)
+        public void Add(Data.Model.Person person, string modalName, string subModalName, TimeSpan eventTime, string subtitle, int toInterval)
         {
             InternalAdd(person, modalName, subModalName, eventTime, null, subtitle, toInterval);
         }
@@ -103,13 +103,13 @@ namespace cl.uv.leikelen.Data.Access.External
         /// <param name="subModalName">Name of a submodal type inside a modal type</param>
         /// <param name="eventTime">time in what event occurred</param>
         /// <param name="toInterval">interval type to add</param>
-        public void Add(Person person, string modalName, string subModalName, TimeSpan eventTime, int toInterval)
+        public void Add(Data.Model.Person person, string modalName, string subModalName, TimeSpan eventTime, int toInterval)
         {
             InternalAdd(person, modalName, subModalName, eventTime, null, null, toInterval);
         }
         #endregion
 
-        private void InternalAdd(Person person, string modalName, string subModalName, TimeSpan eventTime, double? value, string subtitle, int toInterval)
+        private void InternalAdd(Data.Model.Person person, string modalName, string subModalName, TimeSpan eventTime, double? value, string subtitle, int toInterval)
         {
             try
             {

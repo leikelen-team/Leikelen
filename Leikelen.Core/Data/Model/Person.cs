@@ -74,7 +74,7 @@ namespace cl.uv.leikelen.Data.Model
         /// <summary>
         /// List of person in scene attributes to know the scenes in what the person is
         /// </summary>
-        public List<PersonInScene> PersonInScenes { get; set; }
+        public List<Data.Model.PersonInScene> PersonInScenes { get; set; }
 
         /// <summary>
         /// Gets or sets the main color.
@@ -95,7 +95,7 @@ namespace cl.uv.leikelen.Data.Model
         public Color SecondaryColor { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Person"/> class.
+        /// Initializes a new instance of the <see cref="Data.Model.Person"/> class.
         /// </summary>
         public Person()
         {

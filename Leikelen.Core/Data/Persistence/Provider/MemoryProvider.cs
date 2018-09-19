@@ -14,7 +14,7 @@ namespace cl.uv.leikelen.Data.Persistence.Provider
     public class MemoryProvider : EfAbstractProvider
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="MemoryProvider"/> class.
+        /// Initializes a new instance of the <see cref="Data.Persistence.Provider.MemoryProvider"/> class.
         /// </summary>
         public MemoryProvider()
         {

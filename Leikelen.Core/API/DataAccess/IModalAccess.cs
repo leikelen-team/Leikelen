@@ -16,7 +16,7 @@ namespace cl.uv.leikelen.API.DataAccess
         /// Gets all modal types in the database.
         /// </summary>
         /// <returns>A list of all modal types (without joins)</returns>
-        List<ModalType> GetAll();
+        List<Data.Model.ModalType> GetAll();
 
         /// <summary>
         /// Adds a new modal type.
@@ -24,7 +24,7 @@ namespace cl.uv.leikelen.API.DataAccess
         /// <param name="name">The name of the modal type (its the id, and must to be not null and unique).</param>
         /// <param name="description">The description (optional, may be null).</param>
         /// <returns>The new modal type</returns>
-        ModalType Add(string name, string description);
+        Data.Model.ModalType Add(string name, string description);
 
         /// <summary>
         /// Adds a new modal type if not exists, otherwise, returns the actual modal type of the given name.
@@ -32,7 +32,7 @@ namespace cl.uv.leikelen.API.DataAccess
         /// <param name="name">The name of the modal type (its the id, and must to be not null and unique).</param>
         /// <param name="description">The description (optional, may be null).</param>
         /// <returns>The new modal type, if exists, the actual modal type with same name</returns>
-        ModalType AddIfNotExists(string name, string description);
+        Data.Model.ModalType AddIfNotExists(string name, string description);
 
         /// <summary>
         /// Verify is exists a modal type of given name.

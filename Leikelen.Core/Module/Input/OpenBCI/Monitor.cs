@@ -33,28 +33,28 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI
         /// <summary>
         /// The graph tab of actual signals in real time.
         /// </summary>
-        public View.LiveGraphTab GraphTab;
+        public Module.Input.OpenBCI.View.LiveGraphTab GraphTab;
 
-        private readonly Util.InterpretStream _interpretStream;
-        private Util.Filter _filter;
+        private readonly Module.Input.OpenBCI.Util.InterpretStream _interpretStream;
+        private Module.Input.OpenBCI.Util.Filter _filter;
         private SerialPort _serialPort;
-        private InputStatus _status;
-        private Util.FileManage _filemanage;
+        private API.Module.Input.InputStatus _status;
+        private Module.Input.OpenBCI.Util.FileManage _filemanage;
         private readonly string[] _positions;
-        private IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
-        private Person _person;
+        private API.DataAccess.IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
+        private Data.Model.Person _person;
 
         private bool _isRecording;
 
 
-        private event EventHandler<EegFrameArrivedEventArgs> EegFrameArrived;
-        private event EventHandler<AccelerometerFrameArrivedEventArgs> AccelerometerFrameArrived;
+        private event EventHandler<API.FrameProvider.EEG.EegFrameArrivedEventArgs> EegFrameArrived;
+        private event EventHandler<API.FrameProvider.Accelerometer.AccelerometerFrameArrivedEventArgs> AccelerometerFrameArrived;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Monitor"/> class.
         /// </summary>
         /// <param name="person">The person.</param>
-        public Monitor(Person person)
+        public Monitor(Data.Model.Person person)
         {
             _person = person;
             Console.WriteLine(person.Name);
@@ -77,23 +77,23 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI
         }
 
         #region IMonitor methods
-        async Task IMonitor.Close()
+        async Task API.Module.Input.IMonitor.Close()
         {
             StopStream();
             _serialPort?.Close();
         }
 
-        InputStatus IMonitor.GetStatus()
+        API.Module.Input.InputStatus API.Module.Input.IMonitor.GetStatus()
         {
             return _status;
         }
 
-        bool IMonitor.IsRecording()
+        bool API.Module.Input.IMonitor.IsRecording()
         {
             return _isRecording;
         }
 
-        async Task IMonitor.Open()
+        async Task API.Module.Input.IMonitor.Open()
         {
             //TODO: delete this
             var mr = new Random();
@@ -122,7 +122,7 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI
             StartStream();
         }
 
-        async Task IMonitor.StartRecording()
+        async Task API.Module.Input.IMonitor.StartRecording()
         {
             StartStream();
             _filemanage = new Util.FileManage(
@@ -148,7 +148,7 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI
             }
         }
 
-        async Task IMonitor.StopRecording()
+        async Task API.Module.Input.IMonitor.StopRecording()
         {
             StopStream();
 
@@ -167,7 +167,7 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI
         }
         #endregion
 
-        async Task IMonitor.OpenPort(string portName)
+        async Task API.Module.Input.IMonitor.OpenPort(string portName)
         {
             try
             {
@@ -277,12 +277,12 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI
         }
 
 
-        private void OnEegFrameArrived(EegFrameArrivedEventArgs e)
+        private void OnEegFrameArrived(API.FrameProvider.EEG.EegFrameArrivedEventArgs e)
         {
             EegFrameArrived?.Invoke(this, e);
         }
 
-        private void OnAccelerometerArrived(AccelerometerFrameArrivedEventArgs e)
+        private void OnAccelerometerArrived(API.FrameProvider.Accelerometer.AccelerometerFrameArrivedEventArgs e)
         {
             AccelerometerFrameArrived?.Invoke(this, e);
         }

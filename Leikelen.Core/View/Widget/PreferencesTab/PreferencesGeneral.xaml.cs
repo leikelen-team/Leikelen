@@ -39,7 +39,7 @@ namespace cl.uv.leikelen.View.Widget.PreferencesTab
             MaxNumberin2DTxt.Text = GeneralSettings.Instance.MaxNumberPointsInEventGraph.Value.ToString();
         }
 
-        void IPreference.Apply()
+        void API.Helper.IPreference.Apply()
         {
             GeneralSettings.Instance.TmpDirectory.Write(TmpDirectoryTxt.Text);
             GeneralSettings.Instance.DataDirectory.Write(DataDirectoryTxt.Text);

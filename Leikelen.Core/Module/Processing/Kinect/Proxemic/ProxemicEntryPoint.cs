@@ -20,7 +20,7 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.Proxemic
     /// <seealso cref="cl.uv.leikelen.API.FrameProvider.Kinect.IKinectProcessingModule" />
     public class ProxemicEntryPoint : ProcessingModule, IKinectProcessingModule
     {
-        private ProxemicLogic _logic;
+        private Module.Processing.Kinect.Proxemic.ProxemicLogic _logic;
         /// <summary>
         /// Initializes a new instance of the <see cref="ProxemicEntryPoint"/> class.
         /// </summary>
@@ -55,7 +55,7 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.Proxemic
             return _logic.StopRecording;
         }
 
-        EventHandler<KinectGestureFrameArrivedArgs> IKinectProcessingModule.GestureListener()
+        EventHandler<API.FrameProvider.Kinect.KinectGestureFrameArrivedArgs> IKinectProcessingModule.GestureListener()
         {
             return null;
         }

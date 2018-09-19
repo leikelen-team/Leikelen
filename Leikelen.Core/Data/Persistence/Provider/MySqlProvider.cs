@@ -14,7 +14,7 @@ namespace cl.uv.leikelen.Data.Persistence.Provider
     public class MySqlProvider : EfAbstractProvider
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="MySqlProvider"/> class.
+        /// Initializes a new instance of the <see cref="Data.Persistence.Provider.MySqlProvider"/> class.
         /// </summary>
         public MySqlProvider()
         {

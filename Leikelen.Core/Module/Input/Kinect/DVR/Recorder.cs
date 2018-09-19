@@ -23,7 +23,7 @@ namespace cl.uv.leikelen.Module.Input.Kinect.DVR
     /// </summary>
     public class Recorder : KinectEx.DVR.KinectRecorder
     {
-        private IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
+        private API.DataAccess.IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Recorder"/> class.

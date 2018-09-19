@@ -17,7 +17,7 @@ namespace cl.uv.leikelen.Data.Persistence.Provider
         /// <summary>
         /// The database instance
         /// </summary>
-        protected DbDataContext Db = null;
+        protected Data.Persistence.Provider.DbDataContext Db = null;
 
         /// <summary>
         /// Determines whether this instance is connected.
@@ -59,7 +59,7 @@ namespace cl.uv.leikelen.Data.Persistence.Provider
         /// Loads the scenes.
         /// </summary>
         /// <returns></returns>
-        public List<Scene> LoadScenes()
+        public List<Data.Model.Scene> LoadScenes()
         {
             return Db.Scenes.ToList();
         }
@@ -71,7 +71,7 @@ namespace cl.uv.leikelen.Data.Persistence.Provider
         /// <returns>
         /// The scene with the id or null
         /// </returns>
-        public Scene LoadScene(int sceneId)
+        public Data.Model.Scene LoadScene(int sceneId)
         {
             return Db.Scenes
                 .Include(sc => sc.PersonsInScene)
@@ -99,7 +99,7 @@ namespace cl.uv.leikelen.Data.Persistence.Provider
         /// <returns>
         /// The new scene saved returned by the database
         /// </returns>
-        public Scene SaveScene(Scene instance)
+        public Data.Model.Scene SaveScene(Data.Model.Scene instance)
         {
             var r = Db.Scenes.Add(instance).Entity;
             Db.SaveChanges();
@@ -113,7 +113,7 @@ namespace cl.uv.leikelen.Data.Persistence.Provider
         /// <returns>
         /// The new scene returned by the database
         /// </returns>
-        public Scene UpdateScene(Scene newScene)
+        public Data.Model.Scene UpdateScene(Data.Model.Scene newScene)
         {
             var r = Db.Scenes.Update(newScene).Entity;
             Db.SaveChanges();
@@ -127,7 +127,7 @@ namespace cl.uv.leikelen.Data.Persistence.Provider
         /// <returns>
         /// The new scene returned by the database
         /// </returns>
-        public Scene SaveNewScene(Scene scene)
+        public Data.Model.Scene SaveNewScene(Data.Model.Scene scene)
         {
             scene.SceneId = 0;
             for (int iperson= 0; iperson < scene.PersonsInScene.Count; iperson++)
@@ -182,7 +182,7 @@ namespace cl.uv.leikelen.Data.Persistence.Provider
         /// <returns>
         /// All persons (without any associated entity)
         /// </returns>
-        public List<Person> LoadPersons()
+        public List<Data.Model.Person> LoadPersons()
         {
             return Db.Persons.ToList();
         }
@@ -194,7 +194,7 @@ namespace cl.uv.leikelen.Data.Persistence.Provider
         /// <returns>
         /// The person returned by the database
         /// </returns>
-        public Person SavePerson(Person person)
+        public Data.Model.Person SavePerson(Data.Model.Person person)
         {
             var r = Db.Persons.Add(person).Entity;
             Db.SaveChanges();
@@ -208,7 +208,7 @@ namespace cl.uv.leikelen.Data.Persistence.Provider
         /// <returns>
         /// The person returned by the database
         /// </returns>
-        public Person UpdatePerson(Person newPerson)
+        public Data.Model.Person UpdatePerson(Data.Model.Person newPerson)
         {
             var r = Db.Persons.Update(newPerson).Entity;
             Db.SaveChanges();
@@ -221,7 +221,7 @@ namespace cl.uv.leikelen.Data.Persistence.Provider
         /// <returns>
         /// All modal types (without any associated entity)
         /// </returns>
-        public List<ModalType> LoadModals()
+        public List<Data.Model.ModalType> LoadModals()
         {
             return Db.ModalTypes
                 .Include(mt => mt.SubModalTypes)
@@ -235,7 +235,7 @@ namespace cl.uv.leikelen.Data.Persistence.Provider
         /// <returns>
         /// The modal type
         /// </returns>
-        public ModalType LoadModal(string name)
+        public Data.Model.ModalType LoadModal(string name)
         {
             return Db.ModalTypes
                 .ToList().Find(m => m.ModalTypeId.Equals(name));
@@ -248,7 +248,7 @@ namespace cl.uv.leikelen.Data.Persistence.Provider
         /// <returns>
         /// The modal type returned by the database
         /// </returns>
-        public ModalType SaveModal(ModalType modalType)
+        public Data.Model.ModalType SaveModal(Data.Model.ModalType modalType)
         {
             var r = Db.ModalTypes.Add(modalType).Entity;
             Db.SaveChanges();
@@ -260,7 +260,7 @@ namespace cl.uv.leikelen.Data.Persistence.Provider
         /// </summary>
         /// <param name="modalTypeName">Name of the modal type.</param>
         /// <returns></returns>
-        public List<SubModalType> LoadSubModals(string modalTypeName)
+        public List<Data.Model.SubModalType> LoadSubModals(string modalTypeName)
         {
             return Db.SubModalTypes
                 .Include(smt => smt.ModalType)
@@ -274,7 +274,7 @@ namespace cl.uv.leikelen.Data.Persistence.Provider
         /// <returns>
         /// The submodal returned by the database
         /// </returns>
-        public SubModalType SaveSubModal(SubModalType submodalType)
+        public Data.Model.SubModalType SaveSubModal(Data.Model.SubModalType submodalType)
         {
             var r = Db.SubModalTypes.Add(submodalType).Entity;
             Db.SaveChanges();
@@ -289,7 +289,7 @@ namespace cl.uv.leikelen.Data.Persistence.Provider
         /// <returns>
         /// The entity that associates both entities
         /// </returns>
-        public PersonInScene AddPersonToScene(Person person, Scene scene)
+        public Data.Model.PersonInScene AddPersonToScene(Data.Model.Person person, Data.Model.Scene scene)
         {
             var r = Db.PersonInScenes.Add(new PersonInScene()
             {
@@ -308,7 +308,7 @@ namespace cl.uv.leikelen.Data.Persistence.Provider
         /// <returns>
         /// True if the person in is the scene, false otherwise
         /// </returns>
-        public bool ExistsPersonInScene(Person person, Scene scene)
+        public bool ExistsPersonInScene(Data.Model.Person person, Data.Model.Scene scene)
         {
             return Db.PersonInScenes.ToList().Exists(pis => pis.Person == person && pis.Scene == scene);
         }
@@ -317,7 +317,7 @@ namespace cl.uv.leikelen.Data.Persistence.Provider
         /// Deletes a scene.
         /// </summary>
         /// <param name="scene">The scene.</param>
-        public void DeleteScene(Scene scene)
+        public void DeleteScene(Data.Model.Scene scene)
         {
             Db.Scenes.Remove(scene);
             Db.SaveChanges();
@@ -327,7 +327,7 @@ namespace cl.uv.leikelen.Data.Persistence.Provider
         /// Deletes a person.
         /// </summary>
         /// <param name="person">The person to be deleted.</param>
-        public void DeletePerson(Person person)
+        public void DeletePerson(Data.Model.Person person)
         {
             Db.Persons.Remove(person);
             Db.SaveChanges();
@@ -337,7 +337,7 @@ namespace cl.uv.leikelen.Data.Persistence.Provider
         /// Deletes the sub modal.
         /// </summary>
         /// <param name="submodalType">Type of the submodal.</param>
-        public void DeleteSubModal(SubModalType submodalType)
+        public void DeleteSubModal(Data.Model.SubModalType submodalType)
         {
             Db.SubModalTypes.Remove(submodalType);
             Db.SaveChanges();
@@ -350,7 +350,7 @@ namespace cl.uv.leikelen.Data.Persistence.Provider
         /// <returns>
         /// The submodal returned by the database
         /// </returns>
-        public SubModalType UpdateSubModalType(SubModalType subModalType)
+        public Data.Model.SubModalType UpdateSubModalType(Data.Model.SubModalType subModalType)
         {
             var r = Db.SubModalTypes.Update(subModalType).Entity;
             Db.SaveChanges();

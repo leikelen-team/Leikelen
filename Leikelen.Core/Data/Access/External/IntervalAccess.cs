@@ -21,7 +21,7 @@ namespace cl.uv.leikelen.Data.Access.External
         /// <param name="modalName">Name of the modal type.</param>
         /// <param name="subModalName">Name of the sub modal type.</param>
         /// <returns>List of Intervals</returns>
-        public List<Interval> GetAll(Person person, string modalName, string subModalName)
+        public List<API.DataAccess.Interval> GetAll(Data.Model.Person person, string modalName, string subModalName)
         {
             var personInScene = Internal.SceneInUse.Instance.Scene?.PersonsInScene?.Find(pis => pis.Person.Equals(person));
             var subModalPersonInScene = personInScene?.SubModalType_PersonInScenes?.Find(smtPis => smtPis.SubModalType.SubModalTypeId.Equals(subModalName) && smtPis.SubModalType.ModalType.ModalTypeId.Equals(modalName));
@@ -58,7 +58,7 @@ namespace cl.uv.leikelen.Data.Access.External
         /// When an event and the next are separated by this threshold or more, a new interval is created.</param>
         /// <param name="which">The parameter "ToInterval" of the event, which list of events to take in account.</param>
         /// <param name="intervalName">Name of the interval (new submodal type in the given modal type).</param>
-        public void FromEvent(Person person, string modalName, string subModalName, int millisecondsThreshold, int which, string intervalName)
+        public void FromEvent(Data.Model.Person person, string modalName, string subModalName, int millisecondsThreshold, int which, string intervalName)
         {
             var eventAccess = new EventAccess();
             var events = eventAccess.GetAll(person, modalName, subModalName);
@@ -100,7 +100,7 @@ namespace cl.uv.leikelen.Data.Access.External
         /// <param name="startTime">The start time.</param>
         /// <param name="endTime">The end time.</param>
         /// <param name="value">The value.</param>
-        public void Add(Person person, string modalName, string subModalName, TimeSpan startTime, TimeSpan endTime, double value)
+        public void Add(Data.Model.Person person, string modalName, string subModalName, TimeSpan startTime, TimeSpan endTime, double value)
         {
             InternalAdd(person, modalName, subModalName, startTime, endTime, value, null);
         }
@@ -115,7 +115,7 @@ namespace cl.uv.leikelen.Data.Access.External
         /// <param name="endTime">The end time.</param>
         /// <param name="value">The value.</param>
         /// <param name="subtitle">The text content in the interval.</param>
-        public void Add(Person person, string modalName, string subModalName, TimeSpan startTime, TimeSpan endTime, double value, string subtitle)
+        public void Add(Data.Model.Person person, string modalName, string subModalName, TimeSpan startTime, TimeSpan endTime, double value, string subtitle)
         {
             InternalAdd(person, modalName, subModalName, startTime, endTime, value, subtitle);
         }
@@ -129,7 +129,7 @@ namespace cl.uv.leikelen.Data.Access.External
         /// <param name="startTime">The start time.</param>
         /// <param name="endTime">The end time.</param>
         /// <param name="subtitle">The text content in the interval.</param>
-        public void Add(Person person, string modalName, string subModalName, TimeSpan startTime, TimeSpan endTime, string subtitle)
+        public void Add(Data.Model.Person person, string modalName, string subModalName, TimeSpan startTime, TimeSpan endTime, string subtitle)
         {
             InternalAdd(person, modalName, subModalName, startTime, endTime, null, subtitle);
         }
@@ -142,13 +142,13 @@ namespace cl.uv.leikelen.Data.Access.External
         /// <param name="subModalName">Name of the sub modal.</param>
         /// <param name="startTime">The start time.</param>
         /// <param name="endTime">The end time.</param>
-        public void Add(Person person, string modalName, string subModalName, TimeSpan startTime, TimeSpan endTime)
+        public void Add(Data.Model.Person person, string modalName, string subModalName, TimeSpan startTime, TimeSpan endTime)
         {
             InternalAdd(person, modalName, subModalName, startTime, endTime, null, null);
         }
         #endregion
 
-        private void InternalAdd(Person person, string modalName, string subModalName, TimeSpan startTime, TimeSpan endTime, double? value, string subtitle)
+        private void InternalAdd(Data.Model.Person person, string modalName, string subModalName, TimeSpan startTime, TimeSpan endTime, double? value, string subtitle)
         {
             try
             {

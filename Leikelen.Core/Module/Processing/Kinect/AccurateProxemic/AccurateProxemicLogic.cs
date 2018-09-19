@@ -16,7 +16,7 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.AccurateProxemic
     public class AccurateProxemicLogic
     {
         private List<CustomBody> _bodies;
-        private IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
+        private API.DataAccess.IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AccurateProxemicLogic"/> class.

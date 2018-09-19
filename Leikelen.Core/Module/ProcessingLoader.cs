@@ -18,14 +18,14 @@ namespace cl.uv.leikelen.Module
         /// <value>
         /// The processing modules.
         /// </value>
-        public List<ProcessingModule> ProcessingModules { get; private set; }
+        public List<API.Module.Processing.ProcessingModule> ProcessingModules { get; private set; }
 
         /// <summary>
         /// Occurs when [processing modules has reset].
         /// </summary>
         public static event EventHandler ProcessingModulesHasReset;
 
-        private static ProcessingLoader _instance;
+        private static Module.ProcessingLoader _instance;
 
         /// <summary>
         /// Gets the instance.
@@ -33,11 +33,11 @@ namespace cl.uv.leikelen.Module
         /// <value>
         /// The instance.
         /// </value>
-        public static ProcessingLoader Instance
+        public static Module.ProcessingLoader Instance
         {
             get
             {
-                if (ReferenceEquals(null, _instance)) _instance = new ProcessingLoader();
+                if (ReferenceEquals(null, _instance)) _instance = new Module.ProcessingLoader();
                 return _instance;
             }
         }

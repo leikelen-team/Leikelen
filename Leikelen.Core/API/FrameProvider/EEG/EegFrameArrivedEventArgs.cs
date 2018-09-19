@@ -23,7 +23,7 @@ namespace cl.uv.leikelen.API.FrameProvider.EEG
         /// <summary>
         /// The person of the given event
         /// </summary>
-        public Person Person;
+        public Data.Model.Person Person;
 
         /// <summary>
         /// The quality of the signal
@@ -33,12 +33,12 @@ namespace cl.uv.leikelen.API.FrameProvider.EEG
         /// <summary>
         /// The channel list
         /// </summary>
-        public List<EegChannel> Channels;
+        public List<API.FrameProvider.EEG.EegChannel> Channels;
 
         /// <summary>
         /// The power for each frequency band
         /// </summary>
-        public Dictionary<FrequencyBand, double> BandPower;
+        public Dictionary<API.FrameProvider.EEG.FrequencyBand, double> BandPower;
 
         /// <summary>
         /// Miscellaneous attributes calculated to be included
@@ -69,12 +69,12 @@ namespace cl.uv.leikelen.API.FrameProvider.EEG
         /// <summary>
         /// The configured notch value (and filter) for the channel
         /// </summary>
-        public NotchType Notch;
+        public API.FrameProvider.EEG.NotchType Notch;
 
         /// <summary>
         /// The filter type configured for the channel
         /// </summary>
-        public FilterType Filter;
+        public API.FrameProvider.EEG.FilterType Filter;
     }
 
     /// <summary>

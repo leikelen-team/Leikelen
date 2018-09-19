@@ -19,14 +19,14 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels
 {
     public class LearningModel
     {
-        private static IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
-        private static FilterButterworth _lowFilter;
-        private static FilterButterworth _highFilter;
+        private static API.DataAccess.IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
+        private static Module.Processing.EEGEmotion2Channels.PreProcessing.FilterButterworth _lowFilter;
+        private static Module.Processing.EEGEmotion2Channels.PreProcessing.FilterButterworth _highFilter;
         private static MulticlassSupportVectorMachine<Gaussian> _svm;
 
         private static Random _xrand;// = new Random(DateTime.Now.Second);
 
-        public static TagType Classify(List<double[]> signalsList)
+        public static Module.Processing.EEGEmotion2Channels.TagType Classify(List<double[]> signalsList)
         {
             try
             {
@@ -63,7 +63,7 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels
             public List<double[]> inputsList;
         }
 
-        public static MulticlassSupportVectorMachine<Gaussian> Train(Dictionary<TagType, List<List<double[]>>> allsignalsList)
+        public static MulticlassSupportVectorMachine<Gaussian> Train(Dictionary<Module.Processing.EEGEmotion2Channels.TagType, List<List<double[]>>> allsignalsList)
         {
             int seed = DateTime.Now.Second;
             _xrand = new Random(seed);

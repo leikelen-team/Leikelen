@@ -19,7 +19,7 @@ namespace cl.uv.leikelen.Data.Persistence
         /// <value>
         /// The data provider.
         /// </value>
-        public IDbProvider Provider { get; private set; }
+        public Data.Persistence.IDbProvider Provider { get; private set; }
 
         /// <summary>
         /// Gets the database engine list.
@@ -27,9 +27,9 @@ namespace cl.uv.leikelen.Data.Persistence
         /// <value>
         /// The database engine list.
         /// </value>
-        public Dictionary<string, DatabaseEngine> DbEngineList { get; private set; }
+        public Dictionary<string, Data.Persistence.DatabaseEngine> DbEngineList { get; private set; }
 
-        private static DbFacade _instance;
+        private static Data.Persistence.DbFacade _instance;
 
         /// <summary>
         /// Gets the instance.
@@ -37,7 +37,7 @@ namespace cl.uv.leikelen.Data.Persistence
         /// <value>
         /// The instance.
         /// </value>
-        public static DbFacade Instance
+        public static Data.Persistence.DbFacade Instance
         {
             get
             {
@@ -150,7 +150,7 @@ namespace cl.uv.leikelen.Data.Persistence
         /// <value>
         /// The data provider.
         /// </value>
-        public IDbProvider Provider { get; }
+        public Data.Persistence.IDbProvider Provider { get; }
 
         /// <summary>
         /// Gets the default port.
@@ -174,7 +174,7 @@ namespace cl.uv.leikelen.Data.Persistence
         /// <param name="provider">The provider.</param>
         /// <param name="defaultPort">The default port.</param>
         /// <param name="createConnectionString">The function to create the connection string.</param>
-        public DatabaseEngine(IDbProvider provider, int defaultPort, 
+        public DatabaseEngine(Data.Persistence.IDbProvider provider, int defaultPort, 
             Func<string, int, string, string, string, string> createConnectionString)
         {
             Provider = provider;

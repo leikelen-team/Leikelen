@@ -21,7 +21,7 @@ namespace cl.uv.leikelen.Data.Access.External
         /// </summary>
         /// <param name="modalName">Name of the modal type.</param>
         /// <returns>List of submodal types</returns>
-        public List<SubModalType> GetAll(string modalName)
+        public List<Data.Model.SubModalType> GetAll(string modalName)
         {
             return DbFacade.Instance.Provider.LoadSubModals(modalName);
         }
@@ -34,7 +34,7 @@ namespace cl.uv.leikelen.Data.Access.External
         /// <param name="description">The description (optional, may be null).</param>
         /// <param name="file">The path of file (only the fileName, optional, may be null).</param>
         /// <returns>The new Submodal type</returns>
-        public SubModalType Add(string modalName, string name, string description, string file)
+        public Data.Model.SubModalType Add(string modalName, string name, string description, string file)
         {
             var modal = DbFacade.Instance.Provider.LoadModal(modalName);
             if (ReferenceEquals(null, modal))
@@ -87,7 +87,7 @@ namespace cl.uv.leikelen.Data.Access.External
         /// <param name="modalName">Name of the modal type.</param>
         /// <param name="name">The name of the submodal type.</param>
         /// <returns>The submodal type</returns>
-        public SubModalType Get(string modalName, string name)
+        public Data.Model.SubModalType Get(string modalName, string name)
         {
             var submodalsInModal = DbFacade.Instance.Provider.LoadSubModals(modalName);
             foreach(var submodal in submodalsInModal)
@@ -114,7 +114,7 @@ namespace cl.uv.leikelen.Data.Access.External
         /// </summary>
         /// <param name="subModalType">Type of the sub modal type.</param>
         /// <returns>The updated submodal type</returns>
-        public SubModalType Update(SubModalType subModalType)
+        public Data.Model.SubModalType Update(Data.Model.SubModalType subModalType)
         {
             return DbFacade.Instance.Provider.UpdateSubModalType(subModalType);
         }
@@ -128,7 +128,7 @@ namespace cl.uv.leikelen.Data.Access.External
         /// <param name="description">The description (optional, may be null).</param>
         /// <param name="path">The path of file (only the fileName, optional, may be null).</param>
         /// <returns>The new Submodal type</returns>
-        public SubModalType AddIfNotExists(string modalName, string name, string description, string path)
+        public Data.Model.SubModalType AddIfNotExists(string modalName, string name, string description, string path)
         {
             var modal = DbFacade.Instance.Provider.LoadModal(modalName);
             if (ReferenceEquals(null, modal))

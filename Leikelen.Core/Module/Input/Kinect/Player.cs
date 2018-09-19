@@ -19,15 +19,15 @@ namespace cl.uv.leikelen.Module.Input.Kinect
     public class Player : IPlayer
     {
         private KinectReplay _replay;
-        private IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
+        private API.DataAccess.IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
         
-        void IPlayer.Unpause()
+        void API.Module.Input.IPlayer.Unpause()
         {
             if (!ReferenceEquals(null, _replay))
                 _replay.Start();
         }
         
-        void IPlayer.Play()
+        void API.Module.Input.IPlayer.Play()
         {
             if (ReferenceEquals(null, _replay) &&
                 !ReferenceEquals(null, _dataAccessFacade.GetSceneInUseAccess().GetScene()))
@@ -65,13 +65,13 @@ namespace cl.uv.leikelen.Module.Input.Kinect
             }
         }
         
-        void IPlayer.Pause()
+        void API.Module.Input.IPlayer.Pause()
         {
             if (!ReferenceEquals(null, _replay))
                 _replay.Stop();
         }
 
-        void IPlayer.Stop()
+        void API.Module.Input.IPlayer.Stop()
         {
             if (!ReferenceEquals(null, _replay))
             {
@@ -81,13 +81,13 @@ namespace cl.uv.leikelen.Module.Input.Kinect
             Close();
         }
 
-        void IPlayer.ChangeTime(TimeSpan newTime)
+        void API.Module.Input.IPlayer.ChangeTime(TimeSpan newTime)
         {
             if (!ReferenceEquals(null, _replay))
                 _replay.ScrubTo(newTime);
         }
         
-        bool IPlayer.IsPlaying()
+        bool API.Module.Input.IPlayer.IsPlaying()
         {
             return !ReferenceEquals(null, _replay);
         }
@@ -106,14 +106,14 @@ namespace cl.uv.leikelen.Module.Input.Kinect
         }
 
 
-        TimeSpan? IPlayer.GetTotalDuration()
+        TimeSpan? API.Module.Input.IPlayer.GetTotalDuration()
         {
             if(!ReferenceEquals(null, _replay))
                 return _replay.Duration;
             return null;
         }
         
-        TimeSpan? IPlayer.GetLocation()
+        TimeSpan? API.Module.Input.IPlayer.GetLocation()
         {
             if (!ReferenceEquals(null, _replay))
                 return _replay.Location;

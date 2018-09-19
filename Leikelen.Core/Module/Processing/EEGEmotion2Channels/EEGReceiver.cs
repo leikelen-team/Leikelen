@@ -16,7 +16,7 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels
         private int _lastSecond;
         private double lastF3;
         private double lastC4;
-        private IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
+        private API.DataAccess.IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
 
         public EEGReceiver()
         {
@@ -31,7 +31,7 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels
             _lastSecond = 0;
         }
 
-        public void DataReceiver(object sender, EegFrameArrivedEventArgs e)
+        public void DataReceiver(object sender, API.FrameProvider.EEG.EegFrameArrivedEventArgs e)
         {
             //if samplingHz is 128, then alternates if the signal is processed or no
             if (EEGEmoProc2ChSettings.Instance.SamplingHz == 256)

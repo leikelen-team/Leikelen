@@ -19,11 +19,11 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.Posture
         /// <summary>
         /// The data access facade
         /// </summary>
-        private IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
+        private API.DataAccess.IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
         /// <summary>
         /// List of tuples of person ids and its discrete gestures. Used to create the intervals from the events.
         /// </summary>
-        private List<Tuple<Person, string>> _discreteGestures;
+        private List<Tuple<Data.Model.Person, string>> _discreteGestures;
 
         /// <summary>
         /// The processed discrete gesture names processed in the current instance.
@@ -58,7 +58,7 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.Posture
         /// </summary>
         /// <param name="sender">The sender object.</param>
         /// <param name="e">The kinect gesture frame.</param>
-        public void Gesture_FrameArrived(object sender, KinectGestureFrameArrivedArgs e)
+        public void Gesture_FrameArrived(object sender, API.FrameProvider.Kinect.KinectGestureFrameArrivedArgs e)
         {
             CheckPerson.Instance.CheckIfExistsPerson(e.TrackingId);
             if (e.Time.HasValue)

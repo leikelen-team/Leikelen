@@ -15,7 +15,7 @@ namespace cl.uv.leikelen.Data.Persistence.Provider
     public class PgSqlProvider : EfAbstractProvider
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="PgSqlProvider"/> class.
+        /// Initializes a new instance of the <see cref="Data.Persistence.Provider.PgSqlProvider"/> class.
         /// </summary>
         public PgSqlProvider()
         {

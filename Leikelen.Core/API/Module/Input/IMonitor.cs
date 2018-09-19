@@ -29,7 +29,7 @@ namespace cl.uv.leikelen.API.Module.Input
         /// Gets the current sensor status.
         /// </summary>
         /// <returns>Current sensor status</returns>
-        InputStatus GetStatus();
+        API.Module.Input.InputStatus GetStatus();
         /// <summary>
         /// Opens the sensor for start monitoring and get data.
         /// </summary>

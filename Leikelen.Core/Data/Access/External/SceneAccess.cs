@@ -30,7 +30,7 @@ namespace cl.uv.leikelen.Data.Access.External
         /// </summary>
         /// <param name="sceneId">The scene identifier.</param>
         /// <returns>The scene</returns>
-        public Scene Get(int sceneId)
+        public Data.Model.Scene Get(int sceneId)
         {
             return DbFacade.Instance.Provider.LoadScene(sceneId);
         }
@@ -39,7 +39,7 @@ namespace cl.uv.leikelen.Data.Access.External
         /// Gets all scenes in the database.
         /// </summary>
         /// <returns>A list of the scenes</returns>
-        public List<Scene> GetAll()
+        public List<Data.Model.Scene> GetAll()
         {
             return DbFacade.Instance.Provider.LoadScenes();
         }
@@ -50,7 +50,7 @@ namespace cl.uv.leikelen.Data.Access.External
         /// </summary>
         /// <param name="scene">The scene object.</param>
         /// <returns>The new Scene</returns>
-        public Scene SaveOrUpdate(Scene scene)
+        public Data.Model.Scene SaveOrUpdate(Data.Model.Scene scene)
         {
             Scene sceneReturned = null;
             var settings = DataAccessFacade.Instance.GetGeneralSettings();
@@ -72,7 +72,7 @@ namespace cl.uv.leikelen.Data.Access.External
         /// </summary>
         /// <param name="scene">The scene object.</param>
         /// <returns>The new Scene</returns>
-        public Scene SaveNew(Scene scene)
+        public Data.Model.Scene SaveNew(Data.Model.Scene scene)
         {
             var sceneReturned = DbFacade.Instance.Provider.SaveNewScene(scene);
             var settings = DataAccessFacade.Instance.GetGeneralSettings();
@@ -88,7 +88,7 @@ namespace cl.uv.leikelen.Data.Access.External
         /// Deletes the specified scene.
         /// </summary>
         /// <param name="scene">The scene object.</param>
-        public void Delete(Scene scene)
+        public void Delete(Data.Model.Scene scene)
         {
             var settings = DataAccessFacade.Instance.GetGeneralSettings();
 

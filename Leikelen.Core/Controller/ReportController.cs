@@ -119,7 +119,7 @@ namespace cl.uv.leikelen.Controller
         /// <param name="person">The person.</param>
         /// <param name="outputFilePath">The output file path.</param>
         /// <returns>Asynchronous Task associated</returns>
-        public async Task GeneratePersonReport(Person person, string outputFilePath)
+        public async Task GeneratePersonReport(Data.Model.Person person, string outputFilePath)
         {
             //get data
             var ps = new List<Person>

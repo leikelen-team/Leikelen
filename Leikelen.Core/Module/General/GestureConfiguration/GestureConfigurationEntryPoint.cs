@@ -19,7 +19,7 @@ namespace cl.uv.leikelen.Module.General.GestureConfiguration
     /// <seealso cref="cl.uv.leikelen.API.Module.General.GeneralModule" />
     public class GestureConfigurationEntryPoint : GeneralModule
     {
-        private IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
+        private API.DataAccess.IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GestureConfigurationEntryPoint"/> class.

@@ -19,7 +19,7 @@ namespace cl.uv.leikelen.API.DataAccess
         /// <param name="modalName">Name of the modal type.</param>
         /// <param name="subModalName">Name of the sub modal type.</param>
         /// <returns>List of Intervals</returns>
-        List<Interval> GetAll(Person person, string modalName, string subModalName);
+        List<API.DataAccess.Interval> GetAll(Data.Model.Person person, string modalName, string subModalName);
 
         /// <summary>
         /// Adds an interval to the specified person.
@@ -30,7 +30,7 @@ namespace cl.uv.leikelen.API.DataAccess
         /// <param name="startTime">The start time.</param>
         /// <param name="endTime">The end time.</param>
         /// <param name="value">The value.</param>
-        void Add(Person person, string modalName, string subModalName, TimeSpan startTime, TimeSpan endTime, double value);
+        void Add(Data.Model.Person person, string modalName, string subModalName, TimeSpan startTime, TimeSpan endTime, double value);
 
         /// <summary>
         /// Adds an interval to the specified person.
@@ -42,7 +42,7 @@ namespace cl.uv.leikelen.API.DataAccess
         /// <param name="endTime">The end time.</param>
         /// <param name="value">The value.</param>
         /// <param name="subtitle">The text content in the interval.</param>
-        void Add(Person person, string modalName, string subModalName, TimeSpan startTime, TimeSpan endTime, double value, string subtitle);
+        void Add(Data.Model.Person person, string modalName, string subModalName, TimeSpan startTime, TimeSpan endTime, double value, string subtitle);
 
         /// <summary>
         /// Adds an interval to the specified person.
@@ -53,7 +53,7 @@ namespace cl.uv.leikelen.API.DataAccess
         /// <param name="startTime">The start time.</param>
         /// <param name="endTime">The end time.</param>
         /// <param name="subtitle">The text content in the interval.</param>
-        void Add(Person person, string modalName, string subModalName, TimeSpan startTime, TimeSpan endTime, string subtitle);
+        void Add(Data.Model.Person person, string modalName, string subModalName, TimeSpan startTime, TimeSpan endTime, string subtitle);
 
         /// <summary>
         /// Adds an interval to the specified person.
@@ -63,7 +63,7 @@ namespace cl.uv.leikelen.API.DataAccess
         /// <param name="subModalName">Name of the sub modal.</param>
         /// <param name="startTime">The start time.</param>
         /// <param name="endTime">The end time.</param>
-        void Add(Person person, string modalName, string subModalName, TimeSpan startTime, TimeSpan endTime);
+        void Add(Data.Model.Person person, string modalName, string subModalName, TimeSpan startTime, TimeSpan endTime);
 
         /// <summary>
         /// Create intervals From a list of events.
@@ -75,6 +75,6 @@ namespace cl.uv.leikelen.API.DataAccess
         /// When an event and the next are separated by this threshold or more, a new interval is created.</param>
         /// <param name="which">The parameter "ToInterval" of the event, which list of events to take in account.</param>
         /// <param name="intervalName">Name of the interval (new submodal type in the given modal type).</param>
-        void FromEvent(Person person, string modalName, string subModalName, int millisecondsThreshold, int which, string intervalName);
+        void FromEvent(Data.Model.Person person, string modalName, string subModalName, int millisecondsThreshold, int which, string intervalName);
     }
 }

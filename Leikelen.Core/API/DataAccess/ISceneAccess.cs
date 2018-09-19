@@ -16,14 +16,14 @@ namespace cl.uv.leikelen.API.DataAccess
         /// Gets all scenes in the database.
         /// </summary>
         /// <returns>A list of the scenes</returns>
-        List<Scene> GetAll();
+        List<Data.Model.Scene> GetAll();
 
         /// <summary>
         /// Gets the specified scene.
         /// </summary>
         /// <param name="sceneId">The scene identifier.</param>
         /// <returns>The scene</returns>
-        Scene Get(int sceneId);
+        Data.Model.Scene Get(int sceneId);
 
         /// <summary>
         /// Verify if Exists the specified scene.
@@ -38,7 +38,7 @@ namespace cl.uv.leikelen.API.DataAccess
         /// </summary>
         /// <param name="scene">The scene object.</param>
         /// <returns>The new Scene</returns>
-        Scene SaveOrUpdate(Scene scene);
+        Data.Model.Scene SaveOrUpdate(Data.Model.Scene scene);
 
         /// <summary>
         /// Saves the scene as a new object, changing all ids 
@@ -46,12 +46,12 @@ namespace cl.uv.leikelen.API.DataAccess
         /// </summary>
         /// <param name="scene">The scene object.</param>
         /// <returns>The new Scene</returns>
-        Scene SaveNew(Scene scene);
+        Data.Model.Scene SaveNew(Data.Model.Scene scene);
 
         /// <summary>
         /// Deletes the specified scene.
         /// </summary>
         /// <param name="scene">The scene object.</param>
-        void Delete(Scene scene);
+        void Delete(Data.Model.Scene scene);
     }
 }

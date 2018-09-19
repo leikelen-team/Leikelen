@@ -22,7 +22,7 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View
     /// </summary>
     public partial class TrainerSceneSelector : Window, ICloneable
     {
-        private IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
+        private API.DataAccess.IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
 
         public TrainerSceneSelector()
         {

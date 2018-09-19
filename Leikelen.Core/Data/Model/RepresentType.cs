@@ -84,7 +84,7 @@ namespace cl.uv.leikelen.Data.Model
         /// <value>
         /// The event data.
         /// </value>
-        public EventData EventData { get; set; }
+        public Data.Model.EventData EventData { get; set; }
 
         /// <summary>
         /// Gets or sets the interval data.
@@ -92,7 +92,7 @@ namespace cl.uv.leikelen.Data.Model
         /// <value>
         /// The interval data.
         /// </value>
-        public IntervalData IntervalData { get; set; }
+        public Data.Model.IntervalData IntervalData { get; set; }
 
         /// <summary>
         /// Gets or sets the sub modal type person in scene.
@@ -100,10 +100,10 @@ namespace cl.uv.leikelen.Data.Model
         /// <value>
         /// The sub modal type person in scene.
         /// </value>
-        public SubModalType_PersonInScene SubModalType_PersonInScene { get; set; }
+        public Data.Model.SubModalType_PersonInScene SubModalType_PersonInScene { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="RepresentType"/> class.
+        /// Initializes a new instance of the <see cref="Data.Model.RepresentType"/> class.
         /// </summary>
         public RepresentType()
         {

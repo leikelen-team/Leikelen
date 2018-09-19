@@ -21,14 +21,14 @@ namespace cl.uv.leikelen.Module
         /// <value>
         /// The general modules.
         /// </value>
-        public List<GeneralModule> GeneralModules { get; private set; }
+        public List<API.Module.General.GeneralModule> GeneralModules { get; private set; }
 
         /// <summary>
         /// Occurs when [general modules has reset].
         /// </summary>
         public static event EventHandler GeneralModulesHasReset;
 
-        private static GeneralLoader _instance;
+        private static Module.GeneralLoader _instance;
 
         /// <summary>
         /// Gets the instance.
@@ -36,7 +36,7 @@ namespace cl.uv.leikelen.Module
         /// <value>
         /// The instance.
         /// </value>
-        public static GeneralLoader Instance
+        public static Module.GeneralLoader Instance
         {
             get
             {

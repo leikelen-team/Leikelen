@@ -65,7 +65,7 @@ namespace cl.uv.leikelen.Data.Model
         /// <value>
         /// The sub modal type associated.
         /// </value>
-        public SubModalType SubModalType { get; set; }
+        public Data.Model.SubModalType SubModalType { get; set; }
 
         /// <summary>
         /// Gets or sets the person in scene.
@@ -73,7 +73,7 @@ namespace cl.uv.leikelen.Data.Model
         /// <value>
         /// The person in scene.
         /// </value>
-        public PersonInScene PersonInScene { get; set; }
+        public Data.Model.PersonInScene PersonInScene { get; set; }
 
         /// <summary>
         /// Gets or sets the represent types.
@@ -81,10 +81,10 @@ namespace cl.uv.leikelen.Data.Model
         /// <value>
         /// The represent types.
         /// </value>
-        public List<RepresentType> RepresentTypes { get; set; }
+        public List<Data.Model.RepresentType> RepresentTypes { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SubModalType_PersonInScene"/> class.
+        /// Initializes a new instance of the <see cref="Data.Model.SubModalType_PersonInScene"/> class.
         /// </summary>
         public SubModalType_PersonInScene()
         {

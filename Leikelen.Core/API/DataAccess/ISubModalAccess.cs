@@ -17,7 +17,7 @@ namespace cl.uv.leikelen.API.DataAccess
         /// </summary>
         /// <param name="modalName">Name of the modal type.</param>
         /// <returns>List of submodal types</returns>
-        List<SubModalType> GetAll(string modalName);
+        List<Data.Model.SubModalType> GetAll(string modalName);
 
         /// <summary>
         /// Gets the modal type of the given name.
@@ -25,7 +25,7 @@ namespace cl.uv.leikelen.API.DataAccess
         /// <param name="modalName">Name of the modal type.</param>
         /// <param name="name">The name of the submodal type.</param>
         /// <returns>The submodal type</returns>
-        SubModalType Get(string modalName, string name);
+        Data.Model.SubModalType Get(string modalName, string name);
 
         /// <summary>
         /// Adds a new submodal type.
@@ -35,7 +35,7 @@ namespace cl.uv.leikelen.API.DataAccess
         /// <param name="description">The description (optional, may be null).</param>
         /// <param name="path">The path of file (only the fileName, optional, may be null).</param>
         /// <returns>The new Submodal type</returns>
-        SubModalType Add(string modalName, string name, string description, string path);
+        Data.Model.SubModalType Add(string modalName, string name, string description, string path);
 
         /// <summary>
         /// Adds a new submodal type if not exists, otherwise returns the 
@@ -46,7 +46,7 @@ namespace cl.uv.leikelen.API.DataAccess
         /// <param name="description">The description (optional, may be null).</param>
         /// <param name="path">The path of file (only the fileName, optional, may be null).</param>
         /// <returns>The new Submodal type</returns>
-        SubModalType AddIfNotExists(string modalName, string name, string description, string path);
+        Data.Model.SubModalType AddIfNotExists(string modalName, string name, string description, string path);
 
 
         /// <summary>
@@ -69,6 +69,6 @@ namespace cl.uv.leikelen.API.DataAccess
         /// </summary>
         /// <param name="subModalType">Type of the sub modal type.</param>
         /// <returns>The updated submodal type</returns>
-        SubModalType Update(SubModalType subModalType);
+        Data.Model.SubModalType Update(Data.Model.SubModalType subModalType);
     }
 }

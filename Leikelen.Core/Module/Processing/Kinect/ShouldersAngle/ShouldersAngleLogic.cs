@@ -19,7 +19,7 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.ShouldersAngle
         private const double _movementToPositive = 0;
 
         private readonly Dictionary<ulong, int> _personsId = new Dictionary<ulong, int>();
-        private IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
+        private API.DataAccess.IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ShouldersAngleLogic"/> class.

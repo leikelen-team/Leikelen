@@ -15,7 +15,7 @@ namespace cl.uv.leikelen.Data.Access.External
     public class SceneInUseAccess : ISceneInUseAccess
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SceneInUseAccess"/> class.
+        /// Initializes a new instance of the <see cref="Data.Access.External.SceneInUseAccess"/> class.
         /// </summary>
         public SceneInUseAccess()
         {
@@ -26,7 +26,7 @@ namespace cl.uv.leikelen.Data.Access.External
         /// Gets the scene in use.
         /// </summary>
         /// <returns>The scene in use</returns>
-        public Scene GetScene()
+        public Data.Model.Scene GetScene()
         {
             return Internal.SceneInUse.Instance.Scene;
         }

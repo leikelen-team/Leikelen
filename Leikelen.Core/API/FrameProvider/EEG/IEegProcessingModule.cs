@@ -15,6 +15,6 @@ namespace cl.uv.leikelen.API.FrameProvider.EEG
         /// Gets the handler for the EEG frame events.
         /// </summary>
         /// <returns>the handler for the EEG frame events</returns>
-        EventHandler<EegFrameArrivedEventArgs> EegListener();
+        EventHandler<API.FrameProvider.EEG.EegFrameArrivedEventArgs> EegListener();
     }
 }

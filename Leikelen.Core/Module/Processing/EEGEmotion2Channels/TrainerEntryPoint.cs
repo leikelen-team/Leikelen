@@ -16,8 +16,8 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels
 {
     public class TrainerEntryPoint : GeneralModule
     {
-        public static Dictionary<TagType, List<Scene>> ScenesAndTags = new Dictionary<TagType, List<Scene>>();
-        private IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
+        public static Dictionary<Module.Processing.EEGEmotion2Channels.TagType, List<Data.Model.Scene>> ScenesAndTags = new Dictionary<Module.Processing.EEGEmotion2Channels.TagType, List<Data.Model.Scene>>();
+        private API.DataAccess.IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
 
         public TrainerEntryPoint()
         {

@@ -23,7 +23,7 @@ namespace cl.uv.leikelen.View
     /// </summary>
     public partial class ConfigurePerson : Window
     {
-        private Person _person;
+        private Data.Model.Person _person;
         private string _originPhotoPath;
         private string _targetPhotoName;
 
@@ -45,7 +45,7 @@ namespace cl.uv.leikelen.View
         /// to edit a person.
         /// </summary>
         /// <param name="person">The person.</param>
-        public ConfigurePerson(Person person)
+        public ConfigurePerson(Data.Model.Person person)
         {
             InitializeComponent();
 

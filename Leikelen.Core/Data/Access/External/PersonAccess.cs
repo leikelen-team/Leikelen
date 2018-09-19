@@ -19,7 +19,7 @@ namespace cl.uv.leikelen.Data.Access.External
         /// <summary>
         /// Occurs when [persons changed].
         /// </summary>
-        public event EventHandler<Person> PersonsChanged;
+        public event EventHandler<Data.Model.Person> PersonsChanged;
 
         /// <summary>
         /// Adds the person with specified attributes.
@@ -30,7 +30,7 @@ namespace cl.uv.leikelen.Data.Access.External
         /// <param name="sex">The sex (0 for male, 1 for female or other number for unknown).</param>
         /// <param name="trackingId">The tracking identifier (for kinect's identified persons).</param>
         /// <returns>The new person added</returns>
-        public Person Add(string name, string photo, DateTime? birthday, int? sex, long? trackingId)
+        public Data.Model.Person Add(string name, string photo, DateTime? birthday, int? sex, long? trackingId)
         {
             var person = DbFacade.Instance.Provider.SavePerson(new Person()
             {
@@ -50,7 +50,7 @@ namespace cl.uv.leikelen.Data.Access.External
         /// </summary>
         /// <param name="person">The new person object (update the person with same id).</param>
         /// <returns>The person updated</returns>
-        public Person Update(Person person)
+        public Data.Model.Person Update(Data.Model.Person person)
         {
             var editedPerson = DbFacade.Instance.Provider.UpdatePerson(person);
             PersonsChanged?.Invoke(this, editedPerson);
@@ -63,7 +63,7 @@ namespace cl.uv.leikelen.Data.Access.External
         /// <param name="person">The person object.</param>
         /// <param name="scene">The scene object.</param>
         /// <returns>A PersonInScene object</returns>
-        public PersonInScene AddToScene(Person person, Scene scene)
+        public Data.Model.PersonInScene AddToScene(Data.Model.Person person, Data.Model.Scene scene)
         {
             var pisAdded = DbFacade.Instance.Provider.AddPersonToScene(person, scene);
             PersonsChanged?.Invoke(this, pisAdded.Person);
@@ -84,7 +84,7 @@ namespace cl.uv.leikelen.Data.Access.External
         /// Gets all persons in the database.
         /// </summary>
         /// <returns></returns>
-        public Person Get(int personId)
+        public Data.Model.Person Get(int personId)
         {
             return DbFacade.Instance.Provider.LoadPersons().Find(p => p.PersonId.Equals(personId));
         }
@@ -94,7 +94,7 @@ namespace cl.uv.leikelen.Data.Access.External
         /// </summary>
         /// <param name="personId">The person identifier.</param>
         /// <returns>The person of given identifier or null</returns>
-        public List<Person> GetAll()
+        public List<Data.Model.Person> GetAll()
         {
             return DbFacade.Instance.Provider.LoadPersons();
         }
@@ -103,7 +103,7 @@ namespace cl.uv.leikelen.Data.Access.External
         /// Deletes the specified person.
         /// </summary>
         /// <param name="person">The person object.</param>
-        public void Delete(Person person)
+        public void Delete(Data.Model.Person person)
         {
             DbFacade.Instance.Provider.DeletePerson(person);
             PersonsChanged?.Invoke(this, null);

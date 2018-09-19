@@ -21,7 +21,7 @@ namespace cl.uv.leikelen.Data.Access.External
         /// <param name="modalName">Name of the modal.</param>
         /// <param name="subModalName">Name of the sub modal.</param>
         /// <returns>The list of timeless</returns>
-        public List<Timeless> GetAll(Person person, string modalName, string subModalName)
+        public List<API.DataAccess.Timeless> GetAll(Data.Model.Person person, string modalName, string subModalName)
         {
             var personInScene = Internal.SceneInUse.Instance.Scene?.PersonsInScene?.Find(pis => pis.Person.Equals(person));
             var subModalPersonInScene = personInScene?.SubModalType_PersonInScenes?.Find(smtPis => smtPis.SubModalType.SubModalTypeId.Equals(subModalName) && smtPis.SubModalType.ModalType.ModalTypeId.Equals(modalName));
@@ -55,7 +55,7 @@ namespace cl.uv.leikelen.Data.Access.External
         /// <param name="subModalName">Name of the sub modal.</param>
         /// <param name="index">The index.</param>
         /// <param name="value">The value.</param>
-        public void Add(Person person, string modalName, string subModalName, int index, double value)
+        public void Add(Data.Model.Person person, string modalName, string subModalName, int index, double value)
         {
             InternalAdd(person, modalName, subModalName, index, value, null);
         }
@@ -69,7 +69,7 @@ namespace cl.uv.leikelen.Data.Access.External
         /// <param name="index">The index.</param>
         /// <param name="value">The value.</param>
         /// <param name="subtitle">The subtitle.</param>
-        public void Add(Person person, string modalName, string subModalName, int index, double value, string subtitle)
+        public void Add(Data.Model.Person person, string modalName, string subModalName, int index, double value, string subtitle)
         {
             InternalAdd(person, modalName, subModalName, index, value, subtitle);
         }
@@ -82,7 +82,7 @@ namespace cl.uv.leikelen.Data.Access.External
         /// <param name="subModalName">Name of the sub modal.</param>
         /// <param name="index">The index.</param>
         /// <param name="subtitle">The subtitle.</param>
-        public void Add(Person person, string modalName, string subModalName, int index, string subtitle)
+        public void Add(Data.Model.Person person, string modalName, string subModalName, int index, string subtitle)
         {
             InternalAdd(person, modalName, subModalName, index, null, subtitle);
         }
@@ -94,13 +94,13 @@ namespace cl.uv.leikelen.Data.Access.External
         /// <param name="modalName">Name of the modal.</param>
         /// <param name="subModalName">Name of the sub modal.</param>
         /// <param name="index">The index.</param>
-        public void Add(Person person, string modalName, string subModalName, int index)
+        public void Add(Data.Model.Person person, string modalName, string subModalName, int index)
         {
             InternalAdd(person, modalName, subModalName, index, null, null);
         }
         #endregion
 
-        private void InternalAdd(Person person, string modalName, string subModalName, int index, double? value, string subtitle)
+        private void InternalAdd(Data.Model.Person person, string modalName, string subModalName, int index, double? value, string subtitle)
         {
             var subModalPersonInScene = TypeValidation.GetSmtPis(person, modalName, subModalName);
             

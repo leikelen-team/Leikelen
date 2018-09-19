@@ -19,16 +19,16 @@ namespace cl.uv.leikelen.API.Module.Input
         /// Whether is a sensor that captures all the scene, 
         /// or only a person's data.
         /// </summary>
-        public InputPlurality Plurality;
+        public API.Module.Input.InputPlurality Plurality;
         /// <summary>
         /// The monitor of this sensor, that captures the data directly of the device, 
         /// and allows to record and feed data to the different <see cref="Processing.ProcessingModule"/>
         /// </summary>
-        public IMonitor Monitor;
+        public API.Module.Input.IMonitor Monitor;
         /// <summary>
         /// The player of this sensor, that reads the saved data (if exists), 
         /// and allow to reproduce it off-line at any moment.
         /// </summary>
-        public IPlayer Player;
+        public API.Module.Input.IPlayer Player;
     }
 }

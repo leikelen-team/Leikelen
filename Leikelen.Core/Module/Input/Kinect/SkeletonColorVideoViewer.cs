@@ -20,7 +20,7 @@ namespace cl.uv.leikelen.Module.Input.Kinect
     /// <seealso cref="cl.uv.leikelen.API.Module.Input.IVideo" />
     public class SkeletonColorVideoViewer : IVideo
     {
-        private IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
+        private API.DataAccess.IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
         /// <summary>
         /// Occurs when [color image arrived].
         /// </summary>
@@ -38,7 +38,7 @@ namespace cl.uv.leikelen.Module.Input.Kinect
         private readonly List<CustomBody> _bodies;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SkeletonColorVideoViewer"/> class.
+        /// Initializes a new instance of the <see cref="Module.Input.Kinect.SkeletonColorVideoViewer"/> class.
         /// </summary>
         public SkeletonColorVideoViewer()
         {

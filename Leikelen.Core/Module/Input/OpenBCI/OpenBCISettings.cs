@@ -55,7 +55,7 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI
         /// </summary>
         public readonly Option<string> PositionChannel8 = new Option<string>("PositionChannel8", null);
 
-        private static OpenBCISettings _instance;
+        private static Module.Input.OpenBCI.OpenBCISettings _instance;
 
         /// <summary>
         /// Gets the instance.
@@ -63,7 +63,7 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI
         /// <value>
         /// The instance.
         /// </value>
-        public static OpenBCISettings Instance
+        public static Module.Input.OpenBCI.OpenBCISettings Instance
         {
             get
             {

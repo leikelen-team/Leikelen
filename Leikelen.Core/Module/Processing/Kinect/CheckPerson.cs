@@ -20,10 +20,10 @@ namespace cl.uv.leikelen.Module.Processing.Kinect
         /// <summary>
         /// Dictionary that match the kinect tracking id with the persons identifier.
         /// </summary>
-        public Dictionary<ulong, Person> PersonsId { get; private set;} = new Dictionary<ulong, Person>();
-        private IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
+        public Dictionary<ulong, Data.Model.Person> PersonsId { get; private set;} = new Dictionary<ulong, Data.Model.Person>();
+        private API.DataAccess.IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
 
-        private static CheckPerson _instance;
+        private static Module.Processing.Kinect.CheckPerson _instance;
 
         /// <summary>
         /// Gets the instance.
@@ -31,7 +31,7 @@ namespace cl.uv.leikelen.Module.Processing.Kinect
         /// <value>
         /// The instance.
         /// </value>
-        public static CheckPerson Instance
+        public static Module.Processing.Kinect.CheckPerson Instance
         {
             get
             {

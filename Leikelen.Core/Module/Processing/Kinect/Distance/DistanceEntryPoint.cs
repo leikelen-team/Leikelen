@@ -20,7 +20,7 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.Distance
     /// <seealso cref="cl.uv.leikelen.API.FrameProvider.Kinect.IKinectProcessingModule" />
     public class DistanceEntryPoint : ProcessingModule, IKinectProcessingModule
     {
-        private DistanceLogic _logic;
+        private Module.Processing.Kinect.Distance.DistanceLogic _logic;
         /// <summary>
         /// Initializes a new instance of the <see cref="DistanceEntryPoint"/> class.
         /// </summary>
@@ -59,7 +59,7 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.Distance
             return null;
         }
 
-        EventHandler<KinectGestureFrameArrivedArgs> IKinectProcessingModule.GestureListener()
+        EventHandler<API.FrameProvider.Kinect.KinectGestureFrameArrivedArgs> IKinectProcessingModule.GestureListener()
         {
             return null;
         }

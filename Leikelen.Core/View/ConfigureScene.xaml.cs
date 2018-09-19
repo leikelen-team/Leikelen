@@ -25,7 +25,7 @@ namespace cl.uv.leikelen.View
     /// </summary>
     public partial class ConfigureScene : Window
     {
-        private Scene _scene;
+        private Data.Model.Scene _scene;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConfigureScene"/> class
@@ -44,7 +44,7 @@ namespace cl.uv.leikelen.View
         /// with a scene to edit.
         /// </summary>
         /// <param name="scene">The scene.</param>
-        public ConfigureScene(Scene scene)
+        public ConfigureScene(Data.Model.Scene scene)
         {
             InitializeComponent();
             _scene = scene;

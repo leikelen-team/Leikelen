@@ -32,7 +32,7 @@ namespace cl.uv.leikelen.View.Widget.HomeTab
             InitializeComponent();
         }
 
-        void ITab.Fill()
+        void API.Helper.ITab.Fill()
         {
             StackButtons.Visibility = Visibility.Visible;
             if (!ReferenceEquals(null, SceneInUse.Instance.Scene))
@@ -44,7 +44,7 @@ namespace cl.uv.leikelen.View.Widget.HomeTab
                 
         }
 
-        void ITab.Reset()
+        void API.Helper.ITab.Reset()
         {
             MainStack.Children.RemoveRange(1, MainStack.Children.Count - 1);
             StackButtons.Visibility = Visibility.Hidden;

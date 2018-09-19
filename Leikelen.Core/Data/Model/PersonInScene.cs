@@ -28,7 +28,7 @@ namespace cl.uv.leikelen.Data.Model
         /// <value>
         /// The scene associated.
         /// </value>
-        public Scene Scene { get; set; }
+        public Data.Model.Scene Scene { get; set; }
 
         /// <summary>
         /// Gets or sets the identifier of the associated person.
@@ -45,7 +45,7 @@ namespace cl.uv.leikelen.Data.Model
         /// <value>
         /// The person.
         /// </value>
-        public Person Person { get; set; }
+        public Data.Model.Person Person { get; set; }
 
         /// <summary>
         /// Gets or sets the sub modal type person in scenes.
@@ -53,10 +53,10 @@ namespace cl.uv.leikelen.Data.Model
         /// <value>
         /// The sub modal type person in scenes.
         /// </value>
-        public List<SubModalType_PersonInScene> SubModalType_PersonInScenes { get; set; }
+        public List<Data.Model.SubModalType_PersonInScene> SubModalType_PersonInScenes { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PersonInScene"/> class.
+        /// Initializes a new instance of the <see cref="Data.Model.PersonInScene"/> class.
         /// </summary>
         public PersonInScene()
         {

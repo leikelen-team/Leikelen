@@ -18,9 +18,9 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels
 
         public readonly Option<int> TagToTrain = new Option<int>("TagToTrain", -1);
 
-        private static EEGEmoProc2ChSettings _instance;
+        private static Module.Processing.EEGEmotion2Channels.EEGEmoProc2ChSettings _instance;
 
-        public static EEGEmoProc2ChSettings Instance
+        public static Module.Processing.EEGEmotion2Channels.EEGEmoProc2ChSettings Instance
         {
             get
             {

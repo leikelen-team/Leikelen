@@ -15,6 +15,6 @@ namespace cl.uv.leikelen.API.FrameProvider.Accelerometer
         /// Get the handler for accelerometer events.
         /// </summary>
         /// <returns>the handler for accelerometer events</returns>
-        EventHandler<AccelerometerFrameArrivedEventArgs> AccelerometerListener();
+        EventHandler<API.FrameProvider.Accelerometer.AccelerometerFrameArrivedEventArgs> AccelerometerListener();
     }
 }

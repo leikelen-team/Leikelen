@@ -57,7 +57,7 @@ namespace cl.uv.leikelen.Data.Model
         /// The modal type associated.
         /// </value>
         [ForeignKey("ModalTypeId")]
-        public ModalType ModalType { get; set; }
+        public Data.Model.ModalType ModalType { get; set; }
 
         /// <summary>
         /// Gets or sets the sub modal type person in scenes.
@@ -65,10 +65,10 @@ namespace cl.uv.leikelen.Data.Model
         /// <value>
         /// The sub modal type person in scenes.
         /// </value>
-        public List<SubModalType_PersonInScene> SubModalType_PersonInScenes { get; set; }
+        public List<Data.Model.SubModalType_PersonInScene> SubModalType_PersonInScenes { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SubModalType"/> class.
+        /// Initializes a new instance of the <see cref="Data.Model.SubModalType"/> class.
         /// </summary>
         public SubModalType()
         {

@@ -25,7 +25,7 @@ namespace cl.uv.leikelen.Controller
         /// </summary>
         /// <param name="fileName">Name of the file.</param>
         /// <returns>The scene imported</returns>
-        public static Scene Import(string fileName)
+        public static Data.Model.Scene Import(string fileName)
         {
             var fileExtension = Path.GetExtension(fileName).ToLower();
             var settings = DataAccessFacade.Instance.GetGeneralSettings();
@@ -74,7 +74,7 @@ namespace cl.uv.leikelen.Controller
         /// <param name="index">The index of the scene to import.</param>
         /// <param name="fileName">Name of the file.</param>
         /// <returns>The scene imported</returns>
-        private static Scene ImportSqliteFile(int index, string fileName)
+        private static Data.Model.Scene ImportSqliteFile(int index, string fileName)
         {
             var sqliteProvider = new SqliteProvider();
             sqliteProvider.CreateConnection("Filename=" + fileName);

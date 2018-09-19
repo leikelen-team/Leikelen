@@ -22,47 +22,47 @@ namespace cl.uv.leikelen.Module.Input.MindwaveTGC
         /// </summary>
         public event EventHandler LocationChanged;
 
-        void IPlayer.ChangeTime(TimeSpan newTime)
+        void API.Module.Input.IPlayer.ChangeTime(TimeSpan newTime)
         {
             return;
         }
 
-        void IPlayer.Close()
+        void API.Module.Input.IPlayer.Close()
         {
             return;
         }
 
-        TimeSpan? IPlayer.GetLocation()
+        TimeSpan? API.Module.Input.IPlayer.GetLocation()
         {
             return null;
         }
 
-        TimeSpan? IPlayer.GetTotalDuration()
+        TimeSpan? API.Module.Input.IPlayer.GetTotalDuration()
         {
             return null;
         }
 
-        bool IPlayer.IsPlaying()
+        bool API.Module.Input.IPlayer.IsPlaying()
         {
             return false;
         }
 
-        void IPlayer.Pause()
+        void API.Module.Input.IPlayer.Pause()
         {
             return;
         }
 
-        void IPlayer.Play()
+        void API.Module.Input.IPlayer.Play()
         {
             return;
         }
 
-        void IPlayer.Stop()
+        void API.Module.Input.IPlayer.Stop()
         {
             return;
         }
 
-        void IPlayer.Unpause()
+        void API.Module.Input.IPlayer.Unpause()
         {
             return;
         }

@@ -27,7 +27,7 @@ namespace cl.uv.leikelen.Module.Input.Kinect
         /// <value>
         /// The gesture detector list.
         /// </value>
-        public static List<GestureDetector> GestureDetectorList { get; set; } = new List<GestureDetector>();
+        public static List<Module.Input.Kinect.GestureDetector> GestureDetectorList { get; set; } = new List<Module.Input.Kinect.GestureDetector>();
         private static List<CustomBody> _bodies = new List<CustomBody>();
 
         /// <summary> Gesture frame reader which will handle gesture events coming from the sensor </summary>
@@ -42,9 +42,9 @@ namespace cl.uv.leikelen.Module.Input.Kinect
         /// <summary>
         /// Occurs when [kinect gesture frame arrived].
         /// </summary>
-        public event EventHandler<KinectGestureFrameArrivedArgs> KinectGestureFrameArrived;
+        public event EventHandler<API.FrameProvider.Kinect.KinectGestureFrameArrivedArgs> KinectGestureFrameArrived;
 
-        private IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
+        private API.DataAccess.IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
 
         /// <summary>
         /// Gets or sets the body tracking ID associated with the current detector
@@ -199,7 +199,7 @@ namespace cl.uv.leikelen.Module.Input.Kinect
             }
         }
 
-        private void OnKinectGestureFrameArrived(KinectGestureFrameArrivedArgs e)
+        private void OnKinectGestureFrameArrived(API.FrameProvider.Kinect.KinectGestureFrameArrivedArgs e)
         {
             KinectGestureFrameArrived?.Invoke(this, e);
         }

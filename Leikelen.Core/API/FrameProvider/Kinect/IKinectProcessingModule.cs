@@ -42,6 +42,6 @@ namespace cl.uv.leikelen.API.FrameProvider.Kinect
         /// </summary>
         /// <returns>The event handler for the discrete and
         /// continuous gesture frame</returns>
-        EventHandler<KinectGestureFrameArrivedArgs> GestureListener();
+        EventHandler<API.FrameProvider.Kinect.KinectGestureFrameArrivedArgs> GestureListener();
     }
 }

@@ -14,7 +14,7 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.Voice
     /// </summary>
     public class VoiceLogic
     {
-        private IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
+        private API.DataAccess.IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="VoiceLogic"/> class.

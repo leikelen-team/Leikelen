@@ -19,7 +19,7 @@ namespace cl.uv.leikelen.Module
         /// <value>
         /// The scene input modules.
         /// </value>
-        public List<InputModule> SceneInputModules { get; private set; }
+        public List<API.Module.Input.InputModule> SceneInputModules { get; private set; }
 
         /// <summary>
         /// Gets the person input modules.
@@ -27,7 +27,7 @@ namespace cl.uv.leikelen.Module
         /// <value>
         /// The person input modules.
         /// </value>
-        public Dictionary<Person, List<InputModule>> PersonInputModules { get; private set; }
+        public Dictionary<Data.Model.Person, List<API.Module.Input.InputModule>> PersonInputModules { get; private set; }
 
         /// <summary>
         /// Gets the video handler to see in the player.
@@ -35,14 +35,14 @@ namespace cl.uv.leikelen.Module
         /// <value>
         /// The video handler to see in the player.
         /// </value>
-        public IVideo VideoHandler { get; private set; }
+        public API.Module.Input.IVideo VideoHandler { get; private set; }
 
         /// <summary>
         /// Occurs when [input modules loader has reset].
         /// </summary>
         public static event EventHandler InputModulesHasReset;
 
-        private static InputLoader _instance;
+        private static Module.InputLoader _instance;
 
         /// <summary>
         /// Gets the instance.
@@ -50,7 +50,7 @@ namespace cl.uv.leikelen.Module
         /// <value>
         /// The instance.
         /// </value>
-        public static InputLoader Instance
+        public static Module.InputLoader Instance
         {
             get
             {
@@ -63,7 +63,7 @@ namespace cl.uv.leikelen.Module
         /// Fills the person input modules.
         /// </summary>
         /// <param name="person">The person.</param>
-        public void FillPersonInputModules(Person person)
+        public void FillPersonInputModules(Data.Model.Person person)
         {
             var personInputModules = new List<InputModule>()
             {

@@ -48,10 +48,10 @@ namespace cl.uv.leikelen.Data.Model
         /// <value>
         /// The represent type associated entity.
         /// </value>
-        public RepresentType RepresentType { get; set; }
+        public Data.Model.RepresentType RepresentType { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="IntervalData"/> class.
+        /// Initializes a new instance of the <see cref="Data.Model.IntervalData"/> class.
         /// </summary>
         public IntervalData()
         {

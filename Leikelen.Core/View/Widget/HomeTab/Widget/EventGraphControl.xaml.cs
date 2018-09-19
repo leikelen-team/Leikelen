@@ -145,7 +145,7 @@ namespace cl.uv.leikelen.View.Widget.HomeTab.Widget
             }
         }
 
-        private void FillGraph(List<Event> events, Color color)
+        private void FillGraph(List<API.DataAccess.Event> events, Color color)
         {
             var dayConfig = Mappers.Xy<TimeModel>()
                 .X(dayModel => (double)dayModel.TimeSpan.TotalSeconds)

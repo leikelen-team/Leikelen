@@ -21,10 +21,10 @@ namespace cl.uv.leikelen.Data.Access.External
         /// <param name="modalName">Name of the modal.</param>
         /// <param name="subModalName">Name of the sub modal.</param>
         /// <returns></returns>
-        /// <exception cref="DbException">
+        /// <exception cref="Data.Persistence.DbException">
         /// SubModalType: " + subModalName + Properties.Error.inModalType + modalName + Properties.Error.AlreadyExists
         /// </exception>
-        public static SubModalType_PersonInScene GetSmtPis(Person person, string modalName, string subModalName)
+        public static Data.Model.SubModalType_PersonInScene GetSmtPis(Data.Model.Person person, string modalName, string subModalName)
         {
             try
             {

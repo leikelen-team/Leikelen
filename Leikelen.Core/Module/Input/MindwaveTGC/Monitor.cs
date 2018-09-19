@@ -27,9 +27,9 @@ namespace cl.uv.leikelen.Module.Input.MindwaveTGC
         private TcpClient _client;
         private StreamWriter _sw;
         bool _isRecording = false;
-        InputStatus _status;
-        private Person _person;
-        private event EventHandler<EegFrameArrivedEventArgs> EegFrameArrived;
+        API.Module.Input.InputStatus _status;
+        private Data.Model.Person _person;
+        private event EventHandler<API.FrameProvider.EEG.EegFrameArrivedEventArgs> EegFrameArrived;
         System.Threading.Thread _readThread;
         private bool _waitingStoppped = false;
 
@@ -37,7 +37,7 @@ namespace cl.uv.leikelen.Module.Input.MindwaveTGC
         /// Initializes a new instance of the <see cref="Monitor"/> class.
         /// </summary>
         /// <param name="person">The person.</param>
-        public Monitor(Person person)
+        public Monitor(Data.Model.Person person)
         {
             _person = person;
             _isRecording = false;
@@ -45,7 +45,7 @@ namespace cl.uv.leikelen.Module.Input.MindwaveTGC
             _status = InputStatus.Unconnected;
         }
 
-        async Task IMonitor.Close()
+        async Task API.Module.Input.IMonitor.Close()
         {
             try
             {
@@ -77,17 +77,17 @@ namespace cl.uv.leikelen.Module.Input.MindwaveTGC
             }
         }
 
-        InputStatus IMonitor.GetStatus()
+        API.Module.Input.InputStatus API.Module.Input.IMonitor.GetStatus()
         {
             return _status;
         }
 
-        bool IMonitor.IsRecording()
+        bool API.Module.Input.IMonitor.IsRecording()
         {
             return _isRecording;
         }
 
-        async Task IMonitor.Open()
+        async Task API.Module.Input.IMonitor.Open()
         {
             try
             {
@@ -338,12 +338,12 @@ namespace cl.uv.leikelen.Module.Input.MindwaveTGC
             }
         }
 
-        Task IMonitor.OpenPort(string portName)
+        Task API.Module.Input.IMonitor.OpenPort(string portName)
         {
             return null;
         }
 
-        async Task IMonitor.StartRecording()
+        async Task API.Module.Input.IMonitor.StartRecording()
         {
             if(_client != null)
             {
@@ -376,7 +376,7 @@ namespace cl.uv.leikelen.Module.Input.MindwaveTGC
             }
         }
 
-        async Task IMonitor.StopRecording()
+        async Task API.Module.Input.IMonitor.StopRecording()
         {
             if (_client != null)
             {

@@ -14,7 +14,7 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.Distance
     /// </summary>
     public class DistanceLogic
     {
-        private IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
+        private API.DataAccess.IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
 
         /// <summary>
         /// Handles the FrameArrived event of the _bodyReader control.

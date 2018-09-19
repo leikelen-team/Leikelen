@@ -15,7 +15,7 @@ namespace cl.uv.leikelen.Data.Model
     public class Scene
     {
         /// <summary>
-        /// Gets or sets a value indicating whether this <see cref="Scene"/> is selected in Scene GUI selector.
+        /// Gets or sets a value indicating whether this <see cref="Data.Model.Scene"/> is selected in Scene GUI selector.
         /// </summary>
         /// <value>
         ///   <c>true</c> if selected; otherwise, <c>false</c>.
@@ -112,10 +112,10 @@ namespace cl.uv.leikelen.Data.Model
         /// <value>
         /// The persons in scene.
         /// </value>
-        public List<PersonInScene> PersonsInScene { get; set; }
+        public List<Data.Model.PersonInScene> PersonsInScene { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Scene"/> class.
+        /// Initializes a new instance of the <see cref="Data.Model.Scene"/> class.
         /// </summary>
         public Scene()
         {

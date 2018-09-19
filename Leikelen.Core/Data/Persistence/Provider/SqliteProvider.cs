@@ -15,7 +15,7 @@ namespace cl.uv.leikelen.Data.Persistence.Provider
     public class SqliteProvider : EfAbstractProvider
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SqliteProvider"/> class.
+        /// Initializes a new instance of the <see cref="Data.Persistence.Provider.SqliteProvider"/> class.
         /// </summary>
         public SqliteProvider()
         {
@@ -37,7 +37,7 @@ namespace cl.uv.leikelen.Data.Persistence.Provider
         /// Saves the specified scene.
         /// </summary>
         /// <param name="scene">The scene.</param>
-        public void Save(Scene scene)
+        public void Save(Data.Model.Scene scene)
         {
             Db.Database.EnsureCreated();
             Db.Scenes.Add(scene);

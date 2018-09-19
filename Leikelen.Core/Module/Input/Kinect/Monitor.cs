@@ -25,12 +25,12 @@ namespace cl.uv.leikelen.Module.Input.Kinect
         public event EventHandler StatusChanged;
 
         private KinectSensor _sensor;
-        private DVR.Recorder _recorder;
+        private Module.Input.Kinect.DVR.Recorder _recorder;
 
         private BodyFrameReader _bodyReader = null;
         private ColorFrameReader _colorReader = null;
         private AudioBeamFrameReader _audioBeamReader = null;
-        private IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
+        private API.DataAccess.IDataAccessFacade _dataAccessFacade = new DataAccessFacade();
 
         private bool _isRecording;
 
@@ -59,7 +59,7 @@ namespace cl.uv.leikelen.Module.Input.Kinect
         /// <returns>
         /// Current sensor status
         /// </returns>
-        public InputStatus GetStatus()
+        public API.Module.Input.InputStatus GetStatus()
         {
             if (ReferenceEquals(null, _sensor))
             {

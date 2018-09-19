@@ -18,17 +18,17 @@ namespace cl.uv.leikelen.Data.Access
     /// <seealso cref="cl.uv.leikelen.API.DataAccess.IDataAccessFacade" />
     public class DataAccessFacade : IDataAccessFacade
     {
-        private static DataAccessFacade _instance;
+        private static Data.Access.DataAccessFacade _instance;
 
-        private readonly IEventAccess _eventAccess;
-        private readonly IIntervalAccess _intervalAccess;
-        private readonly IModalAccess _modalAccess;
-        private readonly IPersonAccess _personAccess;
-        private readonly ISceneAccess _sceneAccess;
-        private readonly ISubModalAccess _subModalAccess;
-        private readonly ITimelessAccess _timelessAccess;
-        private readonly ISceneInUseAccess _sceneInUseAccess;
-        private readonly IGeneralSettings _generalSettings;
+        private readonly API.DataAccess.IEventAccess _eventAccess;
+        private readonly API.DataAccess.IIntervalAccess _intervalAccess;
+        private readonly API.DataAccess.IModalAccess _modalAccess;
+        private readonly API.DataAccess.IPersonAccess _personAccess;
+        private readonly API.DataAccess.ISceneAccess _sceneAccess;
+        private readonly API.DataAccess.ISubModalAccess _subModalAccess;
+        private readonly API.DataAccess.ITimelessAccess _timelessAccess;
+        private readonly API.DataAccess.ISceneInUseAccess _sceneInUseAccess;
+        private readonly API.DataAccess.IGeneralSettings _generalSettings;
 
         /// <summary>
         /// Gets the instance.
@@ -36,7 +36,7 @@ namespace cl.uv.leikelen.Data.Access
         /// <value>
         /// The instance.
         /// </value>
-        public static DataAccessFacade Instance
+        public static Data.Access.DataAccessFacade Instance
         {
             get
             {
@@ -46,7 +46,7 @@ namespace cl.uv.leikelen.Data.Access
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DataAccessFacade"/> class.
+        /// Initializes a new instance of the <see cref="Data.Access.DataAccessFacade"/> class.
         /// </summary>
         public DataAccessFacade()
         {
@@ -65,7 +65,7 @@ namespace cl.uv.leikelen.Data.Access
         /// Gets the event access.
         /// </summary>
         /// <returns>The object to access the event represent types</returns>
-        public IEventAccess GetEventAccess()
+        public API.DataAccess.IEventAccess GetEventAccess()
         {
             return _eventAccess;
         }
@@ -74,7 +74,7 @@ namespace cl.uv.leikelen.Data.Access
         /// Gets the interval access.
         /// </summary>
         /// <returns>The object to access the interval represent types</returns>
-        public IIntervalAccess GetIntervalAccess()
+        public API.DataAccess.IIntervalAccess GetIntervalAccess()
         {
             return _intervalAccess;
         }
@@ -83,7 +83,7 @@ namespace cl.uv.leikelen.Data.Access
         /// Gets the modal access.
         /// </summary>
         /// <returns>The object to access the modal types</returns>
-        public IModalAccess GetModalAccess()
+        public API.DataAccess.IModalAccess GetModalAccess()
         {
             return _modalAccess;
         }
@@ -92,7 +92,7 @@ namespace cl.uv.leikelen.Data.Access
         /// Gets the person access.
         /// </summary>
         /// <returns>The object to access the persons</returns>
-        public IPersonAccess GetPersonAccess()
+        public API.DataAccess.IPersonAccess GetPersonAccess()
         {
             return _personAccess;
         }
@@ -101,7 +101,7 @@ namespace cl.uv.leikelen.Data.Access
         /// Gets the scene access.
         /// </summary>
         /// <returns>The object to access the scenes</returns>
-        public ISceneAccess GetSceneAccess()
+        public API.DataAccess.ISceneAccess GetSceneAccess()
         {
             return _sceneAccess;
         }
@@ -110,7 +110,7 @@ namespace cl.uv.leikelen.Data.Access
         /// Gets the scene in use access.
         /// </summary>
         /// <returns>The object to access the actual scene in use</returns>
-        public ISceneInUseAccess GetSceneInUseAccess()
+        public API.DataAccess.ISceneInUseAccess GetSceneInUseAccess()
         {
             return _sceneInUseAccess;
         }
@@ -119,7 +119,7 @@ namespace cl.uv.leikelen.Data.Access
         /// Gets the sub modal access.
         /// </summary>
         /// <returns>The object to access the sub modal types</returns>
-        public ISubModalAccess GetSubModalAccess()
+        public API.DataAccess.ISubModalAccess GetSubModalAccess()
         {
             return _subModalAccess;
         }
@@ -128,7 +128,7 @@ namespace cl.uv.leikelen.Data.Access
         /// Gets the timeless access.
         /// </summary>
         /// <returns>The object to access the array represent types</returns>
-        public ITimelessAccess GetTimelessAccess()
+        public API.DataAccess.ITimelessAccess GetTimelessAccess()
         {
             return _timelessAccess;
         }
@@ -137,7 +137,7 @@ namespace cl.uv.leikelen.Data.Access
         /// Gets the general settings.
         /// </summary>
         /// <returns>The object to get the general settings</returns>
-        public IGeneralSettings GetGeneralSettings()
+        public API.DataAccess.IGeneralSettings GetGeneralSettings()
         {
             return _generalSettings;
         }

@@ -151,7 +151,7 @@ namespace cl.uv.leikelen.View.Widget.HomeTab.Widget
             }
         }
 
-        private void FillGraph(List<Interval> intervals, Color color)
+        private void FillGraph(List<API.DataAccess.Interval> intervals, Color color)
         {
             SeriesCollection = new SeriesCollection();
             double last = 0;

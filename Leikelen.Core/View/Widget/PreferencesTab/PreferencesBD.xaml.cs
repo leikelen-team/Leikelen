@@ -52,7 +52,7 @@ namespace cl.uv.leikelen.View.Widget.PreferencesTab
                 : GeneralSettings.Instance.DbPort.Value.ToString();
         }
 
-        void IPreference.Apply()
+        void API.Helper.IPreference.Apply()
         {
             string error = "";
             int port = 0;

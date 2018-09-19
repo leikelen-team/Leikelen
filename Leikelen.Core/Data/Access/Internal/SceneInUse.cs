@@ -15,7 +15,7 @@ namespace cl.uv.leikelen.Data.Access.Internal
     /// </summary>
     public class SceneInUse
     {
-        private static SceneInUse _instance;
+        private static Data.Access.Internal.SceneInUse _instance;
 
         /// <summary>
         /// Gets the scene in use.
@@ -23,7 +23,7 @@ namespace cl.uv.leikelen.Data.Access.Internal
         /// <value>
         /// The scene in use.
         /// </value>
-        public Scene Scene { get; private set; }
+        public Data.Model.Scene Scene { get; private set; }
 
         /// <summary>
         /// Verify is the scene is being is recording
@@ -52,7 +52,7 @@ namespace cl.uv.leikelen.Data.Access.Internal
         /// <value>
         /// The instance.
         /// </value>
-        public static SceneInUse Instance
+        public static Data.Access.Internal.SceneInUse Instance
         {
             get
             {
@@ -70,7 +70,7 @@ namespace cl.uv.leikelen.Data.Access.Internal
         /// Sets the scene in use.
         /// </summary>
         /// <param name="scene">The scene to use.</param>
-        public void Set(Scene scene)
+        public void Set(Data.Model.Scene scene)
         {
             Scene = scene;
         }

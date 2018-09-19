@@ -18,10 +18,10 @@ namespace cl.uv.leikelen.Module.Input.MindwaveTGC
     public class MindwaveTGCInput : InputModule
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="MindwaveTGCInput"/> class.
+        /// Initializes a new instance of the <see cref="Module.Input.MindwaveTGC.MindwaveTGCInput"/> class.
         /// </summary>
         /// <param name="person">The person.</param>
-        public MindwaveTGCInput(Person person)
+        public MindwaveTGCInput(Data.Model.Person person)
         {
             Plurality = InputPlurality.Person;
             var myMonitor = new Monitor(person);

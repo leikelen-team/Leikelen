@@ -17,7 +17,7 @@ namespace cl.uv.leikelen.Module.Input.Kinect
         /// <summary>
         /// The skeleton color video viewer
         /// </summary>
-        public static SkeletonColorVideoViewer SkeletonColorVideoViewer = new SkeletonColorVideoViewer();
+        public static Module.Input.Kinect.SkeletonColorVideoViewer SkeletonColorVideoViewer = new Module.Input.Kinect.SkeletonColorVideoViewer();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="KinectInput"/> class.

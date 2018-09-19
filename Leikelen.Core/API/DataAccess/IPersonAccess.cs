@@ -15,20 +15,20 @@ namespace cl.uv.leikelen.API.DataAccess
         /// <summary>
         /// Occurs when [persons changed].
         /// </summary>
-        event EventHandler<Person> PersonsChanged;
+        event EventHandler<Data.Model.Person> PersonsChanged;
 
         /// <summary>
         /// Gets all persons in the database.
         /// </summary>
         /// <returns></returns>
-        List<Person> GetAll();
+        List<Data.Model.Person> GetAll();
 
         /// <summary>
         /// Gets the specified person of given identifier.
         /// </summary>
         /// <param name="personId">The person identifier.</param>
         /// <returns>The person of given identifier or null</returns>
-        Person Get(int personId);
+        Data.Model.Person Get(int personId);
 
         /// <summary>
         /// Adds the person with specified attributes.
@@ -39,7 +39,7 @@ namespace cl.uv.leikelen.API.DataAccess
         /// <param name="sex">The sex (0 for male, 1 for female or other number for unknown).</param>
         /// <param name="trackingId">The tracking identifier (for kinect's identified persons).</param>
         /// <returns>The new person added</returns>
-        Person Add(string name, string photo, DateTime? birthday, int? sex, long? trackingId);
+        Data.Model.Person Add(string name, string photo, DateTime? birthday, int? sex, long? trackingId);
 
         /// <summary>
         /// Updates the specified person.
@@ -54,7 +54,7 @@ namespace cl.uv.leikelen.API.DataAccess
         /// <param name="person">The person object.</param>
         /// <param name="scene">The scene object.</param>
         /// <returns>A PersonInScene object</returns>
-        PersonInScene AddToScene(Person person, Scene scene);
+        Data.Model.PersonInScene AddToScene(Data.Model.Person person, Data.Model.Scene scene);
 
         /// <summary>
         /// Verify if Exists the specified person.
@@ -67,6 +67,6 @@ namespace cl.uv.leikelen.API.DataAccess
         /// Deletes the specified person.
         /// </summary>
         /// <param name="person">The person object.</param>
-        void Delete(Person person);
+        void Delete(Data.Model.Person person);
     }
 }

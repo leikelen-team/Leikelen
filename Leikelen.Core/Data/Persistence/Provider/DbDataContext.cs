@@ -23,7 +23,7 @@ namespace cl.uv.leikelen.Data.Persistence.Provider
         /// <value>
         /// The scenes.
         /// </value>
-        public DbSet<Scene> Scenes { get; set; }
+        public DbSet<Data.Model.Scene> Scenes { get; set; }
 
         /// <summary>
         /// Gets or sets the persons.
@@ -31,7 +31,7 @@ namespace cl.uv.leikelen.Data.Persistence.Provider
         /// <value>
         /// The persons.
         /// </value>
-        public DbSet<Person> Persons { get; set; }
+        public DbSet<Data.Model.Person> Persons { get; set; }
 
         /// <summary>
         /// Gets or sets the person in scenes.
@@ -39,7 +39,7 @@ namespace cl.uv.leikelen.Data.Persistence.Provider
         /// <value>
         /// The person in scenes.
         /// </value>
-        public DbSet<PersonInScene> PersonInScenes { get; set; }
+        public DbSet<Data.Model.PersonInScene> PersonInScenes { get; set; }
 
         /// <summary>
         /// Gets or sets the modal types.
@@ -47,7 +47,7 @@ namespace cl.uv.leikelen.Data.Persistence.Provider
         /// <value>
         /// The modal types.
         /// </value>
-        public DbSet<ModalType> ModalTypes { get; set; }
+        public DbSet<Data.Model.ModalType> ModalTypes { get; set; }
 
         /// <summary>
         /// Gets or sets the sub modal types.
@@ -55,7 +55,7 @@ namespace cl.uv.leikelen.Data.Persistence.Provider
         /// <value>
         /// The sub modal types.
         /// </value>
-        public DbSet<SubModalType> SubModalTypes { get; set; }
+        public DbSet<Data.Model.SubModalType> SubModalTypes { get; set; }
 
         /// <summary>
         /// Gets or sets the SMT pis.
@@ -63,7 +63,7 @@ namespace cl.uv.leikelen.Data.Persistence.Provider
         /// <value>
         /// The SMT pis.
         /// </value>
-        public DbSet<SubModalType_PersonInScene> SmtPis { get; set; }
+        public DbSet<Data.Model.SubModalType_PersonInScene> SmtPis { get; set; }
 
         /// <summary>
         /// Gets or sets the represent types.
@@ -71,7 +71,7 @@ namespace cl.uv.leikelen.Data.Persistence.Provider
         /// <value>
         /// The represent types.
         /// </value>
-        public DbSet<RepresentType> RepresentTypes { get; set; }
+        public DbSet<Data.Model.RepresentType> RepresentTypes { get; set; }
 
         /// <summary>
         /// Gets or sets the events data.
@@ -79,7 +79,7 @@ namespace cl.uv.leikelen.Data.Persistence.Provider
         /// <value>
         /// The events data.
         /// </value>
-        public DbSet<EventData> EventDatas { get; set; }
+        public DbSet<Data.Model.EventData> EventDatas { get; set; }
 
         /// <summary>
         /// Gets or sets the intervals data.
@@ -87,10 +87,10 @@ namespace cl.uv.leikelen.Data.Persistence.Provider
         /// <value>
         /// The intervals data.
         /// </value>
-        public DbSet<IntervalData> IntervalDatas { get; set; }
+        public DbSet<Data.Model.IntervalData> IntervalDatas { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DbDataContext"/> class.
+        /// Initializes a new instance of the <see cref="Data.Persistence.Provider.DbDataContext"/> class.
         /// </summary>
         public DbDataContext()
         {
@@ -98,7 +98,7 @@ namespace cl.uv.leikelen.Data.Persistence.Provider
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DbDataContext"/> class.
+        /// Initializes a new instance of the <see cref="Data.Persistence.Provider.DbDataContext"/> class.
         /// </summary>
         /// <param name="options">The options for this context.</param>
         public DbDataContext(DbContextOptions options)

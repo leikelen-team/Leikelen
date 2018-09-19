@@ -17,7 +17,7 @@ namespace cl.uv.leikelen.API.DataAccess
         /// Gets the scene in use.
         /// </summary>
         /// <returns>The scene in use</returns>
-        Scene GetScene();
+        Data.Model.Scene GetScene();
 
         /// <summary>
         /// Gets the time location, if its not recording returns Null.

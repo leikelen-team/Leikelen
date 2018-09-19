@@ -20,7 +20,7 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.ShouldersAngle
     /// <seealso cref="cl.uv.leikelen.API.FrameProvider.Kinect.IKinectProcessingModule" />
     public class ShouldersAngleEntryPoint : ProcessingModule, IKinectProcessingModule
     {
-        public ShouldersAngleLogic _logic;
+        public Module.Processing.Kinect.ShouldersAngle.ShouldersAngleLogic _logic;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ShouldersAngleEntryPoint"/> class.
@@ -55,7 +55,7 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.ShouldersAngle
             return null;
         }
 
-        EventHandler<KinectGestureFrameArrivedArgs> IKinectProcessingModule.GestureListener()
+        EventHandler<API.FrameProvider.Kinect.KinectGestureFrameArrivedArgs> IKinectProcessingModule.GestureListener()
         {
             return null;
         }

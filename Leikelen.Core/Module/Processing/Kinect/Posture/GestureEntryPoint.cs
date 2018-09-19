@@ -20,7 +20,7 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.Posture
     /// <seealso cref="cl.uv.leikelen.API.FrameProvider.Kinect.IKinectProcessingModule" />
     public class GestureEntryPoint : ProcessingModule, IKinectProcessingModule
     {
-        private GestureLogic _logic;
+        private Module.Processing.Kinect.Posture.GestureLogic _logic;
         /// <summary>
         /// Initializes a new instance of the <see cref="GestureEntryPoint"/> class.
         /// </summary>
@@ -59,7 +59,7 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.Posture
             return _logic.StopRecording;
         }
 
-        EventHandler<KinectGestureFrameArrivedArgs> IKinectProcessingModule.GestureListener()
+        EventHandler<API.FrameProvider.Kinect.KinectGestureFrameArrivedArgs> IKinectProcessingModule.GestureListener()
         {
             return _logic.Gesture_FrameArrived;
         }

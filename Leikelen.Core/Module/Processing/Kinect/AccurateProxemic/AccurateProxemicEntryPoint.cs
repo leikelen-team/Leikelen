@@ -18,9 +18,9 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.AccurateProxemic
     /// </summary>
     /// <seealso cref="cl.uv.leikelen.API.Module.Processing.ProcessingModule" />
     /// <seealso cref="cl.uv.leikelen.API.FrameProvider.Kinect.IKinectProcessingModule" />
-    public class AccurateProxemicEntryPoint : ProcessingModule, IKinectProcessingModule
+    public class AccurateProxemicEntryPoint : ProcessingModule,  IKinectProcessingModule
     {
-        private AccurateProxemicLogic _logic;
+        private Module.Processing.Kinect.AccurateProxemic.AccurateProxemicLogic _logic;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AccurateProxemicEntryPoint"/> class.
@@ -58,7 +58,7 @@ namespace cl.uv.leikelen.Module.Processing.Kinect.AccurateProxemic
             return _logic.StopRecording;
         }
 
-        EventHandler<KinectGestureFrameArrivedArgs> IKinectProcessingModule.GestureListener()
+        EventHandler<API.FrameProvider.Kinect.KinectGestureFrameArrivedArgs> IKinectProcessingModule.GestureListener()
         {
             return null;
         }

@@ -13,7 +13,7 @@ namespace cl.uv.leikelen.Data.Persistence
     public class RepresentTypeException : Exception
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="RepresentTypeException"/> class.
+        /// Initializes a new instance of the <see cref="Data.Persistence.RepresentTypeException"/> class.
         /// </summary>
         public RepresentTypeException() : base()
         {
@@ -21,7 +21,7 @@ namespace cl.uv.leikelen.Data.Persistence
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="RepresentTypeException"/> class.
+        /// Initializes a new instance of the <see cref="Data.Persistence.RepresentTypeException"/> class.
         /// </summary>
         /// <param name="message">Message that describe the error.</param>
         public RepresentTypeException(string message) : base(message)
@@ -30,7 +30,7 @@ namespace cl.uv.leikelen.Data.Persistence
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="RepresentTypeException"/> class.
+        /// Initializes a new instance of the <see cref="Data.Persistence.RepresentTypeException"/> class.
         /// </summary>
         /// <param name="message">Message that describe the error.</param>
         /// <param name="innerException">The exception that causes this exception or null (<see langword="Nothing" /> in Visual Basic).</param>
