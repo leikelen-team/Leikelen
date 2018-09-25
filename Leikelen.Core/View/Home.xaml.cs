@@ -928,7 +928,7 @@ namespace cl.uv.leikelen.View
         }
 
 
-        private void FillProcessingAndGeneralModules(API.Module.AbstractModule module, Data.Model.ModuleType moduleType, Data.Model.Person person)
+        private void FillProcessingAndGeneralModules(API.Module.AbstractModule module, ModuleType moduleType, Data.Model.Person person)
         {
             MenuItem moduleMenuItem = new MenuItem
             {
