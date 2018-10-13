@@ -589,6 +589,7 @@
     <Compile Include="Module\Processing\EEGEmotion2Channels\LearningModel.cs" />
     <Compile Include="Module\ProcessingLoader.cs" />
     <Compile Include="GeneralSettings.cs" />
+    <Compile Include="Test\IntegrationTest.cs" />
     <Compile Include="Test\UnitTest.cs" />
     <Compile Include="Util\IntegerInput.cs" />
     <Compile Include="Util\MessageBoxAsync.cs" />

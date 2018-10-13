@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KinectEx", "KinectEx\Kinect
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leikelen", "Leikelen.Core\Leikelen.csproj", "{E3372940-9DC4-4F37-8FF2-3970B3111049}"
 EndProject
-Project("{7CF6DF6D-3B04-46F8-A40B-537D21BCA0B4}") = "DevDocumentation", "DevDocumentation\DevDocumentation.shfbproj", "{7C89ECFB-8C2F-426D-918E-238260CE138B}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,18 +41,6 @@ Global
 		{E3372940-9DC4-4F37-8FF2-3970B3111049}.Release|x64.Build.0 = Release|x64
 		{E3372940-9DC4-4F37-8FF2-3970B3111049}.Release|x86.ActiveCfg = Release|x86
 		{E3372940-9DC4-4F37-8FF2-3970B3111049}.Release|x86.Build.0 = Release|x86
-		{7C89ECFB-8C2F-426D-918E-238260CE138B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7C89ECFB-8C2F-426D-918E-238260CE138B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7C89ECFB-8C2F-426D-918E-238260CE138B}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{7C89ECFB-8C2F-426D-918E-238260CE138B}.Debug|x64.Build.0 = Debug|Any CPU
-		{7C89ECFB-8C2F-426D-918E-238260CE138B}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{7C89ECFB-8C2F-426D-918E-238260CE138B}.Debug|x86.Build.0 = Debug|Any CPU
-		{7C89ECFB-8C2F-426D-918E-238260CE138B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7C89ECFB-8C2F-426D-918E-238260CE138B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7C89ECFB-8C2F-426D-918E-238260CE138B}.Release|x64.ActiveCfg = Release|Any CPU
-		{7C89ECFB-8C2F-426D-918E-238260CE138B}.Release|x64.Build.0 = Release|Any CPU
-		{7C89ECFB-8C2F-426D-918E-238260CE138B}.Release|x86.ActiveCfg = Release|Any CPU
-		{7C89ECFB-8C2F-426D-918E-238260CE138B}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
