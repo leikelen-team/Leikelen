@@ -137,11 +137,25 @@ namespace cl.uv.leikelen.Data.Persistence.Provider
                 //scene.PersonsInScene[iperson].Scene.SceneId = 0;
                 scene.PersonsInScene[iperson].PersonId = 0;
                 scene.PersonsInScene[iperson].Person.PersonId = 0;
+                string modalId = null;
+                string submtId = null;
+                SubModalType smt = null;
+                Console.WriteLine("Cantidad smtpis: "+ scene.PersonsInScene[iperson].SubModalType_PersonInScenes.Count.ToString());
                 for (int ismtPis=0;ismtPis< scene.PersonsInScene[iperson].SubModalType_PersonInScenes.Count; ismtPis++)
                 {
-                    var smt = Db.SubModalTypes.Find(scene.PersonsInScene[iperson].SubModalType_PersonInScenes[ismtPis].ModalTypeId, scene.PersonsInScene[iperson].SubModalType_PersonInScenes[ismtPis].SubModalTypeId);
+                    /*if its null, then search, if not, see if are the same, if not, then search*/
+                    if (modalId == null || submtId == null || !modalId.Equals(scene.PersonsInScene[iperson].SubModalType_PersonInScenes[ismtPis].ModalTypeId) 
+                            || !submtId.Equals(scene.PersonsInScene[iperson].SubModalType_PersonInScenes[ismtPis].SubModalTypeId))
+                    {
+                        Console.WriteLine("antes - it: " + ismtPis + ": " + modalId + ", " + submtId);
+                        modalId = scene.PersonsInScene[iperson].SubModalType_PersonInScenes[ismtPis].ModalTypeId;
+                        submtId = scene.PersonsInScene[iperson].SubModalType_PersonInScenes[ismtPis].SubModalTypeId;
+                        smt = Db.SubModalTypes.Find(scene.PersonsInScene[iperson].SubModalType_PersonInScenes[ismtPis].ModalTypeId, scene.PersonsInScene[iperson].SubModalType_PersonInScenes[ismtPis].SubModalTypeId);
+                        //Console.WriteLine("it: "+ismtPis+": "+smt.ModalTypeId + ", "+smt.SubModalTypeId);
+                    }
                     if(smt != null)
                     {
+                        Console.WriteLine("it: " + ismtPis + " - no es nulo");
                         scene.PersonsInScene[iperson].SubModalType_PersonInScenes[ismtPis].SubModalTypeId = null;
                         scene.PersonsInScene[iperson].SubModalType_PersonInScenes[ismtPis].SubModalType = smt;
                         scene.PersonsInScene[iperson].SubModalType_PersonInScenes[ismtPis].ModalTypeId = null;

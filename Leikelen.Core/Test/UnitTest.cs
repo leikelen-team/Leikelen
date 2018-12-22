@@ -33,7 +33,7 @@ namespace cl.uv.leikelen.Test
         {
             await Util.ThreadsUtil.StartSTATask(() =>
             {
-                Data.Access.External.TestScene.LoadTest("sceneTestExport");
+                Data.Access.External.TestScene.LoadFakeScene("sceneTestExport");
                 Controller.FileController.Export(false, _exportFileNamePath);
                 Assert.True(File.Exists(_exportFileNamePath));
             });
