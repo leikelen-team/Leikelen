@@ -96,7 +96,7 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI
         async Task API.Module.Input.IMonitor.Open()
         {
             //TODO: delete this
-            var mr = new Random();
+            /*var mr = new Random();
             var recordTimer = new DispatcherTimer();
             recordTimer.Interval = new TimeSpan(0, 0, 0, 0, 200); //0.5 seconds
             recordTimer.Tick += (sender, e) =>
@@ -117,7 +117,7 @@ namespace cl.uv.leikelen.Module.Input.OpenBCI
                 };
                 GraphTab.Enqueue(data);
             };
-            recordTimer.Start();
+            recordTimer.Start();*/
             //to here
             StartStream();
         }
