@@ -72,18 +72,18 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View
         private void Accept_Click(object sender, RoutedEventArgs e)
         {
             if ((UseInternalDataChbx.IsChecked.HasValue && UseInternalDataChbx.IsChecked.Value) || 
-                (!String.IsNullOrEmpty(HALVfileNameTextBox.Text) &&
-                !String.IsNullOrEmpty(HAHVfileNameTextBox.Text) &&
-                !String.IsNullOrEmpty(LALVfileNameTextBox.Text) &&
-                !String.IsNullOrEmpty(LAHVfileNameTextBox.Text)))
+                (!string.IsNullOrEmpty(HALVfileNameTextBox.Text) &&
+                !string.IsNullOrEmpty(HAHVfileNameTextBox.Text) &&
+                !string.IsNullOrEmpty(LALVfileNameTextBox.Text) &&
+                !string.IsNullOrEmpty(LAHVfileNameTextBox.Text)))
             {
                 try
                 {
-                    Console.WriteLine("empezando");
+                    Console.WriteLine("starting...");
                     var dict = new Dictionary<TagType, List<List<double[]>>>();
 
                     Console.WriteLine("------------------------------------------------------------");
-                    Console.WriteLine("A procesar HALV, faltan 4");
+                    Console.WriteLine("Reading HALV, 1 of 4 tags");
                     if (UseInternalDataChbx.IsChecked.HasValue && UseInternalDataChbx.IsChecked.Value)
                     {
                         //dict.Add(TagType.HALV, ReadFromData(Data.HALV.data));
@@ -103,7 +103,7 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View
 
 
                     Console.WriteLine("------------------------------------------------------------");
-                    Console.WriteLine("A procesar HAHV, faltan 3");
+                    Console.WriteLine("Reading HAHV, 2 of 4 tags");
                     if (UseInternalDataChbx.IsChecked.HasValue && UseInternalDataChbx.IsChecked.Value)
                     {
                         //dict.Add(TagType.HAHV, ReadFromData(Data.HAHV.data));
@@ -122,7 +122,7 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View
                     }
 
                     Console.WriteLine("------------------------------------------------------------");
-                    Console.WriteLine("A procesar LALV, faltan 2");
+                    Console.WriteLine("Reading LALV, 3 of 4 tags");
                     if (UseInternalDataChbx.IsChecked.HasValue && UseInternalDataChbx.IsChecked.Value)
                     {
                         //dict.Add(TagType.LALV, ReadFromData(Data.LALV.data));
@@ -141,7 +141,7 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View
                     }
 
                     Console.WriteLine("------------------------------------------------------------");
-                    Console.WriteLine("A procesar LAHV, falta 1");
+                    Console.WriteLine("Reading LAHV, 4 of 4 tags");
                     if (UseInternalDataChbx.IsChecked.HasValue && UseInternalDataChbx.IsChecked.Value)
                     {
                         //dict.Add(TagType.LAHV, ReadFromData(Data.LAHV.data));
@@ -160,7 +160,7 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View
                     }
 
 
-                    Console.WriteLine("procesados, ahora a entrenar");
+                    Console.WriteLine("All signals read, now process and training signals.");
                     LearningModel.Train(dict);
 
                     //TODO: terminó bien
@@ -224,25 +224,25 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View
             }
         }
 
-        private List<List<double[]>> ReadSqlite(string fileName)
+        public List<List<double[]>> ReadSqlite(string fileName)
         {
             string cs = "Filename=" + fileName;
             var result = new List<List<double[]>>();
-            Console.WriteLine("procesando: "+fileName);
+            Console.WriteLine("Reading: "+fileName);
             using (SqliteConnection con = new SqliteConnection(cs))
             {
-                Console.WriteLine("conecta2");
+                Console.WriteLine("connected successfully to the database file");
                 con.Open();
-                Console.WriteLine("abierto");
+                Console.WriteLine("The database is open.");
 
                 string stm = "SELECT * FROM data ORDER BY id";
 
                 using (SqliteCommand cmd = new SqliteCommand(stm, con))
                 {
-                    Console.WriteLine("comman2");
+                    Console.WriteLine("To execute the query.");
                     using (SqliteDataReader rdr = cmd.ExecuteReader())
                     {
-                        Console.WriteLine("ejecuta3");
+                        Console.WriteLine("Query executed successfully.");
 
                         var frame = new List<double[]>();
                         int secStart = 0;
@@ -267,7 +267,7 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View
                             {
                                 frame = new List<double[]>();
                                 secStart = rdr.GetInt32(1);
-                                Console.WriteLine($"nuevo archivo con segundo: {secStart} y el anterior: {lastTime}");
+                                Console.WriteLine($"New file (session) in second: {secStart} and the last was: {lastTime}");
                                 lastTime = secStart;
                             }
                             double[] values = new double[2];
@@ -298,7 +298,7 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View
                                 result.Add(frame);
                                 frame = new List<double[]>();
                                 secStart = rdr.GetInt32(1);
-                                Console.WriteLine($"frame añadido en el segundo {secStart}");
+                                Console.WriteLine($"Frame added in: {secStart}");
                             }
                             i++;
                             time = rdr.GetInt32(1);
@@ -316,12 +316,12 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View
             }
         }
 
-        private List<List<double[]>> ReadTsv(string tsvString)
+        public List<List<double[]>> ReadTsv(string tsvString)
         {
             var result = new List<List<double[]>>();
             var frame = new List<double[]>();
             var lines = tsvString.Split('\n');
-            Console.WriteLine("lineas:"+ lines.Length);
+            Console.WriteLine("Lines in file:"+ lines.Length);
             bool first = true;
             int secStart = 0;
             int i = 0;
@@ -348,7 +348,7 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View
                 {
                     frame = new List<double[]>();
                     secStart = Int32.Parse(fields[0]);
-                    Console.WriteLine($"nuevo archivo con segundo: {secStart} y el anterior: {lastTime}");
+                    Console.WriteLine($"New file (session) in second:: {secStart} and the last was: {lastTime}");
                 }
                 double[] values = new double[2];
                 bool added = false;
@@ -378,8 +378,8 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View
                     result.Add(frame);
                     frame = new List<double[]>();
                     secStart = Int32.Parse(fields[0]);
-                    Console.WriteLine($"frame añadido en el segundo {secStart}");
-                    Console.WriteLine("Lleva "+i+" de: "+lines.Length);
+                    Console.WriteLine($"Frame added in second: {secStart}");
+                    Console.WriteLine($"Has been read {i} lines of {lines.Length}");
                 }
                 i++;
                 lastTime = secStart;
@@ -409,7 +409,7 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View
                 {
                     frame = new List<double[]>();
                     secStart = (int)fields[0];
-                    Console.WriteLine($"nuevo archivo con segundo: {secStart} y el anterior: {lastTime}");
+                    Console.WriteLine($"New file (session) in second:: {secStart} and the last was: {lastTime}");
                 }
                 double[] values = new double[2];
                 bool added = false;
@@ -439,8 +439,8 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels.View
                     result.Add(frame);
                     frame = new List<double[]>();
                     secStart = (int)(fields[0]);
-                    Console.WriteLine($"frame añadido en el segundo {secStart}");
-                    Console.WriteLine("Lleva " + i + " de: " + data.Length);
+                    Console.WriteLine($"Frame added in second: {secStart}");
+                    Console.WriteLine($"Has been read {i} lines of {data.Length}");
                 }
                 i++;
                 lastTime = secStart;

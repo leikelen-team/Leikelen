@@ -63,7 +63,9 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels
             public List<double[]> inputsList;
         }
 
-        public static MulticlassSupportVectorMachine<Gaussian> Train(Dictionary<Module.Processing.EEGEmotion2Channels.TagType, List<List<double[]>>> allsignalsList)
+        public static MulticlassSupportVectorMachine<Gaussian> Train(
+            Dictionary<TagType, List<List<double[]>>> allsignalsList,
+            bool useMH=false)
         {
             int seed = DateTime.Now.Second;
             _xrand = new Random(seed);
@@ -91,6 +93,12 @@ namespace cl.uv.leikelen.Module.Processing.EEGEmotion2Channels
                 }
             }
             Console.WriteLine("procesado todo, ahora a buscar");
+            if (!useMH)
+            {
+                var trainRes = Training(inputsList, outputsList);
+                WriteFiles(trainRes.Item2, trainRes.Item3, trainRes.Item4, inputsList, outputsList, trainRes.Item1);
+                return trainRes.Item1;
+            }
             // Instantiate a new Grid Search algorithm for Kernel Support Vector Machines
             int iterationsMax = 7;
             double minError = 0.1;

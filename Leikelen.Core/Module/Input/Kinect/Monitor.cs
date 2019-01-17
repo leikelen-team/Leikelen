@@ -163,9 +163,6 @@ namespace cl.uv.leikelen.Module.Input.Kinect
 
                     ColorRecorderCodec = new JpegColorCodec()
                 };
-                //TODO: revisar estos pixeles
-                //_recorder.ColorRecorderCodec.OutputWidth = 1280;
-                //_recorder.ColorRecorderCodec.OutputHeight = 720;
                 _recorder.Start();
             }
             _isRecording = true;

@@ -69,8 +69,7 @@ namespace cl.uv.leikelen.API.DataAccess
         /// </summary>
         /// <returns>The object to get the general settings of the app</returns>
         API.DataAccess.IGeneralSettings GetGeneralSettings();
-
-        //TODO: sacar de aqui ._.
+        
         /// <summary>
         /// Deletes the database and all its tables.
         /// </summary>

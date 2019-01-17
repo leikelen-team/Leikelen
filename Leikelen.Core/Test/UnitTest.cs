@@ -16,6 +16,11 @@ namespace cl.uv.leikelen.Test
         private const string _exportFileNamePath = "test/toExportFile.leikelen";
         private const string _importFileNamePath = "test/toImportFile.leikelen";
 
+        private const string _hahvSqlitePath = "test/data/SegYo-HAHV.db";
+        private const string _halvSqlitePath = "test/data/SegYo-HALV.db";
+        private const string _lahvSqlitePath = "test/data/SegYo-LAHV.db";
+        private const string _lalvSqlitePath = "test/data/SegYo-LALV.db";
+
         public UnitTest()
         {
             if (File.Exists(_exportFileNamePath))
@@ -241,18 +246,53 @@ namespace cl.uv.leikelen.Test
         [Fact]
         public async Task UnitStartRecordTest()
         {
-            await Util.ThreadsUtil.StartSTATask(() =>
+            await Util.ThreadsUtil.StartSTATask(async () =>
             {
-                Assert.True(false);
+                Controller.FileController.Import("test/toImportFile.leikelen");
+                var pc = new Controller.RecorderController();
+                await pc.Record();
+                bool rec = false;
+                foreach (var input in Module.InputLoader.Instance.SceneInputModules)
+                {
+                    if (input.Monitor.IsRecording())
+                    {
+                        rec = true;
+                        break;
+                    }
+                }
+                Assert.True(rec);
             });
         }
 
         [Fact]
         public async Task UnitStopRecordTest()
         {
-            await Util.ThreadsUtil.StartSTATask(() =>
+            await Util.ThreadsUtil.StartSTATask(async () =>
             {
-                Assert.True(false);
+                Controller.FileController.Import("test/toImportFile.leikelen");
+                var pc = new Controller.RecorderController();
+                await pc.Record();
+                bool rec = false;
+                foreach (var input in Module.InputLoader.Instance.SceneInputModules)
+                {
+                    if (input.Monitor.IsRecording())
+                    {
+                        rec = true;
+                        break;
+                    }
+                }
+                Assert.True(rec);
+                await pc.Stop();
+                rec = false;
+                foreach (var input in Module.InputLoader.Instance.SceneInputModules)
+                {
+                    if (input.Monitor.IsRecording())
+                    {
+                        rec = true;
+                        break;
+                    }
+                }
+                Assert.False(rec);
             });
         }
 
@@ -264,7 +304,38 @@ namespace cl.uv.leikelen.Test
         {
             await Util.ThreadsUtil.StartSTATask(() =>
             {
-                Assert.True(false);
+                API.Module.General.GeneralModule trainmodule = null;
+                foreach(var gm in Module.GeneralLoader.Instance.GeneralModules)
+                {
+                    if (gm.Name.Equals(Module.Processing.EEGEmotion2Channels.Properties.EEGEmotion2Channels.ClassificationModuleName))
+                    {
+                        trainmodule = gm;
+                        break;
+                    }
+                }
+                Assert.NotNull(trainmodule);
+                Module.Processing.EEGEmotion2Channels.View.TrainerFileSelector filesel =
+                new Module.Processing.EEGEmotion2Channels.View.TrainerFileSelector();
+                Assert.NotNull(filesel);
+
+                var dict = new Dictionary<Module.Processing.EEGEmotion2Channels.TagType, List<List<double[]>>>
+                {
+                    {
+                        Module.Processing.EEGEmotion2Channels.TagType.HAHV,
+                        filesel.ReadSqlite(_hahvSqlitePath)
+                    },
+                    {
+                        Module.Processing.EEGEmotion2Channels.TagType.HALV,
+                        filesel.ReadSqlite(_halvSqlitePath)
+                    },
+                    { Module.Processing.EEGEmotion2Channels.TagType.LAHV,
+                        filesel.ReadSqlite(_lahvSqlitePath)
+                    },
+                    { Module.Processing.EEGEmotion2Channels.TagType.LALV,
+                        filesel.ReadSqlite(_lalvSqlitePath)
+                    }
+                };
+                Module.Processing.EEGEmotion2Channels.LearningModel.Train(dict);
             });
         }
 
@@ -273,7 +344,18 @@ namespace cl.uv.leikelen.Test
         {
             await Util.ThreadsUtil.StartSTATask(() =>
             {
-                Assert.True(false);
+                //var emotionModelPath = @"data\modal\Emotion\emotionmodel.svm";
+                //Assert.True(System.IO.File.Exists(emotionModelPath));
+
+                Module.Processing.EEGEmotion2Channels.View.TrainerFileSelector filesel =
+                new Module.Processing.EEGEmotion2Channels.View.TrainerFileSelector();
+                Assert.NotNull(filesel);
+
+                var lalvData = filesel.ReadSqlite(_lalvSqlitePath);
+                var tag = Module.Processing.EEGEmotion2Channels.LearningModel.Classify(lalvData[0]);
+                Assert.Equal(
+                    Module.Processing.EEGEmotion2Channels.TagType.LALV,
+                    tag);
             });
         }
         #endregion

@@ -1,0 +1,136 @@
+Nombre del grupo: IntegrationTest
+Agrupar por: Hierarchy
+Nombre completo del grupo: IntegrationTest
+Duración: 0:01:25,055
+0 pruebas no superadas
+0 pruebas omitidas
+16 pruebas superadas
+
+Nombre de Result1:  cl.uv.leikelen.Test.IntegrationTest.IntegrationClassifyEmotionTest
+Salida de Result1:  Correcta
+Duración de Result1:    0:00:24,858
+Seguimiento de la pila de Result1:
+Mensaje de Result1:
+Salida estándar de Result1:
+Error estándar de Result1:
+
+Nombre de Result2:  cl.uv.leikelen.Test.IntegrationTest.IntegrationCreatePersonTest
+Salida de Result2:  Correcta
+Duración de Result2:    0:00:00,223
+Seguimiento de la pila de Result2:
+Mensaje de Result2:
+Salida estándar de Result2:
+Error estándar de Result2:
+
+Nombre de Result3:  cl.uv.leikelen.Test.IntegrationTest.IntegrationCreateSceneTest
+Salida de Result3:  Correcta
+Duración de Result3:    0:00:00,01
+Seguimiento de la pila de Result3:
+Mensaje de Result3:
+Salida estándar de Result3:
+Error estándar de Result3:
+
+Nombre de Result4:  cl.uv.leikelen.Test.IntegrationTest.IntegrationDeletePersonTest
+Salida de Result4:  Correcta
+Duración de Result4:    0:00:00,144
+Seguimiento de la pila de Result4:
+Mensaje de Result4:
+Salida estándar de Result4:
+Error estándar de Result4:
+
+Nombre de Result5:  cl.uv.leikelen.Test.IntegrationTest.IntegrationDeleteSceneTest
+Salida de Result5:  Correcta
+Duración de Result5:    0:00:11,519
+Seguimiento de la pila de Result5:
+Mensaje de Result5:
+Salida estándar de Result5:
+Error estándar de Result5:
+
+Nombre de Result6:  cl.uv.leikelen.Test.IntegrationTest.IntegrationExportTest
+Salida de Result6:  Correcta
+Duración de Result6:    0:00:10,467
+Seguimiento de la pila de Result6:
+Mensaje de Result6:
+Salida estándar de Result6:
+Error estándar de Result6:
+
+Nombre de Result7:  cl.uv.leikelen.Test.IntegrationTest.IntegrationGetPersonTest
+Salida de Result7:  Correcta
+Duración de Result7:    0:00:15,157
+Seguimiento de la pila de Result7:
+Mensaje de Result7:
+Salida estándar de Result7:
+Error estándar de Result7:
+
+Nombre de Result8:  cl.uv.leikelen.Test.IntegrationTest.IntegrationGetScenesTest
+Salida de Result8:  Correcta
+Duración de Result8:    0:00:00,016
+Seguimiento de la pila de Result8:
+Mensaje de Result8:
+Salida estándar de Result8:
+Error estándar de Result8:
+
+Nombre de Result9:  cl.uv.leikelen.Test.IntegrationTest.IntegrationImportTest
+Salida de Result9:  Correcta
+Duración de Result9:    0:00:00,244
+Seguimiento de la pila de Result9:
+Mensaje de Result9:
+Salida estándar de Result9:
+Error estándar de Result9:
+
+Nombre de Result10: cl.uv.leikelen.Test.IntegrationTest.IntegrationStartPlayTest
+Salida de Result10: Correcta
+Duración de Result10:   0:00:00,182
+Seguimiento de la pila de Result10:
+Mensaje de Result10:
+Salida estándar de Result10:
+Error estándar de Result10:
+
+Nombre de Result11: cl.uv.leikelen.Test.IntegrationTest.IntegrationStartRecordTest
+Salida de Result11: Correcta
+Duración de Result11:   0:00:10,45
+Seguimiento de la pila de Result11:
+Mensaje de Result11:
+Salida estándar de Result11:
+Error estándar de Result11:
+
+Nombre de Result12: cl.uv.leikelen.Test.IntegrationTest.IntegrationStopPlayTest
+Salida de Result12: Correcta
+Duración de Result12:   0:00:11,151
+Seguimiento de la pila de Result12:
+Mensaje de Result12:
+Salida estándar de Result12:
+Error estándar de Result12:
+
+Nombre de Result13: cl.uv.leikelen.Test.IntegrationTest.IntegrationStopRecordTest
+Salida de Result13: Correcta
+Duración de Result13:   0:00:00,145
+Seguimiento de la pila de Result13:
+Mensaje de Result13:
+Salida estándar de Result13:
+Error estándar de Result13:
+
+Nombre de Result14: cl.uv.leikelen.Test.IntegrationTest.IntegrationTrainEmotionTest
+Salida de Result14: Correcta
+Duración de Result14:   0:00:00,21
+Seguimiento de la pila de Result14:
+Mensaje de Result14:
+Salida estándar de Result14:
+Error estándar de Result14:
+
+Nombre de Result15: cl.uv.leikelen.Test.IntegrationTest.IntegrationUpdatePersonTest
+Salida de Result15: Correcta
+Duración de Result15:   0:00:00,137
+Seguimiento de la pila de Result15:
+Mensaje de Result15:
+Salida estándar de Result15:
+Error estándar de Result15:
+
+Nombre de Result16: cl.uv.leikelen.Test.IntegrationTest.IntegrationUpdateSceneTest
+Salida de Result16: Correcta
+Duración de Result16:   0:00:00,142
+Seguimiento de la pila de Result16:
+Mensaje de Result16:
+Salida estándar de Result16:
+Error estándar de Result16:
+
